@@ -1,3 +1,5 @@
+![](https://travis-ci.org/asyncapi/asyncapi-node.svg?branch=master)
+
 # AsyncAPI
 
 This package provides all the versions of the AsyncAPI schema.
