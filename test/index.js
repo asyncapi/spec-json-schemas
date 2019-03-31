@@ -6,6 +6,18 @@ describe('AsyncAPI', () => {
     assert(typeof asyncapi === 'object', 'Returned value is not an object.');
   });
 
+  // Version 2.0.0-rc1
+
+  it('should return an object with 2.0.0-rc1 key', () => {
+    const asyncapi = require('..');
+    assert(typeof asyncapi['2.0.0-rc1'] === 'object', 'Returned object does not contain 2.0.0-rc1.');
+  });
+  it('should return schema version 2.0.0-rc1', () => {
+    const asyncapi = require('..')['2.0.0-rc1'];
+    const asyncapi200rc1 = require('../schemas/2.0.0-rc1.json');
+    assert.deepStrictEqual(asyncapi, asyncapi200rc1, 'Returned object is not schema version 2.0.0-rc1.');
+  });
+
   // Version 1.2.0
 
   it('should return an object with 1.2.0 key', () => {
