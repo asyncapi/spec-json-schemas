@@ -4,7 +4,8 @@
   "description": "AsyncAPI schema versions",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "release": "semantic-release"
   },
   "repository": {
     "type": "git",
