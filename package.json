@@ -1,5 +1,5 @@
 {
-  "name": "@asyncapi/asyncapi",
+  "name": "@asyncapi/specs",
   "version": "2.6.1",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
