@@ -23,7 +23,7 @@ const asyncapi = require('asyncapi/schemas/1.0.0');
 Get a list of versions:
 
 ```js
-const versions = require('asyncapi');
+const versions = require('@asyncapi/specs');
 
 console.log(versions);
 // Outputs:
