@@ -15,7 +15,7 @@ npm install @asyncapi/specs
 Grab a specific AsyncAPI version:
 
 ```js
-const asyncapi = require('@asyncapi/specs/schemas/1.0.0');
+const asyncapi = require('@asyncapi/specs/schemas/2.0.0');
 
 // Do something with the schema.
 ```
