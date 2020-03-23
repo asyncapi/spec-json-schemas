@@ -7,7 +7,7 @@ This package provides all the versions of the AsyncAPI schema.
 ## Installation
 
 ```bash
-npm install asyncapi
+npm install @asyncapi/specs
 ```
 
 ## Usage
