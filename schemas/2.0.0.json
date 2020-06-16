@@ -640,7 +640,15 @@
                   "type": "string"
                 },
                 "headers": {
-                  "$ref": "#/definitions/schema"
+                  "$ref": "#/definitions/schema", 
+                  "allOf": [
+                    { "$ref": "#/definitions/schema" },
+                    { 
+                      "properties": {
+                        "type": { "const": "object" }
+                      }
+                    }
+                  ]
                 },
                 "payload": {},
                 "correlationId": {
