@@ -638,7 +638,6 @@
                   "type": "string"
                 },
                 "headers": {
-                  "$ref": "#/definitions/schema", 
                   "allOf": [
                     { "$ref": "#/definitions/schema" },
                     { 
