@@ -639,10 +639,14 @@
                 },
                 "headers": {
                   "allOf": [
-                    { "$ref": "#/definitions/schema" },
-                    { 
+                    {
+                      "$ref": "#/definitions/schema"
+                    },
+                    {
                       "properties": {
-                        "type": { "const": "object" }
+                        "type": {
+                          "const": "object"
+                        }
                       }
                     }
                   ]
@@ -691,7 +695,14 @@
                 "examples": {
                   "type": "array",
                   "items": {
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                      "headers": {
+                        "type": "object"
+                      },
+                      "payload": {}
+                    }
                   }
                 },
                 "bindings": {
