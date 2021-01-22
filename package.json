@@ -6,8 +6,10 @@
   "scripts": {
     "test": "nyc mocha",
     "release": "semantic-release",
-    "get-version": "echo $npm_package_version",
-    "get-name": "echo $npm_package_name"
+    "get:version": "echo $npm_package_version",
+    "get:name": "echo $npm_package_name",
+    "generate:assets": "echo 'No additional assets need to be generated at the moment'",
+    "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },
   "repository": {
     "type": "git",
