@@ -955,6 +955,9 @@
         },
         {
           "$ref": "#/definitions/openIdConnect"
+        },
+        {
+          "$ref": "#/definitions/SaslSecurityScheme"
         }
       ]
     },
@@ -1188,6 +1191,89 @@
             "header",
             "query",
             "cookie"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+          "$ref": "#/definitions/specificationExtension"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SaslSecurityScheme": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/SaslPlainSecurityScheme"
+        },
+        {
+          "$ref": "#/definitions/SaslScramSecurityScheme"
+        },
+        {
+          "$ref": "#/definitions/SaslGssapiSecurityScheme"
+        }
+      ]
+    },
+    "SaslPlainSecurityScheme": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "plain"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+          "$ref": "#/definitions/specificationExtension"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SaslScramSecurityScheme": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "scramSha256",
+            "scramSha512"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+          "$ref": "#/definitions/specificationExtension"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SaslGssapiSecurityScheme": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "gssapi"
           ]
         },
         "description": {
