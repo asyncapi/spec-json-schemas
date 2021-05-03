@@ -703,6 +703,14 @@
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the message example."
+                      },
+                      "summary": {
+                        "type": "string",
+                        "description": "A brief summary of the message example."
+                      },
                       "headers": {
                         "type": "object"
                       },
