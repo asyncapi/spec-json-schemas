@@ -702,10 +702,18 @@
                   "items": {
                     "type": "object",
                     "additionalProperties": false,
+                    "dependencies": {
+                      "name": {
+                        "required": ["payload"]
+                      },
+                      "summary": {
+                        "required": ["payload"]
+                      }
+                    },
                     "properties": {
                       "name": {
                         "type": "string",
-                        "description": "Name of the message example."
+                        "description": "Machine reeadable name of the message example."
                       },
                       "summary": {
                         "type": "string",
