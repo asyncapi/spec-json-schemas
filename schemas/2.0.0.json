@@ -713,7 +713,7 @@
                     "properties": {
                       "name": {
                         "type": "string",
-                        "description": "Machine reeadable name of the message example."
+                        "description": "Machine readable name of the message example."
                       },
                       "summary": {
                         "type": "string",
