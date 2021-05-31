@@ -767,7 +767,8 @@
         "sns": {},
         "sqs": {},
         "stomp": {},
-        "redis": {}
+        "redis": {},
+        "ibmmq": {}
       }
     },
     "correlationId": {
