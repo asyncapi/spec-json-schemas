@@ -764,6 +764,7 @@
         "kafka": {},
         "nats": {},
         "jms": {},
+        "anypointmq": {},
         "sns": {},
         "sqs": {},
         "stomp": {},
