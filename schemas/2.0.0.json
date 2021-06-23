@@ -702,14 +702,10 @@
                   "items": {
                     "type": "object",
                     "additionalProperties": false,
-                    "dependencies": {
-                      "name": {
-                        "required": ["payload"]
-                      },
-                      "summary": {
-                        "required": ["payload"]
-                      }
-                    },
+                    "anyOf": [
+                      {"required": ["payload"] },
+                      {"required": ["headers"] } 
+                    ],
                     "properties": {
                       "name": {
                         "type": "string",
