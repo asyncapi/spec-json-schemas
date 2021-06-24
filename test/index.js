@@ -8,7 +8,7 @@ describe('AsyncAPI', () => {
     assert(typeof asyncapi === 'object', 'Returned value is not an object.');
   });
 
-  it('should check if json schema is exported and if it matches the oryginal file', () => {
+  it('should check if json schema is exported and if it matches the original file', () => {
     fs.readdirSync('schemas').forEach(file => {
       fileName = path.parse(file).name;
       
