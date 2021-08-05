@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/asyncapi/asyncapi-node.git"
+    "url": "git+https://github.com/asyncapi/spec-json-schemas.git"
   },
   "author": {
     "name": "Fran Mendez",
@@ -31,9 +31,9 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/asyncapi/asyncapi-node/issues"
+    "url": "https://github.com/asyncapi/spec-json-schemas/issues"
   },
-  "homepage": "https://github.com/asyncapi/asyncapi-node#readme",
+  "homepage": "https://github.com/asyncapi/spec-json-schemas#readme",
   "devDependencies": {
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
