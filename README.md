@@ -1,4 +1,4 @@
-![](https://travis-ci.org/asyncapi/asyncapi-node.svg?branch=master)
+![npm](https://img.shields.io/npm/v/@asyncapi/specs?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@asyncapi/specs?style=for-the-badge)
 
 # AsyncAPI
 
