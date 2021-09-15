@@ -37,7 +37,3 @@ const asyncapi = versions['1.1.0'];
 
 // Do something with the schema.
 ```
-
-## Author
-
-Fran Méndez – [www.fmvilas.com](https://www.fmvilas.com)
