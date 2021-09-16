@@ -6,8 +6,6 @@
   "scripts": {
     "test": "nyc mocha",
     "release": "semantic-release",
-    "get:version": "echo $npm_package_version",
-    "get:name": "echo $npm_package_name",
     "generate:assets": "echo 'No additional assets need to be generated at the moment'",
     "lint": "echo 'No linter integrated yet'",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
@@ -48,7 +46,7 @@
     "branches": [
       "master",
       {
-        "name": "2021-06-release",
+        "name": "2021-09-release",
         "prerelease": true
       }
     ],
