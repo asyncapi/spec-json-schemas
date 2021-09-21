@@ -496,6 +496,14 @@
           "type": "string",
           "description": "A description of the channel."
         },
+        "servers": {
+          "type": "array",
+          "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
         "publish": {
           "$ref": "#/definitions/operation"
         },
