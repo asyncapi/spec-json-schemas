@@ -1,27 +1,27 @@
 {
-    "type": "object",
-    "properties": {
-        "authorizationUrl": {
-            "type": "string",
-            "format": "uri"
-        },
-        "tokenUrl": {
-            "type": "string",
-            "format": "uri"
-        },
-        "refreshUrl": {
-            "type": "string",
-            "format": "uri"
-        },
-        "scopes": {
-            "$ref": "./oauth2Scopes.json"
-        }
+  "type": "object",
+  "properties": {
+    "authorizationUrl": {
+      "type": "string",
+      "format": "uri"
     },
-    "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
-            "$ref": "./specificationExtension.json"
-        }
+    "tokenUrl": {
+      "type": "string",
+      "format": "uri"
     },
-    "additionalProperties": false,
-    "$schema": "http://json-schema.org/draft-07/schema#"
+    "refreshUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "scopes": {
+      "$ref": "./oauth2Scopes.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\-\\_]+$": {
+      "$ref": "./specificationExtension.json"
+    }
+  },
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

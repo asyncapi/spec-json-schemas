@@ -1,37 +1,37 @@
 {
-    "type": "object",
-    "required": [
-        "type",
-        "name",
-        "in"
-    ],
-    "properties": {
-        "type": {
-            "type": "string",
-            "enum": [
-                "httpApiKey"
-            ]
-        },
-        "name": {
-            "type": "string"
-        },
-        "in": {
-            "type": "string",
-            "enum": [
-                "header",
-                "query",
-                "cookie"
-            ]
-        },
-        "description": {
-            "type": "string"
-        }
+  "type": "object",
+  "required": [
+    "type",
+    "name",
+    "in"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "httpApiKey"
+      ]
     },
-    "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
-            "$ref": "./specificationExtension.json"
-        }
+    "name": {
+      "type": "string"
     },
-    "additionalProperties": false,
-    "$schema": "http://json-schema.org/draft-07/schema#"
+    "in": {
+      "type": "string",
+      "enum": [
+        "header",
+        "query",
+        "cookie"
+      ]
+    },
+    "description": {
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\-\\_]+$": {
+      "$ref": "./specificationExtension.json"
+    }
+  },
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

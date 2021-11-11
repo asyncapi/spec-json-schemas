@@ -1,46 +1,46 @@
 {
-    "type": "object",
-    "additionalProperties": false,
-    "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
-            "$ref": "./specificationExtension.json"
-        }
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\-\\_]+$": {
+      "$ref": "./specificationExtension.json"
+    }
+  },
+  "properties": {
+    "$ref": {
+      "$ref": "./ReferenceObject.json"
     },
-    "properties": {
-        "$ref": {
-            "$ref": "./ReferenceObject.json"
-        },
-        "parameters": {
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "./parameter.json"
-            }
-        },
-        "description": {
-            "type": "string",
-            "description": "A description of the channel."
-        },
-        "servers": {
-            "type": "array",
-            "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
-            "items": {
-                "type": "string"
-            },
-            "uniqueItems": true
-        },
-        "publish": {
-            "$ref": "./operation.json"
-        },
-        "subscribe": {
-            "$ref": "./operation.json"
-        },
-        "deprecated": {
-            "type": "boolean",
-            "default": false
-        },
-        "bindings": {
-            "$ref": "./bindingsObject.json"
-        }
+    "parameters": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "./parameter.json"
+      }
     },
-    "$schema": "http://json-schema.org/draft-07/schema#"
+    "description": {
+      "type": "string",
+      "description": "A description of the channel."
+    },
+    "servers": {
+      "type": "array",
+      "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "publish": {
+      "$ref": "./operation.json"
+    },
+    "subscribe": {
+      "$ref": "./operation.json"
+    },
+    "deprecated": {
+      "type": "boolean",
+      "default": false
+    },
+    "bindings": {
+      "$ref": "./bindingsObject.json"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

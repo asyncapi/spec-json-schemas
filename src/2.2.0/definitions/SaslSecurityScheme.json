@@ -1,14 +1,14 @@
 {
-    "oneOf": [
-        {
-            "$ref": "./SaslPlainSecurityScheme.json"
-        },
-        {
-            "$ref": "./SaslScramSecurityScheme.json"
-        },
-        {
-            "$ref": "./SaslGssapiSecurityScheme.json"
-        }
-    ],
-    "$schema": "http://json-schema.org/draft-07/schema#"
+  "oneOf": [
+    {
+      "$ref": "./SaslPlainSecurityScheme.json"
+    },
+    {
+      "$ref": "./SaslScramSecurityScheme.json"
+    },
+    {
+      "$ref": "./SaslGssapiSecurityScheme.json"
+    }
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

@@ -1,104 +1,104 @@
 {
-    "type": "object",
-    "required": [
-        "type",
-        "flows"
-    ],
-    "properties": {
-        "type": {
-            "type": "string",
-            "enum": [
-                "oauth2"
-            ]
-        },
-        "description": {
-            "type": "string"
-        },
-        "flows": {
-            "type": "object",
-            "properties": {
-                "implicit": {
-                    "allOf": [
-                        {
-                            "$ref": "./oauth2Flow.json"
-                        },
-                        {
-                            "required": [
-                                "authorizationUrl",
-                                "scopes"
-                            ]
-                        },
-                        {
-                            "not": {
-                                "required": [
-                                    "tokenUrl"
-                                ]
-                            }
-                        }
-                    ]
-                },
-                "password": {
-                    "allOf": [
-                        {
-                            "$ref": "./oauth2Flow.json"
-                        },
-                        {
-                            "required": [
-                                "tokenUrl",
-                                "scopes"
-                            ]
-                        },
-                        {
-                            "not": {
-                                "required": [
-                                    "authorizationUrl"
-                                ]
-                            }
-                        }
-                    ]
-                },
-                "clientCredentials": {
-                    "allOf": [
-                        {
-                            "$ref": "./oauth2Flow.json"
-                        },
-                        {
-                            "required": [
-                                "tokenUrl",
-                                "scopes"
-                            ]
-                        },
-                        {
-                            "not": {
-                                "required": [
-                                    "authorizationUrl"
-                                ]
-                            }
-                        }
-                    ]
-                },
-                "authorizationCode": {
-                    "allOf": [
-                        {
-                            "$ref": "./oauth2Flow.json"
-                        },
-                        {
-                            "required": [
-                                "authorizationUrl",
-                                "tokenUrl",
-                                "scopes"
-                            ]
-                        }
-                    ]
-                }
+  "type": "object",
+  "required": [
+    "type",
+    "flows"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "oauth2"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "flows": {
+      "type": "object",
+      "properties": {
+        "implicit": {
+          "allOf": [
+            {
+              "$ref": "./oauth2Flow.json"
             },
-            "additionalProperties": false
+            {
+              "required": [
+                "authorizationUrl",
+                "scopes"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "tokenUrl"
+                ]
+              }
+            }
+          ]
+        },
+        "password": {
+          "allOf": [
+            {
+              "$ref": "./oauth2Flow.json"
+            },
+            {
+              "required": [
+                "tokenUrl",
+                "scopes"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "authorizationUrl"
+                ]
+              }
+            }
+          ]
+        },
+        "clientCredentials": {
+          "allOf": [
+            {
+              "$ref": "./oauth2Flow.json"
+            },
+            {
+              "required": [
+                "tokenUrl",
+                "scopes"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "authorizationUrl"
+                ]
+              }
+            }
+          ]
+        },
+        "authorizationCode": {
+          "allOf": [
+            {
+              "$ref": "./oauth2Flow.json"
+            },
+            {
+              "required": [
+                "authorizationUrl",
+                "tokenUrl",
+                "scopes"
+              ]
+            }
+          ]
         }
-    },
-    "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
-            "$ref": "./specificationExtension.json"
-        }
-    },
-    "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\-\\_]+$": {
+      "$ref": "./specificationExtension.json"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

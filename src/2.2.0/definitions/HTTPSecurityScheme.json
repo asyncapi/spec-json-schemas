@@ -1,14 +1,14 @@
 {
-    "oneOf": [
-        {
-            "$ref": "./NonBearerHTTPSecurityScheme.json"
-        },
-        {
-            "$ref": "./BearerHTTPSecurityScheme.json"
-        },
-        {
-            "$ref": "./APIKeyHTTPSecurityScheme.json"
-        }
-    ],
-    "$schema": "http://json-schema.org/draft-07/schema#"
+  "oneOf": [
+    {
+      "$ref": "./NonBearerHTTPSecurityScheme.json"
+    },
+    {
+      "$ref": "./BearerHTTPSecurityScheme.json"
+    },
+    {
+      "$ref": "./APIKeyHTTPSecurityScheme.json"
+    }
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

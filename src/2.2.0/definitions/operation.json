@@ -1,69 +1,69 @@
 {
-    "type": "object",
-    "additionalProperties": false,
-    "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
-            "$ref": "./specificationExtension.json"
-        }
-    },
-    "properties": {
-        "traits": {
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\-\\_]+$": {
+      "$ref": "./specificationExtension.json"
+    }
+  },
+  "properties": {
+    "traits": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "./Reference.json"
+          },
+          {
+            "$ref": "./operationTrait.json"
+          },
+          {
             "type": "array",
-            "items": {
+            "items": [
+              {
                 "oneOf": [
-                    {
-                        "$ref": "./Reference.json"
-                    },
-                    {
-                        "$ref": "./operationTrait.json"
-                    },
-                    {
-                        "type": "array",
-                        "items": [
-                            {
-                                "oneOf": [
-                                    {
-                                        "$ref": "./Reference.json"
-                                    },
-                                    {
-                                        "$ref": "./operationTrait.json"
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "object",
-                                "additionalItems": true
-                            }
-                        ]
-                    }
+                  {
+                    "$ref": "./Reference.json"
+                  },
+                  {
+                    "$ref": "./operationTrait.json"
+                  }
                 ]
-            }
-        },
-        "summary": {
-            "type": "string"
-        },
-        "description": {
-            "type": "string"
-        },
-        "tags": {
-            "type": "array",
-            "items": {
-                "$ref": "./tag.json"
-            },
-            "uniqueItems": true
-        },
-        "externalDocs": {
-            "$ref": "./externalDocs.json"
-        },
-        "operationId": {
-            "type": "string"
-        },
-        "bindings": {
-            "$ref": "./bindingsObject.json"
-        },
-        "message": {
-            "$ref": "./message.json"
-        }
+              },
+              {
+                "type": "object",
+                "additionalItems": true
+              }
+            ]
+          }
+        ]
+      }
     },
-    "$schema": "http://json-schema.org/draft-07/schema#"
+    "summary": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "./tag.json"
+      },
+      "uniqueItems": true
+    },
+    "externalDocs": {
+      "$ref": "./externalDocs.json"
+    },
+    "operationId": {
+      "type": "string"
+    },
+    "bindings": {
+      "$ref": "./bindingsObject.json"
+    },
+    "message": {
+      "$ref": "./message.json"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

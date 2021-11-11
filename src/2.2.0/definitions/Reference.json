@@ -1,12 +1,12 @@
 {
-    "type": "object",
-    "required": [
-        "$ref"
-    ],
-    "properties": {
-        "$ref": {
-            "$ref": "./ReferenceObject.json"
-        }
-    },
-    "$schema": "http://json-schema.org/draft-07/schema#"
+  "type": "object",
+  "required": [
+    "$ref"
+  ],
+  "properties": {
+    "$ref": {
+      "$ref": "./ReferenceObject.json"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

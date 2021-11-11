@@ -1,32 +1,32 @@
 {
-    "type": "object",
-    "description": "An object representing a Server Variable for server URL template substitution.",
-    "additionalProperties": false,
-    "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
-            "$ref": "./specificationExtension.json"
-        }
+  "type": "object",
+  "description": "An object representing a Server Variable for server URL template substitution.",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\-\\_]+$": {
+      "$ref": "./specificationExtension.json"
+    }
+  },
+  "properties": {
+    "enum": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
     },
-    "properties": {
-        "enum": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "uniqueItems": true
-        },
-        "default": {
-            "type": "string"
-        },
-        "description": {
-            "type": "string"
-        },
-        "examples": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        }
+    "default": {
+      "type": "string"
     },
-    "$schema": "http://json-schema.org/draft-07/schema#"
+    "description": {
+      "type": "string"
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }

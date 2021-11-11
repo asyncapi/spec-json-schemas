@@ -1,39 +1,39 @@
 {
-    "not": {
-        "type": "object",
-        "properties": {
-            "scheme": {
-                "type": "string",
-                "enum": [
-                    "bearer"
-                ]
-            }
-        }
-    },
+  "not": {
     "type": "object",
-    "required": [
-        "scheme",
-        "type"
-    ],
     "properties": {
-        "scheme": {
-            "type": "string"
-        },
-        "description": {
-            "type": "string"
-        },
-        "type": {
-            "type": "string",
-            "enum": [
-                "http"
-            ]
-        }
+      "scheme": {
+        "type": "string",
+        "enum": [
+          "bearer"
+        ]
+      }
+    }
+  },
+  "type": "object",
+  "required": [
+    "scheme",
+    "type"
+  ],
+  "properties": {
+    "scheme": {
+      "type": "string"
     },
-    "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
-            "$ref": "./specificationExtension.json"
-        }
+    "description": {
+      "type": "string"
     },
-    "additionalProperties": false,
-    "$schema": "http://json-schema.org/draft-07/schema#"
+    "type": {
+      "type": "string",
+      "enum": [
+        "http"
+      ]
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\-\\_]+$": {
+      "$ref": "./specificationExtension.json"
+    }
+  },
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
 }
