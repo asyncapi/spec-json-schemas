@@ -1,0 +1,77 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+            "$ref": "./specificationExtension.json"
+        }
+    },
+    "properties": {
+        "schemaFormat": {
+            "type": "string"
+        },
+        "contentType": {
+            "type": "string"
+        },
+        "headers": {
+            "oneOf": [
+                {
+                    "$ref": "./Reference.json"
+                },
+                {
+                    "$ref": "./schema.json"
+                }
+            ]
+        },
+        "correlationId": {
+            "oneOf": [
+                {
+                    "$ref": "./Reference.json"
+                },
+                {
+                    "$ref": "./correlationId.json"
+                }
+            ]
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "$ref": "./tag.json"
+            },
+            "uniqueItems": true
+        },
+        "summary": {
+            "type": "string",
+            "description": "A brief summary of the message."
+        },
+        "name": {
+            "type": "string",
+            "description": "Name of the message."
+        },
+        "title": {
+            "type": "string",
+            "description": "A human-friendly title for the message."
+        },
+        "description": {
+            "type": "string",
+            "description": "A longer description of the message. CommonMark is allowed."
+        },
+        "externalDocs": {
+            "$ref": "./externalDocs.json"
+        },
+        "deprecated": {
+            "type": "boolean",
+            "default": false
+        },
+        "examples": {
+            "type": "array",
+            "items": {
+                "type": "object"
+            }
+        },
+        "bindings": {
+            "$ref": "./bindingsObject.json"
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}

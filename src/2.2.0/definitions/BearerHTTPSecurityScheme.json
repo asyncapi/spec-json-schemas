@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "required": [
+        "type",
+        "scheme"
+    ],
+    "properties": {
+        "scheme": {
+            "type": "string",
+            "enum": [
+                "bearer"
+            ]
+        },
+        "bearerFormat": {
+            "type": "string"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "http"
+            ]
+        },
+        "description": {
+            "type": "string"
+        }
+    },
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+            "$ref": "./specificationExtension.json"
+        }
+    },
+    "additionalProperties": false,
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}

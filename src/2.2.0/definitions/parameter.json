@@ -1,0 +1,26 @@
+{
+    "additionalProperties": false,
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+            "$ref": "./specificationExtension.json"
+        }
+    },
+    "properties": {
+        "description": {
+            "type": "string",
+            "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
+        },
+        "schema": {
+            "$ref": "#/definitions/schema"
+        },
+        "location": {
+            "type": "string",
+            "description": "A runtime expression that specifies the location of the parameter value",
+            "pattern": "^\\$message\\.(header|payload)\\#(\\/(([^\\/~])|(~[01]))*)*"
+        },
+        "$ref": {
+            "$ref": "#/definitions/ReferenceObject"
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}

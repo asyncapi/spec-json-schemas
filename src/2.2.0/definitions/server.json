@@ -1,0 +1,42 @@
+{
+    "type": "object",
+    "description": "An object representing a Server.",
+    "required": [
+        "url",
+        "protocol"
+    ],
+    "additionalProperties": false,
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": {
+            "$ref": "./specificationExtension.json"
+        }
+    },
+    "properties": {
+        "url": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "protocol": {
+            "type": "string",
+            "description": "The transfer protocol."
+        },
+        "protocolVersion": {
+            "type": "string"
+        },
+        "variables": {
+            "$ref": "./serverVariables.json"
+        },
+        "security": {
+            "type": "array",
+            "items": {
+                "$ref": "./SecurityRequirement.json"
+            }
+        },
+        "bindings": {
+            "$ref": "./bindingsObject.json"
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}

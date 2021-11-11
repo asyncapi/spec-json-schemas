@@ -1,0 +1,167 @@
+{
+    "oneOf": [
+        {
+            "$ref": "./Reference.json"
+        },
+        {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "oneOf"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "oneOf": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "./message.json"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\-\\_]+$": {
+                            "$ref": "./specificationExtension.json"
+                        }
+                    },
+                    "properties": {
+                        "schemaFormat": {
+                            "type": "string"
+                        },
+                        "contentType": {
+                            "type": "string"
+                        },
+                        "headers": {
+                            "allOf": [
+                                {
+                                    "$ref": "./schema.json"
+                                },
+                                {
+                                    "properties": {
+                                        "type": {
+                                            "const": "object"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "payload": {},
+                        "correlationId": {
+                            "oneOf": [
+                                {
+                                    "$ref": "./Reference.json"
+                                },
+                                {
+                                    "$ref": "./correlationId.json"
+                                }
+                            ]
+                        },
+                        "tags": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "./tag.json"
+                            },
+                            "uniqueItems": true
+                        },
+                        "summary": {
+                            "type": "string",
+                            "description": "A brief summary of the message."
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the message."
+                        },
+                        "title": {
+                            "type": "string",
+                            "description": "A human-friendly title for the message."
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "A longer description of the message. CommonMark is allowed."
+                        },
+                        "externalDocs": {
+                            "$ref": "./externalDocs.json"
+                        },
+                        "deprecated": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "examples": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "additionalProperties": false,
+                                "anyOf": [
+                                    {
+                                        "required": [
+                                            "payload"
+                                        ]
+                                    },
+                                    {
+                                        "required": [
+                                            "headers"
+                                        ]
+                                    }
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Machine readable name of the message example."
+                                    },
+                                    "summary": {
+                                        "type": "string",
+                                        "description": "A brief summary of the message example."
+                                    },
+                                    "headers": {
+                                        "type": "object"
+                                    },
+                                    "payload": {}
+                                }
+                            }
+                        },
+                        "bindings": {
+                            "$ref": "./bindingsObject.json"
+                        },
+                        "traits": {
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "./Reference.json"
+                                    },
+                                    {
+                                        "$ref": "./messageTrait.json"
+                                    },
+                                    {
+                                        "type": "array",
+                                        "items": [
+                                            {
+                                                "oneOf": [
+                                                    {
+                                                        "$ref": "./Reference.json"
+                                                    },
+                                                    {
+                                                        "$ref": "./messageTrait.json"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "object",
+                                                "additionalItems": true
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,32 @@
+{
+    "oneOf": [
+        {
+            "$ref": "./userPassword.json"
+        },
+        {
+            "$ref": "./apiKey.json"
+        },
+        {
+            "$ref": "./X509.json"
+        },
+        {
+            "$ref": "./symmetricEncryption.json"
+        },
+        {
+            "$ref": "./asymmetricEncryption.json"
+        },
+        {
+            "$ref": "./HTTPSecurityScheme.json"
+        },
+        {
+            "$ref": "./oauth2Flows.json"
+        },
+        {
+            "$ref": "./openIdConnect.json"
+        },
+        {
+            "$ref": "./SaslSecurityScheme.json"
+        }
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}
