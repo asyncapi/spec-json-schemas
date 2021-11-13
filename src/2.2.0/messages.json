@@ -4,5 +4,6 @@
     "$ref": "./message.json"
   },
   "description": "JSON objects describing the messages being consumed and produced by the API.",
-  "$schema": "http://json-schema.org/draft-07/schema#"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "./messages.json"
 }
