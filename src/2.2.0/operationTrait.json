@@ -2,8 +2,8 @@
   "type": "object",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "properties": {
@@ -16,20 +16,20 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "./tag.json"
+        "$ref": "tag.json"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "./externalDocs.json"
+      "$ref": "externalDocs.json"
     },
     "operationId": {
       "type": "string"
     },
     "bindings": {
-      "$ref": "./bindingsObject.json"
+      "$ref": "bindingsObject.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./operationTrait.json"
+  "$id": "operationTrait.json"
 }

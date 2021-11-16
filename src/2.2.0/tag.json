@@ -12,14 +12,14 @@
       "type": "string"
     },
     "externalDocs": {
-      "$ref": "./externalDocs.json"
+      "$ref": "externalDocs.json"
     }
   },
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./tag.json"
+  "$id": "tag.json"
 }

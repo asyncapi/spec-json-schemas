@@ -1,9 +1,9 @@
 {
   "type": "object",
   "additionalProperties": {
-    "$ref": "./schema.json"
+    "$ref": "schema.json"
   },
   "description": "JSON objects describing schemas the API uses.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./schemas.json"
+  "$id": "schemas.json"
 }

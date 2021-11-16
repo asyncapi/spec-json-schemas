@@ -5,8 +5,8 @@
   ],
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "properties": {
@@ -17,9 +17,9 @@
     "location": {
       "type": "string",
       "description": "A runtime expression that specifies the location of the correlation ID",
-      "pattern": "^\\$message\\.(header|payload)\\#(\\/(([^\\/~])|(~[01]))*)*"
+      "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./correlationId.json"
+  "$id": "correlationId.json"
 }

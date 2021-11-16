@@ -3,8 +3,8 @@
   "description": "An object representing a Server Variable for server URL template substitution.",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "properties": {
@@ -29,5 +29,5 @@
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./serverVariable.json"
+  "$id": "serverVariable.json"
 }

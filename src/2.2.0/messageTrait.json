@@ -2,8 +2,8 @@
   "type": "object",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "properties": {
@@ -16,27 +16,27 @@
     "headers": {
       "oneOf": [
         {
-          "$ref": "./Reference.json"
+          "$ref": "Reference.json"
         },
         {
-          "$ref": "./schema.json"
+          "$ref": "schema.json"
         }
       ]
     },
     "correlationId": {
       "oneOf": [
         {
-          "$ref": "./Reference.json"
+          "$ref": "Reference.json"
         },
         {
-          "$ref": "./correlationId.json"
+          "$ref": "correlationId.json"
         }
       ]
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "./tag.json"
+        "$ref": "tag.json"
       },
       "uniqueItems": true
     },
@@ -57,7 +57,7 @@
       "description": "A longer description of the message. CommonMark is allowed."
     },
     "externalDocs": {
-      "$ref": "./externalDocs.json"
+      "$ref": "externalDocs.json"
     },
     "deprecated": {
       "type": "boolean",
@@ -70,9 +70,9 @@
       }
     },
     "bindings": {
-      "$ref": "./bindingsObject.json"
+      "$ref": "bindingsObject.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./messageTrait.json"
+  "$id": "messageTrait.json"
 }

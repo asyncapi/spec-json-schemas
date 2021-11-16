@@ -15,10 +15,10 @@
     }
   },
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./externalDocs.json"
+  "$id": "externalDocs.json"
 }

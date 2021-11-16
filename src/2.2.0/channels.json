@@ -6,8 +6,8 @@
     "minLength": 1
   },
   "additionalProperties": {
-    "$ref": "./channelItem.json"
+    "$ref": "channelItem.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./channels.json"
+  "$id": "channels.json"
 }

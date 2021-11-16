@@ -3,5 +3,5 @@
   "additionalProperties": true,
   "additionalItems": true,
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./specificationExtension.json"
+  "$id": "specificationExtension.json"
 }

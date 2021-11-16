@@ -3,16 +3,16 @@
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "properties": {
     "schemas": {
-      "$ref": "./schemas.json"
+      "$ref": "schemas.json"
     },
     "messages": {
-      "$ref": "./messages.json"
+      "$ref": "messages.json"
     },
     "securitySchemes": {
       "type": "object",
@@ -20,17 +20,17 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "./Reference.json"
+              "$ref": "Reference.json"
             },
             {
-              "$ref": "./SecurityScheme.json"
+              "$ref": "SecurityScheme.json"
             }
           ]
         }
       }
     },
     "parameters": {
-      "$ref": "./parameters.json"
+      "$ref": "parameters.json"
     },
     "correlationIds": {
       "type": "object",
@@ -38,10 +38,10 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "./Reference.json"
+              "$ref": "Reference.json"
             },
             {
-              "$ref": "./correlationId.json"
+              "$ref": "correlationId.json"
             }
           ]
         }
@@ -50,40 +50,40 @@
     "operationTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./operationTrait.json"
+        "$ref": "operationTrait.json"
       }
     },
     "messageTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./messageTrait.json"
+        "$ref": "messageTrait.json"
       }
     },
     "serverBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./bindingsObject.json"
+        "$ref": "bindingsObject.json"
       }
     },
     "channelBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./bindingsObject.json"
+        "$ref": "bindingsObject.json"
       }
     },
     "operationBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./bindingsObject.json"
+        "$ref": "bindingsObject.json"
       }
     },
     "messageBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./bindingsObject.json"
+        "$ref": "bindingsObject.json"
       }
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./components.json"
+  "$id": "components.json"
 }

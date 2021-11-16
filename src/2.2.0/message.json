@@ -1,7 +1,7 @@
 {
   "oneOf": [
     {
-      "$ref": "./Reference.json"
+      "$ref": "Reference.json"
     },
     {
       "oneOf": [
@@ -15,7 +15,7 @@
             "oneOf": {
               "type": "array",
               "items": {
-                "$ref": "./message.json"
+                "$ref": "message.json"
               }
             }
           }
@@ -24,8 +24,8 @@
           "type": "object",
           "additionalProperties": false,
           "patternProperties": {
-            "^x-[\\w\\d\\.\\-\\_]+$": {
-              "$ref": "./specificationExtension.json"
+            "^x-[\\w\\d.\\-_]+$": {
+              "$ref": "specificationExtension.json"
             }
           },
           "properties": {
@@ -38,7 +38,7 @@
             "headers": {
               "allOf": [
                 {
-                  "$ref": "./schema.json"
+                  "$ref": "schema.json"
                 },
                 {
                   "properties": {
@@ -53,17 +53,17 @@
             "correlationId": {
               "oneOf": [
                 {
-                  "$ref": "./Reference.json"
+                  "$ref": "Reference.json"
                 },
                 {
-                  "$ref": "./correlationId.json"
+                  "$ref": "correlationId.json"
                 }
               ]
             },
             "tags": {
               "type": "array",
               "items": {
-                "$ref": "./tag.json"
+                "$ref": "tag.json"
               },
               "uniqueItems": true
             },
@@ -84,7 +84,7 @@
               "description": "A longer description of the message. CommonMark is allowed."
             },
             "externalDocs": {
-              "$ref": "./externalDocs.json"
+              "$ref": "externalDocs.json"
             },
             "deprecated": {
               "type": "boolean",
@@ -124,17 +124,17 @@
               }
             },
             "bindings": {
-              "$ref": "./bindingsObject.json"
+              "$ref": "bindingsObject.json"
             },
             "traits": {
               "type": "array",
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "./Reference.json"
+                    "$ref": "Reference.json"
                   },
                   {
-                    "$ref": "./messageTrait.json"
+                    "$ref": "messageTrait.json"
                   },
                   {
                     "type": "array",
@@ -142,10 +142,10 @@
                       {
                         "oneOf": [
                           {
-                            "$ref": "./Reference.json"
+                            "$ref": "Reference.json"
                           },
                           {
-                            "$ref": "./messageTrait.json"
+                            "$ref": "messageTrait.json"
                           }
                         ]
                       },
@@ -164,5 +164,5 @@
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./message.json"
+  "$id": "message.json"
 }

@@ -1,8 +1,8 @@
 {
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "properties": {
@@ -11,17 +11,17 @@
       "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
     },
     "schema": {
-      "$ref": "#/definitions/schema"
+      "$ref": "schema.json"
     },
     "location": {
       "type": "string",
       "description": "A runtime expression that specifies the location of the parameter value",
-      "pattern": "^\\$message\\.(header|payload)\\#(\\/(([^\\/~])|(~[01]))*)*"
+      "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
     },
     "$ref": {
-      "$ref": "#/definitions/ReferenceObject"
+      "$ref": "ReferenceObject.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "./parameter.json"
+  "$id": "parameter.json"
 }

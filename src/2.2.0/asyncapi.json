@@ -1,6 +1,7 @@
 {
   "title": "AsyncAPI 2.2.0 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "asyncapi.json",
   "type": "object",
   "required": [
     "asyncapi",
@@ -9,8 +10,8 @@
   ],
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "./specificationExtension.json"
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "specificationExtension.json"
     }
   },
   "properties": {
@@ -27,7 +28,7 @@
       "format": "uri"
     },
     "info": {
-      "$ref": "./info.json"
+      "$ref": "info.json"
     },
     "servers": {
       "type": "object",
@@ -39,20 +40,20 @@
       "type": "string"
     },
     "channels": {
-      "$ref": "./channels.json"
+      "$ref": "channels.json"
     },
     "components": {
-      "$ref": "./components.json"
+      "$ref": "components.json"
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "./tag.json"
+        "$ref": "tag.json"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "./externalDocs.json"
+      "$ref": "externalDocs.json"
     }
   }
 }
