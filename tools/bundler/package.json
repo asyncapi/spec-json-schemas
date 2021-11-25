@@ -1,0 +1,14 @@
+{
+  "name": "bundler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "node index"
+  },
+  "dependencies": {
+    "@apidevtools/json-schema-ref-parser": "^9.0.9"
+  },
+  "author": "",
+  "license": "ISC"
+}

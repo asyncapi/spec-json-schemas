@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc mocha",
     "release": "semantic-release",
-    "generate:assets": "echo 'No additional assets need to be generated at the moment'",
+    "generate:assets": "cd tools/bundler && npm i && npm run bundle",
     "lint": "echo 'No linter integrated yet'",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },

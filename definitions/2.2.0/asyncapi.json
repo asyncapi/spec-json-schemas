@@ -33,7 +33,7 @@
     "servers": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./server.json"
+        "$ref": "server.json"
       }
     },
     "defaultContentType": {
