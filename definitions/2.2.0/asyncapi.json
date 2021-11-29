@@ -1,7 +1,7 @@
 {
   "title": "AsyncAPI 2.2.0 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/http://asyncapi.com/draft-07/schemas/asyncapi",
+  "$id": "http://asyncapi.com/draft-07/schemas/asyncapi",
   "type": "object",
   "required": [
     "asyncapi",

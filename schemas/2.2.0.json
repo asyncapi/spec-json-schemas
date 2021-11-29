@@ -1,5 +1,5 @@
 {
-    "$id": "http://asyncapi.com/draft-07/schemas/http://asyncapi.com/draft-07/schemas/asyncapi",
+    "$id": "http://asyncapi.com/draft-07/schemas/asyncapi",
     "$schema": "http://json-schema.org/draft-07/schema",
     "title": "AsyncAPI 2.2.0 schema.",
     "type": "object",
