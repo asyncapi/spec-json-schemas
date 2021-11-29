@@ -1,7 +1,7 @@
 {
   "title": "AsyncAPI 2.2.0 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "asyncapi.json",
+  "$id": "http://asyncapi.com/draft-07/schemas/http://asyncapi.com/draft-07/schemas/asyncapi",
   "type": "object",
   "required": [
     "asyncapi",
@@ -11,7 +11,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
     }
   },
   "properties": {
@@ -28,32 +28,32 @@
       "format": "uri"
     },
     "info": {
-      "$ref": "info.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/info"
     },
     "servers": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "server.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/server"
       }
     },
     "defaultContentType": {
       "type": "string"
     },
     "channels": {
-      "$ref": "channels.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/channels"
     },
     "components": {
-      "$ref": "components.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/components"
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "tag.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/tag"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "externalDocs.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
     }
   }
 }

@@ -4,15 +4,15 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
     }
   },
   "properties": {
     "schemas": {
-      "$ref": "schemas.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/schemas"
     },
     "messages": {
-      "$ref": "messages.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/messages"
     },
     "securitySchemes": {
       "type": "object",
@@ -20,17 +20,17 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "Reference.json"
+              "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
             },
             {
-              "$ref": "SecurityScheme.json"
+              "$ref": "http://asyncapi.com/draft-07/schemas/SecurityScheme"
             }
           ]
         }
       }
     },
     "parameters": {
-      "$ref": "parameters.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/parameters"
     },
     "correlationIds": {
       "type": "object",
@@ -38,10 +38,10 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "Reference.json"
+              "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
             },
             {
-              "$ref": "correlationId.json"
+              "$ref": "http://asyncapi.com/draft-07/schemas/correlationId"
             }
           ]
         }
@@ -50,40 +50,40 @@
     "operationTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "operationTrait.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/operationTrait"
       }
     },
     "messageTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "messageTrait.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/messageTrait"
       }
     },
     "serverBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "bindingsObject.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
       }
     },
     "channelBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "bindingsObject.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
       }
     },
     "operationBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "bindingsObject.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
       }
     },
     "messageBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "bindingsObject.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
       }
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "components.json"
+  "$id": "http://asyncapi.com/draft-07/schemas/components"
 }

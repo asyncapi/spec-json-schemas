@@ -6,14 +6,14 @@
     {
       "patternProperties": {
         "^x-[\\w\\d.\\-_]+$": {
-          "$ref": "specificationExtension.json"
+          "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
         }
       },
       "properties": {
         "additionalProperties": {
           "anyOf": [
             {
-              "$ref": "schema.json"
+              "$ref": "http://asyncapi.com/draft-07/schemas/schema"
             },
             {
               "type": "boolean"
@@ -24,13 +24,13 @@
         "items": {
           "anyOf": [
             {
-              "$ref": "schema.json"
+              "$ref": "http://asyncapi.com/draft-07/schemas/schema"
             },
             {
               "type": "array",
               "minItems": 1,
               "items": {
-                "$ref": "schema.json"
+                "$ref": "http://asyncapi.com/draft-07/schemas/schema"
               }
             }
           ],
@@ -40,51 +40,51 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "schema.json"
+            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
           }
         },
         "oneOf": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "schema.json"
+            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
           }
         },
         "anyOf": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "schema.json"
+            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
           }
         },
         "not": {
-          "$ref": "schema.json"
+          "$ref": "http://asyncapi.com/draft-07/schemas/schema"
         },
         "properties": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "schema.json"
+            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
           },
           "default": {}
         },
         "patternProperties": {
           "type": "object",
           "additionalProperties": {
-            "$ref": "schema.json"
+            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
           },
           "default": {}
         },
         "propertyNames": {
-          "$ref": "schema.json"
+          "$ref": "http://asyncapi.com/draft-07/schemas/schema"
         },
         "contains": {
-          "$ref": "schema.json"
+          "$ref": "http://asyncapi.com/draft-07/schemas/schema"
         },
         "discriminator": {
           "type": "string"
         },
         "externalDocs": {
-          "$ref": "externalDocs.json"
+          "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
         },
         "deprecated": {
           "type": "boolean",
@@ -94,5 +94,5 @@
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schema.json"
+  "$id": "http://asyncapi.com/draft-07/schemas/schema"
 }

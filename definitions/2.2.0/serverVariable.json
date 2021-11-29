@@ -4,7 +4,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
     }
   },
   "properties": {
@@ -29,5 +29,5 @@
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "serverVariable.json"
+  "$id": "http://asyncapi.com/draft-07/schemas/serverVariable"
 }

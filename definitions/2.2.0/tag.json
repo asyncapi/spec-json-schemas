@@ -12,14 +12,14 @@
       "type": "string"
     },
     "externalDocs": {
-      "$ref": "externalDocs.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
     }
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "tag.json"
+  "$id": "http://asyncapi.com/draft-07/schemas/tag"
 }

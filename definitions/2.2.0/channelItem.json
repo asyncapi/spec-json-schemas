@@ -3,17 +3,17 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
     }
   },
   "properties": {
     "$ref": {
-      "$ref": "ReferenceObject.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/ReferenceObject"
     },
     "parameters": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "parameter.json"
+        "$ref": "http://asyncapi.com/draft-07/schemas/parameter"
       }
     },
     "description": {
@@ -29,19 +29,19 @@
       "uniqueItems": true
     },
     "publish": {
-      "$ref": "operation.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/operation"
     },
     "subscribe": {
-      "$ref": "operation.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/operation"
     },
     "deprecated": {
       "type": "boolean",
       "default": false
     },
     "bindings": {
-      "$ref": "bindingsObject.json"
+      "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "channelItem.json"
+  "$id": "http://asyncapi.com/draft-07/schemas/channelItem"
 }

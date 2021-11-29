@@ -1,7 +1,7 @@
 {
+    "$id": "http://asyncapi.com/draft-07/schemas/http://asyncapi.com/draft-07/schemas/asyncapi",
+    "$schema": "http://json-schema.org/draft-07/schema",
     "title": "AsyncAPI 2.2.0 schema.",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "asyncapi.json",
     "type": "object",
     "required": [
         "asyncapi",
@@ -11,11 +11,7 @@
     "additionalProperties": false,
     "patternProperties": {
         "^x-[\\w\\d.\\-_]+$": {
-            "description": "Any property starting with x- is valid.",
-            "additionalProperties": true,
-            "additionalItems": true,
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "$id": "specificationExtension.json"
+            "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
         }
     },
     "properties": {
@@ -32,6 +28,43 @@
             "format": "uri"
         },
         "info": {
+            "$ref": "http://asyncapi.com/draft-07/schemas/info"
+        },
+        "servers": {
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "http://asyncapi.com/draft-07/schemas/server"
+            }
+        },
+        "defaultContentType": {
+            "type": "string"
+        },
+        "channels": {
+            "$ref": "http://asyncapi.com/draft-07/schemas/channels"
+        },
+        "components": {
+            "$ref": "http://asyncapi.com/draft-07/schemas/components"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "$ref": "http://asyncapi.com/draft-07/schemas/tag"
+            },
+            "uniqueItems": true
+        },
+        "externalDocs": {
+            "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
+        }
+    },
+    "definitions": {
+        "http://asyncapi.com/draft-07/schemas/specificationExtension": {
+            "$id": "http://asyncapi.com/draft-07/schemas/specificationExtension",
+            "description": "Any property starting with x- is valid.",
+            "additionalProperties": true,
+            "additionalItems": true
+        },
+        "http://asyncapi.com/draft-07/schemas/info": {
+            "$id": "http://asyncapi.com/draft-07/schemas/info",
             "type": "object",
             "description": "General information about the API.",
             "required": [
@@ -41,7 +74,7 @@
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
                 }
             },
             "properties": {
@@ -63,176 +96,108 @@
                     "format": "uri"
                 },
                 "contact": {
-                    "type": "object",
-                    "description": "Contact information for the owners of the API.",
-                    "additionalProperties": false,
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "description": "The identifying name of the contact person/organization."
-                        },
-                        "url": {
-                            "type": "string",
-                            "description": "The URL pointing to the contact information.",
-                            "format": "uri"
-                        },
-                        "email": {
-                            "type": "string",
-                            "description": "The email address of the contact person/organization.",
-                            "format": "email"
-                        }
-                    },
-                    "patternProperties": {
-                        "^x-[\\w\\d.\\-_]+$": {
-                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                        }
-                    },
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "$id": "contact.json"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/contact"
                 },
                 "license": {
-                    "type": "object",
-                    "required": [
-                        "name"
-                    ],
-                    "additionalProperties": false,
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "description": "The name of the license type. It's encouraged to use an OSI compatible license."
-                        },
-                        "url": {
-                            "type": "string",
-                            "description": "The URL pointing to the license.",
-                            "format": "uri"
-                        }
-                    },
-                    "patternProperties": {
-                        "^x-[\\w\\d.\\-_]+$": {
-                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                        }
-                    },
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "$id": "license.json"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/license"
                 }
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "$id": "info.json"
-        },
-        "servers": {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "description": "An object representing a Server.",
-                "required": [
-                    "url",
-                    "protocol"
-                ],
-                "additionalProperties": false,
-                "patternProperties": {
-                    "^x-[\\w\\d.\\-_]+$": {
-                        "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                    }
-                },
-                "properties": {
-                    "url": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "protocol": {
-                        "type": "string",
-                        "description": "The transfer protocol."
-                    },
-                    "protocolVersion": {
-                        "type": "string"
-                    },
-                    "variables": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "object",
-                            "description": "An object representing a Server Variable for server URL template substitution.",
-                            "additionalProperties": false,
-                            "patternProperties": {
-                                "^x-[\\w\\d.\\-_]+$": {
-                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                }
-                            },
-                            "properties": {
-                                "enum": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    },
-                                    "uniqueItems": true
-                                },
-                                "default": {
-                                    "type": "string"
-                                },
-                                "description": {
-                                    "type": "string"
-                                },
-                                "examples": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "$id": "serverVariable.json"
-                        },
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "serverVariables.json"
-                    },
-                    "security": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                },
-                                "uniqueItems": true
-                            },
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "$id": "SecurityRequirement.json"
-                        }
-                    },
-                    "bindings": {
-                        "type": "object",
-                        "additionalProperties": true,
-                        "properties": {
-                            "http": {},
-                            "ws": {},
-                            "amqp": {},
-                            "amqp1": {},
-                            "mqtt": {},
-                            "mqtt5": {},
-                            "kafka": {},
-                            "anypointmq": {},
-                            "nats": {},
-                            "jms": {},
-                            "sns": {},
-                            "sqs": {},
-                            "stomp": {},
-                            "redis": {},
-                            "ibmmq": {}
-                        },
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "bindingsObject.json"
-                    }
-                },
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "$id": "server.json"
             }
         },
-        "defaultContentType": {
-            "type": "string"
+        "http://asyncapi.com/draft-07/schemas/contact": {
+            "$id": "http://asyncapi.com/draft-07/schemas/contact",
+            "type": "object",
+            "description": "Contact information for the owners of the API.",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The identifying name of the contact person/organization."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL pointing to the contact information.",
+                    "format": "uri"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "The email address of the contact person/organization.",
+                    "format": "email"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            }
         },
-        "channels": {
+        "http://asyncapi.com/draft-07/schemas/license": {
+            "$id": "http://asyncapi.com/draft-07/schemas/license",
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the license type. It's encouraged to use an OSI compatible license."
+                },
+                "url": {
+                    "type": "string",
+                    "description": "The URL pointing to the license.",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/server": {
+            "$id": "http://asyncapi.com/draft-07/schemas/server",
+            "type": "object",
+            "description": "An object representing a Server.",
+            "required": [
+                "url",
+                "protocol"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "properties": {
+                "url": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "The transfer protocol."
+                },
+                "protocolVersion": {
+                    "type": "string"
+                },
+                "variables": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/serverVariables"
+                },
+                "security": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/draft-07/schemas/SecurityRequirement"
+                    }
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/channels": {
+            "$id": "http://asyncapi.com/draft-07/schemas/channels",
             "type": "object",
             "propertyNames": {
                 "type": "string",
@@ -240,654 +205,71 @@
                 "minLength": 1
             },
             "additionalProperties": {
-                "type": "object",
-                "additionalProperties": false,
-                "patternProperties": {
-                    "^x-[\\w\\d.\\-_]+$": {
-                        "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                    }
-                },
-                "properties": {
-                    "$ref": {
-                        "type": "string",
-                        "format": "uri-reference",
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "ReferenceObject.json"
-                    },
-                    "parameters": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "$ref": "#/properties/components/properties/parameters/additionalProperties"
-                        }
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "A description of the channel."
-                    },
-                    "servers": {
-                        "type": "array",
-                        "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
-                        "items": {
-                            "type": "string"
-                        },
-                        "uniqueItems": true
-                    },
-                    "publish": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "patternProperties": {
-                            "^x-[\\w\\d.\\-_]+$": {
-                                "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                            }
-                        },
-                        "properties": {
-                            "traits": {
-                                "type": "array",
-                                "items": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                                        },
-                                        {
-                                            "$ref": "#/properties/components/properties/operationTraits/additionalProperties"
-                                        },
-                                        {
-                                            "type": "array",
-                                            "items": [
-                                                {
-                                                    "oneOf": [
-                                                        {
-                                                            "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                                                        },
-                                                        {
-                                                            "$ref": "#/properties/components/properties/operationTraits/additionalProperties"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "object",
-                                                    "additionalItems": true
-                                                }
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "summary": {
-                                "type": "string"
-                            },
-                            "description": {
-                                "type": "string"
-                            },
-                            "tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/properties/tags/items"
-                                },
-                                "uniqueItems": true
-                            },
-                            "externalDocs": {
-                                "$ref": "#/properties/externalDocs"
-                            },
-                            "operationId": {
-                                "type": "string"
-                            },
-                            "bindings": {
-                                "$ref": "#/properties/servers/additionalProperties/properties/bindings"
-                            },
-                            "message": {
-                                "$ref": "#/properties/components/properties/messages/additionalProperties"
-                            }
-                        },
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "operation.json"
-                    },
-                    "subscribe": {
-                        "$ref": "#/properties/channels/additionalProperties/properties/publish"
-                    },
-                    "deprecated": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "bindings": {
-                        "$ref": "#/properties/servers/additionalProperties/properties/bindings"
-                    }
-                },
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "$id": "channelItem.json"
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "$id": "channels.json"
+                "$ref": "http://asyncapi.com/draft-07/schemas/channelItem"
+            }
         },
-        "components": {
+        "http://asyncapi.com/draft-07/schemas/channelItem": {
+            "$id": "http://asyncapi.com/draft-07/schemas/channelItem",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "properties": {
+                "$ref": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/ReferenceObject"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "http://asyncapi.com/draft-07/schemas/parameter"
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the channel."
+                },
+                "servers": {
+                    "type": "array",
+                    "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true
+                },
+                "publish": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/operation"
+                },
+                "subscribe": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/operation"
+                },
+                "deprecated": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/components": {
+            "$id": "http://asyncapi.com/draft-07/schemas/components",
             "type": "object",
             "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
                 }
             },
             "properties": {
                 "schemas": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "allOf": [
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "$id": "http://json-schema.org/draft-07/schema#",
-                                "title": "Core schema meta-schema",
-                                "definitions": {
-                                    "schemaArray": {
-                                        "type": "array",
-                                        "minItems": 1,
-                                        "items": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                        }
-                                    },
-                                    "nonNegativeInteger": {
-                                        "type": "integer",
-                                        "minimum": 0
-                                    },
-                                    "nonNegativeIntegerDefault0": {
-                                        "allOf": [
-                                            {
-                                                "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/nonNegativeInteger"
-                                            },
-                                            {
-                                                "default": 0
-                                            }
-                                        ]
-                                    },
-                                    "simpleTypes": {
-                                        "enum": [
-                                            "array",
-                                            "boolean",
-                                            "integer",
-                                            "null",
-                                            "number",
-                                            "object",
-                                            "string"
-                                        ]
-                                    },
-                                    "stringArray": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        },
-                                        "uniqueItems": true,
-                                        "default": []
-                                    }
-                                },
-                                "type": [
-                                    "object",
-                                    "boolean"
-                                ],
-                                "properties": {
-                                    "$id": {
-                                        "type": "string",
-                                        "format": "uri-reference"
-                                    },
-                                    "$schema": {
-                                        "type": "string",
-                                        "format": "uri"
-                                    },
-                                    "$ref": {
-                                        "type": "string",
-                                        "format": "uri-reference"
-                                    },
-                                    "$comment": {
-                                        "type": "string"
-                                    },
-                                    "title": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    },
-                                    "default": true,
-                                    "readOnly": {
-                                        "type": "boolean",
-                                        "default": false
-                                    },
-                                    "writeOnly": {
-                                        "type": "boolean",
-                                        "default": false
-                                    },
-                                    "examples": {
-                                        "type": "array",
-                                        "items": true
-                                    },
-                                    "multipleOf": {
-                                        "type": "number",
-                                        "exclusiveMinimum": 0
-                                    },
-                                    "maximum": {
-                                        "type": "number"
-                                    },
-                                    "exclusiveMaximum": {
-                                        "type": "number"
-                                    },
-                                    "minimum": {
-                                        "type": "number"
-                                    },
-                                    "exclusiveMinimum": {
-                                        "type": "number"
-                                    },
-                                    "maxLength": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/nonNegativeInteger"
-                                    },
-                                    "minLength": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/nonNegativeIntegerDefault0"
-                                    },
-                                    "pattern": {
-                                        "type": "string",
-                                        "format": "regex"
-                                    },
-                                    "additionalItems": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    },
-                                    "items": {
-                                        "anyOf": [
-                                            {
-                                                "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                            },
-                                            {
-                                                "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/schemaArray"
-                                            }
-                                        ],
-                                        "default": true
-                                    },
-                                    "maxItems": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/nonNegativeInteger"
-                                    },
-                                    "minItems": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/nonNegativeIntegerDefault0"
-                                    },
-                                    "uniqueItems": {
-                                        "type": "boolean",
-                                        "default": false
-                                    },
-                                    "contains": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    },
-                                    "maxProperties": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/nonNegativeInteger"
-                                    },
-                                    "minProperties": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/nonNegativeIntegerDefault0"
-                                    },
-                                    "required": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/stringArray"
-                                    },
-                                    "additionalProperties": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    },
-                                    "definitions": {
-                                        "type": "object",
-                                        "additionalProperties": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                        },
-                                        "default": {}
-                                    },
-                                    "properties": {
-                                        "type": "object",
-                                        "additionalProperties": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                        },
-                                        "default": {}
-                                    },
-                                    "patternProperties": {
-                                        "type": "object",
-                                        "additionalProperties": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                        },
-                                        "propertyNames": {
-                                            "format": "regex"
-                                        },
-                                        "default": {}
-                                    },
-                                    "dependencies": {
-                                        "type": "object",
-                                        "additionalProperties": {
-                                            "anyOf": [
-                                                {
-                                                    "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                                },
-                                                {
-                                                    "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/stringArray"
-                                                }
-                                            ]
-                                        }
-                                    },
-                                    "propertyNames": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    },
-                                    "const": true,
-                                    "enum": {
-                                        "type": "array",
-                                        "items": true,
-                                        "minItems": 1,
-                                        "uniqueItems": true
-                                    },
-                                    "type": {
-                                        "anyOf": [
-                                            {
-                                                "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/simpleTypes"
-                                            },
-                                            {
-                                                "type": "array",
-                                                "items": {
-                                                    "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/simpleTypes"
-                                                },
-                                                "minItems": 1,
-                                                "uniqueItems": true
-                                            }
-                                        ]
-                                    },
-                                    "format": {
-                                        "type": "string"
-                                    },
-                                    "contentMediaType": {
-                                        "type": "string"
-                                    },
-                                    "contentEncoding": {
-                                        "type": "string"
-                                    },
-                                    "if": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    },
-                                    "then": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    },
-                                    "else": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    },
-                                    "allOf": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/schemaArray"
-                                    },
-                                    "anyOf": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/schemaArray"
-                                    },
-                                    "oneOf": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0/definitions/schemaArray"
-                                    },
-                                    "not": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties/allOf/0"
-                                    }
-                                },
-                                "default": true
-                            },
-                            {
-                                "patternProperties": {
-                                    "^x-[\\w\\d.\\-_]+$": {
-                                        "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                    }
-                                },
-                                "properties": {
-                                    "additionalProperties": {
-                                        "anyOf": [
-                                            {
-                                                "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                            },
-                                            {
-                                                "type": "boolean"
-                                            }
-                                        ],
-                                        "default": {}
-                                    },
-                                    "items": {
-                                        "anyOf": [
-                                            {
-                                                "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                            },
-                                            {
-                                                "type": "array",
-                                                "minItems": 1,
-                                                "items": {
-                                                    "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                                }
-                                            }
-                                        ],
-                                        "default": {}
-                                    },
-                                    "allOf": {
-                                        "type": "array",
-                                        "minItems": 1,
-                                        "items": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                        }
-                                    },
-                                    "oneOf": {
-                                        "type": "array",
-                                        "minItems": 1,
-                                        "items": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                        }
-                                    },
-                                    "anyOf": {
-                                        "type": "array",
-                                        "minItems": 1,
-                                        "items": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                        }
-                                    },
-                                    "not": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                    },
-                                    "properties": {
-                                        "type": "object",
-                                        "additionalProperties": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                        },
-                                        "default": {}
-                                    },
-                                    "patternProperties": {
-                                        "type": "object",
-                                        "additionalProperties": {
-                                            "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                        },
-                                        "default": {}
-                                    },
-                                    "propertyNames": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                    },
-                                    "contains": {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                    },
-                                    "discriminator": {
-                                        "type": "string"
-                                    },
-                                    "externalDocs": {
-                                        "$ref": "#/properties/externalDocs"
-                                    },
-                                    "deprecated": {
-                                        "type": "boolean",
-                                        "default": false
-                                    }
-                                }
-                            }
-                        ],
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "schema.json"
-                    },
-                    "description": "JSON objects describing schemas the API uses.",
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "$id": "schemas.json"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/schemas"
                 },
                 "messages": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                            },
-                            {
-                                "oneOf": [
-                                    {
-                                        "type": "object",
-                                        "required": [
-                                            "oneOf"
-                                        ],
-                                        "additionalProperties": false,
-                                        "properties": {
-                                            "oneOf": {
-                                                "type": "array",
-                                                "items": {
-                                                    "$ref": "#/properties/components/properties/messages/additionalProperties"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalProperties": false,
-                                        "patternProperties": {
-                                            "^x-[\\w\\d.\\-_]+$": {
-                                                "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                            }
-                                        },
-                                        "properties": {
-                                            "schemaFormat": {
-                                                "type": "string"
-                                            },
-                                            "contentType": {
-                                                "type": "string"
-                                            },
-                                            "headers": {
-                                                "allOf": [
-                                                    {
-                                                        "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                                    },
-                                                    {
-                                                        "properties": {
-                                                            "type": {
-                                                                "const": "object"
-                                                            }
-                                                        }
-                                                    }
-                                                ]
-                                            },
-                                            "payload": {},
-                                            "correlationId": {
-                                                "oneOf": [
-                                                    {
-                                                        "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                                                    },
-                                                    {
-                                                        "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/1"
-                                                    }
-                                                ]
-                                            },
-                                            "tags": {
-                                                "type": "array",
-                                                "items": {
-                                                    "$ref": "#/properties/tags/items"
-                                                },
-                                                "uniqueItems": true
-                                            },
-                                            "summary": {
-                                                "type": "string",
-                                                "description": "A brief summary of the message."
-                                            },
-                                            "name": {
-                                                "type": "string",
-                                                "description": "Name of the message."
-                                            },
-                                            "title": {
-                                                "type": "string",
-                                                "description": "A human-friendly title for the message."
-                                            },
-                                            "description": {
-                                                "type": "string",
-                                                "description": "A longer description of the message. CommonMark is allowed."
-                                            },
-                                            "externalDocs": {
-                                                "$ref": "#/properties/externalDocs"
-                                            },
-                                            "deprecated": {
-                                                "type": "boolean",
-                                                "default": false
-                                            },
-                                            "examples": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "object",
-                                                    "additionalProperties": false,
-                                                    "anyOf": [
-                                                        {
-                                                            "required": [
-                                                                "payload"
-                                                            ]
-                                                        },
-                                                        {
-                                                            "required": [
-                                                                "headers"
-                                                            ]
-                                                        }
-                                                    ],
-                                                    "properties": {
-                                                        "name": {
-                                                            "type": "string",
-                                                            "description": "Machine readable name of the message example."
-                                                        },
-                                                        "summary": {
-                                                            "type": "string",
-                                                            "description": "A brief summary of the message example."
-                                                        },
-                                                        "headers": {
-                                                            "type": "object"
-                                                        },
-                                                        "payload": {}
-                                                    }
-                                                }
-                                            },
-                                            "bindings": {
-                                                "$ref": "#/properties/servers/additionalProperties/properties/bindings"
-                                            },
-                                            "traits": {
-                                                "type": "array",
-                                                "items": {
-                                                    "oneOf": [
-                                                        {
-                                                            "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                                                        },
-                                                        {
-                                                            "$ref": "#/properties/components/properties/messageTraits/additionalProperties"
-                                                        },
-                                                        {
-                                                            "type": "array",
-                                                            "items": [
-                                                                {
-                                                                    "oneOf": [
-                                                                        {
-                                                                            "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                                                                        },
-                                                                        {
-                                                                            "$ref": "#/properties/components/properties/messageTraits/additionalProperties"
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    "type": "object",
-                                                                    "additionalItems": true
-                                                                }
-                                                            ]
-                                                        }
-                                                    ]
-                                                }
-                                            }
-                                        }
-                                    }
-                                ]
-                            }
-                        ],
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "message.json"
-                    },
-                    "description": "JSON objects describing the messages being consumed and produced by the API.",
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "$id": "messages.json"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/messages"
                 },
                 "securitySchemes": {
                     "type": "object",
@@ -895,549 +277,17 @@
                         "^[\\w\\d\\.\\-_]+$": {
                             "oneOf": [
                                 {
-                                    "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
                                 },
                                 {
-                                    "oneOf": [
-                                        {
-                                            "type": "object",
-                                            "required": [
-                                                "type"
-                                            ],
-                                            "properties": {
-                                                "type": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "userPassword"
-                                                    ]
-                                                },
-                                                "description": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "patternProperties": {
-                                                "^x-[\\w\\d.\\-_]+$": {
-                                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                }
-                                            },
-                                            "additionalProperties": false,
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "userPassword.json"
-                                        },
-                                        {
-                                            "type": "object",
-                                            "required": [
-                                                "type",
-                                                "in"
-                                            ],
-                                            "properties": {
-                                                "type": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "apiKey"
-                                                    ]
-                                                },
-                                                "in": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "user",
-                                                        "password"
-                                                    ]
-                                                },
-                                                "description": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "patternProperties": {
-                                                "^x-[\\w\\d.\\-_]+$": {
-                                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                }
-                                            },
-                                            "additionalProperties": false,
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "apiKey.json"
-                                        },
-                                        {
-                                            "type": "object",
-                                            "required": [
-                                                "type"
-                                            ],
-                                            "properties": {
-                                                "type": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "X509"
-                                                    ]
-                                                },
-                                                "description": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "patternProperties": {
-                                                "^x-[\\w\\d.\\-_]+$": {
-                                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                }
-                                            },
-                                            "additionalProperties": false,
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "X509.json"
-                                        },
-                                        {
-                                            "type": "object",
-                                            "required": [
-                                                "type"
-                                            ],
-                                            "properties": {
-                                                "type": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "symmetricEncryption"
-                                                    ]
-                                                },
-                                                "description": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "patternProperties": {
-                                                "^x-[\\w\\d.\\-_]+$": {
-                                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                }
-                                            },
-                                            "additionalProperties": false,
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "symmetricEncryption.json"
-                                        },
-                                        {
-                                            "type": "object",
-                                            "required": [
-                                                "type"
-                                            ],
-                                            "properties": {
-                                                "type": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "asymmetricEncryption"
-                                                    ]
-                                                },
-                                                "description": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "patternProperties": {
-                                                "^x-[\\w\\d.\\-_]+$": {
-                                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                }
-                                            },
-                                            "additionalProperties": false,
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "asymmetricEncryption.json"
-                                        },
-                                        {
-                                            "oneOf": [
-                                                {
-                                                    "not": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "scheme": {
-                                                                "type": "string",
-                                                                "enum": [
-                                                                    "bearer"
-                                                                ]
-                                                            }
-                                                        }
-                                                    },
-                                                    "type": "object",
-                                                    "required": [
-                                                        "scheme",
-                                                        "type"
-                                                    ],
-                                                    "properties": {
-                                                        "scheme": {
-                                                            "type": "string"
-                                                        },
-                                                        "description": {
-                                                            "type": "string"
-                                                        },
-                                                        "type": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "http"
-                                                            ]
-                                                        }
-                                                    },
-                                                    "patternProperties": {
-                                                        "^x-[\\w\\d.\\-_]+$": {
-                                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                        }
-                                                    },
-                                                    "additionalProperties": false,
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "$id": "NonBearerHTTPSecurityScheme.json"
-                                                },
-                                                {
-                                                    "type": "object",
-                                                    "required": [
-                                                        "type",
-                                                        "scheme"
-                                                    ],
-                                                    "properties": {
-                                                        "scheme": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "bearer"
-                                                            ]
-                                                        },
-                                                        "bearerFormat": {
-                                                            "type": "string"
-                                                        },
-                                                        "type": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "http"
-                                                            ]
-                                                        },
-                                                        "description": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "patternProperties": {
-                                                        "^x-[\\w\\d.\\-_]+$": {
-                                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                        }
-                                                    },
-                                                    "additionalProperties": false,
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "$id": "BearerHTTPSecurityScheme.json"
-                                                },
-                                                {
-                                                    "type": "object",
-                                                    "required": [
-                                                        "type",
-                                                        "name",
-                                                        "in"
-                                                    ],
-                                                    "properties": {
-                                                        "type": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "httpApiKey"
-                                                            ]
-                                                        },
-                                                        "name": {
-                                                            "type": "string"
-                                                        },
-                                                        "in": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "header",
-                                                                "query",
-                                                                "cookie"
-                                                            ]
-                                                        },
-                                                        "description": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "patternProperties": {
-                                                        "^x-[\\w\\d.\\-_]+$": {
-                                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                        }
-                                                    },
-                                                    "additionalProperties": false,
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "$id": "APIKeyHTTPSecurityScheme.json"
-                                                }
-                                            ],
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "HTTPSecurityScheme.json"
-                                        },
-                                        {
-                                            "type": "object",
-                                            "required": [
-                                                "type",
-                                                "flows"
-                                            ],
-                                            "properties": {
-                                                "type": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "oauth2"
-                                                    ]
-                                                },
-                                                "description": {
-                                                    "type": "string"
-                                                },
-                                                "flows": {
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "implicit": {
-                                                            "allOf": [
-                                                                {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                        "authorizationUrl": {
-                                                                            "type": "string",
-                                                                            "format": "uri"
-                                                                        },
-                                                                        "tokenUrl": {
-                                                                            "type": "string",
-                                                                            "format": "uri"
-                                                                        },
-                                                                        "refreshUrl": {
-                                                                            "type": "string",
-                                                                            "format": "uri"
-                                                                        },
-                                                                        "scopes": {
-                                                                            "type": "object",
-                                                                            "additionalProperties": {
-                                                                                "type": "string"
-                                                                            },
-                                                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                            "$id": "oauth2Scopes.json"
-                                                                        }
-                                                                    },
-                                                                    "patternProperties": {
-                                                                        "^x-[\\w\\d.\\-_]+$": {
-                                                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                                        }
-                                                                    },
-                                                                    "additionalProperties": false,
-                                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                    "$id": "oauth2Flow.json"
-                                                                },
-                                                                {
-                                                                    "required": [
-                                                                        "authorizationUrl",
-                                                                        "scopes"
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    "not": {
-                                                                        "required": [
-                                                                            "tokenUrl"
-                                                                        ]
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        "password": {
-                                                            "allOf": [
-                                                                {
-                                                                    "$ref": "#/properties/components/properties/securitySchemes/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/1/oneOf/6/properties/flows/properties/implicit/allOf/0"
-                                                                },
-                                                                {
-                                                                    "required": [
-                                                                        "tokenUrl",
-                                                                        "scopes"
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    "not": {
-                                                                        "required": [
-                                                                            "authorizationUrl"
-                                                                        ]
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        "clientCredentials": {
-                                                            "allOf": [
-                                                                {
-                                                                    "$ref": "#/properties/components/properties/securitySchemes/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/1/oneOf/6/properties/flows/properties/implicit/allOf/0"
-                                                                },
-                                                                {
-                                                                    "required": [
-                                                                        "tokenUrl",
-                                                                        "scopes"
-                                                                    ]
-                                                                },
-                                                                {
-                                                                    "not": {
-                                                                        "required": [
-                                                                            "authorizationUrl"
-                                                                        ]
-                                                                    }
-                                                                }
-                                                            ]
-                                                        },
-                                                        "authorizationCode": {
-                                                            "allOf": [
-                                                                {
-                                                                    "$ref": "#/properties/components/properties/securitySchemes/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/1/oneOf/6/properties/flows/properties/implicit/allOf/0"
-                                                                },
-                                                                {
-                                                                    "required": [
-                                                                        "authorizationUrl",
-                                                                        "tokenUrl",
-                                                                        "scopes"
-                                                                    ]
-                                                                }
-                                                            ]
-                                                        }
-                                                    },
-                                                    "additionalProperties": false
-                                                }
-                                            },
-                                            "patternProperties": {
-                                                "^x-[\\w\\d.\\-_]+$": {
-                                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                }
-                                            },
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "oauth2Flows.json"
-                                        },
-                                        {
-                                            "type": "object",
-                                            "required": [
-                                                "type",
-                                                "openIdConnectUrl"
-                                            ],
-                                            "properties": {
-                                                "type": {
-                                                    "type": "string",
-                                                    "enum": [
-                                                        "openIdConnect"
-                                                    ]
-                                                },
-                                                "description": {
-                                                    "type": "string"
-                                                },
-                                                "openIdConnectUrl": {
-                                                    "type": "string",
-                                                    "format": "uri"
-                                                }
-                                            },
-                                            "patternProperties": {
-                                                "^x-[\\w\\d.\\-_]+$": {
-                                                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                }
-                                            },
-                                            "additionalProperties": false,
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "openIdConnect.json"
-                                        },
-                                        {
-                                            "oneOf": [
-                                                {
-                                                    "type": "object",
-                                                    "required": [
-                                                        "type"
-                                                    ],
-                                                    "properties": {
-                                                        "type": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "plain"
-                                                            ]
-                                                        },
-                                                        "description": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "patternProperties": {
-                                                        "^x-[\\w\\d.\\-_]+$": {
-                                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                        }
-                                                    },
-                                                    "additionalProperties": false,
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "$id": "SaslPlainSecurityScheme.json"
-                                                },
-                                                {
-                                                    "type": "object",
-                                                    "required": [
-                                                        "type"
-                                                    ],
-                                                    "properties": {
-                                                        "type": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "scramSha256",
-                                                                "scramSha512"
-                                                            ]
-                                                        },
-                                                        "description": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "patternProperties": {
-                                                        "^x-[\\w\\d.\\-_]+$": {
-                                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                        }
-                                                    },
-                                                    "additionalProperties": false,
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "$id": "SaslScramSecurityScheme.json"
-                                                },
-                                                {
-                                                    "type": "object",
-                                                    "required": [
-                                                        "type"
-                                                    ],
-                                                    "properties": {
-                                                        "type": {
-                                                            "type": "string",
-                                                            "enum": [
-                                                                "gssapi"
-                                                            ]
-                                                        },
-                                                        "description": {
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "patternProperties": {
-                                                        "^x-[\\w\\d.\\-_]+$": {
-                                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                                        }
-                                                    },
-                                                    "additionalProperties": false,
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "$id": "SaslGssapiSecurityScheme.json"
-                                                }
-                                            ],
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "$id": "SaslSecurityScheme.json"
-                                        }
-                                    ],
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "$id": "SecurityScheme.json"
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/SecurityScheme"
                                 }
                             ]
                         }
                     }
                 },
                 "parameters": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "additionalProperties": false,
-                        "patternProperties": {
-                            "^x-[\\w\\d.\\-_]+$": {
-                                "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                            }
-                        },
-                        "properties": {
-                            "description": {
-                                "type": "string",
-                                "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
-                            },
-                            "schema": {
-                                "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                            },
-                            "location": {
-                                "type": "string",
-                                "description": "A runtime expression that specifies the location of the parameter value",
-                                "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
-                            },
-                            "$ref": {
-                                "$ref": "#/properties/channels/additionalProperties/properties/%24ref"
-                            }
-                        },
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "parameter.json"
-                    },
-                    "description": "JSON objects describing re-usable channel parameters.",
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "$id": "parameters.json"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/parameters"
                 },
                 "correlationIds": {
                     "type": "object",
@@ -1445,42 +295,10 @@
                         "^[\\w\\d\\.\\-_]+$": {
                             "oneOf": [
                                 {
-                                    "type": "object",
-                                    "required": [
-                                        "$ref"
-                                    ],
-                                    "properties": {
-                                        "$ref": {
-                                            "$ref": "#/properties/channels/additionalProperties/properties/%24ref"
-                                        }
-                                    },
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "$id": "Reference.json"
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
                                 },
                                 {
-                                    "type": "object",
-                                    "required": [
-                                        "location"
-                                    ],
-                                    "additionalProperties": false,
-                                    "patternProperties": {
-                                        "^x-[\\w\\d.\\-_]+$": {
-                                            "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                                        }
-                                    },
-                                    "properties": {
-                                        "description": {
-                                            "type": "string",
-                                            "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed."
-                                        },
-                                        "location": {
-                                            "type": "string",
-                                            "description": "A runtime expression that specifies the location of the correlation ID",
-                                            "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
-                                        }
-                                    },
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "$id": "correlationId.json"
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/correlationId"
                                 }
                             ]
                         }
@@ -1489,180 +307,1093 @@
                 "operationTraits": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "patternProperties": {
-                            "^x-[\\w\\d.\\-_]+$": {
-                                "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                            }
-                        },
-                        "properties": {
-                            "summary": {
-                                "type": "string"
-                            },
-                            "description": {
-                                "type": "string"
-                            },
-                            "tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/properties/tags/items"
-                                },
-                                "uniqueItems": true
-                            },
-                            "externalDocs": {
-                                "$ref": "#/properties/externalDocs"
-                            },
-                            "operationId": {
-                                "type": "string"
-                            },
-                            "bindings": {
-                                "$ref": "#/properties/servers/additionalProperties/properties/bindings"
-                            }
-                        },
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "operationTrait.json"
+                        "$ref": "http://asyncapi.com/draft-07/schemas/operationTrait"
                     }
                 },
                 "messageTraits": {
                     "type": "object",
                     "additionalProperties": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "patternProperties": {
-                            "^x-[\\w\\d.\\-_]+$": {
-                                "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                            }
-                        },
-                        "properties": {
-                            "schemaFormat": {
-                                "type": "string"
-                            },
-                            "contentType": {
-                                "type": "string"
-                            },
-                            "headers": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                                    },
-                                    {
-                                        "$ref": "#/properties/components/properties/schemas/additionalProperties"
-                                    }
-                                ]
-                            },
-                            "correlationId": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/0"
-                                    },
-                                    {
-                                        "$ref": "#/properties/components/properties/correlationIds/patternProperties/%5E%5B%5Cw%5Cd%5C.%5C-_%5D%2B%24/oneOf/1"
-                                    }
-                                ]
-                            },
-                            "tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/properties/tags/items"
-                                },
-                                "uniqueItems": true
-                            },
-                            "summary": {
-                                "type": "string",
-                                "description": "A brief summary of the message."
-                            },
-                            "name": {
-                                "type": "string",
-                                "description": "Name of the message."
-                            },
-                            "title": {
-                                "type": "string",
-                                "description": "A human-friendly title for the message."
-                            },
-                            "description": {
-                                "type": "string",
-                                "description": "A longer description of the message. CommonMark is allowed."
-                            },
-                            "externalDocs": {
-                                "$ref": "#/properties/externalDocs"
-                            },
-                            "deprecated": {
-                                "type": "boolean",
-                                "default": false
-                            },
-                            "examples": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object"
-                                }
-                            },
-                            "bindings": {
-                                "$ref": "#/properties/servers/additionalProperties/properties/bindings"
-                            }
-                        },
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "$id": "messageTrait.json"
+                        "$ref": "http://asyncapi.com/draft-07/schemas/messageTrait"
                     }
                 },
                 "serverBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "#/properties/servers/additionalProperties/properties/bindings"
+                        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
                     }
                 },
                 "channelBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "#/properties/servers/additionalProperties/properties/bindings"
+                        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
                     }
                 },
                 "operationBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "#/properties/servers/additionalProperties/properties/bindings"
+                        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
                     }
                 },
                 "messageBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "#/properties/servers/additionalProperties/properties/bindings"
+                        "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+                    }
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/schemas": {
+            "$id": "http://asyncapi.com/draft-07/schemas/schemas",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+            },
+            "description": "JSON objects describing schemas the API uses."
+        },
+        "http://asyncapi.com/draft-07/schemas/schema": {
+            "$id": "http://asyncapi.com/draft-07/schemas/schema",
+            "allOf": [
+                {
+                    "$ref": "http://json-schema.org/draft-07/schema#"
+                },
+                {
+                    "patternProperties": {
+                        "^x-[\\w\\d.\\-_]+$": {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                        }
+                    },
+                    "properties": {
+                        "additionalProperties": {
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                                },
+                                {
+                                    "type": "boolean"
+                                }
+                            ],
+                            "default": {}
+                        },
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                                },
+                                {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                                    }
+                                }
+                            ],
+                            "default": {}
+                        },
+                        "allOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                            }
+                        },
+                        "oneOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                            }
+                        },
+                        "anyOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                            }
+                        },
+                        "not": {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                        },
+                        "properties": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                            },
+                            "default": {}
+                        },
+                        "patternProperties": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                            },
+                            "default": {}
+                        },
+                        "propertyNames": {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                        },
+                        "contains": {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                        },
+                        "discriminator": {
+                            "type": "string"
+                        },
+                        "externalDocs": {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
+                        },
+                        "deprecated": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                }
+            ]
+        },
+        "http://asyncapi.com/draft-07/schemas/messages": {
+            "$id": "http://asyncapi.com/draft-07/schemas/messages",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "http://asyncapi.com/draft-07/schemas/message"
+            },
+            "description": "JSON objects describing the messages being consumed and produced by the API."
+        },
+        "http://asyncapi.com/draft-07/schemas/message": {
+            "$id": "http://asyncapi.com/draft-07/schemas/message",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                },
+                {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "required": [
+                                "oneOf"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "oneOf": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/draft-07/schemas/message"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "patternProperties": {
+                                "^x-[\\w\\d.\\-_]+$": {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                                }
+                            },
+                            "properties": {
+                                "schemaFormat": {
+                                    "type": "string"
+                                },
+                                "contentType": {
+                                    "type": "string"
+                                },
+                                "headers": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                                        },
+                                        {
+                                            "properties": {
+                                                "type": {
+                                                    "const": "object"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "payload": {},
+                                "correlationId": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/draft-07/schemas/correlationId"
+                                        }
+                                    ]
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/draft-07/schemas/tag"
+                                    },
+                                    "uniqueItems": true
+                                },
+                                "summary": {
+                                    "type": "string",
+                                    "description": "A brief summary of the message."
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the message."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "A human-friendly title for the message."
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "A longer description of the message. CommonMark is allowed."
+                                },
+                                "externalDocs": {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
+                                },
+                                "deprecated": {
+                                    "type": "boolean",
+                                    "default": false
+                                },
+                                "examples": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "anyOf": [
+                                            {
+                                                "required": [
+                                                    "payload"
+                                                ]
+                                            },
+                                            {
+                                                "required": [
+                                                    "headers"
+                                                ]
+                                            }
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "Machine readable name of the message example."
+                                            },
+                                            "summary": {
+                                                "type": "string",
+                                                "description": "A brief summary of the message example."
+                                            },
+                                            "headers": {
+                                                "type": "object"
+                                            },
+                                            "payload": {}
+                                        }
+                                    }
+                                },
+                                "bindings": {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+                                },
+                                "traits": {
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/draft-07/schemas/messageTrait"
+                                            },
+                                            {
+                                                "type": "array",
+                                                "items": [
+                                                    {
+                                                        "oneOf": [
+                                                            {
+                                                                "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                                                            },
+                                                            {
+                                                                "$ref": "http://asyncapi.com/draft-07/schemas/messageTrait"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "additionalItems": true
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "http://asyncapi.com/draft-07/schemas/Reference": {
+            "$id": "http://asyncapi.com/draft-07/schemas/Reference",
+            "type": "object",
+            "required": [
+                "$ref"
+            ],
+            "properties": {
+                "$ref": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/ReferenceObject"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/ReferenceObject": {
+            "$id": "http://asyncapi.com/draft-07/schemas/ReferenceObject",
+            "type": "string",
+            "format": "uri-reference"
+        },
+        "http://asyncapi.com/draft-07/schemas/SecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/SecurityScheme",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/userPassword"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/apiKey"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/X509"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/symmetricEncryption"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/asymmetricEncryption"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/HTTPSecurityScheme"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flows"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/openIdConnect"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/SaslSecurityScheme"
+                }
+            ]
+        },
+        "http://asyncapi.com/draft-07/schemas/userPassword": {
+            "$id": "http://asyncapi.com/draft-07/schemas/userPassword",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "userPassword"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/apiKey": {
+            "$id": "http://asyncapi.com/draft-07/schemas/apiKey",
+            "type": "object",
+            "required": [
+                "type",
+                "in"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "apiKey"
+                    ]
+                },
+                "in": {
+                    "type": "string",
+                    "enum": [
+                        "user",
+                        "password"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/X509": {
+            "$id": "http://asyncapi.com/draft-07/schemas/X509",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "X509"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/symmetricEncryption": {
+            "$id": "http://asyncapi.com/draft-07/schemas/symmetricEncryption",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "symmetricEncryption"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/asymmetricEncryption": {
+            "$id": "http://asyncapi.com/draft-07/schemas/asymmetricEncryption",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "asymmetricEncryption"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/HTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/HTTPSecurityScheme",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/NonBearerHTTPSecurityScheme"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/BearerHTTPSecurityScheme"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/APIKeyHTTPSecurityScheme"
+                }
+            ]
+        },
+        "http://asyncapi.com/draft-07/schemas/NonBearerHTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/NonBearerHTTPSecurityScheme",
+            "not": {
+                "type": "object",
+                "properties": {
+                    "scheme": {
+                        "type": "string",
+                        "enum": [
+                            "bearer"
+                        ]
                     }
                 }
             },
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "$id": "components.json"
-        },
-        "tags": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "required": [
-                    "name"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "externalDocs": {
-                        "$ref": "#/properties/externalDocs"
-                    }
+            "type": "object",
+            "required": [
+                "scheme",
+                "type"
+            ],
+            "properties": {
+                "scheme": {
+                    "type": "string"
                 },
-                "patternProperties": {
-                    "^x-[\\w\\d.\\-_]+$": {
-                        "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
-                    }
+                "description": {
+                    "type": "string"
                 },
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "$id": "tag.json"
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "http"
+                    ]
+                }
             },
-            "uniqueItems": true
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
         },
-        "externalDocs": {
+        "http://asyncapi.com/draft-07/schemas/BearerHTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/BearerHTTPSecurityScheme",
+            "type": "object",
+            "required": [
+                "type",
+                "scheme"
+            ],
+            "properties": {
+                "scheme": {
+                    "type": "string",
+                    "enum": [
+                        "bearer"
+                    ]
+                },
+                "bearerFormat": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "http"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/APIKeyHTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/APIKeyHTTPSecurityScheme",
+            "type": "object",
+            "required": [
+                "type",
+                "name",
+                "in"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "httpApiKey"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "in": {
+                    "type": "string",
+                    "enum": [
+                        "header",
+                        "query",
+                        "cookie"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/oauth2Flows": {
+            "$id": "http://asyncapi.com/draft-07/schemas/oauth2Flows",
+            "type": "object",
+            "required": [
+                "type",
+                "flows"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "oauth2"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "flows": {
+                    "type": "object",
+                    "properties": {
+                        "implicit": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+                                },
+                                {
+                                    "required": [
+                                        "authorizationUrl",
+                                        "scopes"
+                                    ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [
+                                            "tokenUrl"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "password": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+                                },
+                                {
+                                    "required": [
+                                        "tokenUrl",
+                                        "scopes"
+                                    ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [
+                                            "authorizationUrl"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "clientCredentials": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+                                },
+                                {
+                                    "required": [
+                                        "tokenUrl",
+                                        "scopes"
+                                    ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [
+                                            "authorizationUrl"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "authorizationCode": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+                                },
+                                {
+                                    "required": [
+                                        "authorizationUrl",
+                                        "tokenUrl",
+                                        "scopes"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/oauth2Flow": {
+            "$id": "http://asyncapi.com/draft-07/schemas/oauth2Flow",
+            "type": "object",
+            "properties": {
+                "authorizationUrl": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "tokenUrl": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "refreshUrl": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "scopes": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Scopes"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/oauth2Scopes": {
+            "$id": "http://asyncapi.com/draft-07/schemas/oauth2Scopes",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/openIdConnect": {
+            "$id": "http://asyncapi.com/draft-07/schemas/openIdConnect",
+            "type": "object",
+            "required": [
+                "type",
+                "openIdConnectUrl"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "openIdConnect"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "openIdConnectUrl": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/SaslSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/SaslSecurityScheme",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/SaslPlainSecurityScheme"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/SaslScramSecurityScheme"
+                },
+                {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/SaslGssapiSecurityScheme"
+                }
+            ]
+        },
+        "http://asyncapi.com/draft-07/schemas/SaslPlainSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/SaslPlainSecurityScheme",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "plain"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/SaslScramSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/SaslScramSecurityScheme",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "scramSha256",
+                        "scramSha512"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/SaslGssapiSecurityScheme": {
+            "$id": "http://asyncapi.com/draft-07/schemas/SaslGssapiSecurityScheme",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "gssapi"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/draft-07/schemas/parameters": {
+            "$id": "http://asyncapi.com/draft-07/schemas/parameters",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "http://asyncapi.com/draft-07/schemas/parameter"
+            },
+            "description": "JSON objects describing re-usable channel parameters."
+        },
+        "http://asyncapi.com/draft-07/schemas/parameter": {
+            "$id": "http://asyncapi.com/draft-07/schemas/parameter",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
+                },
+                "schema": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "A runtime expression that specifies the location of the parameter value",
+                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+                },
+                "$ref": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/ReferenceObject"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/correlationId": {
+            "$id": "http://asyncapi.com/draft-07/schemas/correlationId",
+            "type": "object",
+            "required": [
+                "location"
+            ],
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed."
+                },
+                "location": {
+                    "type": "string",
+                    "description": "A runtime expression that specifies the location of the correlation ID",
+                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/operationTrait": {
+            "$id": "http://asyncapi.com/draft-07/schemas/operationTrait",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "properties": {
+                "summary": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/draft-07/schemas/tag"
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
+                },
+                "operationId": {
+                    "type": "string"
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/messageTrait": {
+            "$id": "http://asyncapi.com/draft-07/schemas/messageTrait",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            },
+            "properties": {
+                "schemaFormat": {
+                    "type": "string"
+                },
+                "contentType": {
+                    "type": "string"
+                },
+                "headers": {
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                        }
+                    ]
+                },
+                "correlationId": {
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/draft-07/schemas/correlationId"
+                        }
+                    ]
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/draft-07/schemas/tag"
+                    },
+                    "uniqueItems": true
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "A brief summary of the message."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the message."
+                },
+                "title": {
+                    "type": "string",
+                    "description": "A human-friendly title for the message."
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A longer description of the message. CommonMark is allowed."
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
+                },
+                "deprecated": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "examples": {
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/bindingsObject": {
+            "$id": "http://asyncapi.com/draft-07/schemas/bindingsObject",
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "http": {},
+                "ws": {},
+                "amqp": {},
+                "amqp1": {},
+                "mqtt": {},
+                "mqtt5": {},
+                "kafka": {},
+                "anypointmq": {},
+                "nats": {},
+                "jms": {},
+                "sns": {},
+                "sqs": {},
+                "stomp": {},
+                "redis": {},
+                "ibmmq": {}
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/tag": {
+            "$id": "http://asyncapi.com/draft-07/schemas/tag",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d.\\-_]+$": {
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+                }
+            }
+        },
+        "http://asyncapi.com/draft-07/schemas/externalDocs": {
+            "$id": "http://asyncapi.com/draft-07/schemas/externalDocs",
             "type": "object",
             "additionalProperties": false,
             "description": "information about external documentation",
@@ -1680,11 +1411,9 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "#/patternProperties/%5Ex-%5B%5Cw%5Cd.%5C-_%5D%2B%24"
+                    "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
                 }
-            },
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "$id": "externalDocs.json"
+            }
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "
