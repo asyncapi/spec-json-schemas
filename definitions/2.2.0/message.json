@@ -1,7 +1,7 @@
 {
   "oneOf": [
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+      "$ref": "file://./Reference.json"
     },
     {
       "oneOf": [
@@ -15,7 +15,7 @@
             "oneOf": {
               "type": "array",
               "items": {
-                "$ref": "http://asyncapi.com/draft-07/schemas/message"
+                "$ref": "file://./message.json"
               }
             }
           }
@@ -25,7 +25,7 @@
           "additionalProperties": false,
           "patternProperties": {
             "^x-[\\w\\d.\\-_]+$": {
-              "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+              "$ref": "file://./specificationExtension.json"
             }
           },
           "properties": {
@@ -38,7 +38,7 @@
             "headers": {
               "allOf": [
                 {
-                  "$ref": "http://asyncapi.com/draft-07/schemas/schema"
+                  "$ref": "file://./schema.json"
                 },
                 {
                   "properties": {
@@ -53,17 +53,17 @@
             "correlationId": {
               "oneOf": [
                 {
-                  "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                  "$ref": "file://./Reference.json"
                 },
                 {
-                  "$ref": "http://asyncapi.com/draft-07/schemas/correlationId"
+                  "$ref": "file://./correlationId.json"
                 }
               ]
             },
             "tags": {
               "type": "array",
               "items": {
-                "$ref": "http://asyncapi.com/draft-07/schemas/tag"
+                "$ref": "file://./tag.json"
               },
               "uniqueItems": true
             },
@@ -84,7 +84,7 @@
               "description": "A longer description of the message. CommonMark is allowed."
             },
             "externalDocs": {
-              "$ref": "http://asyncapi.com/draft-07/schemas/externalDocs"
+              "$ref": "file://./externalDocs.json"
             },
             "deprecated": {
               "type": "boolean",
@@ -124,17 +124,17 @@
               }
             },
             "bindings": {
-              "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+              "$ref": "file://./bindingsObject.json"
             },
             "traits": {
               "type": "array",
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                    "$ref": "file://./Reference.json"
                   },
                   {
-                    "$ref": "http://asyncapi.com/draft-07/schemas/messageTrait"
+                    "$ref": "file://./messageTrait.json"
                   },
                   {
                     "type": "array",
@@ -142,10 +142,10 @@
                       {
                         "oneOf": [
                           {
-                            "$ref": "http://asyncapi.com/draft-07/schemas/Reference"
+                            "$ref": "file://./Reference.json"
                           },
                           {
-                            "$ref": "http://asyncapi.com/draft-07/schemas/messageTrait"
+                            "$ref": "file://./messageTrait.json"
                           }
                         ]
                       },
@@ -164,5 +164,5 @@
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/message"
+  "$id": "file://./message.json"
 }

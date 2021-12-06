@@ -1,33 +1,33 @@
 {
   "oneOf": [
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/userPassword"
+      "$ref": "file://./userPassword.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/apiKey"
+      "$ref": "file://./apiKey.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/X509"
+      "$ref": "file://./X509.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/symmetricEncryption"
+      "$ref": "file://./symmetricEncryption.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/asymmetricEncryption"
+      "$ref": "file://./asymmetricEncryption.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/HTTPSecurityScheme"
+      "$ref": "file://./HTTPSecurityScheme.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flows"
+      "$ref": "file://./oauth2Flows.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/openIdConnect"
+      "$ref": "file://./openIdConnect.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/SaslSecurityScheme"
+      "$ref": "file://./SaslSecurityScheme.json"
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/SecurityScheme"
+  "$id": "file://./SecurityScheme.json"
 }

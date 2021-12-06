@@ -8,7 +8,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+      "$ref": "file://./specificationExtension.json"
     }
   },
   "properties": {
@@ -26,18 +26,18 @@
       "type": "string"
     },
     "variables": {
-      "$ref": "http://asyncapi.com/draft-07/schemas/serverVariables"
+      "$ref": "file://./serverVariables.json"
     },
     "security": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/draft-07/schemas/SecurityRequirement"
+        "$ref": "file://./SecurityRequirement.json"
       }
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/draft-07/schemas/bindingsObject"
+      "$ref": "file://./bindingsObject.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/server"
+  "$id": "file://./server.json"
 }

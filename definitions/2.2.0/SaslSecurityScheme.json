@@ -1,15 +1,15 @@
 {
   "oneOf": [
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/SaslPlainSecurityScheme"
+      "$ref": "file://./SaslPlainSecurityScheme.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/SaslScramSecurityScheme"
+      "$ref": "file://./SaslScramSecurityScheme.json"
     },
     {
-      "$ref": "http://asyncapi.com/draft-07/schemas/SaslGssapiSecurityScheme"
+      "$ref": "file://./SaslGssapiSecurityScheme.json"
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/SaslSecurityScheme"
+  "$id": "file://./SaslSecurityScheme.json"
 }

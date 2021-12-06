@@ -2,5 +2,5 @@
   "type": "string",
   "format": "uri-reference",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/ReferenceObject"
+  "$id": "file://./ReferenceObject.json"
 }

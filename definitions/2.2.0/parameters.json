@@ -1,9 +1,9 @@
 {
   "type": "object",
   "additionalProperties": {
-    "$ref": "http://asyncapi.com/draft-07/schemas/parameter"
+    "$ref": "file://./parameter.json"
   },
   "description": "JSON objects describing re-usable channel parameters.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/parameters"
+  "$id": "file://./parameters.json"
 }

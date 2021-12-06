@@ -1,8 +1,8 @@
 {
   "type": "object",
   "additionalProperties": {
-    "$ref": "http://asyncapi.com/draft-07/schemas/serverVariable"
+    "$ref": "file://./serverVariable.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/serverVariables"
+  "$id": "file://./serverVariables.json"
 }

@@ -20,7 +20,7 @@
         "implicit": {
           "allOf": [
             {
-              "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+              "$ref": "file://./oauth2Flow.json"
             },
             {
               "required": [
@@ -40,7 +40,7 @@
         "password": {
           "allOf": [
             {
-              "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+              "$ref": "file://./oauth2Flow.json"
             },
             {
               "required": [
@@ -60,7 +60,7 @@
         "clientCredentials": {
           "allOf": [
             {
-              "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+              "$ref": "file://./oauth2Flow.json"
             },
             {
               "required": [
@@ -80,7 +80,7 @@
         "authorizationCode": {
           "allOf": [
             {
-              "$ref": "http://asyncapi.com/draft-07/schemas/oauth2Flow"
+              "$ref": "file://./oauth2Flow.json"
             },
             {
               "required": [
@@ -97,9 +97,9 @@
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/draft-07/schemas/specificationExtension"
+      "$ref": "file://./specificationExtension.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/draft-07/schemas/oauth2Flows"
+  "$id": "file://./oauth2Flows.json"
 }
