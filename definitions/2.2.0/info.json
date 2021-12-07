@@ -8,7 +8,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "properties": {
@@ -30,12 +30,12 @@
       "format": "uri"
     },
     "contact": {
-      "$ref": "file://./contact.json"
+      "$ref": "contact"
     },
     "license": {
-      "$ref": "file://./license.json"
+      "$ref": "license"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./info.json"
+  "$id": "info"
 }

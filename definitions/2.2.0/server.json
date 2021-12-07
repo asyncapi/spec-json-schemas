@@ -8,7 +8,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "properties": {
@@ -26,18 +26,18 @@
       "type": "string"
     },
     "variables": {
-      "$ref": "file://./serverVariables.json"
+      "$ref": "serverVariables"
     },
     "security": {
       "type": "array",
       "items": {
-        "$ref": "file://./SecurityRequirement.json"
+        "$ref": "SecurityRequirement"
       }
     },
     "bindings": {
-      "$ref": "file://./bindingsObject.json"
+      "$ref": "bindingsObject"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./server.json"
+  "$id": "server"
 }

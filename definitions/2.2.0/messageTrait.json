@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "properties": {
@@ -16,27 +16,27 @@
     "headers": {
       "oneOf": [
         {
-          "$ref": "file://./Reference.json"
+          "$ref": "Reference"
         },
         {
-          "$ref": "file://./schema.json"
+          "$ref": "schema"
         }
       ]
     },
     "correlationId": {
       "oneOf": [
         {
-          "$ref": "file://./Reference.json"
+          "$ref": "Reference"
         },
         {
-          "$ref": "file://./correlationId.json"
+          "$ref": "correlationId"
         }
       ]
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "file://./tag.json"
+        "$ref": "tag"
       },
       "uniqueItems": true
     },
@@ -57,7 +57,7 @@
       "description": "A longer description of the message. CommonMark is allowed."
     },
     "externalDocs": {
-      "$ref": "file://./externalDocs.json"
+      "$ref": "externalDocs"
     },
     "deprecated": {
       "type": "boolean",
@@ -70,9 +70,9 @@
       }
     },
     "bindings": {
-      "$ref": "file://./bindingsObject.json"
+      "$ref": "bindingsObject"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./messageTrait.json"
+  "$id": "messageTrait"
 }

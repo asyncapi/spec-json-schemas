@@ -1,15 +1,15 @@
 {
   "oneOf": [
     {
-      "$ref": "file://./NonBearerHTTPSecurityScheme.json"
+      "$ref": "NonBearerHTTPSecurityScheme"
     },
     {
-      "$ref": "file://./BearerHTTPSecurityScheme.json"
+      "$ref": "BearerHTTPSecurityScheme"
     },
     {
-      "$ref": "file://./APIKeyHTTPSecurityScheme.json"
+      "$ref": "APIKeyHTTPSecurityScheme"
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./HTTPSecurityScheme.json"
+  "$id": "HTTPSecurityScheme"
 }

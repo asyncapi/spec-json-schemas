@@ -10,7 +10,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "properties": {
@@ -27,32 +27,32 @@
       "format": "uri"
     },
     "info": {
-      "$ref": "./info.json"
+      "$ref": "info"
     },
     "servers": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "./server.json"
+        "$ref": "server"
       }
     },
     "defaultContentType": {
       "type": "string"
     },
     "channels": {
-      "$ref": "./channels.json"
+      "$ref": "channels"
     },
     "components": {
-      "$ref": "./components.json"
+      "$ref": "components"
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "./tag.json"
+        "$ref": "tag"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "./externalDocs.json"
+      "$ref": "externalDocs"
     }
   }
 }

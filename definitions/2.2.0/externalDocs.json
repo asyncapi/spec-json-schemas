@@ -16,9 +16,9 @@
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./externalDocs.json"
+  "$id": "externalDocs"
 }

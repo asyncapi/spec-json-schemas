@@ -14,15 +14,15 @@
       "format": "uri"
     },
     "scopes": {
-      "$ref": "file://./oauth2Scopes.json"
+      "$ref": "oauth2Scopes"
     }
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "additionalProperties": false,
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./oauth2Flow.json"
+  "$id": "oauth2Flow"
 }

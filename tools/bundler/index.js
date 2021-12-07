@@ -21,11 +21,10 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const definitionJson = definitionFiles.map((file) => JSON.parse(file));
 
       for (const jsonFile of definitionJson) {
-        Bundler.add(jsonFile);
+        Bundler.add(jsonFile, `file://${versionDir}/${jsonFile.$id}.json`);
       }
       console.log(definitionJson); 
-      const fileToBundle = `file://${definitionsDirectory}/${version}/asyncapi.json`;
-      
+      const fileToBundle = `file://${versionDir}/asyncapi.json`;
       const main = await Bundler.get(fileToBundle);
       const bundledSchema = await Bundler.bundle(main);
       bundledSchema.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchema.description ?? ''}`;

@@ -4,15 +4,15 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "properties": {
     "schemas": {
-      "$ref": "file://./schemas.json"
+      "$ref": "schemas"
     },
     "messages": {
-      "$ref": "file://./messages.json"
+      "$ref": "messages"
     },
     "securitySchemes": {
       "type": "object",
@@ -20,17 +20,17 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "file://./Reference.json"
+              "$ref": "Reference"
             },
             {
-              "$ref": "file://./SecurityScheme.json"
+              "$ref": "SecurityScheme"
             }
           ]
         }
       }
     },
     "parameters": {
-      "$ref": "file://./parameters.json"
+      "$ref": "parameters"
     },
     "correlationIds": {
       "type": "object",
@@ -38,10 +38,10 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "file://./Reference.json"
+              "$ref": "Reference"
             },
             {
-              "$ref": "file://./correlationId.json"
+              "$ref": "correlationId"
             }
           ]
         }
@@ -50,40 +50,40 @@
     "operationTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "file://./operationTrait.json"
+        "$ref": "operationTrait"
       }
     },
     "messageTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "file://./messageTrait.json"
+        "$ref": "messageTrait"
       }
     },
     "serverBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "file://./bindingsObject.json"
+        "$ref": "bindingsObject"
       }
     },
     "channelBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "file://./bindingsObject.json"
+        "$ref": "bindingsObject"
       }
     },
     "operationBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "file://./bindingsObject.json"
+        "$ref": "bindingsObject"
       }
     },
     "messageBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "file://./bindingsObject.json"
+        "$ref": "bindingsObject"
       }
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./components.json"
+  "$id": "components"
 }

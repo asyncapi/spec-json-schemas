@@ -20,7 +20,7 @@
         "implicit": {
           "allOf": [
             {
-              "$ref": "file://./oauth2Flow.json"
+              "$ref": "oauth2Flow"
             },
             {
               "required": [
@@ -40,7 +40,7 @@
         "password": {
           "allOf": [
             {
-              "$ref": "file://./oauth2Flow.json"
+              "$ref": "oauth2Flow"
             },
             {
               "required": [
@@ -60,7 +60,7 @@
         "clientCredentials": {
           "allOf": [
             {
-              "$ref": "file://./oauth2Flow.json"
+              "$ref": "oauth2Flow"
             },
             {
               "required": [
@@ -80,7 +80,7 @@
         "authorizationCode": {
           "allOf": [
             {
-              "$ref": "file://./oauth2Flow.json"
+              "$ref": "oauth2Flow"
             },
             {
               "required": [
@@ -97,9 +97,9 @@
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./oauth2Flows.json"
+  "$id": "oauth2Flows"
 }

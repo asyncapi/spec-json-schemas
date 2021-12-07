@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "file://./specificationExtension.json"
+      "$ref": "specificationExtension"
     }
   },
   "properties": {
@@ -12,10 +12,10 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "file://./Reference.json"
+            "$ref": "Reference"
           },
           {
-            "$ref": "file://./operationTrait.json"
+            "$ref": "operationTrait"
           },
           {
             "type": "array",
@@ -23,10 +23,10 @@
               {
                 "oneOf": [
                   {
-                    "$ref": "file://./Reference.json"
+                    "$ref": "Reference"
                   },
                   {
-                    "$ref": "file://./operationTrait.json"
+                    "$ref": "operationTrait"
                   }
                 ]
               },
@@ -48,23 +48,23 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "file://./tag.json"
+        "$ref": "tag"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "file://./externalDocs.json"
+      "$ref": "externalDocs"
     },
     "operationId": {
       "type": "string"
     },
     "bindings": {
-      "$ref": "file://./bindingsObject.json"
+      "$ref": "bindingsObject"
     },
     "message": {
-      "$ref": "file://./message.json"
+      "$ref": "message"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "file://./operation.json"
+  "$id": "operation"
 }
