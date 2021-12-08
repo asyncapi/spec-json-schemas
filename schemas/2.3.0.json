@@ -160,7 +160,7 @@
     "server": {
       "type": "object",
       "description": "An object representing a Server.",
-      "oneOf" : [
+      "anyOf" : [
         { "required" : ["url", "protocol"] },
         { "required" : ["$ref"] }
       ],    
