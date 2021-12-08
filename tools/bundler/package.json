@@ -9,6 +9,6 @@
   "dependencies": {
     "@hyperjump/json-schema-bundle": "^0.1.1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Jonas Lagoni (jonas-lt@live.dk)",
+  "license": "Apache-2.0"
 }

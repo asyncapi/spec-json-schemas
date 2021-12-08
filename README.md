@@ -38,8 +38,13 @@ const asyncapi = versions['1.1.0'];
 // Do something with the schema.
 ```
 
+# Repository structure
+
+- schemas/
 # Modifying the schemas
-Making changes to schemas version 2.2.0 or beyond should no longer be manually changed in the `./schemas` folder, but instead be done in their definition located in `definitions`.
+Making changes to schemas version 2.2.0 or beyond, should no longer be manually changed in the `./schemas` folder, but instead be done in their definition located in `definitions`.
 
 ## Creating a new version
-To create a new version, simply copy paste the prior version (such as `2.2.0`) and adapt what ever changes is needed from there.
+To create a new version, simply run the npm script `npm run startNewVersion --newVersion=x.x.x`.
+
+And replace `x.x.x` with the new version you want to create.
