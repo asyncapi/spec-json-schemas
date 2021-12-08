@@ -1,8 +1,8 @@
 {
   "type": "object",
   "additionalProperties": {
-    "$ref": "serverVariable"
+    "$ref": "http://asyncapi.com/definitions/2.2.0/serverVariable"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "serverVariables"
+  "$id": "http://asyncapi.com/definitions/2.2.0/serverVariables"
 }

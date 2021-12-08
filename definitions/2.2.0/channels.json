@@ -6,8 +6,8 @@
     "minLength": 1
   },
   "additionalProperties": {
-    "$ref": "channelItem"
+    "$ref": "http://asyncapi.com/definitions/2.2.0/channelItem"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "channels"
+  "$id": "http://asyncapi.com/definitions/2.2.0/channels"
 }

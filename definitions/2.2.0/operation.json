@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
     }
   },
   "properties": {
@@ -12,10 +12,10 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "Reference"
+            "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
           },
           {
-            "$ref": "operationTrait"
+            "$ref": "http://asyncapi.com/definitions/2.2.0/operationTrait"
           },
           {
             "type": "array",
@@ -23,10 +23,10 @@
               {
                 "oneOf": [
                   {
-                    "$ref": "Reference"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                   },
                   {
-                    "$ref": "operationTrait"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/operationTrait"
                   }
                 ]
               },
@@ -48,23 +48,23 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "tag"
+        "$ref": "http://asyncapi.com/definitions/2.2.0/tag"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
     },
     "operationId": {
       "type": "string"
     },
     "bindings": {
-      "$ref": "bindingsObject"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
     },
     "message": {
-      "$ref": "message"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/message"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "operation"
+  "$id": "http://asyncapi.com/definitions/2.2.0/operation"
 }

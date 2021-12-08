@@ -5,9 +5,9 @@
   ],
   "properties": {
     "$ref": {
-      "$ref": "ReferenceObject"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/ReferenceObject"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "Reference"
+  "$id": "http://asyncapi.com/definitions/2.2.0/Reference"
 }

@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
     }
   },
   "properties": {
@@ -16,27 +16,27 @@
     "headers": {
       "oneOf": [
         {
-          "$ref": "Reference"
+          "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
         },
         {
-          "$ref": "schema"
+          "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
         }
       ]
     },
     "correlationId": {
       "oneOf": [
         {
-          "$ref": "Reference"
+          "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
         },
         {
-          "$ref": "correlationId"
+          "$ref": "http://asyncapi.com/definitions/2.2.0/correlationId"
         }
       ]
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "tag"
+        "$ref": "http://asyncapi.com/definitions/2.2.0/tag"
       },
       "uniqueItems": true
     },
@@ -57,7 +57,7 @@
       "description": "A longer description of the message. CommonMark is allowed."
     },
     "externalDocs": {
-      "$ref": "externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
     },
     "deprecated": {
       "type": "boolean",
@@ -70,9 +70,9 @@
       }
     },
     "bindings": {
-      "$ref": "bindingsObject"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "messageTrait"
+  "$id": "http://asyncapi.com/definitions/2.2.0/messageTrait"
 }

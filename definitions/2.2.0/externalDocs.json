@@ -16,9 +16,9 @@
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "externalDocs"
+  "$id": "http://asyncapi.com/definitions/2.2.0/externalDocs"
 }

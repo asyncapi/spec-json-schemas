@@ -1,4 +1,5 @@
 {
+    "$id": "http://asyncapi.com/definitions/2.2.0/asyncapi",
     "$schema": "http://json-schema.org/draft-07/schema",
     "title": "AsyncAPI 2.2.0 schema.",
     "type": "object",
@@ -10,7 +11,7 @@
     "additionalProperties": false,
     "patternProperties": {
         "^x-[\\w\\d.\\-_]+$": {
-            "$ref": "specificationExtension"
+            "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
         }
     },
     "properties": {
@@ -27,43 +28,43 @@
             "format": "uri"
         },
         "info": {
-            "$ref": "info"
+            "$ref": "http://asyncapi.com/definitions/2.2.0/info"
         },
         "servers": {
             "type": "object",
             "additionalProperties": {
-                "$ref": "server"
+                "$ref": "http://asyncapi.com/definitions/2.2.0/server"
             }
         },
         "defaultContentType": {
             "type": "string"
         },
         "channels": {
-            "$ref": "channels"
+            "$ref": "http://asyncapi.com/definitions/2.2.0/channels"
         },
         "components": {
-            "$ref": "components"
+            "$ref": "http://asyncapi.com/definitions/2.2.0/components"
         },
         "tags": {
             "type": "array",
             "items": {
-                "$ref": "tag"
+                "$ref": "http://asyncapi.com/definitions/2.2.0/tag"
             },
             "uniqueItems": true
         },
         "externalDocs": {
-            "$ref": "externalDocs"
+            "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
         }
     },
     "definitions": {
-        "specificationExtension": {
-            "$id": "specificationExtension",
+        "http://asyncapi.com/definitions/2.2.0/specificationExtension": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/specificationExtension",
             "description": "Any property starting with x- is valid.",
             "additionalProperties": true,
             "additionalItems": true
         },
-        "info": {
-            "$id": "info",
+        "http://asyncapi.com/definitions/2.2.0/info": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/info",
             "type": "object",
             "description": "General information about the API.",
             "required": [
@@ -73,7 +74,7 @@
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
@@ -95,15 +96,15 @@
                     "format": "uri"
                 },
                 "contact": {
-                    "$ref": "contact"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/contact"
                 },
                 "license": {
-                    "$ref": "license"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/license"
                 }
             }
         },
-        "contact": {
-            "$id": "contact",
+        "http://asyncapi.com/definitions/2.2.0/contact": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/contact",
             "type": "object",
             "description": "Contact information for the owners of the API.",
             "additionalProperties": false,
@@ -125,12 +126,12 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             }
         },
-        "license": {
-            "$id": "license",
+        "http://asyncapi.com/definitions/2.2.0/license": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/license",
             "type": "object",
             "required": [
                 "name"
@@ -149,12 +150,12 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             }
         },
-        "server": {
-            "$id": "server",
+        "http://asyncapi.com/definitions/2.2.0/server": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/server",
             "type": "object",
             "description": "An object representing a Server.",
             "required": [
@@ -164,7 +165,7 @@
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
@@ -182,21 +183,21 @@
                     "type": "string"
                 },
                 "variables": {
-                    "$ref": "serverVariables"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/serverVariables"
                 },
                 "security": {
                     "type": "array",
                     "items": {
-                        "$ref": "SecurityRequirement"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/SecurityRequirement"
                     }
                 },
                 "bindings": {
-                    "$ref": "bindingsObject"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                 }
             }
         },
-        "channels": {
-            "$id": "channels",
+        "http://asyncapi.com/definitions/2.2.0/channels": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/channels",
             "type": "object",
             "propertyNames": {
                 "type": "string",
@@ -204,26 +205,26 @@
                 "minLength": 1
             },
             "additionalProperties": {
-                "$ref": "channelItem"
+                "$ref": "http://asyncapi.com/definitions/2.2.0/channelItem"
             }
         },
-        "channelItem": {
-            "$id": "channelItem",
+        "http://asyncapi.com/definitions/2.2.0/channelItem": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/channelItem",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
                 "$ref": {
-                    "$ref": "ReferenceObject"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/ReferenceObject"
                 },
                 "parameters": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "parameter"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/parameter"
                     }
                 },
                 "description": {
@@ -239,36 +240,36 @@
                     "uniqueItems": true
                 },
                 "publish": {
-                    "$ref": "operation"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/operation"
                 },
                 "subscribe": {
-                    "$ref": "operation"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/operation"
                 },
                 "deprecated": {
                     "type": "boolean",
                     "default": false
                 },
                 "bindings": {
-                    "$ref": "bindingsObject"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                 }
             }
         },
-        "components": {
-            "$id": "components",
+        "http://asyncapi.com/definitions/2.2.0/components": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/components",
             "type": "object",
             "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
                 "schemas": {
-                    "$ref": "schemas"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/schemas"
                 },
                 "messages": {
-                    "$ref": "messages"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/messages"
                 },
                 "securitySchemes": {
                     "type": "object",
@@ -276,17 +277,17 @@
                         "^[\\w\\d\\.\\-_]+$": {
                             "oneOf": [
                                 {
-                                    "$ref": "Reference"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                                 },
                                 {
-                                    "$ref": "SecurityScheme"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/SecurityScheme"
                                 }
                             ]
                         }
                     }
                 },
                 "parameters": {
-                    "$ref": "parameters"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/parameters"
                 },
                 "correlationIds": {
                     "type": "object",
@@ -294,10 +295,10 @@
                         "^[\\w\\d\\.\\-_]+$": {
                             "oneOf": [
                                 {
-                                    "$ref": "Reference"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                                 },
                                 {
-                                    "$ref": "correlationId"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/correlationId"
                                 }
                             ]
                         }
@@ -306,51 +307,51 @@
                 "operationTraits": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "operationTrait"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/operationTrait"
                     }
                 },
                 "messageTraits": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "messageTrait"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/messageTrait"
                     }
                 },
                 "serverBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "bindingsObject"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                     }
                 },
                 "channelBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "bindingsObject"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                     }
                 },
                 "operationBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "bindingsObject"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                     }
                 },
                 "messageBindings": {
                     "type": "object",
                     "additionalProperties": {
-                        "$ref": "bindingsObject"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                     }
                 }
             }
         },
-        "schemas": {
-            "$id": "schemas",
+        "http://asyncapi.com/definitions/2.2.0/schemas": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/schemas",
             "type": "object",
             "additionalProperties": {
-                "$ref": "schema"
+                "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
             },
             "description": "JSON objects describing schemas the API uses."
         },
-        "schema": {
-            "$id": "schema",
+        "http://asyncapi.com/definitions/2.2.0/schema": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/schema",
             "allOf": [
                 {
                     "$ref": "http://json-schema.org/draft-07/schema#"
@@ -358,14 +359,14 @@
                 {
                     "patternProperties": {
                         "^x-[\\w\\d.\\-_]+$": {
-                            "$ref": "specificationExtension"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                         }
                     },
                     "properties": {
                         "additionalProperties": {
                             "anyOf": [
                                 {
-                                    "$ref": "schema"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                                 },
                                 {
                                     "type": "boolean"
@@ -376,13 +377,13 @@
                         "items": {
                             "anyOf": [
                                 {
-                                    "$ref": "schema"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                                 },
                                 {
                                     "type": "array",
                                     "minItems": 1,
                                     "items": {
-                                        "$ref": "schema"
+                                        "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                                     }
                                 }
                             ],
@@ -392,51 +393,51 @@
                             "type": "array",
                             "minItems": 1,
                             "items": {
-                                "$ref": "schema"
+                                "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                             }
                         },
                         "oneOf": {
                             "type": "array",
                             "minItems": 1,
                             "items": {
-                                "$ref": "schema"
+                                "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                             }
                         },
                         "anyOf": {
                             "type": "array",
                             "minItems": 1,
                             "items": {
-                                "$ref": "schema"
+                                "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                             }
                         },
                         "not": {
-                            "$ref": "schema"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                         },
                         "properties": {
                             "type": "object",
                             "additionalProperties": {
-                                "$ref": "schema"
+                                "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                             },
                             "default": {}
                         },
                         "patternProperties": {
                             "type": "object",
                             "additionalProperties": {
-                                "$ref": "schema"
+                                "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                             },
                             "default": {}
                         },
                         "propertyNames": {
-                            "$ref": "schema"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                         },
                         "contains": {
-                            "$ref": "schema"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                         },
                         "discriminator": {
                             "type": "string"
                         },
                         "externalDocs": {
-                            "$ref": "externalDocs"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
                         },
                         "deprecated": {
                             "type": "boolean",
@@ -446,19 +447,19 @@
                 }
             ]
         },
-        "messages": {
-            "$id": "messages",
+        "http://asyncapi.com/definitions/2.2.0/messages": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/messages",
             "type": "object",
             "additionalProperties": {
-                "$ref": "message"
+                "$ref": "http://asyncapi.com/definitions/2.2.0/message"
             },
             "description": "JSON objects describing the messages being consumed and produced by the API."
         },
-        "message": {
-            "$id": "message",
+        "http://asyncapi.com/definitions/2.2.0/message": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/message",
             "oneOf": [
                 {
-                    "$ref": "Reference"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                 },
                 {
                     "oneOf": [
@@ -472,7 +473,7 @@
                                 "oneOf": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "message"
+                                        "$ref": "http://asyncapi.com/definitions/2.2.0/message"
                                     }
                                 }
                             }
@@ -482,7 +483,7 @@
                             "additionalProperties": false,
                             "patternProperties": {
                                 "^x-[\\w\\d.\\-_]+$": {
-                                    "$ref": "specificationExtension"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                                 }
                             },
                             "properties": {
@@ -495,7 +496,7 @@
                                 "headers": {
                                     "allOf": [
                                         {
-                                            "$ref": "schema"
+                                            "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                                         },
                                         {
                                             "properties": {
@@ -510,17 +511,17 @@
                                 "correlationId": {
                                     "oneOf": [
                                         {
-                                            "$ref": "Reference"
+                                            "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                                         },
                                         {
-                                            "$ref": "correlationId"
+                                            "$ref": "http://asyncapi.com/definitions/2.2.0/correlationId"
                                         }
                                     ]
                                 },
                                 "tags": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "tag"
+                                        "$ref": "http://asyncapi.com/definitions/2.2.0/tag"
                                     },
                                     "uniqueItems": true
                                 },
@@ -541,7 +542,7 @@
                                     "description": "A longer description of the message. CommonMark is allowed."
                                 },
                                 "externalDocs": {
-                                    "$ref": "externalDocs"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
                                 },
                                 "deprecated": {
                                     "type": "boolean",
@@ -581,17 +582,17 @@
                                     }
                                 },
                                 "bindings": {
-                                    "$ref": "bindingsObject"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                                 },
                                 "traits": {
                                     "type": "array",
                                     "items": {
                                         "oneOf": [
                                             {
-                                                "$ref": "Reference"
+                                                "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                                             },
                                             {
-                                                "$ref": "messageTrait"
+                                                "$ref": "http://asyncapi.com/definitions/2.2.0/messageTrait"
                                             },
                                             {
                                                 "type": "array",
@@ -599,10 +600,10 @@
                                                     {
                                                         "oneOf": [
                                                             {
-                                                                "$ref": "Reference"
+                                                                "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                                                             },
                                                             {
-                                                                "$ref": "messageTrait"
+                                                                "$ref": "http://asyncapi.com/definitions/2.2.0/messageTrait"
                                                             }
                                                         ]
                                                     },
@@ -621,57 +622,57 @@
                 }
             ]
         },
-        "Reference": {
-            "$id": "Reference",
+        "http://asyncapi.com/definitions/2.2.0/Reference": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/Reference",
             "type": "object",
             "required": [
                 "$ref"
             ],
             "properties": {
                 "$ref": {
-                    "$ref": "ReferenceObject"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/ReferenceObject"
                 }
             }
         },
-        "ReferenceObject": {
-            "$id": "ReferenceObject",
+        "http://asyncapi.com/definitions/2.2.0/ReferenceObject": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/ReferenceObject",
             "type": "string",
             "format": "uri-reference"
         },
-        "SecurityScheme": {
-            "$id": "SecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/SecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/SecurityScheme",
             "oneOf": [
                 {
-                    "$ref": "userPassword"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/userPassword"
                 },
                 {
-                    "$ref": "apiKey"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/apiKey"
                 },
                 {
-                    "$ref": "X509"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/X509"
                 },
                 {
-                    "$ref": "symmetricEncryption"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/symmetricEncryption"
                 },
                 {
-                    "$ref": "asymmetricEncryption"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/asymmetricEncryption"
                 },
                 {
-                    "$ref": "HTTPSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/HTTPSecurityScheme"
                 },
                 {
-                    "$ref": "oauth2Flows"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/oauth2Flows"
                 },
                 {
-                    "$ref": "openIdConnect"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/openIdConnect"
                 },
                 {
-                    "$ref": "SaslSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/SaslSecurityScheme"
                 }
             ]
         },
-        "userPassword": {
-            "$id": "userPassword",
+        "http://asyncapi.com/definitions/2.2.0/userPassword": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/userPassword",
             "type": "object",
             "required": [
                 "type"
@@ -689,13 +690,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "apiKey": {
-            "$id": "apiKey",
+        "http://asyncapi.com/definitions/2.2.0/apiKey": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/apiKey",
             "type": "object",
             "required": [
                 "type",
@@ -721,13 +722,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "X509": {
-            "$id": "X509",
+        "http://asyncapi.com/definitions/2.2.0/X509": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/X509",
             "type": "object",
             "required": [
                 "type"
@@ -745,13 +746,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "symmetricEncryption": {
-            "$id": "symmetricEncryption",
+        "http://asyncapi.com/definitions/2.2.0/symmetricEncryption": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/symmetricEncryption",
             "type": "object",
             "required": [
                 "type"
@@ -769,13 +770,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "asymmetricEncryption": {
-            "$id": "asymmetricEncryption",
+        "http://asyncapi.com/definitions/2.2.0/asymmetricEncryption": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/asymmetricEncryption",
             "type": "object",
             "required": [
                 "type"
@@ -793,27 +794,27 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "HTTPSecurityScheme": {
-            "$id": "HTTPSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/HTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/HTTPSecurityScheme",
             "oneOf": [
                 {
-                    "$ref": "NonBearerHTTPSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/NonBearerHTTPSecurityScheme"
                 },
                 {
-                    "$ref": "BearerHTTPSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/BearerHTTPSecurityScheme"
                 },
                 {
-                    "$ref": "APIKeyHTTPSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/APIKeyHTTPSecurityScheme"
                 }
             ]
         },
-        "NonBearerHTTPSecurityScheme": {
-            "$id": "NonBearerHTTPSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/NonBearerHTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/NonBearerHTTPSecurityScheme",
             "not": {
                 "type": "object",
                 "properties": {
@@ -846,13 +847,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "BearerHTTPSecurityScheme": {
-            "$id": "BearerHTTPSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/BearerHTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/BearerHTTPSecurityScheme",
             "type": "object",
             "required": [
                 "type",
@@ -880,13 +881,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "APIKeyHTTPSecurityScheme": {
-            "$id": "APIKeyHTTPSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/APIKeyHTTPSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/APIKeyHTTPSecurityScheme",
             "type": "object",
             "required": [
                 "type",
@@ -917,13 +918,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "oauth2Flows": {
-            "$id": "oauth2Flows",
+        "http://asyncapi.com/definitions/2.2.0/oauth2Flows": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/oauth2Flows",
             "type": "object",
             "required": [
                 "type",
@@ -945,7 +946,7 @@
                         "implicit": {
                             "allOf": [
                                 {
-                                    "$ref": "oauth2Flow"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/oauth2Flow"
                                 },
                                 {
                                     "required": [
@@ -965,7 +966,7 @@
                         "password": {
                             "allOf": [
                                 {
-                                    "$ref": "oauth2Flow"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/oauth2Flow"
                                 },
                                 {
                                     "required": [
@@ -985,7 +986,7 @@
                         "clientCredentials": {
                             "allOf": [
                                 {
-                                    "$ref": "oauth2Flow"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/oauth2Flow"
                                 },
                                 {
                                     "required": [
@@ -1005,7 +1006,7 @@
                         "authorizationCode": {
                             "allOf": [
                                 {
-                                    "$ref": "oauth2Flow"
+                                    "$ref": "http://asyncapi.com/definitions/2.2.0/oauth2Flow"
                                 },
                                 {
                                     "required": [
@@ -1022,12 +1023,12 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             }
         },
-        "oauth2Flow": {
-            "$id": "oauth2Flow",
+        "http://asyncapi.com/definitions/2.2.0/oauth2Flow": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/oauth2Flow",
             "type": "object",
             "properties": {
                 "authorizationUrl": {
@@ -1043,25 +1044,25 @@
                     "format": "uri"
                 },
                 "scopes": {
-                    "$ref": "oauth2Scopes"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/oauth2Scopes"
                 }
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "oauth2Scopes": {
-            "$id": "oauth2Scopes",
+        "http://asyncapi.com/definitions/2.2.0/oauth2Scopes": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/oauth2Scopes",
             "type": "object",
             "additionalProperties": {
                 "type": "string"
             }
         },
-        "openIdConnect": {
-            "$id": "openIdConnect",
+        "http://asyncapi.com/definitions/2.2.0/openIdConnect": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/openIdConnect",
             "type": "object",
             "required": [
                 "type",
@@ -1084,27 +1085,27 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "SaslSecurityScheme": {
-            "$id": "SaslSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/SaslSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/SaslSecurityScheme",
             "oneOf": [
                 {
-                    "$ref": "SaslPlainSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/SaslPlainSecurityScheme"
                 },
                 {
-                    "$ref": "SaslScramSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/SaslScramSecurityScheme"
                 },
                 {
-                    "$ref": "SaslGssapiSecurityScheme"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/SaslGssapiSecurityScheme"
                 }
             ]
         },
-        "SaslPlainSecurityScheme": {
-            "$id": "SaslPlainSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/SaslPlainSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/SaslPlainSecurityScheme",
             "type": "object",
             "required": [
                 "type"
@@ -1122,13 +1123,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "SaslScramSecurityScheme": {
-            "$id": "SaslScramSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/SaslScramSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/SaslScramSecurityScheme",
             "type": "object",
             "required": [
                 "type"
@@ -1147,13 +1148,13 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "SaslGssapiSecurityScheme": {
-            "$id": "SaslGssapiSecurityScheme",
+        "http://asyncapi.com/definitions/2.2.0/SaslGssapiSecurityScheme": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/SaslGssapiSecurityScheme",
             "type": "object",
             "required": [
                 "type"
@@ -1171,25 +1172,25 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "additionalProperties": false
         },
-        "parameters": {
-            "$id": "parameters",
+        "http://asyncapi.com/definitions/2.2.0/parameters": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/parameters",
             "type": "object",
             "additionalProperties": {
-                "$ref": "parameter"
+                "$ref": "http://asyncapi.com/definitions/2.2.0/parameter"
             },
             "description": "JSON objects describing re-usable channel parameters."
         },
-        "parameter": {
-            "$id": "parameter",
+        "http://asyncapi.com/definitions/2.2.0/parameter": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/parameter",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
@@ -1198,7 +1199,7 @@
                     "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
                 },
                 "schema": {
-                    "$ref": "schema"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                 },
                 "location": {
                     "type": "string",
@@ -1206,12 +1207,12 @@
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 },
                 "$ref": {
-                    "$ref": "ReferenceObject"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/ReferenceObject"
                 }
             }
         },
-        "correlationId": {
-            "$id": "correlationId",
+        "http://asyncapi.com/definitions/2.2.0/correlationId": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/correlationId",
             "type": "object",
             "required": [
                 "location"
@@ -1219,7 +1220,7 @@
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
@@ -1234,13 +1235,13 @@
                 }
             }
         },
-        "operationTrait": {
-            "$id": "operationTrait",
+        "http://asyncapi.com/definitions/2.2.0/operationTrait": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/operationTrait",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
@@ -1253,28 +1254,28 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "tag"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/tag"
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "$ref": "externalDocs"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
                 },
                 "operationId": {
                     "type": "string"
                 },
                 "bindings": {
-                    "$ref": "bindingsObject"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                 }
             }
         },
-        "messageTrait": {
-            "$id": "messageTrait",
+        "http://asyncapi.com/definitions/2.2.0/messageTrait": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/messageTrait",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             },
             "properties": {
@@ -1287,27 +1288,27 @@
                 "headers": {
                     "oneOf": [
                         {
-                            "$ref": "Reference"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                         },
                         {
-                            "$ref": "schema"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
                         }
                     ]
                 },
                 "correlationId": {
                     "oneOf": [
                         {
-                            "$ref": "Reference"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/Reference"
                         },
                         {
-                            "$ref": "correlationId"
+                            "$ref": "http://asyncapi.com/definitions/2.2.0/correlationId"
                         }
                     ]
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "tag"
+                        "$ref": "http://asyncapi.com/definitions/2.2.0/tag"
                     },
                     "uniqueItems": true
                 },
@@ -1328,7 +1329,7 @@
                     "description": "A longer description of the message. CommonMark is allowed."
                 },
                 "externalDocs": {
-                    "$ref": "externalDocs"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
                 },
                 "deprecated": {
                     "type": "boolean",
@@ -1341,12 +1342,12 @@
                     }
                 },
                 "bindings": {
-                    "$ref": "bindingsObject"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
                 }
             }
         },
-        "bindingsObject": {
-            "$id": "bindingsObject",
+        "http://asyncapi.com/definitions/2.2.0/bindingsObject": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/bindingsObject",
             "type": "object",
             "additionalProperties": true,
             "properties": {
@@ -1367,8 +1368,8 @@
                 "ibmmq": {}
             }
         },
-        "tag": {
-            "$id": "tag",
+        "http://asyncapi.com/definitions/2.2.0/tag": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/tag",
             "type": "object",
             "additionalProperties": false,
             "required": [
@@ -1382,17 +1383,17 @@
                     "type": "string"
                 },
                 "externalDocs": {
-                    "$ref": "externalDocs"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
                 }
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             }
         },
-        "externalDocs": {
-            "$id": "externalDocs",
+        "http://asyncapi.com/definitions/2.2.0/externalDocs": {
+            "$id": "http://asyncapi.com/definitions/2.2.0/externalDocs",
             "type": "object",
             "additionalProperties": false,
             "description": "information about external documentation",
@@ -1410,7 +1411,7 @@
             },
             "patternProperties": {
                 "^x-[\\w\\d.\\-_]+$": {
-                    "$ref": "specificationExtension"
+                    "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
                 }
             }
         }

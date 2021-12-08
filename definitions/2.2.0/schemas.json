@@ -1,9 +1,9 @@
 {
   "type": "object",
   "additionalProperties": {
-    "$ref": "schema"
+    "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
   },
   "description": "JSON objects describing schemas the API uses.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "schemas"
+  "$id": "http://asyncapi.com/definitions/2.2.0/schemas"
 }

@@ -3,17 +3,17 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
     }
   },
   "properties": {
     "$ref": {
-      "$ref": "ReferenceObject"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/ReferenceObject"
     },
     "parameters": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "parameter"
+        "$ref": "http://asyncapi.com/definitions/2.2.0/parameter"
       }
     },
     "description": {
@@ -29,19 +29,19 @@
       "uniqueItems": true
     },
     "publish": {
-      "$ref": "operation"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/operation"
     },
     "subscribe": {
-      "$ref": "operation"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/operation"
     },
     "deprecated": {
       "type": "boolean",
       "default": false
     },
     "bindings": {
-      "$ref": "bindingsObject"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/bindingsObject"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "channelItem"
+  "$id": "http://asyncapi.com/definitions/2.2.0/channelItem"
 }

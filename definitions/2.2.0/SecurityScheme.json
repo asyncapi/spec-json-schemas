@@ -1,33 +1,33 @@
 {
   "oneOf": [
     {
-      "$ref": "userPassword"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/userPassword"
     },
     {
-      "$ref": "apiKey"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/apiKey"
     },
     {
-      "$ref": "X509"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/X509"
     },
     {
-      "$ref": "symmetricEncryption"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/symmetricEncryption"
     },
     {
-      "$ref": "asymmetricEncryption"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/asymmetricEncryption"
     },
     {
-      "$ref": "HTTPSecurityScheme"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/HTTPSecurityScheme"
     },
     {
-      "$ref": "oauth2Flows"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/oauth2Flows"
     },
     {
-      "$ref": "openIdConnect"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/openIdConnect"
     },
     {
-      "$ref": "SaslSecurityScheme"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/SaslSecurityScheme"
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "SecurityScheme"
+  "$id": "http://asyncapi.com/definitions/2.2.0/SecurityScheme"
 }

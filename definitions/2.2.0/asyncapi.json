@@ -1,6 +1,7 @@
 {
   "title": "AsyncAPI 2.2.0 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/2.2.0/asyncapi",
   "type": "object",
   "required": [
     "asyncapi",
@@ -10,7 +11,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
     }
   },
   "properties": {
@@ -27,32 +28,32 @@
       "format": "uri"
     },
     "info": {
-      "$ref": "info"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/info"
     },
     "servers": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "server"
+        "$ref": "http://asyncapi.com/definitions/2.2.0/server"
       }
     },
     "defaultContentType": {
       "type": "string"
     },
     "channels": {
-      "$ref": "channels"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/channels"
     },
     "components": {
-      "$ref": "components"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/components"
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "tag"
+        "$ref": "http://asyncapi.com/definitions/2.2.0/tag"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/externalDocs"
     }
   }
 }

@@ -2,7 +2,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension"
     }
   },
   "properties": {
@@ -11,7 +11,7 @@
       "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
     },
     "schema": {
-      "$ref": "schema"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/schema"
     },
     "location": {
       "type": "string",
@@ -19,9 +19,9 @@
       "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
     },
     "$ref": {
-      "$ref": "ReferenceObject"
+      "$ref": "http://asyncapi.com/definitions/2.2.0/ReferenceObject"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "parameter"
+  "$id": "http://asyncapi.com/definitions/2.2.0/parameter"
 }
