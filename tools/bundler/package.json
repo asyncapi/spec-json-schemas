@@ -7,7 +7,7 @@
     "bundle": "node index"
   },
   "dependencies": {
-    "@hyperjump/json-schema-bundle": "^0.1.1"
+    "@hyperjump/json-schema-bundle": "^0.1.2"
   },
   "author": "Jonas Lagoni (jonas-lt@live.dk)",
   "license": "Apache-2.0"

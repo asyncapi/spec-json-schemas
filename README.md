@@ -2,7 +2,7 @@
 
 # AsyncAPI
 
-This package provides all the versions of the AsyncAPI schema.
+This is a mono repository, which provides all the JSON Schemas documents for validating AsyncAPI documents.
 
 ## Installation
 
@@ -38,13 +38,15 @@ const asyncapi = versions['1.1.0'];
 // Do something with the schema.
 ```
 
-# Repository structure
-
-- schemas/
-# Modifying the schemas
-Making changes to schemas version 2.2.0 or beyond, should no longer be manually changed in the `./schemas` folder, but instead be done in their definition located in `definitions`.
+## Repository structure
+This is the current project structure explained.
+- [./definitions](./definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](./schemas).
+- [./tools/bundler](./tools/bundler) - is the tool that bundles all the individual schemas together.
+- [./schemas](./schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](./definitions).
 
 ## Creating a new version
-To create a new version, simply run the npm script `npm run startNewVersion --newVersion=x.x.x`.
+To create a new version, simply run the npm script `npm run startNewVersion --newVersion=x.x.x`, where `x.x.x` is the new version you want to create.
 
-And replace `x.x.x` with the new version you want to create.
+The manual process of creating a new version is to:
+1. Duplicate the latest version under definitions.
+2. Search and replace in the duplicated files `definitions/x.x.x`, where `x.x.x` is the latest version you duplicated, and replace it with `definitions/y.y.y`, where `y.y.y` is the new version.
