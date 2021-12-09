@@ -2,7 +2,6 @@ const path = require('path');
 const fs = require('fs');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
-const Bundler = require("@hyperjump/json-schema-bundle");
 console.log(`Looking for separate definitions in the following directory: ${definitionsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
 
@@ -13,6 +12,7 @@ console.log(`Using the following output directory: ${outputDirectory}`);
   const versions = await fs.promises.readdir(definitionsDirectory);
   console.log(`The following versions have separate definitions: ${versions.join(',')}`);
   for (const version of versions) {
+    const Bundler = require("@hyperjump/json-schema-bundle");
     try{
       console.log(`Bundling the following version together: ${version}`);
       const versionDir = path.resolve(definitionsDirectory, version);

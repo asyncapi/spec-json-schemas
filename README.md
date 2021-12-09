@@ -45,16 +45,19 @@ This is the current project structure explained.
 - [./schemas](./schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](./definitions).
 
 ## Bundling of schemas
-Making changes to schemas version 2.2.0 or beyond, should no longer be manually changed in the [./schemas](./schemas), but instead be done in their definition located in [./definitions](./definitions).
+Changes should not be done manually to the schemas in [./schemas](./schemas), but instead be done in their individual definitions located in [./definitions](./definitions).
 
 These definitions are automatically bundled together on new releases through the `generate:assets` script, which runs the [bundler](./tools/bundler). 
 
-For example for [2.2.0](./definitions/2.2.0), the bundler starts with the [asyncapi.json](definitions/2.2.0/asyncapi.json) file and recursively go through all references (`$ref`) to create the [appropriate bundled version](./schemas/2.2.0.json).
-
+For example for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](definitions/2.2.0/asyncapi.json) file and recursively go through all references (`$ref`) to create the [appropriate bundled version](./schemas/2.2.0.json).
 
 ### Creating a new version
-To create a new version, simply run the npm script `npm run startNewVersion --newVersion=x.x.x`, where `x.x.x` is the new version you want to create.
+To create a new version, simply run the following command:
+```
+npm run startNewVersion --newVersion=x.x.x
+```
+Where `x.x.x` is the new version you want to create.
 
 The manual process of creating a new version is to:
-1. Duplicate the latest version under definitions.
-2. Search and replace in the duplicated files `definitions/x.x.x`, where `x.x.x` is the latest version you duplicated, and replace it with `definitions/y.y.y`, where `y.y.y` is the new version.
+1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). Rename the folder to the new version.
+2. Search and replace in the new duplicated folder for `definitions/y.y.y` and replace it with `definitions/x.x.x`, where `x.x.x` is the new version.
