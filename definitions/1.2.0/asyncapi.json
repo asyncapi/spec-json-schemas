@@ -1,0 +1,90 @@
+{
+  "title": "AsyncAPI 1.2.0 schema.",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.2.0/asyncapi",
+  "type": "object",
+  "required": [
+    "asyncapi",
+    "info"
+  ],
+  "oneOf": [
+    {
+      "required": [
+        "topics"
+      ]
+    },
+    {
+      "required": [
+        "stream"
+      ]
+    },
+    {
+      "required": [
+        "events"
+      ]
+    }
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension"
+    }
+  },
+  "properties": {
+    "asyncapi": {
+      "type": "string",
+      "enum": [
+        "1.0.0",
+        "1.1.0",
+        "1.2.0"
+      ],
+      "description": "The AsyncAPI specification version of this document."
+    },
+    "info": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/info"
+    },
+    "baseTopic": {
+      "type": "string",
+      "pattern": "^[^/.]",
+      "description": "The base topic to the API. Example: 'hitch'.",
+      "default": ""
+    },
+    "servers": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/1.2.0/server"
+      },
+      "uniqueItems": true
+    },
+    "topics": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/topics"
+    },
+    "stream": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/stream",
+      "description": "The list of messages a consumer can read or write from/to a streaming API."
+    },
+    "events": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/events",
+      "description": "The list of messages an events API sends and/or receives."
+    },
+    "components": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/components"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/1.2.0/tag"
+      },
+      "uniqueItems": true
+    },
+    "security": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/1.2.0/SecurityRequirement"
+      }
+    },
+    "externalDocs": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/externalDocs"
+    }
+  }
+}

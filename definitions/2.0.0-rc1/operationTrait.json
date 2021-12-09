@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+    }
+  },
+  "properties": {
+    "summary": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag"
+      },
+      "uniqueItems": true
+    },
+    "externalDocs": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs"
+    },
+    "operationId": {
+      "type": "string"
+    },
+    "protocolInfo": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/operationTrait"
+}

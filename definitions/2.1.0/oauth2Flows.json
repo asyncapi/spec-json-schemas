@@ -1,0 +1,105 @@
+{
+  "type": "object",
+  "required": [
+    "type",
+    "flows"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "oauth2"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "flows": {
+      "type": "object",
+      "properties": {
+        "implicit": {
+          "allOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/2.1.0/oauth2Flow"
+            },
+            {
+              "required": [
+                "authorizationUrl",
+                "scopes"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "tokenUrl"
+                ]
+              }
+            }
+          ]
+        },
+        "password": {
+          "allOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/2.1.0/oauth2Flow"
+            },
+            {
+              "required": [
+                "tokenUrl",
+                "scopes"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "authorizationUrl"
+                ]
+              }
+            }
+          ]
+        },
+        "clientCredentials": {
+          "allOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/2.1.0/oauth2Flow"
+            },
+            {
+              "required": [
+                "tokenUrl",
+                "scopes"
+              ]
+            },
+            {
+              "not": {
+                "required": [
+                  "authorizationUrl"
+                ]
+              }
+            }
+          ]
+        },
+        "authorizationCode": {
+          "allOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/2.1.0/oauth2Flow"
+            },
+            {
+              "required": [
+                "authorizationUrl",
+                "tokenUrl",
+                "scopes"
+              ]
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "http://asyncapi.com/definitions/2.1.0/specificationExtension"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/2.1.0/oauth2Flows"
+}

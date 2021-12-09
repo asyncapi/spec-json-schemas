@@ -1,0 +1,61 @@
+{
+  "title": "AsyncAPI 2.0.0-rc1 schema.",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/asyncapi",
+  "type": "object",
+  "required": [
+    "asyncapi",
+    "id",
+    "info",
+    "channels"
+  ],
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+    }
+  },
+  "properties": {
+    "asyncapi": {
+      "type": "string",
+      "enum": [
+        "2.0.0-rc1"
+      ],
+      "description": "The AsyncAPI specification version of this document."
+    },
+    "id": {
+      "type": "string",
+      "description": "A unique id representing the application.",
+      "format": "uri-reference"
+    },
+    "info": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/info"
+    },
+    "servers": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/server"
+      },
+      "uniqueItems": true
+    },
+    "defaultContentType": {
+      "type": "string"
+    },
+    "channels": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/channels"
+    },
+    "components": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/components"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag"
+      },
+      "uniqueItems": true
+    },
+    "externalDocs": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs"
+    }
+  }
+}

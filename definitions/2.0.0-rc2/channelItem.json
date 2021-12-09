@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension"
+    }
+  },
+  "minProperties": 1,
+  "properties": {
+    "$ref": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/ReferenceObject"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/parameter"
+      }
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the channel."
+    },
+    "publish": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/operation"
+    },
+    "subscribe": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/operation"
+    },
+    "deprecated": {
+      "type": "boolean",
+      "default": false
+    },
+    "bindings": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/bindingsObject"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/channelItem"
+}

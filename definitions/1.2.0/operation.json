@@ -1,0 +1,30 @@
+{
+  "oneOf": [
+    {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/message"
+    },
+    {
+      "type": "object",
+      "required": [
+        "oneOf"
+      ],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^x-": {
+          "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension"
+        }
+      },
+      "properties": {
+        "oneOf": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "http://asyncapi.com/definitions/1.2.0/message"
+          }
+        }
+      }
+    }
+  ],
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.2.0/operation"
+}

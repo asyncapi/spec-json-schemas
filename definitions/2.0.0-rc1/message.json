@@ -1,0 +1,117 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d.\\-_]+$": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+    }
+  },
+  "properties": {
+    "schemaFormat": {
+      "type": "string"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "headers": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/schema"
+          }
+        ]
+      }
+    },
+    "payload": {},
+    "correlationId": {
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/correlationId"
+        }
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag"
+      },
+      "uniqueItems": true
+    },
+    "summary": {
+      "type": "string",
+      "description": "A brief summary of the message."
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the message."
+    },
+    "title": {
+      "type": "string",
+      "description": "A human-friendly title for the message."
+    },
+    "description": {
+      "type": "string",
+      "description": "A longer description of the message. CommonMark is allowed."
+    },
+    "externalDocs": {
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs"
+    },
+    "deprecated": {
+      "type": "boolean",
+      "default": false
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "protocolInfo": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "traits": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/messageTrait"
+          },
+          {
+            "type": "array",
+            "items": [
+              {
+                "oneOf": [
+                  {
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+                  },
+                  {
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/messageTrait"
+                  }
+                ]
+              },
+              {
+                "type": "object",
+                "additionalItems": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/message"
+}
