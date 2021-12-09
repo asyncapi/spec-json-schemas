@@ -10,9 +10,7 @@ describe('AsyncAPI', () => {
 
   it('should check if json schema is exported and if it matches the original file', () => {
     const files = fs.readdirSync('schemas');
-    files.filter((file) => {
-      return !fs.lstatSync(path.resolve(__dirname, `../schemas/${file}`)).isDirectory();
-    }).forEach(file => {
+    files.forEach(file => {
       const fileName = path.parse(file).name;
       
       const asyncapi = require('..');
