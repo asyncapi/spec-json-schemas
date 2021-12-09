@@ -2,6 +2,8 @@
 
 In version 3, only breaking change, is that the provided bundled schemas located under [schemas](../schemas) now use completely different `$id`s and definition namings.
 
+> If you do not manually access schemas under `definitions` you can upgrade the version without any problems.
+
 Previously each definition would have it defined such as:
 
 ```json
@@ -30,4 +32,4 @@ With the new naming approach those definitions would be called:
 }
 ```
 
-All definitions follow the same change from `<name>` to `"http://asyncapi.com/definitions/<version>/<name>"`.
+All definitions follow the same change from `<name>` to `http://asyncapi.com/definitions/<version>/<name>`.
