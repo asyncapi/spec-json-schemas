@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
     }
   },
   "properties": {
@@ -12,10 +12,10 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
           },
           {
-            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/operationTrait"
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/operationTrait.json"
           },
           {
             "type": "array",
@@ -23,10 +23,10 @@
               {
                 "oneOf": [
                   {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
                   },
                   {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/operationTrait"
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/operationTrait.json"
                   }
                 ]
               },
@@ -48,12 +48,12 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag"
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag.json"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs.json"
     },
     "operationId": {
       "type": "string"
@@ -67,7 +67,7 @@
     "message": {
       "oneOf": [
         {
-          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/message"
+          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/message.json"
         },
         {
           "type": "object",
@@ -77,7 +77,7 @@
           "additionalProperties": false,
           "patternProperties": {
             "^x-[\\w\\d.\\-_]+$": {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
             }
           },
           "properties": {
@@ -85,7 +85,7 @@
               "type": "array",
               "minItems": 2,
               "items": {
-                "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/message"
+                "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/message.json"
               }
             }
           }
@@ -94,5 +94,5 @@
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/operation"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/operation.json"
 }

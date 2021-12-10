@@ -1,7 +1,7 @@
 {
   "oneOf": [
     {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json"
     },
     {
       "oneOf": [
@@ -15,7 +15,7 @@
             "oneOf": {
               "type": "array",
               "items": {
-                "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/message"
+                "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/message.json"
               }
             }
           }
@@ -25,7 +25,7 @@
           "additionalProperties": false,
           "patternProperties": {
             "^x-[\\w\\d.\\-_]+$": {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension.json"
             }
           },
           "properties": {
@@ -36,23 +36,23 @@
               "type": "string"
             },
             "headers": {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/schema"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/schema.json"
             },
             "payload": {},
             "correlationId": {
               "oneOf": [
                 {
-                  "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference"
+                  "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json"
                 },
                 {
-                  "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/correlationId"
+                  "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/correlationId.json"
                 }
               ]
             },
             "tags": {
               "type": "array",
               "items": {
-                "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/tag"
+                "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/tag.json"
               },
               "uniqueItems": true
             },
@@ -73,7 +73,7 @@
               "description": "A longer description of the message. CommonMark is allowed."
             },
             "externalDocs": {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/externalDocs"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/externalDocs.json"
             },
             "deprecated": {
               "type": "boolean",
@@ -86,17 +86,17 @@
               }
             },
             "bindings": {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/bindingsObject"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/bindingsObject.json"
             },
             "traits": {
               "type": "array",
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference"
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json"
                   },
                   {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/messageTrait"
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/messageTrait.json"
                   },
                   {
                     "type": "array",
@@ -104,10 +104,10 @@
                       {
                         "oneOf": [
                           {
-                            "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference"
+                            "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json"
                           },
                           {
-                            "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/messageTrait"
+                            "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/messageTrait.json"
                           }
                         ]
                       },
@@ -126,5 +126,5 @@
     }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/message"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/message.json"
 }

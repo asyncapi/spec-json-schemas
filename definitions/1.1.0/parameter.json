@@ -2,7 +2,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/vendorExtension"
+      "$ref": "http://asyncapi.com/definitions/1.1.0/vendorExtension.json"
     }
   },
   "properties": {
@@ -15,9 +15,9 @@
       "description": "The name of the parameter."
     },
     "schema": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/schema"
+      "$ref": "http://asyncapi.com/definitions/1.1.0/schema.json"
     }
   },
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.1.0/parameter"
+  "id": "http://asyncapi.com/definitions/1.1.0/parameter.json"
 }

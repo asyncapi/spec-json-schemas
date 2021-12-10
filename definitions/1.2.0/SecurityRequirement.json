@@ -7,5 +7,5 @@
     }
   },
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/SecurityRequirement"
+  "id": "http://asyncapi.com/definitions/1.2.0/SecurityRequirement.json"
 }

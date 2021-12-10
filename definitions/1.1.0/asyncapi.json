@@ -1,6 +1,6 @@
 {
   "title": "AsyncAPI 1.1.0 schema.",
-  "id": "http://asyncapi.com/definitions/1.1.0/asyncapi",
+  "id": "http://asyncapi.com/definitions/1.1.0/asyncapi.json",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "required": [
@@ -11,7 +11,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/vendorExtension"
+      "$ref": "http://asyncapi.com/definitions/1.1.0/vendorExtension.json"
     }
   },
   "properties": {
@@ -24,7 +24,7 @@
       "description": "The AsyncAPI specification version of this document."
     },
     "info": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/info"
+      "$ref": "http://asyncapi.com/definitions/1.1.0/info.json"
     },
     "baseTopic": {
       "type": "string",
@@ -35,31 +35,31 @@
     "servers": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.1.0/server"
+        "$ref": "http://asyncapi.com/definitions/1.1.0/server.json"
       },
       "uniqueItems": true
     },
     "topics": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/topics"
+      "$ref": "http://asyncapi.com/definitions/1.1.0/topics.json"
     },
     "components": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/components"
+      "$ref": "http://asyncapi.com/definitions/1.1.0/components.json"
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.1.0/tag"
+        "$ref": "http://asyncapi.com/definitions/1.1.0/tag.json"
       },
       "uniqueItems": true
     },
     "security": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.1.0/SecurityRequirement"
+        "$ref": "http://asyncapi.com/definitions/1.1.0/SecurityRequirement.json"
       }
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/externalDocs"
+      "$ref": "http://asyncapi.com/definitions/1.1.0/externalDocs.json"
     }
   }
 }

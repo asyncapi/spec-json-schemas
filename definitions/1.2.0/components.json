@@ -4,10 +4,10 @@
   "additionalProperties": false,
   "properties": {
     "schemas": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/schemas"
+      "$ref": "http://asyncapi.com/definitions/1.2.0/schemas.json"
     },
     "messages": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/messages"
+      "$ref": "http://asyncapi.com/definitions/1.2.0/messages.json"
     },
     "securitySchemes": {
       "type": "object",
@@ -15,19 +15,19 @@
         "^[a-zA-Z0-9\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "http://asyncapi.com/definitions/1.2.0/Reference"
+              "$ref": "http://asyncapi.com/definitions/1.2.0/Reference.json"
             },
             {
-              "$ref": "http://asyncapi.com/definitions/1.2.0/SecurityScheme"
+              "$ref": "http://asyncapi.com/definitions/1.2.0/SecurityScheme.json"
             }
           ]
         }
       }
     },
     "parameters": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/parameters"
+      "$ref": "http://asyncapi.com/definitions/1.2.0/parameters.json"
     }
   },
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/components"
+  "id": "http://asyncapi.com/definitions/1.2.0/components.json"
 }

@@ -1,7 +1,7 @@
 {
   "title": "AsyncAPI 2.0.0-rc1 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/asyncapi",
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/asyncapi.json",
   "type": "object",
   "required": [
     "asyncapi",
@@ -12,7 +12,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
     }
   },
   "properties": {
@@ -29,12 +29,12 @@
       "format": "uri-reference"
     },
     "info": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/info"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/info.json"
     },
     "servers": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/server"
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/server.json"
       },
       "uniqueItems": true
     },
@@ -42,20 +42,20 @@
       "type": "string"
     },
     "channels": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/channels"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/channels.json"
     },
     "components": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/components"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/components.json"
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag"
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag.json"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs.json"
     }
   }
 }

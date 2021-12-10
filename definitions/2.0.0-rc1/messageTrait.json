@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
     }
   },
   "properties": {
@@ -18,10 +18,10 @@
       "additionalProperties": {
         "oneOf": [
           {
-            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
           },
           {
-            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/schema"
+            "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/schema.json"
           }
         ]
       }
@@ -29,17 +29,17 @@
     "correlationId": {
       "oneOf": [
         {
-          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
         },
         {
-          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/correlationId"
+          "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/correlationId.json"
         }
       ]
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag"
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/tag.json"
       },
       "uniqueItems": true
     },
@@ -60,7 +60,7 @@
       "description": "A longer description of the message. CommonMark is allowed."
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/externalDocs.json"
     },
     "deprecated": {
       "type": "boolean",
@@ -80,5 +80,5 @@
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/messageTrait"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/messageTrait.json"
 }

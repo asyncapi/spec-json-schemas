@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0/specificationExtension.json"
     }
   },
   "properties": {
@@ -12,10 +12,10 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "http://asyncapi.com/definitions/2.0.0/Reference"
+            "$ref": "http://asyncapi.com/definitions/2.0.0/Reference.json"
           },
           {
-            "$ref": "http://asyncapi.com/definitions/2.0.0/operationTrait"
+            "$ref": "http://asyncapi.com/definitions/2.0.0/operationTrait.json"
           },
           {
             "type": "array",
@@ -23,10 +23,10 @@
               {
                 "oneOf": [
                   {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0/Reference"
+                    "$ref": "http://asyncapi.com/definitions/2.0.0/Reference.json"
                   },
                   {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0/operationTrait"
+                    "$ref": "http://asyncapi.com/definitions/2.0.0/operationTrait.json"
                   }
                 ]
               },
@@ -48,23 +48,23 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0/tag"
+        "$ref": "http://asyncapi.com/definitions/2.0.0/tag.json"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0/externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.0.0/externalDocs.json"
     },
     "operationId": {
       "type": "string"
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0/bindingsObject"
+      "$ref": "http://asyncapi.com/definitions/2.0.0/bindingsObject.json"
     },
     "message": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0/message"
+      "$ref": "http://asyncapi.com/definitions/2.0.0/message.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0/operation"
+  "$id": "http://asyncapi.com/definitions/2.0.0/operation.json"
 }

@@ -8,7 +8,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension.json"
     }
   },
   "properties": {
@@ -30,12 +30,12 @@
       "format": "uri"
     },
     "contact": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/contact"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/contact.json"
     },
     "license": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/license"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/license.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/info"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/info.json"
 }

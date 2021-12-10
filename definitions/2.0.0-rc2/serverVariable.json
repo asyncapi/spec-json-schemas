@@ -5,7 +5,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension.json"
     }
   },
   "properties": {
@@ -30,5 +30,5 @@
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/serverVariable"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/serverVariable.json"
 }

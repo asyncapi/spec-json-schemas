@@ -8,5 +8,5 @@
     "uniqueItems": true
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.1.0/SecurityRequirement"
+  "$id": "http://asyncapi.com/definitions/2.1.0/SecurityRequirement.json"
 }

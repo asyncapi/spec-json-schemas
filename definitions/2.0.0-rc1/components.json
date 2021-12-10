@@ -4,10 +4,10 @@
   "additionalProperties": false,
   "properties": {
     "schemas": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/schemas"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/schemas.json"
     },
     "messages": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/messages"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/messages.json"
     },
     "securitySchemes": {
       "type": "object",
@@ -15,17 +15,17 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
             },
             {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/SecurityScheme"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/SecurityScheme.json"
             }
           ]
         }
       }
     },
     "parameters": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/parameters"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/parameters.json"
     },
     "correlationIds": {
       "type": "object",
@@ -33,19 +33,19 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
             },
             {
-              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/correlationId"
+              "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/correlationId.json"
             }
           ]
         }
       }
     },
     "traits": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/traits"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/traits.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/components"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/components.json"
 }

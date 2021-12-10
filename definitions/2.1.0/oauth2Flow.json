@@ -14,15 +14,15 @@
       "format": "uri"
     },
     "scopes": {
-      "$ref": "http://asyncapi.com/definitions/2.1.0/oauth2Scopes"
+      "$ref": "http://asyncapi.com/definitions/2.1.0/oauth2Scopes.json"
     }
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.1.0/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.1.0/specificationExtension.json"
     }
   },
   "additionalProperties": false,
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.1.0/oauth2Flow"
+  "$id": "http://asyncapi.com/definitions/2.1.0/oauth2Flow.json"
 }

@@ -24,10 +24,10 @@
   },
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension.json"
     }
   },
   "additionalProperties": false,
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/apiKey"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/apiKey.json"
 }

@@ -3,7 +3,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/specificationExtension.json"
     }
   },
   "properties": {
@@ -16,20 +16,20 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/tag"
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/tag.json"
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/externalDocs"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/externalDocs.json"
     },
     "operationId": {
       "type": "string"
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/bindingsObject"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/bindingsObject.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/operationTrait"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc2/operationTrait.json"
 }

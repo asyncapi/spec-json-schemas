@@ -8,7 +8,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d.\\-_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
     }
   },
   "properties": {
@@ -26,7 +26,7 @@
       "type": "string"
     },
     "variables": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/serverVariables"
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/serverVariables.json"
     },
     "baseChannel": {
       "type": "string",
@@ -35,10 +35,10 @@
     "security": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/SecurityRequirement"
+        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/SecurityRequirement.json"
       }
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/server"
+  "$id": "http://asyncapi.com/definitions/2.0.0-rc1/server.json"
 }

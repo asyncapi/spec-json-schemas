@@ -8,7 +8,7 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.0.0/vendorExtension"
+      "$ref": "http://asyncapi.com/definitions/1.0.0/vendorExtension.json"
     }
   },
   "properties": {
@@ -39,9 +39,9 @@
       "type": "string"
     },
     "variables": {
-      "$ref": "http://asyncapi.com/definitions/1.0.0/serverVariables"
+      "$ref": "http://asyncapi.com/definitions/1.0.0/serverVariables.json"
     }
   },
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.0.0/server"
+  "id": "http://asyncapi.com/definitions/1.0.0/server.json"
 }

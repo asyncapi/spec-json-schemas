@@ -16,9 +16,9 @@
   },
   "patternProperties": {
     "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension"
+      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
     }
   },
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/externalDocs"
+  "id": "http://asyncapi.com/definitions/1.2.0/externalDocs.json"
 }

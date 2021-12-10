@@ -18,5 +18,5 @@
     "ibmmq": {}
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.1.0/bindingsObject"
+  "$id": "http://asyncapi.com/definitions/2.1.0/bindingsObject.json"
 }
