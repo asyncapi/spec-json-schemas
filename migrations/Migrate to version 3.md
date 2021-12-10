@@ -1,10 +1,10 @@
 # Migrating to version 3
 
-In version 3, only breaking change, is that the provided bundled schemas located under [schemas](../schemas) now use completely different `$id`s and definition namings.
+In version 3, the only breaking change is that the provided bundled schemas located under [schemas](../schemas) now use completely different `$id`s and definition namings.
 
-> If you do not manually access schemas under `definitions` you can upgrade the version without any problems.
+> If you don't manually access schemas under `definitions`, you can upgrade the version without any problems.
 
-Previously each definition would have it defined such as:
+Previously, each definition would have it defined as:
 
 ```json
 {
@@ -18,7 +18,7 @@ Previously each definition would have it defined such as:
 }
 ```
 
-With the new naming approach those definitions would be called:
+With the new naming approach, those definitions would be called:
 
 ```json
 {
