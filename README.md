@@ -1,5 +1,6 @@
 ![npm](https://img.shields.io/npm/v/@asyncapi/specs?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@asyncapi/specs?style=for-the-badge)
 
+> If you are currently using version 2, check out [migration guideline to version 3](./migrations/Migrate%20to%20version%203.md). You might be able to update it without any change.
 # AsyncAPI
 
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.

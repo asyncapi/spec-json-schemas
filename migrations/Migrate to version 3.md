@@ -24,12 +24,12 @@ With the new naming approach, those definitions would be called:
 {
   ...
   "definitions": {
-    "http://asyncapi.com/definitions/2.2.0/Reference": { ... },
-    "http://asyncapi.com/definitions/2.2.0/ReferenceObject": { ... },
-    "http://asyncapi.com/definitions/2.2.0/info": { ... },
+    "http://asyncapi.com/definitions/2.2.0/Reference.json": { ... },
+    "http://asyncapi.com/definitions/2.2.0/ReferenceObject.json": { ... },
+    "http://asyncapi.com/definitions/2.2.0/info.json": { ... },
     ...
   }
 }
 ```
 
-All definitions follow the same change from `<name>` to `http://asyncapi.com/definitions/<version>/<name>`.
+All definitions follow the same change from `<name>` to `http://asyncapi.com/definitions/<version>/<name>.json`.
