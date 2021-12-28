@@ -54,7 +54,6 @@
   },
   "definitions": {
     "Reference": {
-      
       "type": "object",
       "required": [
         "$ref"
@@ -724,7 +723,7 @@
                     "additionalProperties": false,
                     "anyOf": [
                       {"required": ["payload"] },
-                      {"required": ["headers"] } 
+                      {"required": ["headers"] }
                     ],
                     "properties": {
                       "name": {
