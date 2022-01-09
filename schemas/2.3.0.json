@@ -604,6 +604,12 @@
         "operationId": {
           "type": "string"
         },
+        "security": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SecurityRequirement"
+          }
+        },
         "bindings": {
           "$ref": "#/definitions/bindingsObject"
         },
@@ -857,6 +863,12 @@
         },
         "description": {
           "type": "string"
+        },
+        "security": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SecurityRequirement"
+          }
         },
         "tags": {
           "type": "array",
