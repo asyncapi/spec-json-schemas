@@ -30,10 +30,7 @@
       "$ref": "#/definitions/info"
     },
     "servers": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/server"
-      }
+      "$ref": "#/definitions/servers"
     },
     "defaultContentType": {
       "type": "string"
@@ -162,10 +159,10 @@
     "server": {
       "type": "object",
       "description": "An object representing a Server.",
-      "required": [
-        "url",
-        "protocol"
-      ],
+      "anyOf" : [
+        { "required" : ["url", "protocol"] },
+        { "required" : ["$ref"] }
+      ],    
       "additionalProperties": false,
       "patternProperties": {
         "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -173,6 +170,9 @@
         }
       },
       "properties": {
+        "$ref": {
+          "$ref": "#/definitions/ReferenceObject"
+        },
         "url": {
           "type": "string"
         },
@@ -198,6 +198,12 @@
         "bindings": {
           "$ref": "#/definitions/bindingsObject"
         }
+      }
+    },
+    "servers": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/server"
       }
     },
     "serverVariables": {
@@ -260,6 +266,12 @@
       "properties": {
         "schemas": {
           "$ref": "#/definitions/schemas"
+        },
+        "servers": {
+          "$ref": "#/definitions/servers"
+        },
+        "channels": {
+          "$ref": "#/definitions/channels"
         },
         "messages": {
           "$ref": "#/definitions/messages"
