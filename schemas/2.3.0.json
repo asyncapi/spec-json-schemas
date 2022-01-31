@@ -1,5 +1,5 @@
 {
-  "title": "AsyncAPI 2.0.0-rc2 schema.",
+  "title": "AsyncAPI 2.3.0 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "required": [
@@ -17,7 +17,7 @@
     "asyncapi": {
       "type": "string",
       "enum": [
-        "2.0.0-rc2"
+        "2.3.0"
       ],
       "description": "The AsyncAPI specification version of this document."
     },
@@ -30,10 +30,7 @@
       "$ref": "#/definitions/info"
     },
     "servers": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "#/definitions/server"
-      }
+      "$ref": "#/definitions/servers"
     },
     "defaultContentType": {
       "type": "string"
@@ -162,10 +159,10 @@
     "server": {
       "type": "object",
       "description": "An object representing a Server.",
-      "required": [
-        "url",
-        "protocol"
-      ],
+      "anyOf" : [
+        { "required" : ["url", "protocol"] },
+        { "required" : ["$ref"] }
+      ],    
       "additionalProperties": false,
       "patternProperties": {
         "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -173,6 +170,9 @@
         }
       },
       "properties": {
+        "$ref": {
+          "$ref": "#/definitions/ReferenceObject"
+        },
         "url": {
           "type": "string"
         },
@@ -200,6 +200,12 @@
         }
       }
     },
+    "servers": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/server"
+      }
+    },
     "serverVariables": {
       "type": "object",
       "additionalProperties": {
@@ -209,7 +215,6 @@
     "serverVariable": {
       "type": "object",
       "description": "An object representing a Server Variable for server URL template substitution.",
-      "minProperties": 1,
       "additionalProperties": false,
       "patternProperties": {
         "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -253,9 +258,20 @@
       "type": "object",
       "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
       "additionalProperties": false,
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
+          "$ref": "#/definitions/specificationExtension"
+        }
+      },
       "properties": {
         "schemas": {
           "$ref": "#/definitions/schemas"
+        },
+        "servers": {
+          "$ref": "#/definitions/servers"
+        },
+        "channels": {
+          "$ref": "#/definitions/channels"
         },
         "messages": {
           "$ref": "#/definitions/messages"
@@ -358,7 +374,6 @@
           "$ref": "http://json-schema.org/draft-07/schema#"
         },
         {
-          "type": "object",
           "patternProperties": {
             "^x-[\\w\\d\\.\\x2d_]+$": {
               "$ref": "#/definitions/specificationExtension"
@@ -366,7 +381,15 @@
           },
           "properties": {
             "additionalProperties": {
-              "$ref": "#/definitions/schema"
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/schema"
+                },
+                {
+                  "type": "boolean"
+                }
+              ],
+              "default": {}
             },
             "items": {
               "anyOf": [
@@ -392,14 +415,14 @@
             },
             "oneOf": {
               "type": "array",
-              "minItems": 2,
+              "minItems": 1,
               "items": {
                 "$ref": "#/definitions/schema"
               }
             },
             "anyOf": {
               "type": "array",
-              "minItems": 2,
+              "minItems": 1,
               "items": {
                 "$ref": "#/definitions/schema"
               }
@@ -471,7 +494,6 @@
           "$ref": "#/definitions/specificationExtension"
         }
       },
-      "minProperties": 1,
       "properties": {
         "$ref": {
           "$ref": "#/definitions/ReferenceObject"
@@ -485,6 +507,14 @@
         "description": {
           "type": "string",
           "description": "A description of the channel."
+        },
+        "servers": {
+          "type": "array",
+          "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
         },
         "publish": {
           "$ref": "#/definitions/operation"
@@ -632,7 +662,18 @@
                   "type": "string"
                 },
                 "headers": {
-                  "$ref": "#/definitions/schema"
+                  "allOf": [
+                    {
+                      "$ref": "#/definitions/schema"
+                    },
+                    {
+                      "properties": {
+                        "type": {
+                          "const": "object"
+                        }
+                      }
+                    }
+                  ]
                 },
                 "payload": {},
                 "correlationId": {
@@ -678,7 +719,26 @@
                 "examples": {
                   "type": "array",
                   "items": {
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": false,
+                    "anyOf": [
+                      {"required": ["payload"] },
+                      {"required": ["headers"] }
+                    ],
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "Machine readable name of the message example."
+                      },
+                      "summary": {
+                        "type": "string",
+                        "description": "A brief summary of the message example."
+                      },
+                      "headers": {
+                        "type": "object"
+                      },
+                      "payload": {}
+                    }
                   }
                 },
                 "bindings": {
@@ -733,12 +793,15 @@
         "mqtt": {},
         "mqtt5": {},
         "kafka": {},
+        "anypointmq": {},
         "nats": {},
         "jms": {},
         "sns": {},
         "sqs": {},
         "stomp": {},
-        "redis": {}
+        "redis": {},
+        "ibmmq": {},
+        "solace": {}
       }
     },
     "correlationId": {
@@ -841,12 +904,16 @@
           "type": "string"
         },
         "headers": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Reference"
-            },
+          "allOf": [
             {
               "$ref": "#/definitions/schema"
+            },
+            {
+              "properties": {
+                "type": {
+                  "const": "object"
+                }
+              }
             }
           ]
         },
@@ -926,6 +993,9 @@
         },
         {
           "$ref": "#/definitions/openIdConnect"
+        },
+        {
+          "$ref": "#/definitions/SaslSecurityScheme"
         }
       ]
     },
@@ -1172,6 +1242,89 @@
       },
       "additionalProperties": false
     },
+    "SaslSecurityScheme": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/SaslPlainSecurityScheme"
+        },
+        {
+          "$ref": "#/definitions/SaslScramSecurityScheme"
+        },
+        {
+          "$ref": "#/definitions/SaslGssapiSecurityScheme"
+        }
+      ]
+    },
+    "SaslPlainSecurityScheme": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "plain"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
+          "$ref": "#/definitions/specificationExtension"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SaslScramSecurityScheme": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "scramSha256",
+            "scramSha512"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
+          "$ref": "#/definitions/specificationExtension"
+        }
+      },
+      "additionalProperties": false
+    },
+    "SaslGssapiSecurityScheme": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "gssapi"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
+          "$ref": "#/definitions/specificationExtension"
+        }
+      },
+      "additionalProperties": false
+    },
     "oauth2Flows": {
       "type": "object",
       "required": [
@@ -1266,8 +1419,7 @@
               ]
             }
           },
-          "additionalProperties": false,
-          "minProperties": 1
+          "additionalProperties": false
         }
       },
       "patternProperties": {
