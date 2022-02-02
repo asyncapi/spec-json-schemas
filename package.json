@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/specs",
-  "version": "2.12.0",
+  "version": "2.13.0",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
   "scripts": {
@@ -47,7 +47,7 @@
     "branches": [
       "master",
       {
-        "name": "2021-09-release",
+        "name": "2022-01-release",
         "prerelease": true
       }
     ],
