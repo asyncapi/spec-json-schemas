@@ -7,7 +7,7 @@
     "test": "nyc mocha",
     "release": "semantic-release",
     "generate:assets": "cd tools/bundler && npm i && npm run bundle",
-    "startNewVersion": "newVersion=$npm_config_newVersion && latestVersion=$(ls -d ./definitions/* | sort -V -r | head -1 | xargs -n 1 basename) && [ -d ./definitions/$newVersion ] && echo Directory ./definitions/$newVersion already exist and cannot be overwritten. Please create a different version. || (cp -R ./definitions/$latestVersion ./definitions/$newVersion && find ./definitions/$newVersion -name '*.json' -exec sed -i '' \"s+definitions/$latestVersion+definitions/$newVersion+g\" {} +)",
+    "startNewVersion": "newVersion=$npm_config_new_version && latestVersion=$(ls -d ./definitions/* | sort -V -r | head -1 | xargs -n 1 basename) && [ -d ./definitions/${newVersion} ] && echo Directory ./definitions/$newVersion already exist and cannot be overwritten. Please create a different version. || (cp -R ./definitions/$latestVersion ./definitions/$newVersion && find ./definitions/$newVersion -name '*.json' -exec sed -i '' \"s+definitions/$latestVersion+definitions/$newVersion+g\" {} +)",
     "lint": "echo 'No linter integrated yet'",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },

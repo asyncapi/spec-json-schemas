@@ -55,7 +55,7 @@ For example, for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/ind
 ### Creating a new version
 To create a new version, simply run the following command:
 ```
-npm run startNewVersion --newVersion=x.x.x
+npm run startNewVersion --new-version=x.x.x
 ```
 Where `x.x.x` is the new version you want to create.
 
