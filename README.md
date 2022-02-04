@@ -48,7 +48,7 @@ This is the current project structure explained.
 ## Schema Bundling
 Changes should not be done manually to the schemas in [./schemas](./schemas), but instead be done in their individual definitions located in [./definitions](./definitions).
 
-These definitions are automatically bundled together on new releases through the `generate:assets` script, which runs the [bundler](./tools/bundler). 
+These definitions are automatically bundled together on new releases through the npm script `prepublishOnly`, which ensures the project is build. This is where the [bundler](./tools/bundler) is called. 
 
 For example, for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](./schemas/2.2.0.json).
 
@@ -61,5 +61,5 @@ Where `x.x.x` is the new version you want to create.
 
 The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
-2. Rename the folder to the new version.
-3. Search and replace in the new duplicated folder for `definitions/y.y.y` and replace it with `definitions/x.x.x`, where `x.x.x` is the new version.
+2. Rename the folder to the new version (`x.x.x`).
+3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
