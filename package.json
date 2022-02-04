@@ -4,7 +4,7 @@
   "description": "AsyncAPI schema versions",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha",
+    "test": "npm run build && nyc mocha",
     "build": "npm run bundle",
     "release": "semantic-release",
     "generate:assets": "npm run build",

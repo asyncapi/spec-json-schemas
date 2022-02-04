@@ -10,6 +10,8 @@ console.log(`Using the following output directory: ${outputDirectory}`);
  */
 (async () => {
   const versions = await fs.promises.readdir(definitionsDirectory);
+  console.log(`Ensuring output directory is present ${outputDirectory}`);
+  await fs.promises.mkdir(outputDirectory);
   console.log(`The following versions have separate definitions: ${versions.join(',')}`);
   for (const version of versions) {
     const Bundler = require("@hyperjump/json-schema-bundle");
