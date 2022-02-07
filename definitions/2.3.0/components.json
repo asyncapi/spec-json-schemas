@@ -3,7 +3,7 @@
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d.\\-_]+$": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
       "$ref": "http://asyncapi.com/definitions/2.3.0/specificationExtension.json"
     }
   },

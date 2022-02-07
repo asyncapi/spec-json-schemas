@@ -2,7 +2,7 @@
   "type": "object",
   "description": "A deterministic version of a JSON Schema object.",
   "patternProperties": {
-    "^x-[\\w\\d.\\-_]+$": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
       "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
     }
   },

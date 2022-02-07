@@ -11,7 +11,7 @@
     ],
     "additionalProperties": false,
     "patternProperties": {
-        "^x-[\\w\\d.\\-_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
             "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
         }
     },
@@ -75,7 +75,7 @@
             ],
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -127,7 +127,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             }
@@ -151,7 +151,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             }
@@ -166,7 +166,7 @@
             ],
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -213,7 +213,7 @@
             "minProperties": 1,
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -267,7 +267,7 @@
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -311,7 +311,7 @@
             "$id": "http://asyncapi.com/definitions/2.0.0-rc1/parameter.json",
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -337,7 +337,7 @@
             "type": "object",
             "description": "A deterministic version of a JSON Schema object.",
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -751,7 +751,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             }
@@ -761,7 +761,7 @@
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -835,7 +835,7 @@
                             ],
                             "additionalProperties": false,
                             "patternProperties": {
-                                "^x-[\\w\\d.\\-_]+$": {
+                                "^x-[\\w\\d\\.\\x2d_]+$": {
                                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                                 }
                             },
@@ -870,7 +870,7 @@
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -921,7 +921,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             }
@@ -931,7 +931,7 @@
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1050,7 +1050,7 @@
             ],
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1071,7 +1071,7 @@
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1262,7 +1262,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1294,7 +1294,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1318,7 +1318,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1342,7 +1342,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1366,7 +1366,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1419,7 +1419,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1453,7 +1453,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1490,7 +1490,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1596,7 +1596,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             }
@@ -1622,7 +1622,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
@@ -1658,7 +1658,7 @@
                 }
             },
             "patternProperties": {
-                "^x-[\\w\\d.\\-_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/specificationExtension.json"
                 }
             },
