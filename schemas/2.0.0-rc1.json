@@ -10,7 +10,7 @@
   ],
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
       "$ref": "#/definitions/specificationExtension"
     }
   },
@@ -82,7 +82,7 @@
       ],
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -133,7 +133,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       }
@@ -156,7 +156,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       }
@@ -170,7 +170,7 @@
       ],
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -215,7 +215,7 @@
       "minProperties": 1,
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -318,7 +318,7 @@
       "type": "object",
       "description": "A deterministic version of a JSON Schema object.",
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -508,7 +508,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       }
@@ -517,7 +517,7 @@
       "type": "object",
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -555,7 +555,7 @@
     "parameter": {
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -580,7 +580,7 @@
       "type": "object",
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -650,7 +650,7 @@
               ],
               "additionalProperties": false,
               "patternProperties": {
-                "^x-[\\w\\d\\.\\-\\_]+$": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
                   "$ref": "#/definitions/specificationExtension"
                 }
               },
@@ -672,7 +672,7 @@
       "type": "object",
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -782,7 +782,7 @@
       ],
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -821,7 +821,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       }
@@ -839,7 +839,7 @@
       "type": "object",
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -875,7 +875,7 @@
       "type": "object",
       "additionalProperties": false,
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -982,7 +982,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1013,7 +1013,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1036,7 +1036,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1059,7 +1059,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1082,7 +1082,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1127,7 +1127,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1160,7 +1160,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1196,7 +1196,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1270,7 +1270,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       }
@@ -1295,7 +1295,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
@@ -1329,7 +1329,7 @@
         }
       },
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "#/definitions/specificationExtension"
         }
       },
