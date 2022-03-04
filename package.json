@@ -50,7 +50,7 @@
     "branches": [
       "master",
       {
-        "name": "2022-01-release",
+        "name": "next-major",
         "prerelease": true
       }
     ],
