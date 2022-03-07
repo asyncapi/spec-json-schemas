@@ -891,12 +891,16 @@
           "type": "string"
         },
         "headers": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/Reference"
-            },
+          "allOf": [
             {
               "$ref": "#/definitions/schema"
+            },
+            {
+              "properties": {
+                "type": {
+                  "const": "object"
+                }
+              }
             }
           ]
         },
