@@ -1,4 +1,3 @@
-// NOSONAR
 /**
  * This script adds a new version of the spec, by copying the newest one as a base.
  */
@@ -7,7 +6,7 @@ const fs = require('fs');
 
 const newVersion = process.env.newVersion;
 
-//https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
+//Regex taken from https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
 const versionRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/g
 
 function execute(command){
