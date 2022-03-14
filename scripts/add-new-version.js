@@ -5,6 +5,11 @@
 const exec = require('child_process').exec;
 const fs = require('fs');
 
+const newVersion = process.env.newVersion;
+
+//https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
+const versionRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/g
+
 function execute(command){
   return new Promise((resolve, reject) => {
     exec(command, function(error, stdout, stderr){ 
@@ -13,9 +18,9 @@ function execute(command){
       reject(error);
     });
   });
-};
+}
 
-async function add(newVersion){
+async function add(){
   const newVersionDir = `./definitions/${newVersion}`;
 
   try {
@@ -32,5 +37,10 @@ async function add(newVersion){
   console.log(`New version added ${newVersionDir}`)
 }
 
-const newVersion = process.env.newVersion;
-add(newVersion);
+const versionMatch = newVersion.match(versionRegex);
+if(!versionMatch) {
+  console.error(`The new version ${newVersion} did not match semver regex for new version. Must match semver.`)
+  process.exit(1); 
+} else {
+  add();
+}
