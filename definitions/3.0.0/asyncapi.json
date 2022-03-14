@@ -1,5 +1,5 @@
 {
-  "title": "AsyncAPI 2.3.0 schema.",
+  "title": "AsyncAPI 3.0.0 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/asyncapi.json",
   "type": "object",
@@ -18,7 +18,7 @@
     "asyncapi": {
       "type": "string",
       "enum": [
-        "2.3.0"
+        "3.0.0"
       ],
       "description": "The AsyncAPI specification version of this document."
     },
