@@ -1,0 +1,14 @@
+{
+  "name": "bundler",
+  "version": "1.0.0",
+  "description": "Bundles all definitions together to provide the complete schema document",
+  "main": "index.js",
+  "scripts": {
+    "bundle": "node index"
+  },
+  "dependencies": {
+    "@hyperjump/json-schema-bundle": "0.1.3"
+  },
+  "author": "Jonas Lagoni (jonas-lt@live.dk)",
+  "license": "Apache-2.0"
+}
