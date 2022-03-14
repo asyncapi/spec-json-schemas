@@ -1,4 +1,4 @@
-
+// NOSONAR
 /**
  * This script adds a new version of the spec, by copying the newest one as a base.
  */
