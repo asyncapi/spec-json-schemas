@@ -52,6 +52,10 @@
       {
         "name": "next-major",
         "prerelease": true
+      },
+      {
+        "name": "2022-04-release",
+        "prerelease": true
       }
     ],
     "plugins": [
