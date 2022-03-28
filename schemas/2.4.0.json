@@ -847,6 +847,12 @@
         },
         "externalDocs": {
           "$ref": "#/definitions/externalDocs"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "patternProperties": {
