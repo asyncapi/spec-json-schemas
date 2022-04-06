@@ -1038,12 +1038,16 @@
                     "type": "string"
                 },
                 "headers": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/2.0.0/Reference.json"
-                        },
+                    "allOf": [
                         {
                             "$ref": "http://asyncapi.com/definitions/2.0.0/schema.json"
+                        },
+                        {
+                            "properties": {
+                                "type": {
+                                    "const": "object"
+                                }
+                            }
                         }
                     ]
                 },
