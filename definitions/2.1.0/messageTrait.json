@@ -14,12 +14,16 @@
       "type": "string"
     },
     "headers": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/2.1.0/Reference.json"
-        },
+      "allOf": [
         {
           "$ref": "http://asyncapi.com/definitions/2.1.0/schema.json"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "object"
+            }
+          }
         }
       ]
     },
