@@ -57,7 +57,7 @@ Because the `$id`s changes, so must the references and this might be a problem f
 Because the provided schemas are now bundled together some validation tools **might** find this a problem, for example [Ajv](#ajv-example).
 
 ### Ajv example
-Because the AsyncAPI JSON Schema documents are written with a [specific meta schema](https://github.com/asyncapi/spec-json-schemas/blob/5d6ea0361a5b30707afa67a2df28e2805095c10f/schemas/2.3.0.json#L3). That meta schema, is already loaded by Ajv, and when you try to load the bundled AsyncAPI JSON Schema, it now contains that same meta schema. Ajv does not like to load duplicate schemas and simply throw an error when you try to, and there are no way to tell it to ignore it. Therefore for Ajv you **must** remove it before using it.
+Because the AsyncAPI JSON Schema documents are written with a [specific meta schema](https://github.com/asyncapi/spec-json-schemas/blob/5d6ea0361a5b30707afa67a2df28e2805095c10f/schemas/2.3.0.json#L3). That meta schema, is already loaded by [Ajv](https://ajv.js.org), and when you try to load the bundled AsyncAPI JSON Schema, it now contains that same meta schema. Ajv does not like to load duplicate schemas and simply throw an error when you try to, and there are no way to tell it to ignore it. Therefore for Ajv you **must** remove it before using it.
 
 Example code:
 ```js
