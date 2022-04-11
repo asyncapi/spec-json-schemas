@@ -7,11 +7,19 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 
 ## Installation
 
+### NodeJS
 ```bash
 npm install @asyncapi/specs
 ```
 
+### Go
+```bash
+go get github.com/asyncapi/spec-json-schemas/v2
+```
+
 ## Usage
+
+### NodeJS
 
 Grab a specific AsyncAPI version:
 
@@ -37,6 +45,23 @@ console.log(versions);
 const asyncapi = versions['1.1.0'];
 
 // Do something with the schema.
+```
+### Go
+
+Grab a specific AsyncAPI version:
+
+```go
+import "github.com/asyncapi/spec_json_schemas/v2"
+
+func Do() {
+    schema, err := spec_json_schemas.Get("1.1.0")
+    if err != nil {
+        panic(err)
+    }
+
+    // Do something with the schema
+}
+
 ```
 
 ## Repository structure
