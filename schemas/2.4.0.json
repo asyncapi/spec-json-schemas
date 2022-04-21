@@ -270,6 +270,9 @@
         "servers": {
           "$ref": "#/definitions/servers"
         },
+        "serverVariables": {
+          "$ref": "#/definitions/serverVariables"
+        },
         "channels": {
           "$ref": "#/definitions/channels"
         },
