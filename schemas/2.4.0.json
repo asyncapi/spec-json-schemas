@@ -684,6 +684,9 @@
                     }
                   ]
                 },
+                "messageId": {
+                  "type": "string"
+                },
                 "payload": {},
                 "correlationId": {
                   "oneOf": [
@@ -931,6 +934,9 @@
               }
             }
           ]
+        },
+        "messageId": {
+          "type": "string"
         },
         "correlationId": {
           "oneOf": [
