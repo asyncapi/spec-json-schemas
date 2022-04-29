@@ -12,7 +12,7 @@
       "$ref": "http://asyncapi.com/definitions/2.3.0/schemas.json"
     },
     "servers": {
-      "$ref": "http://asyncapi.com/definitions/2.3.0//servers.json"
+      "$ref": "http://asyncapi.com/definitions/2.3.0/servers.json"
     },
     "channels": {
       "$ref": "http://asyncapi.com/definitions/2.3.0/channels.json"
