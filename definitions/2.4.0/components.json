@@ -11,6 +11,15 @@
     "schemas": {
       "$ref": "http://asyncapi.com/definitions/2.4.0/schemas.json"
     },
+    "servers": {
+      "$ref": "http://asyncapi.com/definitions/2.4.0/servers.json"
+    },
+    "channels": {
+      "$ref": "http://asyncapi.com/definitions/2.4.0/channels.json"
+    },
+    "serverVariables": {
+      "$ref": "http://asyncapi.com/definitions/2.4.0/serverVariables.json"
+    },
     "messages": {
       "$ref": "http://asyncapi.com/definitions/2.4.0/messages.json"
     },
