@@ -15,8 +15,7 @@ const versionRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d
  */
 function execute(command) {
   return new Promise((resolve, reject) => {
-    //NOSONAR
-    exec(command, function (error, stdout, stderr) {
+    exec(command, function (error, stdout, stderr) { //NOSONAR
       if (!error) resolve(stdout);
       console.error(stderr);
       reject(error);
