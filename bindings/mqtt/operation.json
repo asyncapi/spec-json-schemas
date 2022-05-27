@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/bindings/mqtt/operation.json",
-  "title": "Operation Schema",
+  "title": "MQTT operation bindings object",
   "description": "This object contains information about the operation representation in MQTT.",
   "type": "object",
   "additionalProperties": false,

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/bindings/ibmmq/channel.json",
-  "title": "Channel Schema",
+  "title": "IBM MQ channel bindings object",
   "description": "This object contains information about the channel representation in IBM MQ. Each channel corresponds to a Queue or Topic within IBM MQ.",
   "type": "object",
   "additionalProperties": false,

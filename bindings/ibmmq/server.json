@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/bindings/ibmmq/server.json",
-  "title": "Server Schema",
+  "title": "IBM MQ server bindings object",
   "description": "This object contains server connection information about the IBM MQ server, referred to as an IBM MQ queue manager. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
   "type": "object",
   "additionalProperties": false,

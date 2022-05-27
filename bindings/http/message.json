@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/bindings/http/message.json",
-  "title": "Message Schema",
+  "title": "HTTP message bindings object",
   "description": "This object contains information about the message representation in HTTP.",
   "type": "object",
   "additionalProperties": false,
