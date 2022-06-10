@@ -44,7 +44,7 @@
     "@semantic-release/npm": "^7.0.3",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "conventional-changelog-conventionalcommits": "^4.2.3",
-    "semantic-release": "17.4.3"
+    "semantic-release": "19.0.3"
   },
   "release": {
     "branches": [
