@@ -12,7 +12,8 @@ describe('AsyncAPI', () => {
     const files = fs.readdirSync('schemas');
     files.forEach(file => {
       const fileName = path.parse(file).name;
-      
+      if (fileName == "README") return;
+
       const asyncapi = require('..');
       assert(typeof asyncapi[fileName] === 'object', `Returned object does not contain ${fileName}.`);
 
