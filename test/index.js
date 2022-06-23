@@ -9,9 +9,11 @@ describe('AsyncAPI', () => {
   });
 
   it('should check if json schema is exported and if it matches the original file', () => {
-    fs.readdirSync('schemas').forEach(file => {
+    const files = fs.readdirSync('schemas');
+    files.forEach(file => {
       const fileName = path.parse(file).name;
-      
+      if (fileName == "README") return;
+
       const asyncapi = require('..');
       assert(typeof asyncapi[fileName] === 'object', `Returned object does not contain ${fileName}.`);
 
