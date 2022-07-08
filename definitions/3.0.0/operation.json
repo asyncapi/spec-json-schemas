@@ -65,7 +65,7 @@
       "type": "string"
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
     },
     "message": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"

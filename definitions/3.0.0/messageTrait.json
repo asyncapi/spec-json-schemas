@@ -77,7 +77,7 @@
       }
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
+      "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
