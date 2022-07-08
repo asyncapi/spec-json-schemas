@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/amqp/operation.json",
+  "$id": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json",
   "title": "AMQP operation bindings object",
   "description": "This object contains information about the operation representation in AMQP.",
   "type": "object",

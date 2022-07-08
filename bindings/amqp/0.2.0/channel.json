@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/amqp/channel.json",
+  "$id": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json",
   "title": "AMQP channel bindings object",
   "description": "This object contains information about the channel representation in AMQP.",
   "type": "object",
@@ -80,7 +80,6 @@
       ],
       "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
     }
-
   },
   "oneOf": [
     {

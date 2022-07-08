@@ -9,7 +9,13 @@
   "properties": {
     "http": {},
     "ws": {},
-    "amqp": {},
+    "amqp": {
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
+        }
+      ]
+    },
     "amqp1": {},
     "mqtt": {},
     "mqtt5": {},
