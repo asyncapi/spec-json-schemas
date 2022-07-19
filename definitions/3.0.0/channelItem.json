@@ -1,5 +1,8 @@
 {
   "type": "object",
+  "required": [
+    "address"
+  ],
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -9,6 +12,11 @@
   "properties": {
     "$ref": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+    },
+    "address": {
+      "type": "string",
+      "format": "uri-template",
+      "minLength": 1
     },
     "parameters": {
       "type": "object",
