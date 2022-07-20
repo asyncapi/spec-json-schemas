@@ -88,6 +88,24 @@ The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
 2. Rename the folder to the new version (`x.x.x`).
 3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
+4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e. `'2.5.0': require('./schemas/2.5.0.json'),`.
+5. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. I.e.:
+    ```json
+    {
+       "allOf":[
+          {
+             "properties":{
+                "asyncapi":{
+                   "const":"2.5.0"
+                }
+             }
+          },
+          {
+             "$ref":"http://asyncapi.com/schema-store/2.5.0.json"
+          }
+       ]
+    }
+    ```
 
 ## Overview
 * This repository contains JSON Schema files for all the versions of AsyncAPI specification. You can link to https://json-schema.org/ for reference.
@@ -110,4 +128,3 @@ The manual process of creating a new version is to:
 * At the moment, Parser-js do not cover all validation cases yet,all test cases and parsers coverage can be found here -> https://asyncapi.github.io/tck/
 
 All names of objects/properties can be double-checked with https://www.asyncapi.com/docs/reference/specification/v2.4.0
-
