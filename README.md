@@ -1,9 +1,34 @@
+
+
+
 ![npm](https://img.shields.io/npm/v/@asyncapi/specs?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@asyncapi/specs?style=for-the-badge)
 
 > If you are currently using version 2, check out [migration guideline to version 3](./migrations/Migrate%20to%20version%203.md). You might be able to update it without any change.
 # AsyncAPI
 
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.
+
+## Overview
+*  This repository contains [JSON Schema](https://json-schema.org/ for reference) files for all the versions of AsyncAPI specification.
+* These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool for things like validation e.t.c
+* These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification are not described with JSON Schema.
+
+## Custom Validation Needs
+* The JSON Schema does not cover all validation cases, and if you decide to validate AsyncAPI tools with only JSON Schema provided in this repo, you risk having the AsyncAPI documents not working in tandem with all AsyncAPI tools, and this will affect validation.
+* It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi/parser-js) that not only uses AsyncAPI JSON Schema file for validation but also implements additional custom validations.
+ 
+ The following additional custom validations need to be provided:
+* Validate if variables provided in the url property have corresponding variable object defined and if the example is correct
+* Validate if operationIds are duplicated in the document
+* Validate if messageIds are duplicated in the document
+* Validate if server security is declared properly and the name has a corresponding server     securitySchemes definition in components with the same name
+* Validate if given server securitySchemes is a proper empty array when security type requires it
+* Validate if parameters specified in the channel name have corresponding parameters object defined and if name does not contain url parameters.
+* Validate if all servers listed for a channel in servers property are declared in the top-level servers object.
+* Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
+* At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
+* All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
+
 
 ## Installation
 
@@ -107,24 +132,5 @@ The manual process of creating a new version is to:
     }
     ```
 
-## Overview
-* This repository contains JSON Schema files for all the versions of AsyncAPI specification. You can link to https://json-schema.org/ for reference.
-* These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool for things like validation e.t.c
-* These JSON Schema files should'nt be used as the only tool for validation of AsyncAPI documents because some rules described in the AsyncAPI specification are not described here.
 
-## Custom Validation Needs
-* The JSON Schema does not cover all validation cases, and if a user decides to validate AsyncAPI tools with only JSON Schema provided in this repo, they risk having the AsyncAPI documents not working in tandem with all AsyncAPI tools and this will affect validation.
-* It's recommended to use the custom validation tool provided at https://github.com/asyncapi/parser-js as we look on implementing a comprehensive validation tool.
- 
-* The following additional custom validations need to be provided:
-    1. Validate if variables provided in the url property have corresponding variable object defined and if the example is correct
-    2. Validate if operationIds are duplicated in the document
-    3. Validate if messageIds are duplicated in the document
-    4. Validate if server security is declared properly and the name has a corresponding server     securitySchemes definition in components with the same name
-    5. Validate if given server securitySchemes is a proper empty array when security type requires it
-    6. Validate if parameters specified in the channel name have corresponding parameters object defined and if name does not contain url parameters.
-    7. Validate if all servers listed for a channel in servers property are declared in the top-level servers object.
-    8. Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
-* At the moment, Parser-js do not cover all validation cases yet,all test cases and parsers coverage can be found here -> https://asyncapi.github.io/tck/
 
-All names of objects/properties can be double-checked with https://www.asyncapi.com/docs/reference/specification/v2.4.0
