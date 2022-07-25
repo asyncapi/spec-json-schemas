@@ -6,8 +6,8 @@
   "type": "object",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
-      "$ref": "https://raw.githubusercontent.com/asyncapi/asyncapi-node/v2.7.7/schemas/2.0.0.json#/definitions/specificationExtension"
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
     }
   },
   "properties": {

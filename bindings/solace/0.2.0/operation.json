@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/solace/operation.json",
+  "$id": "http://asyncapi.com/bindings/solace/0.2.0/operation.json",
   "title": "Solace operation bindings object",
   "description": "This object contains information about the operation representation in Solace.",
   "type": "object",

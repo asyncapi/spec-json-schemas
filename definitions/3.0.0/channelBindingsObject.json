@@ -2,32 +2,61 @@
   "type": "object",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
     }
   },
   "properties": {
     "http": {},
-    "ws": {},
+    "ws": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/websockets/0.1.0/channel.json"
+        }
+      ]
+    },
     "amqp": {
       "oneOf": [
         {
+          "description": "Latest binding",
           "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
         }
       ]
     },
-    "amqp1": {},
+    "amqp1": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
+        }
+      ]
+    },
     "mqtt": {},
     "mqtt5": {},
     "kafka": {},
-    "anypointmq": {},
+    "anypointmq": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/channel.json"
+        }
+      ]
+    },
     "nats": {},
     "jms": {},
     "sns": {},
     "sqs": {},
     "stomp": {},
     "redis": {},
-    "ibmmq": {},
+    "ibmmq": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/channel.json"
+        }
+      ]
+    },
     "solace": {}
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
