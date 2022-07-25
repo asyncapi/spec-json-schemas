@@ -1,13 +1,7 @@
-
-
-
 ![npm](https://img.shields.io/npm/v/@asyncapi/specs?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@asyncapi/specs?style=for-the-badge)
-
 > If you are currently using version 2, check out [migration guideline to version 3](./migrations/Migrate%20to%20version%203.md). You might be able to update it without any change.
 # AsyncAPI
-
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.
-
 ## Overview
 * This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification.
 * These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool for things like validation e.t.c
@@ -31,7 +25,6 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 
 All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
 
-
 ## Installation
 
 ### NodeJS
@@ -43,7 +36,6 @@ npm install @asyncapi/specs
 ```bash
 go get github.com/asyncapi/spec-json-schemas/v2
 ```
-
 ## Usage
 
 ### NodeJS
@@ -74,7 +66,6 @@ const asyncapi = versions['1.1.0'];
 // Do something with the schema.
 ```
 ### Go
-
 Grab a specific AsyncAPI version:
 
 ```go
@@ -88,9 +79,7 @@ func Do() {
 
     // Do something with the schema
 }
-
 ```
-
 ## Repository structure
 This is the current project structure explained.
 - [./definitions](./definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](./schemas).
