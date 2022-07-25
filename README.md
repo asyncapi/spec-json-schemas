@@ -88,3 +88,21 @@ The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
 2. Rename the folder to the new version (`x.x.x`).
 3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
+4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e. `'2.5.0': require('./schemas/2.5.0.json'),`.
+5. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. I.e.:
+    ```json
+    {
+       "allOf":[
+          {
+             "properties":{
+                "asyncapi":{
+                   "const":"2.5.0"
+                }
+             }
+          },
+          {
+             "$ref":"http://asyncapi.com/schema-store/2.5.0.json"
+          }
+       ]
+    }
+    ```
