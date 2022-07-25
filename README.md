@@ -9,9 +9,10 @@
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.
 
 ## Overview
-*  This repository contains [JSON Schema](https://json-schema.org/ for reference) files for all the versions of AsyncAPI specification.
+* This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification.
 * These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool for things like validation e.t.c
 * These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification are not described with JSON Schema.
+* In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code.
 
 ## Custom Validation Needs
 * The JSON Schema does not cover all validation cases, and if you decide to validate AsyncAPI tools with only JSON Schema provided in this repo, you risk having the AsyncAPI documents not working in tandem with all AsyncAPI tools, and this will affect validation.
@@ -27,7 +28,8 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 * Validate if all servers listed for a channel in servers property are declared in the top-level servers object.
 * Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
 * At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
-* All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
+
+ All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
 
 
 ## Installation
