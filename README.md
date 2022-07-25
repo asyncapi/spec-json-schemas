@@ -29,7 +29,7 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 * Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
 * At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
 
- All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
+All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
 
 
 ## Installation
