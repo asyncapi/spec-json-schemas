@@ -47,7 +47,14 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+          }
+        ]
       },
       "uniqueItems": true
     },
