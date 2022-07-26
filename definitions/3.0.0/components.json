@@ -91,6 +91,18 @@
       "additionalProperties": {
         "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
       }
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+      }
+    },
+    "externalDocs": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      }
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
