@@ -59,7 +59,14 @@
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+        }
+      ]
     }
   }
 }
