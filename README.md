@@ -21,8 +21,8 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 * Validate if parameters specified in the channel name have corresponding parameters object defined and if name does not contain url parameters.
 * Validate if all servers listed for a channel in servers property are declared in the top-level servers object.
 * Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
-* At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
-
+ 
+At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
 All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
 
 ## Installation
