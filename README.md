@@ -13,7 +13,7 @@ If you decide to validate AsyncAPI documents only with the JSON Schema files pro
 It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi/parser-js) that uses the AsyncAPI JSON Schema files for validation but also implements additional custom validations.
  
  The following additional custom validations need to be provided:
-* Validate if variables provided in the url property have corresponding variable object defined and if the example is correct
+* Variables provided in the URL property have a corresponding variable object defined and its example is correct.
 * Validate if operationIds are duplicated in the document
 * Validate if messageIds are duplicated in the document
 * Validate if server security is declared properly and the name has a corresponding server     securitySchemes definition in components with the same name
