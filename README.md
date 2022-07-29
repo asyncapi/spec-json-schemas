@@ -4,7 +4,7 @@
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.
 ## Overview
 * This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification.
-* These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool for things like validation e.t.c
+* These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool (e.g., for validation).
 * These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification are not described with JSON Schema.
 * In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code.
 
