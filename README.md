@@ -21,7 +21,7 @@ It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi
 * Parameters specified in the channel name have corresponding parameters object defined.
 * Channel names do not contain URL parameters.
 * All servers listed for a channel in the `servers` property are declared in the top-level `servers` object.
-* Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
+* Tags specified in any object have no duplicates. Check must be done for: the top-level object, operations (publish and subscribe), operation traits, channels, messages, and message traits.
  
 At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
 All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
