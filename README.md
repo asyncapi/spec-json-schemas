@@ -9,7 +9,7 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 * In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code.
 
 ## Custom Validation Needs
-* The JSON Schema does not cover all validation cases, and if you decide to validate AsyncAPI tools with only JSON Schema provided in this repo, you risk having the AsyncAPI documents not working in tandem with all AsyncAPI tools, and this will affect validation.
+If you decide to validate AsyncAPI documents only with the JSON Schema files provided in this repo, your AsyncAPI documents will not be properly validated.
 * It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi/parser-js) that not only uses AsyncAPI JSON Schema file for validation but also implements additional custom validations.
  
  The following additional custom validations need to be provided:
