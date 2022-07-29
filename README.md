@@ -14,7 +14,7 @@ It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi
  
  The following additional custom validations need to be provided:
 * Variables provided in the URL property have a corresponding variable object defined and its example is correct.
-* Validate if operationIds are duplicated in the document
+* operationIds are not duplicated in the document.
 * Validate if messageIds are duplicated in the document
 * Server security is declared properly and the name has a corresponding `securitySchemes` definition in `components` with the same name.
 * Server `securitySchemes` is an empty array when the security type requires it.
