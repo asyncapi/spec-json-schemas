@@ -16,7 +16,7 @@ It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi
 * Variables provided in the URL property have a corresponding variable object defined and its example is correct.
 * Validate if operationIds are duplicated in the document
 * Validate if messageIds are duplicated in the document
-* Validate if server security is declared properly and the name has a corresponding server     securitySchemes definition in components with the same name
+* Server security is declared properly and the name has a corresponding `securitySchemes` definition in `components` with the same name.
 * Validate if given server securitySchemes is a proper empty array when security type requires it
 * Validate if parameters specified in the channel name have corresponding parameters object defined and if name does not contain url parameters.
 * Validate if all servers listed for a channel in servers property are declared in the top-level servers object.
