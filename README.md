@@ -18,7 +18,8 @@ It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi
 * Validate if messageIds are duplicated in the document
 * Server security is declared properly and the name has a corresponding `securitySchemes` definition in `components` with the same name.
 * Server `securitySchemes` is an empty array when the security type requires it.
-* Validate if parameters specified in the channel name have corresponding parameters object defined and if name does not contain url parameters.
+* Parameters specified in the channel name have corresponding parameters object defined.
+* Channel names do not contain URL parameters.
 * Validate if all servers listed for a channel in servers property are declared in the top-level servers object.
 * Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
  
