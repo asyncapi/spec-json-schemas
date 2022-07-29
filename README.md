@@ -20,7 +20,7 @@ It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi
 * Server `securitySchemes` is an empty array when the security type requires it.
 * Parameters specified in the channel name have corresponding parameters object defined.
 * Channel names do not contain URL parameters.
-* Validate if all servers listed for a channel in servers property are declared in the top-level servers object.
+* All servers listed for a channel in the `servers` property are declared in the top-level `servers` object.
 * Validate if tags specified in the objects have no duplicates. Check is done for: root, operations, operation traits, channels, messages and message traits.
  
 At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
