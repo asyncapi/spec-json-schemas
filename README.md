@@ -1,9 +1,30 @@
 ![npm](https://img.shields.io/npm/v/@asyncapi/specs?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@asyncapi/specs?style=for-the-badge)
-
 > If you are currently using version 2, check out [migration guideline to version 3](./migrations/Migrate%20to%20version%203.md). You might be able to update it without any change.
 # AsyncAPI
-
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.
+## Overview
+* This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification.
+* These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool (e.g., for validation).
+* These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification can't be described with JSON Schema.
+* In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code.
+
+## Custom Validation Needs
+If you decide to validate AsyncAPI documents only with the JSON Schema files provided in this repo, your AsyncAPI documents will not be properly validated.
+It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi/parser-js) that uses the AsyncAPI JSON Schema files for validation but also implements additional custom validations.
+ 
+ The following additional custom validations need to be provided:
+* Variables provided in the URL property have a corresponding variable object defined and its example is correct.
+* operationIds are not duplicated in the document.
+* messageIds are not duplicated in the document.
+* Server security is declared properly and the name has a corresponding `securitySchemes` definition in `components` with the same name.
+* Server `securitySchemes` is an empty array when the security type requires it.
+* Parameters specified in the channel name have corresponding parameters object defined.
+* Channel names do not contain URL parameters.
+* All servers listed for a channel in the `servers` property are declared in the top-level `servers` object.
+* Tags specified in any object have no duplicates. Check must be done for: the top-level object, operations (publish and subscribe), operation traits, channels, messages, and message traits.
+ 
+At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
+All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
 
 ## Installation
 
@@ -16,7 +37,6 @@ npm install @asyncapi/specs
 ```bash
 go get github.com/asyncapi/spec-json-schemas/v2
 ```
-
 ## Usage
 
 ### NodeJS
@@ -47,7 +67,6 @@ const asyncapi = versions['1.1.0'];
 // Do something with the schema.
 ```
 ### Go
-
 Grab a specific AsyncAPI version:
 
 ```go
@@ -61,9 +80,7 @@ func Do() {
 
     // Do something with the schema
 }
-
 ```
-
 ## Repository structure
 This is the current project structure explained.
 - [./definitions](./definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](./schemas).
@@ -88,3 +105,24 @@ The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
 2. Rename the folder to the new version (`x.x.x`).
 3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
+4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e. `'2.5.0': require('./schemas/2.5.0.json'),`.
+5. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. I.e.:
+    ```json
+    {
+       "allOf":[
+          {
+             "properties":{
+                "asyncapi":{
+                   "const":"2.5.0"
+                }
+             }
+          },
+          {
+             "$ref":"http://asyncapi.com/schema-store/2.5.0.json"
+          }
+       ]
+    }
+    ```
+
+
+
