@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/asyncapi/spec-json-schemas#readme",
   "devDependencies": {
-    "mocha": "^8.2.1",
+    "mocha": "^10.0.0",
     "nyc": "^15.1.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "7.2.3",
