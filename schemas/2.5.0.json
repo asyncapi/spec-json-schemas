@@ -222,6 +222,13 @@
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/2.5.0/bindingsObject.json"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/2.5.0/tag.json"
+                    },
+                    "uniqueItems": true
                 }
             }
         },
@@ -303,6 +310,53 @@
                 "redis": {},
                 "ibmmq": {},
                 "solace": {}
+            }
+        },
+        "http://asyncapi.com/definitions/2.5.0/tag.json": {
+            "$id": "http://asyncapi.com/definitions/2.5.0/tag.json",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/2.5.0/externalDocs.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/2.5.0/specificationExtension.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/2.5.0/externalDocs.json": {
+            "$id": "http://asyncapi.com/definitions/2.5.0/externalDocs.json",
+            "type": "object",
+            "additionalProperties": false,
+            "description": "information about external documentation",
+            "required": [
+                "url"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/2.5.0/specificationExtension.json"
+                }
             }
         },
         "http://asyncapi.com/definitions/2.5.0/channels.json": {
@@ -730,29 +784,6 @@
             },
             "default": true
         },
-        "http://asyncapi.com/definitions/2.5.0/externalDocs.json": {
-            "$id": "http://asyncapi.com/definitions/2.5.0/externalDocs.json",
-            "type": "object",
-            "additionalProperties": false,
-            "description": "information about external documentation",
-            "required": [
-                "url"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string",
-                    "format": "uri"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/specificationExtension.json"
-                }
-            }
-        },
         "http://asyncapi.com/definitions/2.5.0/operation.json": {
             "$id": "http://asyncapi.com/definitions/2.5.0/operation.json",
             "type": "object",
@@ -865,30 +896,6 @@
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/2.5.0/bindingsObject.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/2.5.0/tag.json": {
-            "$id": "http://asyncapi.com/definitions/2.5.0/tag.json",
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "name"
-            ],
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/externalDocs.json"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/specificationExtension.json"
                 }
             }
         },
