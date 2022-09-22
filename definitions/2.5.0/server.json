@@ -36,6 +36,13 @@
     },
     "bindings": {
       "$ref": "http://asyncapi.com/definitions/2.5.0/bindingsObject.json"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/2.5.0/tag.json"
+      },
+      "uniqueItems": true
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
