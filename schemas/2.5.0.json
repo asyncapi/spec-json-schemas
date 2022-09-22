@@ -229,7 +229,14 @@
             "$id": "http://asyncapi.com/definitions/2.5.0/serverVariables.json",
             "type": "object",
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/2.5.0/serverVariable.json"
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/2.5.0/serverVariable.json"
+                    }
+                ]
             }
         },
         "http://asyncapi.com/definitions/2.5.0/serverVariable.json": {
