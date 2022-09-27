@@ -309,7 +309,8 @@
                 "stomp": {},
                 "redis": {},
                 "ibmmq": {},
-                "solace": {}
+                "solace": {},
+                "googlepubsub": {}
             }
         },
         "http://asyncapi.com/definitions/2.5.0/tag.json": {
