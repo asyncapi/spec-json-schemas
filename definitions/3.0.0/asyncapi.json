@@ -5,8 +5,7 @@
   "type": "object",
   "required": [
     "asyncapi",
-    "info",
-    "channels"
+    "info"
   ],
   "additionalProperties": false,
   "patternProperties": {

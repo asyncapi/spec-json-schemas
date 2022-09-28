@@ -307,11 +307,11 @@
                 "minLength": 1
             },
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/channelItem.json"
+                "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/channelItem.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/channelItem.json",
+        "http://asyncapi.com/definitions/3.0.0/channel.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/channel.json",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
