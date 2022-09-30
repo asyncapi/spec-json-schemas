@@ -80,7 +80,7 @@ const asyncapi = versions['1.1.0'];
 ```
 
 > **Note**
-> The main export of the package provides only supported versions of AsyncAPI (newer or equal to `2.0.0`). To use older ones (e.g. `1.2.0`) please to import an absolute path like `@asyncapi/specs/schemas/1.2.0`;
+> The main export of the package provides only supported versions of AsyncAPI (newer or equal to `2.0.0`). To use older ones (e.g. `1.2.0`) please import an absolute path like `@asyncapi/specs/schemas/1.2.0`;
 
 ### Go
 
