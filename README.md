@@ -61,7 +61,7 @@ const asyncapi = require('@asyncapi/specs/schemas/2.0.0');
 // Do something with the schema.
 ```
 
-Get a list of all available versions:
+Get a list of supported versions:
 
 ```js
 const versions = require('@asyncapi/specs');
@@ -79,16 +79,8 @@ const asyncapi = versions['1.1.0'];
 // Do something with the schema.
 ```
 
-Get a list of supported versions (greater or equal than 2.0.0):
-
-```js
-const supportedVersions = require('@asyncapi/specs/supported');
-
-// Do something with the schemas.
-```
-
 > **Note**
-> The above import is the recommended option when using the library in front-end applications for the smallest possible final bundle.
+> The main export of the package provides only supported versions of AsyncAPI (newer or equal to `2.0.0`). To use older ones (e.g. `1.2.0`) please to import an absolute path like `@asyncapi/specs/schemas/1.2.0`;
 
 ### Go
 

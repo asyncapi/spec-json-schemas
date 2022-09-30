@@ -6,8 +6,7 @@
   "types": "index.d.ts",
   "scripts": {
     "test": "npm run build && nyc mocha",
-    "build": "npm run transpile && npm run bundle",
-    "transpile": "tsc",
+    "build": "npm run bundle",
     "release": "semantic-release",
     "generate:assets": "npm run build",
     "prepublishOnly": "npm run build",
@@ -46,8 +45,6 @@
     "@semantic-release/npm": "^7.0.3",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "conventional-changelog-conventionalcommits": "^4.2.3",
-    "mocha": "^8.2.1",
-    "nyc": "^15.1.0",
     "semantic-release": "19.0.3"
   },
   "release": {
