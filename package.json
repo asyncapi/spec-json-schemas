@@ -3,9 +3,11 @@
   "version": "3.2.1",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "npm run build && nyc mocha",
-    "build": "npm run bundle",
+    "build": "npm run transpile && npm run bundle",
+    "transpile": "tsc",
     "release": "semantic-release",
     "generate:assets": "npm run build",
     "prepublishOnly": "npm run build",

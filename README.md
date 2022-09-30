@@ -39,6 +39,7 @@ All test cases and parsers coverage can be found [here](https://asyncapi.github.
 
 ```bash
 npm install @asyncapi/specs
+// OR by Yarn
 yarn add @asyncapi/specs
 ```
 
@@ -135,8 +136,8 @@ The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
 2. Rename the folder to the new version (`x.x.x`).
 3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
-4. Edit the [index.js](./index.js) and [supported.js](./supported.js) files adding a new line with the new version. I.e. `'2.5.0': require('./schemas/2.5.0.json'),`.
-5. Edit the [index.d.ts](./index.d.ts) and [supported.d.ts](./index.d.ts) files adding a new line with the types for the new version. I.e. `'2.5.0': JSONSchema7,`.
+4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e. `'2.5.0': require('./schemas/2.5.0.json'),`.
+5. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e. `'2.5.0': JSONSchema7,`.
 6. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. I.e.:
 
     ```json
