@@ -9,7 +9,7 @@ describe('AsyncAPI', () => {
   });
 
   it('should check if json schema is exported and if it matches the original file', () => {
-    const skipFiles = ["README", "all.schema-store"];
+    const skipFiles = ["README", "all.schema-store", "1.0.0", "1.1.0", "1.2.0", "2.0.0-rc1", "2.0.0-rc2"];
     const files = fs.readdirSync('schemas');
     files.forEach(file => {
       const fileName = path.parse(file).name;
