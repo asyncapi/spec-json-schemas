@@ -38,6 +38,9 @@
         "channels": {
             "$ref": "http://asyncapi.com/definitions/3.0.0/channels.json"
         },
+        "operations": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/operations.json"
+        },
         "components": {
             "$ref": "http://asyncapi.com/definitions/3.0.0/components.json"
         },
@@ -1125,6 +1128,168 @@
                 "solace": {}
             }
         },
+        "http://asyncapi.com/definitions/3.0.0/operations.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operations.json",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
+                    }
+                ]
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operation.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operation.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "required": [
+                "action",
+                "channel"
+            ],
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Allowed values are send and receive. Use send when it's expected that the application will send a message to the given channel, and receive when the application should expect receiving messages from the given channel.",
+                    "enum": [
+                        "send",
+                        "receive"
+                    ]
+                },
+                "channel": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "traits": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+                            },
+                            {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "additionalItems": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "security": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationTrait.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationTrait.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "action": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/action"
+                },
+                "channel": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/channel"
+                },
+                "summary": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/summary"
+                },
+                "description": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/description"
+                },
+                "security": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/security"
+                },
+                "tags": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/tags"
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/externalDocs"
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/bindings"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "http": {},
+                "ws": {},
+                "amqp": {},
+                "amqp1": {},
+                "mqtt": {},
+                "mqtt5": {},
+                "kafka": {},
+                "anypointmq": {},
+                "nats": {},
+                "jms": {},
+                "sns": {},
+                "sqs": {},
+                "stomp": {},
+                "redis": {},
+                "ibmmq": {},
+                "solace": {}
+            }
+        },
         "http://asyncapi.com/definitions/3.0.0/components.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/components.json",
             "type": "object",
@@ -1783,118 +1948,6 @@
                 "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
             },
             "description": "JSON objects describing re-usable channel parameters."
-        },
-        "http://asyncapi.com/definitions/3.0.0/operation.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/operation.json",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "required": [
-                "action",
-                "channel"
-            ],
-            "properties": {
-                "action": {
-                    "type": "string",
-                    "description": "Allowed values are send and receive. Use send when it's expected that the application will send a message to the given channel, and receive when the application should expect receiving messages from the given channel.",
-                    "enum": [
-                        "send",
-                        "receive"
-                    ]
-                },
-                "channel": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                },
-                "traits": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "security": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-                    }
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                    },
-                    "uniqueItems": true
-                },
-                "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                },
-                "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "http": {},
-                "ws": {},
-                "amqp": {},
-                "amqp1": {},
-                "mqtt": {},
-                "mqtt5": {},
-                "kafka": {},
-                "anypointmq": {},
-                "nats": {},
-                "jms": {},
-                "sns": {},
-                "sqs": {},
-                "stomp": {},
-                "redis": {},
-                "ibmmq": {},
-                "solace": {}
-            }
         },
         "http://asyncapi.com/definitions/3.0.0/bindingsObject.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json",
