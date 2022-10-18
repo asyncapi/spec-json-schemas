@@ -1,7 +1,5 @@
 ![npm](https://img.shields.io/npm/v/@asyncapi/specs?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@asyncapi/specs?style=for-the-badge)
 
-> If you are currently using version 2, check out [migration guideline to version 3](./migrations/Migrate%20to%20version%203.md). You might be able to update it without any change.
-
 # AsyncAPI
 
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.
@@ -98,6 +96,12 @@ func Do() {
     // Do something with the schema
 }
 ```
+
+## Migration guidelines
+
+If you are currently using version 2, check out [migration guideline to version 3](./migrations/migrate-to-version-3.md).
+If you are currently using version 3, check out [migration guideline to version 4](./migrations/migrate-to-version-4.md).
+
 ## Repository structure
 
 This is the current project structure explained:
