@@ -3,6 +3,7 @@
   "version": "3.2.1",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "npm run build && nyc mocha",
     "build": "npm run bundle",
@@ -82,5 +83,8 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
+  },
+  "dependencies": {
+    "@types/json-schema": "^7.0.11"
   }
 }
