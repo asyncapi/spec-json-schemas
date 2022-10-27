@@ -5,8 +5,7 @@
     "type": "object",
     "required": [
         "asyncapi",
-        "info",
-        "channels"
+        "info"
     ],
     "additionalProperties": false,
     "patternProperties": {
@@ -38,6 +37,9 @@
         },
         "channels": {
             "$ref": "http://asyncapi.com/definitions/3.0.0/channels.json"
+        },
+        "operations": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/operations.json"
         },
         "components": {
             "$ref": "http://asyncapi.com/definitions/3.0.0/components.json"
@@ -221,7 +223,7 @@
                     }
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
                 }
             }
         },
@@ -275,10 +277,15 @@
                 "uniqueItems": true
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/bindingsObject.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json",
+        "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json",
             "type": "object",
-            "additionalProperties": true,
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
             "properties": {
                 "http": {},
                 "ws": {},
@@ -301,17 +308,19 @@
         "http://asyncapi.com/definitions/3.0.0/channels.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/channels.json",
             "type": "object",
-            "propertyNames": {
-                "type": "string",
-                "format": "uri-template",
-                "minLength": 1
-            },
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/channelItem.json"
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
+                    }
+                ]
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/channelItem.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/channelItem.json",
+        "http://asyncapi.com/definitions/3.0.0/channel.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/channel.json",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
@@ -320,8 +329,15 @@
                 }
             },
             "properties": {
-                "$ref": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                "address": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "An optional string representation of this channel's address. The address is typically the \"topic name\", \"routing key\", \"event type\", or \"path\". When `null` or absent, it MUST be interpreted as unknown. This is useful when the address is generated dynamically at runtime or can't be known upfront. It MAY contain Channel Address Expressions."
+                },
+                "messages": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelMessages.json"
                 },
                 "parameters": {
                     "type": "object",
@@ -341,46 +357,198 @@
                     },
                     "uniqueItems": true
                 },
-                "publish": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
-                },
-                "subscribe": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
-                },
-                "deprecated": {
-                    "type": "boolean",
-                    "default": false
-                },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
                 }
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/parameter.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/parameter.json",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
+        "http://asyncapi.com/definitions/3.0.0/channelMessages.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/channelMessages.json",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
             },
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
+            "description": "A map of the messages that will be sent to this channel by any application at any time. **Every message sent to this channel MUST be valid against one, and only one, of the message objects defined in this map.**"
+        },
+        "http://asyncapi.com/definitions/3.0.0/message.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/message.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                 },
-                "schema": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                },
-                "location": {
-                    "type": "string",
-                    "description": "A runtime expression that specifies the location of the parameter value",
-                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
-                },
-                "$ref": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                {
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "required": [
+                                "oneOf"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "oneOf": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "patternProperties": {
+                                "^x-[\\w\\d\\.\\x2d_]+$": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                                }
+                            },
+                            "properties": {
+                                "schemaFormat": {
+                                    "type": "string"
+                                },
+                                "contentType": {
+                                    "type": "string"
+                                },
+                                "headers": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                        },
+                                        {
+                                            "properties": {
+                                                "type": {
+                                                    "const": "object"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "messageId": {
+                                    "type": "string"
+                                },
+                                "payload": {},
+                                "correlationId": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+                                        }
+                                    ]
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                    },
+                                    "uniqueItems": true
+                                },
+                                "summary": {
+                                    "type": "string",
+                                    "description": "A brief summary of the message."
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the message."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "A human-friendly title for the message."
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "A longer description of the message. CommonMark is allowed."
+                                },
+                                "externalDocs": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                },
+                                "deprecated": {
+                                    "type": "boolean",
+                                    "default": false
+                                },
+                                "examples": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "anyOf": [
+                                            {
+                                                "required": [
+                                                    "payload"
+                                                ]
+                                            },
+                                            {
+                                                "required": [
+                                                    "headers"
+                                                ]
+                                            }
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "Machine readable name of the message example."
+                                            },
+                                            "summary": {
+                                                "type": "string",
+                                                "description": "A brief summary of the message example."
+                                            },
+                                            "headers": {
+                                                "type": "object"
+                                            },
+                                            "payload": {}
+                                        }
+                                    }
+                                },
+                                "bindings": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                                },
+                                "traits": {
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+                                            },
+                                            {
+                                                "type": "array",
+                                                "items": [
+                                                    {
+                                                        "oneOf": [
+                                                            {
+                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                                            },
+                                                            {
+                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "additionalItems": true
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
                 }
-            }
+            ]
         },
         "http://asyncapi.com/definitions/3.0.0/schema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/schema.json",
@@ -746,9 +914,12 @@
                 }
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/operation.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/operation.json",
+        "http://asyncapi.com/definitions/3.0.0/correlationId.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/correlationId.json",
             "type": "object",
+            "required": [
+                "location"
+            ],
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -756,108 +927,14 @@
                 }
             },
             "properties": {
-                "traits": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                },
-                "summary": {
-                    "type": "string"
-                },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed."
                 },
-                "security": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-                    }
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                    },
-                    "uniqueItems": true
-                },
-                "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                },
-                "operationId": {
-                    "type": "string"
-                },
-                "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
-                },
-                "message": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/operationTrait.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/operationTrait.json",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "summary": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                    },
-                    "uniqueItems": true
-                },
-                "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                },
-                "operationId": {
-                    "type": "string"
-                },
-                "security": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-                    }
-                },
-                "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
+                "location": {
+                    "type": "string",
+                    "description": "A runtime expression that specifies the location of the correlation ID",
+                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 }
             }
         },
@@ -885,182 +962,9 @@
                 }
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/message.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/message.json",
-            "oneOf": [
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                },
-                {
-                    "oneOf": [
-                        {
-                            "type": "object",
-                            "required": [
-                                "oneOf"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                                "oneOf": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "additionalProperties": false,
-                            "patternProperties": {
-                                "^x-[\\w\\d\\.\\x2d_]+$": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                                }
-                            },
-                            "properties": {
-                                "schemaFormat": {
-                                    "type": "string"
-                                },
-                                "contentType": {
-                                    "type": "string"
-                                },
-                                "headers": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                                        },
-                                        {
-                                            "properties": {
-                                                "type": {
-                                                    "const": "object"
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                "messageId": {
-                                    "type": "string"
-                                },
-                                "payload": {},
-                                "correlationId": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
-                                        }
-                                    ]
-                                },
-                                "tags": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                                    },
-                                    "uniqueItems": true
-                                },
-                                "summary": {
-                                    "type": "string",
-                                    "description": "A brief summary of the message."
-                                },
-                                "name": {
-                                    "type": "string",
-                                    "description": "Name of the message."
-                                },
-                                "title": {
-                                    "type": "string",
-                                    "description": "A human-friendly title for the message."
-                                },
-                                "description": {
-                                    "type": "string",
-                                    "description": "A longer description of the message. CommonMark is allowed."
-                                },
-                                "externalDocs": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                                },
-                                "deprecated": {
-                                    "type": "boolean",
-                                    "default": false
-                                },
-                                "examples": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "additionalProperties": false,
-                                        "anyOf": [
-                                            {
-                                                "required": [
-                                                    "payload"
-                                                ]
-                                            },
-                                            {
-                                                "required": [
-                                                    "headers"
-                                                ]
-                                            }
-                                        ],
-                                        "properties": {
-                                            "name": {
-                                                "type": "string",
-                                                "description": "Machine readable name of the message example."
-                                            },
-                                            "summary": {
-                                                "type": "string",
-                                                "description": "A brief summary of the message example."
-                                            },
-                                            "headers": {
-                                                "type": "object"
-                                            },
-                                            "payload": {}
-                                        }
-                                    }
-                                },
-                                "bindings": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
-                                },
-                                "traits": {
-                                    "type": "array",
-                                    "items": {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
-                                            },
-                                            {
-                                                "type": "array",
-                                                "items": [
-                                                    {
-                                                        "oneOf": [
-                                                            {
-                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                                            },
-                                                            {
-                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "additionalItems": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
-        "http://asyncapi.com/definitions/3.0.0/correlationId.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/correlationId.json",
+        "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json",
             "type": "object",
-            "required": [
-                "location"
-            ],
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -1068,15 +972,22 @@
                 }
             },
             "properties": {
-                "description": {
-                    "type": "string",
-                    "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed."
-                },
-                "location": {
-                    "type": "string",
-                    "description": "A runtime expression that specifies the location of the correlation ID",
-                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
-                }
+                "http": {},
+                "ws": {},
+                "amqp": {},
+                "amqp1": {},
+                "mqtt": {},
+                "mqtt5": {},
+                "kafka": {},
+                "anypointmq": {},
+                "nats": {},
+                "jms": {},
+                "sns": {},
+                "sqs": {},
+                "stomp": {},
+                "redis": {},
+                "ibmmq": {},
+                "solace": {}
             }
         },
         "http://asyncapi.com/definitions/3.0.0/messageTrait.json": {
@@ -1159,8 +1070,224 @@
                     }
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json"
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
                 }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/parameter.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/parameter.json",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
+                },
+                "schema": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                },
+                "location": {
+                    "type": "string",
+                    "description": "A runtime expression that specifies the location of the parameter value",
+                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+                },
+                "$ref": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "http": {},
+                "ws": {},
+                "amqp": {},
+                "amqp1": {},
+                "mqtt": {},
+                "mqtt5": {},
+                "kafka": {},
+                "anypointmq": {},
+                "nats": {},
+                "jms": {},
+                "sns": {},
+                "sqs": {},
+                "stomp": {},
+                "redis": {},
+                "ibmmq": {},
+                "solace": {}
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operations.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operations.json",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
+                    }
+                ]
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operation.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operation.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "required": [
+                "action",
+                "channel"
+            ],
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Allowed values are send and receive. Use send when it's expected that the application will send a message to the given channel, and receive when the application should expect receiving messages from the given channel.",
+                    "enum": [
+                        "send",
+                        "receive"
+                    ]
+                },
+                "channel": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "traits": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+                            },
+                            {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "additionalItems": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "security": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationTrait.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationTrait.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "action": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/action"
+                },
+                "channel": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/channel"
+                },
+                "summary": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/summary"
+                },
+                "description": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/description"
+                },
+                "security": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/security"
+                },
+                "tags": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/tags"
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/externalDocs"
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/bindings"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "http": {},
+                "ws": {},
+                "amqp": {},
+                "amqp1": {},
+                "mqtt": {},
+                "mqtt5": {},
+                "kafka": {},
+                "anypointmq": {},
+                "nats": {},
+                "jms": {},
+                "sns": {},
+                "sqs": {},
+                "stomp": {},
+                "redis": {},
+                "ibmmq": {},
+                "solace": {}
             }
         },
         "http://asyncapi.com/definitions/3.0.0/components.json": {
@@ -1821,6 +1948,29 @@
                 "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
             },
             "description": "JSON objects describing re-usable channel parameters."
+        },
+        "http://asyncapi.com/definitions/3.0.0/bindingsObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/bindingsObject.json",
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+                "http": {},
+                "ws": {},
+                "amqp": {},
+                "amqp1": {},
+                "mqtt": {},
+                "mqtt5": {},
+                "kafka": {},
+                "anypointmq": {},
+                "nats": {},
+                "jms": {},
+                "sns": {},
+                "sqs": {},
+                "stomp": {},
+                "redis": {},
+                "ibmmq": {},
+                "solace": {}
+            }
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "

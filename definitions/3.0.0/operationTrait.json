@@ -7,33 +7,29 @@
     }
   },
   "properties": {
+    "action": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/action"
+    },
+    "channel": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/channel"
+    },
     "summary": {
-      "type": "string"
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/summary"
     },
     "description": {
-      "type": "string"
-    },
-    "tags": {
-      "type": "array",
-      "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-      },
-      "uniqueItems": true
-    },
-    "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-    },
-    "operationId": {
-      "type": "string"
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/description"
     },
     "security": {
-      "type": "array",
-      "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-      }
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/security"
+    },
+    "tags": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/tags"
+    },
+    "externalDocs": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/externalDocs"
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/bindings"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
