@@ -3,6 +3,9 @@
   "additionalProperties": {
     "oneOf": [
       {
+        "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+      },
+      {
         "$ref": "http://asyncapi.com/definitions/2.5.0/parameter.json"
       }
     ]
