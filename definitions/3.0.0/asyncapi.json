@@ -5,8 +5,7 @@
   "type": "object",
   "required": [
     "asyncapi",
-    "info",
-    "channels"
+    "info"
   ],
   "additionalProperties": false,
   "patternProperties": {
@@ -38,6 +37,9 @@
     },
     "channels": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/channels.json"
+    },
+    "operations": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operations.json"
     },
     "components": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/components.json"
