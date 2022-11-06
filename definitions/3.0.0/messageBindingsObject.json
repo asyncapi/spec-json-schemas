@@ -30,8 +30,11 @@
     "kafka": {
       "oneOf": [
         {
-          "description": "Latest binding",
           "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/message.json"
+        },
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/message.json"
         }
       ]
     },
@@ -57,7 +60,15 @@
         }
       ]
     },
-    "solace": {}
+    "solace": {},
+    "googlepubsub": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json"
+        }
+      ]
+    }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"

@@ -34,7 +34,14 @@
     },
     "mqtt": {},
     "mqtt5": {},
-    "kafka": {},
+    "kafka": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/channel.json"
+        }
+      ]
+    },
     "anypointmq": {
       "oneOf": [
         {
@@ -57,7 +64,15 @@
         }
       ]
     },
-    "solace": {}
+    "solace": {},
+    "googlepubsub": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
+        }
+      ]
+    }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"

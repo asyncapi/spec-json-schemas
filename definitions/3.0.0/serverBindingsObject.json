@@ -20,7 +20,14 @@
       ]
     },
     "mqtt5": {},
-    "kafka": {},
+    "kafka": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/server.json"
+        }
+      ]
+    },
     "anypointmq": {},
     "nats": {},
     "jms": {},
@@ -39,11 +46,15 @@
     "solace": {
       "oneOf": [
         {
-          "description": "Latest binding",
           "$ref": "http://asyncapi.com/bindings/solace/0.2.0/server.json"
+        },
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
         }
       ]
-    }
+    },
+    "googlepubsub": {}
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
