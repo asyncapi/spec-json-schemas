@@ -1,8 +1,9 @@
 {
   "name": "@asyncapi/specs",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "npm run build && nyc mocha",
     "build": "npm run bundle",
@@ -37,14 +38,13 @@
   },
   "homepage": "https://github.com/asyncapi/spec-json-schemas#readme",
   "devDependencies": {
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "7.2.3",
     "@semantic-release/npm": "^7.0.3",
     "@semantic-release/release-notes-generator": "^9.0.1",
-    "ajv": "^8.11.0",
     "conventional-changelog-conventionalcommits": "^4.2.3",
-    "mocha": "^8.2.1",
-    "nyc": "^15.1.0",
     "semantic-release": "19.0.3"
   },
   "release": {
@@ -83,5 +83,8 @@
       "@semantic-release/npm",
       "@semantic-release/github"
     ]
+  },
+  "dependencies": {
+    "@types/json-schema": "^7.0.11"
   }
 }
