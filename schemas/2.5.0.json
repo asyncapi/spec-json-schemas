@@ -437,9 +437,6 @@
                     "type": "string",
                     "description": "A runtime expression that specifies the location of the parameter value",
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
-                },
-                "$ref": {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/ReferenceObject.json"
                 }
             }
         },
@@ -1832,7 +1829,14 @@
             "$id": "http://asyncapi.com/definitions/2.5.0/parameters.json",
             "type": "object",
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/2.5.0/parameter.json"
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/2.5.0/parameter.json"
+                    }
+                ]
             },
             "description": "JSON objects describing re-usable channel parameters."
         }
