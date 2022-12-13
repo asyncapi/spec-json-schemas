@@ -13,7 +13,7 @@
     "parameters": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.5.0/parameter.json"
+        "$ref": "http://asyncapi.com/definitions/2.5.0/parameters.json"
       }
     },
     "description": {
