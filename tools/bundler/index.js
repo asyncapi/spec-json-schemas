@@ -31,11 +31,11 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
       const fileToBundle = await Bundler.get(filePathToBundle);
       const bundledSchema = await Bundler.bundle(fileToBundle);
-      const schemaWithoutURLs = modifyRefsandDefinitions(bundledSchema);
-      schemaWithoutURLs.description = `!!Auto generated!! \n Do not manually edit. ${schemaWithoutURLs.description ?? ''}`;
+      modifyRefsandDefinitions(bundledSchema);
+      bundledSchema.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchema.description ?? ''}`;
       const outputFile = path.resolve(outputDirectory, `${version}.json`);
       console.log(`Writing the bundled file to: ${outputFile}`);
-      await fs.promises.writeFile(outputFile, JSON.stringify(schemaWithoutURLs, null, 4));
+      await fs.promises.writeFile(outputFile, JSON.stringify(bundledSchema, null, 4));
     }catch(e) {
       throw new Error(e);
     }
@@ -49,20 +49,17 @@ console.log(`Using the following output directory: ${outputDirectory}`);
  * than update refs to point to new definitions, always inline never remote
  */
 function modifyRefsandDefinitions(bundledSchema) {
-  const schemaWithoutUrls = bundledSchema;
 
   //first we need to improve names of the definitions from URL to their names
-  for (const def of Object.keys(schemaWithoutUrls.definitions)) {
+  for (const def of Object.keys(bundledSchema.definitions)) {
     const newDefName = getDefinitionName(def);
     
     //creating copy of definition under new name so later definition stored under URL name can be removed
-    schemaWithoutUrls.definitions[newDefName] = schemaWithoutUrls.definitions[def];
-    delete schemaWithoutUrls.definitions[def]
+    bundledSchema.definitions[newDefName] = bundledSchema.definitions[def];
+    delete bundledSchema.definitions[def]
   }
 
-  traverse(schemaWithoutUrls, replaceRef);
-
-  return schemaWithoutUrls;
+  traverse(bundledSchema, replaceRef);
 }
 
 /**
