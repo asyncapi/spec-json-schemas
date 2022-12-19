@@ -31,7 +31,7 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
       const fileToBundle = await Bundler.get(filePathToBundle);
       const bundledSchema = await Bundler.bundle(fileToBundle);
-      modifyRefsandDefinitions(bundledSchema);
+      modifyRefsAndDefinitions(bundledSchema);
       bundledSchema.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchema.description ?? ''}`;
       const outputFile = path.resolve(outputDirectory, `${version}.json`);
       console.log(`Writing the bundled file to: ${outputFile}`);
@@ -48,7 +48,7 @@ console.log(`Using the following output directory: ${outputDirectory}`);
  * we first update definitions from URL to normal names
  * than update refs to point to new definitions, always inline never remote
  */
-function modifyRefsandDefinitions(bundledSchema) {
+function modifyRefsAndDefinitions(bundledSchema) {
 
   //first we need to improve names of the definitions from URL to their names
   for (const def of Object.keys(bundledSchema.definitions)) {
@@ -67,9 +67,9 @@ function modifyRefsandDefinitions(bundledSchema) {
  * we need to get rid of URLs and use the last fragment as new definition name like `parameters`
  */
 function getDefinitionName(def) {
-  if (def.startsWith('http://json-schema.org')) return JSON_SCHEMA_PROP_NAME;
+  if (def.startsWith('http://json-schema.org/draft-07')) return JSON_SCHEMA_PROP_NAME;
 
-  if (path.extname(def) !== '.json') throw `Oryginal $id values should point to JSON files. There is probably an error in one of source definitions containing definition: ${def}`;
+  if (path.extname(def) !== '.json') throw `Original $id values should point to JSON files. There is probably an error in one of the source definitions containing definition: ${def}`;
   return path.basename(def, '.json')
 }
 
