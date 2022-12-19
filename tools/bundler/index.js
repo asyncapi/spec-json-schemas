@@ -67,7 +67,7 @@ function modifyRefsAndDefinitions(bundledSchema) {
  * we need to get rid of URLs and use the last fragment as new definition name like `parameters`
  */
 function getDefinitionName(def) {
-  if (def.startsWith('http://json-schema.org/draft-07')) return JSON_SCHEMA_PROP_NAME;
+  if (def.startsWith('http://json-schema.org')) return JSON_SCHEMA_PROP_NAME;
 
   if (path.extname(def) !== '.json') throw new Error(`Original $id values should point to JSON files. There is probably an error in one of the source definitions containing definition: ${def}`);
   return path.basename(def, '.json')
