@@ -72,6 +72,14 @@
           "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
         }
       ]
+    },
+    "pulsar": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/channel.json"
+        }
+      ]
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
