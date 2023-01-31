@@ -17,7 +17,9 @@
     "stomp": {},
     "redis": {},
     "ibmmq": {},
-    "solace": {}
+    "solace": {},
+    "googlepubsub": {},
+    "pulsar": {}
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
