@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/solace/operation.json",
+  "$id": "http://asyncapi.com/bindings/solace/0.3.0/operation.json",
   "title": "Solace operation bindings object",
   "description": "This object contains information about the operation representation in Solace.",
   "type": "object",
@@ -48,6 +48,14 @@
                       "exclusive",
                       "nonexclusive"
                     ]
+                  },
+                  "maxTtl": {
+                    "type": "string",
+                    "description": "The maximum TTL to apply to messages to be spooled."
+                  },
+                  "maxMsgSpoolUsage": {
+                    "type": "string",
+                    "description": "The maximum amount of message spool that the given queue may use"
                   }
                 }
               }
@@ -76,13 +84,13 @@
   "bindingVersion": {
     "type": "string",
     "enum": [
-      "0.2.0"
+      "0.3.0"
     ],
     "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
   },
   "examples": [
     {
-      "bindingVersion": "0.2.0",
+      "bindingVersion": "0.3.0",
       "destinations": [
         {
           "destinationType": "queue",

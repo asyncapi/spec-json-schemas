@@ -11,9 +11,23 @@
     "ws": {},
     "amqp": {},
     "amqp1": {},
-    "mqtt": {},
+    "mqtt": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/server.json"
+        }
+      ]
+    },
     "mqtt5": {},
-    "kafka": {},
+    "kafka": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/server.json"
+        }
+      ]
+    },
     "anypointmq": {},
     "nats": {},
     "jms": {},
@@ -21,8 +35,34 @@
     "sqs": {},
     "stomp": {},
     "redis": {},
-    "ibmmq": {},
-    "solace": {}
+    "ibmmq": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json"
+        }
+      ]
+    },
+    "solace": {
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/bindings/solace/0.2.0/server.json"
+        },
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
+        }
+      ]
+    },
+    "googlepubsub": {},
+    "pulsar": {
+      "oneOf": [
+        {
+          "description": "Latest binding",
+          "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
+        }
+      ]
+    }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
