@@ -7,13 +7,44 @@
     }
   },
   "properties": {
-    "http": {},
+    "http": {
+      "oneOf": [
+        {
+          "if": {
+            "description": "Latest binding or version 0.1.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/http/0.1.0/operation.json"
+          }
+        }
+      ]
+    },
     "ws": {},
     "amqp": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
+          "if": {
+            "description": "Latest binding or version 0.2.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
+          }
         }
       ]
     },
@@ -21,8 +52,20 @@
     "mqtt": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
+          "if": {
+            "description": "Latest binding or version 0.1.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
+          }
         }
       ]
     },
@@ -30,11 +73,44 @@
     "kafka": {
       "oneOf": [
         {
-          "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json"
+          "if": {
+            "description": "Latest binding or version 0.4.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.4.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json"
+          }
         },
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json"
+          "if": {
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json"
+          }
         }
       ]
     },
@@ -42,8 +118,20 @@
     "nats": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
+          "if": {
+            "description": "Latest binding or version 0.1.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
+          }
         }
       ]
     },
@@ -56,11 +144,32 @@
     "solace": {
       "oneOf": [
         {
-          "$ref": "http://asyncapi.com/bindings/solace/0.2.0/operation.json"
+          "if": {
+            "description": "Latest binding or version 0.3.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
+          }
         },
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
+          "if": {
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/solace/0.2.0/operation.json"
+          }
         }
       ]
     },

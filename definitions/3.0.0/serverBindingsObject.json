@@ -14,17 +14,72 @@
     "mqtt": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/server.json"
+          "if": {
+            "description": "Latest binding or version 0.1.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/server.json"
+          }
         }
       ]
     },
-    "mqtt5": {},
+    "mqtt5": {
+      "oneOf": [
+        {
+          "if": {
+            "description": "Latest binding or version 0.2.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/mqtt5/0.2.0/server.json"
+          }
+        }
+      ]
+    },
     "kafka": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/server.json"
+          "if": {
+            "description": "Latest binding or version 0.4.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.4.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/server.json"
+          }
         }
       ]
     },
@@ -46,11 +101,32 @@
     "solace": {
       "oneOf": [
         {
-          "$ref": "http://asyncapi.com/bindings/solace/0.2.0/server.json"
+          "if": {
+            "description": "Latest binding or version 0.3.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
+          }
         },
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
+          "if": {
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/solace/0.2.0/server.json"
+          }
         }
       ]
     },
@@ -58,8 +134,20 @@
     "pulsar": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
+          "if": {
+            "description": "Latest binding or version 0.1.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
+          }
         }
       ]
     }

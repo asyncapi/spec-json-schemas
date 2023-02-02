@@ -80,18 +80,6 @@
           "then": {
             "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/channel.json"
           }
-        },
-        {
-          "if": {
-            "properties": {
-              "bindingVersion": {
-                "const": "0.1.0"
-              }
-            }
-          }, 
-          "then": {
-            "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/channel.json"
-          }
         }
       ]
     },
