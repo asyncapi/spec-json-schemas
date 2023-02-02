@@ -10,19 +10,62 @@
     "http": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/http/0.1.0/message.json"
+          "if": {
+            "description": "Latest binding or version 0.1.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/http/0.1.0/message.json"
+          }
         }
       ]
     },
     "ws": {},
-    "amqp": {},
+    "amqp": {
+      "oneOf": [
+        {
+          "if": {
+            "description": "Latest binding or version 0.2.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/message.json"
+          }
+        }
+      ]
+    },
     "amqp1": {},
     "mqtt": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/message.json"
+          "if": {
+            "description": "Latest binding or version 0.1.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/message.json"
+          }
         }
       ]
     },
