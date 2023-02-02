@@ -37,16 +37,64 @@
     "kafka": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/channel.json"
+          "if": {
+            "description": "Latest binding or version 0.4.0",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.4.0"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/channel.json"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/channel.json"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/channel.json"
+          }
         }
       ]
     },
     "anypointmq": {
       "oneOf": [
         {
-          "description": "Latest binding",
-          "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/channel.json"
+          "if": {
+            "description": "Latest binding or version 0.0.1",
+            "properties": {
+              "bindingVersion": {
+                "const": "0.0.1"
+              }
+            },
+            "not": { 
+              "required": [ "bindingVersion" ] 
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/channel.json"
+          }
         }
       ]
     },
