@@ -8,17 +8,32 @@
   },
   "properties": {
     "http": {
-      "oneOf": [
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.1.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/http/0.1.0/operation.json"
+          }
+        },
         {
           "if": {
-            "description": "Latest binding or version 0.1.0",
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.1.0"
               }
-            },
-            "not": { 
-              "required": [ "bindingVersion" ] 
             }
           }, 
           "then": {
@@ -29,17 +44,32 @@
     },
     "ws": {},
     "amqp": {
-      "oneOf": [
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.2.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
+          }
+        },
         {
           "if": {
-            "description": "Latest binding or version 0.2.0",
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.2.0"
               }
-            },
-            "not": { 
-              "required": [ "bindingVersion" ] 
             }
           }, 
           "then": {
@@ -50,17 +80,32 @@
     },
     "amqp1": {},
     "mqtt": {
-      "oneOf": [
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.1.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
+          }
+        },
         {
           "if": {
-            "description": "Latest binding or version 0.1.0",
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.1.0"
               }
-            },
-            "not": { 
-              "required": [ "bindingVersion" ] 
             }
           }, 
           "then": {
@@ -71,17 +116,32 @@
     },
     "mqtt5": {},
     "kafka": {
-      "oneOf": [
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.4.0", "0.3.0", "0.1.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json"
+          }
+        },
         {
           "if": {
-            "description": "Latest binding or version 0.4.0",
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.4.0"
               }
-            },
-            "not": { 
-              "required": [ "bindingVersion" ] 
             }
           }, 
           "then": {
@@ -90,6 +150,7 @@
         },
         {
           "if": {
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.3.0"
@@ -102,6 +163,7 @@
         },
         {
           "if": {
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.1.0"
@@ -116,17 +178,32 @@
     },
     "anypointmq": {},
     "nats": {
-      "oneOf": [
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.1.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
+          }
+        },
         {
           "if": {
-            "description": "Latest binding or version 0.1.0",
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.1.0"
               }
-            },
-            "not": { 
-              "required": [ "bindingVersion" ] 
             }
           }, 
           "then": {
@@ -142,17 +219,32 @@
     "redis": {},
     "ibmmq": {},
     "solace": {
-      "oneOf": [
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.3.0", "0.2.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
+          }
+        },
         {
           "if": {
-            "description": "Latest binding or version 0.3.0",
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.3.0"
               }
-            },
-            "not": { 
-              "required": [ "bindingVersion" ] 
             }
           }, 
           "then": {
@@ -161,6 +253,7 @@
         },
         {
           "if": {
+            "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
                 "const": "0.2.0"
