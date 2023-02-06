@@ -43,6 +43,16 @@
         },
         "components": {
             "$ref": "http://asyncapi.com/definitions/3.0.0/components.json"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+            },
+            "uniqueItems": true
+        },
+        "externalDocs": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
         }
     },
     "definitions": {
@@ -89,6 +99,16 @@
                 },
                 "license": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/license.json"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
                 }
             }
         },
@@ -134,6 +154,53 @@
                 "url": {
                     "type": "string",
                     "description": "The URL pointing to the license.",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/tag.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/tag.json",
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/externalDocs.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/externalDocs.json",
+            "type": "object",
+            "additionalProperties": false,
+            "description": "information about external documentation",
+            "required": [
+                "url"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "url": {
+                    "type": "string",
                     "format": "uri"
                 }
             },
@@ -1181,29 +1248,6 @@
             },
             "default": true
         },
-        "http://asyncapi.com/definitions/3.0.0/externalDocs.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/externalDocs.json",
-            "type": "object",
-            "additionalProperties": false,
-            "description": "information about external documentation",
-            "required": [
-                "url"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string",
-                    "format": "uri"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            }
-        },
         "http://asyncapi.com/definitions/3.0.0/correlationId.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/correlationId.json",
             "type": "object",
@@ -1225,30 +1269,6 @@
                     "type": "string",
                     "description": "A runtime expression that specifies the location of the correlation ID",
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/tag.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/tag.json",
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "name"
-            ],
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
                 }
             }
         },
