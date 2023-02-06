@@ -15,10 +15,7 @@
       "$ref": "http://asyncapi.com/definitions/3.0.0/channelMessages.json"
     },
     "parameters": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-      }
+      "$ref": "http://asyncapi.com/definitions/3.0.0/parameters.json"
     },
     "description": {
       "type": "string",
