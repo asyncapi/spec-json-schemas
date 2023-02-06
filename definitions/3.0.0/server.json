@@ -29,10 +29,7 @@
       "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariables.json"
     },
     "security": {
-      "type": "array",
-      "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-      }
+      "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
     },
     "bindings": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
