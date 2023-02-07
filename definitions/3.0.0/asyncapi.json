@@ -43,16 +43,6 @@
     },
     "components": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/components.json"
-    },
-    "tags": {
-      "type": "array",
-      "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-      },
-      "uniqueItems": true
-    },
-    "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
     }
   }
 }
