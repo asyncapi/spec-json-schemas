@@ -15,8 +15,17 @@
     "url": {
       "type": "string"
     },
+    "title": {
+      "type": "string",
+      "description": "A human-friendly title for the server."
+    },
+    "summary": {
+      "type": "string",
+      "description": "A brief summary of the server."
+    },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A longer description of the server. CommonMark is allowed."
     },
     "protocol": {
       "type": "string",
