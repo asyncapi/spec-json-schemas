@@ -51,27 +51,44 @@
         ]
       }
     },
+    "title": {
+      "type": "string",
+      "description": "A human-friendly title for the operation."
+    },
     "summary": {
-      "type": "string"
+      "type": "string",
+      "description": "A brief summary of the operation."
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A longer description of the operation. CommonMark is allowed."
     },
     "security": {
-      "type": "array",
-      "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-      }
+      "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
     },
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+          }
+        ]
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+        }
+      ]
     },
     "bindings": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
