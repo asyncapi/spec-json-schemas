@@ -725,9 +725,9 @@
                 },
                 "servers": {
                     "type": "array",
-                    "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+                    "description": "The references of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
                     "items": {
-                        "type": "string"
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                     },
                     "uniqueItems": true
                 },
