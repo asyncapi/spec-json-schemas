@@ -17,6 +17,13 @@
     "openIdConnectUrl": {
       "type": "string",
       "format": "uri"
+    },
+    "scopes": {
+      "type": "array",
+      "description": "List of the needed scope names.",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {
