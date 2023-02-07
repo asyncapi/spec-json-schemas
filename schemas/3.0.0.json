@@ -43,16 +43,6 @@
         },
         "components": {
             "$ref": "http://asyncapi.com/definitions/3.0.0/components.json"
-        },
-        "tags": {
-            "type": "array",
-            "items": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-            },
-            "uniqueItems": true
-        },
-        "externalDocs": {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
         }
     },
     "definitions": {
@@ -103,12 +93,26 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 }
             }
         },
@@ -163,6 +167,23 @@
                 }
             }
         },
+        "http://asyncapi.com/definitions/3.0.0/Reference.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/Reference.json",
+            "type": "object",
+            "required": [
+                "$ref"
+            ],
+            "properties": {
+                "$ref": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json",
+            "type": "string",
+            "format": "uri-reference"
+        },
         "http://asyncapi.com/definitions/3.0.0/tag.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/tag.json",
             "type": "object",
@@ -178,7 +199,14 @@
                     "type": "string"
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 }
             },
             "patternProperties": {
@@ -225,23 +253,6 @@
                 ]
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/Reference.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/Reference.json",
-            "type": "object",
-            "required": [
-                "$ref"
-            ],
-            "properties": {
-                "$ref": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json",
-            "type": "string",
-            "format": "uri-reference"
-        },
         "http://asyncapi.com/definitions/3.0.0/server.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/server.json",
             "type": "object",
@@ -284,6 +295,30 @@
                 },
                 "security": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
@@ -1288,18 +1323,32 @@
                     },
                     "uniqueItems": true
                 },
-                "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
-                },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
                 }
             }
         },
@@ -1380,7 +1429,14 @@
                                 "tags": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                            }
+                                        ]
                                     },
                                     "uniqueItems": true
                                 },
@@ -1401,7 +1457,14 @@
                                     "description": "A longer description of the message. CommonMark is allowed."
                                 },
                                 "externalDocs": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                        }
+                                    ]
                                 },
                                 "deprecated": {
                                     "type": "boolean",
@@ -1568,7 +1631,14 @@
                             "type": "string"
                         },
                         "externalDocs": {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                }
+                            ]
                         },
                         "deprecated": {
                             "type": "boolean",
@@ -2320,7 +2390,14 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
@@ -2341,7 +2418,14 @@
                     "description": "A longer description of the message. CommonMark is allowed."
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 },
                 "deprecated": {
                     "type": "boolean",
@@ -3160,12 +3244,26 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
@@ -3843,6 +3941,32 @@
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                    }
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
+                    }
+                },
+                "externalDocs": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
+                        ]
                     }
                 }
             }
