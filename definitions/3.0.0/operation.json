@@ -51,11 +51,17 @@
         ]
       }
     },
+    "title": {
+      "type": "string",
+      "description": "A human-friendly title for the operation."
+    },
     "summary": {
-      "type": "string"
+      "type": "string",
+      "description": "A brief summary of the operation."
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A longer description of the operation. CommonMark is allowed."
     },
     "security": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"

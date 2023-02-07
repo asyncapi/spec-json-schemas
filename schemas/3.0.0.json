@@ -260,8 +260,17 @@
                 "url": {
                     "type": "string"
                 },
+                "title": {
+                    "type": "string",
+                    "description": "A human-friendly title for the server."
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "A brief summary of the server."
+                },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A longer description of the server. CommonMark is allowed."
                 },
                 "protocol": {
                     "type": "string",
@@ -702,15 +711,23 @@
                         "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
                     }
                 },
+                "title": {
+                    "type": "string",
+                    "description": "A human-friendly title for the channel."
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "A brief summary of the channel."
+                },
                 "description": {
                     "type": "string",
-                    "description": "A description of the channel."
+                    "description": "A longer description of the channel. CommonMark is allowed."
                 },
                 "servers": {
                     "type": "array",
-                    "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+                    "description": "The references of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
                     "items": {
-                        "type": "string"
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                     },
                     "uniqueItems": true
                 },
@@ -2553,11 +2570,17 @@
                         ]
                     }
                 },
+                "title": {
+                    "type": "string",
+                    "description": "A human-friendly title for the operation."
+                },
                 "summary": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A brief summary of the operation."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A longer description of the operation. CommonMark is allowed."
                 },
                 "security": {
                     "type": "array",
@@ -2595,6 +2618,9 @@
                 },
                 "channel": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/channel"
+                },
+                "title": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/title"
                 },
                 "summary": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/summary"
