@@ -3280,12 +3280,6 @@
                 }
             },
             "properties": {
-                "action": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/action"
-                },
-                "channel": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/channel"
-                },
                 "title": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/title"
                 },

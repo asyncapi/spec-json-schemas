@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/specs",
-  "version": "5.0.0-next-major-spec.8",
+  "version": "5.0.0-next-major-spec.9",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
   "types": "index.d.ts",
