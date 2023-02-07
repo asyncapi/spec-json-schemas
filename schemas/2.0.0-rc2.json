@@ -294,10 +294,7 @@
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/ReferenceObject.json"
                 },
                 "parameters": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/parameter.json"
-                    }
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/parameters.json"
                 },
                 "description": {
                     "type": "string",
@@ -322,6 +319,33 @@
             "$id": "http://asyncapi.com/definitions/2.0.0-rc2/ReferenceObject.json",
             "type": "string",
             "format": "uri-reference"
+        },
+        "http://asyncapi.com/definitions/2.0.0-rc2/parameters.json": {
+            "$id": "http://asyncapi.com/definitions/2.0.0-rc2/parameters.json",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/parameter.json"
+                    }
+                ]
+            },
+            "description": "JSON objects describing re-usable channel parameters."
+        },
+        "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json": {
+            "$id": "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json",
+            "type": "object",
+            "required": [
+                "$ref"
+            ],
+            "properties": {
+                "$ref": {
+                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/ReferenceObject.json"
+                }
+            }
         },
         "http://asyncapi.com/definitions/2.0.0-rc2/parameter.json": {
             "$id": "http://asyncapi.com/definitions/2.0.0-rc2/parameter.json",
@@ -772,18 +796,6 @@
                 },
                 "message": {
                     "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/message.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json": {
-            "$id": "http://asyncapi.com/definitions/2.0.0-rc2/Reference.json",
-            "type": "object",
-            "required": [
-                "$ref"
-            ],
-            "properties": {
-                "$ref": {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/ReferenceObject.json"
                 }
             }
         },
@@ -1622,14 +1634,6 @@
                 }
             },
             "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/2.0.0-rc2/parameters.json": {
-            "$id": "http://asyncapi.com/definitions/2.0.0-rc2/parameters.json",
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/parameter.json"
-            },
-            "description": "JSON objects describing re-usable channel parameters."
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "
