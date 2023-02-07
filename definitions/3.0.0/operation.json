@@ -64,10 +64,7 @@
       "description": "A longer description of the operation. CommonMark is allowed."
     },
     "security": {
-      "type": "array",
-      "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-      }
+      "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
     },
     "tags": {
       "type": "array",
