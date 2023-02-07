@@ -294,7 +294,14 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/serverVariables.json",
             "type": "object",
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                    }
+                ]
             }
         },
         "http://asyncapi.com/definitions/3.0.0/serverVariable.json": {
@@ -1259,10 +1266,7 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/channelMessages.json"
                 },
                 "parameters": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-                    }
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/parameters.json"
                 },
                 "title": {
                     "type": "string",
@@ -2353,6 +2357,21 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
                 }
             }
+        },
+        "http://asyncapi.com/definitions/3.0.0/parameters.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/parameters.json",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
+                    }
+                ]
+            },
+            "description": "JSON objects describing re-usable channel parameters."
         },
         "http://asyncapi.com/definitions/3.0.0/parameter.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/parameter.json",
@@ -3843,14 +3862,6 @@
                 "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
             },
             "description": "JSON objects describing the messages being consumed and produced by the API."
-        },
-        "http://asyncapi.com/definitions/3.0.0/parameters.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/parameters.json",
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-            },
-            "description": "JSON objects describing re-usable channel parameters."
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "
