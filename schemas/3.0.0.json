@@ -292,135 +292,19 @@
                 "amqp": {},
                 "amqp1": {},
                 "mqtt": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/server.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/server.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/server.json"
                         }
                     ]
                 },
-                "mqtt5": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.2.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
-                        {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt5/0.2.0/server.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.2.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt5/0.2.0/server.json"
-                            }
-                        }
-                    ]
-                },
+                "mqtt5": {},
                 "kafka": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.4.0",
-                                "0.3.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/server.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.4.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/server.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.3.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/server.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/server.json"
                         }
                     ]
                 },
@@ -432,136 +316,30 @@
                 "stomp": {},
                 "redis": {},
                 "ibmmq": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json"
                         }
                     ]
                 },
                 "solace": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.3.0",
-                                "0.2.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
-                            }
+                            "$ref": "http://asyncapi.com/bindings/solace/0.2.0/server.json"
                         },
                         {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.3.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.2.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.2.0/server.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
                         }
                     ]
                 },
                 "googlepubsub": {},
                 "pulsar": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
                         }
                     ]
                 }
@@ -641,10 +419,10 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings/mqtt5/0.2.0/server.json": {
-            "$id": "http://asyncapi.com/bindings/mqtt5/0.2.0/server.json",
+        "http://asyncapi.com/bindings/kafka/0.3.0/server.json": {
+            "$id": "http://asyncapi.com/bindings/kafka/0.3.0/server.json",
             "title": "Server Schema",
-            "description": "This object contains information about the server representation in MQTT5.",
+            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
@@ -653,40 +431,422 @@
                 }
             },
             "properties": {
-                "sessionExpiryInterval": {
-                    "oneOf": [
-                        {
-                            "type": "integer",
-                            "minimum": 0
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        }
+                "schemaRegistryUrl": {
+                    "type": "string",
+                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)."
+                },
+                "schemaRegistryVendor": {
+                    "type": "string",
+                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
                     ],
-                    "description": "Session Expiry Interval in seconds or a Schema Object containing the definition of the interval."
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "schemaRegistryUrl": "https://my-schema-registry.com",
+                    "schemaRegistryVendor": "confluent",
+                    "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json": {
+            "$id": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json",
+            "title": "IBM MQ server bindings object",
+            "description": "This object contains server connection information about the IBM MQ server, referred to as an IBM MQ queue manager. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "groupId": {
+                    "type": "string",
+                    "description": "Defines a logical group of IBM MQ server objects. This is necessary to specify multi-endpoint configurations used in high availability deployments. If omitted, the server object is not part of a group."
+                },
+                "ccdtQueueManagerName": {
+                    "type": "string",
+                    "default": "*",
+                    "description": "The name of the IBM MQ queue manager to bind to in the CCDT file."
+                },
+                "cipherSpec": {
+                    "type": "string",
+                    "description": "The recommended cipher specification used to establish a TLS connection between the client and the IBM MQ queue manager. More information on SSL/TLS cipher specifications supported by IBM MQ can be found on this page in the IBM MQ Knowledge Center."
+                },
+                "multiEndpointServer": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "If 'multiEndpointServer' is 'true' then multiple connections can be workload balanced and applications should not make assumptions as to where messages are processed. Where message ordering, or affinity to specific message resources is necessary, a single endpoint ('multiEndpointServer' = 'false') may be required."
+                },
+                "heartBeatInterval": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 999999,
+                    "default": 300,
+                    "description": "The recommended value (in seconds) for the heartbeat sent to the queue manager during periods of inactivity. A value of zero means that no heart beats are sent. A value of 1 means that the client will use the value defined by the queue manager. More information on heart beat interval can be found on this page in the IBM MQ Knowledge Center."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.1.0"
+                    ],
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "groupId": "PRODCLSTR1",
+                    "cipherSpec": "ANY_TLS12_OR_HIGHER",
+                    "bindingVersion": "0.1.0"
+                },
+                {
+                    "groupId": "PRODCLSTR1",
+                    "bindingVersion": "0.1.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/solace/0.2.0/server.json": {
+            "$id": "http://asyncapi.com/bindings/solace/0.2.0/server.json",
+            "title": "Solace server bindings object",
+            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "msvVpn": {
+                    "type": "string",
+                    "description": "The name of the Virtual Private Network to connect to on the Solace broker."
                 },
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
                         "0.2.0"
                     ],
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "msgVpn": "ProdVPN",
+                    "bindingVersion": "0.2.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/solace/0.3.0/server.json": {
+            "$id": "http://asyncapi.com/bindings/solace/0.3.0/server.json",
+            "title": "Solace server bindings object",
+            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "msgVpn": {
+                    "type": "string",
+                    "description": "The name of the Virtual Private Network to connect to on the Solace broker."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "msgVpn": "ProdVPN",
+                    "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/pulsar/0.1.0/server.json": {
+            "$id": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json",
+            "title": "Server Schema",
+            "description": "This object contains server information of Pulsar broker, which covers cluster and tenant admin configuration. This object contains additional information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "tenant": {
+                    "type": "string",
+                    "description": "The pulsar tenant. If omitted, 'public' MUST be assumed."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.1.0"
+                    ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
             },
             "examples": [
                 {
-                    "sessionExpiryInterval": 60,
-                    "bindingVersion": "0.2.0"
+                    "tenant": "contoso",
+                    "bindingVersion": "0.1.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/channels.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/channels.json",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
+                    }
+                ]
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/channel.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/channel.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "address": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "An optional string representation of this channel's address. The address is typically the \"topic name\", \"routing key\", \"event type\", or \"path\". When `null` or absent, it MUST be interpreted as unknown. This is useful when the address is generated dynamically at runtime or can't be known upfront. It MAY contain Channel Address Expressions."
+                },
+                "messages": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelMessages.json"
+                },
+                "parameters": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the channel."
+                },
+                "servers": {
+                    "type": "array",
+                    "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "uniqueItems": true
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/channelMessages.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/channelMessages.json",
+            "type": "object",
+            "additionalProperties": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
+            },
+            "description": "A map of the messages that will be sent to this channel by any application at any time. **Every message sent to this channel MUST be valid against one, and only one, of the message objects defined in this map.**"
+        },
+        "http://asyncapi.com/definitions/3.0.0/message.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/message.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                 },
                 {
-                    "sessionExpiryInterval": {
-                        "type": "integer",
-                        "minimum": 100
-                    },
-                    "bindingVersion": "0.2.0"
+                    "oneOf": [
+                        {
+                            "type": "object",
+                            "required": [
+                                "oneOf"
+                            ],
+                            "additionalProperties": false,
+                            "properties": {
+                                "oneOf": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "patternProperties": {
+                                "^x-[\\w\\d\\.\\x2d_]+$": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                                }
+                            },
+                            "properties": {
+                                "schemaFormat": {
+                                    "type": "string"
+                                },
+                                "contentType": {
+                                    "type": "string"
+                                },
+                                "headers": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                        },
+                                        {
+                                            "properties": {
+                                                "type": {
+                                                    "const": "object"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "messageId": {
+                                    "type": "string"
+                                },
+                                "payload": {},
+                                "correlationId": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+                                        }
+                                    ]
+                                },
+                                "tags": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                    },
+                                    "uniqueItems": true
+                                },
+                                "summary": {
+                                    "type": "string",
+                                    "description": "A brief summary of the message."
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "description": "Name of the message."
+                                },
+                                "title": {
+                                    "type": "string",
+                                    "description": "A human-friendly title for the message."
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "A longer description of the message. CommonMark is allowed."
+                                },
+                                "externalDocs": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                },
+                                "deprecated": {
+                                    "type": "boolean",
+                                    "default": false
+                                },
+                                "examples": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "additionalProperties": false,
+                                        "anyOf": [
+                                            {
+                                                "required": [
+                                                    "payload"
+                                                ]
+                                            },
+                                            {
+                                                "required": [
+                                                    "headers"
+                                                ]
+                                            }
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "Machine readable name of the message example."
+                                            },
+                                            "summary": {
+                                                "type": "string",
+                                                "description": "A brief summary of the message example."
+                                            },
+                                            "headers": {
+                                                "type": "object"
+                                            },
+                                            "payload": {}
+                                        }
+                                    }
+                                },
+                                "bindings": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                                },
+                                "traits": {
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+                                            },
+                                            {
+                                                "type": "array",
+                                                "items": [
+                                                    {
+                                                        "oneOf": [
+                                                            {
+                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                                            },
+                                                            {
+                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "additionalItems": true
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
                 }
             ]
         },
@@ -1054,473 +1214,6 @@
                 }
             }
         },
-        "http://asyncapi.com/bindings/kafka/0.4.0/server.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.4.0/server.json",
-            "title": "Server Schema",
-            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "schemaRegistryUrl": {
-                    "type": "string",
-                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)."
-                },
-                "schemaRegistryVendor": {
-                    "type": "string",
-                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.4.0"
-                    ],
-                    "description": "The version of this binding."
-                }
-            },
-            "examples": [
-                {
-                    "schemaRegistryUrl": "https://my-schema-registry.com",
-                    "schemaRegistryVendor": "confluent",
-                    "bindingVersion": "0.4.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/kafka/0.3.0/server.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.3.0/server.json",
-            "title": "Server Schema",
-            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "schemaRegistryUrl": {
-                    "type": "string",
-                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)."
-                },
-                "schemaRegistryVendor": {
-                    "type": "string",
-                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.3.0"
-                    ],
-                    "description": "The version of this binding."
-                }
-            },
-            "examples": [
-                {
-                    "schemaRegistryUrl": "https://my-schema-registry.com",
-                    "schemaRegistryVendor": "confluent",
-                    "bindingVersion": "0.3.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json": {
-            "$id": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json",
-            "title": "IBM MQ server bindings object",
-            "description": "This object contains server connection information about the IBM MQ server, referred to as an IBM MQ queue manager. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "groupId": {
-                    "type": "string",
-                    "description": "Defines a logical group of IBM MQ server objects. This is necessary to specify multi-endpoint configurations used in high availability deployments. If omitted, the server object is not part of a group."
-                },
-                "ccdtQueueManagerName": {
-                    "type": "string",
-                    "default": "*",
-                    "description": "The name of the IBM MQ queue manager to bind to in the CCDT file."
-                },
-                "cipherSpec": {
-                    "type": "string",
-                    "description": "The recommended cipher specification used to establish a TLS connection between the client and the IBM MQ queue manager. More information on SSL/TLS cipher specifications supported by IBM MQ can be found on this page in the IBM MQ Knowledge Center."
-                },
-                "multiEndpointServer": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "If 'multiEndpointServer' is 'true' then multiple connections can be workload balanced and applications should not make assumptions as to where messages are processed. Where message ordering, or affinity to specific message resources is necessary, a single endpoint ('multiEndpointServer' = 'false') may be required."
-                },
-                "heartBeatInterval": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "maximum": 999999,
-                    "default": 300,
-                    "description": "The recommended value (in seconds) for the heartbeat sent to the queue manager during periods of inactivity. A value of zero means that no heart beats are sent. A value of 1 means that the client will use the value defined by the queue manager. More information on heart beat interval can be found on this page in the IBM MQ Knowledge Center."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding."
-                }
-            },
-            "examples": [
-                {
-                    "groupId": "PRODCLSTR1",
-                    "cipherSpec": "ANY_TLS12_OR_HIGHER",
-                    "bindingVersion": "0.1.0"
-                },
-                {
-                    "groupId": "PRODCLSTR1",
-                    "bindingVersion": "0.1.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/solace/0.3.0/server.json": {
-            "$id": "http://asyncapi.com/bindings/solace/0.3.0/server.json",
-            "title": "Solace server bindings object",
-            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "msgVpn": {
-                    "type": "string",
-                    "description": "The name of the Virtual Private Network to connect to on the Solace broker."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.3.0"
-                    ],
-                    "description": "The version of this binding."
-                }
-            },
-            "examples": [
-                {
-                    "msgVpn": "ProdVPN",
-                    "bindingVersion": "0.3.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/solace/0.2.0/server.json": {
-            "$id": "http://asyncapi.com/bindings/solace/0.2.0/server.json",
-            "title": "Solace server bindings object",
-            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "msvVpn": {
-                    "type": "string",
-                    "description": "The name of the Virtual Private Network to connect to on the Solace broker."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.2.0"
-                    ],
-                    "description": "The version of this binding."
-                }
-            },
-            "examples": [
-                {
-                    "msgVpn": "ProdVPN",
-                    "bindingVersion": "0.2.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/pulsar/0.1.0/server.json": {
-            "$id": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json",
-            "title": "Server Schema",
-            "description": "This object contains server information of Pulsar broker, which covers cluster and tenant admin configuration. This object contains additional information not possible to represent within the core AsyncAPI specification.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "tenant": {
-                    "type": "string",
-                    "description": "The pulsar tenant. If omitted, 'public' MUST be assumed."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "tenant": "contoso",
-                    "bindingVersion": "0.1.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/definitions/3.0.0/channels.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/channels.json",
-            "type": "object",
-            "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
-                    }
-                ]
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/channel.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/channel.json",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "address": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
-                    "description": "An optional string representation of this channel's address. The address is typically the \"topic name\", \"routing key\", \"event type\", or \"path\". When `null` or absent, it MUST be interpreted as unknown. This is useful when the address is generated dynamically at runtime or can't be known upfront. It MAY contain Channel Address Expressions."
-                },
-                "messages": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelMessages.json"
-                },
-                "parameters": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-                    }
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A description of the channel."
-                },
-                "servers": {
-                    "type": "array",
-                    "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "uniqueItems": true
-                },
-                "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                    },
-                    "uniqueItems": true
-                },
-                "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/channelMessages.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/channelMessages.json",
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
-            },
-            "description": "A map of the messages that will be sent to this channel by any application at any time. **Every message sent to this channel MUST be valid against one, and only one, of the message objects defined in this map.**"
-        },
-        "http://asyncapi.com/definitions/3.0.0/message.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/message.json",
-            "oneOf": [
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                },
-                {
-                    "oneOf": [
-                        {
-                            "type": "object",
-                            "required": [
-                                "oneOf"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                                "oneOf": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "type": "object",
-                            "additionalProperties": false,
-                            "patternProperties": {
-                                "^x-[\\w\\d\\.\\x2d_]+$": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                                }
-                            },
-                            "properties": {
-                                "schemaFormat": {
-                                    "type": "string"
-                                },
-                                "contentType": {
-                                    "type": "string"
-                                },
-                                "headers": {
-                                    "allOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                                        },
-                                        {
-                                            "properties": {
-                                                "type": {
-                                                    "const": "object"
-                                                }
-                                            }
-                                        }
-                                    ]
-                                },
-                                "messageId": {
-                                    "type": "string"
-                                },
-                                "payload": {},
-                                "correlationId": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
-                                        }
-                                    ]
-                                },
-                                "tags": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                                    },
-                                    "uniqueItems": true
-                                },
-                                "summary": {
-                                    "type": "string",
-                                    "description": "A brief summary of the message."
-                                },
-                                "name": {
-                                    "type": "string",
-                                    "description": "Name of the message."
-                                },
-                                "title": {
-                                    "type": "string",
-                                    "description": "A human-friendly title for the message."
-                                },
-                                "description": {
-                                    "type": "string",
-                                    "description": "A longer description of the message. CommonMark is allowed."
-                                },
-                                "externalDocs": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                                },
-                                "deprecated": {
-                                    "type": "boolean",
-                                    "default": false
-                                },
-                                "examples": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "additionalProperties": false,
-                                        "anyOf": [
-                                            {
-                                                "required": [
-                                                    "payload"
-                                                ]
-                                            },
-                                            {
-                                                "required": [
-                                                    "headers"
-                                                ]
-                                            }
-                                        ],
-                                        "properties": {
-                                            "name": {
-                                                "type": "string",
-                                                "description": "Machine readable name of the message example."
-                                            },
-                                            "summary": {
-                                                "type": "string",
-                                                "description": "A brief summary of the message example."
-                                            },
-                                            "headers": {
-                                                "type": "object"
-                                            },
-                                            "payload": {}
-                                        }
-                                    }
-                                },
-                                "bindings": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
-                                },
-                                "traits": {
-                                    "type": "array",
-                                    "items": {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
-                                            },
-                                            {
-                                                "type": "array",
-                                                "items": [
-                                                    {
-                                                        "oneOf": [
-                                                            {
-                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                                            },
-                                                            {
-                                                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "additionalItems": true
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                }
-            ]
-        },
         "http://asyncapi.com/definitions/3.0.0/correlationId.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/correlationId.json",
             "type": "object",
@@ -1580,232 +1273,41 @@
             },
             "properties": {
                 "http": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/http/0.1.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/http/0.1.0/message.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/http/0.1.0/message.json"
                         }
                     ]
                 },
                 "ws": {},
-                "amqp": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.2.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
-                        {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.2.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/message.json"
-                            }
-                        }
-                    ]
-                },
+                "amqp": {},
                 "amqp1": {},
                 "mqtt": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/message.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/message.json"
                         }
                     ]
                 },
                 "mqtt5": {},
                 "kafka": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.4.0",
-                                "0.3.0",
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/message.json"
-                            }
+                            "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/message.json"
                         },
                         {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.4.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.3.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/message.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/message.json"
                         }
                     ]
                 },
                 "anypointmq": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.0.1"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.0.1"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/message.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/message.json"
                         }
                     ]
                 },
@@ -1816,81 +1318,19 @@
                 "stomp": {},
                 "redis": {},
                 "ibmmq": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/message.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/message.json"
                         }
                     ]
                 },
                 "solace": {},
                 "googlepubsub": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json"
                         }
                     ]
                 }
@@ -1937,42 +1377,6 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings/amqp/0.2.0/message.json": {
-            "$id": "http://asyncapi.com/bindings/amqp/0.2.0/message.json",
-            "title": "AMQP message bindings object",
-            "description": "This object contains information about the message representation in AMQP.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "contentEncoding": {
-                    "type": "string",
-                    "description": "A MIME encoding for the message content."
-                },
-                "messageType": {
-                    "type": "string",
-                    "description": "Application-specific message type."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.2.0"
-                    ],
-                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "contentEncoding": "gzip",
-                    "messageType": "user.signup",
-                    "bindingVersion": "0.2.0"
-                }
-            ]
-        },
         "http://asyncapi.com/bindings/mqtt/0.1.0/message.json": {
             "$id": "http://asyncapi.com/bindings/mqtt/0.1.0/message.json",
             "title": "MQTT message bindings object",
@@ -1999,9 +1403,9 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings/kafka/0.4.0/message.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.4.0/message.json",
-            "title": "Message Schema",
+        "http://asyncapi.com/bindings/kafka/0.1.0/message.json": {
+            "$id": "http://asyncapi.com/bindings/kafka/0.1.0/message.json",
+            "title": "Kafka message bindings object",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
@@ -2014,26 +1418,10 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
                     "description": "The message key."
                 },
-                "schemaIdLocation": {
-                    "type": "string",
-                    "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored.",
-                    "enum": [
-                        "header",
-                        "payload"
-                    ]
-                },
-                "schemaIdPayloadEncoding": {
-                    "type": "string",
-                    "description": "Number of bytes or vendor specific values when schema id is encoded in payload."
-                },
-                "schemaLookupStrategy": {
-                    "type": "string",
-                    "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied."
-                },
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.4.0"
+                        "0.1.0"
                     ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
@@ -2046,18 +1434,13 @@
                             "myKey"
                         ]
                     },
-                    "schemaIdLocation": "payload",
-                    "schemaIdPayloadEncoding": "apicurio-new",
-                    "schemaLookupStrategy": "TopicIdStrategy",
-                    "bindingVersion": "0.4.0"
+                    "bindingVersion": "0.1.0"
                 },
                 {
                     "key": {
                         "$ref": "path/to/user-create.avsc#/UserCreate"
                     },
-                    "schemaIdLocation": "payload",
-                    "schemaIdPayloadEncoding": "4",
-                    "bindingVersion": "0.4.0"
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -2120,47 +1503,6 @@
                     "schemaIdLocation": "payload",
                     "schemaIdPayloadEncoding": "4",
                     "bindingVersion": "0.3.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/kafka/0.1.0/message.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.1.0/message.json",
-            "title": "Kafka message bindings object",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "key": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
-                    "description": "The message key."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "key": {
-                        "type": "string",
-                        "enum": [
-                            "myKey"
-                        ]
-                    },
-                    "bindingVersion": "0.1.0"
-                },
-                {
-                    "key": {
-                        "$ref": "path/to/user-create.avsc#/UserCreate"
-                    },
-                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -2470,177 +1812,44 @@
             "properties": {
                 "http": {},
                 "ws": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/websockets/0.1.0/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/websockets/0.1.0/channel.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/websockets/0.1.0/channel.json"
                         }
                     ]
                 },
                 "amqp": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.2.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.2.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
                         }
                     ]
                 },
-                "amqp1": {},
+                "amqp1": {
+                    "oneOf": [
+                        {
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
+                        }
+                    ]
+                },
                 "mqtt": {},
                 "mqtt5": {},
                 "kafka": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.4.0",
-                                "0.3.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.4.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.3.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/channel.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/channel.json"
                         }
                     ]
                 },
                 "anypointmq": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.0.1"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.0.1"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/channel.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/channel.json"
                         }
                     ]
                 },
@@ -2651,120 +1860,27 @@
                 "stomp": {},
                 "redis": {},
                 "ibmmq": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/channel.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/channel.json"
                         }
                     ]
                 },
                 "solace": {},
                 "googlepubsub": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
                         }
                     ]
                 },
                 "pulsar": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/channel.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/channel.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/channel.json"
                         }
                     ]
                 }
@@ -2958,87 +2074,6 @@
                         "vhost": "/"
                     },
                     "bindingVersion": "0.2.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/kafka/0.4.0/channel.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.4.0/channel.json",
-            "title": "Channel Schema",
-            "description": "This object contains information about the channel representation in Kafka.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "topic": {
-                    "type": "string",
-                    "description": "Kafka topic name if different from channel name."
-                },
-                "partitions": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Number of partitions configured on this topic."
-                },
-                "replicas": {
-                    "type": "integer",
-                    "minimum": 1,
-                    "description": "Number of replicas configured on this topic."
-                },
-                "topicConfiguration": {
-                    "description": "Topic configuration properties that are relevant for the API.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "cleanup.policy": {
-                            "description": "The [`cleanup.policy`](https://kafka.apache.org/documentation/#topicconfigs_cleanup.policy) configuration option.",
-                            "type": "array",
-                            "items": {
-                                "type": "string",
-                                "enum": [
-                                    "compact",
-                                    "delete"
-                                ]
-                            }
-                        },
-                        "retention.ms": {
-                            "description": "The [`retention.ms`](https://kafka.apache.org/documentation/#topicconfigs_retention.ms) configuration option.",
-                            "type": "integer",
-                            "minimum": -1
-                        },
-                        "retention.bytes": {
-                            "description": "The [`retention.bytes`](https://kafka.apache.org/documentation/#topicconfigs_retention.bytes) configuration option.",
-                            "type": "integer",
-                            "minimum": -1
-                        },
-                        "delete.retention.ms": {
-                            "description": "The [`delete.retention.ms`](https://kafka.apache.org/documentation/#topicconfigs_delete.retention.ms) configuration option.",
-                            "type": "integer",
-                            "minimum": 0
-                        },
-                        "max.message.bytes": {
-                            "description": "The [`max.message.bytes`](https://kafka.apache.org/documentation/#topicconfigs_max.message.bytes) configuration option.",
-                            "type": "integer",
-                            "minimum": 0
-                        }
-                    }
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.4.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "topic": "my-specific-topic",
-                    "partitions": 20,
-                    "replicas": 3,
-                    "bindingVersion": "0.4.0"
                 }
             ]
         },
@@ -3581,234 +2616,43 @@
                 }
             },
             "properties": {
-                "http": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
-                        {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/http/0.1.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/http/0.1.0/operation.json"
-                            }
-                        }
-                    ]
-                },
+                "http": {},
                 "ws": {},
                 "amqp": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.2.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.2.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
                         }
                     ]
                 },
                 "amqp1": {},
                 "mqtt": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
                         }
                     ]
                 },
                 "mqtt5": {},
                 "kafka": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.4.0",
-                                "0.3.0",
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json"
-                            }
+                            "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json"
                         },
                         {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.4.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.3.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json"
                         }
                     ]
                 },
                 "anypointmq": {},
                 "nats": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
                         }
                     ]
                 },
@@ -3819,176 +2663,18 @@
                 "redis": {},
                 "ibmmq": {},
                 "solace": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.3.0",
-                                "0.2.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
+                    "oneOf": [
                         {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
-                            }
+                            "$ref": "http://asyncapi.com/bindings/solace/0.2.0/operation.json"
                         },
                         {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.3.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.2.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.2.0/operation.json"
-                            }
+                            "description": "Latest binding",
+                            "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
                         }
                     ]
                 },
                 "googlepubsub": {}
             }
-        },
-        "http://asyncapi.com/bindings/http/0.1.0/operation.json": {
-            "$id": "http://asyncapi.com/bindings/http/0.1.0/operation.json",
-            "title": "HTTP operation bindings object",
-            "description": "This object contains information about the operation representation in HTTP.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "request",
-                        "response"
-                    ],
-                    "description": "Required. Type of operation. Its value MUST be either 'request' or 'response'."
-                },
-                "method": {
-                    "type": "string",
-                    "enum": [
-                        "GET",
-                        "PUT",
-                        "POST",
-                        "PATCH",
-                        "DELETE",
-                        "HEAD",
-                        "OPTIONS",
-                        "CONNECT",
-                        "TRACE"
-                    ],
-                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
-                },
-                "query": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
-                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "required": [
-                "type"
-            ],
-            "oneOf": [
-                {
-                    "properties": {
-                        "type": {
-                            "const": "request"
-                        }
-                    },
-                    "required": [
-                        "method"
-                    ]
-                },
-                {
-                    "properties": {
-                        "is": {
-                            "const": "response"
-                        }
-                    },
-                    "not": {
-                        "required": [
-                            "method"
-                        ]
-                    }
-                }
-            ],
-            "examples": [
-                {
-                    "type": "response",
-                    "query": {
-                        "type": "object",
-                        "required": [
-                            "companyId"
-                        ],
-                        "properties": {
-                            "companyId": {
-                                "type": "number",
-                                "minimum": 1,
-                                "description": "The Id of the company."
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "bindingVersion": "0.1.0"
-                },
-                {
-                    "type": "request",
-                    "method": "GET",
-                    "query": {
-                        "type": "object",
-                        "required": [
-                            "companyId"
-                        ],
-                        "properties": {
-                            "companyId": {
-                                "type": "number",
-                                "minimum": 1,
-                                "description": "The Id of the company."
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "bindingVersion": "0.1.0"
-                }
-            ]
         },
         "http://asyncapi.com/bindings/amqp/0.2.0/operation.json": {
             "$id": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json",
@@ -4117,9 +2803,9 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings/kafka/0.4.0/operation.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json",
-            "title": "Operation Schema",
+        "http://asyncapi.com/bindings/kafka/0.1.0/operation.json": {
+            "$id": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json",
+            "title": "Kafka operation message bindings object",
             "description": "This object contains information about the operation representation in Kafka.",
             "type": "object",
             "additionalProperties": false,
@@ -4140,7 +2826,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.4.0"
+                        "0.1.0"
                     ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
@@ -4159,7 +2845,7 @@
                             "myClientId"
                         ]
                     },
-                    "bindingVersion": "0.4.0"
+                    "bindingVersion": "0.1.0"
                 }
             ]
         },
@@ -4209,52 +2895,6 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings/kafka/0.1.0/operation.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json",
-            "title": "Kafka operation message bindings object",
-            "description": "This object contains information about the operation representation in Kafka.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "groupId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
-                    "description": "Id of the consumer group."
-                },
-                "clientId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
-                    "description": "Id of the consumer inside a consumer group."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "groupId": {
-                        "type": "string",
-                        "enum": [
-                            "myGroupId"
-                        ]
-                    },
-                    "clientId": {
-                        "type": "string",
-                        "enum": [
-                            "myClientId"
-                        ]
-                    },
-                    "bindingVersion": "0.1.0"
-                }
-            ]
-        },
         "http://asyncapi.com/bindings/nats/0.1.0/operation.json": {
             "$id": "http://asyncapi.com/bindings/nats/0.1.0/operation.json",
             "title": "NATS operation bindings object",
@@ -4284,6 +2924,111 @@
                 {
                     "queue": "MyCustomQueue",
                     "bindingVersion": "0.1.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/solace/0.2.0/operation.json": {
+            "$id": "http://asyncapi.com/bindings/solace/0.2.0/operation.json",
+            "title": "Solace operation bindings object",
+            "description": "This object contains information about the operation representation in Solace.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "destinations": {
+                    "description": "The list of Solace destinations referenced in the operation.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "deliveryMode": {
+                                "type": "string",
+                                "enum": [
+                                    "direct",
+                                    "persistent"
+                                ]
+                            }
+                        },
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "type": "string",
+                                        "const": "queue",
+                                        "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name."
+                                    },
+                                    "queue": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "The name of the queue"
+                                            },
+                                            "topicSubscriptions": {
+                                                "type": "array",
+                                                "description": "The list of topics that the queue subscribes to.",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "accessType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "exclusive",
+                                                    "nonexclusive"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "type": "string",
+                                        "const": "topic",
+                                        "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name."
+                                    },
+                                    "topicSubscriptions": {
+                                        "type": "array",
+                                        "description": "The list of topics that the client subscribes to.",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "bindingVersion": {
+                "type": "string",
+                "enum": [
+                    "0.2.0"
+                ],
+                "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+            },
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0",
+                    "destinations": [
+                        {
+                            "destinationType": "queue",
+                            "queue": {
+                                "name": "sampleQueue",
+                                "topicSubscriptions": [
+                                    "samples/*"
+                                ],
+                                "accessType": "nonexclusive"
+                            }
+                        },
+                        {
+                            "destinationType": "topic",
+                            "topicSubscriptions": [
+                                "samples/*"
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -4379,111 +3124,6 @@
             "examples": [
                 {
                     "bindingVersion": "0.3.0",
-                    "destinations": [
-                        {
-                            "destinationType": "queue",
-                            "queue": {
-                                "name": "sampleQueue",
-                                "topicSubscriptions": [
-                                    "samples/*"
-                                ],
-                                "accessType": "nonexclusive"
-                            }
-                        },
-                        {
-                            "destinationType": "topic",
-                            "topicSubscriptions": [
-                                "samples/*"
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/solace/0.2.0/operation.json": {
-            "$id": "http://asyncapi.com/bindings/solace/0.2.0/operation.json",
-            "title": "Solace operation bindings object",
-            "description": "This object contains information about the operation representation in Solace.",
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "destinations": {
-                    "description": "The list of Solace destinations referenced in the operation.",
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "deliveryMode": {
-                                "type": "string",
-                                "enum": [
-                                    "direct",
-                                    "persistent"
-                                ]
-                            }
-                        },
-                        "oneOf": [
-                            {
-                                "properties": {
-                                    "destinationType": {
-                                        "type": "string",
-                                        "const": "queue",
-                                        "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name."
-                                    },
-                                    "queue": {
-                                        "type": "object",
-                                        "properties": {
-                                            "name": {
-                                                "type": "string",
-                                                "description": "The name of the queue"
-                                            },
-                                            "topicSubscriptions": {
-                                                "type": "array",
-                                                "description": "The list of topics that the queue subscribes to.",
-                                                "items": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "accessType": {
-                                                "type": "string",
-                                                "enum": [
-                                                    "exclusive",
-                                                    "nonexclusive"
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "properties": {
-                                    "destinationType": {
-                                        "type": "string",
-                                        "const": "topic",
-                                        "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name."
-                                    },
-                                    "topicSubscriptions": {
-                                        "type": "array",
-                                        "description": "The list of topics that the client subscribes to.",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                }
-                            }
-                        ]
-                    }
-                }
-            },
-            "bindingVersion": {
-                "type": "string",
-                "enum": [
-                    "0.2.0"
-                ],
-                "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
-            },
-            "examples": [
-                {
-                    "bindingVersion": "0.2.0",
                     "destinations": [
                         {
                             "destinationType": "queue",
