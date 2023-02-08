@@ -25,7 +25,7 @@
             {
               "required": [
                 "authorizationUrl",
-                "scopes"
+                "availableScopes"
               ]
             },
             {
@@ -45,7 +45,7 @@
             {
               "required": [
                 "tokenUrl",
-                "scopes"
+                "availableScopes"
               ]
             },
             {
@@ -65,7 +65,7 @@
             {
               "required": [
                 "tokenUrl",
-                "scopes"
+                "availableScopes"
               ]
             },
             {
@@ -86,13 +86,20 @@
               "required": [
                 "authorizationUrl",
                 "tokenUrl",
-                "scopes"
+                "availableScopes"
               ]
             }
           ]
         }
       },
       "additionalProperties": false
+    },
+    "scopes": {
+      "type": "array",
+      "description": "List of the needed scope names.",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {

@@ -34,6 +34,30 @@
     },
     "license": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/license.json"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+          }
+        ]
+      },
+      "uniqueItems": true
+    },
+    "externalDocs": {
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+        }
+      ]
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
