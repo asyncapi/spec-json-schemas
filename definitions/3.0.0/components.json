@@ -98,6 +98,12 @@
         }
       }
     },
+    "serverBindings": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+      }
+    },
     "channelBindings": {
       "type": "object",
       "additionalProperties": {
