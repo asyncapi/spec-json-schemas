@@ -43,16 +43,6 @@
         },
         "components": {
             "$ref": "http://asyncapi.com/definitions/3.0.0/components.json"
-        },
-        "tags": {
-            "type": "array",
-            "items": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-            },
-            "uniqueItems": true
-        },
-        "externalDocs": {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
         }
     },
     "definitions": {
@@ -103,12 +93,26 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 }
             }
         },
@@ -163,6 +167,23 @@
                 }
             }
         },
+        "http://asyncapi.com/definitions/3.0.0/Reference.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/Reference.json",
+            "type": "object",
+            "required": [
+                "$ref"
+            ],
+            "properties": {
+                "$ref": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json",
+            "type": "string",
+            "format": "uri-reference"
+        },
         "http://asyncapi.com/definitions/3.0.0/tag.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/tag.json",
             "type": "object",
@@ -178,7 +199,14 @@
                     "type": "string"
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 }
             },
             "patternProperties": {
@@ -225,23 +253,6 @@
                 ]
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/Reference.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/Reference.json",
-            "type": "object",
-            "required": [
-                "$ref"
-            ],
-            "properties": {
-                "$ref": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json",
-            "type": "string",
-            "format": "uri-reference"
-        },
         "http://asyncapi.com/definitions/3.0.0/server.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/server.json",
             "type": "object",
@@ -260,8 +271,17 @@
                 "url": {
                     "type": "string"
                 },
+                "title": {
+                    "type": "string",
+                    "description": "A human-friendly title for the server."
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "A brief summary of the server."
+                },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A longer description of the server. CommonMark is allowed."
                 },
                 "protocol": {
                     "type": "string",
@@ -274,10 +294,31 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariables.json"
                 },
                 "security": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
+                },
+                "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-                    }
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
+                    },
+                    "uniqueItems": true
+                },
+                "externalDocs": {
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
@@ -288,7 +329,14 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/serverVariables.json",
             "type": "object",
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                    }
+                ]
             }
         },
         "http://asyncapi.com/definitions/3.0.0/serverVariable.json": {
@@ -323,16 +371,572 @@
                 }
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json",
+        "http://asyncapi.com/definitions/3.0.0/securityRequirements.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json",
+            "description": "An array representing security requirements.",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+                    }
+                ]
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/userPassword.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/apiKey.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/X509.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/userPassword.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/userPassword.json",
             "type": "object",
-            "additionalProperties": {
-                "type": "array",
-                "items": {
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "userPassword"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/apiKey.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/apiKey.json",
+            "type": "object",
+            "required": [
+                "type",
+                "in"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "apiKey"
+                    ]
+                },
+                "in": {
+                    "type": "string",
+                    "enum": [
+                        "user",
+                        "password"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/X509.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/X509.json",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "X509"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "symmetricEncryption"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "asymmetricEncryption"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json",
+            "not": {
+                "type": "object",
+                "properties": {
+                    "scheme": {
+                        "type": "string",
+                        "enum": [
+                            "bearer"
+                        ]
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "scheme",
+                "type"
+            ],
+            "properties": {
+                "scheme": {
                     "type": "string"
                 },
-                "uniqueItems": true
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "http"
+                    ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json",
+            "type": "object",
+            "required": [
+                "type",
+                "scheme"
+            ],
+            "properties": {
+                "scheme": {
+                    "type": "string",
+                    "enum": [
+                        "bearer"
+                    ]
+                },
+                "bearerFormat": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "http"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json",
+            "type": "object",
+            "required": [
+                "type",
+                "name",
+                "in"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "httpApiKey"
+                    ]
+                },
+                "name": {
+                    "type": "string"
+                },
+                "in": {
+                    "type": "string",
+                    "enum": [
+                        "header",
+                        "query",
+                        "cookie"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json",
+            "type": "object",
+            "required": [
+                "type",
+                "flows"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "oauth2"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "flows": {
+                    "type": "object",
+                    "properties": {
+                        "implicit": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [
+                                        "authorizationUrl",
+                                        "availableScopes"
+                                    ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [
+                                            "tokenUrl"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "password": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [
+                                        "tokenUrl",
+                                        "availableScopes"
+                                    ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [
+                                            "authorizationUrl"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "clientCredentials": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [
+                                        "tokenUrl",
+                                        "availableScopes"
+                                    ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [
+                                            "authorizationUrl"
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "authorizationCode": {
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [
+                                        "authorizationUrl",
+                                        "tokenUrl",
+                                        "availableScopes"
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "scopes": {
+                    "type": "array",
+                    "description": "List of the needed scope names.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
             }
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json",
+            "type": "object",
+            "properties": {
+                "authorizationUrl": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "tokenUrl": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "refreshUrl": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "availableScopes": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/openIdConnect.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json",
+            "type": "object",
+            "required": [
+                "type",
+                "openIdConnectUrl"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "openIdConnect"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                },
+                "openIdConnectUrl": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "scopes": {
+                    "type": "array",
+                    "description": "List of the needed scope names.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "plain"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "scramSha256",
+                        "scramSha512"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json",
+            "type": "object",
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "gssapi"
+                    ]
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
         },
         "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json",
@@ -697,35 +1301,54 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/channelMessages.json"
                 },
                 "parameters": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-                    }
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/parameters.json"
+                },
+                "title": {
+                    "type": "string",
+                    "description": "A human-friendly title for the channel."
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "A brief summary of the channel."
                 },
                 "description": {
                     "type": "string",
-                    "description": "A description of the channel."
+                    "description": "A longer description of the channel. CommonMark is allowed."
                 },
                 "servers": {
                     "type": "array",
-                    "description": "The names of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
+                    "description": "The references of the servers on which this channel is available. If absent or empty then this channel must be available on all servers.",
                     "items": {
-                        "type": "string"
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                     },
                     "uniqueItems": true
-                },
-                "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
+                },
+                "bindings": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
                 }
             }
         },
@@ -806,7 +1429,14 @@
                                 "tags": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                            }
+                                        ]
                                     },
                                     "uniqueItems": true
                                 },
@@ -827,7 +1457,14 @@
                                     "description": "A longer description of the message. CommonMark is allowed."
                                 },
                                 "externalDocs": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                        }
+                                    ]
                                 },
                                 "deprecated": {
                                     "type": "boolean",
@@ -994,7 +1631,14 @@
                             "type": "string"
                         },
                         "externalDocs": {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                }
+                            ]
                         },
                         "deprecated": {
                             "type": "boolean",
@@ -1746,7 +2390,14 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
@@ -1767,7 +2418,14 @@
                     "description": "A longer description of the message. CommonMark is allowed."
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 },
                 "deprecated": {
                     "type": "boolean",
@@ -1783,6 +2441,21 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
                 }
             }
+        },
+        "http://asyncapi.com/definitions/3.0.0/parameters.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/parameters.json",
+            "type": "object",
+            "additionalProperties": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
+                    }
+                ]
+            },
+            "description": "JSON objects describing re-usable channel parameters."
         },
         "http://asyncapi.com/definitions/3.0.0/parameter.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/parameter.json",
@@ -2553,27 +3226,44 @@
                         ]
                     }
                 },
+                "title": {
+                    "type": "string",
+                    "description": "A human-friendly title for the operation."
+                },
                 "summary": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A brief summary of the operation."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A longer description of the operation. CommonMark is allowed."
                 },
                 "security": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityRequirement.json"
-                    }
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                        }
+                    ]
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
@@ -2590,11 +3280,8 @@
                 }
             },
             "properties": {
-                "action": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/action"
-                },
-                "channel": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/channel"
+                "title": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/title"
                 },
                 "summary": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/summary"
@@ -3249,6 +3936,32 @@
                     "additionalProperties": {
                         "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
                     }
+                },
+                "tags": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
+                        ]
+                    }
+                },
+                "externalDocs": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
+                        ]
+                    }
                 }
             }
         },
@@ -3267,552 +3980,6 @@
                 "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
             },
             "description": "JSON objects describing the messages being consumed and produced by the API."
-        },
-        "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json",
-            "oneOf": [
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/userPassword.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/apiKey.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/X509.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json"
-                }
-            ]
-        },
-        "http://asyncapi.com/definitions/3.0.0/userPassword.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/userPassword.json",
-            "type": "object",
-            "required": [
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "userPassword"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/apiKey.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/apiKey.json",
-            "type": "object",
-            "required": [
-                "type",
-                "in"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "apiKey"
-                    ]
-                },
-                "in": {
-                    "type": "string",
-                    "enum": [
-                        "user",
-                        "password"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/X509.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/X509.json",
-            "type": "object",
-            "required": [
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "X509"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json",
-            "type": "object",
-            "required": [
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "symmetricEncryption"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json",
-            "type": "object",
-            "required": [
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "asymmetricEncryption"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json",
-            "oneOf": [
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json"
-                }
-            ]
-        },
-        "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json",
-            "not": {
-                "type": "object",
-                "properties": {
-                    "scheme": {
-                        "type": "string",
-                        "enum": [
-                            "bearer"
-                        ]
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "scheme",
-                "type"
-            ],
-            "properties": {
-                "scheme": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "http"
-                    ]
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json",
-            "type": "object",
-            "required": [
-                "type",
-                "scheme"
-            ],
-            "properties": {
-                "scheme": {
-                    "type": "string",
-                    "enum": [
-                        "bearer"
-                    ]
-                },
-                "bearerFormat": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "http"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json",
-            "type": "object",
-            "required": [
-                "type",
-                "name",
-                "in"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "httpApiKey"
-                    ]
-                },
-                "name": {
-                    "type": "string"
-                },
-                "in": {
-                    "type": "string",
-                    "enum": [
-                        "header",
-                        "query",
-                        "cookie"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json",
-            "type": "object",
-            "required": [
-                "type",
-                "flows"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "oauth2"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                },
-                "flows": {
-                    "type": "object",
-                    "properties": {
-                        "implicit": {
-                            "allOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
-                                },
-                                {
-                                    "required": [
-                                        "authorizationUrl",
-                                        "scopes"
-                                    ]
-                                },
-                                {
-                                    "not": {
-                                        "required": [
-                                            "tokenUrl"
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        "password": {
-                            "allOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
-                                },
-                                {
-                                    "required": [
-                                        "tokenUrl",
-                                        "scopes"
-                                    ]
-                                },
-                                {
-                                    "not": {
-                                        "required": [
-                                            "authorizationUrl"
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        "clientCredentials": {
-                            "allOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
-                                },
-                                {
-                                    "required": [
-                                        "tokenUrl",
-                                        "scopes"
-                                    ]
-                                },
-                                {
-                                    "not": {
-                                        "required": [
-                                            "authorizationUrl"
-                                        ]
-                                    }
-                                }
-                            ]
-                        },
-                        "authorizationCode": {
-                            "allOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
-                                },
-                                {
-                                    "required": [
-                                        "authorizationUrl",
-                                        "tokenUrl",
-                                        "scopes"
-                                    ]
-                                }
-                            ]
-                        }
-                    },
-                    "additionalProperties": false
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json",
-            "type": "object",
-            "properties": {
-                "authorizationUrl": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "tokenUrl": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "refreshUrl": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "scopes": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json",
-            "type": "object",
-            "additionalProperties": {
-                "type": "string"
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/openIdConnect.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json",
-            "type": "object",
-            "required": [
-                "type",
-                "openIdConnectUrl"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "openIdConnect"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                },
-                "openIdConnectUrl": {
-                    "type": "string",
-                    "format": "uri"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json",
-            "oneOf": [
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json"
-                },
-                {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json"
-                }
-            ]
-        },
-        "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json",
-            "type": "object",
-            "required": [
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "plain"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json",
-            "type": "object",
-            "required": [
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "scramSha256",
-                        "scramSha512"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json",
-            "type": "object",
-            "required": [
-                "type"
-            ],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "gssapi"
-                    ]
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "additionalProperties": false
-        },
-        "http://asyncapi.com/definitions/3.0.0/parameters.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/parameters.json",
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-            },
-            "description": "JSON objects describing re-usable channel parameters."
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "

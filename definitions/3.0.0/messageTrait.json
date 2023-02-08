@@ -43,7 +43,14 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+          }
+        ]
       },
       "uniqueItems": true
     },
@@ -64,7 +71,14 @@
       "description": "A longer description of the message. CommonMark is allowed."
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+        }
+      ]
     },
     "deprecated": {
       "type": "boolean",
