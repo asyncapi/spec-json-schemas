@@ -79,6 +79,9 @@ function getDefinitionName(def) {
  */
 function replaceRef(schema) {
 
+  //new refs will only work if we remove $id that all point to asyncapi.com
+  delete schema.$id
+  
   //traversing shoudl take place only in case of schemas with refs
   if (schema.$ref === undefined ) return;
 
