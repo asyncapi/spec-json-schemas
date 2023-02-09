@@ -385,10 +385,7 @@
                     "$ref": "#/definitions/ReferenceObject"
                 },
                 "parameters": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "$ref": "#/definitions/parameters"
-                    }
+                    "$ref": "#/definitions/parameters"
                 },
                 "description": {
                     "type": "string",
