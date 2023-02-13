@@ -36,6 +36,25 @@
                     }
                 }
             }
+        },
+        "PublishUserSignedUpDefaultBinding": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "qos": 1
+                },
+                "kafka": {
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
         }
     },
     "components": {
