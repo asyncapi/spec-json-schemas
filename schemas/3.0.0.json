@@ -258,7 +258,7 @@
             "type": "object",
             "description": "An object representing a Server.",
             "required": [
-                "url",
+                "host",
                 "protocol"
             ],
             "additionalProperties": false,
@@ -268,8 +268,13 @@
                 }
             },
             "properties": {
-                "url": {
-                    "type": "string"
+                "host": {
+                    "type": "string",
+                    "description": "The server host name."
+                },
+                "pathname": {
+                    "type": "string",
+                    "description": "The path to a resource in the host."
                 },
                 "title": {
                     "type": "string",
