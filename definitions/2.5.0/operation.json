@@ -7,37 +7,20 @@
     }
   },
   "properties": {
-    "traits": {
+    "traits":{
       "type": "array",
-      "items": {
-        "oneOf": [
-          {
-            "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
-          },
-          {
-            "$ref": "http://asyncapi.com/definitions/2.5.0/operationTrait.json"
-          },
-          {
-            "type": "array",
-            "items": [
-              {
-                "oneOf": [
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
-                  },
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/operationTrait.json"
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "additionalItems": true
-              }
-            ]
-          }
-        ]
-      }
+      "items": [
+        {
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/2.5.0/operationTrait.json"
+            }
+          ]
+        }
+      ]
     },
     "summary": {
       "type": "string"

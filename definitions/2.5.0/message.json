@@ -131,35 +131,18 @@
             },
             "traits": {
               "type": "array",
-              "items": {
-                "oneOf": [
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
-                  },
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/messageTrait.json"
-                  },
-                  {
-                    "type": "array",
-                    "items": [
-                      {
-                        "oneOf": [
-                          {
-                            "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
-                          },
-                          {
-                            "$ref": "http://asyncapi.com/definitions/2.5.0/messageTrait.json"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "additionalItems": true
-                      }
-                    ]
-                  }
-                ]
-              }
+              "items": [
+                {
+                  "oneOf": [
+                    {
+                      "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+                    },
+                    {
+                      "$ref": "http://asyncapi.com/definitions/2.5.0/messageTrait.json"
+                    }
+                  ]
+                }
+              ]
             }
           }
         }
