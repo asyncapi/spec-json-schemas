@@ -100,14 +100,10 @@
                 "additionalProperties": false,
                 "anyOf": [
                   {
-                    "required": [
-                      "payload"
-                    ]
+                    "required": ["payload"]
                   },
                   {
-                    "required": [
-                      "headers"
-                    ]
+                    "required": ["headers"]
                   }
                 ],
                 "properties": {
@@ -131,35 +127,18 @@
             },
             "traits": {
               "type": "array",
-              "items": {
-                "oneOf": [
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
-                  },
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/messageTrait.json"
-                  },
-                  {
-                    "type": "array",
-                    "items": [
-                      {
-                        "oneOf": [
-                          {
-                            "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
-                          },
-                          {
-                            "$ref": "http://asyncapi.com/definitions/2.6.0/messageTrait.json"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "object",
-                        "additionalItems": true
-                      }
-                    ]
-                  }
-                ]
-              }
+              "items": [
+                {
+                  "oneOf": [
+                    {
+                      "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+                    },
+                    {
+                      "$ref": "http://asyncapi.com/definitions/2.5.0/messageTrait.json"
+                    }
+                  ]
+                }
+              ]
             }
           }
         }
