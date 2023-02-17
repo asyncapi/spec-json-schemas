@@ -13,10 +13,10 @@
         {
           "oneOf": [
             {
-              "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+              "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
             },
             {
-              "$ref": "http://asyncapi.com/definitions/2.5.0/operationTrait.json"
+              "$ref": "http://asyncapi.com/definitions/2.6.0/operationTrait.json"
             }
           ]
         }
