@@ -7,9 +7,7 @@
       "oneOf": [
         {
           "type": "object",
-          "required": [
-            "oneOf"
-          ],
+          "required": ["oneOf"],
           "additionalProperties": false,
           "properties": {
             "oneOf": {
@@ -127,18 +125,16 @@
             },
             "traits": {
               "type": "array",
-              "items": [
-                {
-                  "oneOf": [
-                    {
-                      "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
-                    },
-                    {
-                      "$ref": "http://asyncapi.com/definitions/2.5.0/messageTrait.json"
-                    }
-                  ]
-                }
-              ]
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
+                  },
+                  {
+                    "$ref": "http://asyncapi.com/definitions/2.5.0/messageTrait.json"
+                  }
+                ]
+              }
             }
           }
         }

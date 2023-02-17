@@ -9,18 +9,16 @@
   "properties": {
     "traits": {
       "type": "array",
-      "items": [
-        {
-          "oneOf": [
-            {
-              "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
-            },
-            {
-              "$ref": "http://asyncapi.com/definitions/2.6.0/operationTrait.json"
-            }
-          ]
-        }
-      ]
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/2.6.0/operationTrait.json"
+          }
+        ]
+      }
     },
     "summary": {
       "type": "string"
