@@ -150,8 +150,7 @@
                         ]
                       },
                       {
-                        "type": "object",
-                        "additionalItems": true
+                        "type": "object"
                       }
                     ]
                   }
