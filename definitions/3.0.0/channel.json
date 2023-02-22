@@ -35,6 +35,7 @@
       "items": {
         "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
       },
+      "additionalItems": false,
       "uniqueItems": true
     },
     "tags": {
@@ -49,6 +50,7 @@
           }
         ]
       },
+      "additionalItems": false,
       "uniqueItems": true
     },
     "externalDocs": {
