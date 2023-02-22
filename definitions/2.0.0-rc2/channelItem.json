@@ -12,10 +12,7 @@
       "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/ReferenceObject.json"
     },
     "parameters": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/parameter.json"
-      }
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/parameters.json"
     },
     "description": {
       "type": "string",
