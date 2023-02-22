@@ -179,6 +179,27 @@
         "properties": {
           "schemaFormat": {
             "enum": [
+              "application/vnd.aai.asyncapi;version=2.0.0",
+              "application/vnd.aai.asyncapi+json;version=2.0.0",
+              "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+              "application/vnd.aai.asyncapi;version=2.1.0",
+              "application/vnd.aai.asyncapi+json;version=2.1.0",
+              "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+              "application/vnd.aai.asyncapi;version=2.2.0",
+              "application/vnd.aai.asyncapi+json;version=2.2.0",
+              "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+              "application/vnd.aai.asyncapi;version=2.3.0",
+              "application/vnd.aai.asyncapi+json;version=2.3.0",
+              "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+              "application/vnd.aai.asyncapi;version=2.4.0",
+              "application/vnd.aai.asyncapi+json;version=2.4.0",
+              "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+              "application/vnd.aai.asyncapi;version=2.5.0",
+              "application/vnd.aai.asyncapi+json;version=2.5.0",
+              "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+              "application/vnd.aai.asyncapi;version=2.6.0",
+              "application/vnd.aai.asyncapi+json;version=2.6.0",
+              "application/vnd.aai.asyncapi+yaml;version=2.6.0",
               "application/vnd.aai.asyncapi;version=3.0.0",
               "application/vnd.aai.asyncapi+json;version=3.0.0",
               "application/vnd.aai.asyncapi+yaml;version=3.0.0"
@@ -215,7 +236,7 @@
           }
         }
       }
-    },
+    }
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
