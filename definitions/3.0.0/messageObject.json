@@ -157,24 +157,11 @@
   "allOf": [
     {
       "if": {
-        "oneOf": [
-          {
-            "properties": {
-              "schemaFormat": {
-                "enum": [
-                  "application/vnd.aai.asyncapi;version=3.0.0",
-                  "application/vnd.aai.asyncapi+json;version=3.0.0",
-                  "application/vnd.aai.asyncapi+yaml;version=3.0.0"
-                ]
-              }
-            }
-          }, 
-          {
-            "not": {
-              "required": ["schemaFormat"]
-            }
-          }
-        ]
+        "not": {
+          "required": [
+            "schemaFormat"
+          ]
+        }
       },
       "then": {
         "properties": {
@@ -186,6 +173,32 @@
     },
     {
       "if": {
+        "required": [
+          "schemaFormat"
+        ],
+        "properties": {
+          "schemaFormat": {
+            "enum": [
+              "application/vnd.aai.asyncapi;version=3.0.0",
+              "application/vnd.aai.asyncapi+json;version=3.0.0",
+              "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "payload": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "schemaFormat"
+        ],
         "properties": {
           "schemaFormat": {
             "enum": [
@@ -202,7 +215,7 @@
           }
         }
       }
-    }
+    },
   ],
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
