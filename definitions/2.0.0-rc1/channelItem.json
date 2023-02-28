@@ -12,12 +12,7 @@
       "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/ReferenceObject.json"
     },
     "parameters": {
-      "type": "array",
-      "uniqueItems": true,
-      "minItems": 1,
-      "items": {
-        "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/parameter.json"
-      }
+      "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/parameters.json"
     },
     "publish": {
       "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/operation.json"
