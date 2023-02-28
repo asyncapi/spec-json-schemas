@@ -9,7 +9,7 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 * This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification. There are two types of JSON Schema files, with and without **$id** feature 
 * These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool (e.g., for validation).
 * These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification can't be described with JSON Schema.
-* In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code. For now, these packages provide access only to schema files with **$id** feature. Open an issue if you have a use case for accessing schema files without $id through code.
+* In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code. These packages provide access only to schemas with version larger or equal 2.0.0.
 
 ## Custom Validation Needs
 
@@ -132,8 +132,16 @@ The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
 2. Rename the folder to the new version (`x.x.x`).
 3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
-4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e. `'2.5.0': require('./schemas/2.5.0.json'),`.
-5. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e. `'2.5.0': JSONSchema7,`.
+4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
+   ```js
+   '2.6.0': require('./schemas/2.6.0.json'),
+   '2.6.0-without-$id': require('./schemas/2.6.0-without-$id.json'),
+   ```
+5. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e.:
+   ```js
+   '2.6.0': JSONSchema7;
+   '2.6.0-without-$id': JSONSchema7;
+   ```
 6. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
 
     ```json
