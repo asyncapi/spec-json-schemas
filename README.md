@@ -120,7 +120,7 @@ For example, for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/ind
 
 ### Creating a new version
 
-To create a new version, simply run the following command:
+## 1a Automated:
 
 ```bash
 npm run startNewVersion --new-version=x.x.x
@@ -128,21 +128,26 @@ npm run startNewVersion --new-version=x.x.x
 
 Where `x.x.x` is the new version you want to create.
 
+## 1a Manual
+
 The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
-2. Rename the folder to the new version (`x.x.x`).
-3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
-4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
+1. Rename the folder to the new version (`x.x.x`).
+1. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
+
+## 2 Further steps
+
+1. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
    ```js
    '2.6.0': require('./schemas/2.6.0.json'),
    '2.6.0-without-$id': require('./schemas/2.6.0-without-$id.json'),
    ```
-5. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e.:
+1. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e.:
    ```js
    '2.6.0': JSONSchema7;
    '2.6.0-without-$id': JSONSchema7;
    ```
-6. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
+1. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
 
     ```json
     {
