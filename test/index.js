@@ -10,12 +10,14 @@ describe('AsyncAPI', () => {
 
   it('should check if json schema is exported and if it matches the original file', () => {
     const skipFiles = ["README", "all.schema-store", "1.0.0", "1.1.0", "1.2.0", "2.0.0-rc1", "2.0.0-rc2"];
+    const noIdSuffix = '-without-$id';
     const files = fs.readdirSync('schemas');
     files.forEach(file => {
       const fileName = path.parse(file).name;
-      if (skipFiles.includes(fileName)) return;
+      if (skipFiles.includes(fileName) || fileName.includes(noIdSuffix)) return;
 
       const asyncapi = require('..');
+
       assert(typeof asyncapi[fileName] === 'object', `Returned object does not contain ${fileName}.`);
 
       const asyncapiVersion = require('..')[fileName];
