@@ -6,10 +6,10 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 
 ## Overview
 
-* This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification.
+* This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification. There are two types of JSON Schema files, with and without **$id** feature 
 * These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool (e.g., for validation).
 * These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification can't be described with JSON Schema.
-* In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code.
+* In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code. For now, these packages provide access only to schema files with **$id** feature. Open an issue if you have a use case for accessing schema files without $id through code.
 
 ## Custom Validation Needs
 
@@ -19,8 +19,8 @@ It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi
 The following additional custom validations need to be provided:
 
 * Variables provided in the URL property have a corresponding variable object defined and its example is correct.
-* operationIds are not duplicated in the document.
-* messageIds are not duplicated in the document.
+* `operationId`s are not duplicated in the document.
+* `messageId`s are not duplicated in the document.
 * Server security is declared properly and the name has a corresponding `securitySchemes` definition in `components` with the same name.
 * Server `securitySchemes` is an empty array when the security type requires it.
 * Parameters specified in the channel name have corresponding parameters object defined.
@@ -28,7 +28,7 @@ The following additional custom validations need to be provided:
 * All servers listed for a channel in the `servers` property are declared in the top-level `servers` object.
 * Tags specified in any object have no duplicates. Check must be done for: the top-level object, operations (publish and subscribe), operation traits, channels, messages, and message traits.
  
-At the moment, AsyncAPI JavaScript parser do not cover all validation cases yet
+At the moment, the AsyncAPI JavaScript parser does not cover all validation cases yet.
 All test cases and parsers coverage can be found [here](https://asyncapi.github.io/tck/)
 
 ## Installation
@@ -112,9 +112,9 @@ This is the current project structure explained:
 
 ## Schema Bundling
 
-Changes should not be done manually to the schemas in [./schemas](./schemas), but instead be done in their individual definitions located in [./definitions](./definitions).
+Changes should not be done manually to the schemas in [./schemas](./schemas), but instead, be done in their individual definitions located in [./definitions](./definitions).
 
-These definitions are automatically bundled together on new releases through the npm script `prepublishOnly`, which ensures the project is build. This is where the [bundler](./tools/bundler) is called. 
+These definitions are automatically bundled together on new releases through the npm script `prepublishOnly`, which ensures the project is built. This is where the [bundler](./tools/bundler) is called. 
 
 For example, for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](./schemas/2.2.0.json).
 
@@ -134,7 +134,7 @@ The manual process of creating a new version is to:
 3. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
 4. Edit the [index.js](./index.js) file adding a new line with the new version. I.e. `'2.5.0': require('./schemas/2.5.0.json'),`.
 5. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e. `'2.5.0': JSONSchema7,`.
-6. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. I.e.:
+6. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
 
     ```json
     {
@@ -142,12 +142,12 @@ The manual process of creating a new version is to:
           {
              "properties":{
                 "asyncapi":{
-                   "const":"2.5.0"
+                   "const":"2.6.0"
                 }
              }
           },
           {
-             "$ref":"http://asyncapi.com/schema-store/2.5.0.json"
+             "$ref":"http://asyncapi.com/schema-store/2.6.0-without-$id.json"
           }
        ]
     }
