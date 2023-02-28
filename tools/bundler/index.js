@@ -21,6 +21,8 @@ console.log(`Using the following output directory: ${outputDirectory}`);
     const Bundler = require("@hyperjump/json-schema-bundle");
     try{
       console.log(`Bundling the following version together: ${version}`);
+      const outputFileWithId = path.resolve(outputDirectory, `${version}.json`);
+      const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       const definitions = await fs.promises.readdir(versionDir);
       const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
@@ -30,12 +32,22 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       }
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
       const fileToBundle = await Bundler.get(filePathToBundle);
-      const bundledSchema = await Bundler.bundle(fileToBundle);
-      modifyRefsAndDefinitions(bundledSchema);
-      bundledSchema.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchema.description ?? ''}`;
-      const outputFile = path.resolve(outputDirectory, `${version}.json`);
-      console.log(`Writing the bundled file to: ${outputFile}`);
-      await fs.promises.writeFile(outputFile, JSON.stringify(bundledSchema, null, 4));
+
+      /**
+       * bundling schemas into one file with $id
+       */
+      const bundledSchemaWithId = await Bundler.bundle(fileToBundle);
+      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchemaWithId.description ?? ''}`;
+      console.log(`Writing the bundled file WITH $ids to: ${outputFileWithId}`);
+      await fs.promises.writeFile(outputFileWithId, JSON.stringify(bundledSchemaWithId, null, 4));
+
+      /**
+       * removing ids from schemas and making modifications in definitions name to make sure schemas still work
+       * this is needed for tools that do not support $id feature in JSON Schema
+       */
+      const bundledSchemaWithoutIds = modifyRefsAndDefinitions(bundledSchemaWithId);
+      console.log(`Writing the bundled file WITHOUT $ids to: ${outputFileWithoutId}`);
+      await fs.promises.writeFile(outputFileWithoutId, JSON.stringify(bundledSchemaWithoutIds, null, 4));
     }catch(e) {
       throw new Error(e);
     }
@@ -60,6 +72,8 @@ function modifyRefsAndDefinitions(bundledSchema) {
   }
 
   traverse(bundledSchema, replaceRef);
+
+  return bundledSchema
 }
 
 /**
