@@ -6,7 +6,7 @@ This is a mono repository, which provides all the JSON Schema documents for vali
 
 ## Overview
 
-* This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification. There are two types of JSON Schema files, with and without **$id** feature 
+* This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification. There are two types of JSON Schema files, with and without **$id** feature. We need two versions of schemas because of the differences it tooling implementation of JSON Schema `$ref` and `$id` keywords. Some implementations treat `$id` by default as prefix reference for `$ref` and require it, therefore it is needed to properly correlate `$ref` and `$id` values. Unfortunately other tools do not understand `$id` values and fail dereferencing. This is why we need two different versions of schemas, with and without the `$id`.
 * These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool (e.g., for validation).
 * These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification can't be described with JSON Schema.
 * In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code. These packages provide access only to schemas with version larger or equal 2.0.0.
