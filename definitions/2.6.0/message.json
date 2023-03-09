@@ -131,7 +131,7 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
                   },
                   {
-                    "$ref": "http://asyncapi.com/definitions/2.5.0/messageTrait.json"
+                    "$ref": "http://asyncapi.com/definitions/2.6.0/messageTrait.json"
                   }
                 ]
               }
