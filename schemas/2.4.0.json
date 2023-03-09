@@ -777,25 +777,6 @@
                             },
                             {
                                 "$ref": "http://asyncapi.com/definitions/2.4.0/operationTrait.json"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/2.4.0/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/2.4.0/operationTrait.json"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -1038,25 +1019,6 @@
                                             },
                                             {
                                                 "$ref": "http://asyncapi.com/definitions/2.4.0/messageTrait.json"
-                                            },
-                                            {
-                                                "type": "array",
-                                                "items": [
-                                                    {
-                                                        "oneOf": [
-                                                            {
-                                                                "$ref": "http://asyncapi.com/definitions/2.4.0/Reference.json"
-                                                            },
-                                                            {
-                                                                "$ref": "http://asyncapi.com/definitions/2.4.0/messageTrait.json"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "additionalItems": true
-                                                    }
-                                                ]
                                             }
                                         ]
                                     }

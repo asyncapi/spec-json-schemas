@@ -797,25 +797,6 @@
                             },
                             {
                                 "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/operationTrait.json"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/operationTrait.json"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -1027,25 +1008,6 @@
                             },
                             {
                                 "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/messageTrait.json"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/2.0.0-rc1/messageTrait.json"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
                             }
                         ]
                     }
