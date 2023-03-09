@@ -777,6 +777,25 @@
                             },
                             {
                                 "$ref": "http://asyncapi.com/definitions/2.3.0/operationTrait.json"
+                            },
+                            {
+                                "type": "array",
+                                "items": [
+                                    {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/2.3.0/Reference.json"
+                                            },
+                                            {
+                                                "$ref": "http://asyncapi.com/definitions/2.3.0/operationTrait.json"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "object",
+                                        "additionalItems": true
+                                    }
+                                ]
                             }
                         ]
                     }
