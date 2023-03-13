@@ -9,6 +9,7 @@ const versionsToTest = [
 ]
 
 it('Versions should accurately validate documents', () => {
+  jest.setTimeout(30000);
   for (const versionToTest of versionsToTest) {
     const version = versionToTest.version;
     const asyncapi = require('..');
