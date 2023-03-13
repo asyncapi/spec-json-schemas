@@ -7,7 +7,6 @@ const versionsToTest = [
     version: '3.0.0'
   }
 ]
-
 describe("Should be able to validate", function () {
   this.timeout(30000); 
   it('all valid documents', () => {
