@@ -5629,7 +5629,19 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariables.json"
                 },
                 "messages": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/messages.json"
+                    "type": "object",
+                    "patternProperties": {
+                        "^[\\w\\d\\.\\-_]+$": {
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
+                                }
+                            ]
+                        }
+                    }
                 },
                 "securitySchemes": {
                     "type": "object",
@@ -5735,14 +5747,6 @@
                 "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
             },
             "description": "JSON objects describing schemas the API uses."
-        },
-        "http://asyncapi.com/definitions/3.0.0/messages.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/messages.json",
-            "type": "object",
-            "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
-            },
-            "description": "JSON objects describing the messages being consumed and produced by the API."
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "
