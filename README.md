@@ -54,27 +54,34 @@ go get github.com/asyncapi/spec-json-schemas/v2
 Grab a specific AsyncAPI version:
 
 ```js
-const asyncapi = require('@asyncapi/specs/schemas/2.0.0');
+const asyncapi = require('@asyncapi/specs');
 
+console.log(asyncapi.schemas['2.0.0'])
+console.log(asyncapi.schemasWithoutId['2.0.0'])
 // Do something with the schema.
 ```
 
 Get a list of supported versions:
 
 ```js
-const versions = require('@asyncapi/specs');
+const versions = require('@asyncapi/specs').schemas;
 
 console.log(versions);
-// Outputs:
+// Outputs object:
 //
 // {
-//   '1.0.0': [Object],
-//   '1.1.0': [Object]
+//   '2.0.0': [Object],
+//   '2.1.0': [Object],
+//   ...
 // }
-
-const asyncapi = versions['1.1.0'];
-
-// Do something with the schema.
+console.log(Object.keys(versions));
+// Outputs array:
+//
+// [
+//   '2.0.0',
+//   '2.1.0',
+//   ...
+// ]
 ```
 
 > **Note**

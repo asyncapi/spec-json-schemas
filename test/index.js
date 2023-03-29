@@ -15,14 +15,20 @@ describe('AsyncAPI', () => {
       const fileName = path.parse(file).name;
       
       if (skipFiles.includes(fileName)) return;
+      const asyncapi = require('..')
 
-      const asyncapi = require('..');
-
-      assert(typeof asyncapi[fileName] === 'object', `Returned object does not contain ${fileName}.`);
-
-      const asyncapiVersion = require('..')[fileName];
-      const asyncapiSchema = require(`../schemas/${fileName}.json`);
-      assert.deepStrictEqual(asyncapiVersion, asyncapiSchema, `Returned object is not schema version ${fileName}.`);
+      if (fileName.includes('-without-$id')) {
+        const schemaName = fileName.replace('-without-$id', '');
+        assert(typeof asyncapi.schemasWithoutId[schemaName] === 'object', `Returned object does not contain ${schemaName}.`);  
+        const asyncapiVersion = require('..').schemasWithoutId[schemaName];
+        const asyncapiSchema = require(`../schemas/${fileName}.json`);
+        assert.deepStrictEqual(asyncapiVersion, asyncapiSchema, `Returned object is not schema version ${schemaName}.`);  
+      } else {
+        assert(typeof asyncapi.schemas[fileName] === 'object', `Returned object does not contain ${fileName}.`);
+        const asyncapiVersion = require('..').schemas[fileName];
+        const asyncapiSchema = require(`../schemas/${fileName}.json`);
+        assert.deepStrictEqual(asyncapiVersion, asyncapiSchema, `Returned object is not schema version ${fileName}.`);  
+      }
     });
   });
 });
