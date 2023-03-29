@@ -729,25 +729,6 @@
                             },
                             {
                                 "$ref": "#/definitions/operationTrait"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "#/definitions/Reference"
-                                            },
-                                            {
-                                                "$ref": "#/definitions/operationTrait"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -934,25 +915,6 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/messageTrait"
-                                            },
-                                            {
-                                                "type": "array",
-                                                "items": [
-                                                    {
-                                                        "oneOf": [
-                                                            {
-                                                                "$ref": "#/definitions/Reference"
-                                                            },
-                                                            {
-                                                                "$ref": "#/definitions/messageTrait"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "additionalItems": true
-                                                    }
-                                                ]
                                             }
                                         ]
                                     }

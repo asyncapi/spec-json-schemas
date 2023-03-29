@@ -792,25 +792,6 @@
                             },
                             {
                                 "$ref": "#/definitions/operationTrait"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "#/definitions/Reference"
-                                            },
-                                            {
-                                                "$ref": "#/definitions/operationTrait"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
                             }
                         ]
                     }
@@ -1027,30 +1008,92 @@
                                             },
                                             {
                                                 "$ref": "#/definitions/messageTrait"
-                                            },
-                                            {
-                                                "type": "array",
-                                                "items": [
-                                                    {
-                                                        "oneOf": [
-                                                            {
-                                                                "$ref": "#/definitions/Reference"
-                                                            },
-                                                            {
-                                                                "$ref": "#/definitions/messageTrait"
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "type": "object",
-                                                        "additionalItems": true
-                                                    }
-                                                ]
                                             }
                                         ]
                                     }
                                 }
-                            }
+                            },
+                            "allOf": [
+                                {
+                                    "if": {
+                                        "not": {
+                                            "required": [
+                                                "schemaFormat"
+                                            ]
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "payload": {
+                                                "$ref": "#/definitions/schema"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "required": [
+                                            "schemaFormat"
+                                        ],
+                                        "properties": {
+                                            "schemaFormat": {
+                                                "enum": [
+                                                    "application/vnd.aai.asyncapi;version=2.0.0",
+                                                    "application/vnd.aai.asyncapi+json;version=2.0.0",
+                                                    "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                                                    "application/vnd.aai.asyncapi;version=2.1.0",
+                                                    "application/vnd.aai.asyncapi+json;version=2.1.0",
+                                                    "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                                                    "application/vnd.aai.asyncapi;version=2.2.0",
+                                                    "application/vnd.aai.asyncapi+json;version=2.2.0",
+                                                    "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                                                    "application/vnd.aai.asyncapi;version=2.3.0",
+                                                    "application/vnd.aai.asyncapi+json;version=2.3.0",
+                                                    "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                                                    "application/vnd.aai.asyncapi;version=2.4.0",
+                                                    "application/vnd.aai.asyncapi+json;version=2.4.0",
+                                                    "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                                                    "application/vnd.aai.asyncapi;version=2.5.0",
+                                                    "application/vnd.aai.asyncapi+json;version=2.5.0",
+                                                    "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                                                    "application/vnd.aai.asyncapi;version=2.6.0",
+                                                    "application/vnd.aai.asyncapi+json;version=2.6.0",
+                                                    "application/vnd.aai.asyncapi+yaml;version=2.6.0"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "payload": {
+                                                "$ref": "#/definitions/schema"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "required": [
+                                            "schemaFormat"
+                                        ],
+                                        "properties": {
+                                            "schemaFormat": {
+                                                "enum": [
+                                                    "application/schema+json;version=draft-07",
+                                                    "application/schema+yaml;version=draft-07"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "payload": {
+                                                "$ref": "#/definitions/json-schema-draft-07-schema"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
                         }
                     ]
                 }
