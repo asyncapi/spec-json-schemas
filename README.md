@@ -92,7 +92,7 @@ console.log(Object.keys(versions));
 Grab a specific AsyncAPI version:
 
 ```go
-import "github.com/asyncapi/spec_json_schemas/v2"
+import "github.com/asyncapi/spec_json_schemas/v4"
 
 func Do() {
     schema, err := spec_json_schemas.Get("1.1.0")
@@ -172,3 +172,8 @@ The manual process of creating a new version is to:
        ]
     }
     ```
+
+### Handling breaking changes
+Whenever a Breaking Change is introduced, the following steps should be taken in Go package:
+
+1. Edit `go.mod` file, and increase the version package suffix in the module name. For example, if the current version is `v2.0.0`, and you are releasing `v3.0.0`, the module name should be `github.com/asyncapi/spec-json-schemas/v3`.
