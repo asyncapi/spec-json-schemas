@@ -1,4 +1,4 @@
-module github.com/asyncapi/spec-json-schemas/v2
+module github.com/asyncapi/spec-json-schemas/v4
 
 go 1.17
 
