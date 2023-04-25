@@ -2016,7 +2016,14 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/channelMessages.json",
             "type": "object",
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
+                    }
+                ]
             },
             "description": "A map of the messages that will be sent to this channel by any application at any time. **Every message sent to this channel MUST be valid against one, and only one, of the message objects defined in this map.**"
         },
@@ -2024,29 +2031,22 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/message.json",
             "oneOf": [
                 {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    "type": "object",
+                    "required": [
+                        "oneOf"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "oneOf": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
+                            }
+                        }
+                    }
                 },
                 {
-                    "oneOf": [
-                        {
-                            "type": "object",
-                            "required": [
-                                "oneOf"
-                            ],
-                            "additionalProperties": false,
-                            "properties": {
-                                "oneOf": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
-                                    }
-                                }
-                            }
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
-                        }
-                    ]
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
                 }
             ]
         },
@@ -4927,25 +4927,6 @@
                             },
                             {
                                 "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                            },
-                            {
-                                "type": "array",
-                                "items": [
-                                    {
-                                        "oneOf": [
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                            },
-                                            {
-                                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "object",
-                                        "additionalItems": true
-                                    }
-                                ]
                             }
                         ]
                     }
