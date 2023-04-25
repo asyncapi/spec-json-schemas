@@ -7,7 +7,6 @@
   "scripts": {
     "test": "npm run build && nyc mocha",
     "build": "npm run bundle",
-    "release": "semantic-release",
     "generate:assets": "npm run build",
     "prepublishOnly": "npm run build",
     "bundle": "cd tools/bundler && npm i && npm run bundle",
@@ -38,51 +37,8 @@
   },
   "homepage": "https://github.com/asyncapi/spec-json-schemas#readme",
   "devDependencies": {
-    "@semantic-release/commit-analyzer": "^9.0.2",
-    "@semantic-release/github": "8.0.7",
-    "@semantic-release/npm": "^10.0.3",
-    "@semantic-release/release-notes-generator": "^9.0.1",
-    "conventional-changelog-conventionalcommits": "^4.2.3",
     "mocha": "^10.0.0",
-    "nyc": "^15.1.0",
-    "semantic-release": "21.0.1"
-  },
-  "release": {
-    "branches": [
-      "master",
-      {
-        "name": "next-major",
-        "prerelease": true
-      },
-      {
-        "name": "next-spec",
-        "prerelease": true
-      },
-      {
-        "name": "next-major-spec",
-        "prerelease": true
-      },
-      {
-        "name": "next-major",
-        "prerelease": true
-      }
-    ],
-    "plugins": [
-      [
-        "@semantic-release/commit-analyzer",
-        {
-          "preset": "conventionalcommits"
-        }
-      ],
-      [
-        "@semantic-release/release-notes-generator",
-        {
-          "preset": "conventionalcommits"
-        }
-      ],
-      "@semantic-release/npm",
-      "@semantic-release/github"
-    ]
+    "nyc": "^15.1.0"
   },
   "dependencies": {
     "@types/json-schema": "^7.0.11"
