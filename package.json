@@ -38,13 +38,13 @@
   },
   "homepage": "https://github.com/asyncapi/spec-json-schemas#readme",
   "devDependencies": {
-    "mocha": "^10.0.0",
-    "nyc": "^15.1.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
     "@semantic-release/github": "7.2.3",
     "@semantic-release/npm": "^7.0.3",
     "@semantic-release/release-notes-generator": "^9.0.1",
     "conventional-changelog-conventionalcommits": "^4.2.3",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
     "semantic-release": "19.0.3"
   },
   "release": {

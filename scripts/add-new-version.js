@@ -37,7 +37,7 @@ async function addNewVersion(newVersion) {
   await execute(`cp -R ./definitions/${latestVersion} ${newVersionDir}`);
 
   // Replace old version numbers with new
-  await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' \"s+${latestVersion}+${newVersion}+g\" {} +`);
+  await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' "s+${latestVersion}+${newVersion}+g" {} +`);
 
   console.log(`New version added to ${newVersionDir}`)
 }
