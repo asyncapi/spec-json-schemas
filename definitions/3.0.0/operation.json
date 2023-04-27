@@ -44,25 +44,6 @@
           },
           {
             "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-          },
-          {
-            "type": "array",
-            "items": [
-              {
-                "oneOf": [
-                  {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                  },
-                  {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                  }
-                ]
-              },
-              {
-                "type": "object",
-                "additionalItems": true
-              }
-            ]
           }
         ]
       }
