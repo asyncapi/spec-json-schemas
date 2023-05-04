@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "description": "General information about the API.",
+  "description": "The object provides metadata about the API. The metadata can be used by the clients if needed.",
   "required": [
     "version",
     "title"
@@ -35,6 +35,21 @@
     "license": {
       "$ref": "http://asyncapi.com/definitions/2.6.0/license.json"
     }
+  },
+  "example": {
+    "title": "AsyncAPI Sample App",
+    "description": "This is a sample server.",
+    "termsOfService": "https://asyncapi.org/terms/",
+    "contact": {
+      "name": "API Support",
+      "url": "https://www.asyncapi.org/support",
+      "email": "support@asyncapi.org"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.1"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/info.json"
