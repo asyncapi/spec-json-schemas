@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+    }
+  },
+  "properties": {
+    "address": {
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
+        }
+      ]
+    },
+    "channel": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+}
