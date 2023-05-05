@@ -29,26 +29,32 @@
       "description": "The version of the protocol used for connection. For instance: AMQP 0.9.1, HTTP 2.0, Kafka 1.0.0, etc."
     },
     "variables": {
+      "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
       "$ref": "http://asyncapi.com/definitions/2.6.0/serverVariables.json"
     },
     "security": {
       "type": "array",
+      "description": "A declaration of which security mechanisms can be used with this server. The list of values includes alternative security requirement objects that can be used. ",
       "items": {
         "$ref": "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json"
       }
     },
     "bindings": {
+      "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the server.",
       "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
     },
     "tags": {
       "type": "array",
+      "description": "A list of tags for logical grouping and categorization of servers.",
       "items": {
         "$ref": "http://asyncapi.com/definitions/2.6.0/tag.json"
       },
       "uniqueItems": true
     }
   },
-  "example": "http://asyncapi.com/examples/2.6.0/server.json",
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/server.json"
+  },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/server.json"
 }

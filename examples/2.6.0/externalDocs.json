@@ -1,0 +1,8 @@
+{
+  "type": "object",
+  "description": "External DocumentationObject Example",
+  "properties": {
+    "description": "Find more info here",
+    "url": "https://example.com"
+  }
+}

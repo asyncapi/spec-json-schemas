@@ -1,0 +1,8 @@
+{
+    "type": "object",
+    "description": "Tag Object Example",
+    "properties": {
+    "name": "user",
+    "description": "User-related messages"
+}
+}

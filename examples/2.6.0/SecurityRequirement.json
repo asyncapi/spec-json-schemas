@@ -1,0 +1,7 @@
+{
+    "type": "object",
+    "description": "Security Requirement Object Examples",
+    "properties": {
+      "petstore_auth": ["write:pets", "read:pets"]
+    }
+}
