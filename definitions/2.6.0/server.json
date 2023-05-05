@@ -13,17 +13,20 @@
   },
   "properties": {
     "url": {
-      "type": "string"
+      "type": "string",
+      "description": "A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the AsyncAPI document is being served."
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "An optional string describing the host designated by the URL. CommonMark syntax MAY be used for rich text representation."
     },
     "protocol": {
       "type": "string",
-      "description": "The transfer protocol."
+      "description": "The protocol this URL supports for connection. Supported protocol include, but are not limited to: amqp, amqps, http, https, ibmmq, jms, kafka, kafka-secure, anypointmq, mqtt, secure-mqtt, solace, stomp, stomps, ws, wss, mercure, googlepubsub."
     },
     "protocolVersion": {
-      "type": "string"
+      "type": "string",
+      "description": "The version of the protocol used for connection. For instance: AMQP 0.9.1, HTTP 2.0, Kafka 1.0.0, etc."
     },
     "variables": {
       "$ref": "http://asyncapi.com/definitions/2.6.0/serverVariables.json"
