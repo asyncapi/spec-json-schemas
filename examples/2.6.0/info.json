@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "description": "Info Object Example",
+    "properties": {
+      "title": "AsyncAPI Sample App",
+      "description": "This is a sample server.",
+      "termsOfService": "https://asyncapi.org/terms/",
+      "contact": {
+        "$ref": "http://asyncapi.com/examples/2.6.0/contact.json"
+      },
+      "license": {
+        "$ref": "http://asyncapi.com/examples/2.6.0/license.json"
+      }
+    }
+}

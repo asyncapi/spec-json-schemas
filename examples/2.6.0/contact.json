@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "description": "Contact Object Example",
+  "properties": {
+  "name": "API Support",
+  "url": "https://www.example.com/support",
+  "email": "support@example.com"
+  }
+}

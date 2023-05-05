@@ -37,19 +37,7 @@
     }
   },
   "example": {
-    "title": "AsyncAPI Sample App",
-    "description": "This is a sample server.",
-    "termsOfService": "https://asyncapi.org/terms/",
-    "contact": {
-      "name": "API Support",
-      "url": "https://www.asyncapi.org/support",
-      "email": "support@asyncapi.org"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
-    },
-    "version": "1.0.1"
+    "$ref": "http://asyncapi.com/examples/2.6.0/info.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/info.json"
