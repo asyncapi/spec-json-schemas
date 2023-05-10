@@ -1,8 +1,4 @@
 {
-  "type": "object",
-  "description": "License Object Example",
-  "properties": {
-    "name": "Apache 2.0",
-    "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
-  }
+  "name": "Apache 2.0",
+  "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
 }
