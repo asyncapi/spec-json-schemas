@@ -81,7 +81,33 @@
       "type": "array",
       "description": "List of examples.",
       "items": {
-        "type": "object"
+        "type": "object",
+        "additionalProperties": false,
+        "anyOf": [
+          {
+            "required": ["payload"]
+          },
+          {
+            "required": ["headers"]
+          }
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Machine readable name of the message example."
+          },
+          "summary": {
+            "type": "string",
+            "description": "A brief summary of the message example."
+          },
+          "headers": {
+            "type": "object",
+            "description": "Schema definition of the application headers."
+          },
+          "payload": {
+            "description": "Definition of the message payload. It can be of any type"
+          }
+        }
       }
     },
     "bindings": {
@@ -89,7 +115,7 @@
     }
   },
   "example": {
-    "$ref":  "http://asyncapi.com/examples/2.6.0/messageTrait.json"
+    "$ref": "http://asyncapi.com/examples/2.6.0/messageTrait.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/messageTrait.json"

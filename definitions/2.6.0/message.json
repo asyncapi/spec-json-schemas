@@ -93,6 +93,7 @@
             },
             "examples": {
               "type": "array",
+              "description": "List of examples.",
               "items": {
                 "type": "object",
                 "additionalProperties": false,
@@ -114,9 +115,12 @@
                     "description": "A brief summary of the message example."
                   },
                   "headers": {
-                    "type": "object"
+                    "type": "object",
+                    "description": "Schema definition of the application headers."
                   },
-                  "payload": {}
+                  "payload": {
+                    "description": "Definition of the message payload. It can be of any type"
+                  }
                 }
               }
             },
@@ -268,6 +272,9 @@
       ]
     }
   ],
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/message.json"
+  },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/message.json"
 }
