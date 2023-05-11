@@ -19,6 +19,22 @@
     "channel": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
     },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      }
+    },
+    "reply": {
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+        }
+      ]
+    },
     "traits": {
       "type": "array",
       "items": {
