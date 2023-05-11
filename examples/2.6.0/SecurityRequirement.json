@@ -1,3 +1,5 @@
-{
-  "petstore_auth": ["write:pets", "read:pets"]
-}
+[
+  {
+    "petstore_auth": ["write:pets", "read:pets"]
+  }
+]

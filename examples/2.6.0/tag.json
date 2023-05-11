@@ -1,4 +1,6 @@
-{
-  "name": "user",
-  "description": "User-related messages"
-}
+[
+  {
+    "name": "user",
+    "description": "User-related messages"
+  }
+]
