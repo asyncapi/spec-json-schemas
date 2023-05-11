@@ -8,15 +8,18 @@
   "properties": {
     "type": {
       "type": "string",
+      "description": "The type of the security scheme. ",
       "enum": [
         "httpApiKey"
       ]
     },
     "name": {
-      "type": "string"
+      "type": "string",
+      "description": "The name of the header, query or cookie parameter to be used."
     },
     "in": {
       "type": "string",
+      "description": "The location of the API key. ",
       "enum": [
         "header",
         "query",
@@ -24,7 +27,8 @@
       ]
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A short description for security scheme."
     }
   },
   "patternProperties": {

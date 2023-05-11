@@ -7,21 +7,25 @@
   "properties": {
     "scheme": {
       "type": "string",
+      "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.",
       "enum": [
         "bearer"
       ]
     },
     "bearerFormat": {
-      "type": "string"
+      "type": "string",
+      "description": "A hint to the client to identify how the bearer token is formatted."
     },
     "type": {
       "type": "string",
+      "description": "The type of the security scheme. ",
       "enum": [
         "http"
       ]
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A short description for security scheme."
     }
   },
   "patternProperties": {

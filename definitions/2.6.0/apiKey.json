@@ -7,19 +7,22 @@
   "properties": {
     "type": {
       "type": "string",
+      "description": "The type of the security scheme.",
       "enum": [
         "apiKey"
       ]
     },
     "in": {
       "type": "string",
+      "description": "The location of the API key. ",
       "enum": [
         "user",
         "password"
       ]
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A short description for security scheme."
     }
   },
   "patternProperties": {
