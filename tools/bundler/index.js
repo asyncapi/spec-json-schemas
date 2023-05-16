@@ -46,9 +46,11 @@ console.log(`Using the following output directory: ${outputDirectory}`);
             if (err) {
               throw new Error(err);
             }
-            // replace the example property with the returned property
-            jsonFile.example = refData;
-
+            // Delete the referenced example property
+            delete jsonFile.example;
+            // create a new examples property
+            jsonFile.examples = refData;
+            
             Bundler.add(jsonFile);
           });
         } else {

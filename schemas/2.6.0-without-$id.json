@@ -122,7 +122,7 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "name": "API Support",
                     "url": "https://www.example.com/support",
@@ -152,7 +152,7 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "name": "Apache 2.0",
                     "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
@@ -188,7 +188,7 @@
             "type": "string",
             "description": "A simple object to allow referencing other components in the specification, internally and externally.",
             "format": "uri-reference",
-            "example": [
+            "examples": [
                 {
                     "$ref": "#/components/schemas/Pet"
                 }
@@ -248,7 +248,7 @@
                     "uniqueItems": true
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "url": "development.gigantic-server.com",
                     "description": "Development server",
@@ -316,7 +316,7 @@
                 },
                 "uniqueItems": true
             },
-            "example": [
+            "examples": [
                 {
                     "petstore_auth": [
                         "write:pets",
@@ -376,7 +376,7 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "name": "user",
                     "description": "User-related messages"
@@ -458,7 +458,7 @@
                     "$ref": "#/definitions/bindingsObject"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "description": "This channel is used to exchange messages about users signing up",
                     "subscribe": {
@@ -533,7 +533,7 @@
                     }
                 ]
             },
-            "example": [
+            "examples": [
                 {
                     "user/{userId}/signup": {
                         "parameters": {
@@ -575,7 +575,7 @@
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "user/{userId}/signup": {
                         "parameters": {
@@ -695,7 +695,7 @@
                     }
                 }
             ],
-            "example": [
+            "examples": [
                 {
                     "type": "string",
                     "format": "email"
@@ -1024,7 +1024,7 @@
                     "$ref": "#/definitions/message"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "user/signedup": {
                         "subscribe": {
@@ -1080,7 +1080,7 @@
                     "$ref": "#/definitions/bindingsObject"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "bindings": {
                         "amqp": {
@@ -1370,7 +1370,7 @@
                     ]
                 }
             ],
-            "example": [
+            "examples": [
                 {
                     "messageId": "userSignup",
                     "name": "UserSignup",
@@ -1488,7 +1488,7 @@
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "description": "Default Correlation ID",
                     "location": "$message.header#/correlationId"
@@ -1615,7 +1615,7 @@
                     "$ref": "#/definitions/bindingsObject"
                 }
             },
-            "example": [
+            "examples": [
                 {
                     "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
                     "contentType": "application/json"
@@ -2364,7 +2364,7 @@
                     "$ref": "#/definitions/SaslSecurityScheme"
                 }
             ],
-            "example": [
+            "examples": [
                 {
                     "type": "userPassword"
                 }
@@ -2393,12 +2393,12 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "userPassword"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "apiKey": {
             "type": "object",
@@ -2432,13 +2432,13 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "apiKey",
                     "in": "user"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "X509": {
             "type": "object",
@@ -2463,12 +2463,12 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "X509"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "symmetricEncryption": {
             "type": "object",
@@ -2493,12 +2493,12 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "symmetricEncryption"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "asymmetricEncryption": {
             "type": "object",
@@ -2655,14 +2655,14 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "httpApiKey",
                     "name": "api_key",
                     "in": "header"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "oauth2Flows": {
             "type": "object",
@@ -2804,7 +2804,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": [
+            "examples": [
                 {
                     "type": "oauth2",
                     "flows": {
@@ -2897,12 +2897,12 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "scramSha512"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "SaslScramSecurityScheme": {
             "type": "object",
@@ -2928,12 +2928,12 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "scramSha512"
                 }
-            ],
-            "additionalProperties": false
+            ]
         },
         "SaslGssapiSecurityScheme": {
             "type": "object",
@@ -2958,12 +2958,12 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "example": [
+            "additionalProperties": false,
+            "examples": [
                 {
                     "type": "scramSha512"
                 }
-            ],
-            "additionalProperties": false
+            ]
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "
