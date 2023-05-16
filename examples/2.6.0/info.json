@@ -4,10 +4,13 @@
     "description": "This is a sample server.",
     "termsOfService": "https://asyncapi.org/terms/",
     "contact": {
-      "$ref": "http://asyncapi.com/examples/2.6.0/contact.json"
+      "name": "API Support",
+      "url": "https://www.example.com/support",
+      "email": "support@example.com"
     },
     "license": {
-      "$ref": "http://asyncapi.com/examples/2.6.0/license.json"
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     }
   }
 ]

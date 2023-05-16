@@ -99,7 +99,7 @@
         },
         "contact": {
             "type": "object",
-            "description": "Contact information for the owners of the API.",
+            "description": "Contact information for the exposed API.",
             "additionalProperties": false,
             "properties": {
                 "name": {
@@ -121,7 +121,14 @@
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "#/definitions/specificationExtension"
                 }
-            }
+            },
+            "example": [
+                {
+                    "name": "API Support",
+                    "url": "https://www.example.com/support",
+                    "email": "support@example.com"
+                }
+            ]
         },
         "license": {
             "type": "object",
@@ -144,7 +151,13 @@
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "#/definitions/specificationExtension"
                 }
-            }
+            },
+            "example": [
+                {
+                    "name": "Apache 2.0",
+                    "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+                }
+            ]
         },
         "servers": {
             "description": "An object representing multiple servers.",
@@ -173,11 +186,17 @@
         },
         "ReferenceObject": {
             "type": "string",
-            "format": "uri-reference"
+            "description": "A simple object to allow referencing other components in the specification, internally and externally.",
+            "format": "uri-reference",
+            "example": [
+                {
+                    "$ref": "#/components/schemas/Pet"
+                }
+            ]
         },
         "server": {
             "type": "object",
-            "description": "An object representing a Server.",
+            "description": "An object representing a message broker, a server or any other kind of computer program capable of sending and/or receiving data",
             "required": [
                 "url",
                 "protocol"
@@ -190,41 +209,57 @@
             },
             "properties": {
                 "url": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the AsyncAPI document is being served."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An optional string describing the host designated by the URL. CommonMark syntax MAY be used for rich text representation."
                 },
                 "protocol": {
                     "type": "string",
-                    "description": "The transfer protocol."
+                    "description": "The protocol this URL supports for connection. Supported protocol include, but are not limited to: amqp, amqps, http, https, ibmmq, jms, kafka, kafka-secure, anypointmq, mqtt, secure-mqtt, solace, stomp, stomps, ws, wss, mercure, googlepubsub."
                 },
                 "protocolVersion": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The version of the protocol used for connection. For instance: AMQP 0.9.1, HTTP 2.0, Kafka 1.0.0, etc."
                 },
                 "variables": {
+                    "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
                     "$ref": "#/definitions/serverVariables"
                 },
                 "security": {
                     "type": "array",
+                    "description": "A declaration of which security mechanisms can be used with this server. The list of values includes alternative security requirement objects that can be used. ",
                     "items": {
                         "$ref": "#/definitions/SecurityRequirement"
                     }
                 },
                 "bindings": {
+                    "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the server.",
                     "$ref": "#/definitions/bindingsObject"
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of servers.",
                     "items": {
                         "$ref": "#/definitions/tag"
                     },
                     "uniqueItems": true
                 }
-            }
+            },
+            "example": [
+                {
+                    "url": "development.gigantic-server.com",
+                    "description": "Development server",
+                    "protocol": "kafka",
+                    "protocolVersion": "1.0.0"
+                }
+            ]
         },
         "serverVariables": {
             "type": "object",
+            "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
             "additionalProperties": {
                 "oneOf": [
                     {
@@ -248,19 +283,23 @@
             "properties": {
                 "enum": {
                     "type": "array",
+                    "description": "An enumeration of string values to be used if the substitution options are from a limited set.",
                     "items": {
                         "type": "string"
                     },
                     "uniqueItems": true
                 },
                 "default": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The default value to use for substitution, and to send, if an alternate value is not supplied."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An optional description for the server variable. "
                 },
                 "examples": {
                     "type": "array",
+                    "description": "An array of examples of the server variable.",
                     "items": {
                         "type": "string"
                     }
@@ -269,16 +308,26 @@
         },
         "SecurityRequirement": {
             "type": "object",
+            "description": "Lists of the required security schemes that can be used to execute an operation",
             "additionalProperties": {
                 "type": "array",
                 "items": {
                     "type": "string"
                 },
                 "uniqueItems": true
-            }
+            },
+            "example": [
+                {
+                    "petstore_auth": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
         },
         "bindingsObject": {
             "type": "object",
+            "description": "Map describing protocol-specific definitions for a server.",
             "additionalProperties": true,
             "properties": {
                 "http": {},
@@ -303,18 +352,22 @@
         },
         "tag": {
             "type": "object",
+            "description": "Allows adding meta data to a single tag.",
             "additionalProperties": false,
             "required": [
                 "name"
             ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the tag."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for the tag."
                 },
                 "externalDocs": {
+                    "description": "Additional external documentation for this tag.",
                     "$ref": "#/definitions/externalDocs"
                 }
             },
@@ -322,7 +375,13 @@
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "#/definitions/specificationExtension"
                 }
-            }
+            },
+            "example": [
+                {
+                    "name": "user",
+                    "description": "User-related messages"
+                }
+            ]
         },
         "externalDocs": {
             "type": "object",
@@ -359,6 +418,7 @@
         },
         "channelItem": {
             "type": "object",
+            "description": "Describes the operations available on a single channel.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -397,10 +457,72 @@
                 "bindings": {
                     "$ref": "#/definitions/bindingsObject"
                 }
-            }
+            },
+            "example": [
+                {
+                    "description": "This channel is used to exchange messages about users signing up",
+                    "subscribe": {
+                        "summary": "A user signed up.",
+                        "message": {
+                            "description": "A longer description of the message",
+                            "payload": {
+                                "type": "object",
+                                "properties": {
+                                    "user": {
+                                        "$ref": "#/components/schemas/user"
+                                    },
+                                    "signup": {
+                                        "$ref": "#/components/schemas/signup"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "bindings": {
+                        "amqp": {
+                            "is": "queue",
+                            "queue": {
+                                "exclusive": true
+                            }
+                        }
+                    }
+                },
+                {
+                    "subscribe": {
+                        "message": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/messages/signup"
+                                },
+                                {
+                                    "$ref": "#/components/messages/login"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "description": "This application publishes WebUICommand messages to an AMQP queue on RabbitMQ brokers in the Staging and Production environments.",
+                    "servers": [
+                        "rabbitmqBrokerInProd",
+                        "rabbitmqBrokerInStaging"
+                    ],
+                    "subscribe": {
+                        "message": {
+                            "$ref": "#/components/messages/WebUICommand"
+                        }
+                    },
+                    "bindings": {
+                        "amqp": {
+                            "is": "queue"
+                        }
+                    }
+                }
+            ]
         },
         "parameters": {
             "type": "object",
+            "description": "JSON objects describing re-usable channel parameters.",
             "additionalProperties": {
                 "oneOf": [
                     {
@@ -411,9 +533,28 @@
                     }
                 ]
             },
-            "description": "JSON objects describing re-usable channel parameters."
+            "example": [
+                {
+                    "user/{userId}/signup": {
+                        "parameters": {
+                            "userId": {
+                                "description": "Id of the user.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "parameter": {
+            "description": "Describes a parameter included in a channel name.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -433,9 +574,30 @@
                     "description": "A runtime expression that specifies the location of the parameter value",
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 }
-            }
+            },
+            "example": [
+                {
+                    "user/{userId}/signup": {
+                        "parameters": {
+                            "userId": {
+                                "description": "Id of the user.",
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "location": "$message.payload#/user/id"
+                            }
+                        },
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "schema": {
+            "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays.",
             "allOf": [
                 {
                     "$ref": "#/definitions/json-schema-draft-07-schema"
@@ -518,14 +680,42 @@
                             "$ref": "#/definitions/schema"
                         },
                         "discriminator": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. "
                         },
                         "externalDocs": {
+                            "description": "Additional external documentation for this schema.",
                             "$ref": "#/definitions/externalDocs"
                         },
                         "deprecated": {
                             "type": "boolean",
-                            "default": false
+                            "default": false,
+                            "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage"
+                        }
+                    }
+                }
+            ],
+            "example": [
+                {
+                    "type": "string",
+                    "format": "email"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "name"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "$ref": "#/components/schemas/Address"
+                        },
+                        "age": {
+                            "type": "integer",
+                            "format": "int32",
+                            "minimum": 0
                         }
                     }
                 }
@@ -776,6 +966,7 @@
         },
         "operation": {
             "type": "object",
+            "description": "Describes a publish or a subscribe operation. This provides a place to document how and why messages are sent and received.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -785,6 +976,7 @@
             "properties": {
                 "traits": {
                     "type": "array",
+                    "description": "A list of traits to apply to the operation object.",
                     "items": {
                         "oneOf": [
                             {
@@ -797,19 +989,23 @@
                     }
                 },
                 "summary": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short summary of what the operation is about."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A verbose explanation of the operation."
                 },
                 "security": {
                     "type": "array",
+                    "description": "A declaration of which security mechanisms are associated with this operation.",
                     "items": {
                         "$ref": "#/definitions/SecurityRequirement"
                     }
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of operations.",
                     "items": {
                         "$ref": "#/definitions/tag"
                     },
@@ -827,10 +1023,22 @@
                 "message": {
                     "$ref": "#/definitions/message"
                 }
-            }
+            },
+            "example": [
+                {
+                    "user/signedup": {
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "operationTrait": {
             "type": "object",
+            "description": "Describes a trait that MAY be applied to an Operation Object.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -839,13 +1047,16 @@
             },
             "properties": {
                 "summary": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short summary of what the operation is about."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A verbose explanation of the operation."
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of operations.",
                     "items": {
                         "$ref": "#/definitions/tag"
                     },
@@ -855,10 +1066,12 @@
                     "$ref": "#/definitions/externalDocs"
                 },
                 "operationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API."
                 },
                 "security": {
                     "type": "array",
+                    "description": "A declaration of which security mechanisms are associated with this operation. ",
                     "items": {
                         "$ref": "#/definitions/SecurityRequirement"
                     }
@@ -866,7 +1079,16 @@
                 "bindings": {
                     "$ref": "#/definitions/bindingsObject"
                 }
-            }
+            },
+            "example": [
+                {
+                    "bindings": {
+                        "amqp": {
+                            "ack": false
+                        }
+                    }
+                }
+            ]
         },
         "message": {
             "oneOf": [
@@ -965,6 +1187,7 @@
                                 },
                                 "examples": {
                                     "type": "array",
+                                    "description": "List of examples.",
                                     "items": {
                                         "type": "object",
                                         "additionalProperties": false,
@@ -990,9 +1213,12 @@
                                                 "description": "A brief summary of the message example."
                                             },
                                             "headers": {
-                                                "type": "object"
+                                                "type": "object",
+                                                "description": "Schema definition of the application headers."
                                             },
-                                            "payload": {}
+                                            "payload": {
+                                                "description": "Definition of the message payload. It can be of any type"
+                                            }
                                         }
                                     }
                                 },
@@ -1143,10 +1369,105 @@
                         }
                     ]
                 }
+            ],
+            "example": [
+                {
+                    "messageId": "userSignup",
+                    "name": "UserSignup",
+                    "title": "User signup",
+                    "summary": "Action to sign a user up.",
+                    "description": "A longer description",
+                    "contentType": "application/json",
+                    "tags": [
+                        {
+                            "name": "user"
+                        },
+                        {
+                            "name": "signup"
+                        },
+                        {
+                            "name": "register"
+                        }
+                    ],
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "correlationId": {
+                                "description": "Correlation ID set by application",
+                                "type": "string"
+                            },
+                            "applicationInstanceId": {
+                                "description": "Unique identifier for a given instance of the publishing application",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "payload": {
+                        "type": "object",
+                        "properties": {
+                            "user": {
+                                "$ref": "#/components/schemas/userCreate"
+                            },
+                            "signup": {
+                                "$ref": "#/components/schemas/signup"
+                            }
+                        }
+                    },
+                    "correlationId": {
+                        "description": "Default Correlation ID",
+                        "location": "$message.header#/correlationId"
+                    },
+                    "traits": [
+                        {
+                            "$ref": "#/components/messageTraits/commonHeaders"
+                        }
+                    ],
+                    "examples": [
+                        {
+                            "name": "SimpleSignup",
+                            "summary": "A simple UserSignup example message",
+                            "headers": {
+                                "correlationId": "my-correlation-id",
+                                "applicationInstanceId": "myInstanceId"
+                            },
+                            "payload": {
+                                "user": {
+                                    "someUserKey": "someUserValue"
+                                },
+                                "signup": {
+                                    "someSignupKey": "someSignupValue"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "messageId": "userSignup",
+                    "name": "UserSignup",
+                    "title": "User signup",
+                    "summary": "Action to sign a user up.",
+                    "description": "A longer description",
+                    "tags": [
+                        {
+                            "name": "user"
+                        },
+                        {
+                            "name": "signup"
+                        },
+                        {
+                            "name": "register"
+                        }
+                    ],
+                    "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+                    "payload": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    }
+                }
             ]
         },
         "correlationId": {
             "type": "object",
+            "description": "An object that specifies an identifier at design time that can used for message tracing and correlation.",
             "required": [
                 "location"
             ],
@@ -1166,10 +1487,17 @@
                     "description": "A runtime expression that specifies the location of the correlation ID",
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 }
-            }
+            },
+            "example": [
+                {
+                    "description": "Default Correlation ID",
+                    "location": "$message.header#/correlationId"
+                }
+            ]
         },
         "messageTrait": {
             "type": "object",
+            "description": "Describes a trait that MAY be applied to a Message Object.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -1178,12 +1506,15 @@
             },
             "properties": {
                 "schemaFormat": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A string containing the name of the schema format/language used to define the message payload."
                 },
                 "contentType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The content type to use when encoding/decoding a message's payload."
                 },
                 "headers": {
+                    "description": "Schema definition of the application headers.",
                     "allOf": [
                         {
                             "$ref": "#/definitions/schema"
@@ -1198,9 +1529,11 @@
                     ]
                 },
                 "messageId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique string used to identify the message. The id MUST be unique among all messages described in the API."
                 },
                 "correlationId": {
+                    "description": "Definition of the correlation ID used for message tracing or matching.",
                     "oneOf": [
                         {
                             "$ref": "#/definitions/Reference"
@@ -1212,6 +1545,7 @@
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of messages.",
                     "items": {
                         "$ref": "#/definitions/tag"
                     },
@@ -1242,14 +1576,51 @@
                 },
                 "examples": {
                     "type": "array",
+                    "description": "List of examples.",
                     "items": {
-                        "type": "object"
+                        "type": "object",
+                        "additionalProperties": false,
+                        "anyOf": [
+                            {
+                                "required": [
+                                    "payload"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "headers"
+                                ]
+                            }
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Machine readable name of the message example."
+                            },
+                            "summary": {
+                                "type": "string",
+                                "description": "A brief summary of the message example."
+                            },
+                            "headers": {
+                                "type": "object",
+                                "description": "Schema definition of the application headers."
+                            },
+                            "payload": {
+                                "description": "Definition of the message payload. It can be of any type"
+                            }
+                        }
                     }
                 },
                 "bindings": {
                     "$ref": "#/definitions/bindingsObject"
                 }
-            }
+            },
+            "example": [
+                {
+                    "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+                    "contentType": "application/json"
+                }
+            ]
         },
         "openapiSchema_3_0": {
             "type": "object",
@@ -1963,6 +2334,7 @@
             "description": "JSON objects describing the messages being consumed and produced by the API."
         },
         "SecurityScheme": {
+            "description": "Defines a security scheme that can be used by the operations.",
             "oneOf": [
                 {
                     "$ref": "#/definitions/userPassword"
@@ -1991,6 +2363,11 @@
                 {
                     "$ref": "#/definitions/SaslSecurityScheme"
                 }
+            ],
+            "example": [
+                {
+                    "type": "userPassword"
+                }
             ]
         },
         "userPassword": {
@@ -2001,12 +2378,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "userPassword"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2014,6 +2393,11 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "userPassword"
+                }
+            ],
             "additionalProperties": false
         },
         "apiKey": {
@@ -2025,19 +2409,22 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "apiKey"
                     ]
                 },
                 "in": {
                     "type": "string",
+                    "description": "The location of the API key. ",
                     "enum": [
                         "user",
                         "password"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2045,6 +2432,12 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "apiKey",
+                    "in": "user"
+                }
+            ],
             "additionalProperties": false
         },
         "X509": {
@@ -2057,10 +2450,12 @@
                     "type": "string",
                     "enum": [
                         "X509"
-                    ]
+                    ],
+                    "description": "The type of the security scheme."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2068,6 +2463,11 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "X509"
+                }
+            ],
             "additionalProperties": false
         },
         "symmetricEncryption": {
@@ -2078,12 +2478,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "symmetricEncryption"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2091,6 +2493,11 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "symmetricEncryption"
+                }
+            ],
             "additionalProperties": false
         },
         "asymmetricEncryption": {
@@ -2101,12 +2508,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "asymmetricEncryption"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2135,6 +2544,7 @@
                 "properties": {
                     "scheme": {
                         "type": "string",
+                        "description": "A short description for security scheme.",
                         "enum": [
                             "bearer"
                         ]
@@ -2148,13 +2558,16 @@
             ],
             "properties": {
                 "scheme": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 },
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "http"
                     ]
@@ -2176,21 +2589,25 @@
             "properties": {
                 "scheme": {
                     "type": "string",
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.",
                     "enum": [
                         "bearer"
                     ]
                 },
                 "bearerFormat": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A hint to the client to identify how the bearer token is formatted."
                 },
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "http"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2210,15 +2627,18 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "httpApiKey"
                     ]
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the header, query or cookie parameter to be used."
                 },
                 "in": {
                     "type": "string",
+                    "description": "The location of the API key. ",
                     "enum": [
                         "header",
                         "query",
@@ -2226,7 +2646,8 @@
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2234,10 +2655,18 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "httpApiKey",
+                    "name": "api_key",
+                    "in": "header"
+                }
+            ],
             "additionalProperties": false
         },
         "oauth2Flows": {
             "type": "object",
+            "description": "Allows configuration of the supported OAuth Flows.",
             "required": [
                 "type",
                 "flows"
@@ -2245,17 +2674,20 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "A short description for security scheme.",
                     "enum": [
                         "oauth2"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 },
                 "flows": {
                     "type": "object",
                     "properties": {
                         "implicit": {
+                            "description": "Configuration for the OAuth Implicit flow.",
                             "allOf": [
                                 {
                                     "$ref": "#/definitions/oauth2Flow"
@@ -2276,6 +2708,7 @@
                             ]
                         },
                         "password": {
+                            "description": "Configuration for the OAuth Resource Owner Protected Credentials flow.",
                             "allOf": [
                                 {
                                     "$ref": "#/definitions/oauth2Flow"
@@ -2296,6 +2729,7 @@
                             ]
                         },
                         "clientCredentials": {
+                            "description": "Configuration for the OAuth Client Credentials flow.",
                             "allOf": [
                                 {
                                     "$ref": "#/definitions/oauth2Flow"
@@ -2316,6 +2750,7 @@
                             ]
                         },
                         "authorizationCode": {
+                            "description": "Configuration for the OAuth Authorization Code flow.",
                             "allOf": [
                                 {
                                     "$ref": "#/definitions/oauth2Flow"
@@ -2341,20 +2776,25 @@
         },
         "oauth2Flow": {
             "type": "object",
+            "description": "Configuration details for a supported OAuth Flow",
             "properties": {
                 "authorizationUrl": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The authorization URL to be used for this flow. This MUST be in the form of an absolute URL."
                 },
                 "tokenUrl": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL."
                 },
                 "refreshUrl": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL."
                 },
                 "scopes": {
+                    "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it.",
                     "$ref": "#/definitions/oauth2Scopes"
                 }
             },
@@ -2363,7 +2803,29 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "example": [
+                {
+                    "type": "oauth2",
+                    "flows": {
+                        "implicit": {
+                            "authorizationUrl": "https://example.com/api/oauth/dialog",
+                            "scopes": {
+                                "write:pets": "modify pets in your account",
+                                "read:pets": "read your pets"
+                            }
+                        },
+                        "authorizationCode": {
+                            "authorizationUrl": "https://example.com/api/oauth/dialog",
+                            "tokenUrl": "https://example.com/api/oauth/token",
+                            "scopes": {
+                                "write:pets": "modify pets in your account",
+                                "read:pets": "read your pets"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "oauth2Scopes": {
             "type": "object",
@@ -2420,12 +2882,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. Valid values",
                     "enum": [
                         "plain"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2433,6 +2897,11 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "scramSha512"
+                }
+            ],
             "additionalProperties": false
         },
         "SaslScramSecurityScheme": {
@@ -2443,13 +2912,15 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "scramSha256",
                         "scramSha512"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2457,6 +2928,11 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "scramSha512"
+                }
+            ],
             "additionalProperties": false
         },
         "SaslGssapiSecurityScheme": {
@@ -2467,12 +2943,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "gssapi"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2480,6 +2958,11 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "example": [
+                {
+                    "type": "scramSha512"
+                }
+            ],
             "additionalProperties": false
         }
     },

@@ -2,7 +2,6 @@ const path = require("path");
 const fs = require("fs");
 const traverse = require("json-schema-traverse");
 const definitionsDirectory = path.resolve(__dirname, "../../definitions");
-const examplesDirectory = path.resolve(__dirname, "../../examples");
 const outputDirectory = path.resolve(__dirname, "../../schemas");
 const JSON_SCHEMA_PROP_NAME = "json-schema-draft-07-schema";
 console.log(
@@ -41,17 +40,18 @@ console.log(`Using the following output directory: ${outputDirectory}`);
 
       const definitionJson = definitionFiles.map((file) => JSON.parse(file));
       for (const jsonFile of definitionJson) {
-        Bundler.add(jsonFile);
+        if (jsonFile.example) {
+          loadRefProperties(jsonFile.example, (err, data) => {
+            if (err) {
+              throw new Error(err);
+            }
+            jsonFile.example = data;
+            Bundler.add(jsonFile);
+          });
+        } else {
+          Bundler.add(jsonFile);
+        }
       }
-      // if (fs.existsSync(path.resolve(examplesDirectory, version))) {
-      //   const exampleVersionDir = path.resolve(examplesDirectory, version);
-      //   const examples = await fs.promises.readdir(exampleVersionDir);
-      //   const exampleFiles = examples.map((file) => fs.readFileSync(path.resolve(exampleVersionDir, file)))
-      //   const exampleJson = exampleFiles.map((file) => JSON.parse(file))
-      //   for(const exampleFile of exampleJson){
-      //     // Bundler.add(exampleFile);
-      //   }
-      // }
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
       const fileToBundle = await Bundler.get(filePathToBundle);
 
@@ -88,7 +88,25 @@ console.log(`Using the following output directory: ${outputDirectory}`);
   console.log("done");
 })();
 
+/**
+ * function used to extract example schemas
+ */
 
+function loadRefProperties(filePath, cb) {
+  const schemaPath = filePath.$ref;
+  const versionPath = schemaPath.split("examples")[1];
+  fs.readFile(`../../examples${versionPath}`, (err, fileData) => {
+    if (err) {
+      return cb && cb(err);
+    }
+    try {
+      const object = JSON.parse(fileData);
+      return cb && cb(null, object);
+    } catch (err) {
+      return cb && cb(err);
+    }
+  });
+}
 
 /**
  * we first update definitions from URL to normal names

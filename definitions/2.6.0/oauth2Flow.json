@@ -29,7 +29,7 @@
   },
   "additionalProperties": false,
   "example": {
-    "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
+    "$ref": "http://asyncapi.com/examples/2.6.0/oauth2Flow.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
