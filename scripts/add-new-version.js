@@ -50,7 +50,7 @@ async function addNewVersion(newVersion) {
   ).trim();
 
   await execute(`cp -R ./definitions/${latestVersion} ${newVersionDir}`);
-    await execute(`cp -R ./definitions/${latestExampleVersion} ${newExampleVersionDir}`);
+  await execute(`cp -R ./examples/${latestExampleVersion} ${newExampleVersionDir}`);
 
   // Replace old version numbers with new
   await execute(

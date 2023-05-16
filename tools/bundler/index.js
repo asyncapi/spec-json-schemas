@@ -41,11 +41,14 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const definitionJson = definitionFiles.map((file) => JSON.parse(file));
       for (const jsonFile of definitionJson) {
         if (jsonFile.example) {
-          loadRefProperties(jsonFile.example, (err, data) => {
+          // Replaced the example property with the referenced example property
+          loadRefProperties(jsonFile.example, (err, refData) => {
             if (err) {
               throw new Error(err);
             }
-            jsonFile.example = data;
+            // replace the example property with the returned property
+            jsonFile.example = refData;
+
             Bundler.add(jsonFile);
           });
         } else {
@@ -89,12 +92,14 @@ console.log(`Using the following output directory: ${outputDirectory}`);
 })();
 
 /**
- * function used to extract example schemas
+ * Extract file data from reference file path
  */
 
 function loadRefProperties(filePath, cb) {
   const schemaPath = filePath.$ref;
+  // first we need to turn the path to an absolute file path instead of a generic url
   const versionPath = schemaPath.split("examples")[1];
+  // we append the extracted file path to the examples dir to read the file
   fs.readFile(`../../examples${versionPath}`, (err, fileData) => {
     if (err) {
       return cb && cb(err);
