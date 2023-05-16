@@ -16,8 +16,7 @@ const versionRegex =
  */
 function execute(command) {
   return new Promise((resolve, reject) => {
-    exec(command, function (error, stdout, stderr) {
-      //NOSONAR
+    exec(command, function (error, stdout, stderr) { //NOSONAR
       if (!error) resolve(stdout);
       console.error(stderr);
       reject(error);
