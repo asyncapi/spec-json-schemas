@@ -55,7 +55,6 @@ console.log(`Using the following output directory: ${outputDirectory}`);
   console.log('done');
 })();
 
-
 /**
  * we first update definitions from URL to normal names
  * than update refs to point to new definitions, always inline never remote
@@ -72,6 +71,8 @@ function modifyRefsAndDefinitions(bundledSchema) {
   }
 
   traverse(bundledSchema, replaceRef);
+  traverse(bundledSchema.definitions.avroSchema_v1, updateAvro);
+  traverse(bundledSchema.definitions.openapiSchema_3_0, updateOpenAPI);
 
   return bundledSchema
 }
@@ -109,4 +110,32 @@ function replaceRef(schema) {
   } else {
     schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
   }
+}
+
+/**
+ * this is a callback used when traversing through json schema
+ * to fix avro schema definitions to point to right direction
+ */
+function updateAvro(schema){
+  //traversing shoudl take place only in case of schemas with refs
+  if (schema.$ref === undefined) return;
+
+  schema.$ref = schema.$ref.replace(
+    "json-schema-draft-07-schema",
+    "avroSchema_v1"
+  );
+}
+
+/**
+ * this is a callback used when traversing through json schema
+ * to fix open api schema definitions to point to right direction
+ */
+function updateOpenAPI(schema){
+  //traversing shoudl take place only in case of schemas with refs
+  if (schema.$ref === undefined) return;
+
+  schema.$ref = schema.$ref.replace(
+    "json-schema-draft-07-schema",
+    "openapiSchema_3_0"
+  );
 }
