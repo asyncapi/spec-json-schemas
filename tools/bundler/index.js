@@ -72,7 +72,8 @@ function modifyRefsAndDefinitions(bundledSchema) {
 
   traverse(bundledSchema, replaceRef);
   traverse(bundledSchema.definitions.avroSchema_v1, updateAvro);
-  traverse(bundledSchema.definitions.openapiSchema_3_0, updateOpenAPI);
+  traverse(bundledSchema.definitions.openapiSchema_3_0, updateOpenApi);
+  traverse(bundledSchema.definitions['json-schema-draft-07-schema'], updateJsonSchema);
 
   return bundledSchema
 }
@@ -100,16 +101,8 @@ function replaceRef(schema) {
   //traversing shoudl take place only in case of schemas with refs
   if (schema.$ref === undefined ) return;
 
-  // '#/definitions' refs are always those related to JSON Schema draft, so we just need to update them to point to json schema draft that is inlined inside schema
-  if (schema.$ref.startsWith('#/definitions')) {
-    schema.$ref = schema.$ref.replace('#/definitions/', `#/definitions/${JSON_SCHEMA_PROP_NAME}/definitions/`);
-  // '#' refs need to be updated to point to the root of inlined json schema draft
-  } else if (schema.$ref === '#') {
-    schema.$ref = `#/definitions/${JSON_SCHEMA_PROP_NAME}`;
-  // the rest of refs are those related to remote URL refst that need to be update and point to inlined versions
-  } else {
-    schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
-  }
+  // updating refs that are related to remote URL refs that need to be update and point to inlined versions
+  if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
 }
 
 /**
@@ -121,8 +114,8 @@ function updateAvro(schema){
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
-    "json-schema-draft-07-schema",
-    "avroSchema_v1"
+    '#/definitions/',
+    '#/definitions/avroSchema_v1/definitions/'
   );
 }
 
@@ -130,12 +123,35 @@ function updateAvro(schema){
  * this is a callback used when traversing through json schema
  * to fix open api schema definitions to point to right direction
  */
-function updateOpenAPI(schema){
+function updateOpenApi(schema){
+  //traversing shoudl take place only in case of schemas with refs
+  if (schema.$ref === undefined) return;
+  const openApiPropName = 'openapiSchema_3_0';
+
+  schema.$ref = schema.$ref.replace(
+    '#/definitions/',
+    `#/definitions/${openApiPropName}/definitions/`
+  );
+
+  if (schema.$ref === '#') {
+    schema.$ref = `#/definitions/${openApiPropName}`;
+  }
+}
+
+/**
+ * this is a callback used when traversing through json schema
+ * to fix open api schema definitions to point to right direction
+ */
+function updateJsonSchema(schema){
   //traversing shoudl take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
-    "json-schema-draft-07-schema",
-    "openapiSchema_3_0"
+    '#/definitions/',
+    `#/definitions/${JSON_SCHEMA_PROP_NAME}/definitions/`
   );
+
+  if (schema.$ref === '#') {
+    schema.$ref = `#/definitions/${JSON_SCHEMA_PROP_NAME}`;
+  }
 }
