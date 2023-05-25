@@ -63,7 +63,7 @@
         "http://asyncapi.com/definitions/2.6.0/info.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/info.json",
             "type": "object",
-            "description": "General information about the API.",
+            "description": "The object provides metadata about the API. The metadata can be used by the clients if needed.",
             "required": [
                 "version",
                 "title"
@@ -98,7 +98,23 @@
                 "license": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/license.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "title": "AsyncAPI Sample App",
+                    "description": "This is a sample server.",
+                    "termsOfService": "https://asyncapi.org/terms/",
+                    "contact": {
+                        "name": "API Support",
+                        "url": "https://www.example.com/support",
+                        "email": "support@example.com"
+                    },
+                    "license": {
+                        "name": "Apache 2.0",
+                        "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/contact.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/contact.json",
@@ -177,7 +193,47 @@
                         "$ref": "http://asyncapi.com/definitions/2.6.0/server.json"
                     }
                 ]
-            }
+            },
+            "examples": [
+                {
+                    "development": {
+                        "url": "development.gigantic-server.com",
+                        "description": "Development server",
+                        "protocol": "amqp",
+                        "protocolVersion": "0.9.1",
+                        "tags": [
+                            {
+                                "name": "env:development",
+                                "description": "This environment is meant for developers to run their own tests"
+                            }
+                        ]
+                    },
+                    "staging": {
+                        "url": "staging.gigantic-server.com",
+                        "description": "Staging server",
+                        "protocol": "amqp",
+                        "protocolVersion": "0.9.1",
+                        "tags": [
+                            {
+                                "name": "env:staging",
+                                "description": "This environment is a replica of the production environment"
+                            }
+                        ]
+                    },
+                    "production": {
+                        "url": "api.gigantic-server.com",
+                        "description": "Production server",
+                        "protocol": "amqp",
+                        "protocolVersion": "0.9.1",
+                        "tags": [
+                            {
+                                "name": "env:production",
+                                "description": "This environment is the live environment available for final users"
+                            }
+                        ]
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/Reference.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/Reference.json",
@@ -401,28 +457,37 @@
             "$id": "http://asyncapi.com/definitions/2.6.0/externalDocs.json",
             "type": "object",
             "additionalProperties": false,
-            "description": "information about external documentation",
+            "description": "Allows referencing an external resource for extended documentation.",
             "required": [
                 "url"
             ],
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description of the target documentation."
                 },
                 "url": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The URL for the target documentation. This MUST be in the form of an absolute URL."
                 }
             },
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "description": "Find more info here",
+                    "url": "https://example.com"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/channels.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/channels.json",
             "type": "object",
+            "description": "Holds the relative paths to the individual channel and their operations. Channel paths are relative to servers.",
             "propertyNames": {
                 "type": "string",
                 "format": "uri-template",
@@ -430,7 +495,18 @@
             },
             "additionalProperties": {
                 "$ref": "http://asyncapi.com/definitions/2.6.0/channelItem.json"
-            }
+            },
+            "examples": [
+                {
+                    "user/signedup": {
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/channelItem.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/channelItem.json",
@@ -2346,7 +2422,139 @@
                         "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
                     }
                 }
-            }
+            },
+            "examples": [
+                {
+                    "components": {
+                        "schemas": {
+                            "Category": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "Tag": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "servers": {
+                            "development": {
+                                "url": "{stage}.gigantic-server.com:{port}",
+                                "description": "Development server",
+                                "protocol": "amqp",
+                                "protocolVersion": "0.9.1",
+                                "variables": {
+                                    "stage": {
+                                        "$ref": "#/components/serverVariables/stage"
+                                    },
+                                    "port": {
+                                        "$ref": "#/components/serverVariables/port"
+                                    }
+                                }
+                            }
+                        },
+                        "serverVariables": {
+                            "stage": {
+                                "default": "demo",
+                                "description": "This value is assigned by the service provider, in this example `gigantic-server.com`"
+                            },
+                            "port": {
+                                "enum": [
+                                    "8883",
+                                    "8884"
+                                ],
+                                "default": "8883"
+                            }
+                        },
+                        "channels": {
+                            "user/signedup": {
+                                "subscribe": {
+                                    "message": {
+                                        "$ref": "#/components/messages/userSignUp"
+                                    }
+                                }
+                            }
+                        },
+                        "messages": {
+                            "userSignUp": {
+                                "summary": "Action to sign a user up.",
+                                "description": "Multiline description of what this action does.\nHere you have another line.\n",
+                                "tags": [
+                                    {
+                                        "name": "user"
+                                    },
+                                    {
+                                        "name": "signup"
+                                    }
+                                ],
+                                "headers": {
+                                    "type": "object",
+                                    "properties": {
+                                        "applicationInstanceId": {
+                                            "description": "Unique identifier for a given instance of the publishing application",
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "payload": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/userCreate"
+                                        },
+                                        "signup": {
+                                            "$ref": "#/components/schemas/signup"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "parameters": {
+                            "userId": {
+                                "description": "Id of the user.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "correlationIds": {
+                            "default": {
+                                "description": "Default Correlation ID",
+                                "location": "$message.header#/correlationId"
+                            }
+                        },
+                        "messageTraits": {
+                            "commonHeaders": {
+                                "headers": {
+                                    "type": "object",
+                                    "properties": {
+                                        "my-app-header": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 100
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/schemas.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/schemas.json",

@@ -14,7 +14,8 @@ console.log(`Using the following output directory: ${outputDirectory}`);
  */
 (async () => {
   const versions = await fs.promises.readdir(definitionsDirectory);
-  console.log(`Ensuring output directory is present ${outputDirectory}`);
+
+
   if (!fs.existsSync(outputDirectory)) {
     await fs.promises.mkdir(outputDirectory);
   }
@@ -41,19 +42,14 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const definitionJson = definitionFiles.map((file) => JSON.parse(file));
       for (const jsonFile of definitionJson) {
         if (jsonFile.example) {
-          // Replaced the example property with the referenced example property
-          loadRefProperties(jsonFile.example, (err, refData) => {
-            if (err) {
-              throw new Error(err);
-            }
-            // Delete the referenced example property
-            delete jsonFile.example;
-            // create a new examples property
-            jsonFile.examples = refData;
-            
-            Bundler.add(jsonFile);
-          });
-        } else {
+					// Replaced the example property with the referenced example property
+					const examples = await loadRefProperties(jsonFile.example);
+					// Delete the referenced example property
+					// create a new examples property
+					jsonFile.examples = examples;
+					delete jsonFile.example;
+					Bundler.add(jsonFile);
+				} else {
           Bundler.add(jsonFile);
         }
       }
@@ -97,22 +93,17 @@ console.log(`Using the following output directory: ${outputDirectory}`);
  * Extract file data from reference file path
  */
 
-function loadRefProperties(filePath, cb) {
-  const schemaPath = filePath.$ref;
-  // first we need to turn the path to an absolute file path instead of a generic url
-  const versionPath = schemaPath.split("examples")[1];
-  // we append the extracted file path to the examples dir to read the file
-  fs.readFile(`../../examples${versionPath}`, (err, fileData) => {
-    if (err) {
-      return cb && cb(err);
-    }
-    try {
-      const object = JSON.parse(fileData);
-      return cb && cb(null, object);
-    } catch (err) {
-      return cb && cb(err);
-    }
-  });
+async function loadRefProperties(filePath) {
+	const schemaPath = filePath.$ref;
+	// first we need to turn the path to an absolute file path instead of a generic url
+	const versionPath = schemaPath.split('examples')[1];
+	// // we append the extracted file path to the examples dir to read the file
+	try {
+		const data = await fs.promises.readFile(`../../examples${versionPath}`);
+		return JSON.parse(data);
+	} catch (error) {
+		throw new Error(error);
+	}
 }
 
 /**
