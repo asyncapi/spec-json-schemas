@@ -86,7 +86,7 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       throw new Error(e);
     }
   }
-  console.log("done");
+    console.log('done');
 })();
 
 /**
