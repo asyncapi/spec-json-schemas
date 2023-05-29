@@ -31,9 +31,10 @@ console.log(`Using the following output directory: ${outputDirectory}`);
         if (jsonFile.example) {
 					// Replaced the example property with the referenced example property
 					const examples = await loadRefProperties(jsonFile.example);
-					// Delete the referenced example property
-					// create a new examples property
-					jsonFile.examples = examples;
+					// Replacing example property with examples is because using example
+          // to pass an array of example properties is not valid in JSON Schema.
+          // So replacing it when bundling is the goto solution. 
+          jsonFile.examples = examples;
 					delete jsonFile.example;
 					Bundler.add(jsonFile);
 				} else {

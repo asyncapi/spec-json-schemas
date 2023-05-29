@@ -114,6 +114,7 @@ If you are currently using version 3, check out [migration guideline to version 
 This is the current project structure explained:
 
 - [./definitions](./definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](./schemas).
+- [./examples](./examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](./schemas).
 - [./tools/bundler](./tools/bundler) - is the tool that bundles all the individual schemas together.
 - [./schemas](./schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](./definitions).
 
