@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=/Users/wookiee/sources/asyncapi-node/schemas/2.6.0-without-$id.json
+# yaml-language-server: $schema=YOUR-PROJECTS-DIRECTORY/spec-json-schemas/schemas/2.6.0-without-$id.json
 asyncapi: 2.6.0
 
 info:
