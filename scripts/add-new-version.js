@@ -36,14 +36,14 @@ async function addNewVersion(newVersion) {
   //Use the newest version as baseline for the new one
   const latestVersion = (await execute('ls -d ./definitions/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
   await execute(`cp -R ./definitions/${latestVersion} ${newVersionDir}`);
-	
+
   const latestExampleVersion = (await execute('ls -d ./examples/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
   await execute(`cp -R ./definitions/${latestVersion} ${newVersionDir}`);
   await execute(`cp -R ./examples/${latestExampleVersion} ${newExampleVersionDir}`);
   
   // Replace old version numbers with new
-  await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' \"s+${latestVersion}+${newVersion}+g\" {} +`);
-	
+  await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' "s+${latestVersion}+${newVersion}+g" {} +`);
+
   console.log(`New version added to ${newVersionDir}`)
 }
 
