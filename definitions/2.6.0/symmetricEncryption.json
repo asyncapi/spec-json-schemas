@@ -1,11 +1,15 @@
 {
   "type": "object",
-  "required": ["type"],
+  "required": [
+    "type"
+  ],
   "properties": {
     "type": {
       "type": "string",
       "description": "The type of the security scheme.",
-      "enum": ["symmetricEncryption"]
+      "enum": [
+        "symmetricEncryption"
+      ]
     },
     "description": {
       "type": "string",

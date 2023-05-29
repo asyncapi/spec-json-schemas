@@ -1,12 +1,10 @@
-const path = require("path");
-const fs = require("fs");
-const traverse = require("json-schema-traverse");
-const definitionsDirectory = path.resolve(__dirname, "../../definitions");
-const outputDirectory = path.resolve(__dirname, "../../schemas");
-const JSON_SCHEMA_PROP_NAME = "json-schema-draft-07-schema";
-console.log(
-  `Looking for separate definitions in the following directory: ${definitionsDirectory}`
-);
+const path = require('path');
+const fs = require('fs');
+const traverse = require('json-schema-traverse');
+const definitionsDirectory = path.resolve(__dirname, '../../definitions');
+const outputDirectory = path.resolve(__dirname, '../../schemas');
+const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
+console.log(`Looking for separate definitions in the following directory: ${definitionsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
 
 /**
@@ -14,31 +12,20 @@ console.log(`Using the following output directory: ${outputDirectory}`);
  */
 (async () => {
   const versions = await fs.promises.readdir(definitionsDirectory);
-
-
+  console.log(`Ensuring output directory is present ${outputDirectory}`);
   if (!fs.existsSync(outputDirectory)) {
     await fs.promises.mkdir(outputDirectory);
   }
-  console.log(
-    `The following versions have separate definitions: ${versions.join(",")}`
-  );
+  console.log(`The following versions have separate definitions: ${versions.join(',')}`);
   for (const version of versions) {
     const Bundler = require("@hyperjump/json-schema-bundle");
-    try {
+    try{
       console.log(`Bundling the following version together: ${version}`);
       const outputFileWithId = path.resolve(outputDirectory, `${version}.json`);
-      const outputFileWithoutId = path.resolve(
-        outputDirectory,
-        `${version}-without-$id.json`
-      );
+      const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       const definitions = await fs.promises.readdir(versionDir);
-      const definitionFiles = definitions
-        .filter((value) => {
-          return !value.includes("asyncapi");
-        })
-        .map((file) => fs.readFileSync(path.resolve(versionDir, file)));
-
+      const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
       const definitionJson = definitionFiles.map((file) => JSON.parse(file));
       for (const jsonFile of definitionJson) {
         if (jsonFile.example) {
@@ -60,33 +47,22 @@ console.log(`Using the following output directory: ${outputDirectory}`);
        * bundling schemas into one file with $id
        */
       const bundledSchemaWithId = await Bundler.bundle(fileToBundle);
-      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${
-        bundledSchemaWithId.description ?? ""
-      }`;
+      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchemaWithId.description ?? ''}`;
       console.log(`Writing the bundled file WITH $ids to: ${outputFileWithId}`);
-      await fs.promises.writeFile(
-        outputFileWithId,
-        JSON.stringify(bundledSchemaWithId, null, 4)
-      );
+      await fs.promises.writeFile(outputFileWithId, JSON.stringify(bundledSchemaWithId, null, 4));
 
       /**
        * removing ids from schemas and making modifications in definitions name to make sure schemas still work
        * this is needed for tools that do not support $id feature in JSON Schema
        */
-      const bundledSchemaWithoutIds =
-        modifyRefsAndDefinitions(bundledSchemaWithId);
-      console.log(
-        `Writing the bundled file WITHOUT $ids to: ${outputFileWithoutId}`
-      );
-      await fs.promises.writeFile(
-        outputFileWithoutId,
-        JSON.stringify(bundledSchemaWithoutIds, null, 4)
-      );
-    } catch (e) {
+      const bundledSchemaWithoutIds = modifyRefsAndDefinitions(bundledSchemaWithId);
+      console.log(`Writing the bundled file WITHOUT $ids to: ${outputFileWithoutId}`);
+      await fs.promises.writeFile(outputFileWithoutId, JSON.stringify(bundledSchemaWithoutIds, null, 4));
+    }catch(e) {
       throw new Error(e);
     }
   }
-    console.log('done');
+  console.log('done');
 })();
 
 /**
@@ -101,28 +77,29 @@ async function loadRefProperties(filePath) {
 	try {
 		const data = await fs.promises.readFile(`../../examples${versionPath}`);
 		return JSON.parse(data);
-	} catch (error) {
-		throw new Error(error);
-	}
-}
+    }catch(e) {
+      throw new Error(e);
+    }
+  }
 
 /**
  * we first update definitions from URL to normal names
  * than update refs to point to new definitions, always inline never remote
  */
 function modifyRefsAndDefinitions(bundledSchema) {
+
   //first we need to improve names of the definitions from URL to their names
   for (const def of Object.keys(bundledSchema.definitions)) {
     const newDefName = getDefinitionName(def);
-
+    
     //creating copy of definition under new name so later definition stored under URL name can be removed
     bundledSchema.definitions[newDefName] = bundledSchema.definitions[def];
-    delete bundledSchema.definitions[def];
+    delete bundledSchema.definitions[def]
   }
 
   traverse(bundledSchema, replaceRef);
 
-  return bundledSchema;
+  return bundledSchema
 }
 
 /**
@@ -130,13 +107,10 @@ function modifyRefsAndDefinitions(bundledSchema) {
  * we need to get rid of URLs and use the last fragment as new definition name like `parameters`
  */
 function getDefinitionName(def) {
-  if (def.startsWith("http://json-schema.org")) return JSON_SCHEMA_PROP_NAME;
+  if (def.startsWith('http://json-schema.org')) return JSON_SCHEMA_PROP_NAME;
 
-  if (path.extname(def) !== ".json")
-    throw new Error(
-      `Original $id values should point to JSON files. There is probably an error in one of the source definitions containing definition: ${def}`
-    );
-  return path.basename(def, ".json");
+  if (path.extname(def) !== '.json') throw new Error(`Original $id values should point to JSON files. There is probably an error in one of the source definitions containing definition: ${def}`);
+  return path.basename(def, '.json')
 }
 
 /**
@@ -144,22 +118,20 @@ function getDefinitionName(def) {
  * it is triggered with every new element of json schema
  */
 function replaceRef(schema) {
-  //new refs will only work if we remove $id that all point to asyncapi.com
-  delete schema.$id;
 
+  //new refs will only work if we remove $id that all point to asyncapi.com
+  delete schema.$id
+  
   //traversing shoudl take place only in case of schemas with refs
-  if (schema.$ref === undefined) return;
+  if (schema.$ref === undefined ) return;
 
   // '#/definitions' refs are always those related to JSON Schema draft, so we just need to update them to point to json schema draft that is inlined inside schema
-  if (schema.$ref.startsWith("#/definitions")) {
-    schema.$ref = schema.$ref.replace(
-      "#/definitions/",
-      `#/definitions/${JSON_SCHEMA_PROP_NAME}/definitions/`
-    );
-    // '#' refs need to be updated to point to the root of inlined json schema draft
-  } else if (schema.$ref === "#") {
+  if (schema.$ref.startsWith('#/definitions')) {
+    schema.$ref = schema.$ref.replace('#/definitions/', `#/definitions/${JSON_SCHEMA_PROP_NAME}/definitions/`);
+  // '#' refs need to be updated to point to the root of inlined json schema draft
+  } else if (schema.$ref === '#') {
     schema.$ref = `#/definitions/${JSON_SCHEMA_PROP_NAME}`;
-    // the rest of refs are those related to remote URL refst that need to be update and point to inlined versions
+  // the rest of refs are those related to remote URL refst that need to be update and point to inlined versions
   } else {
     schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
   }

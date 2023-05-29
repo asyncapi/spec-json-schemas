@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "description": "JSON objects describing re-usable channel parameters.",
+  "description": "JSON objects describing reusable channel parameters.",
   "additionalProperties": {
     "oneOf": [
       {

@@ -1,11 +1,16 @@
 {
   "type": "object",
-  "required": ["type"],
+  "required": [
+    "type"
+  ],
   "properties": {
     "type": {
       "type": "string",
       "description": "The type of the security scheme.",
-      "enum": ["scramSha256", "scramSha512"]
+      "enum": [
+        "scramSha256",
+        "scramSha512"
+      ]
     },
     "description": {
       "type": "string",

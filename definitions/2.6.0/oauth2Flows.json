@@ -9,7 +9,9 @@
     "type": {
       "type": "string",
       "description": "A short description for security scheme.",
-      "enum": ["oauth2"]
+      "enum": [
+        "oauth2"
+      ]
     },
     "description": {
       "type": "string",
