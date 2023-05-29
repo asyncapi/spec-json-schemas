@@ -140,6 +140,8 @@ Where `x.x.x` is the new version you want to create.
 The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
 1. Rename the folder to the new version (`x.x.x`).
+1. Duplicate the latest version (`y.y.y`) under examples (so we have the correct base to make changes from).
+1. Rename the folder to the new version (`x.x.x`).
 1. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
 
 ## 2 Further steps
