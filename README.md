@@ -188,7 +188,7 @@ Whenever you make changes in AsyncAPI JSON Schema, you should always manually ve
 - Once you make changes in schemas, bundle them with `npm run bundle`
 - Edit [this sample AsyncAPI document](./test/fixtures/asyncapi.yml). Add a new field, hover over some property to see if tooltip still shows up. This sample document contains the following line that assures YAML uses your local schema and not the one from SchemaStore. Make sure it points to the schema bundle that you generated and that contains your changes:
    ```yaml
-   # yaml-language-server: $schema=/Users/wookiee/sources/asyncapi-node/schemas/2.6.0-without-$id.json
+   # yaml-language-server: $schema=YOUR-PROJECTS-DIRECTORY/spec-json-schemas/schemas/2.6.0-without-$id.json
    ```
 
 
