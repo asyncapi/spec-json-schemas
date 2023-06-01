@@ -1862,10 +1862,10 @@
                 "not": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema"
+                            "$ref": "#/definitions/openapiSchema_3_0"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Reference"
+                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
                         }
                     ]
                 },
@@ -1874,10 +1874,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema"
+                                "$ref": "#/definitions/openapiSchema_3_0"
                             },
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Reference"
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
                             }
                         ]
                     }
@@ -1887,10 +1887,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema"
+                                "$ref": "#/definitions/openapiSchema_3_0"
                             },
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Reference"
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
                             }
                         ]
                     }
@@ -1900,10 +1900,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema"
+                                "$ref": "#/definitions/openapiSchema_3_0"
                             },
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Reference"
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
                             }
                         ]
                     }
@@ -1911,10 +1911,10 @@
                 "items": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema"
+                            "$ref": "#/definitions/openapiSchema_3_0"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Reference"
+                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
                         }
                     ]
                 },
@@ -1923,10 +1923,10 @@
                     "additionalProperties": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema"
+                                "$ref": "#/definitions/openapiSchema_3_0"
                             },
                             {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Reference"
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
                             }
                         ]
                     }
@@ -1934,10 +1934,10 @@
                 "additionalProperties": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema"
+                            "$ref": "#/definitions/openapiSchema_3_0"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Reference"
+                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
                         },
                         {
                             "type": "boolean"
@@ -1957,7 +1957,7 @@
                     "default": false
                 },
                 "discriminator": {
-                    "$ref": "#/definitions/json-schema-draft-07-schema/definitions/Discriminator"
+                    "$ref": "#/definitions/openapiSchema_3_0/definitions/Discriminator"
                 },
                 "readOnly": {
                     "type": "boolean",
@@ -1969,14 +1969,14 @@
                 },
                 "example": true,
                 "externalDocs": {
-                    "$ref": "#/definitions/json-schema-draft-07-schema/definitions/ExternalDocumentation"
+                    "$ref": "#/definitions/openapiSchema_3_0/definitions/ExternalDocumentation"
                 },
                 "deprecated": {
                     "type": "boolean",
                     "default": false
                 },
                 "xml": {
-                    "$ref": "#/definitions/json-schema-draft-07-schema/definitions/XML"
+                    "$ref": "#/definitions/openapiSchema_3_0/definitions/XML"
                 }
             },
             "patternProperties": {
@@ -1991,7 +1991,7 @@
                     "description": "Root Schema",
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/types"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
                         }
                     ]
                 },
@@ -2000,31 +2000,31 @@
                     "description": "Allowed Avro types",
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/primitiveType"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/primitiveTypeWithMetadata"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveTypeWithMetadata"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/customTypeReference"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/customTypeReference"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroRecord"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroRecord"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroEnum"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroEnum"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroArray"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroArray"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroMap"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroMap"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroFixed"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroFixed"
                         },
                         {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroUnion"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroUnion"
                         }
                     ]
                 },
@@ -2049,7 +2049,7 @@
                     "type": "object",
                     "properties": {
                         "type": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/primitiveType"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
                         }
                     },
                     "required": [
@@ -2060,7 +2060,7 @@
                     "title": "Custom Type",
                     "description": "Reference to a ComplexType",
                     "not": {
-                        "$ref": "#/definitions/json-schema-draft-07-schema/definitions/primitiveType"
+                        "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
                     },
                     "type": "string",
                     "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
@@ -2070,7 +2070,7 @@
                     "description": "A Union of types",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroSchema"
+                        "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
                     },
                     "minItems": 1
                 },
@@ -2080,10 +2080,10 @@
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
                         },
                         "type": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/types"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
                         },
                         "doc": {
                             "type": "string"
@@ -2099,7 +2099,7 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
                             }
                         }
                     },
@@ -2118,10 +2118,10 @@
                             "const": "record"
                         },
                         "name": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/namespace"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -2129,13 +2129,13 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
                             }
                         },
                         "fields": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroField"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/avroField"
                             }
                         }
                     },
@@ -2155,10 +2155,10 @@
                             "const": "enum"
                         },
                         "name": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/namespace"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -2166,13 +2166,13 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
                             }
                         },
                         "symbols": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
                             }
                         }
                     },
@@ -2192,10 +2192,10 @@
                             "const": "array"
                         },
                         "name": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/namespace"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -2203,11 +2203,11 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
                             }
                         },
                         "items": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/types"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
                         }
                     },
                     "required": [
@@ -2225,10 +2225,10 @@
                             "const": "map"
                         },
                         "name": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/namespace"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -2236,11 +2236,11 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
                             }
                         },
                         "values": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/types"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
                         }
                     },
                     "required": [
@@ -2258,10 +2258,10 @@
                             "const": "fixed"
                         },
                         "name": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/json-schema-draft-07-schema/definitions/namespace"
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -2269,7 +2269,7 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema/definitions/name"
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
                             }
                         },
                         "size": {
@@ -2294,7 +2294,7 @@
             "description": "Json-Schema definition for Avro AVSC files.",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/json-schema-draft-07-schema/definitions/avroSchema"
+                    "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
                 }
             ],
             "title": "Avro Schema Definition"
