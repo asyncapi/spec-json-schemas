@@ -1,5 +1,5 @@
 {
-  "description": "An object representing multiple servers.",
+  "description": "The Servers Object is a map of Server Objects.",
   "type": "object",
   "additionalProperties": {
     "oneOf": [

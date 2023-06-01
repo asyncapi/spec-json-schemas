@@ -1,4 +1,5 @@
 {
+  "description": "Describes a message received on a given channel and operation.",
   "oneOf": [
     {
       "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"

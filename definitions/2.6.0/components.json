@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
+  "description": "Holds a set of reusable objects for different aspects of the AsyncAPI specification. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {

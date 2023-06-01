@@ -3,6 +3,7 @@
   "required": [
     "name"
   ],
+  "description": "License information for the exposed API.",
   "additionalProperties": false,
   "properties": {
     "name": {
