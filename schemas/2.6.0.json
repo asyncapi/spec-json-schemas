@@ -156,6 +156,7 @@
             "required": [
                 "name"
             ],
+            "description": "License information for the exposed API.",
             "additionalProperties": false,
             "properties": {
                 "name": {
@@ -182,7 +183,7 @@
         },
         "http://asyncapi.com/definitions/2.6.0/servers.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/servers.json",
-            "description": "An object representing multiple servers.",
+            "description": "The Servers Object is a map of Server Objects.",
             "type": "object",
             "additionalProperties": {
                 "oneOf": [
@@ -616,7 +617,7 @@
         "http://asyncapi.com/definitions/2.6.0/parameters.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/parameters.json",
             "type": "object",
-            "description": "JSON objects describing re-usable channel parameters.",
+            "description": "JSON objects describing reusable channel parameters.",
             "additionalProperties": {
                 "oneOf": [
                     {
@@ -1191,6 +1192,7 @@
         },
         "http://asyncapi.com/definitions/2.6.0/message.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/message.json",
+            "description": "Describes a message received on a given channel and operation.",
             "oneOf": [
                 {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
@@ -2330,7 +2332,7 @@
         "http://asyncapi.com/definitions/2.6.0/components.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/components.json",
             "type": "object",
-            "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
+            "description": "Holds a set of reusable objects for different aspects of the AsyncAPI specification. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
