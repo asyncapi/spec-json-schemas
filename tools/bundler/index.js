@@ -72,12 +72,12 @@ console.log(`Using the following output directory: ${outputDirectory}`);
 
 async function loadRefProperties(filePath) {
 	const schemaPath = filePath.$ref;
-	// first we need to turn the path to an absolute file path instead of a generic url
-	const versionPath = schemaPath.split('examples')[1];
-	// // we append the extracted file path to the examples dir to read the file
-	try {
-		const data = await fs.promises.readFile(`../../examples${versionPath}`);
-		return JSON.parse(data);
+  // first we need to turn the path to an absolute file path instead of a generic url
+  const versionPath = schemaPath.split('examples')[1];
+  // we append the extracted file path to the examples dir to read the file
+  try {
+    const data = await fs.promises.readFile(`../../examples${versionPath}`);
+    return JSON.parse(data);
     }catch(e) {
       throw new Error(e);
     }
