@@ -28,7 +28,18 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
       const definitionJson = definitionFiles.map((file) => JSON.parse(file));
       for (const jsonFile of definitionJson) {
-        Bundler.add(jsonFile);
+        if (jsonFile.example) {
+          // Replaced the example property with the referenced example property
+          const examples = await loadRefProperties(jsonFile.example);
+          // Replacing example property with examples is because using example
+          // to pass an array of example properties is not valid in JSON Schema.
+          // So replacing it when bundling is the goto solution. 
+          jsonFile.examples = examples;
+          delete jsonFile.example;
+          Bundler.add(jsonFile);
+        } else {
+          Bundler.add(jsonFile);
+        }
       }
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
       const fileToBundle = await Bundler.get(filePathToBundle);
@@ -54,6 +65,23 @@ console.log(`Using the following output directory: ${outputDirectory}`);
   }
   console.log('done');
 })();
+
+/**
+ * Extract file data from reference file path
+ */
+
+async function loadRefProperties(filePath) {
+  const schemaPath = filePath.$ref;
+  // first we need to turn the path to an absolute file path instead of a generic url
+  const versionPath = schemaPath.split('examples')[1];
+  // we append the extracted file path to the examples dir to read the file
+  try {
+    const data = await fs.promises.readFile(`../../examples${versionPath}`);
+    return JSON.parse(data);
+    }catch(e) {
+      throw new Error(e);
+    }
+  }
 
 /**
  * we first update definitions from URL to normal names

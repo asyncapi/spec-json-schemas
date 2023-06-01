@@ -114,6 +114,7 @@ If you are currently using version 3, check out [migration guideline to version 
 This is the current project structure explained:
 
 - [./definitions](./definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](./schemas).
+- [./examples](./examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](./schemas).
 - [./tools/bundler](./tools/bundler) - is the tool that bundles all the individual schemas together.
 - [./schemas](./schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](./definitions).
 
@@ -139,6 +140,8 @@ Where `x.x.x` is the new version you want to create.
 
 The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
+1. Rename the folder to the new version (`x.x.x`).
+1. Duplicate the latest version (`y.y.y`) under examples (so we have the correct base to make changes from).
 1. Rename the folder to the new version (`x.x.x`).
 1. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
 

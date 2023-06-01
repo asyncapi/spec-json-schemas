@@ -63,7 +63,7 @@
         "http://asyncapi.com/definitions/2.6.0/info.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/info.json",
             "type": "object",
-            "description": "General information about the API.",
+            "description": "The object provides metadata about the API. The metadata can be used by the clients if needed.",
             "required": [
                 "version",
                 "title"
@@ -98,12 +98,28 @@
                 "license": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/license.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "title": "AsyncAPI Sample App",
+                    "description": "This is a sample server.",
+                    "termsOfService": "https://asyncapi.org/terms/",
+                    "contact": {
+                        "name": "API Support",
+                        "url": "https://www.example.com/support",
+                        "email": "support@example.com"
+                    },
+                    "license": {
+                        "name": "Apache 2.0",
+                        "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/contact.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/contact.json",
             "type": "object",
-            "description": "Contact information for the owners of the API.",
+            "description": "Contact information for the exposed API.",
             "additionalProperties": false,
             "properties": {
                 "name": {
@@ -125,7 +141,14 @@
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "name": "API Support",
+                    "url": "https://www.example.com/support",
+                    "email": "support@example.com"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/license.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/license.json",
@@ -149,7 +172,13 @@
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "name": "Apache 2.0",
+                    "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/servers.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/servers.json",
@@ -164,7 +193,47 @@
                         "$ref": "http://asyncapi.com/definitions/2.6.0/server.json"
                     }
                 ]
-            }
+            },
+            "examples": [
+                {
+                    "development": {
+                        "url": "development.gigantic-server.com",
+                        "description": "Development server",
+                        "protocol": "amqp",
+                        "protocolVersion": "0.9.1",
+                        "tags": [
+                            {
+                                "name": "env:development",
+                                "description": "This environment is meant for developers to run their own tests"
+                            }
+                        ]
+                    },
+                    "staging": {
+                        "url": "staging.gigantic-server.com",
+                        "description": "Staging server",
+                        "protocol": "amqp",
+                        "protocolVersion": "0.9.1",
+                        "tags": [
+                            {
+                                "name": "env:staging",
+                                "description": "This environment is a replica of the production environment"
+                            }
+                        ]
+                    },
+                    "production": {
+                        "url": "api.gigantic-server.com",
+                        "description": "Production server",
+                        "protocol": "amqp",
+                        "protocolVersion": "0.9.1",
+                        "tags": [
+                            {
+                                "name": "env:production",
+                                "description": "This environment is the live environment available for final users"
+                            }
+                        ]
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/Reference.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/Reference.json",
@@ -181,12 +250,18 @@
         "http://asyncapi.com/definitions/2.6.0/ReferenceObject.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/ReferenceObject.json",
             "type": "string",
-            "format": "uri-reference"
+            "description": "A simple object to allow referencing other components in the specification, internally and externally.",
+            "format": "uri-reference",
+            "examples": [
+                {
+                    "$ref": "#/components/schemas/Pet"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/server.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/server.json",
             "type": "object",
-            "description": "An object representing a Server.",
+            "description": "An object representing a message broker, a server or any other kind of computer program capable of sending and/or receiving data",
             "required": [
                 "url",
                 "protocol"
@@ -199,42 +274,58 @@
             },
             "properties": {
                 "url": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the AsyncAPI document is being served."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An optional string describing the host designated by the URL. CommonMark syntax MAY be used for rich text representation."
                 },
                 "protocol": {
                     "type": "string",
-                    "description": "The transfer protocol."
+                    "description": "The protocol this URL supports for connection. Supported protocol include, but are not limited to: amqp, amqps, http, https, ibmmq, jms, kafka, kafka-secure, anypointmq, mqtt, secure-mqtt, solace, stomp, stomps, ws, wss, mercure, googlepubsub."
                 },
                 "protocolVersion": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The version of the protocol used for connection. For instance: AMQP 0.9.1, HTTP 2.0, Kafka 1.0.0, etc."
                 },
                 "variables": {
+                    "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
                     "$ref": "http://asyncapi.com/definitions/2.6.0/serverVariables.json"
                 },
                 "security": {
                     "type": "array",
+                    "description": "A declaration of which security mechanisms can be used with this server. The list of values includes alternative security requirement objects that can be used. ",
                     "items": {
                         "$ref": "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json"
                     }
                 },
                 "bindings": {
+                    "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the server.",
                     "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of servers.",
                     "items": {
                         "$ref": "http://asyncapi.com/definitions/2.6.0/tag.json"
                     },
                     "uniqueItems": true
                 }
-            }
+            },
+            "examples": [
+                {
+                    "url": "development.gigantic-server.com",
+                    "description": "Development server",
+                    "protocol": "kafka",
+                    "protocolVersion": "1.0.0"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/serverVariables.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/serverVariables.json",
             "type": "object",
+            "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
             "additionalProperties": {
                 "oneOf": [
                     {
@@ -259,19 +350,23 @@
             "properties": {
                 "enum": {
                     "type": "array",
+                    "description": "An enumeration of string values to be used if the substitution options are from a limited set.",
                     "items": {
                         "type": "string"
                     },
                     "uniqueItems": true
                 },
                 "default": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The default value to use for substitution, and to send, if an alternate value is not supplied."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "An optional description for the server variable. "
                 },
                 "examples": {
                     "type": "array",
+                    "description": "An array of examples of the server variable.",
                     "items": {
                         "type": "string"
                     }
@@ -281,17 +376,27 @@
         "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json",
             "type": "object",
+            "description": "Lists of the required security schemes that can be used to execute an operation",
             "additionalProperties": {
                 "type": "array",
                 "items": {
                     "type": "string"
                 },
                 "uniqueItems": true
-            }
+            },
+            "examples": [
+                {
+                    "petstore_auth": [
+                        "write:pets",
+                        "read:pets"
+                    ]
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/bindingsObject.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json",
             "type": "object",
+            "description": "Map describing protocol-specific definitions for a server.",
             "additionalProperties": true,
             "properties": {
                 "http": {},
@@ -317,18 +422,22 @@
         "http://asyncapi.com/definitions/2.6.0/tag.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/tag.json",
             "type": "object",
+            "description": "Allows adding meta data to a single tag.",
             "additionalProperties": false,
             "required": [
                 "name"
             ],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the tag."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for the tag."
                 },
                 "externalDocs": {
+                    "description": "Additional external documentation for this tag.",
                     "$ref": "http://asyncapi.com/definitions/2.6.0/externalDocs.json"
                 }
             },
@@ -336,34 +445,49 @@
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "name": "user",
+                    "description": "User-related messages"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/externalDocs.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/externalDocs.json",
             "type": "object",
             "additionalProperties": false,
-            "description": "information about external documentation",
+            "description": "Allows referencing an external resource for extended documentation.",
             "required": [
                 "url"
             ],
             "properties": {
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description of the target documentation."
                 },
                 "url": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The URL for the target documentation. This MUST be in the form of an absolute URL."
                 }
             },
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "description": "Find more info here",
+                    "url": "https://example.com"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/channels.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/channels.json",
             "type": "object",
+            "description": "Holds the relative paths to the individual channel and their operations. Channel paths are relative to servers.",
             "propertyNames": {
                 "type": "string",
                 "format": "uri-template",
@@ -371,11 +495,23 @@
             },
             "additionalProperties": {
                 "$ref": "http://asyncapi.com/definitions/2.6.0/channelItem.json"
-            }
+            },
+            "examples": [
+                {
+                    "user/signedup": {
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/channelItem.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/channelItem.json",
             "type": "object",
+            "description": "Describes the operations available on a single channel.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -414,11 +550,73 @@
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "description": "This channel is used to exchange messages about users signing up",
+                    "subscribe": {
+                        "summary": "A user signed up.",
+                        "message": {
+                            "description": "A longer description of the message",
+                            "payload": {
+                                "type": "object",
+                                "properties": {
+                                    "user": {
+                                        "$ref": "#/components/schemas/user"
+                                    },
+                                    "signup": {
+                                        "$ref": "#/components/schemas/signup"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "bindings": {
+                        "amqp": {
+                            "is": "queue",
+                            "queue": {
+                                "exclusive": true
+                            }
+                        }
+                    }
+                },
+                {
+                    "subscribe": {
+                        "message": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/components/messages/signup"
+                                },
+                                {
+                                    "$ref": "#/components/messages/login"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "description": "This application publishes WebUICommand messages to an AMQP queue on RabbitMQ brokers in the Staging and Production environments.",
+                    "servers": [
+                        "rabbitmqBrokerInProd",
+                        "rabbitmqBrokerInStaging"
+                    ],
+                    "subscribe": {
+                        "message": {
+                            "$ref": "#/components/messages/WebUICommand"
+                        }
+                    },
+                    "bindings": {
+                        "amqp": {
+                            "is": "queue"
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/parameters.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/parameters.json",
             "type": "object",
+            "description": "JSON objects describing re-usable channel parameters.",
             "additionalProperties": {
                 "oneOf": [
                     {
@@ -429,10 +627,29 @@
                     }
                 ]
             },
-            "description": "JSON objects describing re-usable channel parameters."
+            "examples": [
+                {
+                    "user/{userId}/signup": {
+                        "parameters": {
+                            "userId": {
+                                "description": "Id of the user.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/parameter.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/parameter.json",
+            "description": "Describes a parameter included in a channel name.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -452,10 +669,31 @@
                     "description": "A runtime expression that specifies the location of the parameter value",
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "user/{userId}/signup": {
+                        "parameters": {
+                            "userId": {
+                                "description": "Id of the user.",
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "location": "$message.payload#/user/id"
+                            }
+                        },
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/schema.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/schema.json",
+            "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays.",
             "allOf": [
                 {
                     "$ref": "http://json-schema.org/draft-07/schema#"
@@ -538,14 +776,42 @@
                             "$ref": "http://asyncapi.com/definitions/2.6.0/schema.json"
                         },
                         "discriminator": {
-                            "type": "string"
+                            "type": "string",
+                            "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. "
                         },
                         "externalDocs": {
+                            "description": "Additional external documentation for this schema.",
                             "$ref": "http://asyncapi.com/definitions/2.6.0/externalDocs.json"
                         },
                         "deprecated": {
                             "type": "boolean",
-                            "default": false
+                            "default": false,
+                            "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage"
+                        }
+                    }
+                }
+            ],
+            "examples": [
+                {
+                    "type": "string",
+                    "format": "email"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "name"
+                    ],
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "$ref": "#/components/schemas/Address"
+                        },
+                        "age": {
+                            "type": "integer",
+                            "format": "int32",
+                            "minimum": 0
                         }
                     }
                 }
@@ -798,6 +1064,7 @@
         "http://asyncapi.com/definitions/2.6.0/operation.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/operation.json",
             "type": "object",
+            "description": "Describes a publish or a subscribe operation. This provides a place to document how and why messages are sent and received.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -807,6 +1074,7 @@
             "properties": {
                 "traits": {
                     "type": "array",
+                    "description": "A list of traits to apply to the operation object.",
                     "items": {
                         "oneOf": [
                             {
@@ -819,19 +1087,23 @@
                     }
                 },
                 "summary": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short summary of what the operation is about."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A verbose explanation of the operation."
                 },
                 "security": {
                     "type": "array",
+                    "description": "A declaration of which security mechanisms are associated with this operation.",
                     "items": {
                         "$ref": "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json"
                     }
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of operations.",
                     "items": {
                         "$ref": "http://asyncapi.com/definitions/2.6.0/tag.json"
                     },
@@ -849,11 +1121,23 @@
                 "message": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/message.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "user/signedup": {
+                        "subscribe": {
+                            "message": {
+                                "$ref": "#/components/messages/userSignedUp"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/operationTrait.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/operationTrait.json",
             "type": "object",
+            "description": "Describes a trait that MAY be applied to an Operation Object.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -862,13 +1146,16 @@
             },
             "properties": {
                 "summary": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short summary of what the operation is about."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A verbose explanation of the operation."
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of operations.",
                     "items": {
                         "$ref": "http://asyncapi.com/definitions/2.6.0/tag.json"
                     },
@@ -878,10 +1165,12 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/externalDocs.json"
                 },
                 "operationId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API."
                 },
                 "security": {
                     "type": "array",
+                    "description": "A declaration of which security mechanisms are associated with this operation. ",
                     "items": {
                         "$ref": "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json"
                     }
@@ -889,7 +1178,16 @@
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "bindings": {
+                        "amqp": {
+                            "ack": false
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/message.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/message.json",
@@ -989,6 +1287,7 @@
                                 },
                                 "examples": {
                                     "type": "array",
+                                    "description": "List of examples.",
                                     "items": {
                                         "type": "object",
                                         "additionalProperties": false,
@@ -1014,9 +1313,12 @@
                                                 "description": "A brief summary of the message example."
                                             },
                                             "headers": {
-                                                "type": "object"
+                                                "type": "object",
+                                                "description": "Schema definition of the application headers."
                                             },
-                                            "payload": {}
+                                            "payload": {
+                                                "description": "Definition of the message payload. It can be of any type"
+                                            }
                                         }
                                     }
                                 },
@@ -1167,11 +1469,106 @@
                         }
                     ]
                 }
+            ],
+            "examples": [
+                {
+                    "messageId": "userSignup",
+                    "name": "UserSignup",
+                    "title": "User signup",
+                    "summary": "Action to sign a user up.",
+                    "description": "A longer description",
+                    "contentType": "application/json",
+                    "tags": [
+                        {
+                            "name": "user"
+                        },
+                        {
+                            "name": "signup"
+                        },
+                        {
+                            "name": "register"
+                        }
+                    ],
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "correlationId": {
+                                "description": "Correlation ID set by application",
+                                "type": "string"
+                            },
+                            "applicationInstanceId": {
+                                "description": "Unique identifier for a given instance of the publishing application",
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "payload": {
+                        "type": "object",
+                        "properties": {
+                            "user": {
+                                "$ref": "#/components/schemas/userCreate"
+                            },
+                            "signup": {
+                                "$ref": "#/components/schemas/signup"
+                            }
+                        }
+                    },
+                    "correlationId": {
+                        "description": "Default Correlation ID",
+                        "location": "$message.header#/correlationId"
+                    },
+                    "traits": [
+                        {
+                            "$ref": "#/components/messageTraits/commonHeaders"
+                        }
+                    ],
+                    "examples": [
+                        {
+                            "name": "SimpleSignup",
+                            "summary": "A simple UserSignup example message",
+                            "headers": {
+                                "correlationId": "my-correlation-id",
+                                "applicationInstanceId": "myInstanceId"
+                            },
+                            "payload": {
+                                "user": {
+                                    "someUserKey": "someUserValue"
+                                },
+                                "signup": {
+                                    "someSignupKey": "someSignupValue"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "messageId": "userSignup",
+                    "name": "UserSignup",
+                    "title": "User signup",
+                    "summary": "Action to sign a user up.",
+                    "description": "A longer description",
+                    "tags": [
+                        {
+                            "name": "user"
+                        },
+                        {
+                            "name": "signup"
+                        },
+                        {
+                            "name": "register"
+                        }
+                    ],
+                    "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+                    "payload": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    }
+                }
             ]
         },
         "http://asyncapi.com/definitions/2.6.0/correlationId.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/correlationId.json",
             "type": "object",
+            "description": "An object that specifies an identifier at design time that can used for message tracing and correlation.",
             "required": [
                 "location"
             ],
@@ -1191,11 +1588,18 @@
                     "description": "A runtime expression that specifies the location of the correlation ID",
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "description": "Default Correlation ID",
+                    "location": "$message.header#/correlationId"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/messageTrait.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/messageTrait.json",
             "type": "object",
+            "description": "Describes a trait that MAY be applied to a Message Object.",
             "additionalProperties": false,
             "patternProperties": {
                 "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -1204,12 +1608,15 @@
             },
             "properties": {
                 "schemaFormat": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A string containing the name of the schema format/language used to define the message payload."
                 },
                 "contentType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The content type to use when encoding/decoding a message's payload."
                 },
                 "headers": {
+                    "description": "Schema definition of the application headers.",
                     "allOf": [
                         {
                             "$ref": "http://asyncapi.com/definitions/2.6.0/schema.json"
@@ -1224,9 +1631,11 @@
                     ]
                 },
                 "messageId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Unique string used to identify the message. The id MUST be unique among all messages described in the API."
                 },
                 "correlationId": {
+                    "description": "Definition of the correlation ID used for message tracing or matching.",
                     "oneOf": [
                         {
                             "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
@@ -1238,6 +1647,7 @@
                 },
                 "tags": {
                     "type": "array",
+                    "description": "A list of tags for logical grouping and categorization of messages.",
                     "items": {
                         "$ref": "http://asyncapi.com/definitions/2.6.0/tag.json"
                     },
@@ -1268,14 +1678,51 @@
                 },
                 "examples": {
                     "type": "array",
+                    "description": "List of examples.",
                     "items": {
-                        "type": "object"
+                        "type": "object",
+                        "additionalProperties": false,
+                        "anyOf": [
+                            {
+                                "required": [
+                                    "payload"
+                                ]
+                            },
+                            {
+                                "required": [
+                                    "headers"
+                                ]
+                            }
+                        ],
+                        "properties": {
+                            "name": {
+                                "type": "string",
+                                "description": "Machine readable name of the message example."
+                            },
+                            "summary": {
+                                "type": "string",
+                                "description": "A brief summary of the message example."
+                            },
+                            "headers": {
+                                "type": "object",
+                                "description": "Schema definition of the application headers."
+                            },
+                            "payload": {
+                                "description": "Definition of the message payload. It can be of any type"
+                            }
+                        }
                     }
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
                 }
-            }
+            },
+            "examples": [
+                {
+                    "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+                    "contentType": "application/json"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/openapiSchema_3_0.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/openapiSchema_3_0.json",
@@ -1975,7 +2422,139 @@
                         "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
                     }
                 }
-            }
+            },
+            "examples": [
+                {
+                    "components": {
+                        "schemas": {
+                            "Category": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "Tag": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "servers": {
+                            "development": {
+                                "url": "{stage}.gigantic-server.com:{port}",
+                                "description": "Development server",
+                                "protocol": "amqp",
+                                "protocolVersion": "0.9.1",
+                                "variables": {
+                                    "stage": {
+                                        "$ref": "#/components/serverVariables/stage"
+                                    },
+                                    "port": {
+                                        "$ref": "#/components/serverVariables/port"
+                                    }
+                                }
+                            }
+                        },
+                        "serverVariables": {
+                            "stage": {
+                                "default": "demo",
+                                "description": "This value is assigned by the service provider, in this example `gigantic-server.com`"
+                            },
+                            "port": {
+                                "enum": [
+                                    "8883",
+                                    "8884"
+                                ],
+                                "default": "8883"
+                            }
+                        },
+                        "channels": {
+                            "user/signedup": {
+                                "subscribe": {
+                                    "message": {
+                                        "$ref": "#/components/messages/userSignUp"
+                                    }
+                                }
+                            }
+                        },
+                        "messages": {
+                            "userSignUp": {
+                                "summary": "Action to sign a user up.",
+                                "description": "Multiline description of what this action does.\nHere you have another line.\n",
+                                "tags": [
+                                    {
+                                        "name": "user"
+                                    },
+                                    {
+                                        "name": "signup"
+                                    }
+                                ],
+                                "headers": {
+                                    "type": "object",
+                                    "properties": {
+                                        "applicationInstanceId": {
+                                            "description": "Unique identifier for a given instance of the publishing application",
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "payload": {
+                                    "type": "object",
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/userCreate"
+                                        },
+                                        "signup": {
+                                            "$ref": "#/components/schemas/signup"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "parameters": {
+                            "userId": {
+                                "description": "Id of the user.",
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "correlationIds": {
+                            "default": {
+                                "description": "Default Correlation ID",
+                                "location": "$message.header#/correlationId"
+                            }
+                        },
+                        "messageTraits": {
+                            "commonHeaders": {
+                                "headers": {
+                                    "type": "object",
+                                    "properties": {
+                                        "my-app-header": {
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 100
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/schemas.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/schemas.json",
@@ -1995,6 +2574,7 @@
         },
         "http://asyncapi.com/definitions/2.6.0/SecurityScheme.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/SecurityScheme.json",
+            "description": "Defines a security scheme that can be used by the operations.",
             "oneOf": [
                 {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/userPassword.json"
@@ -2023,6 +2603,11 @@
                 {
                     "$ref": "http://asyncapi.com/definitions/2.6.0/SaslSecurityScheme.json"
                 }
+            ],
+            "examples": [
+                {
+                    "type": "userPassword"
+                }
             ]
         },
         "http://asyncapi.com/definitions/2.6.0/userPassword.json": {
@@ -2034,12 +2619,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "userPassword"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2047,7 +2634,12 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "userPassword"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/apiKey.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/apiKey.json",
@@ -2059,19 +2651,22 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "apiKey"
                     ]
                 },
                 "in": {
                     "type": "string",
+                    "description": "The location of the API key. ",
                     "enum": [
                         "user",
                         "password"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2079,7 +2674,13 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "apiKey",
+                    "in": "user"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/X509.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/X509.json",
@@ -2092,10 +2693,12 @@
                     "type": "string",
                     "enum": [
                         "X509"
-                    ]
+                    ],
+                    "description": "The type of the security scheme."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2103,7 +2706,12 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "X509"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/symmetricEncryption.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/symmetricEncryption.json",
@@ -2114,12 +2722,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "symmetricEncryption"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2127,7 +2737,12 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "symmetricEncryption"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/asymmetricEncryption.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/asymmetricEncryption.json",
@@ -2138,12 +2753,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "asymmetricEncryption"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2174,6 +2791,7 @@
                 "properties": {
                     "scheme": {
                         "type": "string",
+                        "description": "A short description for security scheme.",
                         "enum": [
                             "bearer"
                         ]
@@ -2187,13 +2805,16 @@
             ],
             "properties": {
                 "scheme": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235."
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 },
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "http"
                     ]
@@ -2216,21 +2837,25 @@
             "properties": {
                 "scheme": {
                     "type": "string",
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.",
                     "enum": [
                         "bearer"
                     ]
                 },
                 "bearerFormat": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A hint to the client to identify how the bearer token is formatted."
                 },
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "http"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2251,15 +2876,18 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. ",
                     "enum": [
                         "httpApiKey"
                     ]
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The name of the header, query or cookie parameter to be used."
                 },
                 "in": {
                     "type": "string",
+                    "description": "The location of the API key. ",
                     "enum": [
                         "header",
                         "query",
@@ -2267,7 +2895,8 @@
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2275,11 +2904,19 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "httpApiKey",
+                    "name": "api_key",
+                    "in": "header"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/oauth2Flows.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/oauth2Flows.json",
             "type": "object",
+            "description": "Allows configuration of the supported OAuth Flows.",
             "required": [
                 "type",
                 "flows"
@@ -2287,17 +2924,20 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "A short description for security scheme.",
                     "enum": [
                         "oauth2"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 },
                 "flows": {
                     "type": "object",
                     "properties": {
                         "implicit": {
+                            "description": "Configuration for the OAuth Implicit flow.",
                             "allOf": [
                                 {
                                     "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
@@ -2318,6 +2958,7 @@
                             ]
                         },
                         "password": {
+                            "description": "Configuration for the OAuth Resource Owner Protected Credentials flow.",
                             "allOf": [
                                 {
                                     "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
@@ -2338,6 +2979,7 @@
                             ]
                         },
                         "clientCredentials": {
+                            "description": "Configuration for the OAuth Client Credentials flow.",
                             "allOf": [
                                 {
                                     "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
@@ -2358,6 +3000,7 @@
                             ]
                         },
                         "authorizationCode": {
+                            "description": "Configuration for the OAuth Authorization Code flow.",
                             "allOf": [
                                 {
                                     "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
@@ -2384,20 +3027,25 @@
         "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json",
             "type": "object",
+            "description": "Configuration details for a supported OAuth Flow",
             "properties": {
                 "authorizationUrl": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The authorization URL to be used for this flow. This MUST be in the form of an absolute URL."
                 },
                 "tokenUrl": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL."
                 },
                 "refreshUrl": {
                     "type": "string",
-                    "format": "uri"
+                    "format": "uri",
+                    "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL."
                 },
                 "scopes": {
+                    "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it.",
                     "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Scopes.json"
                 }
             },
@@ -2406,7 +3054,29 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "oauth2",
+                    "flows": {
+                        "implicit": {
+                            "authorizationUrl": "https://example.com/api/oauth/dialog",
+                            "scopes": {
+                                "write:pets": "modify pets in your account",
+                                "read:pets": "read your pets"
+                            }
+                        },
+                        "authorizationCode": {
+                            "authorizationUrl": "https://example.com/api/oauth/dialog",
+                            "tokenUrl": "https://example.com/api/oauth/token",
+                            "scopes": {
+                                "write:pets": "modify pets in your account",
+                                "read:pets": "read your pets"
+                            }
+                        }
+                    }
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/oauth2Scopes.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/oauth2Scopes.json",
@@ -2467,12 +3137,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme. Valid values",
                     "enum": [
                         "plain"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2480,7 +3152,12 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "scramSha512"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/SaslScramSecurityScheme.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/SaslScramSecurityScheme.json",
@@ -2491,13 +3168,15 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "scramSha256",
                         "scramSha512"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2505,7 +3184,12 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "scramSha512"
+                }
+            ]
         },
         "http://asyncapi.com/definitions/2.6.0/SaslGssapiSecurityScheme.json": {
             "$id": "http://asyncapi.com/definitions/2.6.0/SaslGssapiSecurityScheme.json",
@@ -2516,12 +3200,14 @@
             "properties": {
                 "type": {
                     "type": "string",
+                    "description": "The type of the security scheme.",
                     "enum": [
                         "gssapi"
                     ]
                 },
                 "description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "A short description for security scheme."
                 }
             },
             "patternProperties": {
@@ -2529,7 +3215,12 @@
                     "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
                 }
             },
-            "additionalProperties": false
+            "additionalProperties": false,
+            "examples": [
+                {
+                    "type": "scramSha512"
+                }
+            ]
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "
