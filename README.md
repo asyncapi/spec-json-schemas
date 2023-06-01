@@ -126,9 +126,9 @@ These definitions are automatically bundled together on new releases through the
 
 For example, for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](./schemas/2.2.0.json).
 
-### Creating a new version
+## Creating a new version
 
-## 1a Automated:
+### 1a Automated:
 
 ```bash
 npm run startNewVersion --new-version=x.x.x
@@ -136,7 +136,7 @@ npm run startNewVersion --new-version=x.x.x
 
 Where `x.x.x` is the new version you want to create.
 
-## 1a Manual
+### 1a Manual
 
 The manual process of creating a new version is to:
 1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
@@ -145,7 +145,7 @@ The manual process of creating a new version is to:
 1. Rename the folder to the new version (`x.x.x`).
 1. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
 
-## 2 Further steps
+### 2 Further steps
 
 1. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
    ```js
@@ -176,7 +176,24 @@ The manual process of creating a new version is to:
     }
     ```
 
-### Handling breaking changes
+## Handling breaking changes
 Whenever a Breaking Change is introduced, the following steps should be taken in Go package:
 
 1. Edit `go.mod` file, and increase the version package suffix in the module name. For example, if the current version is `v2.0.0`, and you are releasing `v3.0.0`, the module name should be `github.com/asyncapi/spec-json-schemas/v3`.
+
+## SchemaStore compatibility testing
+
+AsyncAPI JSON Schema is referenced in [SchemaStore](https://www.schemastore.org/json/). In many IDEs, like VSCode, some extensions integrate with SchemaStore, like [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This way we enable autocompletion, validation and tooltips that helps writing AsyncAPI documents.
+
+Whenever you make changes in AsyncAPI JSON Schema, you should always manually verify that the schema is still supported by [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and that it will be able to fetch and dereference it.
+
+- Make sure you have VSCode and YAML extension
+- Once you make changes in schemas, bundle them with `npm run bundle`
+- Edit [this sample AsyncAPI document](./test/fixtures/asyncapi.yml). Add a new field, hover over some property to see if tooltip still shows up. This sample document contains the following line that assures YAML uses your local schema and not the one from SchemaStore. Make sure it points to the schema bundle that you generated and that contains your changes:
+   ```yaml
+   # yaml-language-server: $schema=YOUR-PROJECTS-DIRECTORY/spec-json-schemas/schemas/2.6.0-without-$id.json
+   ```
+
+
+
+
