@@ -29,7 +29,7 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const definitionJson = definitionFiles.map((file) => JSON.parse(file));
       for (const jsonFile of definitionJson) {
         if (jsonFile.example) {
-					// Replaced the example property with the referenced example property
+          // Replaced the example property with the referenced example property
 					const examples = await loadRefProperties(jsonFile.example);
 					// Replacing example property with examples is because using example
           // to pass an array of example properties is not valid in JSON Schema.
