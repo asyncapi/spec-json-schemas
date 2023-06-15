@@ -132,7 +132,14 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+            }
+          ]
         }
       }
     },
@@ -140,7 +147,14 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+            }
+          ]
         }
       }
     },
@@ -178,7 +192,14 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+            }
+          ]
         }
       }
     },
@@ -186,7 +207,14 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+            }
+          ]
         }
       }
     },
@@ -194,7 +222,14 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+            }
+          ]
         }
       }
     },
