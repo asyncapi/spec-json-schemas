@@ -4918,6 +4918,22 @@
                 "channel": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                 },
+                "messages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    }
+                },
+                "reply": {
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+                        }
+                    ]
+                },
                 "traits": {
                     "type": "array",
                     "items": {
@@ -4972,6 +4988,61 @@
                 },
                 "bindings": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationReply.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationReply.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "address": {
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
+                        }
+                    ]
+                },
+                "channel": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "messages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    }
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "required": [
+                "location"
+            ],
+            "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "A runtime expression that specifies the location of the reply address.",
+                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "An optional description of the address. CommonMark is allowed."
                 }
             }
         },
@@ -6025,6 +6096,36 @@
                         "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
                     }
                 },
+                "replies": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[\\w\\d\\.\\-_]+$": {
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "replyAddresses": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[\\w\\d\\.\\-_]+$": {
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
+                                }
+                            ]
+                        }
+                    }
+                },
                 "serverBindings": {
                     "type": "object",
                     "additionalProperties": {
@@ -6051,28 +6152,32 @@
                 },
                 "tags": {
                     "type": "object",
-                    "additionalProperties": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                            }
-                        ]
+                    "patternProperties": {
+                        "^[\\w\\d\\.\\-_]+$": {
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                }
+                            ]
+                        }
                     }
                 },
                 "externalDocs": {
                     "type": "object",
-                    "additionalProperties": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                            }
-                        ]
+                    "patternProperties": {
+                        "^[\\w\\d\\.\\-_]+$": {
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                                }
+                            ]
+                        }
                     }
                 }
             }
