@@ -2081,7 +2081,17 @@
                     "type": "string"
                 },
                 "payload": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/messagePayloadObject.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+                        }
+                    ]
                 },
                 "correlationId": {
                     "oneOf": [
@@ -2167,7 +2177,17 @@
                                 "type": "object"
                             },
                             "payload": {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/messagePayloadObject.json"
+                                "oneOf": [
+                                    {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                    },
+                                    {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                    },
+                                    {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+                                    }
+                                ]
                             }
                         }
                     }
@@ -2209,8 +2229,8 @@
                 }
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/messagePayloadObject.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/messagePayloadObject.json",
+        "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json",
             "type": "object",
             "additionalProperties": false,
             "patternProperties": {
@@ -6184,11 +6204,21 @@
         },
         "http://asyncapi.com/definitions/3.0.0/schemas.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/schemas.json",
+            "description": "An object representing multiple schemas.",
             "type": "object",
             "additionalProperties": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-            },
-            "description": "JSON objects describing schemas the API uses."
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+                    }
+                ]
+            }
         }
     },
     "description": "!!Auto generated!! \n Do not manually edit. "

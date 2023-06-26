@@ -28,7 +28,17 @@
       "type": "string"
     },
     "payload": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/messagePayloadObject.json"
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+        }
+      ]
     },
     "correlationId": {
       "oneOf": [
@@ -114,7 +124,17 @@
             "type": "object"
           },
           "payload": {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/messagePayloadObject.json"
+            "oneOf": [
+              {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+              },
+              {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+              },
+              {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+              }
+            ]
           }
         }
       }
