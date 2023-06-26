@@ -6,7 +6,7 @@
         "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
       },
       {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/message.json"
+        "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
       }
     ]
   },
