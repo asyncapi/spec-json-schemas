@@ -7,9 +7,6 @@
     }
   },
   "properties": {
-    "schemaFormat": {
-      "type": "string"
-    },
     "contentType": {
       "type": "string"
     },
