@@ -28,7 +28,7 @@ describe("Should be able to validate", function () {
         const document = require(documentPath);
         const validate = ajv.compile(schema)
         const valid = validate(document)
-        assert(valid === true, 'Document must be validated correctly: ' + JSON.stringify(validate.errors, null, 4));
+        assert(valid === true, 'Document ' + documentPath + ' must be validated correctly: ' + JSON.stringify(validate.errors, null, 4));
       }
     }
   });

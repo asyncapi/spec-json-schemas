@@ -60,29 +60,31 @@
   "components": {
     "messages": {
       "UserSignedUp": {
-        "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
         "payload": {
-          "properties": {
-            "id": {
-              "type": "integer"
+          "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
+          "schema": {
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              },
+              "completed": {
+                "type": "boolean"
+              },
+              "completed_at": {
+                "type": "string",
+                "format": "date-time",
+                "nullable": true
+              }
             },
-            "name": {
-              "type": "string"
-            },
-            "completed": {
-              "type": "boolean"
-            },
-            "completed_at": {
-              "type": "string",
-              "format": "date-time",
-              "nullable": true
-            }
-          },
-          "required": [
-            "id",
-            "name",
-            "completed"
-          ]
+            "required": [
+              "id",
+              "name",
+              "completed"
+            ]
+          }
         }
       }
     }
