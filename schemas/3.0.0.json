@@ -2058,17 +2058,7 @@
                     "type": "string"
                 },
                 "payload": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-                        }
-                    ]
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                 },
                 "correlationId": {
                     "oneOf": [
@@ -2154,14 +2144,7 @@
                                 "type": "object"
                             },
                             "payload": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                    },
-                                    {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-                                    }
-                                ]
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                             }
                         }
                     }
@@ -2202,6 +2185,49 @@
                     }
                 }
             }
+        },
+        "http://asyncapi.com/definitions/3.0.0/anySchema.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
+            "type": "object",
+            "additionalProperties": true,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "schemaFormat": {
+                    "type": "string"
+                },
+                "schema": {}
+            },
+            "allOf": [
+                {
+                    "description": "If the property 'schema' is not present, use the default AsyncAPI Schema object",
+                    "if": {
+                        "not": {
+                            "required": [
+                                "schema"
+                            ]
+                        }
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                    }
+                },
+                {
+                    "description": "If the property 'schema' is present, use the multi format schema",
+                    "if": {
+                        "required": [
+                            "schema"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+                    }
+                }
+            ],
+            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property."
         },
         "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json",
@@ -6285,21 +6311,6 @@
                         }
                     }
                 }
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/schemas.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/schemas.json",
-            "description": "An object representing multiple schemas.",
-            "type": "object",
-            "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-                    }
-                ]
             }
         }
     },
