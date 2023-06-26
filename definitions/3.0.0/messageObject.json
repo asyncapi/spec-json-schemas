@@ -28,17 +28,7 @@
       "type": "string"
     },
     "payload": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-        }
-      ]
+      "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
     },
     "correlationId": {
       "oneOf": [
@@ -124,14 +114,7 @@
             "type": "object"
           },
           "payload": {
-            "oneOf": [
-              {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-              },
-              {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-              }
-            ]
+            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
           }
         }
       }
