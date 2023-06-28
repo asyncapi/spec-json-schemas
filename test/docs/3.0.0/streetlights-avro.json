@@ -58,8 +58,31 @@
     }
   },
   "components": {
+    "schemas": {
+      "UserSignedUpHeaders": {
+        "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+        "schema": {
+          "fields": [
+            {
+               "name":"applicationInstanceId",
+               "type":"string"
+            },
+            {
+               "name":"correlationId",
+               "type":"string"
+            }
+          ],
+          "name": "UserSignedUp headers",
+          "namespace": "com.example.avro",
+          "type": "record"
+        }
+      }
+    },
     "messages": {
       "UserSignedUp": {
+        "headers": {
+          "$ref": "#/components/schemas/UserSignedUpHeaders"
+        },
         "payload": {
           "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
           "schema": {
