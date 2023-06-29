@@ -16,9 +16,7 @@
   "properties": {
     "asyncapi": {
       "type": "string",
-      "enum": [
-        "3.0.0"
-      ],
+      "const":  "3.0.0",
       "description": "The AsyncAPI specification version of this document."
     },
     "id": {
