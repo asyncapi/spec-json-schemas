@@ -2179,20 +2179,7 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
             "allOf": [
                 {
-                    "description": "If the property 'schema' is not present, use the default AsyncAPI Schema object",
-                    "if": {
-                        "not": {
-                            "required": [
-                                "schema"
-                            ]
-                        }
-                    },
-                    "then": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                    }
-                },
-                {
-                    "description": "If the property 'schema' is present, use the multi-format schema",
+                    "description": "If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise.",
                     "if": {
                         "required": [
                             "schema"
@@ -2200,6 +2187,9 @@
                     },
                     "then": {
                         "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                     }
                 }
             ],
@@ -6010,7 +6000,14 @@
                     "type": "object",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+                                }
+                            ]
                         }
                     }
                 },
