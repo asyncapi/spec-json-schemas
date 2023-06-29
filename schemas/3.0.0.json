@@ -2177,19 +2177,6 @@
         },
         "http://asyncapi.com/definitions/3.0.0/anySchema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
-            "type": "object",
-            "additionalProperties": true,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "schemaFormat": {
-                    "type": "string"
-                },
-                "schema": {}
-            },
             "allOf": [
                 {
                     "description": "If the property 'schema' is not present, use the default AsyncAPI Schema object",
@@ -2205,7 +2192,7 @@
                     }
                 },
                 {
-                    "description": "If the property 'schema' is present, use the multi format schema",
+                    "description": "If the property 'schema' is present, use the multi-format schema",
                     "if": {
                         "required": [
                             "schema"
@@ -6023,14 +6010,7 @@
                     "type": "object",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                                }
-                            ]
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                         }
                     }
                 },

@@ -64,15 +64,15 @@
         "schema": {
           "fields": [
             {
-               "name":"applicationInstanceId",
-               "type":"string"
+               "name": "applicationInstanceId",
+               "type": "string"
             },
             {
-               "name":"correlationId",
-               "type":"string"
+               "name": "correlationId",
+               "type": "string"
             }
           ],
-          "name": "UserSignedUp headers",
+          "name": "UserSignedUpHeaders",
           "namespace": "com.example.avro",
           "type": "record"
         }
