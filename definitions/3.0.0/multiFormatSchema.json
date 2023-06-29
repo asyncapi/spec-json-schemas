@@ -1,4 +1,13 @@
 {
+  "if": {
+    "not": {
+      "type": "object"
+    }
+  },
+  "then": {
+    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+  },
+  "else": {
     "type": "object",
     "additionalProperties": false,
     "patternProperties": {
@@ -103,8 +112,8 @@
           "properties": {
             "schemaFormat": {
               "enum": [
-                "application/vnd.oai.openapi;version=3.0.0", 
-                "application/vnd.oai.openapi+json;version=3.0.0", 
+                "application/vnd.oai.openapi;version=3.0.0",
+                "application/vnd.oai.openapi+json;version=3.0.0",
                 "application/vnd.oai.openapi+yaml;version=3.0.0"
               ]
             }
@@ -141,7 +150,8 @@
           }
         }
       }
-    ],
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-  }
+    ]
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+}
