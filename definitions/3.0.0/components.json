@@ -12,7 +12,14 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+            }
+          ]
         }
       }
     },
