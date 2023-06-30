@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
+const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
@@ -8,6 +9,12 @@ const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
 console.log(`Looking for separate definitions in the following directory: ${definitionsDirectory}`);
 console.log(`Looking for binding version schemas in the following directory: ${bindingsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
+
+// definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
+const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^\/]*\/(.+)\.json(.*)/i
+
+// definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
+const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^\/]+)\/[^\/]+\/(.+)\.json(.*)/i
 
 /**
  * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
@@ -140,9 +147,16 @@ function modifyRefsAndDefinitions(bundledSchema) {
  */
 function getDefinitionName(def) {
   if (def.startsWith('http://json-schema.org')) return JSON_SCHEMA_PROP_NAME;
-
-  if (path.extname(def) !== '.json') throw new Error(`Original $id values should point to JSON files. There is probably an error in one of the source definitions containing definition: ${def}`);
-  return path.basename(def, '.json')
+  if (def.startsWith('http://asyncapi.com/definitions')) {
+    const result = definitionsRegex.exec(def);
+    if (result) return result[1] + result[2];
+  }
+  if (def.startsWith('http://asyncapi.com/bindings')) {
+    const result = bindingsRegex.exec(def);
+    if (result) return result[1] + '/' + result[2] + result[3];
+  }
+  
+  return path.basename(def, '.json') // TODO is this really needed?
 }
 
 /**
@@ -150,13 +164,11 @@ function getDefinitionName(def) {
  * it is triggered with every new element of json schema
  */
 function replaceRef(schema) {
-
   //new refs will only work if we remove $id that all point to asyncapi.com
   delete schema.$id
   
   //traversing shoudl take place only in case of schemas with refs
   if (schema.$ref === undefined ) return;
-
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
 }
