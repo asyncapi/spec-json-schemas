@@ -1,4 +1,5 @@
 {
+  "description": "Describes a message received on a given channel and operation.",
   "oneOf": [
     {
       "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
@@ -93,6 +94,7 @@
             },
             "examples": {
               "type": "array",
+              "description": "List of examples.",
               "items": {
                 "type": "object",
                 "additionalProperties": false,
@@ -114,9 +116,12 @@
                     "description": "A brief summary of the message example."
                   },
                   "headers": {
-                    "type": "object"
+                    "type": "object",
+                    "description": "Schema definition of the application headers."
                   },
-                  "payload": {}
+                  "payload": {
+                    "description": "Definition of the message payload. It can be of any type"
+                  }
                 }
               }
             },
@@ -216,12 +221,61 @@
                   }
                 }
               }
+            },
+            {
+              "if": {
+                "required": [
+                  "schemaFormat"
+                ],
+                "properties": {
+                  "schemaFormat": {
+                    "enum": [
+                      "application/vnd.oai.openapi;version=3.0.0", 
+                      "application/vnd.oai.openapi+json;version=3.0.0", 
+                      "application/vnd.oai.openapi+yaml;version=3.0.0"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "payload": {
+                    "$ref": "http://asyncapi.com/definitions/2.6.0/openapiSchema_3_0.json"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "schemaFormat"
+                ],
+                "properties": {
+                  "schemaFormat": {
+                    "enum": [
+                      "application/vnd.apache.avro;version=1.9.0",
+                      "application/vnd.apache.avro+json;version=1.9.0",
+                      "application/vnd.apache.avro+yaml;version=1.9.0"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "payload": {
+                    "$ref": "http://asyncapi.com/definitions/2.6.0/avroSchema_v1.json"
+                  }
+                }
+              }
             }
           ]
         }
       ]
     }
   ],
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/message.json"
+  },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/message.json"
 }
