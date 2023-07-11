@@ -149,7 +149,7 @@ function getDefinitionName(def) {
   if (def.startsWith('http://json-schema.org')) return JSON_SCHEMA_PROP_NAME;
   if (def.startsWith('http://asyncapi.com/definitions')) {
     const result = definitionsRegex.exec(def);
-    if (result) return result[1] + result[2];
+    if (result) return result[1].replace('/', '-') + result[2];
   }
   if (def.startsWith('http://asyncapi.com/bindings')) {
     const result = bindingsRegex.exec(def);
