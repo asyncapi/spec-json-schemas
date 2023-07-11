@@ -943,7 +943,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt/server"
+                                "$ref": "#/definitions/bindings-mqtt-0.1.0-server"
                             }
                         },
                         {
@@ -958,7 +958,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt/server"
+                                "$ref": "#/definitions/bindings-mqtt-0.1.0-server"
                             }
                         }
                     ]
@@ -982,7 +982,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt5/server"
+                                "$ref": "#/definitions/bindings-mqtt5-0.2.0-server"
                             }
                         },
                         {
@@ -997,7 +997,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt5/server"
+                                "$ref": "#/definitions/bindings-mqtt5-0.2.0-server"
                             }
                         }
                     ]
@@ -1022,7 +1022,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/server"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-server"
                             }
                         },
                         {
@@ -1037,7 +1037,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/server"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-server"
                             }
                         },
                         {
@@ -1052,7 +1052,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/server"
+                                "$ref": "#/definitions/bindings-kafka-0.3.0-server"
                             }
                         }
                     ]
@@ -1083,7 +1083,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/ibmmq/server"
+                                "$ref": "#/definitions/bindings-ibmmq-0.1.0-server"
                             }
                         },
                         {
@@ -1098,7 +1098,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/ibmmq/server"
+                                "$ref": "#/definitions/bindings-ibmmq-0.1.0-server"
                             }
                         }
                     ]
@@ -1123,7 +1123,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/solace/server"
+                                "$ref": "#/definitions/bindings-solace-0.3.0-server"
                             }
                         },
                         {
@@ -1138,7 +1138,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/solace/server"
+                                "$ref": "#/definitions/bindings-solace-0.3.0-server"
                             }
                         },
                         {
@@ -1153,7 +1153,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/solace/server"
+                                "$ref": "#/definitions/bindings-solace-0.2.0-server"
                             }
                         }
                     ]
@@ -1178,7 +1178,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/pulsar/server"
+                                "$ref": "#/definitions/bindings-pulsar-0.1.0-server"
                             }
                         },
                         {
@@ -1193,14 +1193,14 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/pulsar/server"
+                                "$ref": "#/definitions/bindings-pulsar-0.1.0-server"
                             }
                         }
                     ]
                 }
             }
         },
-        "bindings/mqtt/server": {
+        "bindings-mqtt-0.1.0-server": {
             "title": "MQTT server bindings object",
             "description": "This object contains information about the server representation in MQTT.",
             "type": "object",
@@ -1273,7 +1273,7 @@
                 }
             ]
         },
-        "bindings/mqtt5/server": {
+        "bindings-mqtt5-0.2.0-server": {
             "title": "Server Schema",
             "description": "This object contains information about the server representation in MQTT5.",
             "type": "object",
@@ -1667,7 +1667,42 @@
             },
             "default": true
         },
-        "bindings/kafka/server": {
+        "bindings-kafka-0.4.0-server": {
+            "title": "Server Schema",
+            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "schemaRegistryUrl": {
+                    "type": "string",
+                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)."
+                },
+                "schemaRegistryVendor": {
+                    "type": "string",
+                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.4.0"
+                    ],
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "schemaRegistryUrl": "https://my-schema-registry.com",
+                    "schemaRegistryVendor": "confluent",
+                    "bindingVersion": "0.4.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.3.0-server": {
             "title": "Server Schema",
             "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
             "type": "object",
@@ -1702,7 +1737,7 @@
                 }
             ]
         },
-        "bindings/ibmmq/server": {
+        "bindings-ibmmq-0.1.0-server": {
             "title": "IBM MQ server bindings object",
             "description": "This object contains server connection information about the IBM MQ server, referred to as an IBM MQ queue manager. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
             "type": "object",
@@ -1758,7 +1793,37 @@
                 }
             ]
         },
-        "bindings/solace/server": {
+        "bindings-solace-0.3.0-server": {
+            "title": "Solace server bindings object",
+            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "msgVpn": {
+                    "type": "string",
+                    "description": "The name of the Virtual Private Network to connect to on the Solace broker."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "msgVpn": "ProdVPN",
+                    "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "bindings-solace-0.2.0-server": {
             "title": "Solace server bindings object",
             "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
             "type": "object",
@@ -1788,7 +1853,7 @@
                 }
             ]
         },
-        "bindings/pulsar/server": {
+        "bindings-pulsar-0.1.0-server": {
             "title": "Server Schema",
             "description": "This object contains server information of Pulsar broker, which covers cluster and tenant admin configuration. This object contains additional information not possible to represent within the core AsyncAPI specification.",
             "type": "object",
@@ -2254,7 +2319,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/http/message"
+                                "$ref": "#/definitions/bindings-http-0.1.0-message"
                             }
                         },
                         {
@@ -2269,7 +2334,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/http/message"
+                                "$ref": "#/definitions/bindings-http-0.1.0-message"
                             }
                         }
                     ]
@@ -2294,7 +2359,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/amqp/message"
+                                "$ref": "#/definitions/bindings-amqp-0.2.0-message"
                             }
                         },
                         {
@@ -2309,7 +2374,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/amqp/message"
+                                "$ref": "#/definitions/bindings-amqp-0.2.0-message"
                             }
                         }
                     ]
@@ -2334,7 +2399,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt/message"
+                                "$ref": "#/definitions/bindings-mqtt-0.1.0-message"
                             }
                         },
                         {
@@ -2349,7 +2414,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt/message"
+                                "$ref": "#/definitions/bindings-mqtt-0.1.0-message"
                             }
                         }
                     ]
@@ -2376,7 +2441,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/message"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-message"
                             }
                         },
                         {
@@ -2391,7 +2456,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/message"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-message"
                             }
                         },
                         {
@@ -2406,7 +2471,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/message"
+                                "$ref": "#/definitions/bindings-kafka-0.3.0-message"
                             }
                         },
                         {
@@ -2421,7 +2486,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/message"
+                                "$ref": "#/definitions/bindings-kafka-0.1.0-message"
                             }
                         }
                     ]
@@ -2445,7 +2510,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/anypointmq/message"
+                                "$ref": "#/definitions/bindings-anypointmq-0.0.1-message"
                             }
                         },
                         {
@@ -2460,7 +2525,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/anypointmq/message"
+                                "$ref": "#/definitions/bindings-anypointmq-0.0.1-message"
                             }
                         }
                     ]
@@ -2490,7 +2555,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/ibmmq/message"
+                                "$ref": "#/definitions/bindings-ibmmq-0.1.0-message"
                             }
                         },
                         {
@@ -2505,7 +2570,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/ibmmq/message"
+                                "$ref": "#/definitions/bindings-ibmmq-0.1.0-message"
                             }
                         }
                     ]
@@ -2530,7 +2595,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/googlepubsub/message"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-message"
                             }
                         },
                         {
@@ -2545,14 +2610,14 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/googlepubsub/message"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-message"
                             }
                         }
                     ]
                 }
             }
         },
-        "bindings/http/message": {
+        "bindings-http-0.1.0-message": {
             "title": "HTTP message bindings object",
             "description": "This object contains information about the message representation in HTTP.",
             "type": "object",
@@ -2592,7 +2657,7 @@
                 }
             ]
         },
-        "bindings/amqp/message": {
+        "bindings-amqp-0.2.0-message": {
             "title": "AMQP message bindings object",
             "description": "This object contains information about the message representation in AMQP.",
             "type": "object",
@@ -2627,7 +2692,7 @@
                 }
             ]
         },
-        "bindings/mqtt/message": {
+        "bindings-mqtt-0.1.0-message": {
             "title": "MQTT message bindings object",
             "description": "This object contains information about the message representation in MQTT.",
             "type": "object",
@@ -2652,7 +2717,129 @@
                 }
             ]
         },
-        "bindings/kafka/message": {
+        "bindings-kafka-0.4.0-message": {
+            "title": "Message Schema",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "key": {
+                    "$ref": "#/definitions/schema",
+                    "description": "The message key."
+                },
+                "schemaIdLocation": {
+                    "type": "string",
+                    "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored.",
+                    "enum": [
+                        "header",
+                        "payload"
+                    ]
+                },
+                "schemaIdPayloadEncoding": {
+                    "type": "string",
+                    "description": "Number of bytes or vendor specific values when schema id is encoded in payload."
+                },
+                "schemaLookupStrategy": {
+                    "type": "string",
+                    "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.4.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "key": {
+                        "type": "string",
+                        "enum": [
+                            "myKey"
+                        ]
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "apicurio-new",
+                    "schemaLookupStrategy": "TopicIdStrategy",
+                    "bindingVersion": "0.4.0"
+                },
+                {
+                    "key": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "4",
+                    "bindingVersion": "0.4.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.3.0-message": {
+            "title": "Message Schema",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "key": {
+                    "$ref": "#/definitions/schema",
+                    "description": "The message key."
+                },
+                "schemaIdLocation": {
+                    "type": "string",
+                    "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored.",
+                    "enum": [
+                        "header",
+                        "payload"
+                    ]
+                },
+                "schemaIdPayloadEncoding": {
+                    "type": "string",
+                    "description": "Number of bytes or vendor specific values when schema id is encoded in payload."
+                },
+                "schemaLookupStrategy": {
+                    "type": "string",
+                    "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "key": {
+                        "type": "string",
+                        "enum": [
+                            "myKey"
+                        ]
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "apicurio-new",
+                    "schemaLookupStrategy": "TopicIdStrategy",
+                    "bindingVersion": "0.3.0"
+                },
+                {
+                    "key": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "4",
+                    "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.1.0-message": {
             "title": "Kafka message bindings object",
             "type": "object",
             "additionalProperties": false,
@@ -2692,7 +2879,7 @@
                 }
             ]
         },
-        "bindings/anypointmq/message": {
+        "bindings-anypointmq-0.0.1-message": {
             "title": "Anypoint MQ message bindings object",
             "description": "This object contains configuration for describing an Anypoint MQ message as an AsyncAPI message. This objects only contains configuration that can not be provided in the AsyncAPI standard message object.",
             "type": "object",
@@ -2729,7 +2916,7 @@
                 }
             ]
         },
-        "bindings/ibmmq/message": {
+        "bindings-ibmmq-0.1.0-message": {
             "title": "IBM MQ message bindings object",
             "description": "This object contains information about the message representation in IBM MQ.",
             "type": "object",
@@ -2817,7 +3004,7 @@
                 }
             ]
         },
-        "bindings/googlepubsub/message": {
+        "bindings-googlepubsub-0.1.0-message": {
             "title": "Cloud Pub/Sub Channel Schema",
             "description": "This object contains information about the message representation for Google Cloud Pub/Sub.",
             "type": "object",
@@ -3639,7 +3826,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/websockets/channel"
+                                "$ref": "#/definitions/bindings-websockets-0.1.0-channel"
                             }
                         },
                         {
@@ -3654,7 +3841,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/websockets/channel"
+                                "$ref": "#/definitions/bindings-websockets-0.1.0-channel"
                             }
                         }
                     ]
@@ -3678,7 +3865,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/amqp/channel"
+                                "$ref": "#/definitions/bindings-amqp-0.2.0-channel"
                             }
                         },
                         {
@@ -3693,7 +3880,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/amqp/channel"
+                                "$ref": "#/definitions/bindings-amqp-0.2.0-channel"
                             }
                         }
                     ]
@@ -3721,7 +3908,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/channel"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-channel"
                             }
                         },
                         {
@@ -3736,7 +3923,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/channel"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-channel"
                             }
                         },
                         {
@@ -3751,7 +3938,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/channel"
+                                "$ref": "#/definitions/bindings-kafka-0.3.0-channel"
                             }
                         }
                     ]
@@ -3775,7 +3962,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/anypointmq/channel"
+                                "$ref": "#/definitions/bindings-anypointmq-0.0.1-channel"
                             }
                         },
                         {
@@ -3790,7 +3977,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/anypointmq/channel"
+                                "$ref": "#/definitions/bindings-anypointmq-0.0.1-channel"
                             }
                         }
                     ]
@@ -3820,7 +4007,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/ibmmq/channel"
+                                "$ref": "#/definitions/bindings-ibmmq-0.1.0-channel"
                             }
                         },
                         {
@@ -3835,7 +4022,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/ibmmq/channel"
+                                "$ref": "#/definitions/bindings-ibmmq-0.1.0-channel"
                             }
                         }
                     ]
@@ -3860,7 +4047,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/googlepubsub/channel"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-channel"
                             }
                         },
                         {
@@ -3875,7 +4062,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/googlepubsub/channel"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-channel"
                             }
                         }
                     ]
@@ -3899,7 +4086,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/pulsar/channel"
+                                "$ref": "#/definitions/bindings-pulsar-0.1.0-channel"
                             }
                         },
                         {
@@ -3914,14 +4101,14 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/pulsar/channel"
+                                "$ref": "#/definitions/bindings-pulsar-0.1.0-channel"
                             }
                         }
                     ]
                 }
             }
         },
-        "bindings/websockets/channel": {
+        "bindings-websockets-0.1.0-channel": {
             "title": "WebSockets channel bindings object",
             "description": "When using WebSockets, the channel represents the connection. Unlike other protocols that support multiple virtual channels (topics, routing keys, etc.) per connection, WebSockets doesn't support virtual channels or, put it another way, there's only one channel and its characteristics are strongly related to the protocol used for the handshake, i.e., HTTP.",
             "type": "object",
@@ -3963,7 +4150,7 @@
                 }
             ]
         },
-        "bindings/amqp/channel": {
+        "bindings-amqp-0.2.0-channel": {
             "title": "AMQP channel bindings object",
             "description": "This object contains information about the channel representation in AMQP.",
             "type": "object",
@@ -4110,7 +4297,87 @@
                 }
             ]
         },
-        "bindings/kafka/channel": {
+        "bindings-kafka-0.4.0-channel": {
+            "title": "Channel Schema",
+            "description": "This object contains information about the channel representation in Kafka.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "topic": {
+                    "type": "string",
+                    "description": "Kafka topic name if different from channel name."
+                },
+                "partitions": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Number of partitions configured on this topic."
+                },
+                "replicas": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Number of replicas configured on this topic."
+                },
+                "topicConfiguration": {
+                    "description": "Topic configuration properties that are relevant for the API.",
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "cleanup.policy": {
+                            "description": "The [`cleanup.policy`](https://kafka.apache.org/documentation/#topicconfigs_cleanup.policy) configuration option.",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "compact",
+                                    "delete"
+                                ]
+                            }
+                        },
+                        "retention.ms": {
+                            "description": "The [`retention.ms`](https://kafka.apache.org/documentation/#topicconfigs_retention.ms) configuration option.",
+                            "type": "integer",
+                            "minimum": -1
+                        },
+                        "retention.bytes": {
+                            "description": "The [`retention.bytes`](https://kafka.apache.org/documentation/#topicconfigs_retention.bytes) configuration option.",
+                            "type": "integer",
+                            "minimum": -1
+                        },
+                        "delete.retention.ms": {
+                            "description": "The [`delete.retention.ms`](https://kafka.apache.org/documentation/#topicconfigs_delete.retention.ms) configuration option.",
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "max.message.bytes": {
+                            "description": "The [`max.message.bytes`](https://kafka.apache.org/documentation/#topicconfigs_max.message.bytes) configuration option.",
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.4.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "topic": "my-specific-topic",
+                    "partitions": 20,
+                    "replicas": 3,
+                    "bindingVersion": "0.4.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.3.0-channel": {
             "title": "Channel Schema",
             "description": "This object contains information about the channel representation in Kafka.",
             "type": "object",
@@ -4152,7 +4419,7 @@
                 }
             ]
         },
-        "bindings/anypointmq/channel": {
+        "bindings-anypointmq-0.0.1-channel": {
             "title": "Anypoint MQ channel bindings object",
             "description": "This object contains configuration for describing an Anypoint MQ exchange, queue, or FIFO queue as an AsyncAPI channel. This objects only contains configuration that can not be provided in the AsyncAPI standard channel object.",
             "type": "object",
@@ -4193,7 +4460,7 @@
                 }
             ]
         },
-        "bindings/ibmmq/channel": {
+        "bindings-ibmmq-0.1.0-channel": {
             "title": "IBM MQ channel bindings object",
             "description": "This object contains information about the channel representation in IBM MQ. Each channel corresponds to a Queue or Topic within IBM MQ.",
             "type": "object",
@@ -4324,7 +4591,7 @@
                 }
             ]
         },
-        "bindings/googlepubsub/channel": {
+        "bindings-googlepubsub-0.1.0-channel": {
             "title": "Cloud Pub/Sub Channel Schema",
             "description": "This object contains information about the channel representation for Google Cloud Pub/Sub.",
             "type": "object",
@@ -4410,7 +4677,7 @@
                 }
             ]
         },
-        "bindings/pulsar/channel": {
+        "bindings-pulsar-0.1.0-channel": {
             "title": "Channel Schema",
             "description": "This object contains information about the channel representation in Pulsar, which covers namespace and topic level admin configuration. This object contains additional information not possible to represent within the core AsyncAPI specification.",
             "type": "object",
@@ -4673,25 +4940,25 @@
             },
             "properties": {
                 "title": {
-                    "$ref": "#/definitions/operation#/properties/title"
+                    "$ref": "#/definitions/operation/properties/title"
                 },
                 "summary": {
-                    "$ref": "#/definitions/operation#/properties/summary"
+                    "$ref": "#/definitions/operation/properties/summary"
                 },
                 "description": {
-                    "$ref": "#/definitions/operation#/properties/description"
+                    "$ref": "#/definitions/operation/properties/description"
                 },
                 "security": {
-                    "$ref": "#/definitions/operation#/properties/security"
+                    "$ref": "#/definitions/operation/properties/security"
                 },
                 "tags": {
-                    "$ref": "#/definitions/operation#/properties/tags"
+                    "$ref": "#/definitions/operation/properties/tags"
                 },
                 "externalDocs": {
-                    "$ref": "#/definitions/operation#/properties/externalDocs"
+                    "$ref": "#/definitions/operation/properties/externalDocs"
                 },
                 "bindings": {
-                    "$ref": "#/definitions/operation#/properties/bindings"
+                    "$ref": "#/definitions/operation/properties/bindings"
                 }
             }
         },
@@ -4723,7 +4990,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/http/operation"
+                                "$ref": "#/definitions/bindings-http-0.1.0-operation"
                             }
                         },
                         {
@@ -4738,7 +5005,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/http/operation"
+                                "$ref": "#/definitions/bindings-http-0.1.0-operation"
                             }
                         }
                     ]
@@ -4763,7 +5030,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/amqp/operation"
+                                "$ref": "#/definitions/bindings-amqp-0.2.0-operation"
                             }
                         },
                         {
@@ -4778,7 +5045,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/amqp/operation"
+                                "$ref": "#/definitions/bindings-amqp-0.2.0-operation"
                             }
                         }
                     ]
@@ -4803,7 +5070,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt/operation"
+                                "$ref": "#/definitions/bindings-mqtt-0.1.0-operation"
                             }
                         },
                         {
@@ -4818,7 +5085,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/mqtt/operation"
+                                "$ref": "#/definitions/bindings-mqtt-0.1.0-operation"
                             }
                         }
                     ]
@@ -4845,7 +5112,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/operation"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-operation"
                             }
                         },
                         {
@@ -4860,7 +5127,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/operation"
+                                "$ref": "#/definitions/bindings-kafka-0.4.0-operation"
                             }
                         },
                         {
@@ -4875,7 +5142,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/operation"
+                                "$ref": "#/definitions/bindings-kafka-0.3.0-operation"
                             }
                         },
                         {
@@ -4890,7 +5157,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/kafka/operation"
+                                "$ref": "#/definitions/bindings-kafka-0.1.0-operation"
                             }
                         }
                     ]
@@ -4915,7 +5182,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/nats/operation"
+                                "$ref": "#/definitions/bindings-nats-0.1.0-operation"
                             }
                         },
                         {
@@ -4930,7 +5197,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/nats/operation"
+                                "$ref": "#/definitions/bindings-nats-0.1.0-operation"
                             }
                         }
                     ]
@@ -4961,7 +5228,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/solace/operation"
+                                "$ref": "#/definitions/bindings-solace-0.3.0-operation"
                             }
                         },
                         {
@@ -4976,7 +5243,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/solace/operation"
+                                "$ref": "#/definitions/bindings-solace-0.3.0-operation"
                             }
                         },
                         {
@@ -4991,7 +5258,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings/solace/operation"
+                                "$ref": "#/definitions/bindings-solace-0.2.0-operation"
                             }
                         }
                     ]
@@ -4999,7 +5266,7 @@
                 "googlepubsub": {}
             }
         },
-        "bindings/http/operation": {
+        "bindings-http-0.1.0-operation": {
             "title": "HTTP operation bindings object",
             "description": "This object contains information about the operation representation in HTTP.",
             "type": "object",
@@ -5112,7 +5379,7 @@
                 }
             ]
         },
-        "bindings/amqp/operation": {
+        "bindings-amqp-0.2.0-operation": {
             "title": "AMQP operation bindings object",
             "description": "This object contains information about the operation representation in AMQP.",
             "type": "object",
@@ -5202,7 +5469,7 @@
                 }
             ]
         },
-        "bindings/mqtt/operation": {
+        "bindings-mqtt-0.1.0-operation": {
             "title": "MQTT operation bindings object",
             "description": "This object contains information about the operation representation in MQTT.",
             "type": "object",
@@ -5237,7 +5504,97 @@
                 }
             ]
         },
-        "bindings/kafka/operation": {
+        "bindings-kafka-0.4.0-operation": {
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in Kafka.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "groupId": {
+                    "$ref": "#/definitions/schema",
+                    "description": "Id of the consumer group."
+                },
+                "clientId": {
+                    "$ref": "#/definitions/schema",
+                    "description": "Id of the consumer inside a consumer group."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.4.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "groupId": {
+                        "type": "string",
+                        "enum": [
+                            "myGroupId"
+                        ]
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "myClientId"
+                        ]
+                    },
+                    "bindingVersion": "0.4.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.3.0-operation": {
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in Kafka.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "groupId": {
+                    "$ref": "#/definitions/schema",
+                    "description": "Id of the consumer group."
+                },
+                "clientId": {
+                    "$ref": "#/definitions/schema",
+                    "description": "Id of the consumer inside a consumer group."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "groupId": {
+                        "type": "string",
+                        "enum": [
+                            "myGroupId"
+                        ]
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "myClientId"
+                        ]
+                    },
+                    "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.1.0-operation": {
             "title": "Kafka operation message bindings object",
             "description": "This object contains information about the operation representation in Kafka.",
             "type": "object",
@@ -5282,7 +5639,7 @@
                 }
             ]
         },
-        "bindings/nats/operation": {
+        "bindings-nats-0.1.0-operation": {
             "title": "NATS operation bindings object",
             "description": "This object contains information about the operation representation in NATS.",
             "type": "object",
@@ -5313,7 +5670,119 @@
                 }
             ]
         },
-        "bindings/solace/operation": {
+        "bindings-solace-0.3.0-operation": {
+            "title": "Solace operation bindings object",
+            "description": "This object contains information about the operation representation in Solace.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "destinations": {
+                    "description": "The list of Solace destinations referenced in the operation.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "deliveryMode": {
+                                "type": "string",
+                                "enum": [
+                                    "direct",
+                                    "persistent"
+                                ]
+                            }
+                        },
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "type": "string",
+                                        "const": "queue",
+                                        "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name."
+                                    },
+                                    "queue": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "The name of the queue"
+                                            },
+                                            "topicSubscriptions": {
+                                                "type": "array",
+                                                "description": "The list of topics that the queue subscribes to.",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "accessType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "exclusive",
+                                                    "nonexclusive"
+                                                ]
+                                            },
+                                            "maxTtl": {
+                                                "type": "string",
+                                                "description": "The maximum TTL to apply to messages to be spooled."
+                                            },
+                                            "maxMsgSpoolUsage": {
+                                                "type": "string",
+                                                "description": "The maximum amount of message spool that the given queue may use"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "type": "string",
+                                        "const": "topic",
+                                        "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name."
+                                    },
+                                    "topicSubscriptions": {
+                                        "type": "array",
+                                        "description": "The list of topics that the client subscribes to.",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "bindingVersion": {
+                "type": "string",
+                "enum": [
+                    "0.3.0"
+                ],
+                "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+            },
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "destinations": [
+                        {
+                            "destinationType": "queue",
+                            "queue": {
+                                "name": "sampleQueue",
+                                "topicSubscriptions": [
+                                    "samples/*"
+                                ],
+                                "accessType": "nonexclusive"
+                            }
+                        },
+                        {
+                            "destinationType": "topic",
+                            "topicSubscriptions": [
+                                "samples/*"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "bindings-solace-0.2.0-operation": {
             "title": "Solace operation bindings object",
             "description": "This object contains information about the operation representation in Solace.",
             "type": "object",
