@@ -1,4 +1,5 @@
 {
+  "description": "Describes a parameter included in a channel name.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -18,6 +19,9 @@
       "description": "A runtime expression that specifies the location of the parameter value",
       "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
     }
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/parameter.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/parameter.json"

@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Describes the operations available on a single channel.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -38,6 +39,9 @@
     "bindings": {
       "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
     }
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/channelItem.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/channelItem.json"

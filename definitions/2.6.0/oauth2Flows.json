@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Allows configuration of the supported OAuth Flows.",
   "required": [
     "type",
     "flows"
@@ -7,17 +8,20 @@
   "properties": {
     "type": {
       "type": "string",
+      "description": "A short description for security scheme.",
       "enum": [
         "oauth2"
       ]
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A short description for security scheme."
     },
     "flows": {
       "type": "object",
       "properties": {
         "implicit": {
+          "description": "Configuration for the OAuth Implicit flow.",
           "allOf": [
             {
               "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
@@ -38,6 +42,7 @@
           ]
         },
         "password": {
+          "description": "Configuration for the OAuth Resource Owner Protected Credentials flow.",
           "allOf": [
             {
               "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
@@ -58,6 +63,7 @@
           ]
         },
         "clientCredentials": {
+          "description": "Configuration for the OAuth Client Credentials flow.",
           "allOf": [
             {
               "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
@@ -78,6 +84,7 @@
           ]
         },
         "authorizationCode": {
+          "description": "Configuration for the OAuth Authorization Code flow.",
           "allOf": [
             {
               "$ref": "http://asyncapi.com/definitions/2.6.0/oauth2Flow.json"
