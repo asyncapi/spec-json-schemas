@@ -10,19 +10,23 @@
   "properties": {
     "enum": {
       "type": "array",
+      "description": "An enumeration of string values to be used if the substitution options are from a limited set.",
       "items": {
         "type": "string"
       },
       "uniqueItems": true
     },
     "default": {
-      "type": "string"
+      "type": "string",
+      "description": "The default value to use for substitution, and to send, if an alternate value is not supplied."
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "An optional description for the server variable. "
     },
     "examples": {
       "type": "array",
+      "description": "An array of examples of the server variable.",
       "items": {
         "type": "string"
       }

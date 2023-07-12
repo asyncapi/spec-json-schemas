@@ -1,5 +1,5 @@
 {
-  "description": "An object representing multiple servers.",
+  "description": "The Servers Object is a map of Server Objects.",
   "type": "object",
   "additionalProperties": {
     "oneOf": [
@@ -10,6 +10,9 @@
         "$ref": "http://asyncapi.com/definitions/2.6.0/server.json"
       }
     ]
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/servers.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/servers.json"

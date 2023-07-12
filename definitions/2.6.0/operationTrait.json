@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Describes a trait that MAY be applied to an Operation Object.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -8,13 +9,16 @@
   },
   "properties": {
     "summary": {
-      "type": "string"
+      "type": "string",
+      "description": "A short summary of what the operation is about."
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A verbose explanation of the operation."
     },
     "tags": {
       "type": "array",
+      "description": "A list of tags for logical grouping and categorization of operations.",
       "items": {
         "$ref": "http://asyncapi.com/definitions/2.6.0/tag.json"
       },
@@ -24,10 +28,12 @@
       "$ref": "http://asyncapi.com/definitions/2.6.0/externalDocs.json"
     },
     "operationId": {
-      "type": "string"
+      "type": "string",
+      "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API."
     },
     "security": {
       "type": "array",
+      "description": "A declaration of which security mechanisms are associated with this operation. ",
       "items": {
         "$ref": "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json"
       }
@@ -35,6 +41,9 @@
     "bindings": {
       "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
     }
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/operationTrait.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/operationTrait.json"

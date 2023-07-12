@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "description": "General information about the API.",
+  "description": "The object provides metadata about the API. The metadata can be used by the clients if needed.",
   "required": [
     "version",
     "title"
@@ -35,6 +35,9 @@
     "license": {
       "$ref": "http://asyncapi.com/definitions/2.6.0/license.json"
     }
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/info.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/info.json"

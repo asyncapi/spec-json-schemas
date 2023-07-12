@@ -1,4 +1,5 @@
 {
+  "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays.",
   "allOf": [
     {
       "$ref": "http://json-schema.org/draft-07/schema#"
@@ -81,18 +82,24 @@
           "$ref": "http://asyncapi.com/definitions/2.6.0/schema.json"
         },
         "discriminator": {
-          "type": "string"
+          "type": "string",
+          "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. "
         },
         "externalDocs": {
+          "description": "Additional external documentation for this schema.",
           "$ref": "http://asyncapi.com/definitions/2.6.0/externalDocs.json"
         },
         "deprecated": {
           "type": "boolean",
-          "default": false
+          "default": false,
+          "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage"
         }
       }
     }
   ],
+  "example": {
+    "$ref": "http://asyncapi.com/examples/2.6.0/schema.json"
+  },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/2.6.0/schema.json"
 }
