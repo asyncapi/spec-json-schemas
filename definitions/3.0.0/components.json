@@ -17,7 +17,7 @@
               "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
             },
             {
-              "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+              "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
             }
           ]
         }

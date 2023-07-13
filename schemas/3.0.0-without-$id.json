@@ -1990,30 +1990,18 @@
                 }
             },
             "properties": {
-                "schemaFormat": {
-                    "type": "string"
-                },
                 "contentType": {
                     "type": "string"
                 },
                 "headers": {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/schema"
-                        },
-                        {
-                            "properties": {
-                                "type": {
-                                    "const": "object"
-                                }
-                            }
-                        }
-                    ]
+                    "$ref": "#/definitions/anySchema"
                 },
                 "messageId": {
                     "type": "string"
                 },
-                "payload": {},
+                "payload": {
+                    "$ref": "#/definitions/anySchema"
+                },
                 "correlationId": {
                     "oneOf": [
                         {
@@ -2095,9 +2083,11 @@
                                 "description": "A brief summary of the message example."
                             },
                             "headers": {
-                                "type": "object"
+                                "$ref": "#/definitions/anySchema"
                             },
-                            "payload": {}
+                            "payload": {
+                                "$ref": "#/definitions/anySchema"
+                            }
                         }
                     }
                 },
@@ -2136,137 +2126,777 @@
                         ]
                     }
                 }
+            }
+        },
+        "anySchema": {
+            "if": {
+                "required": [
+                    "schema"
+                ]
             },
-            "allOf": [
-                {
-                    "if": {
-                        "not": {
+            "then": {
+                "$ref": "#/definitions/multiFormatSchema"
+            },
+            "else": {
+                "$ref": "#/definitions/schema"
+            },
+            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise."
+        },
+        "multiFormatSchema": {
+            "if": {
+                "not": {
+                    "type": "object"
+                }
+            },
+            "then": {
+                "$ref": "#/definitions/schema"
+            },
+            "else": {
+                "type": "object",
+                "additionalProperties": false,
+                "patternProperties": {
+                    "^x-[\\w\\d\\.\\x2d_]+$": {
+                        "$ref": "#/definitions/specificationExtension"
+                    }
+                },
+                "properties": {
+                    "schemaFormat": {
+                        "type": "string"
+                    },
+                    "schema": {}
+                },
+                "allOf": [
+                    {
+                        "if": {
+                            "not": {
+                                "required": [
+                                    "schemaFormat"
+                                ]
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "#/definitions/schema"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
                             "required": [
                                 "schemaFormat"
-                            ]
+                            ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/vnd.aai.asyncapi;version=2.0.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.0.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                                        "application/vnd.aai.asyncapi;version=2.1.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.1.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                                        "application/vnd.aai.asyncapi;version=2.2.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.2.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                                        "application/vnd.aai.asyncapi;version=2.3.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.3.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                                        "application/vnd.aai.asyncapi;version=2.4.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.4.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                                        "application/vnd.aai.asyncapi;version=2.5.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.5.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                                        "application/vnd.aai.asyncapi;version=2.6.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.6.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                                        "application/vnd.aai.asyncapi;version=3.0.0",
+                                        "application/vnd.aai.asyncapi+json;version=3.0.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "#/definitions/schema"
+                                }
+                            }
                         }
                     },
-                    "then": {
-                        "properties": {
-                            "payload": {
-                                "$ref": "#/definitions/schema"
+                    {
+                        "if": {
+                            "required": [
+                                "schemaFormat"
+                            ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/schema+json;version=draft-07",
+                                        "application/schema+yaml;version=draft-07"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "#/definitions/json-schema-draft-07-schema"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "required": [
+                                "schemaFormat"
+                            ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/vnd.oai.openapi;version=3.0.0",
+                                        "application/vnd.oai.openapi+json;version=3.0.0",
+                                        "application/vnd.oai.openapi+yaml;version=3.0.0"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "#/definitions/openapiSchema_3_0"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "required": [
+                                "schemaFormat"
+                            ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/vnd.apache.avro;version=1.9.0",
+                                        "application/vnd.apache.avro+json;version=1.9.0",
+                                        "application/vnd.apache.avro+yaml;version=1.9.0"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "#/definitions/avroSchema_v1"
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "openapiSchema_3_0": {
+            "type": "object",
+            "definitions": {
+                "ExternalDocumentation": {
+                    "type": "object",
+                    "required": [
+                        "url"
+                    ],
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string",
+                            "format": "uri-reference"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-": {}
+                    },
+                    "additionalProperties": false
+                },
+                "Discriminator": {
+                    "type": "object",
+                    "required": [
+                        "propertyName"
+                    ],
+                    "properties": {
+                        "propertyName": {
+                            "type": "string"
+                        },
+                        "mapping": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
                             }
                         }
                     }
                 },
-                {
-                    "if": {
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.aai.asyncapi;version=2.0.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.0.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.0.0",
-                                    "application/vnd.aai.asyncapi;version=2.1.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.1.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.1.0",
-                                    "application/vnd.aai.asyncapi;version=2.2.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.2.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.2.0",
-                                    "application/vnd.aai.asyncapi;version=2.3.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.3.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.3.0",
-                                    "application/vnd.aai.asyncapi;version=2.4.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.4.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.4.0",
-                                    "application/vnd.aai.asyncapi;version=2.5.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.5.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.5.0",
-                                    "application/vnd.aai.asyncapi;version=2.6.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.6.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.6.0",
-                                    "application/vnd.aai.asyncapi;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+json;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=3.0.0"
-                                ]
-                            }
-                        }
-                    },
-                    "then": {
-                        "properties": {
-                            "payload": {
-                                "$ref": "#/definitions/schema"
-                            }
+                "Reference": {
+                    "type": "object",
+                    "required": [
+                        "$ref"
+                    ],
+                    "patternProperties": {
+                        "^\\$ref$": {
+                            "type": "string",
+                            "format": "uri-reference"
                         }
                     }
                 },
-                {
-                    "if": {
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/schema+json;version=draft-07",
-                                    "application/schema+yaml;version=draft-07"
-                                ]
-                            }
+                "XML": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "namespace": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "prefix": {
+                            "type": "string"
+                        },
+                        "attribute": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "wrapped": {
+                            "type": "boolean",
+                            "default": false
                         }
                     },
-                    "then": {
-                        "properties": {
-                            "payload": {
-                                "$ref": "#/definitions/json-schema-draft-07-schema"
-                            }
-                        }
-                    }
-                },
-                {
-                    "if": {
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.oai.openapi;version=3.0.0",
-                                    "application/vnd.oai.openapi+json;version=3.0.0",
-                                    "application/vnd.oai.openapi+yaml;version=3.0.0"
-                                ]
-                            }
-                        }
+                    "patternProperties": {
+                        "^x-": {}
                     },
-                    "then": {
-                        "properties": {
-                            "payload": {
-                                "$ref": "#/definitions/openapiSchema_3_0"
-                            }
-                        }
-                    }
-                },
-                {
-                    "if": {
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.apache.avro;version=1.9.0",
-                                    "application/vnd.apache.avro+json;version=1.9.0",
-                                    "application/vnd.apache.avro+yaml;version=1.9.0"
-                                ]
-                            }
-                        }
-                    },
-                    "then": {
-                        "properties": {
-                            "payload": {
-                                "$ref": "#/definitions/avroSchema_v1"
-                            }
-                        }
-                    }
+                    "additionalProperties": false
                 }
-            ]
+            },
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "multipleOf": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMaximum": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "maxLength": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minLength": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "pattern": {
+                    "type": "string",
+                    "format": "regex"
+                },
+                "maxItems": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minItems": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "uniqueItems": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "maxProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minProperties": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "enum": {
+                    "type": "array",
+                    "items": true,
+                    "minItems": 1,
+                    "uniqueItems": false
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "array",
+                        "boolean",
+                        "integer",
+                        "number",
+                        "object",
+                        "string"
+                    ]
+                },
+                "not": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/openapiSchema_3_0"
+                        },
+                        {
+                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                        }
+                    ]
+                },
+                "allOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0"
+                            },
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "oneOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0"
+                            },
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "anyOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0"
+                            },
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "items": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/openapiSchema_3_0"
+                        },
+                        {
+                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                        }
+                    ]
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0"
+                            },
+                            {
+                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/openapiSchema_3_0"
+                        },
+                        {
+                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ],
+                    "default": true
+                },
+                "description": {
+                    "type": "string"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "default": true,
+                "nullable": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "discriminator": {
+                    "$ref": "#/definitions/openapiSchema_3_0/definitions/Discriminator"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "writeOnly": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "example": true,
+                "externalDocs": {
+                    "$ref": "#/definitions/openapiSchema_3_0/definitions/ExternalDocumentation"
+                },
+                "deprecated": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "xml": {
+                    "$ref": "#/definitions/openapiSchema_3_0/definitions/XML"
+                }
+            },
+            "patternProperties": {
+                "^x-": true
+            },
+            "additionalProperties": false
+        },
+        "avroSchema_v1": {
+            "definitions": {
+                "avroSchema": {
+                    "title": "Avro Schema",
+                    "description": "Root Schema",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                        }
+                    ]
+                },
+                "types": {
+                    "title": "Avro Types",
+                    "description": "Allowed Avro types",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveTypeWithMetadata"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/customTypeReference"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroRecord"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroEnum"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroArray"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroMap"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroFixed"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/avroUnion"
+                        }
+                    ]
+                },
+                "primitiveType": {
+                    "title": "Primitive Type",
+                    "description": "Basic type primitives.",
+                    "type": "string",
+                    "enum": [
+                        "null",
+                        "boolean",
+                        "int",
+                        "long",
+                        "float",
+                        "double",
+                        "bytes",
+                        "string"
+                    ]
+                },
+                "primitiveTypeWithMetadata": {
+                    "title": "Primitive Type With Metadata",
+                    "description": "A primitive type with metadata attached.",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                        }
+                    },
+                    "required": [
+                        "type"
+                    ]
+                },
+                "customTypeReference": {
+                    "title": "Custom Type",
+                    "description": "Reference to a ComplexType",
+                    "not": {
+                        "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                    },
+                    "type": "string",
+                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
+                },
+                "avroUnion": {
+                    "title": "Union",
+                    "description": "A Union of types",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
+                    },
+                    "minItems": 1
+                },
+                "avroField": {
+                    "title": "Field",
+                    "description": "A field within a Record",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                        },
+                        "type": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "default": true,
+                        "order": {
+                            "enum": [
+                                "ascending",
+                                "descending",
+                                "ignore"
+                            ]
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            }
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "type"
+                    ]
+                },
+                "avroRecord": {
+                    "title": "Record",
+                    "description": "A Record",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "record"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            }
+                        },
+                        "fields": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/avroField"
+                            }
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "name",
+                        "fields"
+                    ]
+                },
+                "avroEnum": {
+                    "title": "Enum",
+                    "description": "An enumeration",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "enum"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            }
+                        },
+                        "symbols": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            }
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "name",
+                        "symbols"
+                    ]
+                },
+                "avroArray": {
+                    "title": "Array",
+                    "description": "An array",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "array"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            }
+                        },
+                        "items": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "items"
+                    ]
+                },
+                "avroMap": {
+                    "title": "Map",
+                    "description": "A map of values",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "map"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            }
+                        },
+                        "values": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "values"
+                    ]
+                },
+                "avroFixed": {
+                    "title": "Fixed",
+                    "description": "A fixed sized array of bytes",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "fixed"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            }
+                        },
+                        "size": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "name",
+                        "size"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+                },
+                "namespace": {
+                    "type": "string",
+                    "pattern": "^([A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*)*$"
+                }
+            },
+            "description": "Json-Schema definition for Avro AVSC files.",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
+                }
+            ],
+            "title": "Avro Schema Definition"
         },
         "correlationId": {
             "type": "object",
@@ -3069,25 +3699,11 @@
                 }
             },
             "properties": {
-                "schemaFormat": {
-                    "type": "string"
-                },
                 "contentType": {
                     "type": "string"
                 },
                 "headers": {
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/schema"
-                        },
-                        {
-                            "properties": {
-                                "type": {
-                                    "const": "object"
-                                }
-                            }
-                        }
-                    ]
+                    "$ref": "#/definitions/anySchema"
                 },
                 "messageId": {
                     "type": "string"
@@ -3156,607 +3772,6 @@
                     "$ref": "#/definitions/messageBindingsObject"
                 }
             }
-        },
-        "openapiSchema_3_0": {
-            "type": "object",
-            "definitions": {
-                "ExternalDocumentation": {
-                    "type": "object",
-                    "required": [
-                        "url"
-                    ],
-                    "properties": {
-                        "description": {
-                            "type": "string"
-                        },
-                        "url": {
-                            "type": "string",
-                            "format": "uri-reference"
-                        }
-                    },
-                    "patternProperties": {
-                        "^x-": {}
-                    },
-                    "additionalProperties": false
-                },
-                "Discriminator": {
-                    "type": "object",
-                    "required": [
-                        "propertyName"
-                    ],
-                    "properties": {
-                        "propertyName": {
-                            "type": "string"
-                        },
-                        "mapping": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "string"
-                            }
-                        }
-                    }
-                },
-                "Reference": {
-                    "type": "object",
-                    "required": [
-                        "$ref"
-                    ],
-                    "patternProperties": {
-                        "^\\$ref$": {
-                            "type": "string",
-                            "format": "uri-reference"
-                        }
-                    }
-                },
-                "XML": {
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "type": "string"
-                        },
-                        "namespace": {
-                            "type": "string",
-                            "format": "uri"
-                        },
-                        "prefix": {
-                            "type": "string"
-                        },
-                        "attribute": {
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "wrapped": {
-                            "type": "boolean",
-                            "default": false
-                        }
-                    },
-                    "patternProperties": {
-                        "^x-": {}
-                    },
-                    "additionalProperties": false
-                }
-            },
-            "properties": {
-                "title": {
-                    "type": "string"
-                },
-                "multipleOf": {
-                    "type": "number",
-                    "exclusiveMinimum": 0
-                },
-                "maximum": {
-                    "type": "number"
-                },
-                "exclusiveMaximum": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "minimum": {
-                    "type": "number"
-                },
-                "exclusiveMinimum": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "maxLength": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "minLength": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 0
-                },
-                "pattern": {
-                    "type": "string",
-                    "format": "regex"
-                },
-                "maxItems": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "minItems": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 0
-                },
-                "uniqueItems": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "maxProperties": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "minProperties": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 0
-                },
-                "required": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "minItems": 1,
-                    "uniqueItems": true
-                },
-                "enum": {
-                    "type": "array",
-                    "items": true,
-                    "minItems": 1,
-                    "uniqueItems": false
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "array",
-                        "boolean",
-                        "integer",
-                        "number",
-                        "object",
-                        "string"
-                    ]
-                },
-                "not": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/openapiSchema_3_0"
-                        },
-                        {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
-                        }
-                    ]
-                },
-                "allOf": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0"
-                            },
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "oneOf": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0"
-                            },
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "anyOf": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0"
-                            },
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "items": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/openapiSchema_3_0"
-                        },
-                        {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
-                        }
-                    ]
-                },
-                "properties": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0"
-                            },
-                            {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "additionalProperties": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/openapiSchema_3_0"
-                        },
-                        {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
-                        },
-                        {
-                            "type": "boolean"
-                        }
-                    ],
-                    "default": true
-                },
-                "description": {
-                    "type": "string"
-                },
-                "format": {
-                    "type": "string"
-                },
-                "default": true,
-                "nullable": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "discriminator": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/Discriminator"
-                },
-                "readOnly": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "writeOnly": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "example": true,
-                "externalDocs": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/ExternalDocumentation"
-                },
-                "deprecated": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "xml": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/XML"
-                }
-            },
-            "patternProperties": {
-                "^x-": true
-            },
-            "additionalProperties": false
-        },
-        "avroSchema_v1": {
-            "definitions": {
-                "avroSchema": {
-                    "title": "Avro Schema",
-                    "description": "Root Schema",
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
-                        }
-                    ]
-                },
-                "types": {
-                    "title": "Avro Types",
-                    "description": "Allowed Avro types",
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveTypeWithMetadata"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/customTypeReference"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroRecord"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroEnum"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroArray"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroMap"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroFixed"
-                        },
-                        {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroUnion"
-                        }
-                    ]
-                },
-                "primitiveType": {
-                    "title": "Primitive Type",
-                    "description": "Basic type primitives.",
-                    "type": "string",
-                    "enum": [
-                        "null",
-                        "boolean",
-                        "int",
-                        "long",
-                        "float",
-                        "double",
-                        "bytes",
-                        "string"
-                    ]
-                },
-                "primitiveTypeWithMetadata": {
-                    "title": "Primitive Type With Metadata",
-                    "description": "A primitive type with metadata attached.",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
-                        }
-                    },
-                    "required": [
-                        "type"
-                    ]
-                },
-                "customTypeReference": {
-                    "title": "Custom Type",
-                    "description": "Reference to a ComplexType",
-                    "not": {
-                        "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
-                    },
-                    "type": "string",
-                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
-                },
-                "avroUnion": {
-                    "title": "Union",
-                    "description": "A Union of types",
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
-                    },
-                    "minItems": 1
-                },
-                "avroField": {
-                    "title": "Field",
-                    "description": "A field within a Record",
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                        },
-                        "type": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
-                        },
-                        "doc": {
-                            "type": "string"
-                        },
-                        "default": true,
-                        "order": {
-                            "enum": [
-                                "ascending",
-                                "descending",
-                                "ignore"
-                            ]
-                        },
-                        "aliases": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                            }
-                        }
-                    },
-                    "required": [
-                        "name",
-                        "type"
-                    ]
-                },
-                "avroRecord": {
-                    "title": "Record",
-                    "description": "A Record",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "const": "record"
-                        },
-                        "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                        },
-                        "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
-                        },
-                        "doc": {
-                            "type": "string"
-                        },
-                        "aliases": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                            }
-                        },
-                        "fields": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/avroField"
-                            }
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "name",
-                        "fields"
-                    ]
-                },
-                "avroEnum": {
-                    "title": "Enum",
-                    "description": "An enumeration",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "const": "enum"
-                        },
-                        "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                        },
-                        "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
-                        },
-                        "doc": {
-                            "type": "string"
-                        },
-                        "aliases": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                            }
-                        },
-                        "symbols": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                            }
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "name",
-                        "symbols"
-                    ]
-                },
-                "avroArray": {
-                    "title": "Array",
-                    "description": "An array",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "const": "array"
-                        },
-                        "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                        },
-                        "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
-                        },
-                        "doc": {
-                            "type": "string"
-                        },
-                        "aliases": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                            }
-                        },
-                        "items": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "items"
-                    ]
-                },
-                "avroMap": {
-                    "title": "Map",
-                    "description": "A map of values",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "const": "map"
-                        },
-                        "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                        },
-                        "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
-                        },
-                        "doc": {
-                            "type": "string"
-                        },
-                        "aliases": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                            }
-                        },
-                        "values": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "values"
-                    ]
-                },
-                "avroFixed": {
-                    "title": "Fixed",
-                    "description": "A fixed sized array of bytes",
-                    "type": "object",
-                    "properties": {
-                        "type": {
-                            "type": "string",
-                            "const": "fixed"
-                        },
-                        "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                        },
-                        "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
-                        },
-                        "doc": {
-                            "type": "string"
-                        },
-                        "aliases": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
-                            }
-                        },
-                        "size": {
-                            "type": "number"
-                        }
-                    },
-                    "required": [
-                        "type",
-                        "name",
-                        "size"
-                    ]
-                },
-                "name": {
-                    "type": "string",
-                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
-                },
-                "namespace": {
-                    "type": "string",
-                    "pattern": "^([A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*)*$"
-                }
-            },
-            "description": "Json-Schema definition for Avro AVSC files.",
-            "oneOf": [
-                {
-                    "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
-                }
-            ],
-            "title": "Avro Schema Definition"
         },
         "parameters": {
             "type": "object",
@@ -5905,7 +5920,7 @@
                                     "$ref": "#/definitions/Reference"
                                 },
                                 {
-                                    "$ref": "#/definitions/schema"
+                                    "$ref": "#/definitions/anySchema"
                                 }
                             ]
                         }
