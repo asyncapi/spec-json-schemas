@@ -2129,23 +2129,18 @@
             }
         },
         "anySchema": {
-            "allOf": [
-                {
-                    "description": "If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise.",
-                    "if": {
-                        "required": [
-                            "schema"
-                        ]
-                    },
-                    "then": {
-                        "$ref": "#/definitions/multiFormatSchema"
-                    },
-                    "else": {
-                        "$ref": "#/definitions/schema"
-                    }
-                }
-            ],
-            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property."
+            "if": {
+                "required": [
+                    "schema"
+                ]
+            },
+            "then": {
+                "$ref": "#/definitions/multiFormatSchema"
+            },
+            "else": {
+                "$ref": "#/definitions/schema"
+            },
+            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise."
         },
         "multiFormatSchema": {
             "if": {
