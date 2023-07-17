@@ -11,10 +11,10 @@ console.log(`Looking for binding version schemas in the following directory: ${b
 console.log(`Using the following output directory: ${outputDirectory}`);
 
 // definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
-const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^\/]*\/(.+)\.json\#?(.*)/i
+const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i
 
 // definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
-const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^\/]+)\/([^\/]+)\/(.+)\.json(.*)/i
+const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i
 
 /**
  * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
@@ -156,7 +156,7 @@ function getDefinitionName(def) {
     if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
   }
   
-  return path.basename(def, '.json') // TODO is this really needed?
+  return path.basename(def, '.json')
 }
 
 /**
