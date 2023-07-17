@@ -156,7 +156,7 @@ function getDefinitionName(def) {
     if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
   }
   
-  return path.basename(def, '.json') // TODO is this really needed?
+  return path.basename(def, '.json')
 }
 
 /**
