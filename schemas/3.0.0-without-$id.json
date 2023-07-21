@@ -2177,7 +2177,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "#/definitions/schema"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/definitions/Reference"
+                                        },
+                                        {
+                                            "$ref": "#/definitions/schema"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2221,7 +2228,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "#/definitions/schema"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/definitions/Reference"
+                                        },
+                                        {
+                                            "$ref": "#/definitions/schema"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2243,7 +2257,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "#/definitions/json-schema-draft-07-schema"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/definitions/Reference"
+                                        },
+                                        {
+                                            "$ref": "#/definitions/json-schema-draft-07-schema"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2266,7 +2287,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "#/definitions/openapiSchema_3_0"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/definitions/Reference"
+                                        },
+                                        {
+                                            "$ref": "#/definitions/openapiSchema_3_0"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2289,7 +2317,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "#/definitions/avroSchema_v1"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/definitions/Reference"
+                                        },
+                                        {
+                                            "$ref": "#/definitions/avroSchema_v1"
+                                        }
+                                    ]
                                 }
                             }
                         }

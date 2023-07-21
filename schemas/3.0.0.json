@@ -2226,7 +2226,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2270,7 +2277,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2292,7 +2306,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "http://json-schema.org/draft-07/schema"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://json-schema.org/draft-07/schema"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2315,7 +2336,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
+                                        }
+                                    ]
                                 }
                             }
                         }
@@ -2338,7 +2366,14 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                                        }
+                                    ]
                                 }
                             }
                         }

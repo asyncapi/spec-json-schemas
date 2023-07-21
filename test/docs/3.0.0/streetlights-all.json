@@ -74,6 +74,11 @@
                         }
                     }
                 }
+            },
+            "UserSignedUpV2": {
+                "payload": {
+                    "$ref": "external-schema.json"
+                }
             }
         }
     }
