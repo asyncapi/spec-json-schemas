@@ -58,6 +58,14 @@
     }
   },
   "components": {
+    "schemas": {
+      "ReferencedSchema" : {
+        "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
+        "schema": {
+          "$ref": "reference-to-some-openapi-file.json"
+        }
+      }
+    },
     "messages": {
       "UserSignedUp": {
         "payload": {
