@@ -46,7 +46,7 @@
     "amqp": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.2.0"]
+          "enum": ["0.3.0"]
         }
       },
       "allOf": [
@@ -60,7 +60,7 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
+            "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/channel.json"
           }
         },
         {
@@ -68,12 +68,12 @@
             "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
-                "const": "0.2.0"
+                "const": "0.3.0"
               }
             }
           }, 
           "then": {
-            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/channel.json"
+            "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/channel.json"
           }
         }
       ]
