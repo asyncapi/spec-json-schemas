@@ -13,7 +13,7 @@
           "type": "string"
         },
         {
-          "description": "All MUST schema formats tooling should support",
+          "description": "All the schema formats tooling MUST support",
           "enum": [
             "application/vnd.aai.asyncapi;version=3.0.0",
             "application/vnd.aai.asyncapi+json;version=3.0.0",
