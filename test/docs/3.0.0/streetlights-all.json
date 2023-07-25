@@ -7,7 +7,21 @@
     },
     "channels": {
         "UserSignedUpChannel": {
-            "address": "user/signedup",
+            "address": "user/signedup/{test_param}",
+            "parameters": {
+                "test_param": {
+                    "enum": [
+                        "test"
+                    ],
+                    "default": "test",
+                    "description": "Just a test description",
+                    "examples": [
+                        "test"
+                    ],
+                    "location": "$message.payload#",
+                    "x-custom-extension": "test"
+                }
+            },
             "messages": {
                 "UserSignedUp": {
                     "$ref": "#/components/messages/UserSignedUp"
