@@ -24,7 +24,7 @@
           ]
         },
         {
-          "description": "All RECOMMENDED schema formats tooling should support",
+          "description": "All the schema formats tools are RECOMMENDED to support",
           "enum": [
             "application/vnd.oai.openapi;version=3.0.0", 
             "application/vnd.oai.openapi+json;version=3.0.0", 
