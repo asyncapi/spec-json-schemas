@@ -3834,16 +3834,28 @@
                     "type": "string",
                     "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed."
                 },
-                "schema": {
-                    "$ref": "#/definitions/schema"
+                "enum": {
+                    "description": "A list of allowed values for the parameter.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "default": {
+                    "description": "The default value to use for the parameter.",
+                    "type": "string"
+                },
+                "examples": {
+                    "description": "List of example values to use for the parameter.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "location": {
                     "type": "string",
                     "description": "A runtime expression that specifies the location of the parameter value",
                     "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
-                },
-                "$ref": {
-                    "$ref": "#/definitions/ReferenceObject"
                 }
             }
         },
