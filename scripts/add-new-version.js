@@ -1,6 +1,6 @@
 const path = require('path');
 /**
- * This script adds a new version of the spec, by copying the latest one as baseline.
+ * This script adds a new version of the spec with examples, by copying the latest one as baseline.
  */
 const exec = require('child_process').exec;
 const fs = require('fs');
@@ -67,6 +67,7 @@ function adaptRootObject(newVersion, newVersionDir) {
 
 async function addNewVersion(newVersion) {
   const newVersionDir = `./definitions/${newVersion}`;
+  const newExampleVersionDir = `./examples/${newVersion}`;
 
   try {
     fs.accessSync(newVersionDir);
@@ -78,6 +79,7 @@ async function addNewVersion(newVersion) {
   const latestVersion = (await execute('ls -d ./definitions/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
   await execute(`cp -R ./definitions/${latestVersion} ${newVersionDir}`);
 
+<<<<<<< HEAD
   // Replace $ref and $id paths such as `/3.0.0/` with new version (http://asyncapi.com/definitions/3.0.0/specificationExtension.json)
   await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' \"s+\/${latestVersion}\/+\/${newVersion}\/+g\" {} +`);
   // Replace .asyncapi version from old to new version
@@ -85,6 +87,14 @@ async function addNewVersion(newVersion) {
   adaptRootObject(newVersion, newVersionDir);
   // Add new schemaFormat version entries
   addNewSchemaVersion(newVersion, newVersionDir, latestVersion);
+=======
+  const latestExampleVersion = (await execute('ls -d ./examples/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
+  await execute(`cp -R ./definitions/${latestVersion} ${newVersionDir}`);
+  await execute(`cp -R ./examples/${latestExampleVersion} ${newExampleVersionDir}`);
+  
+  // Replace old version numbers with new
+  await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' "s+${latestVersion}+${newVersion}+g" {} +`);
+>>>>>>> next-major-spec
 
   console.log(`New version added to ${newVersionDir}`)
 }

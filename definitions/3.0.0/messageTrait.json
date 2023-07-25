@@ -7,25 +7,11 @@
     }
   },
   "properties": {
-    "schemaFormat": {
-      "type": "string"
-    },
     "contentType": {
       "type": "string"
     },
     "headers": {
-      "allOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-        },
-        {
-          "properties": {
-            "type": {
-              "const": "object"
-            }
-          }
-        }
-      ]
+      "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
     },
     "messageId": {
       "type": "string"

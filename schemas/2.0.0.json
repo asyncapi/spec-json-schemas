@@ -1027,6 +1027,52 @@
                                             }
                                         }
                                     }
+                                },
+                                {
+                                    "if": {
+                                        "required": [
+                                            "schemaFormat"
+                                        ],
+                                        "properties": {
+                                            "schemaFormat": {
+                                                "enum": [
+                                                    "application/vnd.oai.openapi;version=3.0.0",
+                                                    "application/vnd.oai.openapi+json;version=3.0.0",
+                                                    "application/vnd.oai.openapi+yaml;version=3.0.0"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "payload": {
+                                                "$ref": "http://asyncapi.com/definitions/2.0.0/openapiSchema_3_0.json"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "required": [
+                                            "schemaFormat"
+                                        ],
+                                        "properties": {
+                                            "schemaFormat": {
+                                                "enum": [
+                                                    "application/vnd.apache.avro;version=1.9.0",
+                                                    "application/vnd.apache.avro+json;version=1.9.0",
+                                                    "application/vnd.apache.avro+yaml;version=1.9.0"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "payload": {
+                                                "$ref": "http://asyncapi.com/definitions/2.0.0/avroSchema_v1.json"
+                                            }
+                                        }
+                                    }
                                 }
                             ]
                         }
@@ -1138,6 +1184,609 @@
                     "$ref": "http://asyncapi.com/definitions/2.0.0/bindingsObject.json"
                 }
             }
+        },
+        "http://asyncapi.com/definitions/2.0.0/openapiSchema_3_0.json": {
+            "$id": "http://asyncapi.com/definitions/2.0.0/openapiSchema_3_0.json",
+            "type": "object",
+            "definitions": {
+                "ExternalDocumentation": {
+                    "type": "object",
+                    "required": [
+                        "url"
+                    ],
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string",
+                            "format": "uri-reference"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-": {}
+                    },
+                    "additionalProperties": false
+                },
+                "Discriminator": {
+                    "type": "object",
+                    "required": [
+                        "propertyName"
+                    ],
+                    "properties": {
+                        "propertyName": {
+                            "type": "string"
+                        },
+                        "mapping": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "Reference": {
+                    "type": "object",
+                    "required": [
+                        "$ref"
+                    ],
+                    "patternProperties": {
+                        "^\\$ref$": {
+                            "type": "string",
+                            "format": "uri-reference"
+                        }
+                    }
+                },
+                "XML": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "namespace": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "prefix": {
+                            "type": "string"
+                        },
+                        "attribute": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "wrapped": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-": {}
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "multipleOf": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMaximum": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "maxLength": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minLength": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "pattern": {
+                    "type": "string",
+                    "format": "regex"
+                },
+                "maxItems": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minItems": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "uniqueItems": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "maxProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minProperties": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "enum": {
+                    "type": "array",
+                    "items": true,
+                    "minItems": 1,
+                    "uniqueItems": false
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "array",
+                        "boolean",
+                        "integer",
+                        "number",
+                        "object",
+                        "string"
+                    ]
+                },
+                "not": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        }
+                    ]
+                },
+                "allOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "oneOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "anyOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "items": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        }
+                    ]
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ],
+                    "default": true
+                },
+                "description": {
+                    "type": "string"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "default": true,
+                "nullable": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "discriminator": {
+                    "$ref": "#/definitions/Discriminator"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "writeOnly": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "example": true,
+                "externalDocs": {
+                    "$ref": "#/definitions/ExternalDocumentation"
+                },
+                "deprecated": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "xml": {
+                    "$ref": "#/definitions/XML"
+                }
+            },
+            "patternProperties": {
+                "^x-": true
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/2.0.0/avroSchema_v1.json": {
+            "$id": "http://asyncapi.com/definitions/2.0.0/avroSchema_v1.json",
+            "definitions": {
+                "avroSchema": {
+                    "title": "Avro Schema",
+                    "description": "Root Schema",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/types"
+                        }
+                    ]
+                },
+                "types": {
+                    "title": "Avro Types",
+                    "description": "Allowed Avro types",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/primitiveType"
+                        },
+                        {
+                            "$ref": "#/definitions/primitiveTypeWithMetadata"
+                        },
+                        {
+                            "$ref": "#/definitions/customTypeReference"
+                        },
+                        {
+                            "$ref": "#/definitions/avroRecord"
+                        },
+                        {
+                            "$ref": "#/definitions/avroEnum"
+                        },
+                        {
+                            "$ref": "#/definitions/avroArray"
+                        },
+                        {
+                            "$ref": "#/definitions/avroMap"
+                        },
+                        {
+                            "$ref": "#/definitions/avroFixed"
+                        },
+                        {
+                            "$ref": "#/definitions/avroUnion"
+                        }
+                    ]
+                },
+                "primitiveType": {
+                    "title": "Primitive Type",
+                    "description": "Basic type primitives.",
+                    "type": "string",
+                    "enum": [
+                        "null",
+                        "boolean",
+                        "int",
+                        "long",
+                        "float",
+                        "double",
+                        "bytes",
+                        "string"
+                    ]
+                },
+                "primitiveTypeWithMetadata": {
+                    "title": "Primitive Type With Metadata",
+                    "description": "A primitive type with metadata attached.",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "$ref": "#/definitions/primitiveType"
+                        }
+                    },
+                    "required": [
+                        "type"
+                    ]
+                },
+                "customTypeReference": {
+                    "title": "Custom Type",
+                    "description": "Reference to a ComplexType",
+                    "not": {
+                        "$ref": "#/definitions/primitiveType"
+                    },
+                    "type": "string",
+                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
+                },
+                "avroUnion": {
+                    "title": "Union",
+                    "description": "A Union of types",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/avroSchema"
+                    },
+                    "minItems": 1
+                },
+                "avroField": {
+                    "title": "Field",
+                    "description": "A field within a Record",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "type": {
+                            "$ref": "#/definitions/types"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "default": true,
+                        "order": {
+                            "enum": [
+                                "ascending",
+                                "descending",
+                                "ignore"
+                            ]
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "type"
+                    ]
+                },
+                "avroRecord": {
+                    "title": "Record",
+                    "description": "A Record",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "record"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "fields": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroField"
+                            }
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "name",
+                        "fields"
+                    ]
+                },
+                "avroEnum": {
+                    "title": "Enum",
+                    "description": "An enumeration",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "enum"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "symbols": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "name",
+                        "symbols"
+                    ]
+                },
+                "avroArray": {
+                    "title": "Array",
+                    "description": "An array",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "array"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "items": {
+                            "$ref": "#/definitions/types"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "items"
+                    ]
+                },
+                "avroMap": {
+                    "title": "Map",
+                    "description": "A map of values",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "map"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "values": {
+                            "$ref": "#/definitions/types"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "values"
+                    ]
+                },
+                "avroFixed": {
+                    "title": "Fixed",
+                    "description": "A fixed sized array of bytes",
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "const": "fixed"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "size": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "name",
+                        "size"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+                },
+                "namespace": {
+                    "type": "string",
+                    "pattern": "^([A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*)*$"
+                }
+            },
+            "description": "Json-Schema definition for Avro AVSC files.",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/avroSchema"
+                }
+            ],
+            "title": "Avro Schema Definition"
         },
         "http://asyncapi.com/definitions/2.0.0/components.json": {
             "$id": "http://asyncapi.com/definitions/2.0.0/components.json",

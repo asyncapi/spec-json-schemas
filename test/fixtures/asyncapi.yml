@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=YOUR-PROJECTS-DIRECTORY/spec-json-schemas/schemas/2.6.0-without-$id.json
+asyncapi: 2.6.0
+
+info:
+  
+  title: test.mosquitto.org
+  version: This service is in charge of processing all the events related to comments.
+
+servers:
+  dev:
+    url: test.mosquitto.org
+    protocol: mqtt
+
+channels:
+  comment/liked:
+    
+    description: Updates the likes count in the database when new like is noticed.
+    publish:
+      operationId: commentLiked
+      message:
+        description: Message that is being sent when a comment has been liked by someone.
+        payload:
+          $ref: '#/components/schemas/commentId'
+
+  comment/unliked:
+    description: Updates the likes count in the database when comment is unliked.
+    publish: 
+      operationId: commentUnliked
+      message:
+        description: Message that is being sent when a comment has been unliked by someone.
+        messageId: ddd
+        payload:
+          $ref: '#/components/schemas/commentId'
+
+components:
+  schemas:
+    commentId:
+      type: object
+      additionalProperties: false
+      properties:
+        commentId: 
+          type: string
