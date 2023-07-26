@@ -17,7 +17,36 @@
     },
     "properties": {
       "schemaFormat": {
-        "type": "string"
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "description": "All the schema formats tooling MUST support",
+            "enum": [
+              "application/schema+json;version=draft-07",
+              "application/schema+yaml;version=draft-07",
+
+              "application/vnd.aai.asyncapi;version=3.0.0",
+              "application/vnd.aai.asyncapi+json;version=3.0.0",
+              "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+            ]
+          },
+          {
+            "description": "All the schema formats tools are RECOMMENDED to support",
+            "enum": [
+              "application/vnd.oai.openapi;version=3.0.0", 
+              "application/vnd.oai.openapi+json;version=3.0.0", 
+              "application/vnd.oai.openapi+yaml;version=3.0.0",
+  
+              "application/vnd.apache.avro;version=1.9.0",
+              "application/vnd.apache.avro+json;version=1.9.0",
+              "application/vnd.apache.avro+yaml;version=1.9.0",
+              
+              "application/raml+yaml;version=1.0"
+            ]
+          }
+        ]
       },
       "schema": {}
     },
@@ -25,6 +54,7 @@
       {
         "if": {
           "not": {
+            "description": "If no schemaFormat has been defined, default to schema or reference",
             "required": [
               "schemaFormat"
             ]
@@ -47,6 +77,7 @@
       },
       {
         "if": {
+          "description": "If schemaFormat has been defined check if it's one of the AsyncAPI Schema Object formats",
           "required": [
             "schemaFormat"
           ],
