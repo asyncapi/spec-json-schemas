@@ -10,7 +10,7 @@
     "http": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.1.0"]
+          "enum": ["0.2.0"]
         }
       },
       "allOf": [
@@ -24,7 +24,7 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/http/0.1.0/operation.json"
+            "$ref": "http://asyncapi.com/bindings/http/0.2.0/operation.json"
           }
         },
         {
@@ -32,18 +32,54 @@
             "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
-                "const": "0.1.0"
+                "const": "0.2.0"
               }
             }
           }, 
           "then": {
-            "$ref": "http://asyncapi.com/bindings/http/0.1.0/operation.json"
+            "$ref": "http://asyncapi.com/bindings/http/0.2.0/operation.json"
           }
         }
       ]
     },
     "ws": {},
     "amqp": {
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.3.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/operation.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/operation.json"
+          }
+        }
+      ]
+    },
+    "amqp1": {},
+    "mqtt": {
       "properties": {
         "bindingVersion": {
           "enum": ["0.2.0"]
@@ -60,7 +96,7 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
+            "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/operation.json"
           }
         },
         {
@@ -73,43 +109,7 @@
             }
           }, 
           "then": {
-            "$ref": "http://asyncapi.com/bindings/amqp/0.2.0/operation.json"
-          }
-        }
-      ]
-    },
-    "amqp1": {},
-    "mqtt": {
-      "properties": {
-        "bindingVersion": {
-          "enum": ["0.1.0"]
-        }
-      },
-      "allOf": [
-        {
-          "description": "If no bindingVersion specified, use the latest binding",
-          "if": {
-            "not": {
-              "required": [
-                "bindingVersion"
-              ]
-            }
-          },
-          "then": {
-            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
-          }
-        },
-        {
-          "if": {
-            "required": [ "bindingVersion" ],
-            "properties": {
-              "bindingVersion": {
-                "const": "0.1.0"
-              }
-            }
-          }, 
-          "then": {
-            "$ref": "http://asyncapi.com/bindings/mqtt/0.1.0/operation.json"
+            "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/operation.json"
           }
         }
       ]

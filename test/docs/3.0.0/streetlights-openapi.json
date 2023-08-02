@@ -23,7 +23,7 @@
       },
       "bindings": {
         "mqtt": {
-          "bindingVersion": "0.1.0",
+          "bindingVersion": "0.2.0",
           "qos": 1
         },
         "kafka": {
