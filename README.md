@@ -108,6 +108,8 @@ func Do() {
 
 If you are currently using version 2, check out [migration guideline to version 3](./migrations/migrate-to-version-3.md).
 If you are currently using version 3, check out [migration guideline to version 4](./migrations/migrate-to-version-4.md).
+If you are currently using version 4, check out [migration guideline to version 5](./migrations/migrate-to-version-5.md).
+If you are currently using version 5, check out [migration guideline to version 6](./migrations/migrate-to-version-6.md).
 
 ## Repository structure
 
@@ -183,7 +185,7 @@ Whenever a Breaking Change is introduced, the following steps should be taken in
 
 ## SchemaStore compatibility testing
 
-AsyncAPI JSON Schema is referenced in [SchemaStore](https://www.schemastore.org/json/). In many IDEs, like VSCode, some extensions integrate with SchemaStore, like [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This way we enable autocompletion, validation and tooltips that helps writing AsyncAPI documents.
+AsyncAPI JSON Schema is referenced in [SchemaStore](https://www.schemastore.org/json/). In many IDEs, like VSCode, some extensions integrate with SchemaStore, like [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This way we enable autocompletion, validation and tooltips that help write AsyncAPI documents.
 
 Whenever you make changes in AsyncAPI JSON Schema, you should always manually verify that the schema is still supported by [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and that it will be able to fetch and dereference it.
 
