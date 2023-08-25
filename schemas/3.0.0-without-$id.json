@@ -926,7 +926,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.1.0"
+                                "0.2.0"
                             ]
                         }
                     },
@@ -941,7 +941,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-mqtt-0.1.0-server"
+                                "$ref": "#/definitions/bindings-mqtt-0.2.0-server"
                             }
                         },
                         {
@@ -951,12 +951,12 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.1.0"
+                                        "const": "0.2.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-mqtt-0.1.0-server"
+                                "$ref": "#/definitions/bindings-mqtt-0.2.0-server"
                             }
                         }
                     ]
@@ -1198,7 +1198,7 @@
                 }
             }
         },
-        "bindings-mqtt-0.1.0-server": {
+        "bindings-mqtt-0.2.0-server": {
             "title": "MQTT server bindings object",
             "description": "This object contains information about the server representation in MQTT.",
             "type": "object",
@@ -1251,7 +1251,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
@@ -1267,7 +1267,7 @@
                         "retain": false
                     },
                     "keepAlive": 60,
-                    "bindingVersion": "0.1.0"
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -2995,7 +2995,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.1.0"
+                                "0.2.0"
                             ]
                         }
                     },
@@ -3010,7 +3010,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-http-0.1.0-message"
+                                "$ref": "#/definitions/bindings-http-0.2.0-message"
                             }
                         },
                         {
@@ -3020,18 +3020,58 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.1.0"
+                                        "const": "0.2.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-http-0.1.0-message"
+                                "$ref": "#/definitions/bindings-http-0.2.0-message"
                             }
                         }
                     ]
                 },
                 "ws": {},
                 "amqp": {
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [
+                                "0.3.0"
+                            ]
+                        }
+                    },
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [
+                                        "bindingVersion"
+                                    ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-amqp-0.3.0-message"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-amqp-0.3.0-message"
+                            }
+                        }
+                    ]
+                },
+                "amqp1": {},
+                "mqtt": {
                     "properties": {
                         "bindingVersion": {
                             "enum": [
@@ -3050,7 +3090,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-amqp-0.2.0-message"
+                                "$ref": "#/definitions/bindings-mqtt-0.2.0-message"
                             }
                         },
                         {
@@ -3065,47 +3105,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-amqp-0.2.0-message"
-                            }
-                        }
-                    ]
-                },
-                "amqp1": {},
-                "mqtt": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
-                        {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "#/definitions/bindings-mqtt-0.1.0-message"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "#/definitions/bindings-mqtt-0.1.0-message"
+                                "$ref": "#/definitions/bindings-mqtt-0.2.0-message"
                             }
                         }
                     ]
@@ -3308,7 +3308,7 @@
                 }
             }
         },
-        "bindings-http-0.1.0-message": {
+        "bindings-http-0.2.0-message": {
             "title": "HTTP message bindings object",
             "description": "This object contains information about the message representation in HTTP.",
             "type": "object",
@@ -3326,7 +3326,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
                 }
@@ -3344,11 +3344,11 @@
                             }
                         }
                     },
-                    "bindingVersion": "0.1.0"
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
-        "bindings-amqp-0.2.0-message": {
+        "bindings-amqp-0.3.0-message": {
             "title": "AMQP message bindings object",
             "description": "This object contains information about the message representation in AMQP.",
             "type": "object",
@@ -3370,7 +3370,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.2.0"
+                        "0.3.0"
                     ],
                     "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
                 }
@@ -3379,11 +3379,11 @@
                 {
                     "contentEncoding": "gzip",
                     "messageType": "user.signup",
-                    "bindingVersion": "0.2.0"
+                    "bindingVersion": "0.3.0"
                 }
             ]
         },
-        "bindings-mqtt-0.1.0-message": {
+        "bindings-mqtt-0.2.0-message": {
             "title": "MQTT message bindings object",
             "description": "This object contains information about the message representation in MQTT.",
             "type": "object",
@@ -3397,14 +3397,14 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
             },
             "examples": [
                 {
-                    "bindingVersion": "0.1.0"
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -3938,7 +3938,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.2.0"
+                                "0.3.0"
                             ]
                         }
                     },
@@ -3953,7 +3953,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-amqp-0.2.0-channel"
+                                "$ref": "#/definitions/bindings-amqp-0.3.0-channel"
                             }
                         },
                         {
@@ -3963,12 +3963,12 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.2.0"
+                                        "const": "0.3.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-amqp-0.2.0-channel"
+                                "$ref": "#/definitions/bindings-amqp-0.3.0-channel"
                             }
                         }
                     ]
@@ -4238,7 +4238,7 @@
                 }
             ]
         },
-        "bindings-amqp-0.2.0-channel": {
+        "bindings-amqp-0.3.0-channel": {
             "title": "AMQP channel bindings object",
             "description": "This object contains information about the channel representation in AMQP.",
             "type": "object",
@@ -4323,7 +4323,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.2.0"
+                        "0.3.0"
                     ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
@@ -4370,7 +4370,7 @@
                         "autoDelete": false,
                         "vhost": "/"
                     },
-                    "bindingVersion": "0.2.0"
+                    "bindingVersion": "0.3.0"
                 },
                 {
                     "is": "queue",
@@ -4381,7 +4381,7 @@
                         "autoDelete": false,
                         "vhost": "/"
                     },
-                    "bindingVersion": "0.2.0"
+                    "bindingVersion": "0.3.0"
                 }
             ]
         },
@@ -5063,7 +5063,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.1.0"
+                                "0.2.0"
                             ]
                         }
                     },
@@ -5078,7 +5078,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-http-0.1.0-operation"
+                                "$ref": "#/definitions/bindings-http-0.2.0-operation"
                             }
                         },
                         {
@@ -5088,18 +5088,58 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.1.0"
+                                        "const": "0.2.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-http-0.1.0-operation"
+                                "$ref": "#/definitions/bindings-http-0.2.0-operation"
                             }
                         }
                     ]
                 },
                 "ws": {},
                 "amqp": {
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [
+                                "0.3.0"
+                            ]
+                        }
+                    },
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [
+                                        "bindingVersion"
+                                    ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-amqp-0.3.0-operation"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-amqp-0.3.0-operation"
+                            }
+                        }
+                    ]
+                },
+                "amqp1": {},
+                "mqtt": {
                     "properties": {
                         "bindingVersion": {
                             "enum": [
@@ -5118,7 +5158,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-amqp-0.2.0-operation"
+                                "$ref": "#/definitions/bindings-mqtt-0.2.0-operation"
                             }
                         },
                         {
@@ -5133,47 +5173,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-amqp-0.2.0-operation"
-                            }
-                        }
-                    ]
-                },
-                "amqp1": {},
-                "mqtt": {
-                    "properties": {
-                        "bindingVersion": {
-                            "enum": [
-                                "0.1.0"
-                            ]
-                        }
-                    },
-                    "allOf": [
-                        {
-                            "description": "If no bindingVersion specified, use the latest binding",
-                            "if": {
-                                "not": {
-                                    "required": [
-                                        "bindingVersion"
-                                    ]
-                                }
-                            },
-                            "then": {
-                                "$ref": "#/definitions/bindings-mqtt-0.1.0-operation"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "#/definitions/bindings-mqtt-0.1.0-operation"
+                                "$ref": "#/definitions/bindings-mqtt-0.2.0-operation"
                             }
                         }
                     ]
@@ -5354,7 +5354,7 @@
                 "googlepubsub": {}
             }
         },
-        "bindings-http-0.1.0-operation": {
+        "bindings-http-0.2.0-operation": {
             "title": "HTTP operation bindings object",
             "description": "This object contains information about the operation representation in HTTP.",
             "type": "object",
@@ -5365,14 +5365,6 @@
                 }
             },
             "properties": {
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "request",
-                        "response"
-                    ],
-                    "description": "Required. Type of operation. Its value MUST be either 'request' or 'response'."
-                },
                 "method": {
                     "type": "string",
                     "enum": [
@@ -5395,41 +5387,13 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
             },
-            "required": [
-                "type"
-            ],
-            "oneOf": [
-                {
-                    "properties": {
-                        "type": {
-                            "const": "request"
-                        }
-                    },
-                    "required": [
-                        "method"
-                    ]
-                },
-                {
-                    "properties": {
-                        "is": {
-                            "const": "response"
-                        }
-                    },
-                    "not": {
-                        "required": [
-                            "method"
-                        ]
-                    }
-                }
-            ],
             "examples": [
                 {
-                    "type": "response",
                     "query": {
                         "type": "object",
                         "required": [
@@ -5444,10 +5408,9 @@
                         },
                         "additionalProperties": false
                     },
-                    "bindingVersion": "0.1.0"
+                    "bindingVersion": "0.2.0"
                 },
                 {
-                    "type": "request",
                     "method": "GET",
                     "query": {
                         "type": "object",
@@ -5463,11 +5426,11 @@
                         },
                         "additionalProperties": false
                     },
-                    "bindingVersion": "0.1.0"
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
-        "bindings-amqp-0.2.0-operation": {
+        "bindings-amqp-0.3.0-operation": {
             "title": "AMQP operation bindings object",
             "description": "This object contains information about the operation representation in AMQP.",
             "type": "object",
@@ -5517,10 +5480,6 @@
                     },
                     "description": "Like cc but consumers will not receive this information."
                 },
-                "replyTo": {
-                    "type": "string",
-                    "description": "Name of the queue where the consumer should send the response."
-                },
                 "timestamp": {
                     "type": "boolean",
                     "description": "Whether the message should include a timestamp or not."
@@ -5532,7 +5491,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.2.0"
+                        "0.3.0"
                     ],
                     "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
                 }
@@ -5550,14 +5509,13 @@
                     "bcc": [
                         "external.audit"
                     ],
-                    "replyTo": "user.signedup",
                     "timestamp": true,
                     "ack": false,
-                    "bindingVersion": "0.2.0"
+                    "bindingVersion": "0.3.0"
                 }
             ]
         },
-        "bindings-mqtt-0.1.0-operation": {
+        "bindings-mqtt-0.2.0-operation": {
             "title": "MQTT operation bindings object",
             "description": "This object contains information about the operation representation in MQTT.",
             "type": "object",
@@ -5579,7 +5537,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
                 }
@@ -5588,7 +5546,7 @@
                 {
                     "qos": 2,
                     "retain": true,
-                    "bindingVersion": "0.1.0"
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
