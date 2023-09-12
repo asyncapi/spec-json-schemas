@@ -209,7 +209,7 @@
     "googlepubsub": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.1.0"]
+          "enum": ["0.2.0"]
         }
       },
       "allOf": [
@@ -223,7 +223,7 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
+            "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/channel.json"
           }
         },
         {
@@ -231,12 +231,12 @@
             "required": [ "bindingVersion" ],
             "properties": {
               "bindingVersion": {
-                "const": "0.1.0"
+                "const": "0.2.0"
               }
             }
           }, 
           "then": {
-            "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
+            "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/channel.json"
           }
         }
       ]
