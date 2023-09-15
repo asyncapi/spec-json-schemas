@@ -3,3 +3,4 @@ test
 go.mod
 go.sum
 *.go
+tools/bundler/node_modules
