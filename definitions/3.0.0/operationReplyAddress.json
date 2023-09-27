@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "An object that specifies where an operation has to send the reply",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -20,6 +21,9 @@
       "description": "An optional description of the address. CommonMark is allowed."
     }
   },
+	"example": {
+		"$ref": "http://asyncapi.com/examples/3.0.0/operationReplyAddress.json"
+	},
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
 }
