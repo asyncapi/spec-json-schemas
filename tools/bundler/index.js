@@ -96,7 +96,6 @@ async function loadBindings(bundler) {
       await fs.promises.writeFile(outputFileWithoutId, JSON.stringify(bundledSchemaWithoutIds, null, 4));
     }catch(e) {
       throw new Error(e);
-
     }
   }
   console.log('done');
