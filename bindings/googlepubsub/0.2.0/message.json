@@ -38,12 +38,12 @@
   "examples": [
     {
       "schema": {
-        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+        "name": "projects/your-project-id/schemas/your-avro-schema-id",
       }
     },
     {
       "schema": {
-        "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+        "name": "projects/your-project-id/schemas/your-protobuf-schema-id",
       }
     }
   ]
