@@ -3324,7 +3324,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.1.0"
+                                "0.2.0"
                             ]
                         }
                     },
@@ -3339,7 +3339,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json"
+                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json"
                             }
                         },
                         {
@@ -3349,12 +3349,12 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.1.0"
+                                        "const": "0.2.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json"
+                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json"
                             }
                         }
                     ]
@@ -3476,7 +3476,14 @@
             },
             "properties": {
                 "key": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        }
+                    ],
                     "description": "The message key."
                 },
                 "schemaIdLocation": {
@@ -3756,8 +3763,8 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json": {
-            "$id": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json",
+        "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json": {
+            "$id": "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json",
             "title": "Cloud Pub/Sub Channel Schema",
             "description": "This object contains information about the message representation for Google Cloud Pub/Sub.",
             "type": "object",
@@ -3771,7 +3778,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding."
                 },
@@ -3787,28 +3794,22 @@
                     "properties": {
                         "name": {
                             "type": "string"
-                        },
-                        "type": {
-                            "type": "string"
                         }
                     },
                     "required": [
-                        "name",
-                        "type"
+                        "name"
                     ]
                 }
             },
             "examples": [
                 {
                     "schema": {
-                        "name": "projects/your-project-id/schemas/your-avro-schema-id",
-                        "type": "avro"
+                        "name": "projects/your-project-id/schemas/your-avro-schema-id"
                     }
                 },
                 {
                     "schema": {
-                        "name": "projects/your-project-id/schemas/your-protobuf-schema-id",
-                        "type": "protobuf"
+                        "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
                     }
                 }
             ]
@@ -4186,7 +4187,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.1.0"
+                                "0.2.0"
                             ]
                         }
                     },
@@ -4201,7 +4202,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
+                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/channel.json"
                             }
                         },
                         {
@@ -4211,12 +4212,12 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.1.0"
+                                        "const": "0.2.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json"
+                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/channel.json"
                             }
                         }
                     ]
@@ -4751,8 +4752,8 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json": {
-            "$id": "http://asyncapi.com/bindings/googlepubsub/0.1.0/channel.json",
+        "http://asyncapi.com/bindings/googlepubsub/0.2.0/channel.json": {
+            "$id": "http://asyncapi.com/bindings/googlepubsub/0.2.0/channel.json",
             "title": "Cloud Pub/Sub Channel Schema",
             "description": "This object contains information about the channel representation for Google Cloud Pub/Sub.",
             "type": "object",
@@ -4766,7 +4767,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding."
                 },
@@ -4809,14 +4810,10 @@
                         "encoding",
                         "name"
                     ]
-                },
-                "topic": {
-                    "type": "string"
                 }
             },
             "required": [
-                "schemaSettings",
-                "topic"
+                "schemaSettings"
             ],
             "examples": [
                 {

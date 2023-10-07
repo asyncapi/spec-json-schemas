@@ -3271,7 +3271,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.1.0"
+                                "0.2.0"
                             ]
                         }
                     },
@@ -3286,7 +3286,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-message"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.2.0-message"
                             }
                         },
                         {
@@ -3296,12 +3296,12 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.1.0"
+                                        "const": "0.2.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-message"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.2.0-message"
                             }
                         }
                     ]
@@ -3419,7 +3419,14 @@
             },
             "properties": {
                 "key": {
-                    "$ref": "#/definitions/schema",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/schema"
+                        }
+                    ],
                     "description": "The message key."
                 },
                 "schemaIdLocation": {
@@ -3695,7 +3702,7 @@
                 }
             ]
         },
-        "bindings-googlepubsub-0.1.0-message": {
+        "bindings-googlepubsub-0.2.0-message": {
             "title": "Cloud Pub/Sub Channel Schema",
             "description": "This object contains information about the message representation for Google Cloud Pub/Sub.",
             "type": "object",
@@ -3709,7 +3716,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding."
                 },
@@ -3725,28 +3732,22 @@
                     "properties": {
                         "name": {
                             "type": "string"
-                        },
-                        "type": {
-                            "type": "string"
                         }
                     },
                     "required": [
-                        "name",
-                        "type"
+                        "name"
                     ]
                 }
             },
             "examples": [
                 {
                     "schema": {
-                        "name": "projects/your-project-id/schemas/your-avro-schema-id",
-                        "type": "avro"
+                        "name": "projects/your-project-id/schemas/your-avro-schema-id"
                     }
                 },
                 {
                     "schema": {
-                        "name": "projects/your-project-id/schemas/your-protobuf-schema-id",
-                        "type": "protobuf"
+                        "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
                     }
                 }
             ]
@@ -4120,7 +4121,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.1.0"
+                                "0.2.0"
                             ]
                         }
                     },
@@ -4135,7 +4136,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-channel"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.2.0-channel"
                             }
                         },
                         {
@@ -4145,12 +4146,12 @@
                                 ],
                                 "properties": {
                                     "bindingVersion": {
-                                        "const": "0.1.0"
+                                        "const": "0.2.0"
                                     }
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-googlepubsub-0.1.0-channel"
+                                "$ref": "#/definitions/bindings-googlepubsub-0.2.0-channel"
                             }
                         }
                     ]
@@ -4679,7 +4680,7 @@
                 }
             ]
         },
-        "bindings-googlepubsub-0.1.0-channel": {
+        "bindings-googlepubsub-0.2.0-channel": {
             "title": "Cloud Pub/Sub Channel Schema",
             "description": "This object contains information about the channel representation for Google Cloud Pub/Sub.",
             "type": "object",
@@ -4693,7 +4694,7 @@
                 "bindingVersion": {
                     "type": "string",
                     "enum": [
-                        "0.1.0"
+                        "0.2.0"
                     ],
                     "description": "The version of this binding."
                 },
@@ -4736,14 +4737,10 @@
                         "encoding",
                         "name"
                     ]
-                },
-                "topic": {
-                    "type": "string"
                 }
             },
             "required": [
-                "schemaSettings",
-                "topic"
+                "schemaSettings"
             ],
             "examples": [
                 {
