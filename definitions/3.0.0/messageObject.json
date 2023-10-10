@@ -101,10 +101,10 @@
           },
           "headers": {
             "type": "object",
-            "description": "Schema definition of the application headers."
+            "description": "Example of the application headers. It can be of any type."
           },
           "payload": {
-            "description": "Definition of the message payload. It can be of any type"
+            "description": "Example of the message payload. It can be of any type."
           }
         }
       }
