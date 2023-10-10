@@ -100,10 +100,11 @@
             "description": "A brief summary of the message example."
           },
           "headers": {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+            "type": "object",
+            "description": "Schema definition of the application headers."
           },
           "payload": {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+            "description": "Definition of the message payload. It can be of any type"
           }
         }
       }
