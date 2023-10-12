@@ -2081,10 +2081,11 @@
                                 "description": "A brief summary of the message example."
                             },
                             "headers": {
-                                "$ref": "#/definitions/anySchema"
+                                "type": "object",
+                                "description": "Example of the application headers. It can be of any type."
                             },
                             "payload": {
-                                "$ref": "#/definitions/anySchema"
+                                "description": "Example of the message payload. It can be of any type."
                             }
                         }
                     }
