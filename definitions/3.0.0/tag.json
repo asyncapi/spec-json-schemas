@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "description": "Allows adding meta data to a single tag.",
+  "description": "Allows adding metadata to a single tag.",
   "additionalProperties": false,
   "required": [
     "name"
