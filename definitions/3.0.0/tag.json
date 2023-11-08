@@ -30,9 +30,9 @@
       "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
     }
   },
-	"example": {
-		"$ref": "http://asyncapi.com/examples/3.0.0/tag.json"
-	},
+  "example": {
+    "$ref": "http://asyncapi.com/examples/3.0.0/tag.json"
+  },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/tag.json"
 }
