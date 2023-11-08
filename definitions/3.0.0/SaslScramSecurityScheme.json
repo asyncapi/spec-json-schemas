@@ -13,9 +13,9 @@
       ]
     },
     "description": {
-			"type": "string",
-			"description": "A short description for security scheme."
-		}
+      "type": "string",
+      "description": "A short description for security scheme."
+    }
   },
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
