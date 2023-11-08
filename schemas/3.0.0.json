@@ -2041,9 +2041,6 @@
                 "headers": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                 },
-                "messageId": {
-                    "type": "string"
-                },
                 "payload": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                 },
@@ -3830,9 +3827,6 @@
                 },
                 "headers": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
-                },
-                "messageId": {
-                    "type": "string"
                 },
                 "correlationId": {
                     "oneOf": [
