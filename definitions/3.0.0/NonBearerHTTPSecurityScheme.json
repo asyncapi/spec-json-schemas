@@ -22,9 +22,9 @@
       "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235."
     },
     "description": {
-			"type": "string",
-			"description": "A short description for security scheme."
-		},
+      "type": "string",
+      "description": "A short description for security scheme."
+    },
     "type": {
       "type": "string",
       "description": "The type of the security scheme.",
