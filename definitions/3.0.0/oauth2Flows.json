@@ -14,9 +14,9 @@
       ]
     },
     "description": {
-			"type": "string",
-			"description": "A short description for security scheme."
-		},
+      "type": "string",
+      "description": "A short description for security scheme."
+    },
     "flows": {
       "type": "object",
       "properties": {
