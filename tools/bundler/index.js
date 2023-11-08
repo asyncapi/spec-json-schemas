@@ -4,10 +4,12 @@ const traverse = require('json-schema-traverse');
 const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
+const extensionsDirectory = path.resolve(__dirname, '../../extensions');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
 const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
 console.log(`Looking for separate definitions in the following directory: ${definitionsDirectory}`);
 console.log(`Looking for binding version schemas in the following directory: ${bindingsDirectory}`);
+console.log(`Looking for extension version schemas in the following directory: ${extensionsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
 
 // definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.

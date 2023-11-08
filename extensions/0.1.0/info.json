@@ -1,0 +1,16 @@
+{
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "x-twitter": {
+            "type": "string",
+            "description": "This extension allows you to provide the Twitter username of the account representing the team/company of the API.",
+            "example": [
+                "sambhavgupta75",
+                "AsyncAPISpec"
+            ]
+        }
+    },
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://asyncapi.com/extensions/0.1.0/info.json"
+}
