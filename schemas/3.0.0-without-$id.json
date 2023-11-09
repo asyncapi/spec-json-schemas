@@ -1994,9 +1994,6 @@
                 "headers": {
                     "$ref": "#/definitions/anySchema"
                 },
-                "messageId": {
-                    "type": "string"
-                },
                 "payload": {
                     "$ref": "#/definitions/anySchema"
                 },
@@ -3767,9 +3764,6 @@
                 },
                 "headers": {
                     "$ref": "#/definitions/anySchema"
-                },
-                "messageId": {
-                    "type": "string"
                 },
                 "correlationId": {
                     "oneOf": [
