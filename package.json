@@ -11,7 +11,7 @@
     "prepublishOnly": "npm run build",
     "bundle": "cd tools/bundler && npm i && npm run bundle",
     "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
-    "lint": "echo 'No linter integrated yet'",
+    "lint-schemas": "node scripts/validate-schemas.js",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },
   "repository": {
@@ -41,6 +41,9 @@
     "nyc": "^15.1.0"
   },
   "dependencies": {
-    "@types/json-schema": "^7.0.11"
+    "@asyncapi/parser": "^2.1.1",
+    "@types/json-schema": "^7.0.11",
+    "ajv": "^8.12.0",
+    "ajv-draft-04": "^1.0.0"
   }
 }
