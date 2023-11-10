@@ -84,7 +84,7 @@
     "kafka": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.4.0", "0.3.0"]
+          "enum": ["v3-0.4.0", "0.4.0", "0.3.0"]
         }
       },
       "allOf": [
@@ -98,7 +98,20 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/server.json"
+            "$ref": "http://asyncapi.com/bindings/kafka/v3-0.4.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "v3-0.4.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/v3-0.4.0/server.json"
           }
         },
         {
