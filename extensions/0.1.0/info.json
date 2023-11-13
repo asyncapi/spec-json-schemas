@@ -2,7 +2,7 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "x-twitter": {
+        "x-x": {
             "type": "string",
             "description": "This extension allows you to provide the Twitter username of the account representing the team/company of the API.",
             "example": [
