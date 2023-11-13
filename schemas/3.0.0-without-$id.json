@@ -5994,6 +5994,21 @@
                         }
                     }
                 },
+                "operations": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[\\w\\d\\.\\-_]+$": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/definitions/Reference"
+                                },
+                                {
+                                    "$ref": "#/definitions/operation"
+                                }
+                            ]
+                        }
+                    }
+                },
                 "messages": {
                     "type": "object",
                     "patternProperties": {
