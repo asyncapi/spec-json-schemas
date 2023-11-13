@@ -313,7 +313,14 @@
                     ]
                 },
                 "bindings": {
-                    "$ref": "#/definitions/serverBindingsObject"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/serverBindingsObject"
+                        }
+                    ]
                 }
             }
         },
@@ -1961,7 +1968,14 @@
                     ]
                 },
                 "bindings": {
-                    "$ref": "#/definitions/channelBindingsObject"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/channelBindingsObject"
+                        }
+                    ]
                 }
             }
         },
@@ -2088,7 +2102,14 @@
                     }
                 },
                 "bindings": {
-                    "$ref": "#/definitions/messageBindingsObject"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/messageBindingsObject"
+                        }
+                    ]
                 },
                 "traits": {
                     "type": "array",
@@ -3826,7 +3847,14 @@
                     }
                 },
                 "bindings": {
-                    "$ref": "#/definitions/messageBindingsObject"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/messageBindingsObject"
+                        }
+                    ]
                 }
             }
         },
@@ -4953,7 +4981,14 @@
                     ]
                 },
                 "bindings": {
-                    "$ref": "#/definitions/operationBindingsObject"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/operationBindingsObject"
+                        }
+                    ]
                 }
             }
         },
@@ -5038,7 +5073,14 @@
                     "$ref": "#/definitions/operation/properties/externalDocs"
                 },
                 "bindings": {
-                    "$ref": "#/definitions/operation/properties/bindings"
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/operationBindingsObject"
+                        }
+                    ]
                 }
             }
         },
