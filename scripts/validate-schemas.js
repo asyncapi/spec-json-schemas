@@ -1,55 +1,22 @@
 const Ajv = require('ajv');
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
-const { Parser } = require('@asyncapi/parser');
 
+// Load your JSON Schema document
+const schemaDocument = fs.readFileSync('./schemas/2.0.0.json', 'utf-8');
+const schema = JSON.parse(schemaDocument);
 
-async function parsing(){
-  try {
-    // Start measuring time
-    console.time('Parsing time');
+// Create an instance of Ajv
+const ajv = new Ajv();
 
-    // Load your JSON Schema document
-    const schemaDocument = await fs.readFile ('./schemas/2.6.0.json', 'utf-8');
+// Compile the schema
+const validate = ajv.compile(schema);
 
-    // Log the length of the schemaDocument to help diagnose if it's reading the file properly
-    console.log('Length of schemaDocument:', schemaDocument.length);
+// Check if the schema is valid
+const isSchemaValid = validate(schema);
 
-    // const schema = JSON.parse(schemaDocument);
-
-
-
-    const parser = new Parser();
-    const { document } = await parser.parse(schemaDocument);
-    
-    if (document) {
-      // => Example AsyncAPI specification
-      console.log(document.info().title());
-    }
-
-
-    // Create an instance of Ajv
-    const ajv = new Ajv();
-
-    // Compile the schema
-    const validate = ajv.compile(document); // schema -> document
-
-    // Check if the schema is valid
-    const isSchemaValid = validate(document); // schema -> document
-
-    if (isSchemaValid) {
-      console.log('JSON Schema is valid!');
-    } else {
-      console.error('JSON Schema is not valid:', validate.errors);
-    }
-
-    // Stop measuring time
-    console.timeEnd('Parsing time');
-
-  } catch (error) {
-    console.error('Error parsing AsyncAPI document:', error.message);
-  }
+if (isSchemaValid) {
+  console.log('JSON Schema is valid!');
+} else {
+  console.error('JSON Schema is not valid:', validate.errors);
 }
-
-parsing();
-
