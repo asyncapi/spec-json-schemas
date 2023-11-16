@@ -72,6 +72,21 @@
         }
       }
     },
+    "operations": {
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
+            }
+          ]
+        }
+      }
+    },
     "messages": {
       "type": "object",
       "description": "An object to hold reusable Message Objects.",

@@ -110,7 +110,14 @@
       }
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+        }
+      ]
     },
     "traits": {
       "type": "array",

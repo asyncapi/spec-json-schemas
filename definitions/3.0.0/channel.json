@@ -64,7 +64,14 @@
       ]
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+        }
+      ]
     }
   },
   "example": {

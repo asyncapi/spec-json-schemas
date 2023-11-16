@@ -324,7 +324,14 @@
                     ]
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+                        }
+                    ]
                 }
             }
         },
@@ -2006,7 +2013,14 @@
                     ]
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+                        }
+                    ]
                 }
             }
         },
@@ -2135,7 +2149,14 @@
                     }
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                        }
+                    ]
                 },
                 "traits": {
                     "type": "array",
@@ -3889,7 +3910,14 @@
                     }
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                        }
+                    ]
                 }
             }
         },
@@ -5029,7 +5057,14 @@
                     ]
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                        }
+                    ]
                 }
             }
         },
@@ -5117,7 +5152,14 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/externalDocs"
                 },
                 "bindings": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/bindings"
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                        }
+                    ]
                 }
             }
         },
@@ -6079,6 +6121,21 @@
                                 },
                                 {
                                     "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "operations": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^[\\w\\d\\.\\-_]+$": {
+                            "oneOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
                                 }
                             ]
                         }
