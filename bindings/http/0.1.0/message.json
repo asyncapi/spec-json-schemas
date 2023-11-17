@@ -14,10 +14,10 @@
     "headers": {
       "oneOf": [
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/schema.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
         },
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/Reference.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
         }
       ],
       "description": "\tA Schema object containing the definitions for HTTP-specific headers. This schema MUST be of type 'object' and have a 'properties' key."
