@@ -19,7 +19,7 @@
       "properties": {
         "type": "array",
         "items": {
-          "$ref": "#/schemas/property"
+          "$ref": "http://asyncapi.com/bindings/jms/0.0.1/server.json#/definitions/property"
         },
         "description": "Additional properties to set on the JMS ConnectionFactory implementation for the JMS Provider."
       },
@@ -36,7 +36,7 @@
       }
   
     },
-    "schemas": {
+    "definitions": {
       "property": {
         "type": "object",
         "required": ["name", "value"],

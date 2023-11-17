@@ -16,10 +16,10 @@
       "description": "The name of the topic. Can be different from the channel name to allow flexibility around AWS resource naming limitations."
     },
     "ordering": {
-      "$ref": "#/definitions/ordering"
+      "$ref": "http://asyncapi.com/bindings/sns/0.1.0/channel.json#/definitions/ordering"
     },
     "policy": {
-      "$ref": "#/definitions/policy"
+      "$ref": "http://asyncapi.com/bindings/sns/0.1.0/channel.json#/definitions/policy"
     },
     "tags": {
       "type": "object",
@@ -74,7 +74,7 @@
           "type": "array",
           "description": "An array of statement objects, each of which controls a permission for this topic",
           "items": {
-            "$ref": "#/definitions/statement"
+            "$ref": "http://asyncapi.com/bindings/sns/0.1.0/channel.json#/definitions/statement"
           }
         }
       },

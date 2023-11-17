@@ -13,11 +13,11 @@
   "properties": {
     "queue": {
       "description": "A definition of the queue that will be used as the channel.",
-      "$ref": "#/definitions/queue"
+      "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json#/definitions/queue"
     },
     "deadLetterQueue": {
       "description": "A definition of the queue that will be used for un-processable messages.",
-      "$ref": "#/definitions/queue"
+      "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json#/definitions/queue"
     },
     "bindingVersion": {
       "type": "string",
@@ -90,10 +90,10 @@
           "default": 345600
         },
         "redrivePolicy": {
-          "$ref": "#/definitions/redrivePolicy"
+          "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json#/definitions/redrivePolicy"
         },
         "policy": {
-          "$ref": "#/definitions/policy"
+          "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json#/definitions/policy"
         },
         "tags": {
           "type": "object",
@@ -115,7 +115,7 @@
       },
       "properties": {
         "deadLetterQueue": {
-          "$ref": "#/definitions/identifier"
+          "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json#/definitions/identifier"
         },
         "maxReceiveCount": {
           "type": "integer",
@@ -159,7 +159,7 @@
           "type": "array",
           "description": "An array of statement objects, each of which controls a permission for this queue.",
           "items": {
-            "$ref": "#/definitions/statement"
+            "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json#/definitions/statement"
           }
         }
       },

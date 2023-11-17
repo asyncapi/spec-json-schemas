@@ -12,19 +12,19 @@
   },
   "properties": {
     "topic": {
-      "$ref": "#/definitions/identifier",
+      "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/identifier",
       "description": "Often we can assume that the SNS Topic is the channel name-we provide this field in case the you need to supply the ARN, or the Topic name is not the channel name in the AsyncAPI document."
     },
     "consumers": {
       "type": "array",
       "description": "The protocols that listen to this topic and their endpoints.",
       "items": {
-        "$ref": "#/definitions/consumer"
+        "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/consumer"
       },
       "minItems": 1
     },
     "deliveryPolicy": {
-      "$ref": "#/definitions/deliveryPolicy",
+      "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/deliveryPolicy",
       "description": "Policy for retries to HTTP. The field is the default for HTTP receivers of the SNS Topic which may be overridden by a specific consumer."
     },
     "bindingVersion": {
@@ -51,7 +51,7 @@
         },
         "email": {
           "type": "string",
-          "description": "The endpoint is an email adress."
+          "description": "The endpoint is an email address."
         },
         "phone": {
           "type": "string",
@@ -92,7 +92,7 @@
         },
         "endpoint": {
           "description": "The endpoint messages are delivered to.",
-          "$ref": "#/definitions/identifier"
+          "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/identifier"
         },
         "filterPolicy": {
           "type": "object",
@@ -133,10 +133,10 @@
           "description": "If true AWS SNS attributes are removed from the body, and for SQS, SNS message attributes are copied to SQS message attributes. If false the SNS attributes are included in the body."
         },
         "redrivePolicy": {
-          "$ref": "#/definitions/redrivePolicy"
+          "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/redrivePolicy"
         },
         "deliveryPolicy": {
-          "$ref": "#/definitions/deliveryPolicy",
+          "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/deliveryPolicy",
           "description": "Policy for retries to HTTP. The parameter is for that SNS Subscription and overrides any policy on the SNS Topic."
         },
         "displayName": {
@@ -208,7 +208,7 @@
       },
       "properties": {
         "deadLetterQueue": {
-          "$ref": "#/definitions/identifier",
+          "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/identifier",
           "description": "The SQS queue to use as a dead letter queue (DLQ)."
         },
         "maxReceiveCount": {
