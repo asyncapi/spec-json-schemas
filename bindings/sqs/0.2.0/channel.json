@@ -6,7 +6,7 @@
   "type": "object",
   "additionalProperties": false,
   "patternProperties": {
-    "^x-[\\w\\d\\.\\-\\_]+$": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
       "$ref": "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/v2.14.0/schemas/2.4.0.json#/definitions/specificationExtension"
     }
   },
@@ -37,7 +37,7 @@
       "type": "object",
       "description": "A definition of a queue.",
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/v2.14.0/schemas/2.4.0.json#/definitions/specificationExtension"
         }
       },
@@ -109,7 +109,7 @@
       "type": "object",
       "description": "Prevent poison pill messages by moving un-processable messages to an SQS dead letter queue.",
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/v2.14.0/schemas/2.4.0.json#/definitions/specificationExtension"
         }
       },
@@ -131,7 +131,7 @@
       "type": "object",
       "description": "The SQS queue to use as a dead letter queue (DLQ).",
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/v2.14.0/schemas/2.4.0.json#/definitions/specificationExtension"
         }
       },
@@ -150,7 +150,7 @@
       "type": "object",
       "description": "The security policy for the SQS Queue",
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/v2.14.0/schemas/2.4.0.json#/definitions/specificationExtension"
         }
       },
@@ -170,7 +170,7 @@
     "statement": {
       "type": "object",
       "patternProperties": {
-        "^x-[\\w\\d\\.\\-\\_]+$": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
           "$ref": "https://raw.githubusercontent.com/asyncapi/spec-json-schemas/v2.14.0/schemas/2.4.0.json#/definitions/specificationExtension"
         }
       },
