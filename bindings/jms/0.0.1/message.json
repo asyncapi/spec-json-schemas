@@ -7,12 +7,12 @@
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "https://raw.githubusercontent.com/asyncapi/asyncapi-node/v2.7.7/schemas/2.0.0.json#/definitions/specificationExtension"
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
     }
   },
   "properties": {
     "headers": {
-      "$ref": "https://raw.githubusercontent.com/asyncapi/asyncapi-node/v2.7.7/schemas/2.0.0.json#/definitions/schema",
+      "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
       "description": "A Schema object containing the definitions for JMS headers (protocol headers). This schema MUST be of type 'object' and have a 'properties' key. Examples of JMS protocol headers are 'JMSMessageID', 'JMSTimestamp', and 'JMSCorrelationID'."
     },
     "bindingVersion": {
