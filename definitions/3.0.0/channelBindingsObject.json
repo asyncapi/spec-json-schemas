@@ -167,7 +167,41 @@
     "nats": {},
     "jms": {},
     "sns": {},
-    "sqs": {},
+    "sqs": {
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.1.0"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/channel.json"
+          }
+        }
+      ]
+    },
     "stomp": {},
     "redis": {},
     "ibmmq": {
