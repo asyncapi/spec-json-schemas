@@ -11,7 +11,7 @@
     "prepublishOnly": "npm run build",
     "bundle": "cd tools/bundler && npm i && npm run bundle",
     "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
-    "lint": "node scripts/validate-schemas.js",
+    "lint": "npx eslint . --ext .js",
     "lint-schemas": "node scripts/validate-schemas-final.js",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION"
   },

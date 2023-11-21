@@ -8,7 +8,7 @@ function validationDraft04(draft, startFileName, endFileName){
    const ajv = new Ajv();
 
    // Specify the path to the 'schemas' directory
-   const directoryPath = '../schemas';
+   const directoryPath = './schemas';
 
 
    const files = fs.readdirSync(directoryPath);
@@ -57,7 +57,7 @@ function validation(draft, startFileName, excludedFiles){
     const ajv = new Ajv();
  
     // Specify the path to the 'schemas' directory
-    const directoryPath = '../schemas';
+    const directoryPath = './schemas';
  
  
     const files = fs.readdirSync(directoryPath);
