@@ -10,8 +10,6 @@ function draft04(){
    // Specify the path to the 'schemas' directory
    const directoryPath = '../schemas';
 
-   // var json = globToRegExp("*.json");
-
    // Read the files from the 'schemas' directory
 
    fs.readdirSync(directoryPath).forEach(file => {
@@ -30,9 +28,6 @@ function draft04(){
       // Compile the schema
       const validate = ajv.validateSchema(obj);
 
-      // Check if the schema is valid
-      //  const isSchemaValid = validate(schemaDocument);
-
       if (validate) {
          console.log(`${file}: JSON Schema is valid!`);
       } else {
@@ -41,8 +36,7 @@ function draft04(){
       }
    } catch (error) {
       console.error(`${file}: Error reading or parsing JSON Schema:`, error.message);
-      draft07();
-      // process.exit(1);
+      process.exit(1);
    }
    });
 }
@@ -56,8 +50,6 @@ function draft07(){
    // Specify the path to the 'schemas' directory
    const directoryPath = '../schemas';
 
-   // var json = globToRegExp("*.json");
-
    // Read the files from the 'schemas' directory
 
    fs.readdirSync(directoryPath).forEach(file => {
@@ -76,9 +68,6 @@ function draft07(){
       // Compile the schema
       const validate = ajv.validateSchema(obj);
 
-      // Check if the schema is valid
-      //  const isSchemaValid = validate(schemaDocument);
-
       if (validate) {
          console.log(`${file}: JSON Schema is valid!`);
       } else {
@@ -87,7 +76,6 @@ function draft07(){
       }
    } catch (error) {
       console.error(`${file}: Error reading or parsing JSON Schema:`, error.message);
-    //   draft04();
       process.exit(1);
    }
    });
