@@ -9,7 +9,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const Ajv = require("ajv")
+// const Ajv = require("ajv")
+const Ajv = require('ajv');
+require('ajv-draft-04');
+
 const ajv = new Ajv();
 
 var globToRegExp = require('glob-to-regexp');
@@ -49,31 +52,24 @@ const validSchema = `{
 }`;
 
 
-
-
-
-
-
-
-
 // ****************************************************************************
 
-/*
+
 
 // Specify the path to the 'schemas' directory
-const schemasDirectory = '../schemas';
+const directoryPath = '../schemas/draft-04';
 
-var json = globToRegExp("*.json");
+// var json = globToRegExp("*.json");
 
 // Read the files from the 'schemas' directory
 
-fs.readdirSync(schemasDirectory).forEach(file => {
+fs.readdirSync(directoryPath).forEach(file => {
   // Construct the full path to the JSON schema file
-  const filePath = path.join(schemasDirectory, file);
+  const filePath = path.join(directoryPath, file);
 
   try {
     // Read and parse the JSON schema
-    const fileContent = fs.readFileSync(path.resolve(__dirname, '../schemas/', ), 'utf8');
+    const fileContent = fs.readFileSync(filePath, 'utf8');
     const obj = JSON.parse(fileContent);
     
     delete obj.definitions['http://json-schema.org/draft-04/schema'];
@@ -98,8 +94,9 @@ fs.readdirSync(schemasDirectory).forEach(file => {
   }
 });
 
-*/
 
+
+/*
 
 const test = fs.readFileSync(path.resolve(__dirname, '../schemas/draft-07/2.6.0.json'), 'utf8');
 
