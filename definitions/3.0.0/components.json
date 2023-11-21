@@ -1,6 +1,6 @@
 {
   "type": "object",
-  "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
+  "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI specification. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -10,6 +10,7 @@
   "properties": {
     "schemas": {
       "type": "object",
+      "description": "An object to hold reusable Schema Object. If this is a Schema Object, then the schemaFormat will be assumed to be 'application/vnd.aai.asyncapi+json;version=asyncapi' where the version is equal to the AsyncAPI Version String.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -25,6 +26,7 @@
     },
     "servers": {
       "type": "object",
+      "description": "An object to hold reusable Server Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -40,6 +42,7 @@
     },
     "channels": {
       "type": "object",
+      "description": "An object to hold reusable Channel Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -55,6 +58,7 @@
     },
     "serverVariables": {
       "type": "object",
+      "description": "An object to hold reusable Server Variable Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -85,6 +89,7 @@
     },
     "messages": {
       "type": "object",
+      "description": "An object to hold reusable Message Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -100,6 +105,7 @@
     },
     "securitySchemes": {
       "type": "object",
+      "description": "An object to hold reusable Security Scheme Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -115,6 +121,7 @@
     },
     "parameters": {
       "type": "object",
+      "description": "An object to hold reusable Parameter Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -130,6 +137,7 @@
     },
     "correlationIds": {
       "type": "object",
+      "description": "An object to hold reusable Correlation ID Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -145,6 +153,7 @@
     },
     "operationTraits": {
       "type": "object",
+      "description": "An object to hold reusable Operation Trait Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -160,6 +169,7 @@
     },
     "messageTraits": {
       "type": "object",
+      "description": "An object to hold reusable Message Trait Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -175,6 +185,7 @@
     },
     "replies": {
       "type": "object",
+      "description": "An object to hold reusable Operation Reply Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -190,6 +201,7 @@
     },
     "replyAddresses": {
       "type": "object",
+      "description": "An object to hold reusable Operation Reply Address Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -205,6 +217,7 @@
     },
     "serverBindings": {
       "type": "object",
+      "description": "An object to hold reusable Server Bindings Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -220,6 +233,7 @@
     },
     "channelBindings": {
       "type": "object",
+      "description": "An object to hold reusable Channel Bindings Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -235,6 +249,7 @@
     },
     "operationBindings": {
       "type": "object",
+      "description": "An object to hold reusable Operation Bindings Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -250,6 +265,7 @@
     },
     "messageBindings": {
       "type": "object",
+      "description": "An object to hold reusable Message Bindings Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -265,6 +281,7 @@
     },
     "tags": {
       "type": "object",
+      "description": "An object to hold reusable Tag Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -280,6 +297,7 @@
     },
     "externalDocs": {
       "type": "object",
+      "description": "An object to hold reusable External Documentation Objects.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
@@ -293,6 +311,9 @@
         }
       }
     }
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/3.0.0/components.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/components.json"
