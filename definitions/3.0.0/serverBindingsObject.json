@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Map describing protocol-specific definitions for a server.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
