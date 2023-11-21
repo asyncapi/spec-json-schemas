@@ -132,7 +132,41 @@
     },
     "anypointmq": {},
     "nats": {},
-    "jms": {},
+    "jms": {
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.0.1"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/jms/0.0.1/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.0.1"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/jms/0.0.1/server.json"
+          }
+        }
+      ]
+    },
     "sns": {},
     "sqs": {},
     "stomp": {},
