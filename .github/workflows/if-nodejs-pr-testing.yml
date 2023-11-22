@@ -78,4 +78,4 @@ jobs:
         run: npm run generate:assets --if-present
       - if: steps.packagejson.outputs.exists == 'true'
         name: Run JSON Schema Validator
-        run: npm run lint-schemas --if-present
+        run: npm run lint-schemas
