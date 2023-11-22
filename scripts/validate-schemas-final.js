@@ -82,7 +82,7 @@ function validation(draft, startFileName, excludedFiles){
        delete obj.definitions['http://json-schema.org/draft-04/schema'];
        delete obj.definitions['http://json-schema.org/draft-07/schema'];
  
-       // Compile the schema
+       // Validate the schema
        const validate = ajv.validateSchema(obj);
  
        // Check if the schema is valid
