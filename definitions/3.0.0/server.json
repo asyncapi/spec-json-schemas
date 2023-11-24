@@ -1,24 +1,21 @@
 {
   "type": "object",
-  "description": "An object representing a Server.",
-  "required": [
-    "host",
-    "protocol"
-  ],
+  "description": "An object representing a message broker, a server or any other kind of computer program capable of sending and/or receiving data.",
+  "required": ["host", "protocol"],
   "additionalProperties": false,
-  "patternProperties": {
+  "patternProperties": {    	
     "^x-[\\w\\d\\.\\x2d_]+$": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
     }
   },
-  "properties": {
+  "properties": {	
     "host": {
       "type": "string",
-      "description": "The server host name."
+      "description": "The server host name. It MAY include the port. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}."
     },
     "pathname": {
       "type": "string",
-      "description": "The path to a resource in the host."
+      "description": "The path to a resource in the host. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}."
     },
     "title": {
       "type": "string",
@@ -34,10 +31,11 @@
     },
     "protocol": {
       "type": "string",
-      "description": "The transfer protocol."
+      "description": "The protocol this server supports for connection."
     },
     "protocolVersion": {
-      "type": "string"
+      "type": "string",
+      "description": "An optional string describing the server. CommonMark syntax MAY be used for rich text representation."
     },
     "variables": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariables.json"
@@ -49,29 +47,39 @@
       "type": "array",
       "items": {
         "oneOf": [
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-          },
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-          }
-        ]
+	  {
+  	    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+	  },
+  	  {
+  	    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+  	  }
+  	]
       },
       "uniqueItems": true
     },
     "externalDocs": {
       "oneOf": [
         {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-        }
+	  "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+  	},
+	{
+  	  "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+	}
       ]
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+        }
+      ]
     }
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/3.0.0/server.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/server.json"
