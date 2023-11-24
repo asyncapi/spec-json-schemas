@@ -118,7 +118,7 @@
     "kafka": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.4.0", "0.3.0", "0.1.0"]
+          "enum": ["0.4.0", "0.3.0"]
         }
       },
       "allOf": [
@@ -159,19 +159,6 @@
           }, 
           "then": {
             "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json"
-          }
-        },
-        {
-          "if": {
-            "required": [ "bindingVersion" ],
-            "properties": {
-              "bindingVersion": {
-                "const": "0.1.0"
-              }
-            }
-          }, 
-          "then": {
-            "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json"
           }
         }
       ]
