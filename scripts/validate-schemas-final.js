@@ -1,9 +1,3 @@
-/*
-
-I agree @char0n's comment. You can iterate over all schemas in /schemas and determine their metaschema (draft4 or draft7). You can check the $schema field once you parse the file and you will get either http://json-schema.org/draft-04/schema or http://json-schema.org/draft-07/schema. Then you instantiate one or another ajv version. Does it sound reasonable?
-
-*/
-
 const fs = require('fs');
 const path = require('path');
 
