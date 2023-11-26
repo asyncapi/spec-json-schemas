@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
+const AjvDraft04 = require('ajv-draft-04');
+const ajvDraft04 = new AjvDraft04();
+
+const Ajv = require('ajv');
+const ajv = new Ajv();
 
 function validation (excludedFiles){
 
@@ -26,11 +31,8 @@ function validation (excludedFiles){
 
         if(obj.$schema === 'http://json-schema.org/draft-04/schema'){
 
-            // console.log('draft-04'); // for debugging purpose
-            const Ajv = require('ajv-draft-04');
-            const ajv = new Ajv();
             // Validate the schema
-            const validate = ajv.validateSchema(obj);
+            const validate = ajvDraft04.validateSchema(obj);
 
             // Check if the schema is valid
             if (validate) {
@@ -40,14 +42,6 @@ function validation (excludedFiles){
                 process.exit(1);
             }
         } else{
-            // console.log('draft-07'); // for debugging purpose
-
-            const Ajv = require('ajv');
-            const ajv = new Ajv();
-
-            // Remove unnecessary definitions
-            delete obj.definitions['http://json-schema.org/draft-04/schema'];
-            delete obj.definitions['http://json-schema.org/draft-07/schema'];
             // Validate the schema
             const validate = ajv.validateSchema(obj);
 
@@ -66,6 +60,6 @@ function validation (excludedFiles){
   });
 }
 
-const excludedFiles=['README.md', '2.0.0-rc1-without-$id.json'];
+const excludedFiles=['README.md', '2.0.0-rc1-without-$id.json', '2.0.0-rc1.json'];
 
 validation(excludedFiles);
