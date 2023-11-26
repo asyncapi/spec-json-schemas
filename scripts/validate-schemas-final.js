@@ -16,7 +16,7 @@ function validation (excludedFiles){
   const files = fs.readdirSync(directoryPath);
 
   // Filter files
-  const filteredFiles = files.filter(file => !excludedFiles.includes(file));
+  const filteredFiles = files.filter(file => !excludedFiles.includes(file) && path.extname(file).toLowerCase() === '.json');
 
 
   // Iterate through the filtered files
@@ -60,6 +60,6 @@ function validation (excludedFiles){
   });
 }
 
-const excludedFiles=['README.md', '2.0.0-rc1-without-$id.json', '2.0.0-rc1.json'];
+const excludedFiles=['2.0.0-rc1-without-$id.json', '2.0.0-rc1.json'];
 
 validation(excludedFiles);
