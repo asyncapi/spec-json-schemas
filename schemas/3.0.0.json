@@ -3693,8 +3693,7 @@
                         "bindingVersion": {
                             "enum": [
                                 "0.4.0",
-                                "0.3.0",
-                                "0.1.0"
+                                "0.3.0"
                             ]
                         }
                     },
@@ -3740,21 +3739,6 @@
                             },
                             "then": {
                                 "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/message.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/message.json"
                             }
                         }
                     ]
@@ -4154,47 +4138,6 @@
                     "schemaIdLocation": "payload",
                     "schemaIdPayloadEncoding": "4",
                     "bindingVersion": "0.3.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/kafka/0.1.0/message.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.1.0/message.json",
-            "title": "Kafka message bindings object",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "key": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
-                    "description": "The message key."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "key": {
-                        "type": "string",
-                        "enum": [
-                            "myKey"
-                        ]
-                    },
-                    "bindingVersion": "0.1.0"
-                },
-                {
-                    "key": {
-                        "$ref": "path/to/user-create.avsc#/UserCreate"
-                    },
-                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -6675,8 +6618,7 @@
                         "bindingVersion": {
                             "enum": [
                                 "0.4.0",
-                                "0.3.0",
-                                "0.1.0"
+                                "0.3.0"
                             ]
                         }
                     },
@@ -6722,21 +6664,6 @@
                             },
                             "then": {
                                 "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json"
                             }
                         }
                     ]
@@ -7209,52 +7136,6 @@
                         ]
                     },
                     "bindingVersion": "0.3.0"
-                }
-            ]
-        },
-        "http://asyncapi.com/bindings/kafka/0.1.0/operation.json": {
-            "$id": "http://asyncapi.com/bindings/kafka/0.1.0/operation.json",
-            "title": "Kafka operation message bindings object",
-            "description": "This object contains information about the operation representation in Kafka.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
-            },
-            "properties": {
-                "groupId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
-                    "description": "Id of the consumer group."
-                },
-                "clientId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
-                    "description": "Id of the consumer inside a consumer group."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "groupId": {
-                        "type": "string",
-                        "enum": [
-                            "myGroupId"
-                        ]
-                    },
-                    "clientId": {
-                        "type": "string",
-                        "enum": [
-                            "myClientId"
-                        ]
-                    },
-                    "bindingVersion": "0.1.0"
                 }
             ]
         },
