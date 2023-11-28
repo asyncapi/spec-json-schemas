@@ -10,23 +10,30 @@
   "properties": {
     "enum": {
       "type": "array",
+      "description": "An enumeration of string values to be used if the substitution options are from a limited set.",
       "items": {
         "type": "string"
       },
-      "uniqueItems": true
+  	"uniqueItems": true
     },
-    "default": {
-      "type": "string"
-    },
-    "description": {
-      "type": "string"
-    },
-    "examples": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
+  	"default": {
+  	  "type": "string",
+  	  "description": "The default value to use for substitution, and to send, if an alternate value is not supplied."
+  	},
+  	"description": {
+  	  "type": "string",
+  	  "description": "An optional description for the server variable. CommonMark syntax MAY be used for rich text representation."
+  	},
+  	"examples": {
+  	  "type": "array",
+  	  "description": "An array of examples of the server variable.",
+  	  "items": {
+  	    "type": "string"
+	  }
+	}
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/3.0.0/serverVariable.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"

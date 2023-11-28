@@ -35,7 +35,14 @@
       "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
     },
     "query": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        }
+      ],
       "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
     },
     "bindingVersion": {

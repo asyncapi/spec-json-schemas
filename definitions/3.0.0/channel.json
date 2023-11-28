@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Describes a shared communication channel.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -39,26 +40,27 @@
     },
     "tags": {
       "type": "array",
+      "description": "A list of tags for logical grouping of channels.",
       "items": {
         "oneOf": [
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-          },
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-          }
-        ]
+  	  {
+	    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+	  },
+	  {
+  	    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+	  }
+	]
       },
       "uniqueItems": true
     },
     "externalDocs": {
       "oneOf": [
         {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-        }
+  	  "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+	},
+	{
+  	  "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+	}
       ]
     },
     "bindings": {
@@ -71,6 +73,9 @@
         }
       ]
     }
+  },
+  "example": {
+    "$ref": "http://asyncapi.com/examples/3.0.0/channel.json"
   },
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/channel.json"
