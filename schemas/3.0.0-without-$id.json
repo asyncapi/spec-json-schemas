@@ -3639,8 +3639,7 @@
                         "bindingVersion": {
                             "enum": [
                                 "0.4.0",
-                                "0.3.0",
-                                "0.1.0"
+                                "0.3.0"
                             ]
                         }
                     },
@@ -3686,21 +3685,6 @@
                             },
                             "then": {
                                 "$ref": "#/definitions/bindings-kafka-0.3.0-message"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "#/definitions/bindings-kafka-0.1.0-message"
                             }
                         }
                     ]
@@ -4095,46 +4079,6 @@
                     "schemaIdLocation": "payload",
                     "schemaIdPayloadEncoding": "4",
                     "bindingVersion": "0.3.0"
-                }
-            ]
-        },
-        "bindings-kafka-0.1.0-message": {
-            "title": "Kafka message bindings object",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "#/definitions/specificationExtension"
-                }
-            },
-            "properties": {
-                "key": {
-                    "$ref": "#/definitions/schema",
-                    "description": "The message key."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "key": {
-                        "type": "string",
-                        "enum": [
-                            "myKey"
-                        ]
-                    },
-                    "bindingVersion": "0.1.0"
-                },
-                {
-                    "key": {
-                        "$ref": "path/to/user-create.avsc#/UserCreate"
-                    },
-                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -6590,8 +6534,7 @@
                         "bindingVersion": {
                             "enum": [
                                 "0.4.0",
-                                "0.3.0",
-                                "0.1.0"
+                                "0.3.0"
                             ]
                         }
                     },
@@ -6637,21 +6580,6 @@
                             },
                             "then": {
                                 "$ref": "#/definitions/bindings-kafka-0.3.0-operation"
-                            }
-                        },
-                        {
-                            "if": {
-                                "required": [
-                                    "bindingVersion"
-                                ],
-                                "properties": {
-                                    "bindingVersion": {
-                                        "const": "0.1.0"
-                                    }
-                                }
-                            },
-                            "then": {
-                                "$ref": "#/definitions/bindings-kafka-0.1.0-operation"
                             }
                         }
                     ]
@@ -7119,51 +7047,6 @@
                         ]
                     },
                     "bindingVersion": "0.3.0"
-                }
-            ]
-        },
-        "bindings-kafka-0.1.0-operation": {
-            "title": "Kafka operation message bindings object",
-            "description": "This object contains information about the operation representation in Kafka.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "#/definitions/specificationExtension"
-                }
-            },
-            "properties": {
-                "groupId": {
-                    "$ref": "#/definitions/schema",
-                    "description": "Id of the consumer group."
-                },
-                "clientId": {
-                    "$ref": "#/definitions/schema",
-                    "description": "Id of the consumer inside a consumer group."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.1.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "groupId": {
-                        "type": "string",
-                        "enum": [
-                            "myGroupId"
-                        ]
-                    },
-                    "clientId": {
-                        "type": "string",
-                        "enum": [
-                            "myClientId"
-                        ]
-                    },
-                    "bindingVersion": "0.1.0"
                 }
             ]
         },
