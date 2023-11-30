@@ -172,20 +172,6 @@
           "$ref": "http://asyncapi.com/schema-store/2.6.0-without-$id.json"
         }
       ]
-    },
-    {
-      "allOf": [
-        {
-          "properties": {
-            "asyncapi": {
-              "const": "3.0.0"
-            }
-          }
-        },
-        {
-          "$ref": "http://asyncapi.com/schema-store/3.0.0-without-$id.json"
-        }
-      ]
     }
   ]
 }

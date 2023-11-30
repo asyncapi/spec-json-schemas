@@ -7,15 +7,3 @@
 # The default owners are automatically added as reviewers when you open a pull request unless different owners are specified in the file.
 
 * @fmvilas @derberg @dalelane @smoya @char0n @asyncapi-bot-eve
-
-/bindings/anypointmq/   @mboss37 @GeraldLoeffler
-/bindings/ibmmq/        @rcoppen
-/bindings/jms/          @rcoppen @SrfHead
-/bindings/kafka/        @lbroudoux @dalelane
-/bindings/googlepubsub/ @whitlockjc
-/bindings/solace/       @damaru-inc @CameronRushton
-/bindings/pulsar/       @VisualBean
-/bindings/sns/          @dpwdec @iancooper
-/bindings/sqs/          @dpwdec @iancooper
-
-/bindings/*.json        @KhudaDad414
