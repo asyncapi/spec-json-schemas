@@ -16,6 +16,6 @@ module.exports = {
 };
 ```
 
-However, while it's still a pre-release, the underlying schemas CAN contain breaking changes from version to version, up until the AsyncAPI specification is released. This means that one AsyncAPI document using v3 in the pre-release stage might be valid in `6.0.0`, but invalid in the `6.1.0`. This ONLY applies to pre-release schemas, and NOT regular ones that are set in stone.
+However, while it's still a pre-release, the underlying schemas CAN contain breaking changes from version to version, up until [the AsyncAPI specification is released](https://github.com/asyncapi/spec/releases). This means that one AsyncAPI document using v3 in the pre-release stage might be valid in `6.0.0`, but invalid in the `6.1.0`. This ONLY applies to pre-release schemas, and NOT regular ones that are set in stone.
 
 If you want to make sure you don't use a schema not released yet, you have to whitelist which versions you allow in your tool.
