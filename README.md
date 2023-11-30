@@ -1,39 +1,24 @@
 ![npm](https://img.shields.io/npm/v/@asyncapi/specs?style=for-the-badge) ![npm](https://img.shields.io/npm/dt/@asyncapi/specs?style=for-the-badge)
 
-## Overview
+# AsyncAPI
 
 This is a mono repository, which provides all the JSON Schema documents for validating AsyncAPI documents.
 
-### Two types of schemas
+## Overview
 
-This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification. There are two types of JSON Schema files, with and without **$id** feature. We need two versions of schemas because of the differences it tooling implementation of JSON Schema `$ref` and `$id` keywords. Some implementations treat `$id` by default as prefix reference for `$ref` and require it, therefore it is needed to properly correlate `$ref` and `$id` values. Unfortunately other tools do not understand `$id` values and fail dereferencing. This is why we need two different versions of schemas, with and without the `$id`.
-
-### Releases and pre-releases
-
-This repository contains JSON Schema files for official AsyncAPI releases and also for release candidates. Before you decide to use a specific JSON Schema file in production, make sure a corresponding [official release of AsyncAPI specification](https://github.com/asyncapi/spec/releases) is produced, not a release candidate.
-
-JSON Schema which describes a version of AsyncAPI specification that is not yet officially released is considered an unstable pre-release that can change anytime and is not considered to be a breaking-change.
-
-If you want to make sure you only use stable schemas, you have to make sure that you use only certain schema versions, not all by default.
-
-### JSON Schema vs AsyncAPI specification
-
-These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool (e.g., for validation).
-
-These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification can't be described with JSON Schema.
-
-### Libraries
-
-In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code. These packages provide access only to schemas with version larger or equal 2.0.0.
+* This repository contains [JSON Schema](https://json-schema.org) files for all the versions of AsyncAPI specification. There are two types of JSON Schema files, with and without **$id** feature. We need two versions of schemas because of the differences it tooling implementation of JSON Schema `$ref` and `$id` keywords. Some implementations treat `$id` by default as prefix reference for `$ref` and require it, therefore it is needed to properly correlate `$ref` and `$id` values. Unfortunately other tools do not understand `$id` values and fail dereferencing. This is why we need two different versions of schemas, with and without the `$id`.
+* These JSON Schema files do not reflect 1:1 the specification and shouldn't be treated as specification itself but rather as a tool (e.g., for validation).
+* These JSON Schema files shouldn't be used as the only tool for validating AsyncAPI documents because some rules described in the AsyncAPI specification can't be described with JSON Schema.
+* In addition, this repo provides JavaScript and Go modules that make it easier to access JSON Schema files through code. These packages provide access only to schemas with version larger or equal 2.0.0.
 
 ## Custom Validation Needs
 
 If you decide to validate AsyncAPI documents only with the JSON Schema files provided in this repo, your AsyncAPI documents will not be properly validated.
 It's recommended to use [AsyncAPI JavaScript Parser](https://github.com/asyncapi/parser-js) that uses the AsyncAPI JSON Schema files for validation but also implements additional custom validations.
  
-The following additional custom validations need to be provided for documents prior to `3.0.0`:
+The following additional custom validations need to be provided:
 
-* Variables provided in the `url` property have a corresponding variable object defined and its example is correct.
+* Variables provided in the URL property have a corresponding variable object defined and its example is correct.
 * `operationId`s are not duplicated in the document.
 * `messageId`s are not duplicated in the document.
 * Server security is declared properly and the name has a corresponding `securitySchemes` definition in `components` with the same name.
@@ -123,8 +108,6 @@ func Do() {
 
 If you are currently using version 2, check out [migration guideline to version 3](./migrations/migrate-to-version-3.md).
 If you are currently using version 3, check out [migration guideline to version 4](./migrations/migrate-to-version-4.md).
-If you are currently using version 4, check out [migration guideline to version 5](./migrations/migrate-to-version-5.md).
-If you are currently using version 5, check out [migration guideline to version 6](./migrations/migrate-to-version-6.md).
 
 ## Repository structure
 
@@ -200,7 +183,7 @@ Whenever a Breaking Change is introduced, the following steps should be taken in
 
 ## SchemaStore compatibility testing
 
-AsyncAPI JSON Schema is referenced in [SchemaStore](https://www.schemastore.org/json/). In many IDEs, like VSCode, some extensions integrate with SchemaStore, like [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This way we enable autocompletion, validation and tooltips that help write AsyncAPI documents.
+AsyncAPI JSON Schema is referenced in [SchemaStore](https://www.schemastore.org/json/). In many IDEs, like VSCode, some extensions integrate with SchemaStore, like [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). This way we enable autocompletion, validation and tooltips that helps writing AsyncAPI documents.
 
 Whenever you make changes in AsyncAPI JSON Schema, you should always manually verify that the schema is still supported by [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and that it will be able to fetch and dereference it.
 
