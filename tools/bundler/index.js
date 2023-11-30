@@ -1,12 +1,61 @@
 const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
+const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
+const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
 const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
 console.log(`Looking for separate definitions in the following directory: ${definitionsDirectory}`);
+console.log(`Looking for binding version schemas in the following directory: ${bindingsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
 
+// definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
+const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i
+
+// definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
+const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i
+
+/**
+ * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
+ */
+async function loadDefinitions(bundler, versionDir) {
+  const definitions = await fs.promises.readdir(versionDir);
+  const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
+  const definitionJson = definitionFiles.map((file) => JSON.parse(file));
+  for (const jsonFile of definitionJson) {
+    if (jsonFile.example) {
+      // Replaced the example property with the referenced example property
+      const examples = await loadRefProperties(jsonFile.example);
+      // Replacing example property with examples is because using example
+      // to pass an array of example properties is not valid in JSON Schema.
+      // So replacing it when bundling is the goto solution. 
+      jsonFile.examples = examples;
+      delete jsonFile.example;
+      bundler.add(jsonFile);
+    } else {
+      bundler.add(jsonFile);
+    }
+  }
+}
+/**
+ * Function to load all the binding version schemas into the bundler
+ */
+async function loadBindings(bundler) {
+  const bindingDirectories = await fs.promises.readdir(bindingsDirectory);
+  for (const bindingDirectory of bindingDirectories) {
+    const bindingVersionDirectories = await fs.promises.readdir(path.resolve(bindingsDirectory, bindingDirectory));
+    const bindingVersionDirectoriesFiltered = bindingVersionDirectories.filter((file) => fs.lstatSync(path.resolve(bindingsDirectory, bindingDirectory, file)).isDirectory());
+    for (const bindingVersionDirectory of bindingVersionDirectoriesFiltered) {
+      const bindingFiles = await fs.promises.readdir(path.resolve(bindingsDirectory, bindingDirectory, bindingVersionDirectory));
+      const bindingFilesFiltered = bindingFiles.filter((bindingFile) => path.extname(bindingFile) === '.json').map((bindingFile) => path.resolve(bindingsDirectory, bindingDirectory, bindingVersionDirectory, bindingFile));
+      for (const bindingFile of bindingFilesFiltered) {
+        const bindingFileContent = require(bindingFile);
+        bundler.add(bindingFileContent);
+      }
+    }
+  }
+}
 /**
  * When run, go through all versions that have split definitions and bundles them together.
  */
@@ -24,23 +73,9 @@ console.log(`Using the following output directory: ${outputDirectory}`);
       const outputFileWithId = path.resolve(outputDirectory, `${version}.json`);
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
-      const definitions = await fs.promises.readdir(versionDir);
-      const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
-      const definitionJson = definitionFiles.map((file) => JSON.parse(file));
-      for (const jsonFile of definitionJson) {
-        if (jsonFile.example) {
-          // Replaced the example property with the referenced example property
-          const examples = await loadRefProperties(jsonFile.example);
-          // Replacing example property with examples is because using example
-          // to pass an array of example properties is not valid in JSON Schema.
-          // So replacing it when bundling is the goto solution. 
-          jsonFile.examples = examples;
-          delete jsonFile.example;
-          Bundler.add(jsonFile);
-        } else {
-          Bundler.add(jsonFile);
-        }
-      }
+      await loadDefinitions(Bundler, versionDir);
+      await loadBindings(Bundler);
+
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
       const fileToBundle = await Bundler.get(filePathToBundle);
 
@@ -112,8 +147,15 @@ function modifyRefsAndDefinitions(bundledSchema) {
  */
 function getDefinitionName(def) {
   if (def.startsWith('http://json-schema.org')) return JSON_SCHEMA_PROP_NAME;
-
-  if (path.extname(def) !== '.json') throw new Error(`Original $id values should point to JSON files. There is probably an error in one of the source definitions containing definition: ${def}`);
+  if (def.startsWith('http://asyncapi.com/definitions')) {
+    const result = definitionsRegex.exec(def);
+    if (result) return result[1].replace('/', '-') + result[2];
+  }
+  if (def.startsWith('http://asyncapi.com/bindings')) {
+    const result = bindingsRegex.exec(def);
+    if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
+  }
+  
   return path.basename(def, '.json')
 }
 
@@ -122,13 +164,11 @@ function getDefinitionName(def) {
  * it is triggered with every new element of json schema
  */
 function replaceRef(schema) {
-
   //new refs will only work if we remove $id that all point to asyncapi.com
   delete schema.$id
   
   //traversing shoudl take place only in case of schemas with refs
   if (schema.$ref === undefined ) return;
-
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
 }
