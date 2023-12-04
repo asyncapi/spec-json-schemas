@@ -40,7 +40,7 @@ function validation (excludedFiles){
                 validate = ajvDraft04.validateSchema(obj);
                 if(validate){
                     console.log(`\n${file}: JSON Schema is valid!`);
-                }
+                }   
             } else {
                 // Validate the schema
                 validate = ajv.validateSchema(obj);
@@ -57,7 +57,6 @@ function validation (excludedFiles){
                     ? ajvDraft04.errors
                     : ajv.errors
                 });
-                // console.error(`${file}: JSON Schema is not valid:`, ajv.errors);
             }
         } catch (error) {
             validationErrors.push({
