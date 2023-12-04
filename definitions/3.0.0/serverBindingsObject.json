@@ -47,41 +47,6 @@
         }
       ]
     },
-    "mqtt5": {
-      "properties": {
-        "bindingVersion": {
-          "enum": ["0.2.0"]
-        }
-      },
-      "allOf": [
-        {
-          "description": "If no bindingVersion specified, use the latest binding",
-          "if": {
-            "not": {
-              "required": [
-                "bindingVersion"
-              ]
-            }
-          },
-          "then": {
-            "$ref": "http://asyncapi.com/bindings/mqtt5/0.2.0/server.json"
-          }
-        },
-        { 
-          "if": {
-            "required": [ "bindingVersion" ],
-            "properties": {
-              "bindingVersion": {
-                "const": "0.2.0"
-              }
-            }
-          }, 
-          "then": {
-            "$ref": "http://asyncapi.com/bindings/mqtt5/0.2.0/server.json"
-          }
-        }
-      ]
-    },
     "kafka": {
       "properties": {
         "bindingVersion": {
