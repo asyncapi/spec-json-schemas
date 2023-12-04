@@ -13,7 +13,7 @@
     "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
     "lint": "echo 'No linter integrated yet'",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
-    "validate-schemas": "node scripts/validate-schemas-final.js"
+    "validate-schemas": "node scripts/validate-schemas.js"
   },
   "repository": {
     "type": "git",
