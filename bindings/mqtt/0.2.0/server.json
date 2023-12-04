@@ -54,10 +54,10 @@
           "minimum": 0
         },
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/schema.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
         },
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/Reference.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
         }
       ],
       "description": "Interval time in seconds or a Schema Object containing the definition of the interval.  The broker maintains a session for a disconnected client until this interval expires."
@@ -70,10 +70,10 @@
           "maximum": 4294967295
         },
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/schema.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
         },
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/Reference.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
         }
       ],
       "description": "Number of bytes or a Schema Object representing the Maximum Packet Size the Client is willing to accept."

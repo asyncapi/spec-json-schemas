@@ -20,10 +20,10 @@
     "correlationData": {
       "oneOf": [
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/schema.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
         },
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/Reference.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
         }
       ],
       "description": "Correlation Data is used by the sender of the request message to identify which request the response message is for when it is received."
@@ -43,7 +43,7 @@
           "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
         },
         {
-          "$ref": "https://asyncapi.com/definitions/3.0.0/Reference.json"
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
         }
       ],
       "description": "The topic (channel URI) to be used for a response message."
