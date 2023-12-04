@@ -13,11 +13,28 @@
   "properties": {
     "qos": {
       "type": "integer",
+      "enum": [0,1,2],
       "description": "Defines the Quality of Service (QoS) levels for the message flow between client and server. Its value MUST be either 0 (At most once delivery), 1 (At least once delivery), or 2 (Exactly once delivery)."
     },
     "retain": {
       "type": "boolean",
       "description": "Whether the broker should retain the message or not."
+    },
+    "messageExpiryInterval": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4294967295
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        }
+      ],
+      "description": "Lifetime of the message in seconds"
     },
     "bindingVersion": {
       "type": "string",
@@ -31,6 +48,7 @@
     {
       "qos": 2,
       "retain": true,
+      "messageExpiryInterval": 60,
       "bindingVersion": "0.2.0"
     }
   ]
