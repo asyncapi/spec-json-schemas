@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "npm run build && nyc mocha",
+    "test": "npm run build && nyc mocha && npm run validate:schemas",
     "build": "npm run bundle",
     "generate:assets": "npm run build",
     "prepublishOnly": "npm run build",
@@ -13,7 +13,7 @@
     "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
     "lint": "echo 'No linter integrated yet'",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
-    "validate-schemas": "node scripts/validate-schemas.js"
+    "validate:schemas": "node scripts/validate-schemas.js"
   },
   "repository": {
     "type": "git",

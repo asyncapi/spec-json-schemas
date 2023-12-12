@@ -78,6 +78,7 @@ function validation (excludedFiles){
         
     } catch (error) {
         console.error('\nError during validation:', error.message);
+        process.exit(1);
     }
 }
 
