@@ -4015,12 +4015,15 @@
             },
             "properties": {
                 "key": {
-                    "oneOf": [
+                    "anyOf": [
                         {
                             "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                         },
                         {
                             "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
                         }
                     ],
                     "description": "The message key."
