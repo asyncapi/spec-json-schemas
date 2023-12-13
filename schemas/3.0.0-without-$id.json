@@ -3958,12 +3958,15 @@
             },
             "properties": {
                 "key": {
-                    "oneOf": [
+                    "anyOf": [
                         {
                             "$ref": "#/definitions/Reference"
                         },
                         {
                             "$ref": "#/definitions/schema"
+                        },
+                        {
+                            "$ref": "#/definitions/avroSchema_v1"
                         }
                     ],
                     "description": "The message key."
