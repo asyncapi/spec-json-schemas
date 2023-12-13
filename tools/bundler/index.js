@@ -167,7 +167,7 @@ function replaceRef(schema) {
   //new refs will only work if we remove $id that all point to asyncapi.com
   delete schema.$id
   
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined ) return;
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
@@ -178,7 +178,7 @@ function replaceRef(schema) {
  * to fix avro schema definitions to point to right direction
  */
 function updateAvro(schema){
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
@@ -192,7 +192,7 @@ function updateAvro(schema){
  * to fix open api schema definitions to point to right direction
  */
 function updateOpenApi(schema){
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
   const openApiPropName = 'openapiSchema_3_0';
 
@@ -211,7 +211,7 @@ function updateOpenApi(schema){
  * to fix open api schema definitions to point to right direction
  */
 function updateJsonSchema(schema){
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
