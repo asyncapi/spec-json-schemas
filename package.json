@@ -12,7 +12,7 @@
     "bundle": "cd tools/bundler && npm i && npm run bundle",
     "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
     "lint": "eslint --max-warnings 0 --config .eslintrc .",
-    "lint:fix": "eslint --max-warnings 0 --config . --fix",
+    "lint:fix": "eslint --max-warnings 0 --config .eslintrc --fix",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "validate:schemas": "node scripts/validate-schemas.js"
   },
