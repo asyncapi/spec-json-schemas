@@ -25,12 +25,7 @@ async function loadDefinitions(bundler, versionDir) {
   const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
   const definitionJson = definitionFiles.map((file) => JSON.parse(file));
 
-  // Add common schemas to all versions
-  const commonSchemas = await fs.promises.readdir(commonSchemasDir);
-  const commonSchemaFiles = commonSchemas.map((file) => fs.readFileSync(path.resolve(commonSchemasDir, file)));
-  const commonSchemaJson = commonSchemaFiles.map((file) => JSON.parse(file));
-
-  for (const jsonFile of [...definitionJson, ...commonSchemaJson]) {
+  for (const jsonFile of definitionJson) {
     if (jsonFile.example) {
       // Replaced the example property with the referenced example property
       const examples = await loadRefProperties(jsonFile.example);
@@ -65,6 +60,17 @@ async function loadBindings(bundler) {
   }
 }
 
+async function loadingCommonSchemas(bundler) {
+  // Add common schemas to all versions
+  const commonSchemas = await fs.promises.readdir(commonSchemasDir);
+  const commonSchemaFiles = commonSchemas.map((file) => fs.readFileSync(path.resolve(commonSchemasDir, file)));
+  console.log(commonSchemaFiles);
+  for(const commonSchemaFile of commonSchemaFiles) {
+    const commonSchemaFileContent = require(commonSchemaFile);
+    bundler.add(commonSchemaFileContent);
+  }
+}
+
 /**
  * When run, go through all versions that have split definitions and bundles them together.
  */
@@ -83,6 +89,7 @@ async function loadBindings(bundler) {
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       await loadDefinitions(Bundler, versionDir);
+      await loadingCommonSchemas(Bundler);
       await loadBindings(Bundler);
 
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
