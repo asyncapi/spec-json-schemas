@@ -16,7 +16,7 @@ const versionRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d
  */
 function execute(command) {
   return new Promise((resolve, reject) => {
-    exec(command, function (error, stdout, stderr) { //NOSONAR
+    exec(command, (error, stdout, stderr) => { //NOSONAR
       if (!error) resolve(stdout);
       console.error(stderr);
       reject(error);
@@ -42,11 +42,12 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
   const obj = require(objFile);
 
   // Adapt all the MUST supported schema formats
+  /* eslint-disable no-empty-pattern,no-unsafe-optional-chaining */
   let mustSupportedSchemaFormats = [] = obj?.else?.properties?.schemaFormat?.anyOf[1]?.enum;
 
   //Add new version to the list of available schemaFormat values
-  if(mustSupportedSchemaFormats) {
-    if(isMajorVersionChange) {
+  if (mustSupportedSchemaFormats) {
+    if (isMajorVersionChange) {
       //Remove all old AsyncAPI schema formats because we want a clean slate
       mustSupportedSchemaFormats = mustSupportedSchemaFormats.filter((format) => !format.includes('application/vnd.aai.asyncapi'));
     }
@@ -54,17 +55,17 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
     mustSupportedSchemaFormats.push(...newSchemaFormats);
     obj.else.properties.schemaFormat.anyOf[1].enum = mustSupportedSchemaFormats;
   } else {
-    throw new Error("Could not find object to add schemaFormat values to");
+    throw new Error('Could not find object to add schemaFormat values to');
   }
 
   //Make sure new versions apply the right schema
-  let enumsForValidatingSchema = [] = obj?.else?.allOf[1]?.if?.properties?.schemaFormat?.enum;
-  if(enumsForValidatingSchema) {
+  const enumsForValidatingSchema = [] = obj?.else?.allOf[1]?.if?.properties?.schemaFormat?.enum;
+  if (enumsForValidatingSchema) {
     //Add new schema formats
     enumsForValidatingSchema.push(...newSchemaFormats);
     obj.else.allOf[1].if.properties.schemaFormat.enum = enumsForValidatingSchema;
   } else {
-    throw new Error("Could not find location for schemaFormats that applies the AsyncAPI Schema object to the schema property");
+    throw new Error('Could not find location for schemaFormats that applies the AsyncAPI Schema object to the schema property');
   }
   
   fs.writeFileSync(objFile, JSON.stringify(obj, null, 2));
@@ -87,9 +88,9 @@ async function addNewVersion(newVersion) {
 
   try {
     fs.accessSync(newVersionDir);
-    console.error(`Directory ${newVersionDir} already exist and cannot be overwritten. Please create a different version.`)
+    console.error(`Directory ${newVersionDir} already exist and cannot be overwritten. Please create a different version.`);
     return process.exit(1);
-  } catch (err) { }
+  } catch (err) /* eslint-disable no-empty */ { }
 
   //Use the newest version as baseline for the new one
   const latestVersion = (await execute('ls -d ./definitions/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
@@ -99,6 +100,7 @@ async function addNewVersion(newVersion) {
   await execute(`cp -R ./examples/${latestExampleVersion} ${newExampleVersionDir}`);
   
   // Replace $ref and $id paths such as `/3.0.0/` with new version (http://asyncapi.com/definitions/3.0.0/specificationExtension.json)
+  /* eslint-disable no-useless-escape */
   await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' \"s+\/${latestVersion}\/+\/${newVersion}\/+g\" {} +`);
 
   // Replace .asyncapi version from old to new version
@@ -108,12 +110,12 @@ async function addNewVersion(newVersion) {
   // Add new schemaFormat version entries
   addNewSchemaVersion(newVersion, newVersionDir, latestVersion);
 
-  console.log(`New version added to ${newVersionDir}`)
+  console.log(`New version added to ${newVersionDir}`);
 }
 
 const versionMatch = inputNewVersion.match(versionRegex);
 if (!versionMatch) {
-  console.error(`The new version ${inputNewVersion} must use semver versioning. `)
+  console.error(`The new version ${inputNewVersion} must use semver versioning. `);
   process.exit(1);
 } else {
   addNewVersion(inputNewVersion);

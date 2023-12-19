@@ -1,4 +1,4 @@
-parser: "esprima"
+parser: "@typescript-eslint/parser"
 
 env:
   node: true
@@ -14,7 +14,7 @@ extends:
   - plugin:sonarjs/recommended
 
 parserOptions:
-  ecmaVersion: 2018
+  ecmaVersion: 2017
 
 rules:
   # Ignore Rules
