@@ -1,6 +1,6 @@
 { 
   "type": "object",
-  "description": "Describes a trait that MAY be applied to an Operation Object. This object MAY contain any property from the Operation Object, except the action, channel and traits ones.",
+  "description": "Describes a trait that MAY be applied to an Operation Object. This object MAY contain any property from the Operation Object, except the action, channel, messages and traits ones.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
