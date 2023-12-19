@@ -31,7 +31,8 @@
       "$ref": "http://asyncapi.com/definitions/3.0.0/servers.json"
     },
     "defaultContentType": {
-      "type": "string"
+      "type": "string",
+      "description": "Default content type to use when encoding/decoding a message's payload."
     },
     "channels": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/channels.json"

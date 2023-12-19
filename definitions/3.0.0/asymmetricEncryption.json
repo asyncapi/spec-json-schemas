@@ -6,12 +6,14 @@
   "properties": {
     "type": {
       "type": "string",
+      "description": "The type of the security scheme.",
       "enum": [
         "asymmetricEncryption"
       ]
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A short description for security scheme."
     }
   },
   "patternProperties": {

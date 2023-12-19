@@ -7,20 +7,23 @@
   "properties": {
     "type": {
       "type": "string",
+      "description": "The type of the security scheme.",
       "enum": [
         "openIdConnect"
       ]
     },
     "description": {
-      "type": "string"
+      "type": "string",
+      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation."
     },
     "openIdConnectUrl": {
       "type": "string",
-      "format": "uri"
+      "format": "uri",
+      "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL."
     },
     "scopes": {
       "type": "array",
-      "description": "List of the needed scope names.",
+      "description": "List of the needed scope names. An empty array means no scopes are needed.",
       "items": {
         "type": "string"
       }

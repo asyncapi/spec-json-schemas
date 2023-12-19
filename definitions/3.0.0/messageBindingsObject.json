@@ -1,5 +1,6 @@
 {
   "type": "object",
+  "description": "Map describing protocol-specific definitions for a message.",
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -118,7 +119,7 @@
     "kafka": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.4.0", "0.3.0", "0.1.0"]
+          "enum": ["0.4.0", "0.3.0"]
         }
       },
       "allOf": [
@@ -160,19 +161,6 @@
           "then": {
             "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/message.json"
           }
-        },
-        {
-          "if": {
-            "required": [ "bindingVersion" ],
-            "properties": {
-              "bindingVersion": {
-                "const": "0.1.0"
-              }
-            }
-          }, 
-          "then": {
-            "$ref": "http://asyncapi.com/bindings/kafka/0.1.0/message.json"
-          }
         }
       ]
     },
@@ -212,7 +200,41 @@
       ]
     },
     "nats": {},
-    "jms": {},
+    "jms": {
+      "properties": {
+        "bindingVersion": {
+          "enum": ["0.0.1"]
+        }
+      },
+      "allOf": [
+        {
+          "description": "If no bindingVersion specified, use the latest binding",
+          "if": {
+            "not": {
+              "required": [
+                "bindingVersion"
+              ]
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/jms/0.0.1/message.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.0.1"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/jms/0.0.1/message.json"
+          }
+        }
+      ]
+    },
     "sns": {},
     "sqs": {},
     "stomp": {},
