@@ -1,5 +1,4 @@
 {
-    "type": "object",
     "additionalProperties": false,
     "properties": {
         "x-x": {
@@ -12,5 +11,5 @@
         }
     },
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "$id": "http://asyncapi.com/extensions/0.1.0/info.json"
+    "$id": "http://asyncapi.com/extensions/0.1.0/x.json"
 }
