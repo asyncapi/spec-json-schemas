@@ -1,4 +1,4 @@
-parser: "@typescript-eslint/parser"
+parser: "@babel/eslint-parser"
 
 env:
   node: true
@@ -14,7 +14,7 @@ extends:
   - plugin:sonarjs/recommended
 
 parserOptions:
-  ecmaVersion: 2017
+  requireConfigFile: false
 
 rules:
   # Ignore Rules

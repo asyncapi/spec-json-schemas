@@ -42,8 +42,7 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
   const obj = require(objFile);
 
   // Adapt all the MUST supported schema formats
-  /* eslint-disable no-empty-pattern,no-unsafe-optional-chaining */
-  let mustSupportedSchemaFormats = [] = obj?.else?.properties?.schemaFormat?.anyOf[1]?.enum;
+  let mustSupportedSchemaFormats = obj?.else?.properties?.schemaFormat?.anyOf[1]?.enum || [];
 
   //Add new version to the list of available schemaFormat values
   if (mustSupportedSchemaFormats) {
@@ -59,7 +58,7 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
   }
 
   //Make sure new versions apply the right schema
-  const enumsForValidatingSchema = [] = obj?.else?.allOf[1]?.if?.properties?.schemaFormat?.enum;
+  const enumsForValidatingSchema = obj?.else?.allOf[1]?.if?.properties?.schemaFormat?.enum || [];
   if (enumsForValidatingSchema) {
     //Add new schema formats
     enumsForValidatingSchema.push(...newSchemaFormats);
