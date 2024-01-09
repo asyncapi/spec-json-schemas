@@ -1,8 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
-/* eslint-disable no-unused-vars */
-const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const outputDirectory = path.resolve(__dirname, '../../schemas');

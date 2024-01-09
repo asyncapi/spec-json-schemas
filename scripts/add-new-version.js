@@ -89,7 +89,9 @@ async function addNewVersion(newVersion) {
     fs.accessSync(newVersionDir);
     console.error(`Directory ${newVersionDir} already exist and cannot be overwritten. Please create a different version.`);
     return process.exit(1);
-  } catch (err) /* eslint-disable no-empty */ { }
+  } catch (err) {
+    console.error(`Error checking if directory ${newVersionDir} exist: ${err}`);
+  }
 
   //Use the newest version as baseline for the new one
   const latestVersion = (await execute('ls -d ./definitions/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
@@ -99,8 +101,7 @@ async function addNewVersion(newVersion) {
   await execute(`cp -R ./examples/${latestExampleVersion} ${newExampleVersionDir}`);
   
   // Replace $ref and $id paths such as `/3.0.0/` with new version (http://asyncapi.com/definitions/3.0.0/specificationExtension.json)
-  /* eslint-disable no-useless-escape */
-  await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' \"s+\/${latestVersion}\/+\/${newVersion}\/+g\" {} +`);
+  await execute(`find ${newVersionDir} -name '*.json' -exec sed -i '' "s+/${latestVersion}/+/${newVersion}/+g" {} +`);
 
   // Replace .asyncapi version from old to new version
   // Replace old version in title with new version
