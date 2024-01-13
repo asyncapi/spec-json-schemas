@@ -9,17 +9,15 @@ function validateSchema(filePath, fileContent, schemaValidator) {
   try {
     const obj = JSON.parse(fileContent);
     const validate = schemaValidator(obj);
+    const errors = validate ? [] : (obj.$schema === 'http://json-schema.org/draft-04/schema' ? ajvDraft04.errors : ajv.errors);
 
-    if (validate) {
-      console.log(`\n${filePath}: JSON Schema is valid!`);
-    } else {
-      console.error(`\n${filePath}: JSON Schema is not valid:`, schemaValidator.errors);
-    }
-
-    return validate;
+    return { filePath, validate, errors };
   } catch (error) {
-    console.error(`\n${filePath}: Error reading or parsing JSON Schema: ${error.message}`);
-    return false;
+    return {
+      filePath,
+      validate: false,
+      errors: [{ message: `Error reading or parsing JSON Schema: ${error.message}` }],
+    };
   }
 }
 
@@ -29,7 +27,7 @@ function validation(excludedFiles) {
   try {
     const files = fs.readdirSync(directoryPath);
     const filteredFiles = files.filter(file => !excludedFiles.includes(file) && path.extname(file).toLowerCase() === '.json');
-    
+
     const validationErrors = [];
 
     filteredFiles.forEach(file => {
@@ -39,14 +37,27 @@ function validation(excludedFiles) {
         return (obj.$schema === 'http://json-schema.org/draft-04/schema') ? ajvDraft04.validateSchema(obj) : ajv.validateSchema(obj);
       };
 
-      if (!validateSchema(filePath, fs.readFileSync(filePath, 'utf8'), schemaValidator)) {
-        validationErrors.push({ file });
+      const validationResult = validateSchema(filePath, fs.readFileSync(filePath, 'utf8'), schemaValidator);
+
+      if (!validationResult.validate || validationResult.errors.length > 0) {
+        validationErrors.push(validationResult);
       }
     });
 
     if (validationErrors.length > 0) {
       console.error('\nValidation errors:');
-      validationErrors.forEach(({ file }) => console.error(file));
+      validationErrors.forEach(({ filePath, validate, errors }) => {
+        console.error(`${filePath}: JSON Schema is not valid:`);
+
+        if (validate) {
+          console.error('Detailed Error Information:');
+          errors.forEach(error => {
+            console.error(JSON.stringify(error, null, 2));
+          });
+        } else {
+          console.error(errors);
+        }
+      });
       process.exit(1);
     }
   } catch (error) {
