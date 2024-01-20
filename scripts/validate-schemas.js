@@ -66,6 +66,7 @@ function validation(excludedFiles) {
   }
 }
 
-const excludedFiles = ['2.0.0-rc1.json', '2.0.0-rc1-without-$id.json'];
+const excludedFiles = ['2.0.0-rc1.json', '2.0.0-rc1-without-$id.json']; // added temporarily to avoid validation failure due to these two files. The schemas version are incorrect in these and needs to be fixed.
+
 validation(excludedFiles);
 console.log('\nValidation completed successfully.');
