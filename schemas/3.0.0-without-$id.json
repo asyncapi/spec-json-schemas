@@ -3464,7 +3464,8 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.2.0"
+                                "0.2.0",
+                                "0.3.0"
                             ]
                         }
                     },
@@ -3495,6 +3496,21 @@
                             },
                             "then": {
                                 "$ref": "#/definitions/bindings-http-0.2.0-message"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-http-0.3.0-message"
                             }
                         }
                     ]
@@ -3835,6 +3851,50 @@
                         }
                     },
                     "bindingVersion": "0.2.0"
+                }
+            ]
+        },
+        "bindings-http-0.3.0-message": {
+            "title": "HTTP message bindings object",
+            "description": "This object contains information about the message representation in HTTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "headers": {
+                    "$ref": "#/definitions/schema",
+                    "description": "\tA Schema object containing the definitions for HTTP-specific headers. This schema MUST be of type 'object' and have a 'properties' key."
+                },
+                "statusCode": {
+                    "type": "number",
+                    "description": "The HTTP response status code according to [RFC 9110](https://httpwg.org/specs/rfc9110.html#overview.of.status.codes). `statusCode` is only relevant for messages referenced by the [Operation Reply Object](https://www.asyncapi.com/docs/reference/specification/v3.0.0#operationReplyObject), as it defines the status code for the response. In all other cases, this value can be safely ignored."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "Content-Type": {
+                                "type": "string",
+                                "enum": [
+                                    "application/json"
+                                ]
+                            }
+                        }
+                    },
+                    "bindingVersion": "0.3.0"
                 }
             ]
         },
@@ -6409,7 +6469,8 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.2.0"
+                                "0.2.0",
+                                "0.3.0"
                             ]
                         }
                     },
@@ -6440,6 +6501,21 @@
                             },
                             "then": {
                                 "$ref": "#/definitions/bindings-http-0.2.0-operation"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-http-0.3.0-operation"
                             }
                         }
                     ]
@@ -6832,6 +6908,82 @@
                         "additionalProperties": false
                     },
                     "bindingVersion": "0.2.0"
+                }
+            ]
+        },
+        "bindings-http-0.3.0-operation": {
+            "title": "HTTP operation bindings object",
+            "description": "This object contains information about the operation representation in HTTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "PATCH",
+                        "DELETE",
+                        "HEAD",
+                        "OPTIONS",
+                        "CONNECT",
+                        "TRACE"
+                    ],
+                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
+                },
+                "query": {
+                    "$ref": "#/definitions/schema",
+                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.3.0"
+                },
+                {
+                    "method": "GET",
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.3.0"
                 }
             ]
         },
