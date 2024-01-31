@@ -3,7 +3,7 @@ const fs = require('fs');
 const traverse = require('json-schema-traverse');
 const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
-const commonSchemasDir = path.resolve(__dirname, '../../definitions/common');
+const commonSchemasDirectory = path.resolve(__dirname, '../../common');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
 const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
@@ -60,11 +60,10 @@ async function loadBindings(bundler) {
   }
 }
 
-async function loadingCommonSchemas(bundler) {
+async function loadCommonSchemas(bundler) {
   // Add common schemas to all versions
-  const commonSchemas = await fs.promises.readdir(commonSchemasDir);
-  const commonSchemaFiles = commonSchemas.map((file) => fs.readFileSync(path.resolve(commonSchemasDir, file)));
-  console.log(commonSchemaFiles);
+  const commonSchemas = await fs.promises.readdir(commonSchemasDirectory);
+  const commonSchemaFiles = commonSchemas.map((file) => path.resolve(commonSchemasDirectory, file));
   for(const commonSchemaFile of commonSchemaFiles) {
     const commonSchemaFileContent = require(commonSchemaFile);
     bundler.add(commonSchemaFileContent);
@@ -89,7 +88,7 @@ async function loadingCommonSchemas(bundler) {
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       await loadDefinitions(Bundler, versionDir);
-      await loadingCommonSchemas(Bundler);
+      await loadCommonSchemas(Bundler);
       await loadBindings(Bundler);
 
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
