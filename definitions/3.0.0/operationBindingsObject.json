@@ -11,7 +11,7 @@
     "http": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.2.0"]
+          "enum": ["0.2.0", "0.3.0"]
         }
       },
       "allOf": [
@@ -39,6 +39,19 @@
           }, 
           "then": {
             "$ref": "http://asyncapi.com/bindings/http/0.2.0/operation.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          }, 
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/http/0.3.0/operation.json"
           }
         }
       ]
