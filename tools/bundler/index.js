@@ -82,7 +82,7 @@ async function loadBindings(bundler) {
        * bundling schemas into one file with $id
        */
       const bundledSchemaWithId = await Bundler.bundle(fileToBundle);
-      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchemaWithId.description ?? ''}`;
+      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchemaWithId.description !== undefined && bundledSchemaWithId.description !== null ? bundledSchemaWithId.description : ''}`;
       console.log(`Writing the bundled file WITH $ids to: ${outputFileWithId}`);
       await fs.promises.writeFile(outputFileWithId, JSON.stringify(bundledSchemaWithId, null, 4));
 

@@ -42,7 +42,7 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
   const obj = require(objFile);
 
   // Adapt all the MUST supported schema formats
-  let mustSupportedSchemaFormats = obj?.else?.properties?.schemaFormat?.anyOf[1]?.enum || [];
+  let mustSupportedSchemaFormats = obj && obj.else && obj.else.properties && obj.else.properties.schemaFormat && obj.else.properties.schemaFormat.anyOf && obj.else.properties.schemaFormat.anyOf[1] && obj.else.properties.schemaFormat.anyOf[1].enum ? obj.else.properties.schemaFormat.anyOf[1].enum : [];
 
   //Add new version to the list of available schemaFormat values
   if (mustSupportedSchemaFormats) {
@@ -57,8 +57,9 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
     throw new Error('Could not find object to add schemaFormat values to');
   }
 
-  //Make sure new versions apply the right schema
-  const enumsForValidatingSchema = obj?.else?.allOf[1]?.if?.properties?.schemaFormat?.enum || [];
+  //Make sure new versions apply the right schema;
+  const enumsForValidatingSchema = obj && obj.else && obj.else.allOf && obj.else.allOf[1] && obj.else.allOf[1].if && obj.else.allOf[1].if.properties && obj.else.allOf[1].if.properties.schemaFormat && obj.else.allOf[1].if.properties.schemaFormat.enum ? obj.else.allOf[1].if.properties.schemaFormat.enum : [];
+
   if (enumsForValidatingSchema) {
     //Add new schema formats
     enumsForValidatingSchema.push(...newSchemaFormats);

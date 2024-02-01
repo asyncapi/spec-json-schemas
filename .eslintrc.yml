@@ -1,5 +1,3 @@
-parser: "@babel/eslint-parser"
-
 env:
   node: true
   es6: true
@@ -14,6 +12,7 @@ extends:
   - plugin:sonarjs/recommended
 
 parserOptions:
+  ecmaVersion: 2018
   requireConfigFile: false
 
 rules:
