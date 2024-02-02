@@ -9,8 +9,8 @@ function validateSchema(filePath, fileContent, schemaValidator) {
   try {
     const obj = JSON.parse(fileContent);
     const validate = schemaValidator(obj);
-    const errors = validate ? [] : (obj.$schema === 'http://json-schema.org/draft-04/schema' ? ajvDraft04.errors : ajv.errors);
-
+    const errors = validate ? [] : (obj.$schema === 'http://json-schema.org/draft-04/schema' && ajvDraft04.errors) || ajv.errors;
+    
     return { filePath, validate, errors };
   } catch (error) {
     return {
