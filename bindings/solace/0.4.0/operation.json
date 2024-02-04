@@ -1,11 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/solace/0.2.0/operation.json",
+  "$id": "http://asyncapi.com/bindings/solace/0.4.0/operation.json",
   "title": "Solace operation bindings object",
   "description": "This object contains information about the operation representation in Solace.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "bindingVersion": {
+      "type": "string",
+      "enum": [
+        "0.4.0"
+      ],
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+    },
     "destinations": {
       "description": "The list of Solace destinations referenced in the operation.",
       "type": "array",
@@ -48,6 +55,14 @@
                       "exclusive",
                       "nonexclusive"
                     ]
+                  },
+                  "maxTtl": {
+                    "type": "string",
+                    "description": "The maximum TTL to apply to messages to be spooled."
+                  },
+                  "maxMsgSpoolUsage": {
+                    "type": "string",
+                    "description": "The maximum amount of message spool that the given queue may use"
                   }
                 }
               }
@@ -72,17 +87,24 @@
         ]
       }
     },
-    "bindingVersion": {
-      "type": "string",
-      "enum": [
-        "0.2.0"
-      ],
-      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+    "timeToLive": {
+      "type": "integer",
+      "description": "Interval in milliseconds or a Schema Object containing the definition of the lifetime of the message."
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 255,
+      "description": "The valid priority value range is 0-255 with 0 as the lowest priority and 255 as the highest or a Schema Object containing the definition of the priority."
+    },
+    "dmqEligible": {
+      "type": "boolean",
+      "description": "Set the message to be eligible to be moved to a Dead Message Queue. The default value is false."
     }
   },
   "examples": [
     {
-      "bindingVersion": "0.2.0",
+      "bindingVersion": "0.4.0",
       "destinations": [
         {
           "destinationType": "queue",
