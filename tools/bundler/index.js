@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
-const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
 const commonSchemasDirectory = path.resolve(__dirname, '../../common');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
@@ -12,17 +11,17 @@ console.log(`Looking for binding version schemas in the following directory: ${b
 console.log(`Using the following output directory: ${outputDirectory}`);
 
 // definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
-const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i
+const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i;
 
 // definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
-const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i
+const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i;
 
 /**
  * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
  */
 async function loadDefinitions(bundler, versionDir) {
   const definitions = await fs.promises.readdir(versionDir);
-  const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
+  const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi');}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
   const definitionJson = definitionFiles.map((file) => JSON.parse(file));
 
   for (const jsonFile of definitionJson) {
@@ -81,8 +80,8 @@ async function loadCommonSchemas(bundler) {
   }
   console.log(`The following versions have separate definitions: ${versions.join(',')}`);
   for (const version of versions) {
-    const Bundler = require("@hyperjump/json-schema-bundle");
-    try{
+    const Bundler = require('@hyperjump/json-schema-bundle');
+    try {
       console.log(`Bundling the following version together: ${version}`);
       const outputFileWithId = path.resolve(outputDirectory, `${version}.json`);
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
@@ -98,7 +97,7 @@ async function loadCommonSchemas(bundler) {
        * bundling schemas into one file with $id
        */
       const bundledSchemaWithId = await Bundler.bundle(fileToBundle);
-      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchemaWithId.description ?? ''}`;
+      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchemaWithId.description !== undefined && bundledSchemaWithId.description !== null ? bundledSchemaWithId.description : ''}`;
       console.log(`Writing the bundled file WITH $ids to: ${outputFileWithId}`);
       await fs.promises.writeFile(outputFileWithId, JSON.stringify(bundledSchemaWithId, null, 4));
 
@@ -109,7 +108,7 @@ async function loadCommonSchemas(bundler) {
       const bundledSchemaWithoutIds = modifyRefsAndDefinitions(bundledSchemaWithId);
       console.log(`Writing the bundled file WITHOUT $ids to: ${outputFileWithoutId}`);
       await fs.promises.writeFile(outputFileWithoutId, JSON.stringify(bundledSchemaWithoutIds, null, 4));
-    }catch(e) {
+    } catch (e) {
       throw new Error(e);
     }
   }
@@ -127,24 +126,23 @@ async function loadRefProperties(filePath) {
   try {
     const data = await fs.promises.readFile(`../../examples${versionPath}`);
     return JSON.parse(data);
-    }catch(e) {
-      throw new Error(e);
-    }
+  } catch (e) {
+    throw new Error(e);
   }
+}
 
 /**
  * we first update definitions from URL to normal names
  * than update refs to point to new definitions, always inline never remote
  */
 function modifyRefsAndDefinitions(bundledSchema) {
-
   //first we need to improve names of the definitions from URL to their names
   for (const def of Object.keys(bundledSchema.definitions)) {
     const newDefName = getDefinitionName(def);
     
     //creating copy of definition under new name so later definition stored under URL name can be removed
     bundledSchema.definitions[newDefName] = bundledSchema.definitions[def];
-    delete bundledSchema.definitions[def]
+    delete bundledSchema.definitions[def];
   }
 
   traverse(bundledSchema, replaceRef);
@@ -152,7 +150,7 @@ function modifyRefsAndDefinitions(bundledSchema) {
   traverse(bundledSchema.definitions.openapiSchema_3_0, updateOpenApi);
   traverse(bundledSchema.definitions['json-schema-draft-07-schema'], updateJsonSchema);
 
-  return bundledSchema
+  return bundledSchema;
 }
 
 /**
@@ -170,7 +168,7 @@ function getDefinitionName(def) {
     if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
   }
   
-  return path.basename(def, '.json')
+  return path.basename(def, '.json');
 }
 
 /**
@@ -179,10 +177,11 @@ function getDefinitionName(def) {
  */
 function replaceRef(schema) {
   //new refs will only work if we remove $id that all point to asyncapi.com
-  delete schema.$id
-  
+  delete schema.$id;
+
   //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined ) return;
+
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
 }
@@ -196,6 +195,7 @@ function updateAvro(schema){
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
+    /* eslint-disable sonarjs/no-duplicate-string */
     '#/definitions/',
     '#/definitions/avroSchema_v1/definitions/'
   );
