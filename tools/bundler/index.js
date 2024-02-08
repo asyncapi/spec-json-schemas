@@ -63,7 +63,7 @@ async function loadCommonSchemas(bundler) {
   // Add common schemas to all versions
   const commonSchemas = await fs.promises.readdir(commonSchemasDirectory);
   const commonSchemaFiles = commonSchemas.map((file) => path.resolve(commonSchemasDirectory, file));
-  for(const commonSchemaFile of commonSchemaFiles) {
+  for (const commonSchemaFile of commonSchemaFiles) {
     const commonSchemaFileContent = require(commonSchemaFile);
     bundler.add(commonSchemaFileContent);
   }
@@ -180,7 +180,7 @@ function replaceRef(schema) {
   delete schema.$id;
 
   //traversing should take place only in case of schemas with refs
-  if (schema.$ref === undefined ) return;
+  if (schema.$ref === undefined) return;
 
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
@@ -190,7 +190,7 @@ function replaceRef(schema) {
  * this is a callback used when traversing through json schema
  * to fix avro schema definitions to point to right direction
  */
-function updateAvro(schema){
+function updateAvro(schema) {
   //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
@@ -205,7 +205,7 @@ function updateAvro(schema){
  * this is a callback used when traversing through json schema
  * to fix open api schema definitions to point to right direction
  */
-function updateOpenApi(schema){
+function updateOpenApi(schema) {
   //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
   const openApiPropName = 'openapiSchema_3_0';
@@ -224,7 +224,7 @@ function updateOpenApi(schema){
  * this is a callback used when traversing through json schema
  * to fix open api schema definitions to point to right direction
  */
-function updateJsonSchema(schema){
+function updateJsonSchema(schema) {
   //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
