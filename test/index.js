@@ -9,13 +9,13 @@ describe('AsyncAPI', () => {
   });
 
   it('should check if json schema is exported and if it matches the original file', () => {
-    const skipFiles = ["README", "all.schema-store", "1.0.0", "1.1.0", "1.2.0", "2.0.0-rc1", "2.0.0-rc2", "1.0.0-without-$id", "1.1.0-without-$id", "1.2.0-without-$id", "2.0.0-rc1-without-$id", "2.0.0-rc2-without-$id"];
+    const skipFiles = ['README', 'all.schema-store', '1.0.0', '1.1.0', '1.2.0', '2.0.0-rc1', '2.0.0-rc2', '1.0.0-without-$id', '1.1.0-without-$id', '1.2.0-without-$id', '2.0.0-rc1-without-$id', '2.0.0-rc2-without-$id'];
     const files = fs.readdirSync('schemas');
     files.forEach(file => {
       const fileName = path.parse(file).name;
       
       if (skipFiles.includes(fileName)) return;
-      const asyncapi = require('..')
+      const asyncapi = require('..');
 
       if (fileName.includes('-without-$id')) {
         const schemaName = fileName.replace('-without-$id', '');

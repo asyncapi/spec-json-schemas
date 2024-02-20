@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/specs",
-  "version": "6.2.0",
+  "version": "6.4.0",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
   "types": "index.d.ts",
@@ -11,7 +11,8 @@
     "prepublishOnly": "npm run build",
     "bundle": "cd tools/bundler && npm i && npm run bundle",
     "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
-    "lint": "echo 'No linter integrated yet'",
+    "lint": "eslint --max-warnings 0 --config .eslintrc.yml .",
+    "lint:fix": "eslint --max-warnings 0 --config .eslintrc.yml --fix .",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
     "validate:schemas": "node scripts/validate-schemas.js"
   },
@@ -40,6 +41,8 @@
   "devDependencies": {
     "ajv": "^8.12.0",
     "ajv-draft-04": "^1.0.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-sonarjs": "^0.23.0",
     "mocha": "^10.0.0",
     "nyc": "^15.1.0"
   },

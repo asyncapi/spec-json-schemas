@@ -1383,6 +1383,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
+                                "0.4.0",
                                 "0.3.0",
                                 "0.2.0"
                             ]
@@ -1399,7 +1400,22 @@
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.4.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/server.json"
                             }
                         },
                         {
@@ -2136,6 +2152,43 @@
                 {
                     "groupId": "PRODCLSTR1",
                     "bindingVersion": "0.1.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/solace/0.4.0/server.json": {
+            "$id": "http://asyncapi.com/bindings/solace/0.4.0/server.json",
+            "title": "Solace server bindings object",
+            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "msgVpn": {
+                    "type": "string",
+                    "description": "The name of the Virtual Private Network to connect to on the Solace broker."
+                },
+                "clientName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 160,
+                    "description": "A unique client name to use to register to the appliance. If specified, it must be a valid Topic name, and a maximum of 160 bytes in length when encoded as UTF-8."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.4.0"
+                    ],
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "msgVpn": "ProdVPN",
+                    "bindingVersion": "0.4.0"
                 }
             ]
         },
@@ -3517,7 +3570,8 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.2.0"
+                                "0.2.0",
+                                "0.3.0"
                             ]
                         }
                     },
@@ -3548,6 +3602,21 @@
                             },
                             "then": {
                                 "$ref": "http://asyncapi.com/bindings/http/0.2.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.3.0/message.json"
                             }
                         }
                     ]
@@ -3889,6 +3958,51 @@
                         }
                     },
                     "bindingVersion": "0.2.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/http/0.3.0/message.json": {
+            "$id": "http://asyncapi.com/bindings/http/0.3.0/message.json",
+            "title": "HTTP message bindings object",
+            "description": "This object contains information about the message representation in HTTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "headers": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+                    "description": "\tA Schema object containing the definitions for HTTP-specific headers. This schema MUST be of type 'object' and have a 'properties' key."
+                },
+                "statusCode": {
+                    "type": "number",
+                    "description": "The HTTP response status code according to [RFC 9110](https://httpwg.org/specs/rfc9110.html#overview.of.status.codes). `statusCode` is only relevant for messages referenced by the [Operation Reply Object](https://www.asyncapi.com/docs/reference/specification/v3.0.0#operationReplyObject), as it defines the status code for the response. In all other cases, this value can be safely ignored."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "Content-Type": {
+                                "type": "string",
+                                "enum": [
+                                    "application/json"
+                                ]
+                            }
+                        }
+                    },
+                    "bindingVersion": "0.3.0"
                 }
             ]
         },
@@ -6492,7 +6606,8 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
-                                "0.2.0"
+                                "0.2.0",
+                                "0.3.0"
                             ]
                         }
                     },
@@ -6523,6 +6638,21 @@
                             },
                             "then": {
                                 "$ref": "http://asyncapi.com/bindings/http/0.2.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.3.0/operation.json"
                             }
                         }
                     ]
@@ -6788,6 +6918,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
+                                "0.4.0",
                                 "0.3.0",
                                 "0.2.0"
                             ]
@@ -6804,7 +6935,22 @@
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.4.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/operation.json"
                             }
                         },
                         {
@@ -6916,6 +7062,83 @@
                         "additionalProperties": false
                     },
                     "bindingVersion": "0.2.0"
+                }
+            ]
+        },
+        "http://asyncapi.com/bindings/http/0.3.0/operation.json": {
+            "$id": "http://asyncapi.com/bindings/http/0.3.0/operation.json",
+            "title": "HTTP operation bindings object",
+            "description": "This object contains information about the operation representation in HTTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "PATCH",
+                        "DELETE",
+                        "HEAD",
+                        "OPTIONS",
+                        "CONNECT",
+                        "TRACE"
+                    ],
+                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
+                },
+                "query": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.3.0"
+                },
+                {
+                    "method": "GET",
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.3.0"
                 }
             ]
         },
@@ -7722,6 +7945,133 @@
                 }
             ]
         },
+        "http://asyncapi.com/bindings/solace/0.4.0/operation.json": {
+            "$id": "http://asyncapi.com/bindings/solace/0.4.0/operation.json",
+            "title": "Solace operation bindings object",
+            "description": "This object contains information about the operation representation in Solace.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.4.0"
+                    ],
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+                },
+                "destinations": {
+                    "description": "The list of Solace destinations referenced in the operation.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "deliveryMode": {
+                                "type": "string",
+                                "enum": [
+                                    "direct",
+                                    "persistent"
+                                ]
+                            }
+                        },
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "type": "string",
+                                        "const": "queue",
+                                        "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name."
+                                    },
+                                    "queue": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string",
+                                                "description": "The name of the queue"
+                                            },
+                                            "topicSubscriptions": {
+                                                "type": "array",
+                                                "description": "The list of topics that the queue subscribes to.",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "accessType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "exclusive",
+                                                    "nonexclusive"
+                                                ]
+                                            },
+                                            "maxTtl": {
+                                                "type": "string",
+                                                "description": "The maximum TTL to apply to messages to be spooled."
+                                            },
+                                            "maxMsgSpoolUsage": {
+                                                "type": "string",
+                                                "description": "The maximum amount of message spool that the given queue may use"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "type": "string",
+                                        "const": "topic",
+                                        "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name."
+                                    },
+                                    "topicSubscriptions": {
+                                        "type": "array",
+                                        "description": "The list of topics that the client subscribes to.",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "timeToLive": {
+                    "type": "integer",
+                    "description": "Interval in milliseconds or a Schema Object containing the definition of the lifetime of the message."
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 255,
+                    "description": "The valid priority value range is 0-255 with 0 as the lowest priority and 255 as the highest or a Schema Object containing the definition of the priority."
+                },
+                "dmqEligible": {
+                    "type": "boolean",
+                    "description": "Set the message to be eligible to be moved to a Dead Message Queue. The default value is false."
+                }
+            },
+            "examples": [
+                {
+                    "bindingVersion": "0.4.0",
+                    "destinations": [
+                        {
+                            "destinationType": "queue",
+                            "queue": {
+                                "name": "sampleQueue",
+                                "topicSubscriptions": [
+                                    "samples/*"
+                                ],
+                                "accessType": "nonexclusive"
+                            }
+                        },
+                        {
+                            "destinationType": "topic",
+                            "topicSubscriptions": [
+                                "samples/*"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
         "http://asyncapi.com/bindings/solace/0.3.0/operation.json": {
             "$id": "http://asyncapi.com/bindings/solace/0.3.0/operation.json",
             "title": "Solace operation bindings object",
@@ -7802,14 +8152,14 @@
                             }
                         ]
                     }
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.3.0"
+                    ],
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
                 }
-            },
-            "bindingVersion": {
-                "type": "string",
-                "enum": [
-                    "0.3.0"
-                ],
-                "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
             },
             "examples": [
                 {
@@ -7907,14 +8257,14 @@
                             }
                         ]
                     }
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.2.0"
+                    ],
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
                 }
-            },
-            "bindingVersion": {
-                "type": "string",
-                "enum": [
-                    "0.2.0"
-                ],
-                "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
             },
             "examples": [
                 {
