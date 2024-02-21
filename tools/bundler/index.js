@@ -2,6 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
+const commonSchemasDirectory = path.resolve(__dirname, '../../common');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
 const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
@@ -22,6 +23,7 @@ async function loadDefinitions(bundler, versionDir) {
   const definitions = await fs.promises.readdir(versionDir);
   const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi');}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
   const definitionJson = definitionFiles.map((file) => JSON.parse(file));
+
   for (const jsonFile of definitionJson) {
     if (jsonFile.example) {
       // Replaced the example property with the referenced example property
@@ -37,6 +39,7 @@ async function loadDefinitions(bundler, versionDir) {
     }
   }
 }
+
 /**
  * Function to load all the binding version schemas into the bundler
  */
@@ -55,6 +58,17 @@ async function loadBindings(bundler) {
     }
   }
 }
+
+async function loadCommonSchemas(bundler) {
+  // Add common schemas to all versions
+  const commonSchemas = await fs.promises.readdir(commonSchemasDirectory);
+  const commonSchemaFiles = commonSchemas.map((file) => path.resolve(commonSchemasDirectory, file));
+  for (const commonSchemaFile of commonSchemaFiles) {
+    const commonSchemaFileContent = require(commonSchemaFile);
+    bundler.add(commonSchemaFileContent);
+  }
+}
+
 /**
  * When run, go through all versions that have split definitions and bundles them together.
  */
@@ -73,6 +87,7 @@ async function loadBindings(bundler) {
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       await loadDefinitions(Bundler, versionDir);
+      await loadCommonSchemas(Bundler);
       await loadBindings(Bundler);
 
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
@@ -103,7 +118,6 @@ async function loadBindings(bundler) {
 /**
  * Extract file data from reference file path
  */
-
 async function loadRefProperties(filePath) {
   const schemaPath = filePath.$ref;
   // first we need to turn the path to an absolute file path instead of a generic url
@@ -164,9 +178,10 @@ function getDefinitionName(def) {
 function replaceRef(schema) {
   //new refs will only work if we remove $id that all point to asyncapi.com
   delete schema.$id;
-  
-  //traversing shoudl take place only in case of schemas with refs
+
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
+
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
 }
@@ -176,7 +191,7 @@ function replaceRef(schema) {
  * to fix avro schema definitions to point to right direction
  */
 function updateAvro(schema) {
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
@@ -191,7 +206,7 @@ function updateAvro(schema) {
  * to fix open api schema definitions to point to right direction
  */
 function updateOpenApi(schema) {
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
   const openApiPropName = 'openapiSchema_3_0';
 
@@ -210,7 +225,7 @@ function updateOpenApi(schema) {
  * to fix open api schema definitions to point to right direction
  */
 function updateJsonSchema(schema) {
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
