@@ -134,6 +134,8 @@ This is the current project structure explained:
 - [./examples](./examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](./schemas).
 - [./tools/bundler](./tools/bundler) - is the tool that bundles all the individual schemas together.
 - [./schemas](./schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](./definitions).
+- [./extensions](./extensions) - contains all the schemas of the extensions that will automatically be bundled to provide informations about extensions.
+
 
 ## Schema Bundling
 
@@ -210,7 +212,17 @@ Whenever you make changes in AsyncAPI JSON Schema, you should always manually ve
    ```yaml
    # yaml-language-server: $schema=YOUR-PROJECTS-DIRECTORY/spec-json-schemas/schemas/2.6.0-without-$id.json
    ```
+   
+## Extensions
+The Extension Catalogue schema in AsyncAPI defines a standardized way to include additional metadata or custom attributes within an AsyncAPI document.
+### How to add extensions
+There is defined structure of adding the exrensions which is defined as followed:
 
+1. All the extensions must be present in [./extensions](./extensions) folder.
+2. A proper folder structure must be followed to add the extensions.
+3. A new folder just as [x extension](./extensions/x) must be added with proper `versioning` and `schema file`.
+4. All the schemas must be added in a fle named `schema.json` just as one is defined for [x extension](./extensions/x/0.1.0/schema.json).
 
+ 
 
 
