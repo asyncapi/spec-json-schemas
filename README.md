@@ -215,8 +215,8 @@ Whenever you make changes in AsyncAPI JSON Schema, you should always manually ve
    
 ## Extensions
 The Extension Catalogue schema in AsyncAPI defines a standardized way to include additional metadata or custom attributes within an AsyncAPI document.
-### How to add extensions
-There is defined structure of adding the exrensions which is defined as followed:
+### How to add schema of the extension
+
 
 1. All the extensions must be present in [./extensions](./extensions) folder.
 2. A proper folder structure must be followed to add the extensions.
