@@ -5617,7 +5617,7 @@
             "properties": {
                 "queue": {
                     "description": "A definition of the queue that will be used as the channel.",
-                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
+                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/queue"
                 },
                 "deadLetterQueue": {
                     "description": "A definition of the queue that will be used for un-processable messages.",
