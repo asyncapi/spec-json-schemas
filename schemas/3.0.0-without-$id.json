@@ -2702,7 +2702,7 @@
                         "description": "Definition of the message payload. It can be of any type but defaults to Schema Object. It MUST match the schema format defined in schemaFormat, including the encoding type. E.g., Avro should be inlined as either a YAML or JSON object instead of as a string to be parsed as YAML or JSON. Non-JSON-based schemas (e.g., Protobuf or XSD) MUST be inlined as a string."
                     }
                 },
-                "anyOf": [
+                "allOf": [
                     {
                         "if": {
                             "not": {
@@ -5617,7 +5617,7 @@
             "properties": {
                 "queue": {
                     "description": "A definition of the queue that will be used as the channel.",
-                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/queue"
+                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
                 },
                 "deadLetterQueue": {
                     "description": "A definition of the queue that will be used for un-processable messages.",
