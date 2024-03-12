@@ -168,9 +168,9 @@ function getDefinitionName(def) {
     if (result) {
       if (result[4] === '') {
         return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
-      } else {
-        return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}/${result[4].replace('#/', '')}`;
       }
+
+      return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}/${result[4].replace('#/', '')}`;
     }
   }
   
