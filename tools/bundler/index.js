@@ -165,7 +165,13 @@ function getDefinitionName(def) {
   }
   if (def.startsWith('http://asyncapi.com/bindings')) {
     const result = bindingsRegex.exec(def);
-    if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
+    if (result) {
+      if (result[4] === '') {
+        return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
+      } else {
+        return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}/${result[4].replace('#/', '')}`;
+      }
+    }
   }
   
   return path.basename(def, '.json');
