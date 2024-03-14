@@ -6537,7 +6537,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-http-0.2.0-operation"
+                                "$ref": "#/definitions/bindings-http-0.3.0-operation"
                             }
                         },
                         {
@@ -6903,82 +6903,6 @@
                 "googlepubsub": {}
             }
         },
-        "bindings-http-0.2.0-operation": {
-            "title": "HTTP operation bindings object",
-            "description": "This object contains information about the operation representation in HTTP.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "#/definitions/specificationExtension"
-                }
-            },
-            "properties": {
-                "method": {
-                    "type": "string",
-                    "enum": [
-                        "GET",
-                        "PUT",
-                        "POST",
-                        "PATCH",
-                        "DELETE",
-                        "HEAD",
-                        "OPTIONS",
-                        "CONNECT",
-                        "TRACE"
-                    ],
-                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
-                },
-                "query": {
-                    "$ref": "#/definitions/schema",
-                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.2.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "query": {
-                        "type": "object",
-                        "required": [
-                            "companyId"
-                        ],
-                        "properties": {
-                            "companyId": {
-                                "type": "number",
-                                "minimum": 1,
-                                "description": "The Id of the company."
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "bindingVersion": "0.2.0"
-                },
-                {
-                    "method": "GET",
-                    "query": {
-                        "type": "object",
-                        "required": [
-                            "companyId"
-                        ],
-                        "properties": {
-                            "companyId": {
-                                "type": "number",
-                                "minimum": 1,
-                                "description": "The Id of the company."
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "bindingVersion": "0.2.0"
-                }
-            ]
-        },
         "bindings-http-0.3.0-operation": {
             "title": "HTTP operation bindings object",
             "description": "This object contains information about the operation representation in HTTP.",
@@ -7052,6 +6976,82 @@
                         "additionalProperties": false
                     },
                     "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "bindings-http-0.2.0-operation": {
+            "title": "HTTP operation bindings object",
+            "description": "This object contains information about the operation representation in HTTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "PATCH",
+                        "DELETE",
+                        "HEAD",
+                        "OPTIONS",
+                        "CONNECT",
+                        "TRACE"
+                    ],
+                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
+                },
+                "query": {
+                    "$ref": "#/definitions/schema",
+                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.2.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.2.0"
+                },
+                {
+                    "method": "GET",
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
