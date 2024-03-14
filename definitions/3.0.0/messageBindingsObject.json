@@ -131,7 +131,7 @@
     "kafka": {
       "properties": {
         "bindingVersion": {
-          "enum": ["0.4.0", "0.3.0"]
+          "enum": ["0.5.0", "0.4.0", "0.3.0"]
         }
       },
       "allOf": [
@@ -145,7 +145,20 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/message.json"
+            "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/message.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.5.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/message.json"
           }
         },
         {
