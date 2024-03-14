@@ -25,7 +25,7 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/http/0.2.0/message.json"
+            "$ref": "http://asyncapi.com/bindings/http/0.3.0/message.json"
           }
         },
         {
