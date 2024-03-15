@@ -25,7 +25,7 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/http/0.2.0/operation.json"
+            "$ref": "http://asyncapi.com/bindings/http/0.3.0/operation.json"
           }
         },
         {
@@ -145,7 +145,20 @@
             }
           },
           "then": {
-            "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json"
+            "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/operation.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.5.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/operation.json"
           }
         },
         {

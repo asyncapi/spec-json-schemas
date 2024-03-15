@@ -1227,7 +1227,22 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-kafka-0.4.0-server"
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-server"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.5.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-server"
                             }
                         },
                         {
@@ -1913,6 +1928,41 @@
                 }
             },
             "default": true
+        },
+        "bindings-kafka-0.5.0-server": {
+            "title": "Server Schema",
+            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "schemaRegistryUrl": {
+                    "type": "string",
+                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)."
+                },
+                "schemaRegistryVendor": {
+                    "type": "string",
+                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.5.0"
+                    ],
+                    "description": "The version of this binding."
+                }
+            },
+            "examples": [
+                {
+                    "schemaRegistryUrl": "https://my-schema-registry.com",
+                    "schemaRegistryVendor": "confluent",
+                    "bindingVersion": "0.5.0"
+                }
+            ]
         },
         "bindings-kafka-0.4.0-server": {
             "title": "Server Schema",
@@ -3532,7 +3582,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-http-0.2.0-message"
+                                "$ref": "#/definitions/bindings-http-0.3.0-message"
                             }
                         },
                         {
@@ -3651,6 +3701,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
+                                "0.5.0",
                                 "0.4.0",
                                 "0.3.0"
                             ]
@@ -3667,7 +3718,22 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-kafka-0.4.0-message"
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-message"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.5.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-message"
                             }
                         },
                         {
@@ -3866,46 +3932,6 @@
                 }
             }
         },
-        "bindings-http-0.2.0-message": {
-            "title": "HTTP message bindings object",
-            "description": "This object contains information about the message representation in HTTP.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "#/definitions/specificationExtension"
-                }
-            },
-            "properties": {
-                "headers": {
-                    "$ref": "#/definitions/schema",
-                    "description": "\tA Schema object containing the definitions for HTTP-specific headers. This schema MUST be of type 'object' and have a 'properties' key."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.2.0"
-                    ],
-                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "headers": {
-                        "type": "object",
-                        "properties": {
-                            "Content-Type": {
-                                "type": "string",
-                                "enum": [
-                                    "application/json"
-                                ]
-                            }
-                        }
-                    },
-                    "bindingVersion": "0.2.0"
-                }
-            ]
-        },
         "bindings-http-0.3.0-message": {
             "title": "HTTP message bindings object",
             "description": "This object contains information about the message representation in HTTP.",
@@ -3947,6 +3973,46 @@
                         }
                     },
                     "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "bindings-http-0.2.0-message": {
+            "title": "HTTP message bindings object",
+            "description": "This object contains information about the message representation in HTTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "headers": {
+                    "$ref": "#/definitions/schema",
+                    "description": "\tA Schema object containing the definitions for HTTP-specific headers. This schema MUST be of type 'object' and have a 'properties' key."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.2.0"
+                    ],
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "Content-Type": {
+                                "type": "string",
+                                "enum": [
+                                    "application/json"
+                                ]
+                            }
+                        }
+                    },
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -4056,6 +4122,74 @@
                     },
                     "responseTopic": "application/responses",
                     "bindingVersion": "0.2.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.5.0-message": {
+            "title": "Message Schema",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "key": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/schema"
+                        }
+                    ],
+                    "description": "The message key."
+                },
+                "schemaIdLocation": {
+                    "type": "string",
+                    "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored.",
+                    "enum": [
+                        "header",
+                        "payload"
+                    ]
+                },
+                "schemaIdPayloadEncoding": {
+                    "type": "string",
+                    "description": "Number of bytes or vendor specific values when schema id is encoded in payload."
+                },
+                "schemaLookupStrategy": {
+                    "type": "string",
+                    "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.5.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "key": {
+                        "type": "string",
+                        "enum": [
+                            "myKey"
+                        ]
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "apicurio-new",
+                    "schemaLookupStrategy": "TopicIdStrategy",
+                    "bindingVersion": "0.5.0"
+                },
+                {
+                    "key": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "4",
+                    "bindingVersion": "0.5.0"
                 }
             ]
         },
@@ -4720,6 +4854,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
+                                "0.5.0",
                                 "0.4.0",
                                 "0.3.0"
                             ]
@@ -4736,7 +4871,22 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-kafka-0.4.0-channel"
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-channel"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.5.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-channel"
                             }
                         },
                         {
@@ -5250,6 +5400,102 @@
                         "vhost": "/"
                     },
                     "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.5.0-channel": {
+            "title": "Channel Schema",
+            "description": "This object contains information about the channel representation in Kafka.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "topic": {
+                    "type": "string",
+                    "description": "Kafka topic name if different from channel name."
+                },
+                "partitions": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Number of partitions configured on this topic."
+                },
+                "replicas": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Number of replicas configured on this topic."
+                },
+                "topicConfiguration": {
+                    "description": "Topic configuration properties that are relevant for the API.",
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "cleanup.policy": {
+                            "description": "The [`cleanup.policy`](https://kafka.apache.org/documentation/#topicconfigs_cleanup.policy) configuration option.",
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "compact",
+                                    "delete"
+                                ]
+                            }
+                        },
+                        "retention.ms": {
+                            "description": "The [`retention.ms`](https://kafka.apache.org/documentation/#topicconfigs_retention.ms) configuration option.",
+                            "type": "integer",
+                            "minimum": -1
+                        },
+                        "retention.bytes": {
+                            "description": "The [`retention.bytes`](https://kafka.apache.org/documentation/#topicconfigs_retention.bytes) configuration option.",
+                            "type": "integer",
+                            "minimum": -1
+                        },
+                        "delete.retention.ms": {
+                            "description": "The [`delete.retention.ms`](https://kafka.apache.org/documentation/#topicconfigs_delete.retention.ms) configuration option.",
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "max.message.bytes": {
+                            "description": "The [`max.message.bytes`](https://kafka.apache.org/documentation/#topicconfigs_max.message.bytes) configuration option.",
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "confluent.key.schema.validation": {
+                            "description": "It shows whether the schema validation for the message key is enabled. Vendor specific config. For more details: (https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#confluent-key-schema-validation)",
+                            "type": "boolean"
+                        },
+                        "confluent.key.subject.name.strategy": {
+                            "description": "The name of the schema lookup strategy for the message key. Vendor specific config. For more details: (https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#confluent-key-subject-name-strategy)",
+                            "type": "string"
+                        },
+                        "confluent.value.schema.validation": {
+                            "description": "It shows whether the schema validation for the message value is enabled. Vendor specific config. For more details: (https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#confluent-value-schema-validation)",
+                            "type": "boolean"
+                        },
+                        "confluent.value.subject.name.strategy": {
+                            "description": "The name of the schema lookup strategy for the message value. Vendor specific config. For more details: (https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#confluent-value-subject-name-strategy)",
+                            "type": "string"
+                        }
+                    }
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.5.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "topic": "my-specific-topic",
+                    "partitions": 20,
+                    "replicas": 3,
+                    "bindingVersion": "0.5.0"
                 }
             ]
         },
@@ -6537,7 +6783,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-http-0.2.0-operation"
+                                "$ref": "#/definitions/bindings-http-0.3.0-operation"
                             }
                         },
                         {
@@ -6672,7 +6918,22 @@
                                 }
                             },
                             "then": {
-                                "$ref": "#/definitions/bindings-kafka-0.4.0-operation"
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-operation"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.5.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-kafka-0.5.0-operation"
                             }
                         },
                         {
@@ -6903,82 +7164,6 @@
                 "googlepubsub": {}
             }
         },
-        "bindings-http-0.2.0-operation": {
-            "title": "HTTP operation bindings object",
-            "description": "This object contains information about the operation representation in HTTP.",
-            "type": "object",
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "#/definitions/specificationExtension"
-                }
-            },
-            "properties": {
-                "method": {
-                    "type": "string",
-                    "enum": [
-                        "GET",
-                        "PUT",
-                        "POST",
-                        "PATCH",
-                        "DELETE",
-                        "HEAD",
-                        "OPTIONS",
-                        "CONNECT",
-                        "TRACE"
-                    ],
-                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
-                },
-                "query": {
-                    "$ref": "#/definitions/schema",
-                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
-                },
-                "bindingVersion": {
-                    "type": "string",
-                    "enum": [
-                        "0.2.0"
-                    ],
-                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-                }
-            },
-            "examples": [
-                {
-                    "query": {
-                        "type": "object",
-                        "required": [
-                            "companyId"
-                        ],
-                        "properties": {
-                            "companyId": {
-                                "type": "number",
-                                "minimum": 1,
-                                "description": "The Id of the company."
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "bindingVersion": "0.2.0"
-                },
-                {
-                    "method": "GET",
-                    "query": {
-                        "type": "object",
-                        "required": [
-                            "companyId"
-                        ],
-                        "properties": {
-                            "companyId": {
-                                "type": "number",
-                                "minimum": 1,
-                                "description": "The Id of the company."
-                            }
-                        },
-                        "additionalProperties": false
-                    },
-                    "bindingVersion": "0.2.0"
-                }
-            ]
-        },
         "bindings-http-0.3.0-operation": {
             "title": "HTTP operation bindings object",
             "description": "This object contains information about the operation representation in HTTP.",
@@ -7052,6 +7237,82 @@
                         "additionalProperties": false
                     },
                     "bindingVersion": "0.3.0"
+                }
+            ]
+        },
+        "bindings-http-0.2.0-operation": {
+            "title": "HTTP operation bindings object",
+            "description": "This object contains information about the operation representation in HTTP.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "PATCH",
+                        "DELETE",
+                        "HEAD",
+                        "OPTIONS",
+                        "CONNECT",
+                        "TRACE"
+                    ],
+                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
+                },
+                "query": {
+                    "$ref": "#/definitions/schema",
+                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.2.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.2.0"
+                },
+                {
+                    "method": "GET",
+                    "query": {
+                        "type": "object",
+                        "required": [
+                            "companyId"
+                        ],
+                        "properties": {
+                            "companyId": {
+                                "type": "number",
+                                "minimum": 1,
+                                "description": "The Id of the company."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
@@ -7194,6 +7455,51 @@
                     "retain": true,
                     "messageExpiryInterval": 60,
                     "bindingVersion": "0.2.0"
+                }
+            ]
+        },
+        "bindings-kafka-0.5.0-operation": {
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in Kafka.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "groupId": {
+                    "$ref": "#/definitions/schema",
+                    "description": "Id of the consumer group."
+                },
+                "clientId": {
+                    "$ref": "#/definitions/schema",
+                    "description": "Id of the consumer inside a consumer group."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.5.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "groupId": {
+                        "type": "string",
+                        "enum": [
+                            "myGroupId"
+                        ]
+                    },
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "myClientId"
+                        ]
+                    },
+                    "bindingVersion": "0.5.0"
                 }
             ]
         },
