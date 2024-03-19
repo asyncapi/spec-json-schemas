@@ -2803,169 +2803,156 @@
                         "description": "Definition of the message payload. It can be of any type but defaults to Schema Object. It MUST match the schema format defined in schemaFormat, including the encoding type. E.g., Avro should be inlined as either a YAML or JSON object instead of as a string to be parsed as YAML or JSON. Non-JSON-based schemas (e.g., Protobuf or XSD) MUST be inlined as a string."
                     }
                 },
-                "anyOf": [
+                "oneOf": [
                     {
-                        "if": {
-                            "not": {
-                                "description": "If no schemaFormat has been defined, default to schema or reference",
-                                "required": [
-                                    "schemaFormat"
+                        "type": "object",
+                        "not": {
+                            "required": [
+                                "schemaFormat"
+                            ]
+                        },
+                        "required": [
+                            "$ref"
+                        ],
+                        "properties": {
+                            "schema": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "schemaFormat"
+                        ],
+                        "properties": {
+                            "schemaFormat": {
+                                "enum": [
+                                    "application/vnd.aai.asyncapi;version=2.0.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.0.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                                    "application/vnd.aai.asyncapi;version=2.1.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.1.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                                    "application/vnd.aai.asyncapi;version=2.2.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.2.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                                    "application/vnd.aai.asyncapi;version=2.3.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.3.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                                    "application/vnd.aai.asyncapi;version=2.4.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.4.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                                    "application/vnd.aai.asyncapi;version=2.5.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.5.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                                    "application/vnd.aai.asyncapi;version=2.6.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.6.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                                    "application/vnd.aai.asyncapi;version=3.0.0",
+                                    "application/vnd.aai.asyncapi+json;version=3.0.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=3.0.0"
                                 ]
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                                        }
-                                    ]
-                                }
+                            },
+                            "schema": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                             }
                         }
                     },
                     {
-                        "if": {
-                            "description": "If schemaFormat has been defined check if it's one of the AsyncAPI Schema Object formats",
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/vnd.aai.asyncapi;version=2.0.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.0.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.0.0",
-                                        "application/vnd.aai.asyncapi;version=2.1.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.1.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.1.0",
-                                        "application/vnd.aai.asyncapi;version=2.2.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.2.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.2.0",
-                                        "application/vnd.aai.asyncapi;version=2.3.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.3.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.3.0",
-                                        "application/vnd.aai.asyncapi;version=2.4.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.4.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.4.0",
-                                        "application/vnd.aai.asyncapi;version=2.5.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.5.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.5.0",
-                                        "application/vnd.aai.asyncapi;version=2.6.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.6.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.6.0",
-                                        "application/vnd.aai.asyncapi;version=3.0.0",
-                                        "application/vnd.aai.asyncapi+json;version=3.0.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=3.0.0"
-                                    ]
-                                }
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                                        }
-                                    ]
-                                }
+                        "type": "object",
+                        "required": [
+                            "schemaFormat"
+                        ],
+                        "properties": {
+                            "schemaFormat": {
+                                "enum": [
+                                    "application/schema+json;version=draft-07",
+                                    "application/schema+yaml;version=draft-07"
+                                ]
+                            },
+                            "schema": {
+                                "$ref": "http://json-schema.org/draft-07/schema"
                             }
                         }
                     },
                     {
-                        "if": {
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/schema+json;version=draft-07",
-                                        "application/schema+yaml;version=draft-07"
-                                    ]
-                                }
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://json-schema.org/draft-07/schema"
-                                        }
-                                    ]
-                                }
+                        "type": "object",
+                        "required": [
+                            "schemaFormat"
+                        ],
+                        "properties": {
+                            "schemaFormat": {
+                                "enum": [
+                                    "application/vnd.oai.openapi;version=3.0.0",
+                                    "application/vnd.oai.openapi+json;version=3.0.0",
+                                    "application/vnd.oai.openapi+yaml;version=3.0.0"
+                                ]
+                            },
+                            "schema": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
                             }
                         }
                     },
                     {
-                        "if": {
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/vnd.oai.openapi;version=3.0.0",
-                                        "application/vnd.oai.openapi+json;version=3.0.0",
-                                        "application/vnd.oai.openapi+yaml;version=3.0.0"
-                                    ]
-                                }
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
-                                        }
-                                    ]
-                                }
+                        "type": "object",
+                        "required": [
+                            "schemaFormat",
+                            "schema"
+                        ],
+                        "properties": {
+                            "schemaFormat": {
+                                "enum": [
+                                    "application/vnd.oai.openapi;version=3.0.0",
+                                    "application/vnd.oai.openapi+json;version=3.0.0",
+                                    "application/vnd.oai.openapi+yaml;version=3.0.0"
+                                ]
+                            },
+                            "schema": {
+                                "required": [
+                                    "$ref"
+                                ],
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                             }
                         }
                     },
                     {
-                        "if": {
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/vnd.apache.avro;version=1.9.0",
-                                        "application/vnd.apache.avro+json;version=1.9.0",
-                                        "application/vnd.apache.avro+yaml;version=1.9.0"
-                                    ]
-                                }
+                        "type": "object",
+                        "required": [
+                            "schemaFormat"
+                        ],
+                        "properties": {
+                            "schemaFormat": {
+                                "enum": [
+                                    "application/vnd.apache.avro;version=1.9.0",
+                                    "application/vnd.apache.avro+json;version=1.9.0",
+                                    "application/vnd.apache.avro+yaml;version=1.9.0"
+                                ]
+                            },
+                            "schema": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
                             }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
-                                        }
-                                    ]
-                                }
+                        }
+                    },
+                    {
+                        "type": "object",
+                        "required": [
+                            "schemaFormat",
+                            "schema"
+                        ],
+                        "properties": {
+                            "schemaFormat": {
+                                "enum": [
+                                    "application/vnd.apache.avro;version=1.9.0",
+                                    "application/vnd.apache.avro+json;version=1.9.0",
+                                    "application/vnd.apache.avro+yaml;version=1.9.0"
+                                ]
+                            },
+                            "schema": {
+                                "required": [
+                                    "$ref"
+                                ],
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                             }
                         }
                     }
