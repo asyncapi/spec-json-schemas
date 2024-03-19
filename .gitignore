@@ -4,8 +4,3 @@ node_modules
 coverage
 
 .DS_Store
-/test/.DS_Store
-/examples/.DS_Store
-/bindings/.DS_Store
-/.git/.DS_Store
-/definitions/.DS_Store
