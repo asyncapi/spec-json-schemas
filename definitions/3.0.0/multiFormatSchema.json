@@ -131,6 +131,7 @@
             ]
           },
           "schema": {
+            "not": {"required": ["$ref"]},
             "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
           }
         }
@@ -164,6 +165,7 @@
             ]
           },
           "schema": {
+            "not": {"required": ["$ref"]},
             "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
           }
         }

@@ -2839,6 +2839,11 @@
                                 ]
                             },
                             "schema": {
+                                "not": {
+                                    "required": [
+                                        "$ref"
+                                    ]
+                                },
                                 "$ref": "#/definitions/openapiSchema_3_0"
                             }
                         }
@@ -2879,6 +2884,11 @@
                                 ]
                             },
                             "schema": {
+                                "not": {
+                                    "required": [
+                                        "$ref"
+                                    ]
+                                },
                                 "$ref": "#/definitions/avroSchema_v1"
                             }
                         }
