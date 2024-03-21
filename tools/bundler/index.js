@@ -4,10 +4,12 @@ const traverse = require('json-schema-traverse');
 const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
+const extensionsDirectory = path.resolve(__dirname, '../../extensions');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
 const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
 console.log(`Looking for separate definitions in the following directory: ${definitionsDirectory}`);
 console.log(`Looking for binding version schemas in the following directory: ${bindingsDirectory}`);
+console.log(`Looking for extension version schemas in the following directory: ${extensionsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
 
 // definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
@@ -16,6 +18,9 @@ const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json
 // definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
 const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i
 
+// definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
+const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i
+
 /**
  * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
  */
@@ -23,6 +28,7 @@ async function loadDefinitions(bundler, versionDir) {
   const definitions = await fs.promises.readdir(versionDir);
   const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
   const definitionJson = definitionFiles.map((file) => JSON.parse(file));
+
   for (const jsonFile of definitionJson) {
     if (jsonFile.example) {
       // Replaced the example property with the referenced example property
@@ -38,20 +44,36 @@ async function loadDefinitions(bundler, versionDir) {
     }
   }
 }
+
+
 /**
- * Function to load all the binding version schemas into the bundler
+ * Function to load all schemas into bundler, by "type" you specify if these are "bindings" or "extensions"
  */
-async function loadBindings(bundler) {
-  const bindingDirectories = await fs.promises.readdir(bindingsDirectory);
-  for (const bindingDirectory of bindingDirectories) {
-    const bindingVersionDirectories = await fs.promises.readdir(path.resolve(bindingsDirectory, bindingDirectory));
-    const bindingVersionDirectoriesFiltered = bindingVersionDirectories.filter((file) => fs.lstatSync(path.resolve(bindingsDirectory, bindingDirectory, file)).isDirectory());
-    for (const bindingVersionDirectory of bindingVersionDirectoriesFiltered) {
-      const bindingFiles = await fs.promises.readdir(path.resolve(bindingsDirectory, bindingDirectory, bindingVersionDirectory));
-      const bindingFilesFiltered = bindingFiles.filter((bindingFile) => path.extname(bindingFile) === '.json').map((bindingFile) => path.resolve(bindingsDirectory, bindingDirectory, bindingVersionDirectory, bindingFile));
-      for (const bindingFile of bindingFilesFiltered) {
-        const bindingFileContent = require(bindingFile);
-        bundler.add(bindingFileContent);
+async function loadSchemas(bundler, type) {
+
+  let directory;
+
+  switch (type) {
+    case "bindings":
+      directory = bindingsDirectory;
+      break;
+    case "extensions":
+      directory = extensionsDirectory;
+      break;
+    default:
+      console.error("Invalid input. I'm not going to assume if you want bindings or extensions - these are different beasts.");
+  }
+
+  const directories = await fs.promises.readdir(directory);
+  for (const nestedDir of directories) {
+    const versionDirectories = await fs.promises.readdir(path.resolve(directory, nestedDir));
+    const versionDirectoriesFiltered = versionDirectories.filter((file) => fs.lstatSync(path.resolve(directory, nestedDir, file)).isDirectory());
+    for (const versionDir of versionDirectoriesFiltered) {
+      const files = await fs.promises.readdir(path.resolve(directory, nestedDir, versionDir));
+      const filesFiltered = files.filter((file) => path.extname(file) === '.json').map((file) => path.resolve(directory, nestedDir, versionDir, file));
+      for (const filteredFile of filesFiltered) {
+        const fileContent = require(filteredFile);
+        bundler.add(fileContent);
       }
     }
   }
@@ -74,7 +96,8 @@ async function loadBindings(bundler) {
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       await loadDefinitions(Bundler, versionDir);
-      await loadBindings(Bundler);
+      await loadSchemas(Bundler, 'bindings');
+      await loadSchemas(Bundler, 'extensions');
 
       const filePathToBundle = `file://${versionDir}/asyncapi.json`;
       const fileToBundle = await Bundler.get(filePathToBundle);
@@ -153,6 +176,10 @@ function getDefinitionName(def) {
   }
   if (def.startsWith('http://asyncapi.com/bindings')) {
     const result = bindingsRegex.exec(def);
+    if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
+  }
+  if (def.startsWith('http://asyncapi.com/extensions')) {
+    const result = extensionsRegex.exec(def);
     if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
   }
   
