@@ -2736,525 +2736,167 @@
         },
         "http://asyncapi.com/definitions/3.0.0/anySchema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
-            "if": {
-                "required": [
-                    "schema"
-                ]
-            },
-            "then": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-            },
-            "else": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-            },
-            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise."
-        },
-        "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json",
-            "description": "The Multi Format Schema Object represents a schema definition. It differs from the Schema Object in that it supports multiple schema formats or languages (e.g., JSON Schema, Avro, etc.).",
-            "if": {
-                "not": {
-                    "type": "object"
-                }
-            },
-            "then": {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-            },
-            "else": {
-                "type": "object",
-                "additionalProperties": false,
-                "patternProperties": {
-                    "^x-[\\w\\d\\.\\x2d_]+$": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                    }
-                },
-                "properties": {
-                    "schemaFormat": {
-                        "description": "A string containing the name of the schema format that is used to define the information. If schemaFormat is missing, it MUST default to application/vnd.aai.asyncapi+json;version={{asyncapi}} where {{asyncapi}} matches the AsyncAPI Version String. In such a case, this would make the Multi Format Schema Object equivalent to the Schema Object. When using Reference Object within the schema, the schemaFormat of the resource being referenced MUST match the schemaFormat of the schema that contains the initial reference. For example, if you reference Avro schema, then schemaFormat of referencing resource and the resource being reference MUST match.",
-                        "anyOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "description": "All the schema formats tooling MUST support",
-                                "enum": [
-                                    "application/schema+json;version=draft-07",
-                                    "application/schema+yaml;version=draft-07",
-                                    "application/vnd.aai.asyncapi;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+json;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=3.0.0"
-                                ]
-                            },
-                            {
-                                "description": "All the schema formats tools are RECOMMENDED to support",
-                                "enum": [
-                                    "application/vnd.oai.openapi;version=3.0.0",
-                                    "application/vnd.oai.openapi+json;version=3.0.0",
-                                    "application/vnd.oai.openapi+yaml;version=3.0.0",
-                                    "application/vnd.apache.avro;version=1.9.0",
-                                    "application/vnd.apache.avro+json;version=1.9.0",
-                                    "application/vnd.apache.avro+yaml;version=1.9.0",
-                                    "application/raml+yaml;version=1.0"
-                                ]
-                            }
+            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise.",
+            "type": "object",
+            "anyOf": [
+                {
+                    "type": "object",
+                    "description": "AsyncAPI Schema",
+                    "not": {
+                        "required": [
+                            "schemaFormat",
+                            "schema"
                         ]
                     },
-                    "schema": {
-                        "description": "Definition of the message payload. It can be of any type but defaults to Schema Object. It MUST match the schema format defined in schemaFormat, including the encoding type. E.g., Avro should be inlined as either a YAML or JSON object instead of as a string to be parsed as YAML or JSON. Non-JSON-based schemas (e.g., Protobuf or XSD) MUST be inlined as a string."
-                    }
+                    "additionalProperties": false,
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                 },
-                "oneOf": [
-                    {
-                        "type": "object",
-                        "not": {
-                            "required": [
-                                "schemaFormat"
-                            ]
-                        },
+                {
+                    "type": "object",
+                    "description": "Multi format schema: Avro Schema",
+                    "required": [
+                        "schemaFormat",
+                        "schema"
+                    ],
+                    "not": {
                         "required": [
                             "$ref"
-                        ],
-                        "properties": {
-                            "schema": {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            }
-                        }
+                        ]
                     },
-                    {
-                        "type": "object",
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.aai.asyncapi;version=2.0.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.0.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.0.0",
-                                    "application/vnd.aai.asyncapi;version=2.1.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.1.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.1.0",
-                                    "application/vnd.aai.asyncapi;version=2.2.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.2.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.2.0",
-                                    "application/vnd.aai.asyncapi;version=2.3.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.3.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.3.0",
-                                    "application/vnd.aai.asyncapi;version=2.4.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.4.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.4.0",
-                                    "application/vnd.aai.asyncapi;version=2.5.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.5.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.5.0",
-                                    "application/vnd.aai.asyncapi;version=2.6.0",
-                                    "application/vnd.aai.asyncapi+json;version=2.6.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=2.6.0",
-                                    "application/vnd.aai.asyncapi;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+json;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=3.0.0"
-                                ]
-                            },
-                            "schema": {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/schema+json;version=draft-07",
-                                    "application/schema+yaml;version=draft-07"
-                                ]
-                            },
-                            "schema": {
-                                "$ref": "http://json-schema.org/draft-07/schema"
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.oai.openapi;version=3.0.0",
-                                    "application/vnd.oai.openapi+json;version=3.0.0",
-                                    "application/vnd.oai.openapi+yaml;version=3.0.0"
-                                ]
-                            },
-                            "schema": {
+                    "additionalProperties": false,
+                    "properties": {
+                        "schemaFormat": {
+                            "type": "string",
+                            "enum": [
+                                "application/vnd.apache.avro;version=1.9.0",
+                                "application/vnd.apache.avro+json;version=1.9.0",
+                                "application/vnd.apache.avro+yaml;version=1.9.0"
+                            ]
+                        },
+                        "schema": {
+                            "if": {
                                 "not": {
-                                    "required": [
-                                        "$ref"
-                                    ]
-                                },
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "required": [
-                            "schemaFormat",
-                            "schema"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.oai.openapi;version=3.0.0",
-                                    "application/vnd.oai.openapi+json;version=3.0.0",
-                                    "application/vnd.oai.openapi+yaml;version=3.0.0"
-                                ]
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                }
                             },
-                            "schema": {
-                                "required": [
-                                    "$ref"
-                                ],
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "required": [
-                            "schemaFormat"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.apache.avro;version=1.9.0",
-                                    "application/vnd.apache.avro+json;version=1.9.0",
-                                    "application/vnd.apache.avro+yaml;version=1.9.0"
-                                ]
-                            },
-                            "schema": {
-                                "not": {
-                                    "required": [
-                                        "$ref"
-                                    ]
-                                },
+                            "then": {
                                 "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
-                            }
-                        }
-                    },
-                    {
-                        "type": "object",
-                        "required": [
-                            "schemaFormat",
-                            "schema"
-                        ],
-                        "properties": {
-                            "schemaFormat": {
-                                "enum": [
-                                    "application/vnd.apache.avro;version=1.9.0",
-                                    "application/vnd.apache.avro+json;version=1.9.0",
-                                    "application/vnd.apache.avro+yaml;version=1.9.0"
-                                ]
                             },
-                            "schema": {
-                                "required": [
-                                    "$ref"
-                                ],
+                            "else": {
                                 "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                             }
                         }
                     }
-                ]
-            }
-        },
-        "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json",
-            "type": "object",
-            "definitions": {
-                "ExternalDocumentation": {
-                    "type": "object",
-                    "required": [
-                        "url"
-                    ],
-                    "properties": {
-                        "description": {
-                            "type": "string"
-                        },
-                        "url": {
-                            "type": "string",
-                            "format": "uri-reference"
-                        }
-                    },
-                    "patternProperties": {
-                        "^x-": {}
-                    },
-                    "additionalProperties": false
                 },
-                "Discriminator": {
+                {
                     "type": "object",
+                    "description": "Multi format schema: OpenAPI Schema",
                     "required": [
-                        "propertyName"
+                        "schemaFormat",
+                        "schema"
                     ],
+                    "not": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "additionalProperties": false,
                     "properties": {
-                        "propertyName": {
-                            "type": "string"
+                        "schemaFormat": {
+                            "type": "string",
+                            "enum": [
+                                "application/vnd.oai.openapi;version=3.0.0",
+                                "application/vnd.oai.openapi+json;version=3.0.0",
+                                "application/vnd.oai.openapi+yaml;version=3.0.0"
+                            ]
                         },
-                        "mapping": {
-                            "type": "object",
-                            "additionalProperties": {
-                                "type": "string"
-                            }
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                }
+                            ]
                         }
                     }
                 },
-                "Reference": {
+                {
                     "type": "object",
+                    "description": "Multi format schema: Json Schema",
                     "required": [
-                        "$ref"
+                        "schemaFormat",
+                        "schema"
                     ],
-                    "patternProperties": {
-                        "^\\$ref$": {
+                    "not": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "additionalProperties": false,
+                    "properties": {
+                        "schemaFormat": {
                             "type": "string",
-                            "format": "uri-reference"
+                            "enum": [
+                                "application/schema+json;version=draft-07",
+                                "application/schema+yaml;version=draft-07"
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "http://json-schema.org/draft-07/schema"
                         }
                     }
                 },
-                "XML": {
+                {
                     "type": "object",
+                    "description": "Multi format schema: AsyncAPI Schema",
+                    "required": [
+                        "schemaFormat",
+                        "schema"
+                    ],
+                    "not": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "additionalProperties": false,
                     "properties": {
-                        "name": {
-                            "type": "string"
-                        },
-                        "namespace": {
+                        "schemaFormat": {
                             "type": "string",
-                            "format": "uri"
+                            "enum": [
+                                "application/vnd.aai.asyncapi;version=2.0.0",
+                                "application/vnd.aai.asyncapi+json;version=2.0.0",
+                                "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                                "application/vnd.aai.asyncapi;version=2.1.0",
+                                "application/vnd.aai.asyncapi+json;version=2.1.0",
+                                "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                                "application/vnd.aai.asyncapi;version=2.2.0",
+                                "application/vnd.aai.asyncapi+json;version=2.2.0",
+                                "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                                "application/vnd.aai.asyncapi;version=2.3.0",
+                                "application/vnd.aai.asyncapi+json;version=2.3.0",
+                                "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                                "application/vnd.aai.asyncapi;version=2.4.0",
+                                "application/vnd.aai.asyncapi+json;version=2.4.0",
+                                "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                                "application/vnd.aai.asyncapi;version=2.5.0",
+                                "application/vnd.aai.asyncapi+json;version=2.5.0",
+                                "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                                "application/vnd.aai.asyncapi;version=2.6.0",
+                                "application/vnd.aai.asyncapi+json;version=2.6.0",
+                                "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                                "application/vnd.aai.asyncapi;version=3.0.0",
+                                "application/vnd.aai.asyncapi+json;version=3.0.0",
+                                "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+                            ]
                         },
-                        "prefix": {
-                            "type": "string"
-                        },
-                        "attribute": {
-                            "type": "boolean",
-                            "default": false
-                        },
-                        "wrapped": {
-                            "type": "boolean",
-                            "default": false
+                        "schema": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                         }
-                    },
-                    "patternProperties": {
-                        "^x-": {}
-                    },
-                    "additionalProperties": false
+                    }
                 }
-            },
-            "properties": {
-                "title": {
-                    "type": "string"
-                },
-                "multipleOf": {
-                    "type": "number",
-                    "exclusiveMinimum": 0
-                },
-                "maximum": {
-                    "type": "number"
-                },
-                "exclusiveMaximum": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "minimum": {
-                    "type": "number"
-                },
-                "exclusiveMinimum": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "maxLength": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "minLength": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 0
-                },
-                "pattern": {
-                    "type": "string",
-                    "format": "regex"
-                },
-                "maxItems": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "minItems": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 0
-                },
-                "uniqueItems": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "maxProperties": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "minProperties": {
-                    "type": "integer",
-                    "minimum": 0,
-                    "default": 0
-                },
-                "required": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "minItems": 1,
-                    "uniqueItems": true
-                },
-                "enum": {
-                    "type": "array",
-                    "items": true,
-                    "minItems": 1,
-                    "uniqueItems": false
-                },
-                "type": {
-                    "type": "string",
-                    "enum": [
-                        "array",
-                        "boolean",
-                        "integer",
-                        "number",
-                        "object",
-                        "string"
-                    ]
-                },
-                "not": {
-                    "oneOf": [
-                        {
-                            "$ref": "#"
-                        },
-                        {
-                            "$ref": "#/definitions/Reference"
-                        }
-                    ]
-                },
-                "allOf": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#"
-                            },
-                            {
-                                "$ref": "#/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "oneOf": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#"
-                            },
-                            {
-                                "$ref": "#/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "anyOf": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#"
-                            },
-                            {
-                                "$ref": "#/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "items": {
-                    "oneOf": [
-                        {
-                            "$ref": "#"
-                        },
-                        {
-                            "$ref": "#/definitions/Reference"
-                        }
-                    ]
-                },
-                "properties": {
-                    "type": "object",
-                    "additionalProperties": {
-                        "oneOf": [
-                            {
-                                "$ref": "#"
-                            },
-                            {
-                                "$ref": "#/definitions/Reference"
-                            }
-                        ]
-                    }
-                },
-                "additionalProperties": {
-                    "oneOf": [
-                        {
-                            "$ref": "#"
-                        },
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "type": "boolean"
-                        }
-                    ],
-                    "default": true
-                },
-                "description": {
-                    "type": "string"
-                },
-                "format": {
-                    "type": "string"
-                },
-                "default": true,
-                "nullable": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "discriminator": {
-                    "$ref": "#/definitions/Discriminator"
-                },
-                "readOnly": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "writeOnly": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "example": true,
-                "externalDocs": {
-                    "$ref": "#/definitions/ExternalDocumentation"
-                },
-                "deprecated": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "xml": {
-                    "$ref": "#/definitions/XML"
-                }
-            },
-            "patternProperties": {
-                "^x-": true
-            },
-            "additionalProperties": false
+            ]
         },
         "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json",
@@ -3571,6 +3213,293 @@
                 }
             ],
             "title": "Avro Schema Definition"
+        },
+        "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json",
+            "type": "object",
+            "definitions": {
+                "ExternalDocumentation": {
+                    "type": "object",
+                    "required": [
+                        "url"
+                    ],
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string",
+                            "format": "uri-reference"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-": {}
+                    },
+                    "additionalProperties": false
+                },
+                "Discriminator": {
+                    "type": "object",
+                    "required": [
+                        "propertyName"
+                    ],
+                    "properties": {
+                        "propertyName": {
+                            "type": "string"
+                        },
+                        "mapping": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "Reference": {
+                    "type": "object",
+                    "required": [
+                        "$ref"
+                    ],
+                    "patternProperties": {
+                        "^\\$ref$": {
+                            "type": "string",
+                            "format": "uri-reference"
+                        }
+                    }
+                },
+                "XML": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        },
+                        "namespace": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "prefix": {
+                            "type": "string"
+                        },
+                        "attribute": {
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "wrapped": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-": {}
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "multipleOf": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMaximum": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "maxLength": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minLength": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "pattern": {
+                    "type": "string",
+                    "format": "regex"
+                },
+                "maxItems": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minItems": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "uniqueItems": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "maxProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minProperties": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "default": 0
+                },
+                "required": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                },
+                "enum": {
+                    "type": "array",
+                    "items": true,
+                    "minItems": 1,
+                    "uniqueItems": false
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "array",
+                        "boolean",
+                        "integer",
+                        "number",
+                        "object",
+                        "string"
+                    ]
+                },
+                "not": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        }
+                    ]
+                },
+                "allOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "oneOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "anyOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "items": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        }
+                    ]
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ],
+                    "default": true
+                },
+                "description": {
+                    "type": "string"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "default": true,
+                "nullable": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "discriminator": {
+                    "$ref": "#/definitions/Discriminator"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "writeOnly": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "example": true,
+                "externalDocs": {
+                    "$ref": "#/definitions/ExternalDocumentation"
+                },
+                "deprecated": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "xml": {
+                    "$ref": "#/definitions/XML"
+                }
+            },
+            "patternProperties": {
+                "^x-": true
+            },
+            "additionalProperties": false
         },
         "http://asyncapi.com/definitions/3.0.0/correlationId.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/correlationId.json",
