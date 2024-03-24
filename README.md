@@ -218,7 +218,6 @@ Whenever you make changes in AsyncAPI JSON Schema, you should always manually ve
 Extensions are a way to [extend AsyncAPI specification](https://www.asyncapi.com/docs/concepts/asyncapi-document/extending-specification) with fields that are not yet defined inside the specification. To add JSON schema of the extension in this repository, you need to first make sure it is added to the [extension-catalog](https://github.com/asyncapi/extensions-catalog) repository.
 ### How to add schema of the extension
 
-
 1. All the extensions must be present in [./extensions](./extensions) folder.
 2. A proper folder structure must be followed to add the extensions.
 3. A new folder just as [x extension](./extensions/x) must be added with proper `versioning` and `schema file`.
