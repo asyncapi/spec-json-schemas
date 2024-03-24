@@ -1,10 +1,10 @@
 [
-	{
-	  "title": "AsyncAPI Sample App",
-	  "version": "1.0.1",
-	  "description": "This is a sample app.",
-	  "termsOfService": "https://asyncapi.org/terms/",
-	  "contact": {
+   {
+	"title": "AsyncAPI Sample App",
+	"version": "1.0.1",
+	"description": "This is a sample app.",
+	"termsOfService": "https://asyncapi.org/terms/",
+	"contact": {
 		  "name": "API Support",
 		  "url": "https://www.asyncapi.org/support",
 		  "email": "support@asyncapi.org"
