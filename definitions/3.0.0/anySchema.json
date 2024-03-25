@@ -17,26 +17,11 @@
       "description": "Reference to schema"
     }
   },
-  "minProperties": 1,
   "oneOf": [
     {
       "description": "Because of $ref collision in Reference and AsyncAPI Schema(includes $ref from Json Schema)",
       "not": {"required": ["schemaFormat", "schema"]},
-      "anyOf": [
-        {
-          "type": "object",
-          "required": ["$ref"],
-          "not": {"required": ["schemaFormat", "schema"]},
-          "minProperties": 1,
-          "maxProperties": 1,
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "type": "object",
-          "not": {"required": ["schemaFormat", "schema"]},
-          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-        }
-      ]
+      "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
     },
     {
       "type": "object",
