@@ -2736,24 +2736,62 @@
         },
         "http://asyncapi.com/definitions/3.0.0/anySchema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
-            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise.",
             "type": "object",
-            "anyOf": [
-                {
+            "description": "An object representing either a Reference, a Schema or a Multi Format Schema",
+            "properties": {
+                "schemaFormat": {
+                    "type": "string",
+                    "description": "Supported Schema format"
+                },
+                "schema": {
                     "type": "object",
-                    "description": "AsyncAPI Schema",
+                    "description": "Schema definition"
+                },
+                "$ref": {
+                    "type": "string",
+                    "description": "Reference to schema"
+                }
+            },
+            "minProperties": 1,
+            "oneOf": [
+                {
+                    "description": "Because of $ref collision in Reference and AsyncAPI Schema(includes $ref from Json Schema)",
                     "not": {
                         "required": [
                             "schemaFormat",
                             "schema"
                         ]
                     },
-                    "additionalProperties": false,
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                    "anyOf": [
+                        {
+                            "type": "object",
+                            "required": [
+                                "$ref"
+                            ],
+                            "not": {
+                                "required": [
+                                    "schemaFormat",
+                                    "schema"
+                                ]
+                            },
+                            "minProperties": 1,
+                            "maxProperties": 1,
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "type": "object",
+                            "not": {
+                                "required": [
+                                    "schemaFormat",
+                                    "schema"
+                                ]
+                            },
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        }
+                    ]
                 },
                 {
                     "type": "object",
-                    "description": "Multi format schema: Avro Schema",
                     "required": [
                         "schemaFormat",
                         "schema"
@@ -2763,7 +2801,42 @@
                             "$ref"
                         ]
                     },
-                    "additionalProperties": false,
+                    "minProperties": 2,
+                    "maxProperties": 2,
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json": {
+            "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json",
+            "description": "An object representing Multi Format Schema. You can use it to attach Schemas different to AsyncAPI, like Avro or OpenAPI",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "required": [
+                "schemaFormat",
+                "schema"
+            ],
+            "properties": {
+                "schemaFormat": {
+                    "type": "string",
+                    "description": "Supported Schema formats"
+                },
+                "schema": {
+                    "type": "object",
+                    "description": "Schema definition"
+                }
+            },
+            "minProperties": 2,
+            "maxProperties": 2,
+            "oneOf": [
+                {
+                    "type": "object",
+                    "description": "Multi Format Schema: Avro Schema or Reference",
                     "properties": {
                         "schemaFormat": {
                             "type": "string",
@@ -2774,33 +2847,32 @@
                             ]
                         },
                         "schema": {
-                            "if": {
-                                "not": {
+                            "oneOf": [
+                                {
+                                    "type": "object",
+                                    "description": "Avro Schema",
+                                    "not": {
+                                        "required": [
+                                            "$ref"
+                                        ]
+                                    },
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "Reference to Avro Schema",
+                                    "required": [
+                                        "$ref"
+                                    ],
                                     "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                                 }
-                            },
-                            "then": {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
-                            },
-                            "else": {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            }
+                            ]
                         }
                     }
                 },
                 {
                     "type": "object",
-                    "description": "Multi format schema: OpenAPI Schema",
-                    "required": [
-                        "schemaFormat",
-                        "schema"
-                    ],
-                    "not": {
-                        "required": [
-                            "$ref"
-                        ]
-                    },
-                    "additionalProperties": false,
+                    "description": "Multi Format Schema: OpenAPI Schema or Reference",
                     "properties": {
                         "schemaFormat": {
                             "type": "string",
@@ -2811,11 +2883,23 @@
                             ]
                         },
                         "schema": {
-                            "anyOf": [
+                            "oneOf": [
                                 {
+                                    "type": "object",
+                                    "description": "OpenAPI Schema",
+                                    "not": {
+                                        "required": [
+                                            "$ref"
+                                        ]
+                                    },
                                     "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
                                 },
                                 {
+                                    "type": "object",
+                                    "description": "Reference to OpenAPI Schema",
+                                    "required": [
+                                        "$ref"
+                                    ],
                                     "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                                 }
                             ]
@@ -2824,17 +2908,7 @@
                 },
                 {
                     "type": "object",
-                    "description": "Multi format schema: Json Schema",
-                    "required": [
-                        "schemaFormat",
-                        "schema"
-                    ],
-                    "not": {
-                        "required": [
-                            "$ref"
-                        ]
-                    },
-                    "additionalProperties": false,
+                    "description": "Multi Format Schema: Json Schema or Reference",
                     "properties": {
                         "schemaFormat": {
                             "type": "string",
@@ -2844,23 +2918,33 @@
                             ]
                         },
                         "schema": {
-                            "$ref": "http://json-schema.org/draft-07/schema"
+                            "description": "Because of $ref collision in Reference and Json Schema",
+                            "anyOf": [
+                                {
+                                    "type": "object",
+                                    "description": "Json Schema",
+                                    "not": {
+                                        "required": [
+                                            "$ref"
+                                        ]
+                                    },
+                                    "$ref": "http://json-schema.org/draft-07/schema"
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "Reference to Json Schema",
+                                    "required": [
+                                        "$ref"
+                                    ],
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                }
+                            ]
                         }
                     }
                 },
                 {
                     "type": "object",
-                    "description": "Multi format schema: AsyncAPI Schema",
-                    "required": [
-                        "schemaFormat",
-                        "schema"
-                    ],
-                    "not": {
-                        "required": [
-                            "$ref"
-                        ]
-                    },
-                    "additionalProperties": false,
+                    "description": "Multi Format Schema: AsyncAPI Schema or Reference",
                     "properties": {
                         "schemaFormat": {
                             "type": "string",
@@ -2892,6 +2976,76 @@
                             ]
                         },
                         "schema": {
+                            "description": "Because of $ref collision in Reference and AsyncAPI Schema",
+                            "anyOf": [
+                                {
+                                    "type": "object",
+                                    "description": "AsyncAPI Schema",
+                                    "not": {
+                                        "required": [
+                                            "$ref"
+                                        ]
+                                    },
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "type": "object",
+                                    "description": "Reference to AsyncAPI Schema",
+                                    "required": [
+                                        "$ref"
+                                    ],
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "Multi Format Schema: Unknown Schema is AsyncAPI Schema",
+                    "properties": {
+                        "schemaFormat": {
+                            "type": "string",
+                            "not": {
+                                "enum": [
+                                    "application/vnd.aai.asyncapi;version=2.0.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.0.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                                    "application/vnd.aai.asyncapi;version=2.1.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.1.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                                    "application/vnd.aai.asyncapi;version=2.2.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.2.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                                    "application/vnd.aai.asyncapi;version=2.3.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.3.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                                    "application/vnd.aai.asyncapi;version=2.4.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.4.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                                    "application/vnd.aai.asyncapi;version=2.5.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.5.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                                    "application/vnd.aai.asyncapi;version=2.6.0",
+                                    "application/vnd.aai.asyncapi+json;version=2.6.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                                    "application/vnd.aai.asyncapi;version=3.0.0",
+                                    "application/vnd.aai.asyncapi+json;version=3.0.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=3.0.0",
+                                    "application/vnd.oai.openapi;version=3.0.0",
+                                    "application/vnd.oai.openapi+json;version=3.0.0",
+                                    "application/vnd.oai.openapi+yaml;version=3.0.0",
+                                    "application/vnd.apache.avro;version=1.9.0",
+                                    "application/vnd.apache.avro+json;version=1.9.0",
+                                    "application/vnd.apache.avro+yaml;version=1.9.0",
+                                    "application/schema+json;version=draft-07",
+                                    "application/schema+yaml;version=draft-07"
+                                ]
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "description": "AsyncAPI Schema",
                             "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                         }
                     }
@@ -2969,7 +3123,8 @@
                     },
                     "required": [
                         "type"
-                    ]
+                    ],
+                    "additionalProperties": false
                 },
                 "customTypeReference": {
                     "title": "Custom Type",
@@ -3021,7 +3176,8 @@
                     "required": [
                         "name",
                         "type"
-                    ]
+                    ],
+                    "additionalProperties": false
                 },
                 "avroRecord": {
                     "title": "Record",
@@ -3058,7 +3214,8 @@
                         "type",
                         "name",
                         "fields"
-                    ]
+                    ],
+                    "additionalProperties": false
                 },
                 "avroEnum": {
                     "title": "Enum",
@@ -3095,7 +3252,8 @@
                         "type",
                         "name",
                         "symbols"
-                    ]
+                    ],
+                    "additionalProperties": false
                 },
                 "avroArray": {
                     "title": "Array",
@@ -3128,7 +3286,8 @@
                     "required": [
                         "type",
                         "items"
-                    ]
+                    ],
+                    "additionalProperties": false
                 },
                 "avroMap": {
                     "title": "Map",
@@ -3161,7 +3320,8 @@
                     "required": [
                         "type",
                         "values"
-                    ]
+                    ],
+                    "additionalProperties": false
                 },
                 "avroFixed": {
                     "title": "Fixed",
@@ -3195,7 +3355,8 @@
                         "type",
                         "name",
                         "size"
-                    ]
+                    ],
+                    "additionalProperties": false
                 },
                 "name": {
                     "type": "string",
@@ -8542,14 +8703,7 @@
                     "description": "An object to hold reusable Schema Object. If this is a Schema Object, then the schemaFormat will be assumed to be 'application/vnd.aai.asyncapi+json;version=asyncapi' where the version is equal to the AsyncAPI Version String.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
-                                }
-                            ]
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                         }
                     }
                 },

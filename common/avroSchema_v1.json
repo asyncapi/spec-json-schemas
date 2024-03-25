@@ -70,7 +70,8 @@
       },
       "required": [
         "type"
-      ]
+      ],
+      "additionalProperties": false
     },
     "customTypeReference": {
       "title": "Custom Type",
@@ -122,7 +123,8 @@
       "required": [
         "name",
         "type"
-      ]
+      ],
+      "additionalProperties": false
     },
     "avroRecord": {
       "title": "Record",
@@ -159,7 +161,8 @@
         "type",
         "name",
         "fields"
-      ]
+      ],
+      "additionalProperties": false
     },
     "avroEnum": {
       "title": "Enum",
@@ -196,7 +199,8 @@
         "type",
         "name",
         "symbols"
-      ]
+      ],
+      "additionalProperties": false
     },
     "avroArray": {
       "title": "Array",
@@ -229,7 +233,8 @@
       "required": [
         "type",
         "items"
-      ]
+      ],
+      "additionalProperties": false
     },
     "avroMap": {
       "title": "Map",
@@ -262,7 +267,8 @@
       "required": [
         "type",
         "values"
-      ]
+      ],
+      "additionalProperties": false
     },
     "avroFixed": {
       "title": "Fixed",
@@ -296,7 +302,8 @@
         "type",
         "name",
         "size"
-      ]
+      ],
+      "additionalProperties": false
     },
     "name": {
       "type": "string",

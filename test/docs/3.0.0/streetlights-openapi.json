@@ -6,20 +6,20 @@
     "description": "This service is in charge of processing user signups"
   },
   "channels": {
-    "UserSignedUpChannel": {
+    "OpenAPI-UserSignedUpChannel": {
       "address": "user/signedup",
       "messages": {
         "UserSignedUp": {
-          "$ref": "#/components/messages/UserSignedUp"
+          "$ref": "#/components/messages/OpenAPI-UserSignedUp"
         }
       }
     }
   },
   "operations": {
-    "PublishUserSignedUp": {
+    "OpenAPI-PublishUserSignedUp": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/UserSignedUpChannel"
+        "$ref": "#/channels/OpenAPI-UserSignedUpChannel"
       },
       "bindings": {
         "mqtt": {
@@ -37,10 +37,10 @@
         }
       }
     },
-    "PublishUserSignedUpDefaultBinding": {
+    "OpenAPI-PublishUserSignedUpDefaultBinding": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/UserSignedUpChannel"
+        "$ref": "#/channels/OpenAPI-UserSignedUpChannel"
       },
       "bindings": {
         "mqtt": {
@@ -59,7 +59,7 @@
   },
   "components": {
     "schemas": {
-      "ReferencedSchema" : {
+      "OpenAPI-ReferencedSchema" : {
         "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
         "schema": {
           "$ref": "reference-to-some-openapi-file.json"
@@ -67,7 +67,7 @@
       }
     },
     "messages": {
-      "UserSignedUp": {
+      "OpenAPI-UserSignedUp": {
         "payload": {
           "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
           "schema": {
