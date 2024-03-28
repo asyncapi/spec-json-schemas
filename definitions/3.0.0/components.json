@@ -13,14 +13,7 @@
       "description": "An object to hold reusable Schema Object. If this is a Schema Object, then the schemaFormat will be assumed to be 'application/vnd.aai.asyncapi+json;version=asyncapi' where the version is equal to the AsyncAPI Version String.",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "oneOf": [
-            {
-              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-            },
-            {
-              "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
-            }
-          ]
+          "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
         }
       }
     },

@@ -1,0 +1,106 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "Account Service",
+    "version": "1.0.0",
+    "description": "This service is in charge of processing user signups"
+  },
+  "channels": {
+    "Unknown-UserSignedUpChannel": {
+      "address": "user/signedup/{test_param}",
+      "parameters": {
+        "test_param": {
+          "enum": [
+            "test"
+          ],
+          "default": "test",
+          "description": "Just a test description",
+          "examples": [
+            "test"
+          ],
+          "location": "$message.payload#",
+          "x-custom-extension": "test"
+        }
+      },
+      "messages": {
+        "UserSignedUp": {
+          "$ref": "#/components/messages/Unknown-UserSignedUp"
+        }
+      }
+    }
+  },
+  "operations": {
+    "Unknown-PublishUserSignedUp": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/Unknown-UserSignedUpChannel"
+      },
+      "bindings": {
+        "mqtt": {
+          "bindingVersion": "0.2.0",
+          "qos": 1
+        },
+        "kafka": {
+          "bindingVersion": "0.3.0",
+          "clientId": {
+            "type": "string",
+            "enum": [
+              "my-app-id"
+            ]
+          }
+        }
+      }
+    },
+    "Unknown-PublishUserSignedUpDefaultBinding": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/Unknown-UserSignedUpChannel"
+      },
+      "bindings": {
+        "mqtt": {
+          "qos": 1
+        },
+        "kafka": {
+          "clientId": {
+            "type": "string",
+            "enum": [
+              "my-app-id"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "messages": {
+      "Unknown-UserSignedUp": {
+        "payload": {
+          "schemaFormat": "unknown-schema-format",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "displayName": {
+                "type": "string",
+                "description": "Name of the user"
+              },
+              "email": {
+                "type": "string",
+                "format": "email",
+                "description": "Email of the user"
+              }
+            },
+            "externalDocs": {
+              "url": "https://account-service/docs/UserSignedUp"
+            },
+            "deprecated": false
+          }
+        }
+      },
+      "Unknown-UserSignedUpV2": {
+        "payload": {
+          "$ref": "external-schema.json"
+        }
+      }
+    }
+  }
+}

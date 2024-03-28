@@ -165,7 +165,23 @@ function getDefinitionName(def) {
   }
   if (def.startsWith('http://asyncapi.com/bindings')) {
     const result = bindingsRegex.exec(def);
-    if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
+    if (result) {
+      /*
+        4th element is for internal definitions like http://asyncapi.com/bindings/jms/0.0.1/server.json#/definitions/property
+
+        When is empty, we can ignore it:
+            convert this: http://asyncapi.com/bindings/jms/0.0.1/server.json
+            to this: bindings-jms-0.0.1-server
+        Otherwise we MUST add it to not broke Json Schema validation:
+            convert this: http://asyncapi.com/bindings/jms/0.0.1/server.json#/definitions/property
+            to this: bindings-jms-0.0.1-server/definitions/property
+      */
+      if (result[4] === '') {
+        return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
+      }
+
+      return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}/${result[4].replace('#/', '')}`;
+    }
   }
   
   return path.basename(def, '.json');

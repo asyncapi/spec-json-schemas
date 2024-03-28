@@ -6,7 +6,53 @@
         "description": "This service is in charge of processing user signups"
     },
     "channels": {
-        "UserSignedUpChannel": {
+        "AsyncAPI-UserSignedUpChannel": {
+            "address": "user/signedup/{test_param}",
+            "parameters": {
+                "test_param": {
+                    "enum": [
+                        "test"
+                    ],
+                    "default": "test",
+                    "description": "Just a test description",
+                    "examples": [
+                        "test"
+                    ],
+                    "location": "$message.payload#",
+                    "x-custom-extension": "test"
+                }
+            },
+            "messages": {
+                "AsyncAPI-UserSignedUp": {
+                    "$ref": "#/components/messages/AsyncAPI-UserSignedUp"
+                }
+            }
+        },
+        "Avro-UserSignedUpChannel": {
+            "address": "user/signedup",
+            "messages": {
+                "UserSignedUp": {
+                    "$ref": "#/components/messages/Avro-UserSignedUp"
+                }
+            }
+        },
+        "Json-UserSignedUpChannel": {
+            "address": "user/signedup",
+            "messages": {
+                "UserSignedUp": {
+                    "$ref": "#/components/messages/Json-UserSignedUp"
+                }
+            }
+        },
+        "OpenAPI-UserSignedUpChannel": {
+            "address": "user/signedup",
+            "messages": {
+                "UserSignedUp": {
+                    "$ref": "#/components/messages/OpenAPI-UserSignedUp"
+                }
+            }
+        },
+        "Unknown-UserSignedUpChannel": {
             "address": "user/signedup/{test_param}",
             "parameters": {
                 "test_param": {
@@ -24,16 +70,16 @@
             },
             "messages": {
                 "UserSignedUp": {
-                    "$ref": "#/components/messages/UserSignedUp"
+                    "$ref": "#/components/messages/Unknown-UserSignedUp"
                 }
             }
         }
     },
     "operations": {
-        "PublishUserSignedUp": {
+        "AsyncAPI-PublishUserSignedUp": {
             "action": "send",
             "channel": {
-                "$ref": "#/channels/UserSignedUpChannel"
+                "$ref": "#/channels/AsyncAPI-UserSignedUpChannel"
             },
             "bindings": {
                 "mqtt": {
@@ -51,10 +97,170 @@
                 }
             }
         },
-        "PublishUserSignedUpDefaultBinding": {
+        "AsyncAPI-PublishUserSignedUpDefaultBinding": {
             "action": "send",
             "channel": {
-                "$ref": "#/channels/UserSignedUpChannel"
+                "$ref": "#/channels/AsyncAPI-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "qos": 1
+                },
+                "kafka": {
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "Avro-PublishUserSignedUp": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/Avro-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "bindingVersion": "0.2.0",
+                    "qos": 1
+                },
+                "kafka": {
+                    "bindingVersion": "0.3.0",
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "Avro-PublishUserSignedUpDefaultBinding": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/Avro-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "qos": 1
+                },
+                "kafka": {
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "Json-PublishUserSignedUp": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/Json-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "bindingVersion": "0.2.0",
+                    "qos": 1
+                },
+                "kafka": {
+                    "bindingVersion": "0.3.0",
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "Json-PublishUserSignedUpDefaultBinding": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/Json-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "qos": 1
+                },
+                "kafka": {
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "OpenAPI-PublishUserSignedUp": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/OpenAPI-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "bindingVersion": "0.2.0",
+                    "qos": 1
+                },
+                "kafka": {
+                    "bindingVersion": "0.3.0",
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "OpenAPI-PublishUserSignedUpDefaultBinding": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/OpenAPI-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "qos": 1
+                },
+                "kafka": {
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "Unknown-PublishUserSignedUp": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/Unknown-UserSignedUpChannel"
+            },
+            "bindings": {
+                "mqtt": {
+                    "bindingVersion": "0.2.0",
+                    "qos": 1
+                },
+                "kafka": {
+                    "bindingVersion": "0.3.0",
+                    "clientId": {
+                        "type": "string",
+                        "enum": [
+                            "my-app-id"
+                        ]
+                    }
+                }
+            }
+        },
+        "Unknown-PublishUserSignedUpDefaultBinding": {
+            "action": "send",
+            "channel": {
+                "$ref": "#/channels/Unknown-UserSignedUpChannel"
             },
             "bindings": {
                 "mqtt": {
@@ -72,8 +278,85 @@
         }
     },
     "components": {
+        "schemas": {
+            "Avro-UserSignedUpHeaders": {
+                "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+                "schema": {
+                    "fields": [
+                        {
+                            "name": "applicationInstanceId",
+                            "type": "string"
+                        },
+                        {
+                            "name": "correlationId",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "UserSignedUpHeaders",
+                    "namespace": "com.example.avro",
+                    "type": "record"
+                }
+            },
+            "Avro-ReferencedSchema": {
+                "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+                "schema": {
+                    "$ref": "reference-to-some-avro-file.avsc"
+                }
+            },
+            "Json-UserSignedUpHeaders": {
+                "schemaFormat": "application/schema+json;version=draft-07",
+                "schema": {
+                    "type": "object",
+                    "properties": {
+                        "applicationInstanceId": {
+                            "type": "string",
+                            "description": "Application instance Id"
+                        },
+                        "correlationId": {
+                            "type": "string",
+                            "description": "Correlation Id"
+                        }
+                    }
+                }
+            },
+            "Json-ReferencedSchema": {
+                "schemaFormat": "application/schema+json;version=draft-07",
+                "schema": {
+                    "$ref": "reference-to-some-json-schema-file.json"
+                }
+            },
+            "OpenAPI-ReferencedSchema": {
+                "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
+                "schema": {
+                    "$ref": "reference-to-some-openapi-file.json"
+                }
+            }
+        },
         "messages": {
-            "UserSignedUp": {
+            "AsyncAPI-UserSignedUp": {
+                "payload": {
+                    "schemaFormat": "application/vnd.aai.asyncapi+json;version=3.0.0",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "Name of the user"
+                            },
+                            "email": {
+                                "type": "string",
+                                "format": "email",
+                                "description": "Email of the user"
+                            }
+                        },
+                        "externalDocs": {
+                            "url": "https://account-service/docs/UserSignedUp"
+                        },
+                        "deprecated": false
+                    }
+                }
+            },
+            "AsyncAPI-UserSignedUpV2": {
                 "payload": {
                     "type": "object",
                     "properties": {
@@ -86,10 +369,398 @@
                             "format": "email",
                             "description": "Email of the user"
                         }
+                    },
+                    "externalDocs": {
+                        "url": "https://account-service/docs/UserSignedUp"
+                    },
+                    "deprecated": false
+                }
+            },
+            "AsyncAPI-UserSignedUpV3": {
+                "payload": {
+                    "$ref": "external-schema.json"
+                }
+            },
+            "Avro-UserSignedUp": {
+                "headers": {
+                    "$ref": "#/components/schemas/Avro-UserSignedUpHeaders"
+                },
+                "payload": {
+                    "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+                    "schema": {
+                        "doc": "This is a user record in a fictitious to-do-list management app. It supports arbitrary grouping and nesting of items, and allows you to add items by email or by tweeting.\n\nNote this app doesn't actually exist. The schema is just a demo for [Avrodoc](https://github.com/ept/avrodoc)!",
+                        "fields": [
+                            {
+                                "name": "id",
+                                "doc": "System-assigned numeric user ID. Cannot be changed by the user.",
+                                "type": "int"
+                            },
+                            {
+                                "name": "username",
+                                "doc": "The username chosen by the user. Can be changed by the user.",
+                                "type": "string"
+                            },
+                            {
+                                "name": "passwordHash",
+                                "doc": "The user's password, hashed using [scrypt](http://www.tarsnap.com/scrypt.html).",
+                                "type": "string"
+                            },
+                            {
+                                "name": "signupDate",
+                                "doc": "Timestamp (milliseconds since epoch) when the user signed up",
+                                "type": "long"
+                            },
+                            {
+                                "name": "emailAddresses",
+                                "doc": "All email addresses on the user's account",
+                                "type": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "record",
+                                        "name": "EmailAddress",
+                                        "doc": "Stores details about an email address that a user has associated with their account.",
+                                        "fields": [
+                                            {
+                                                "name": "address",
+                                                "doc": "The email address, e.g. `foo@example.com`",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "name": "verified",
+                                                "doc": "true if the user has clicked the link in a confirmation email to this address.",
+                                                "type": "boolean",
+                                                "default": false
+                                            },
+                                            {
+                                                "name": "dateAdded",
+                                                "doc": "Timestamp (milliseconds since epoch) when the email address was added to the account.",
+                                                "type": "long"
+                                            },
+                                            {
+                                                "name": "dateBounced",
+                                                "doc": "Timestamp (milliseconds since epoch) when an email sent to this address last bounced. Reset to null when the address no longer bounces.",
+                                                "type": [
+                                                    "null",
+                                                    "long"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "name": "twitterAccounts",
+                                "doc": "All Twitter accounts that the user has OAuthed",
+                                "type": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "record",
+                                        "name": "TwitterAccount",
+                                        "doc": "Stores access credentials for one Twitter account, as granted to us by the user by OAuth.",
+                                        "fields": [
+                                            {
+                                                "name": "status",
+                                                "doc": "Indicator of whether this authorization is currently active, or has been revoked",
+                                                "type": {
+                                                    "type": "enum",
+                                                    "name": "OAuthStatus",
+                                                    "doc": "* `PENDING`: the user has started authorizing, but not yet finished\n* `ACTIVE`: the token should work\n* `DENIED`: the user declined the authorization\n* `EXPIRED`: the token used to work, but now it doesn't\n* `REVOKED`: the user has explicitly revoked the token",
+                                                    "symbols": [
+                                                        "PENDING",
+                                                        "ACTIVE",
+                                                        "DENIED",
+                                                        "EXPIRED",
+                                                        "REVOKED"
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "name": "userId",
+                                                "doc": "Twitter's numeric ID for this user",
+                                                "type": "long"
+                                            },
+                                            {
+                                                "name": "screenName",
+                                                "doc": "The twitter username for this account (can be changed by the user)",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "name": "oauthToken",
+                                                "doc": "The OAuth token for this Twitter account",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "name": "oauthTokenSecret",
+                                                "doc": "The OAuth secret, used for signing requests on behalf of this Twitter account. `null` whilst the OAuth flow is not yet complete.",
+                                                "type": [
+                                                    "null",
+                                                    "string"
+                                                ]
+                                            },
+                                            {
+                                                "name": "dateAuthorized",
+                                                "doc": "Timestamp (milliseconds since epoch) when the user last authorized this Twitter account",
+                                                "type": "long"
+                                            }
+                                        ]
+                                    }
+                                }
+                            },
+                            {
+                                "name": "toDoItems",
+                                "doc": "The top-level items in the user's to-do list",
+                                "type": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "record",
+                                        "name": "ToDoItem",
+                                        "doc": "A record is one node in a To-Do item tree (every record can contain nested sub-records).",
+                                        "fields": [
+                                            {
+                                                "name": "status",
+                                                "doc": "User-selected state for this item (e.g. whether or not it is marked as done)",
+                                                "type": {
+                                                    "type": "enum",
+                                                    "name": "ToDoStatus",
+                                                    "doc": "* `HIDDEN`: not currently visible, e.g. because it becomes actionable in future\n* `ACTIONABLE`: appears in the current to-do list\n* `DONE`: marked as done, but still appears in the list\n* `ARCHIVED`: marked as done and no longer visible\n* `DELETED`: not done and removed from list (preserved for undo purposes)",
+                                                    "symbols": [
+                                                        "HIDDEN",
+                                                        "ACTIONABLE",
+                                                        "DONE",
+                                                        "ARCHIVED",
+                                                        "DELETED"
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "name": "title",
+                                                "doc": "One-line summary of the item",
+                                                "type": "string"
+                                            },
+                                            {
+                                                "name": "description",
+                                                "doc": "Detailed description (may contain HTML markup)",
+                                                "type": [
+                                                    "null",
+                                                    "string"
+                                                ]
+                                            },
+                                            {
+                                                "name": "snoozeDate",
+                                                "doc": "Timestamp (milliseconds since epoch) at which the item should go from `HIDDEN` to `ACTIONABLE` status",
+                                                "type": [
+                                                    "null",
+                                                    "long"
+                                                ]
+                                            },
+                                            {
+                                                "name": "subItems",
+                                                "doc": "List of children of this to-do tree node",
+                                                "type": {
+                                                    "type": "array",
+                                                    "items": "ToDoItem"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ],
+                        "name": "User",
+                        "namespace": "com.example.avro",
+                        "type": "record"
                     }
                 }
             },
-            "UserSignedUpV2": {
+            "Json-UserSignedUp": {
+                "headers": {
+                    "$ref": "#/components/schemas/Json-UserSignedUpHeaders"
+                },
+                "payload": {
+                    "schemaFormat": "application/schema+json;version=draft-07",
+                    "schema": {
+                        "type": "object",
+                        "description": "This is a user record in a fictitious to-do-list management app. It supports arbitrary grouping and nesting of items, and allows you to add items by email or by tweeting.\n\nNote this app doesn't actually exist. The schema is just a demo for [Avrodoc](https://github.com/ept/avrodoc)!",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "description": "System-assigned numeric user ID. Cannot be changed by the user."
+                            },
+                            "username": {
+                                "type": "string",
+                                "description": "The username chosen by the user. Can be changed by the user."
+                            },
+                            "passwordHash": {
+                                "type": "string",
+                                "description": "The user's password, hashed using [scrypt](http://www.tarsnap.com/scrypt.html)."
+                            },
+                            "signupDate": {
+                                "type": "number",
+                                "description": "Timestamp (milliseconds since epoch) when the user signed up"
+                            },
+                            "emailAddresses": {
+                                "type": "array",
+                                "description": "All email addresses on the user's account",
+                                "items": {
+                                    "type": "object",
+                                    "description": "Stores details about an email address that a user has associated with their account.",
+                                    "properties": {
+                                        "address": {
+                                            "type": "string",
+                                            "description": "The email address, e.g. `foo@example.com`"
+                                        },
+                                        "verified": {
+                                            "type": "boolean",
+                                            "description": "true if the user has clicked the link in a confirmation email to this address.",
+                                            "default": false
+                                        },
+                                        "dateAdded": {
+                                            "type": "number",
+                                            "description": "Timestamp (milliseconds since epoch) when the email address was added to the account."
+                                        },
+                                        "dateBounced": {
+                                            "type": "number",
+                                            "description": "Timestamp (milliseconds since epoch) when an email sent to this address last bounced. Reset to null when the address no longer bounces."
+                                        }
+                                    }
+                                }
+                            },
+                            "twitterAccounts": {
+                                "type": "array",
+                                "description": "All Twitter accounts that the user has OAuthed",
+                                "items": {
+                                    "type": "object",
+                                    "description": "Stores access credentials for one Twitter account, as granted to us by the user by OAuth.",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "description": "Indicator of whether this authorization is currently active, or has been revoked",
+                                            "enum": [
+                                                "PENDING",
+                                                "ACTIVE",
+                                                "DENIED",
+                                                "EXPIRED",
+                                                "REVOKED"
+                                            ]
+                                        },
+                                        "userId": {
+                                            "type": "number",
+                                            "description": "Twitter's numeric ID for this user"
+                                        },
+                                        "screenName": {
+                                            "type": "string",
+                                            "description": "The twitter username for this account (can be changed by the user)"
+                                        },
+                                        "oauthToken": {
+                                            "type": "string",
+                                            "description": "The OAuth token for this Twitter account"
+                                        },
+                                        "oauthTokenSecret": {
+                                            "type": "string",
+                                            "description": "The OAuth secret, used for signing requests on behalf of this Twitter account. `null` whilst the OAuth flow is not yet complete."
+                                        },
+                                        "dateAuthorized": {
+                                            "type": "number",
+                                            "description": "Timestamp (milliseconds since epoch) when the user last authorized this Twitter account"
+                                        }
+                                    }
+                                }
+                            },
+                            "toDoItems": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "description": "A record is one node in a To-Do item tree (every record can contain nested sub-records).",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "description": "User-selected state for this item (e.g. whether or not it is marked as done)",
+                                            "enum": [
+                                                "HIDDEN",
+                                                "ACTIONABLE",
+                                                "DONE",
+                                                "ARCHIVED",
+                                                "DELETED"
+                                            ]
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "description": "One-line summary of the item"
+                                        },
+                                        "description": {
+                                            "type": "string",
+                                            "description": "Detailed description (may contain HTML markup)"
+                                        },
+                                        "snoozeDate": {
+                                            "type": "number",
+                                            "description": "Timestamp (milliseconds since epoch) at which the item should go from `HIDDEN` to `ACTIONABLE` status"
+                                        },
+                                        "subItems": {
+                                            "type": "array",
+                                            "doc": "List of children of this to-do tree node",
+                                            "items": {
+                                                "$ref": "#/components/messages/UserSignedUp/payload/schema/properties/toDoItems"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "OpenAPI-UserSignedUp": {
+                "payload": {
+                    "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
+                    "schema": {
+                        "properties": {
+                            "id": {
+                                "type": "integer"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "completed": {
+                                "type": "boolean"
+                            },
+                            "completed_at": {
+                                "type": "string",
+                                "format": "date-time",
+                                "nullable": true
+                            }
+                        },
+                        "required": [
+                            "id",
+                            "name",
+                            "completed"
+                        ]
+                    }
+                }
+            },
+            "Unknown-UserSignedUp": {
+                "payload": {
+                    "schemaFormat": "unknown-schema-format",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "displayName": {
+                                "type": "string",
+                                "description": "Name of the user"
+                            },
+                            "email": {
+                                "type": "string",
+                                "format": "email",
+                                "description": "Email of the user"
+                            }
+                        },
+                        "externalDocs": {
+                            "url": "https://account-service/docs/UserSignedUp"
+                        },
+                        "deprecated": false
+                    }
+                }
+            },
+            "Unknown-UserSignedUpV2": {
                 "payload": {
                     "$ref": "external-schema.json"
                 }
