@@ -2688,20 +2688,6 @@
         "anySchema": {
             "type": "object",
             "description": "An object representing either a Reference, a Schema or a Multi Format Schema",
-            "properties": {
-                "schemaFormat": {
-                    "type": "string",
-                    "description": "Supported Schema format"
-                },
-                "schema": {
-                    "type": "object",
-                    "description": "Schema definition"
-                },
-                "$ref": {
-                    "type": "string",
-                    "description": "Reference to schema"
-                }
-            },
             "oneOf": [
                 {
                     "description": "Because of $ref collision in Reference and AsyncAPI Schema(includes $ref from Json Schema)",
