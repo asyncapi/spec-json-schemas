@@ -2736,49 +2736,18 @@
         },
         "http://asyncapi.com/definitions/3.0.0/anySchema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
-            "type": "object",
-            "description": "An object representing either a Reference, a Schema or a Multi Format Schema",
-            "properties": {
-                "schemaFormat": {
-                    "type": "string",
-                    "description": "Supported Schema format"
-                },
-                "schema": {
-                    "type": "object",
-                    "description": "Schema definition"
-                },
-                "$ref": {
-                    "type": "string",
-                    "description": "Reference to schema"
-                }
+            "if": {
+                "required": [
+                    "schema"
+                ]
             },
-            "oneOf": [
-                {
-                    "description": "Because of $ref collision in Reference and AsyncAPI Schema(includes $ref from Json Schema)",
-                    "not": {
-                        "required": [
-                            "schemaFormat",
-                            "schema"
-                        ]
-                    },
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                },
-                {
-                    "type": "object",
-                    "required": [
-                        "schemaFormat",
-                        "schema"
-                    ],
-                    "not": {
-                        "required": [
-                            "$ref"
-                        ]
-                    },
-                    "minProperties": 2,
-                    "maxProperties": 2,
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-                }
-            ]
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+            },
+            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise."
         },
         "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json",
@@ -3336,8 +3305,7 @@
                     },
                     "required": [
                         "type"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "customTypeReference": {
                     "title": "Custom Type",
@@ -3389,8 +3357,7 @@
                     "required": [
                         "name",
                         "type"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "avroRecord": {
                     "title": "Record",
@@ -3427,8 +3394,7 @@
                         "type",
                         "name",
                         "fields"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "avroEnum": {
                     "title": "Enum",
@@ -3465,8 +3431,7 @@
                         "type",
                         "name",
                         "symbols"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "avroArray": {
                     "title": "Array",
@@ -3499,8 +3464,7 @@
                     "required": [
                         "type",
                         "items"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "avroMap": {
                     "title": "Map",
@@ -3533,8 +3497,7 @@
                     "required": [
                         "type",
                         "values"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "avroFixed": {
                     "title": "Fixed",
@@ -3568,8 +3531,7 @@
                         "type",
                         "name",
                         "size"
-                    ],
-                    "additionalProperties": false
+                    ]
                 },
                 "name": {
                     "type": "string",

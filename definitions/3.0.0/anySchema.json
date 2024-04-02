@@ -1,21 +1,16 @@
 {
-  "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
+  "if": {
+    "required": [
+      "schema"
+    ]
+  },
+  "then": {
+    "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+  },
+  "else": {
+    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+  },
+  "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "type": "object",
-  "description": "An object representing either a Reference, a Schema or a Multi Format Schema",
-  "oneOf": [
-    {
-      "description": "Because of $ref collision in Reference and AsyncAPI Schema(includes $ref from Json Schema)",
-      "not": {"required": ["schemaFormat", "schema"]},
-      "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-    },
-    {
-      "type": "object",
-      "required": ["schemaFormat", "schema"],
-      "not": {"required": ["$ref"]},
-      "minProperties": 2,
-      "maxProperties": 2,
-      "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
-    }
-  ]
+  "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
 }
