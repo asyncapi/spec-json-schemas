@@ -2056,7 +2056,7 @@
                 "properties": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/bindings-jms-0.0.1-server"
+                        "$ref": "#/definitions/bindings-jms-0.0.1-server/definitions/property"
                     },
                     "description": "Additional properties to set on the JMS ConnectionFactory implementation for the JMS Provider."
                 },
@@ -2702,6 +2702,12 @@
         },
         "multiFormatSchema": {
             "description": "The Multi Format Schema Object represents a schema definition. It differs from the Schema Object in that it supports multiple schema formats or languages (e.g., JSON Schema, Avro, etc.).",
+            "type": "object",
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
             "if": {
                 "not": {
                     "type": "object"
@@ -2711,13 +2717,6 @@
                 "$ref": "#/definitions/schema"
             },
             "else": {
-                "type": "object",
-                "additionalProperties": false,
-                "patternProperties": {
-                    "^x-[\\w\\d\\.\\x2d_]+$": {
-                        "$ref": "#/definitions/specificationExtension"
-                    }
-                },
                 "properties": {
                     "schemaFormat": {
                         "description": "A string containing the name of the schema format that is used to define the information. If schemaFormat is missing, it MUST default to application/vnd.aai.asyncapi+json;version={{asyncapi}} where {{asyncapi}} matches the AsyncAPI Version String. In such a case, this would make the Multi Format Schema Object equivalent to the Schema Object. When using Reference Object within the schema, the schemaFormat of the resource being referenced MUST match the schemaFormat of the schema that contains the initial reference. For example, if you reference Avro schema, then schemaFormat of referencing resource and the resource being reference MUST match.",
@@ -2748,9 +2747,6 @@
                                 ]
                             }
                         ]
-                    },
-                    "schema": {
-                        "description": "Definition of the message payload. It can be of any type but defaults to Schema Object. It MUST match the schema format defined in schemaFormat, including the encoding type. E.g., Avro should be inlined as either a YAML or JSON object instead of as a string to be parsed as YAML or JSON. Non-JSON-based schemas (e.g., Protobuf or XSD) MUST be inlined as a string."
                     }
                 },
                 "allOf": [
@@ -2766,14 +2762,7 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "#/definitions/Reference"
-                                        },
-                                        {
-                                            "$ref": "#/definitions/schema"
-                                        }
-                                    ]
+                                    "$ref": "#/definitions/schema"
                                 }
                             }
                         }
@@ -2818,14 +2807,7 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "#/definitions/Reference"
-                                        },
-                                        {
-                                            "$ref": "#/definitions/schema"
-                                        }
-                                    ]
+                                    "$ref": "#/definitions/schema"
                                 }
                             }
                         }
@@ -2847,14 +2829,7 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "#/definitions/Reference"
-                                        },
-                                        {
-                                            "$ref": "#/definitions/json-schema-draft-07-schema"
-                                        }
-                                    ]
+                                    "$ref": "#/definitions/json-schema-draft-07-schema"
                                 }
                             }
                         }
@@ -5719,10 +5694,10 @@
                     "description": "The name of the topic. Can be different from the channel name to allow flexibility around AWS resource naming limitations."
                 },
                 "ordering": {
-                    "$ref": "#/definitions/bindings-sns-0.1.0-channel"
+                    "$ref": "#/definitions/bindings-sns-0.1.0-channel/definitions/ordering"
                 },
                 "policy": {
-                    "$ref": "#/definitions/bindings-sns-0.1.0-channel"
+                    "$ref": "#/definitions/bindings-sns-0.1.0-channel/definitions/policy"
                 },
                 "tags": {
                     "type": "object",
@@ -5777,7 +5752,7 @@
                             "type": "array",
                             "description": "An array of statement objects, each of which controls a permission for this topic",
                             "items": {
-                                "$ref": "#/definitions/bindings-sns-0.1.0-channel"
+                                "$ref": "#/definitions/bindings-sns-0.1.0-channel/definitions/statement"
                             }
                         }
                     },
@@ -5864,11 +5839,11 @@
             "properties": {
                 "queue": {
                     "description": "A definition of the queue that will be used as the channel.",
-                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
+                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/queue"
                 },
                 "deadLetterQueue": {
                     "description": "A definition of the queue that will be used for un-processable messages.",
-                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
+                    "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/queue"
                 },
                 "bindingVersion": {
                     "type": "string",
@@ -5947,10 +5922,10 @@
                             "default": 345600
                         },
                         "redrivePolicy": {
-                            "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
+                            "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/redrivePolicy"
                         },
                         "policy": {
-                            "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
+                            "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/policy"
                         },
                         "tags": {
                             "type": "object",
@@ -5972,7 +5947,7 @@
                     },
                     "properties": {
                         "deadLetterQueue": {
-                            "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
+                            "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/identifier"
                         },
                         "maxReceiveCount": {
                             "type": "integer",
@@ -6016,7 +5991,7 @@
                             "type": "array",
                             "description": "An array of statement objects, each of which controls a permission for this queue.",
                             "items": {
-                                "$ref": "#/definitions/bindings-sqs-0.2.0-channel"
+                                "$ref": "#/definitions/bindings-sqs-0.2.0-channel/definitions/statement"
                             }
                         }
                     },
@@ -7638,19 +7613,19 @@
             },
             "properties": {
                 "topic": {
-                    "$ref": "#/definitions/bindings-sns-0.1.0-operation",
+                    "$ref": "#/definitions/bindings-sns-0.1.0-operation/definitions/identifier",
                     "description": "Often we can assume that the SNS Topic is the channel name-we provide this field in case the you need to supply the ARN, or the Topic name is not the channel name in the AsyncAPI document."
                 },
                 "consumers": {
                     "type": "array",
                     "description": "The protocols that listen to this topic and their endpoints.",
                     "items": {
-                        "$ref": "#/definitions/bindings-sns-0.1.0-operation"
+                        "$ref": "#/definitions/bindings-sns-0.1.0-operation/definitions/consumer"
                     },
                     "minItems": 1
                 },
                 "deliveryPolicy": {
-                    "$ref": "#/definitions/bindings-sns-0.1.0-operation",
+                    "$ref": "#/definitions/bindings-sns-0.1.0-operation/definitions/deliveryPolicy",
                     "description": "Policy for retries to HTTP. The field is the default for HTTP receivers of the SNS Topic which may be overridden by a specific consumer."
                 },
                 "bindingVersion": {
@@ -7718,7 +7693,7 @@
                         },
                         "endpoint": {
                             "description": "The endpoint messages are delivered to.",
-                            "$ref": "#/definitions/bindings-sns-0.1.0-operation"
+                            "$ref": "#/definitions/bindings-sns-0.1.0-operation/definitions/identifier"
                         },
                         "filterPolicy": {
                             "type": "object",
@@ -7759,10 +7734,10 @@
                             "description": "If true AWS SNS attributes are removed from the body, and for SQS, SNS message attributes are copied to SQS message attributes. If false the SNS attributes are included in the body."
                         },
                         "redrivePolicy": {
-                            "$ref": "#/definitions/bindings-sns-0.1.0-operation"
+                            "$ref": "#/definitions/bindings-sns-0.1.0-operation/definitions/redrivePolicy"
                         },
                         "deliveryPolicy": {
-                            "$ref": "#/definitions/bindings-sns-0.1.0-operation",
+                            "$ref": "#/definitions/bindings-sns-0.1.0-operation/definitions/deliveryPolicy",
                             "description": "Policy for retries to HTTP. The parameter is for that SNS Subscription and overrides any policy on the SNS Topic."
                         },
                         "displayName": {
@@ -7834,7 +7809,7 @@
                     },
                     "properties": {
                         "deadLetterQueue": {
-                            "$ref": "#/definitions/bindings-sns-0.1.0-operation",
+                            "$ref": "#/definitions/bindings-sns-0.1.0-operation/definitions/identifier",
                             "description": "The SQS queue to use as a dead letter queue (DLQ)."
                         },
                         "maxReceiveCount": {
@@ -7912,7 +7887,7 @@
                     "type": "array",
                     "description": "Queue objects that are either the endpoint for an SNS Operation Binding Object, or the deadLetterQueue of the SQS Operation Binding Object.",
                     "items": {
-                        "$ref": "#/definitions/bindings-sqs-0.2.0-operation"
+                        "$ref": "#/definitions/bindings-sqs-0.2.0-operation/definitions/queue"
                     }
                 },
                 "bindingVersion": {
@@ -7996,10 +7971,10 @@
                             "default": 345600
                         },
                         "redrivePolicy": {
-                            "$ref": "#/definitions/bindings-sqs-0.2.0-operation"
+                            "$ref": "#/definitions/bindings-sqs-0.2.0-operation/definitions/redrivePolicy"
                         },
                         "policy": {
-                            "$ref": "#/definitions/bindings-sqs-0.2.0-operation"
+                            "$ref": "#/definitions/bindings-sqs-0.2.0-operation/definitions/policy"
                         },
                         "tags": {
                             "type": "object",
@@ -8020,7 +7995,7 @@
                     },
                     "properties": {
                         "deadLetterQueue": {
-                            "$ref": "#/definitions/bindings-sqs-0.2.0-operation"
+                            "$ref": "#/definitions/bindings-sqs-0.2.0-operation/definitions/identifier"
                         },
                         "maxReceiveCount": {
                             "type": "integer",
@@ -8064,7 +8039,7 @@
                             "type": "array",
                             "description": "An array of statement objects, each of which controls a permission for this queue.",
                             "items": {
-                                "$ref": "#/definitions/bindings-sqs-0.2.0-operation"
+                                "$ref": "#/definitions/bindings-sqs-0.2.0-operation/definitions/statement"
                             }
                         }
                     },
@@ -8516,14 +8491,7 @@
                     "description": "An object to hold reusable Schema Object. If this is a Schema Object, then the schemaFormat will be assumed to be 'application/vnd.aai.asyncapi+json;version=asyncapi' where the version is equal to the AsyncAPI Version String.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/anySchema"
-                                }
-                            ]
+                            "$ref": "#/definitions/anySchema"
                         }
                     }
                 },
