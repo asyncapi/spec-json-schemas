@@ -7,28 +7,19 @@ const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const extensionsDirectory = path.resolve(__dirname, '../../extensions');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
 const JSON_SCHEMA_PROP_NAME = 'json-schema-draft-07-schema';
-console.log(
-  `Looking for separate definitions in the following directory: ${definitionsDirectory}`
-);
-console.log(
-  `Looking for binding version schemas in the following directory: ${bindingsDirectory}`
-);
-console.log(
-  `Looking for extension version schemas in the following directory: ${extensionsDirectory}`
-);
+console.log(`Looking for separate definitions in the following directory: ${definitionsDirectory}`);
+console.log(`Looking for binding version schemas in the following directory: ${bindingsDirectory}`);
+console.log(`Looking for extension version schemas in the following directory: ${extensionsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
 
 // definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
-const definitionsRegex =
-  /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i;
+const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i;
 
 // definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
-const bindingsRegex =
-  /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i;
+const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i;
 
 // definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
-const extensionsRegex =
-  /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i;
+const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i;
 
 /**
  * When run, go through all versions that have split definitions and bundles them together.
