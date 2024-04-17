@@ -6,7 +6,11 @@
 
 # The default owners are automatically added as reviewers when you open a pull request unless different owners are specified in the file.
 
-* @fmvilas @derberg @dalelane @smoya @char0n @asyncapi-bot-eve @GreenRover
+# Specification code owners
+* @fmvilas @derberg @dalelane @smoya @char0n @GreenRover 
+
+# Tooling helpers
+* @jonaslagoni @asyncapi-bot-eve
 
 /bindings/anypointmq/   @mboss37 @GeraldLoeffler
 /bindings/ibmmq/        @rcoppen
