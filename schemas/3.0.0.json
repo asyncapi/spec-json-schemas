@@ -1244,6 +1244,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
+                                "0.5.0",
                                 "0.4.0",
                                 "0.3.0"
                             ]
@@ -2752,6 +2753,12 @@
         "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json": {
             "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json",
             "description": "The Multi Format Schema Object represents a schema definition. It differs from the Schema Object in that it supports multiple schema formats or languages (e.g., JSON Schema, Avro, etc.).",
+            "type": "object",
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
             "if": {
                 "not": {
                     "type": "object"
@@ -2761,13 +2768,6 @@
                 "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
             },
             "else": {
-                "type": "object",
-                "additionalProperties": false,
-                "patternProperties": {
-                    "^x-[\\w\\d\\.\\x2d_]+$": {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                    }
-                },
                 "properties": {
                     "schemaFormat": {
                         "description": "A string containing the name of the schema format that is used to define the information. If schemaFormat is missing, it MUST default to application/vnd.aai.asyncapi+json;version={{asyncapi}} where {{asyncapi}} matches the AsyncAPI Version String. In such a case, this would make the Multi Format Schema Object equivalent to the Schema Object. When using Reference Object within the schema, the schemaFormat of the resource being referenced MUST match the schemaFormat of the schema that contains the initial reference. For example, if you reference Avro schema, then schemaFormat of referencing resource and the resource being reference MUST match.",
@@ -2798,9 +2798,6 @@
                                 ]
                             }
                         ]
-                    },
-                    "schema": {
-                        "description": "Definition of the message payload. It can be of any type but defaults to Schema Object. It MUST match the schema format defined in schemaFormat, including the encoding type. E.g., Avro should be inlined as either a YAML or JSON object instead of as a string to be parsed as YAML or JSON. Non-JSON-based schemas (e.g., Protobuf or XSD) MUST be inlined as a string."
                     }
                 },
                 "allOf": [
@@ -2816,14 +2813,7 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                                        }
-                                    ]
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                                 }
                             }
                         }
@@ -2868,14 +2858,7 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-                                        }
-                                    ]
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                                 }
                             }
                         }
@@ -2897,14 +2880,7 @@
                         "then": {
                             "properties": {
                                 "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                        },
-                                        {
-                                            "$ref": "http://json-schema.org/draft-07/schema"
-                                        }
-                                    ]
+                                    "$ref": "http://json-schema.org/draft-07/schema"
                                 }
                             }
                         }
@@ -6990,6 +6966,7 @@
                     "properties": {
                         "bindingVersion": {
                             "enum": [
+                                "0.5.0",
                                 "0.4.0",
                                 "0.3.0"
                             ]
@@ -8616,14 +8593,7 @@
                     "description": "An object to hold reusable Schema Object. If this is a Schema Object, then the schemaFormat will be assumed to be 'application/vnd.aai.asyncapi+json;version=asyncapi' where the version is equal to the AsyncAPI Version String.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
-                                }
-                            ]
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                         }
                     }
                 },

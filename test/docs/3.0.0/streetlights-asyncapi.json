@@ -1,0 +1,126 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "Account Service",
+    "version": "1.0.0",
+    "description": "This service is in charge of processing user signups"
+  },
+  "channels": {
+    "AsyncAPI-UserSignedUpChannel": {
+      "address": "user/signedup/{test_param}",
+      "parameters": {
+        "test_param": {
+          "enum": [
+            "test"
+          ],
+          "default": "test",
+          "description": "Just a test description",
+          "examples": [
+            "test"
+          ],
+          "location": "$message.payload#",
+          "x-custom-extension": "test"
+        }
+      },
+      "messages": {
+        "AsyncAPI-UserSignedUp": {
+          "$ref": "#/components/messages/AsyncAPI-UserSignedUp"
+        }
+      }
+    }
+  },
+  "operations": {
+    "AsyncAPI-PublishUserSignedUp": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/AsyncAPI-UserSignedUpChannel"
+      },
+      "bindings": {
+        "mqtt": {
+          "bindingVersion": "0.2.0",
+          "qos": 1
+        },
+        "kafka": {
+          "bindingVersion": "0.3.0",
+          "clientId": {
+            "type": "string",
+            "enum": [
+              "my-app-id"
+            ]
+          }
+        }
+      }
+    },
+    "AsyncAPI-PublishUserSignedUpDefaultBinding": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/AsyncAPI-UserSignedUpChannel"
+      },
+      "bindings": {
+        "mqtt": {
+          "qos": 1
+        },
+        "kafka": {
+          "clientId": {
+            "type": "string",
+            "enum": [
+              "my-app-id"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "messages": {
+      "AsyncAPI-UserSignedUp": {
+        "payload": {
+          "schemaFormat": "application/vnd.aai.asyncapi+json;version=3.0.0",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "displayName": {
+                "type": "string",
+                "description": "Name of the user"
+              },
+              "email": {
+                "type": "string",
+                "format": "email",
+                "description": "Email of the user"
+              }
+            },
+            "externalDocs": {
+              "url": "https://account-service/docs/UserSignedUp"
+            },
+            "deprecated": false
+          }
+        }
+      },
+      "AsyncAPI-UserSignedUpV2": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "displayName": {
+              "type": "string",
+              "description": "Name of the user"
+            },
+            "email": {
+              "type": "string",
+              "format": "email",
+              "description": "Email of the user"
+            }
+          },
+          "externalDocs": {
+            "url": "https://account-service/docs/UserSignedUp"
+          },
+          "deprecated": false
+        }
+      },
+      "AsyncAPI-UserSignedUpV3": {
+        "payload": {
+          "$ref": "external-schema.json"
+        }
+      }
+    }
+  }
+}
