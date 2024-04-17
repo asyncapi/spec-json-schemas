@@ -1,0 +1,225 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "Account Service",
+    "version": "1.0.0",
+    "description": "This service is in charge of processing user signups"
+  },
+  "channels": {
+    "Json-UserSignedUpChannel": {
+      "address": "user/signedup",
+      "messages": {
+        "UserSignedUp": {
+          "$ref": "#/components/messages/Json-UserSignedUp"
+        }
+      }
+    }
+  },
+  "operations": {
+    "Json-PublishUserSignedUp": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/Json-UserSignedUpChannel"
+      },
+      "bindings": {
+        "mqtt": {
+          "bindingVersion": "0.2.0",
+          "qos": 1
+        },
+        "kafka": {
+          "bindingVersion": "0.3.0",
+          "clientId": {
+            "type": "string",
+            "enum": [
+              "my-app-id"
+            ]
+          }
+        }
+      }
+    },
+    "Json-PublishUserSignedUpDefaultBinding": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/Json-UserSignedUpChannel"
+      },
+      "bindings": {
+        "mqtt": {
+          "qos": 1
+        },
+        "kafka": {
+          "clientId": {
+            "type": "string",
+            "enum": [
+              "my-app-id"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Json-UserSignedUpHeaders": {
+        "schemaFormat": "application/schema+json;version=draft-07",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "applicationInstanceId": {
+              "type": "string",
+              "description": "Application instance Id"
+            },
+            "correlationId": {
+              "type": "string",
+              "description": "Correlation Id"
+            }
+          }
+        }
+      },
+      "Json-ReferencedSchema" : {
+        "schemaFormat": "application/schema+json;version=draft-07",
+        "schema": {
+          "$ref": "reference-to-some-json-schema-file.json"
+        }
+      }
+    },
+    "messages": {
+      "Json-UserSignedUp": {
+        "headers": {
+          "$ref": "#/components/schemas/Json-UserSignedUpHeaders"
+        },
+        "payload": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "type": "object",
+            "description": "This is a user record in a fictitious to-do-list management app. It supports arbitrary grouping and nesting of items, and allows you to add items by email or by tweeting.\n\nNote this app doesn't actually exist. The schema is just a demo for [Avrodoc](https://github.com/ept/avrodoc)!",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "description": "System-assigned numeric user ID. Cannot be changed by the user."
+              },
+              "username": {
+                "type": "string",
+                "description": "The username chosen by the user. Can be changed by the user."
+              },
+              "passwordHash": {
+                "type": "string",
+                "description": "The user's password, hashed using [scrypt](http://www.tarsnap.com/scrypt.html)."
+              },
+              "signupDate": {
+                "type": "number",
+                "description": "Timestamp (milliseconds since epoch) when the user signed up"
+              },
+              "emailAddresses": {
+                "type": "array",
+                "description": "All email addresses on the user's account",
+                "items": {
+                  "type": "object",
+                  "description": "Stores details about an email address that a user has associated with their account.",
+                  "properties": {
+                    "address": {
+                      "type": "string",
+                      "description": "The email address, e.g. `foo@example.com`"
+                    },
+                    "verified": {
+                      "type": "boolean",
+                      "description": "true if the user has clicked the link in a confirmation email to this address.",
+                      "default": false
+                    },
+                    "dateAdded": {
+                      "type": "number",
+                      "description": "Timestamp (milliseconds since epoch) when the email address was added to the account."
+                    },
+                    "dateBounced": {
+                      "type": "number",
+                      "description": "Timestamp (milliseconds since epoch) when an email sent to this address last bounced. Reset to null when the address no longer bounces."
+                    }
+                  }
+                }
+              },
+              "twitterAccounts": {
+                "type": "array",
+                "description": "All Twitter accounts that the user has OAuthed",
+                "items": {
+                  "type": "object",
+                  "description": "Stores access credentials for one Twitter account, as granted to us by the user by OAuth.",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "Indicator of whether this authorization is currently active, or has been revoked",
+                      "enum": [
+                        "PENDING",
+                        "ACTIVE",
+                        "DENIED",
+                        "EXPIRED",
+                        "REVOKED"
+                      ]
+                    },
+                    "userId": {
+                      "type": "number",
+                      "description": "Twitter's numeric ID for this user"
+                    },
+                    "screenName": {
+                      "type": "string",
+                      "description": "The twitter username for this account (can be changed by the user)"
+                    },
+                    "oauthToken": {
+                      "type": "string",
+                      "description": "The OAuth token for this Twitter account"
+                    },
+                    "oauthTokenSecret": {
+                      "type": "string",
+                      "description": "The OAuth secret, used for signing requests on behalf of this Twitter account. `null` whilst the OAuth flow is not yet complete."
+                    },
+                    "dateAuthorized": {
+                      "type": "number",
+                      "description": "Timestamp (milliseconds since epoch) when the user last authorized this Twitter account"
+                    }
+                  }
+                }
+              },
+              "toDoItems": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "description": "A record is one node in a To-Do item tree (every record can contain nested sub-records).",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "User-selected state for this item (e.g. whether or not it is marked as done)",
+                      "enum": [
+                        "HIDDEN",
+                        "ACTIONABLE",
+                        "DONE",
+                        "ARCHIVED",
+                        "DELETED"
+                      ]
+                    },
+                    "title": {
+                      "type": "string",
+                      "description": "One-line summary of the item"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Detailed description (may contain HTML markup)"
+                    },
+                    "snoozeDate": {
+                      "type": "number",
+                      "description": "Timestamp (milliseconds since epoch) at which the item should go from `HIDDEN` to `ACTIONABLE` status"
+                    },
+                    "subItems": {
+                      "type": "array",
+                      "doc": "List of children of this to-do tree node",
+                      "items": {
+                        "$ref": "#/components/messages/UserSignedUp/payload/schema/properties/toDoItems"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

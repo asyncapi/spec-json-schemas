@@ -6,20 +6,20 @@
     "description": "This service is in charge of processing user signups"
   },
   "channels": {
-    "UserSignedUpChannel": {
+    "Avro-UserSignedUpChannel": {
       "address": "user/signedup",
       "messages": {
         "UserSignedUp": {
-          "$ref": "#/components/messages/UserSignedUp"
+          "$ref": "#/components/messages/Avro-UserSignedUp"
         }
       }
     }
   },
   "operations": {
-    "PublishUserSignedUp": {
+    "Avro-PublishUserSignedUp": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/UserSignedUpChannel"
+        "$ref": "#/channels/Avro-UserSignedUpChannel"
       },
       "bindings": {
         "mqtt": {
@@ -37,10 +37,10 @@
         }
       }
     },
-    "PublishUserSignedUpDefaultBinding": {
+    "Avro-PublishUserSignedUpDefaultBinding": {
       "action": "send",
       "channel": {
-        "$ref": "#/channels/UserSignedUpChannel"
+        "$ref": "#/channels/Avro-UserSignedUpChannel"
       },
       "bindings": {
         "mqtt": {
@@ -59,7 +59,7 @@
   },
   "components": {
     "schemas": {
-      "UserSignedUpHeaders": {
+      "Avro-UserSignedUpHeaders": {
         "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
         "schema": {
           "fields": [
@@ -77,7 +77,7 @@
           "type": "record"
         }
       },
-      "ReferencedSchema" : {
+      "Avro-ReferencedSchema" : {
         "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
         "schema": {
           "$ref": "reference-to-some-avro-file.avsc"
@@ -85,9 +85,9 @@
       }
     },
     "messages": {
-      "UserSignedUp": {
+      "Avro-UserSignedUp": {
         "headers": {
-          "$ref": "#/components/schemas/UserSignedUpHeaders"
+          "$ref": "#/components/schemas/Avro-UserSignedUpHeaders"
         },
         "payload": {
           "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
