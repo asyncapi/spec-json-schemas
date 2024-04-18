@@ -50,68 +50,75 @@
             "additionalItems": true
         },
         "info": {
-            "type": "object",
             "description": "The object provides metadata about the API. The metadata can be used by the clients if needed.",
-            "required": [
-                "version",
-                "title"
-            ],
-            "additionalProperties": false,
-            "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "#/definitions/specificationExtension"
-                }
-            },
-            "properties": {
-                "title": {
-                    "type": "string",
-                    "description": "A unique and precise title of the API."
-                },
-                "version": {
-                    "type": "string",
-                    "description": "A semantic version number of the API."
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A longer description of the API. Should be different from the title. CommonMark is allowed."
-                },
-                "termsOfService": {
-                    "type": "string",
-                    "description": "A URL to the Terms of Service for the API. MUST be in the format of a URL.",
-                    "format": "uri"
-                },
-                "contact": {
-                    "$ref": "#/definitions/contact"
-                },
-                "license": {
-                    "$ref": "#/definitions/license"
-                },
-                "tags": {
-                    "type": "array",
-                    "description": "A list of tags for application API documentation control. Tags can be used for logical grouping of applications.",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/Reference"
-                            },
-                            {
-                                "$ref": "#/definitions/tag"
-                            }
-                        ]
-                    },
-                    "uniqueItems": true
-                },
-                "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/externalDocs"
+            "allOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "version",
+                        "title"
+                    ],
+                    "additionalProperties": false,
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "#/definitions/specificationExtension"
                         }
-                    ]
+                    },
+                    "properties": {
+                        "title": {
+                            "type": "string",
+                            "description": "A unique and precise title of the API."
+                        },
+                        "version": {
+                            "type": "string",
+                            "description": "A semantic version number of the API."
+                        },
+                        "description": {
+                            "type": "string",
+                            "description": "A longer description of the API. Should be different from the title. CommonMark is allowed."
+                        },
+                        "termsOfService": {
+                            "type": "string",
+                            "description": "A URL to the Terms of Service for the API. MUST be in the format of a URL.",
+                            "format": "uri"
+                        },
+                        "contact": {
+                            "$ref": "#/definitions/contact"
+                        },
+                        "license": {
+                            "$ref": "#/definitions/license"
+                        },
+                        "tags": {
+                            "type": "array",
+                            "description": "A list of tags for application API documentation control. Tags can be used for logical grouping of applications.",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "$ref": "#/definitions/Reference"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/tag"
+                                    }
+                                ]
+                            },
+                            "uniqueItems": true
+                        },
+                        "externalDocs": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/definitions/Reference"
+                                },
+                                {
+                                    "$ref": "#/definitions/externalDocs"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/infoExtensions"
                 }
-            },
+            ],
             "examples": [
                 {
                     "title": "AsyncAPI Sample App",
@@ -290,6 +297,23 @@
                     "description": "Find more info here",
                     "url": "https://example.com"
                 }
+            ]
+        },
+        "infoExtensions": {
+            "type": "object",
+            "description": "The object that lists all the extensions of Info",
+            "properties": {
+                "x-x": {
+                    "$ref": "#/definitions/extensions-x-0.1.0-schema"
+                }
+            }
+        },
+        "extensions-x-0.1.0-schema": {
+            "type": "string",
+            "description": "This extension allows you to provide the Twitter username of the account representing the team/company of the API.",
+            "example": [
+                "sambhavgupta75",
+                "AsyncAPISpec"
             ]
         },
         "servers": {
