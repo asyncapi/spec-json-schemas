@@ -30,18 +30,13 @@ const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(
   if (!fs.existsSync(outputDirectory)) {
     await fs.promises.mkdir(outputDirectory);
   }
-  console.log(
-    `The following versions have separate definitions: ${versions.join(',')}`
-  );
+  console.log(`The following versions have separate definitions: ${versions.join(',')}`);
   for (const version of versions) {
     const Bundler = require('@hyperjump/json-schema-bundle');
     try {
       console.log(`Bundling the following version together: ${version}`);
       const outputFileWithId = path.resolve(outputDirectory, `${version}.json`);
-      const outputFileWithoutId = path.resolve(
-        outputDirectory,
-        `${version}-without-$id.json`
-      );
+      const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       await loadDefinitions(Bundler, versionDir);
       await loadCommonSchemas(Bundler);
@@ -62,24 +57,15 @@ const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(
           : ''
       }`;
       console.log(`Writing the bundled file WITH $ids to: ${outputFileWithId}`);
-      await fs.promises.writeFile(
-        outputFileWithId,
-        JSON.stringify(bundledSchemaWithId, null, 4)
-      );
+      await fs.promises.writeFile(outputFileWithId, JSON.stringify(bundledSchemaWithId, null, 4));
 
       /**
        * removing ids from schemas and making modifications in definitions name to make sure schemas still work
        * this is needed for tools that do not support $id feature in JSON Schema
        */
-      const bundledSchemaWithoutIds =
-        modifyRefsAndDefinitions(bundledSchemaWithId);
-      console.log(
-        `Writing the bundled file WITHOUT $ids to: ${outputFileWithoutId}`
-      );
-      await fs.promises.writeFile(
-        outputFileWithoutId,
-        JSON.stringify(bundledSchemaWithoutIds, null, 4)
-      );
+      const bundledSchemaWithoutIds = modifyRefsAndDefinitions(bundledSchemaWithId);
+      console.log(`Writing the bundled file WITHOUT $ids to: ${outputFileWithoutId}`);
+      await fs.promises.writeFile(outputFileWithoutId, JSON.stringify(bundledSchemaWithoutIds, null, 4));
     } catch (e) {
       throw new Error(e);
     }
@@ -203,10 +189,7 @@ function modifyRefsAndDefinitions(bundledSchema) {
   traverse(bundledSchema, replaceRef);
   traverse(bundledSchema.definitions.avroSchema_v1, updateAvro);
   traverse(bundledSchema.definitions.openapiSchema_3_0, updateOpenApi);
-  traverse(
-    bundledSchema.definitions['json-schema-draft-07-schema'],
-    updateJsonSchema
-  );
+  traverse(bundledSchema.definitions['json-schema-draft-07-schema'], updateJsonSchema);
 
   return bundledSchema;
 }
@@ -238,9 +221,7 @@ function getDefinitionName(def) {
         return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
       }
 
-      return `${result[1].replace('/', '-')}-${result[2]}-${
-        result[3]
-      }/${result[4].replace('#/', '')}`;
+      return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}/${result[4].replace('#/', '')}`;
     }
   }
   if (def.startsWith('http://asyncapi.com/extensions')) {
@@ -260,11 +241,10 @@ function replaceRef(schema) {
   //new refs will only work if we remove $id that all point to asyncapi.com
   delete schema.$id;
 
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
-  if (!schema.$ref.startsWith('#'))
-    schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
+  if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
 }
 
 /**
@@ -272,7 +252,7 @@ function replaceRef(schema) {
  * to fix avro schema definitions to point to right direction
  */
 function updateAvro(schema) {
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
@@ -287,7 +267,7 @@ function updateAvro(schema) {
  * to fix open api schema definitions to point to right direction
  */
 function updateOpenApi(schema) {
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
   const openApiPropName = 'openapiSchema_3_0';
 
@@ -307,7 +287,7 @@ function updateOpenApi(schema) {
  * to fix open api schema definitions to point to right direction
  */
 function updateJsonSchema(schema) {
-  //traversing shoudl take place only in case of schemas with refs
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
