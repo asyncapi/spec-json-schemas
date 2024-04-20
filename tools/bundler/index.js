@@ -1,8 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
-const { url } = require('inspector');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
+const commonSchemasDirectory = path.resolve(__dirname, '../../common');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const extensionsDirectory = path.resolve(__dirname, '../../extensions');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
@@ -13,71 +13,14 @@ console.log(`Looking for extension version schemas in the following directory: $
 console.log(`Using the following output directory: ${outputDirectory}`);
 
 // definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
-const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i
+const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i;
 
 // definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
-const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i
+const bindingsRegex = /http:\/\/asyncapi\.com\/(bindings\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i;
 
 // definitionsRegex is used to transform the name of a binding into a valid one to be used in the -without-$id.json files.
-const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i
+const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(.+)\.json(.*)/i;
 
-/**
- * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
- */
-async function loadDefinitions(bundler, versionDir) {
-  const definitions = await fs.promises.readdir(versionDir);
-  const definitionFiles = definitions.filter((value) => {return !value.includes('asyncapi')}).map((file) => fs.readFileSync(path.resolve(versionDir, file)));
-  const definitionJson = definitionFiles.map((file) => JSON.parse(file));
-
-  for (const jsonFile of definitionJson) {
-    if (jsonFile.example) {
-      // Replaced the example property with the referenced example property
-      const examples = await loadRefProperties(jsonFile.example);
-      // Replacing example property with examples is because using example
-      // to pass an array of example properties is not valid in JSON Schema.
-      // So replacing it when bundling is the goto solution. 
-      jsonFile.examples = examples;
-      delete jsonFile.example;
-      bundler.add(jsonFile);
-    } else {
-      bundler.add(jsonFile);
-    }
-  }
-}
-
-
-/**
- * Function to load all schemas into bundler, by "type" you specify if these are "bindings" or "extensions"
- */
-async function loadSchemas(bundler, type) {
-
-  let directory;
-
-  switch (type) {
-    case "bindings":
-      directory = bindingsDirectory;
-      break;
-    case "extensions":
-      directory = extensionsDirectory;
-      break;
-    default:
-      console.error("Invalid input. I'm not going to assume if you want bindings or extensions - these are different beasts.");
-  }
-
-  const directories = await fs.promises.readdir(directory);
-  for (const nestedDir of directories) {
-    const versionDirectories = await fs.promises.readdir(path.resolve(directory, nestedDir));
-    const versionDirectoriesFiltered = versionDirectories.filter((file) => fs.lstatSync(path.resolve(directory, nestedDir, file)).isDirectory());
-    for (const versionDir of versionDirectoriesFiltered) {
-      const files = await fs.promises.readdir(path.resolve(directory, nestedDir, versionDir));
-      const filesFiltered = files.filter((file) => path.extname(file) === '.json').map((file) => path.resolve(directory, nestedDir, versionDir, file));
-      for (const filteredFile of filesFiltered) {
-        const fileContent = require(filteredFile);
-        bundler.add(fileContent);
-      }
-    }
-  }
-}
 /**
  * When run, go through all versions that have split definitions and bundles them together.
  */
@@ -89,13 +32,14 @@ async function loadSchemas(bundler, type) {
   }
   console.log(`The following versions have separate definitions: ${versions.join(',')}`);
   for (const version of versions) {
-    const Bundler = require("@hyperjump/json-schema-bundle");
-    try{
+    const Bundler = require('@hyperjump/json-schema-bundle');
+    try {
       console.log(`Bundling the following version together: ${version}`);
       const outputFileWithId = path.resolve(outputDirectory, `${version}.json`);
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
       await loadDefinitions(Bundler, versionDir);
+      await loadCommonSchemas(Bundler);
       await loadSchemas(Bundler, 'bindings');
       await loadSchemas(Bundler, 'extensions');
 
@@ -106,7 +50,12 @@ async function loadSchemas(bundler, type) {
        * bundling schemas into one file with $id
        */
       const bundledSchemaWithId = await Bundler.bundle(fileToBundle);
-      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${bundledSchemaWithId.description ?? ''}`;
+      bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${
+        bundledSchemaWithId.description !== undefined &&
+        bundledSchemaWithId.description !== null
+          ? bundledSchemaWithId.description
+          : ''
+      }`;
       console.log(`Writing the bundled file WITH $ids to: ${outputFileWithId}`);
       await fs.promises.writeFile(outputFileWithId, JSON.stringify(bundledSchemaWithId, null, 4));
 
@@ -117,12 +66,94 @@ async function loadSchemas(bundler, type) {
       const bundledSchemaWithoutIds = modifyRefsAndDefinitions(bundledSchemaWithId);
       console.log(`Writing the bundled file WITHOUT $ids to: ${outputFileWithoutId}`);
       await fs.promises.writeFile(outputFileWithoutId, JSON.stringify(bundledSchemaWithoutIds, null, 4));
-    }catch(e) {
+    } catch (e) {
       throw new Error(e);
     }
   }
   console.log('done');
 })();
+
+/**
+ * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
+ */
+async function loadDefinitions(bundler, versionDir) {
+  const definitions = await fs.promises.readdir(versionDir);
+  const definitionFiles = definitions
+    .filter((value) => {
+      return !value.includes('asyncapi');
+    })
+    .map((file) => fs.readFileSync(path.resolve(versionDir, file)));
+  const definitionJson = definitionFiles.map((file) => JSON.parse(file));
+
+  for (const jsonFile of definitionJson) {
+    if (jsonFile.example) {
+      // Replaced the example property with the referenced example property
+      const examples = await loadRefProperties(jsonFile.example);
+      // Replacing example property with examples is because using example
+      // to pass an array of example properties is not valid in JSON Schema.
+      // So replacing it when bundling is the goto solution.
+      jsonFile.examples = examples;
+      delete jsonFile.example;
+      bundler.add(jsonFile);
+    } else {
+      bundler.add(jsonFile);
+    }
+  }
+}
+
+/**
+ * Function to load all schemas into bundler, by "type" you specify if these are "bindings" or "extensions"
+ */
+async function loadSchemas(bundler, type) {
+  let directory;
+
+  switch (type) {
+  case 'bindings':
+    directory = bindingsDirectory;
+    break;
+  case 'extensions':
+    directory = extensionsDirectory;
+    break;
+  default:
+    console.error(
+      'Invalid input. I\'m not going to assume if you want bindings or extensions - these are different beasts.'
+    );
+  }
+
+  const directories = await fs.promises.readdir(directory);
+  for (const nestedDir of directories) {
+    const versionDirectories = await fs.promises.readdir(
+      path.resolve(directory, nestedDir)
+    );
+    const versionDirectoriesFiltered = versionDirectories.filter((file) =>
+      fs.lstatSync(path.resolve(directory, nestedDir, file)).isDirectory()
+    );
+    for (const versionDir of versionDirectoriesFiltered) {
+      const files = await fs.promises.readdir(
+        path.resolve(directory, nestedDir, versionDir)
+      );
+      const filesFiltered = files
+        .filter((file) => path.extname(file) === '.json')
+        .map((file) => path.resolve(directory, nestedDir, versionDir, file));
+      for (const filteredFile of filesFiltered) {
+        const fileContent = require(filteredFile);
+        bundler.add(fileContent);
+      }
+    }
+  }
+}
+
+async function loadCommonSchemas(bundler) {
+  // Add common schemas to all versions
+  const commonSchemas = await fs.promises.readdir(commonSchemasDirectory);
+  const commonSchemaFiles = commonSchemas.map((file) =>
+    path.resolve(commonSchemasDirectory, file)
+  );
+  for (const commonSchemaFile of commonSchemaFiles) {
+    const commonSchemaFileContent = require(commonSchemaFile);
+    bundler.add(commonSchemaFileContent);
+  }
+}
 
 /**
  * Extract file data from reference file path
@@ -136,24 +167,23 @@ async function loadRefProperties(filePath) {
   try {
     const data = await fs.promises.readFile(`../../examples${versionPath}`);
     return JSON.parse(data);
-    }catch(e) {
-      throw new Error(e);
-    }
+  } catch (e) {
+    throw new Error(e);
   }
+}
 
 /**
  * we first update definitions from URL to normal names
  * than update refs to point to new definitions, always inline never remote
  */
 function modifyRefsAndDefinitions(bundledSchema) {
-
   //first we need to improve names of the definitions from URL to their names
   for (const def of Object.keys(bundledSchema.definitions)) {
     const newDefName = getDefinitionName(def);
-    
+
     //creating copy of definition under new name so later definition stored under URL name can be removed
     bundledSchema.definitions[newDefName] = bundledSchema.definitions[def];
-    delete bundledSchema.definitions[def]
+    delete bundledSchema.definitions[def];
   }
 
   traverse(bundledSchema, replaceRef);
@@ -161,7 +191,7 @@ function modifyRefsAndDefinitions(bundledSchema) {
   traverse(bundledSchema.definitions.openapiSchema_3_0, updateOpenApi);
   traverse(bundledSchema.definitions['json-schema-draft-07-schema'], updateJsonSchema);
 
-  return bundledSchema
+  return bundledSchema;
 }
 
 /**
@@ -196,10 +226,11 @@ function getDefinitionName(def) {
   }
   if (def.startsWith('http://asyncapi.com/extensions')) {
     const result = extensionsRegex.exec(def);
-    if (result) return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
+    if (result)
+      return `${result[1].replace('/', '-')}-${result[2]}-${result[3]}`;
   }
-  
-  return path.basename(def, '.json')
+
+  return path.basename(def, '.json');
 }
 
 /**
@@ -208,10 +239,10 @@ function getDefinitionName(def) {
  */
 function replaceRef(schema) {
   //new refs will only work if we remove $id that all point to asyncapi.com
-  delete schema.$id
-  
-  //traversing shoudl take place only in case of schemas with refs
-  if (schema.$ref === undefined ) return;
+  delete schema.$id;
+
+  //traversing should take place only in case of schemas with refs
+  if (schema.$ref === undefined) return;
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
 }
@@ -220,11 +251,12 @@ function replaceRef(schema) {
  * this is a callback used when traversing through json schema
  * to fix avro schema definitions to point to right direction
  */
-function updateAvro(schema){
-  //traversing shoudl take place only in case of schemas with refs
+function updateAvro(schema) {
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
+    /* eslint-disable sonarjs/no-duplicate-string */
     '#/definitions/',
     '#/definitions/avroSchema_v1/definitions/'
   );
@@ -234,12 +266,13 @@ function updateAvro(schema){
  * this is a callback used when traversing through json schema
  * to fix open api schema definitions to point to right direction
  */
-function updateOpenApi(schema){
-  //traversing shoudl take place only in case of schemas with refs
+function updateOpenApi(schema) {
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
   const openApiPropName = 'openapiSchema_3_0';
 
   schema.$ref = schema.$ref.replace(
+    /* eslint-disable sonarjs/no-duplicate-string */
     '#/definitions/',
     `#/definitions/${openApiPropName}/definitions/`
   );
@@ -253,8 +286,8 @@ function updateOpenApi(schema){
  * this is a callback used when traversing through json schema
  * to fix open api schema definitions to point to right direction
  */
-function updateJsonSchema(schema){
-  //traversing shoudl take place only in case of schemas with refs
+function updateJsonSchema(schema) {
+  //traversing should take place only in case of schemas with refs
   if (schema.$ref === undefined) return;
 
   schema.$ref = schema.$ref.replace(
