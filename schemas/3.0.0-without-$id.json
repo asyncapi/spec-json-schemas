@@ -305,6 +305,9 @@
             "properties": {
                 "x-x": {
                     "$ref": "#/definitions/extensions-x-0.1.0-schema"
+                },
+                "x-linkedin": {
+                    "$ref": "#/definitions/extensions-linkedin-0.1.0-schema"
                 }
             }
         },
@@ -314,6 +317,15 @@
             "example": [
                 "sambhavgupta75",
                 "AsyncAPISpec"
+            ]
+        },
+        "extensions-linkedin-0.1.0-schema": {
+            "type": "string",
+            "pattern": "^https://(www\\.)?linkedin\\.com.*$",
+            "description": "This extension allows you to provide the Linkedin profile URL of the account representing the team/company of the API.",
+            "example": [
+                "https://www.linkedin.com/company/asyncapi/",
+                "https://www.linkedin.com/in/sambhavgupta0705/"
             ]
         },
         "servers": {
