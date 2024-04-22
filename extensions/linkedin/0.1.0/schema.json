@@ -2,7 +2,7 @@
     "type": "string",
     "patternProperties": {
         "x-linkedin":{
-            "$ref": "^https:\/\/(?:www\.)?linkedin\.com.*"
+            "$ref": "^https://(www\\.)?linkedin\\.com.*$"
         }
     },
     "description": "This extension allows you to provide the Linkedin profile URL of the account representing the team/company of the API.",
