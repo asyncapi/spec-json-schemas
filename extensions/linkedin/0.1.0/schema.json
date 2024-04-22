@@ -1,6 +1,5 @@
 {
     "type": "string",
-    "format": "uri",
     "patternProperties": {
         "x-linkedin":{
             "$ref": "^https://(www\\.)?linkedin\\.com.*$"
