@@ -200,7 +200,7 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0/openapiSchema_3_0.json"
+                    "$ref": "http://asyncapi.com/definitions/openapiSchema_3_0.json"
                   }
                 }
               }
@@ -223,7 +223,7 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://asyncapi.com/definitions/2.0.0/avroSchema_v1.json"
+                    "$ref": "http://asyncapi.com/definitions/avroSchema_v1.json"
                   }
                 }
               }

@@ -2947,7 +2947,7 @@
                                             "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                                         },
                                         {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
+                                            "$ref": "http://asyncapi.com/definitions/openapiSchema_3_0.json"
                                         }
                                     ]
                                 }
@@ -2977,7 +2977,7 @@
                                             "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                                         },
                                         {
-                                            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                                            "$ref": "http://asyncapi.com/definitions/avroSchema_v1.json"
                                         }
                                     ]
                                 }
@@ -2987,8 +2987,8 @@
                 ]
             }
         },
-        "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json",
+        "http://asyncapi.com/definitions/openapiSchema_3_0.json": {
+            "$id": "http://asyncapi.com/definitions/openapiSchema_3_0.json",
             "type": "object",
             "definitions": {
                 "ExternalDocumentation": {
@@ -3274,8 +3274,8 @@
             },
             "additionalProperties": false
         },
-        "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json": {
-            "$id": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json",
+        "http://asyncapi.com/definitions/avroSchema_v1.json": {
+            "$id": "http://asyncapi.com/definitions/avroSchema_v1.json",
             "definitions": {
                 "avroSchema": {
                     "title": "Avro Schema",
@@ -4288,7 +4288,7 @@
                             "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
                         },
                         {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                            "$ref": "http://asyncapi.com/definitions/avroSchema_v1.json"
                         }
                     ],
                     "description": "The message key."
