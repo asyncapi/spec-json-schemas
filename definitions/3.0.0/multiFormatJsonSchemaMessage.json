@@ -1,0 +1,24 @@
+{
+  "if": {
+    "required": [
+      "schemaFormat"
+    ],
+    "properties": {
+      "schemaFormat": {
+        "enum": [
+          "application/schema+json;version=draft-07",
+          "application/schema+yaml;version=draft-07"
+        ]
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "schema": {
+        "$ref": "http://json-schema.org/draft-07/schema"
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatJsonSchemaMessage.json"
+}

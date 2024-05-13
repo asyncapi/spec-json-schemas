@@ -1,0 +1,32 @@
+{
+  "if": {
+    "required": [
+      "schemaFormat"
+    ],
+    "properties": {
+      "schemaFormat": {
+        "enum": [
+          "application/vnd.apache.avro;version=1.9.0",
+          "application/vnd.apache.avro+json;version=1.9.0",
+          "application/vnd.apache.avro+yaml;version=1.9.0"
+        ]
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "schema": {
+        "oneOf": [
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+          },
+          {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+          }
+        ]
+      }
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatAvroMessage.json"
+}
