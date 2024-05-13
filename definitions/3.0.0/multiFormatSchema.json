@@ -158,7 +158,7 @@
                   "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                 },
                 {
-                  "$ref": "http://asyncapi.com/definitions/openapiSchema_3_0.json"
+                  "$ref": "http://asyncapi.com/common/openapiSchema_3_0.json"
                 }
               ]
             }
@@ -188,7 +188,7 @@
                   "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
                 },
                 {
-                  "$ref": "http://asyncapi.com/definitions/avroSchema_v1.json"
+                  "$ref": "http://asyncapi.com/common/avroSchema_v1.json"
                 }
               ]
             }

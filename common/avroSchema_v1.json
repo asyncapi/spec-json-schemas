@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/avroSchema_v1.json",
+  "$id": "http://asyncapi.com/common/avroSchema_v1.json",
   "definitions": {
     "avroSchema": {
       "title": "Avro Schema",

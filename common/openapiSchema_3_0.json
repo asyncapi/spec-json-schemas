@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/openapiSchema_3_0.json",
+  "$id": "http://asyncapi.com/common/openapiSchema_3_0.json",
   "type": "object",
   "definitions": {
     "ExternalDocumentation": {
