@@ -52,34 +52,6 @@
         {
           "properties": {
             "asyncapi": {
-              "const": "2.0.0-rc1"
-            }
-          }
-        },
-        {
-          "$ref": "http://asyncapi.com/schema-store/2.0.0-rc1-without-$id.json"
-        }
-      ]
-    },
-    {
-      "allOf": [
-        {
-          "properties": {
-            "asyncapi": {
-              "const": "2.0.0-rc2"
-            }
-          }
-        },
-        {
-          "$ref": "http://asyncapi.com/schema-store/2.0.0-rc2-without-$id.json"
-        }
-      ]
-    },
-    {
-      "allOf": [
-        {
-          "properties": {
-            "asyncapi": {
               "const": "2.0.0"
             }
           }
