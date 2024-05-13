@@ -1,6 +1,13 @@
-const path = require('path');
-const fs = require('fs');
-const traverse = require('json-schema-traverse');
+
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import { bundle } from '@hyperjump/json-schema/bundle';
+import { registerSchema, unregisterSchema, } from '@hyperjump/json-schema/draft-07';
+import { registerSchema as registerSchema_draft_4, unregisterSchema as unregisterSchema_draft_4 } from '@hyperjump/json-schema/draft-04';
+import traverse from 'json-schema-traverse';
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // get the name of the directory
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
 const commonSchemasDirectory = path.resolve(__dirname, '../../common');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
@@ -11,7 +18,7 @@ console.log(`Looking for separate definitions in the following directory: ${defi
 console.log(`Looking for binding version schemas in the following directory: ${bindingsDirectory}`);
 console.log(`Looking for extension version schemas in the following directory: ${extensionsDirectory}`);
 console.log(`Using the following output directory: ${outputDirectory}`);
-
+const registeredSchemas = [];
 // definitionsRegex is used to transform the name of a definition into a valid one to be used in the -without-$id.json files.
 const definitionsRegex = /http:\/\/asyncapi\.com\/definitions\/[^/]*\/(.+)\.json#?(.*)/i;
 
@@ -32,24 +39,26 @@ const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(
   }
   console.log(`The following versions have separate definitions: ${versions.join(',')}`);
   for (const version of versions) {
-    const Bundler = require('@hyperjump/json-schema-bundle');
+    registeredSchemas.forEach((value) => {
+      unregisterSchema(value);
+      unregisterSchema_draft_4(value);
+    })
     try {
       console.log(`Bundling the following version together: ${version}`);
       const outputFileWithId = path.resolve(outputDirectory, `${version}.json`);
       const outputFileWithoutId = path.resolve(outputDirectory, `${version}-without-$id.json`);
       const versionDir = path.resolve(definitionsDirectory, version);
-      await loadDefinitions(Bundler, versionDir);
-      await loadCommonSchemas(Bundler);
-      await loadSchemas(Bundler, 'bindings');
-      await loadSchemas(Bundler, 'extensions');
+      await loadDefinitions(versionDir, version);
+      await loadCommonSchemas();
+      await loadSchemas('bindings');
+      await loadSchemas('extensions');
 
-      const filePathToBundle = `file://${versionDir}/asyncapi.json`;
-      const fileToBundle = await Bundler.get(filePathToBundle);
-
-      /**
-       * bundling schemas into one file with $id
-       */
-      const bundledSchemaWithId = await Bundler.bundle(fileToBundle);
+      const bundledSchemaWithId = await bundle(`http://asyncapi.com/definitions/${version}/asyncapi.json`, {definitionNamingStrategy: 'uri'});
+      if(version.split('.')[0] === '1') {
+        bundledSchemaWithId.id = `http://asyncapi.com/definitions/${version}/asyncapi.json`;
+      } else {
+        bundledSchemaWithId.$id = `http://asyncapi.com/definitions/${version}/asyncapi.json`;
+      }
       bundledSchemaWithId.description = `!!Auto generated!! \n Do not manually edit. ${
         bundledSchemaWithId.description !== undefined &&
         bundledSchemaWithId.description !== null
@@ -74,14 +83,11 @@ const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(
 })();
 
 /**
- * Function to load all the core AsyncAPI spec definition (except the root asyncapi schema, as that will be loaded later) into the bundler.
+ * Function to load all the core AsyncAPI spec definition into the bundler.
  */
-async function loadDefinitions(bundler, versionDir) {
+async function loadDefinitions(versionDir, version) {
   const definitions = await fs.promises.readdir(versionDir);
   const definitionFiles = definitions
-    .filter((value) => {
-      return !value.includes('asyncapi');
-    })
     .map((file) => fs.readFileSync(path.resolve(versionDir, file)));
   const definitionJson = definitionFiles.map((file) => JSON.parse(file));
 
@@ -94,9 +100,13 @@ async function loadDefinitions(bundler, versionDir) {
       // So replacing it when bundling is the goto solution.
       jsonFile.examples = examples;
       delete jsonFile.example;
-      bundler.add(jsonFile);
+    }
+    if(version.split('.')[0] === '1') {
+      registeredSchemas.push(jsonFile.id)
+      registerSchema_draft_4(jsonFile, jsonFile.id)
     } else {
-      bundler.add(jsonFile);
+      registeredSchemas.push(jsonFile.$id)
+      registerSchema(jsonFile, jsonFile.$id);
     }
   }
 }
@@ -104,7 +114,7 @@ async function loadDefinitions(bundler, versionDir) {
 /**
  * Function to load all schemas into bundler, by "type" you specify if these are "bindings" or "extensions"
  */
-async function loadSchemas(bundler, type) {
+async function loadSchemas(type) {
   let directory;
 
   switch (type) {
@@ -136,22 +146,29 @@ async function loadSchemas(bundler, type) {
         .filter((file) => path.extname(file) === '.json')
         .map((file) => path.resolve(directory, nestedDir, versionDir, file));
       for (const filteredFile of filesFiltered) {
-        const fileContent = require(filteredFile);
-        bundler.add(fileContent);
+        const fileContent = await readJson(filteredFile);
+        registeredSchemas.push(fileContent.$id)
+        registerSchema(fileContent, fileContent.$id);
       }
     }
   }
 }
-
-async function loadCommonSchemas(bundler) {
+async function readJson(fileLocation) {
+  return JSON.parse(
+    await fs.promises.readFile(fileLocation)
+  );
+} 
+async function loadCommonSchemas() {
   // Add common schemas to all versions
   const commonSchemas = await fs.promises.readdir(commonSchemasDirectory);
   const commonSchemaFiles = commonSchemas.map((file) =>
     path.resolve(commonSchemasDirectory, file)
   );
   for (const commonSchemaFile of commonSchemaFiles) {
-    const commonSchemaFileContent = require(commonSchemaFile);
-    bundler.add(commonSchemaFileContent);
+    const commonSchemaFileContent = await readJson(commonSchemaFile);
+
+    registeredSchemas.push(commonSchemaFileContent.$id)
+    registerSchema(commonSchemaFileContent, commonSchemaFileContent.$id);
   }
 }
 
@@ -165,8 +182,7 @@ async function loadRefProperties(filePath) {
   const versionPath = schemaPath.split('examples')[1];
   // we append the extracted file path to the examples dir to read the file
   try {
-    const data = await fs.promises.readFile(`../../examples${versionPath}`);
-    return JSON.parse(data);
+    return await readJson(`../../examples${versionPath}`);
   } catch (e) {
     throw new Error(e);
   }
