@@ -13,6 +13,7 @@ describe('Should be able to validate', function () {
     const asyncapi = require('..');
     for (const versionToTest of versionsToTest) {
       const version = versionToTest.version;
+      console.log(`Testing validation of ${version}`);
       const schemasToTest = [asyncapi.schemas[version], asyncapi.schemasWithoutId[version]];
       for (const schema of schemasToTest) {
         delete schema.definitions['http://json-schema.org/draft-07/schema'];

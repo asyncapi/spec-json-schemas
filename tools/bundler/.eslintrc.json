@@ -1,0 +1,6 @@
+{
+    "extends": "../../.eslintrc.yml",
+    "parserOptions": {
+        "sourceType": "module"
+    }
+}
