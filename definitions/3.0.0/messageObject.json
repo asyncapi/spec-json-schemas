@@ -76,37 +76,7 @@
       "type": "array",
       "description": "List of examples.",
       "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "anyOf": [
-          {
-            "required": [
-              "payload"
-            ]
-          },
-          {
-            "required": [
-              "headers"
-            ]
-          }
-        ],
-        "properties": {
-          "name": {
-            "type": "string",
-            "description": "Machine readable name of the message example."
-          },
-          "summary": {
-            "type": "string",
-            "description": "A brief summary of the message example."
-          },
-          "headers": {
-            "type": "object",
-            "description": "Example of the application headers. It can be of any type."
-          },
-          "payload": {
-            "description": "Example of the message payload. It can be of any type."
-          }
-        }
+        "$ref": "http://asyncapi.com/definitions/3.0.0/messageExampleObject.json"
       }
     },
     "bindings": {
