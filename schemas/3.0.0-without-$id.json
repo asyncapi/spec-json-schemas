@@ -2572,37 +2572,7 @@
                     "type": "array",
                     "description": "List of examples.",
                     "items": {
-                        "type": "object",
-                        "additionalProperties": false,
-                        "anyOf": [
-                            {
-                                "required": [
-                                    "payload"
-                                ]
-                            },
-                            {
-                                "required": [
-                                    "headers"
-                                ]
-                            }
-                        ],
-                        "properties": {
-                            "name": {
-                                "type": "string",
-                                "description": "Machine readable name of the message example."
-                            },
-                            "summary": {
-                                "type": "string",
-                                "description": "A brief summary of the message example."
-                            },
-                            "headers": {
-                                "type": "object",
-                                "description": "Example of the application headers. It can be of any type."
-                            },
-                            "payload": {
-                                "description": "Example of the message payload. It can be of any type."
-                            }
-                        }
+                        "$ref": "#/definitions/messageExampleObject"
                     }
                 },
                 "bindings": {
@@ -3565,6 +3535,39 @@
                     "location": "$message.header#/correlationId"
                 }
             ]
+        },
+        "messageExampleObject": {
+            "type": "object",
+            "additionalProperties": false,
+            "anyOf": [
+                {
+                    "required": [
+                        "payload"
+                    ]
+                },
+                {
+                    "required": [
+                        "headers"
+                    ]
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Machine readable name of the message example."
+                },
+                "summary": {
+                    "type": "string",
+                    "description": "A brief summary of the message example."
+                },
+                "headers": {
+                    "type": "object",
+                    "description": "Example of the application headers. It can be of any type."
+                },
+                "payload": {
+                    "description": "Example of the message payload. It can be of any type."
+                }
+            }
         },
         "messageBindingsObject": {
             "type": "object",
@@ -4680,7 +4683,7 @@
                     "type": "array",
                     "description": "List of examples.",
                     "items": {
-                        "type": "object"
+                        "$ref": "#/definitions/messageExampleObject"
                     }
                 },
                 "bindings": {
