@@ -5,4 +5,5 @@ describe('Security Schemes', () => {
   require('./openIdconnect/openIdconnect.js');
   require('./plain/plain.js');
   require('./scramSha256/scramSha256.js');
+  require('./scramSha512/scramSha512.js');
 });
