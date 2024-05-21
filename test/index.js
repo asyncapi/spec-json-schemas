@@ -4,6 +4,7 @@ const path = require('path');
 
 describe('AsyncAPI: 3.0.0', () => {
   require('./definitions/3.0.0/info/info.js');
+  require('./definitions/3.0.0/contact/contact.js')
 });
 
 describe('AsyncAPI', () => {
