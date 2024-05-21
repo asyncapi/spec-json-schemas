@@ -6,6 +6,7 @@ describe('AsyncAPI: 3.0.0', () => {
   require('./definitions/3.0.0/info/info.js');
   require('./definitions/3.0.0/contact/contact.js');
   require('./definitions/3.0.0/license/license.js');
+  require('./definitions/3.0.0/reference/reference.js');
 });
 
 describe('AsyncAPI', () => {
