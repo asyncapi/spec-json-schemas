@@ -73,7 +73,7 @@
       "type": "array",
       "description": "List of examples.",
       "items": {
-        "type": "object"
+        "$ref": "http://asyncapi.com/definitions/3.0.0/messageExampleObject.json"
       }
     },
     "bindings": {
