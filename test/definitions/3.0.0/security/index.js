@@ -7,4 +7,5 @@ describe('Security Schemes', () => {
   require('./scramSha256/scramSha256.js');
   require('./scramSha512/scramSha512.js');
   require('./symmetricEncryption/symmetricEncryption.js');
+  require('./userPassword/userPassword.js');
 });
