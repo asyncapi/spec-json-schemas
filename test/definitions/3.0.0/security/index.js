@@ -11,4 +11,5 @@ describe('Security Schemes', () => {
   require('./x509/x509.js');
   require('./httpApiKey/httpApiKey.js');
   require('./httpBearer/httpBearer.js');
+  require('./httpBasic/httpBasic.js');
 });
