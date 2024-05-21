@@ -1,0 +1,11 @@
+{
+  "$ref": [
+    1,
+    null,
+    false,
+    "#/components/schemas/user",
+    {
+      "$ref": "#/components/schemas/user"
+    }
+  ]
+}
