@@ -19,7 +19,7 @@ const validator = ajv
   .addSchema(require('../../../../definitions/3.0.0/specificationExtension.json'))
   .compile(infoJsonSchema);
 
-describe('Contact', () => {
+describe('License', () => {
   it('empty', () => {
     const info = JSON.parse(fs.readFileSync(`${__dirname}/empty.json`, 'utf-8'));
     const validationResult = validator(info);
