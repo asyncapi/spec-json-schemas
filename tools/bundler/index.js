@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
-const commonSchemasDirectory = path.resolve(__dirname, '../../common');
+const commonSchemasDirectory = path.resolve(__dirname, '../../definitions/common');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const extensionsDirectory = path.resolve(__dirname, '../../extensions');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
@@ -25,7 +25,7 @@ const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(
  * When run, go through all versions that have split definitions and bundles them together.
  */
 (async () => {
-  const versions = await fs.promises.readdir(definitionsDirectory);
+  const versions = (await fs.promises.readdir(definitionsDirectory)).filter((value) => !value.includes('common'));
   console.log(`Ensuring output directory is present ${outputDirectory}`);
   if (!fs.existsSync(outputDirectory)) {
     await fs.promises.mkdir(outputDirectory);
@@ -187,8 +187,6 @@ function modifyRefsAndDefinitions(bundledSchema) {
   }
 
   traverse(bundledSchema, replaceRef);
-  traverse(bundledSchema.definitions.avroSchema_v1, updateAvro);
-  traverse(bundledSchema.definitions.openapiSchema_3_0, updateOpenApi);
   traverse(bundledSchema.definitions['json-schema-draft-07-schema'], updateJsonSchema);
 
   return bundledSchema;
@@ -245,41 +243,6 @@ function replaceRef(schema) {
   if (schema.$ref === undefined) return;
   // updating refs that are related to remote URL refs that need to be update and point to inlined versions
   if (!schema.$ref.startsWith('#')) schema.$ref = `#/definitions/${getDefinitionName(schema.$ref)}`;
-}
-
-/**
- * this is a callback used when traversing through json schema
- * to fix avro schema definitions to point to right direction
- */
-function updateAvro(schema) {
-  //traversing should take place only in case of schemas with refs
-  if (schema.$ref === undefined) return;
-
-  schema.$ref = schema.$ref.replace(
-    /* eslint-disable sonarjs/no-duplicate-string */
-    '#/definitions/',
-    '#/definitions/avroSchema_v1/definitions/'
-  );
-}
-
-/**
- * this is a callback used when traversing through json schema
- * to fix open api schema definitions to point to right direction
- */
-function updateOpenApi(schema) {
-  //traversing should take place only in case of schemas with refs
-  if (schema.$ref === undefined) return;
-  const openApiPropName = 'openapiSchema_3_0';
-
-  schema.$ref = schema.$ref.replace(
-    /* eslint-disable sonarjs/no-duplicate-string */
-    '#/definitions/',
-    `#/definitions/${openApiPropName}/definitions/`
-  );
-
-  if (schema.$ref === '#') {
-    schema.$ref = `#/definitions/${openApiPropName}`;
-  }
 }
 
 /**

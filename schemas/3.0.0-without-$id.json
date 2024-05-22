@@ -2714,193 +2714,143 @@
                     "$ref": "#/definitions/specificationExtension"
                 }
             },
+            "properties": {
+                "schemaFormat": {
+                    "description": "A string containing the name of the schema format that is used to define the information. If schemaFormat is missing, it MUST default to application/vnd.aai.asyncapi+json;version={{asyncapi}} where {{asyncapi}} matches the AsyncAPI Version String. In such a case, this would make the Multi Format Schema Object equivalent to the Schema Object. When using Reference Object within the schema, the schemaFormat of the resource being referenced MUST match the schemaFormat of the schema that contains the initial reference. For example, if you reference Avro schema, then schemaFormat of referencing resource and the resource being reference MUST match.",
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "description": "All the schema formats tooling MUST support",
+                            "enum": [
+                                "application/schema+json;version=draft-07",
+                                "application/schema+yaml;version=draft-07",
+                                "application/vnd.aai.asyncapi;version=3.0.0",
+                                "application/vnd.aai.asyncapi+json;version=3.0.0",
+                                "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+                            ]
+                        },
+                        {
+                            "description": "All the schema formats tools are RECOMMENDED to support",
+                            "enum": [
+                                "application/vnd.oai.openapi;version=3.0.0",
+                                "application/vnd.oai.openapi+json;version=3.0.0",
+                                "application/vnd.oai.openapi+yaml;version=3.0.0",
+                                "application/vnd.apache.avro;version=1.9.0",
+                                "application/vnd.apache.avro+json;version=1.9.0",
+                                "application/vnd.apache.avro+yaml;version=1.9.0",
+                                "application/raml+yaml;version=1.0"
+                            ]
+                        }
+                    ]
+                }
+            },
+            "anyOf": [
+                {
+                    "if": {
+                        "not": {
+                            "description": "If no schemaFormat has been defined, default to schema or reference",
+                            "required": [
+                                "schemaFormat"
+                            ]
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "schema": {
+                                "$ref": "#/definitions/schema"
+                            }
+                        }
+                    }
+                },
+                {
+                    "$ref": "#/definitions/multiFormatAsyncAPISchemaMessage"
+                },
+                {
+                    "$ref": "#/definitions/multiFormatOpenAPIMessage"
+                },
+                {
+                    "$ref": "#/definitions/multiFormatJsonSchemaMessage"
+                },
+                {
+                    "$ref": "#/definitions/multiFormatAvroMessage"
+                }
+            ]
+        },
+        "multiFormatAsyncAPISchemaMessage": {
             "if": {
-                "not": {
-                    "type": "object"
+                "description": "If schemaFormat has been defined check if it's one of the AsyncAPI Schema Object formats",
+                "required": [
+                    "schemaFormat"
+                ],
+                "properties": {
+                    "schemaFormat": {
+                        "enum": [
+                            "application/vnd.aai.asyncapi;version=2.0.0",
+                            "application/vnd.aai.asyncapi+json;version=2.0.0",
+                            "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                            "application/vnd.aai.asyncapi;version=2.1.0",
+                            "application/vnd.aai.asyncapi+json;version=2.1.0",
+                            "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                            "application/vnd.aai.asyncapi;version=2.2.0",
+                            "application/vnd.aai.asyncapi+json;version=2.2.0",
+                            "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                            "application/vnd.aai.asyncapi;version=2.3.0",
+                            "application/vnd.aai.asyncapi+json;version=2.3.0",
+                            "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                            "application/vnd.aai.asyncapi;version=2.4.0",
+                            "application/vnd.aai.asyncapi+json;version=2.4.0",
+                            "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                            "application/vnd.aai.asyncapi;version=2.5.0",
+                            "application/vnd.aai.asyncapi+json;version=2.5.0",
+                            "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                            "application/vnd.aai.asyncapi;version=2.6.0",
+                            "application/vnd.aai.asyncapi+json;version=2.6.0",
+                            "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                            "application/vnd.aai.asyncapi;version=3.0.0",
+                            "application/vnd.aai.asyncapi+json;version=3.0.0",
+                            "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+                        ]
+                    }
                 }
             },
             "then": {
-                "$ref": "#/definitions/schema"
-            },
-            "else": {
+                "properties": {
+                    "schema": {
+                        "$ref": "#/definitions/schema"
+                    }
+                }
+            }
+        },
+        "multiFormatOpenAPIMessage": {
+            "if": {
+                "required": [
+                    "schemaFormat"
+                ],
                 "properties": {
                     "schemaFormat": {
-                        "description": "A string containing the name of the schema format that is used to define the information. If schemaFormat is missing, it MUST default to application/vnd.aai.asyncapi+json;version={{asyncapi}} where {{asyncapi}} matches the AsyncAPI Version String. In such a case, this would make the Multi Format Schema Object equivalent to the Schema Object. When using Reference Object within the schema, the schemaFormat of the resource being referenced MUST match the schemaFormat of the schema that contains the initial reference. For example, if you reference Avro schema, then schemaFormat of referencing resource and the resource being reference MUST match.",
-                        "anyOf": [
+                        "enum": [
+                            "application/vnd.oai.openapi;version=3.0.0",
+                            "application/vnd.oai.openapi+json;version=3.0.0",
+                            "application/vnd.oai.openapi+yaml;version=3.0.0"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "schema": {
+                        "oneOf": [
                             {
-                                "type": "string"
+                                "$ref": "#/definitions/Reference"
                             },
                             {
-                                "description": "All the schema formats tooling MUST support",
-                                "enum": [
-                                    "application/schema+json;version=draft-07",
-                                    "application/schema+yaml;version=draft-07",
-                                    "application/vnd.aai.asyncapi;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+json;version=3.0.0",
-                                    "application/vnd.aai.asyncapi+yaml;version=3.0.0"
-                                ]
-                            },
-                            {
-                                "description": "All the schema formats tools are RECOMMENDED to support",
-                                "enum": [
-                                    "application/vnd.oai.openapi;version=3.0.0",
-                                    "application/vnd.oai.openapi+json;version=3.0.0",
-                                    "application/vnd.oai.openapi+yaml;version=3.0.0",
-                                    "application/vnd.apache.avro;version=1.9.0",
-                                    "application/vnd.apache.avro+json;version=1.9.0",
-                                    "application/vnd.apache.avro+yaml;version=1.9.0",
-                                    "application/raml+yaml;version=1.0"
-                                ]
+                                "$ref": "#/definitions/openapiSchema_3_0"
                             }
                         ]
                     }
-                },
-                "allOf": [
-                    {
-                        "if": {
-                            "not": {
-                                "description": "If no schemaFormat has been defined, default to schema or reference",
-                                "required": [
-                                    "schemaFormat"
-                                ]
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "$ref": "#/definitions/schema"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "if": {
-                            "description": "If schemaFormat has been defined check if it's one of the AsyncAPI Schema Object formats",
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/vnd.aai.asyncapi;version=2.0.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.0.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.0.0",
-                                        "application/vnd.aai.asyncapi;version=2.1.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.1.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.1.0",
-                                        "application/vnd.aai.asyncapi;version=2.2.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.2.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.2.0",
-                                        "application/vnd.aai.asyncapi;version=2.3.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.3.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.3.0",
-                                        "application/vnd.aai.asyncapi;version=2.4.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.4.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.4.0",
-                                        "application/vnd.aai.asyncapi;version=2.5.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.5.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.5.0",
-                                        "application/vnd.aai.asyncapi;version=2.6.0",
-                                        "application/vnd.aai.asyncapi+json;version=2.6.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=2.6.0",
-                                        "application/vnd.aai.asyncapi;version=3.0.0",
-                                        "application/vnd.aai.asyncapi+json;version=3.0.0",
-                                        "application/vnd.aai.asyncapi+yaml;version=3.0.0"
-                                    ]
-                                }
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "$ref": "#/definitions/schema"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "if": {
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/schema+json;version=draft-07",
-                                        "application/schema+yaml;version=draft-07"
-                                    ]
-                                }
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "$ref": "#/definitions/json-schema-draft-07-schema"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "if": {
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/vnd.oai.openapi;version=3.0.0",
-                                        "application/vnd.oai.openapi+json;version=3.0.0",
-                                        "application/vnd.oai.openapi+yaml;version=3.0.0"
-                                    ]
-                                }
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "#/definitions/Reference"
-                                        },
-                                        {
-                                            "$ref": "#/definitions/openapiSchema_3_0"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "if": {
-                            "required": [
-                                "schemaFormat"
-                            ],
-                            "properties": {
-                                "schemaFormat": {
-                                    "enum": [
-                                        "application/vnd.apache.avro;version=1.9.0",
-                                        "application/vnd.apache.avro+json;version=1.9.0",
-                                        "application/vnd.apache.avro+yaml;version=1.9.0"
-                                    ]
-                                }
-                            }
-                        },
-                        "then": {
-                            "properties": {
-                                "schema": {
-                                    "oneOf": [
-                                        {
-                                            "$ref": "#/definitions/Reference"
-                                        },
-                                        {
-                                            "$ref": "#/definitions/avroSchema_v1"
-                                        }
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                ]
+                }
             }
         },
         "openapiSchema_3_0": {
@@ -3067,10 +3017,10 @@
                 "not": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0"
+                            "$ref": "#"
                         },
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            "$ref": "#/definitions/Reference"
                         }
                     ]
                 },
@@ -3079,10 +3029,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -3092,10 +3042,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -3105,10 +3055,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -3116,10 +3066,10 @@
                 "items": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0"
+                            "$ref": "#"
                         },
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            "$ref": "#/definitions/Reference"
                         }
                     ]
                 },
@@ -3128,10 +3078,10 @@
                     "additionalProperties": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -3139,10 +3089,10 @@
                 "additionalProperties": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0"
+                            "$ref": "#"
                         },
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            "$ref": "#/definitions/Reference"
                         },
                         {
                             "type": "boolean"
@@ -3162,7 +3112,7 @@
                     "default": false
                 },
                 "discriminator": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/Discriminator"
+                    "$ref": "#/definitions/Discriminator"
                 },
                 "readOnly": {
                     "type": "boolean",
@@ -3174,20 +3124,72 @@
                 },
                 "example": true,
                 "externalDocs": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/ExternalDocumentation"
+                    "$ref": "#/definitions/ExternalDocumentation"
                 },
                 "deprecated": {
                     "type": "boolean",
                     "default": false
                 },
                 "xml": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/XML"
+                    "$ref": "#/definitions/XML"
                 }
             },
             "patternProperties": {
                 "^x-": true
             },
             "additionalProperties": false
+        },
+        "multiFormatJsonSchemaMessage": {
+            "if": {
+                "required": [
+                    "schemaFormat"
+                ],
+                "properties": {
+                    "schemaFormat": {
+                        "enum": [
+                            "application/schema+json;version=draft-07",
+                            "application/schema+yaml;version=draft-07"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "schema": {
+                        "$ref": "#/definitions/json-schema-draft-07-schema"
+                    }
+                }
+            }
+        },
+        "multiFormatAvroMessage": {
+            "if": {
+                "required": [
+                    "schemaFormat"
+                ],
+                "properties": {
+                    "schemaFormat": {
+                        "enum": [
+                            "application/vnd.apache.avro;version=1.9.0",
+                            "application/vnd.apache.avro+json;version=1.9.0",
+                            "application/vnd.apache.avro+yaml;version=1.9.0"
+                        ]
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "schema": {
+                        "oneOf": [
+                            {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            {
+                                "$ref": "#/definitions/avroSchema_v1"
+                            }
+                        ]
+                    }
+                }
+            }
         },
         "avroSchema_v1": {
             "definitions": {
@@ -3196,7 +3198,7 @@
                     "description": "Root Schema",
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         }
                     ]
                 },
@@ -3205,31 +3207,31 @@
                     "description": "Allowed Avro types",
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                            "$ref": "#/definitions/primitiveType"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveTypeWithMetadata"
+                            "$ref": "#/definitions/primitiveTypeWithMetadata"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/customTypeReference"
+                            "$ref": "#/definitions/customTypeReference"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroRecord"
+                            "$ref": "#/definitions/avroRecord"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroEnum"
+                            "$ref": "#/definitions/avroEnum"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroArray"
+                            "$ref": "#/definitions/avroArray"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroMap"
+                            "$ref": "#/definitions/avroMap"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroFixed"
+                            "$ref": "#/definitions/avroFixed"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroUnion"
+                            "$ref": "#/definitions/avroUnion"
                         }
                     ]
                 },
@@ -3254,7 +3256,7 @@
                     "type": "object",
                     "properties": {
                         "type": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                            "$ref": "#/definitions/primitiveType"
                         }
                     },
                     "required": [
@@ -3265,7 +3267,7 @@
                     "title": "Custom Type",
                     "description": "Reference to a ComplexType",
                     "not": {
-                        "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                        "$ref": "#/definitions/primitiveType"
                     },
                     "type": "string",
                     "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
@@ -3275,7 +3277,7 @@
                     "description": "A Union of types",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
+                        "$ref": "#/definitions/avroSchema"
                     },
                     "minItems": 1
                 },
@@ -3285,10 +3287,10 @@
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "type": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         },
                         "doc": {
                             "type": "string"
@@ -3304,7 +3306,7 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         }
                     },
@@ -3323,10 +3325,10 @@
                             "const": "record"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -3334,13 +3336,13 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "fields": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/avroField"
+                                "$ref": "#/definitions/avroField"
                             }
                         }
                     },
@@ -3360,10 +3362,10 @@
                             "const": "enum"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -3371,13 +3373,13 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "symbols": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         }
                     },
@@ -3397,10 +3399,10 @@
                             "const": "array"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -3408,11 +3410,11 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "items": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         }
                     },
                     "required": [
@@ -3430,10 +3432,10 @@
                             "const": "map"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -3441,11 +3443,11 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "values": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         }
                     },
                     "required": [
@@ -3463,10 +3465,10 @@
                             "const": "fixed"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -3474,7 +3476,7 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "size": {
@@ -3499,7 +3501,7 @@
             "description": "Json-Schema definition for Avro AVSC files.",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
+                    "$ref": "#/definitions/avroSchema"
                 }
             ],
             "title": "Avro Schema Definition"

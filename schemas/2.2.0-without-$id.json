@@ -1360,10 +1360,10 @@
                 "not": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0"
+                            "$ref": "#"
                         },
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            "$ref": "#/definitions/Reference"
                         }
                     ]
                 },
@@ -1372,10 +1372,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -1385,10 +1385,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -1398,10 +1398,10 @@
                     "items": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -1409,10 +1409,10 @@
                 "items": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0"
+                            "$ref": "#"
                         },
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            "$ref": "#/definitions/Reference"
                         }
                     ]
                 },
@@ -1421,10 +1421,10 @@
                     "additionalProperties": {
                         "oneOf": [
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0"
+                                "$ref": "#"
                             },
                             {
-                                "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                                "$ref": "#/definitions/Reference"
                             }
                         ]
                     }
@@ -1432,10 +1432,10 @@
                 "additionalProperties": {
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0"
+                            "$ref": "#"
                         },
                         {
-                            "$ref": "#/definitions/openapiSchema_3_0/definitions/Reference"
+                            "$ref": "#/definitions/Reference"
                         },
                         {
                             "type": "boolean"
@@ -1455,7 +1455,7 @@
                     "default": false
                 },
                 "discriminator": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/Discriminator"
+                    "$ref": "#/definitions/Discriminator"
                 },
                 "readOnly": {
                     "type": "boolean",
@@ -1467,14 +1467,14 @@
                 },
                 "example": true,
                 "externalDocs": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/ExternalDocumentation"
+                    "$ref": "#/definitions/ExternalDocumentation"
                 },
                 "deprecated": {
                     "type": "boolean",
                     "default": false
                 },
                 "xml": {
-                    "$ref": "#/definitions/openapiSchema_3_0/definitions/XML"
+                    "$ref": "#/definitions/XML"
                 }
             },
             "patternProperties": {
@@ -1489,7 +1489,7 @@
                     "description": "Root Schema",
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         }
                     ]
                 },
@@ -1498,31 +1498,31 @@
                     "description": "Allowed Avro types",
                     "oneOf": [
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                            "$ref": "#/definitions/primitiveType"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveTypeWithMetadata"
+                            "$ref": "#/definitions/primitiveTypeWithMetadata"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/customTypeReference"
+                            "$ref": "#/definitions/customTypeReference"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroRecord"
+                            "$ref": "#/definitions/avroRecord"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroEnum"
+                            "$ref": "#/definitions/avroEnum"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroArray"
+                            "$ref": "#/definitions/avroArray"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroMap"
+                            "$ref": "#/definitions/avroMap"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroFixed"
+                            "$ref": "#/definitions/avroFixed"
                         },
                         {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/avroUnion"
+                            "$ref": "#/definitions/avroUnion"
                         }
                     ]
                 },
@@ -1547,7 +1547,7 @@
                     "type": "object",
                     "properties": {
                         "type": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                            "$ref": "#/definitions/primitiveType"
                         }
                     },
                     "required": [
@@ -1558,7 +1558,7 @@
                     "title": "Custom Type",
                     "description": "Reference to a ComplexType",
                     "not": {
-                        "$ref": "#/definitions/avroSchema_v1/definitions/primitiveType"
+                        "$ref": "#/definitions/primitiveType"
                     },
                     "type": "string",
                     "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
@@ -1568,7 +1568,7 @@
                     "description": "A Union of types",
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
+                        "$ref": "#/definitions/avroSchema"
                     },
                     "minItems": 1
                 },
@@ -1578,10 +1578,10 @@
                     "type": "object",
                     "properties": {
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "type": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         },
                         "doc": {
                             "type": "string"
@@ -1597,7 +1597,7 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         }
                     },
@@ -1616,10 +1616,10 @@
                             "const": "record"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -1627,13 +1627,13 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "fields": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/avroField"
+                                "$ref": "#/definitions/avroField"
                             }
                         }
                     },
@@ -1653,10 +1653,10 @@
                             "const": "enum"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -1664,13 +1664,13 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "symbols": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         }
                     },
@@ -1690,10 +1690,10 @@
                             "const": "array"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -1701,11 +1701,11 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "items": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         }
                     },
                     "required": [
@@ -1723,10 +1723,10 @@
                             "const": "map"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -1734,11 +1734,11 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "values": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/types"
+                            "$ref": "#/definitions/types"
                         }
                     },
                     "required": [
@@ -1756,10 +1756,10 @@
                             "const": "fixed"
                         },
                         "name": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                            "$ref": "#/definitions/name"
                         },
                         "namespace": {
-                            "$ref": "#/definitions/avroSchema_v1/definitions/namespace"
+                            "$ref": "#/definitions/namespace"
                         },
                         "doc": {
                             "type": "string"
@@ -1767,7 +1767,7 @@
                         "aliases": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/avroSchema_v1/definitions/name"
+                                "$ref": "#/definitions/name"
                             }
                         },
                         "size": {
@@ -1792,7 +1792,7 @@
             "description": "Json-Schema definition for Avro AVSC files.",
             "oneOf": [
                 {
-                    "$ref": "#/definitions/avroSchema_v1/definitions/avroSchema"
+                    "$ref": "#/definitions/avroSchema"
                 }
             ],
             "title": "Avro Schema Definition"
