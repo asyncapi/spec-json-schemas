@@ -3,6 +3,7 @@ describe('Security Schemes', () => {
   require('./asymmetricEncryption/asymmetricEncryption.js');
   require('./gssapi/gssapi.js');
   require('./openIdconnect/openIdconnect.js');
+  require('./saslSecurityScheme/saslSecurityScheme.js')
   require('./plain/plain.js');
   require('./scramSha256/scramSha256.js');
   require('./scramSha512/scramSha512.js');
