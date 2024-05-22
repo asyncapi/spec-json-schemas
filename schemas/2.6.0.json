@@ -1439,7 +1439,7 @@
                                     "then": {
                                         "properties": {
                                             "payload": {
-                                                "$ref": "http://asyncapi.com/common/openapiSchema_3_0.json"
+                                                "$ref": "http://asyncapi.com/definitions/common/openapiSchema_3_0.json"
                                             }
                                         }
                                     }
@@ -1462,7 +1462,7 @@
                                     "then": {
                                         "properties": {
                                             "payload": {
-                                                "$ref": "http://asyncapi.com/common/avroSchema_v1.json"
+                                                "$ref": "http://asyncapi.com/definitions/common/avroSchema_v1.json"
                                             }
                                         }
                                     }
@@ -1726,8 +1726,8 @@
                 }
             ]
         },
-        "http://asyncapi.com/common/openapiSchema_3_0.json": {
-            "$id": "http://asyncapi.com/common/openapiSchema_3_0.json",
+        "http://asyncapi.com/definitions/common/openapiSchema_3_0.json": {
+            "$id": "http://asyncapi.com/definitions/common/openapiSchema_3_0.json",
             "type": "object",
             "definitions": {
                 "ExternalDocumentation": {
@@ -2013,8 +2013,8 @@
             },
             "additionalProperties": false
         },
-        "http://asyncapi.com/common/avroSchema_v1.json": {
-            "$id": "http://asyncapi.com/common/avroSchema_v1.json",
+        "http://asyncapi.com/definitions/common/avroSchema_v1.json": {
+            "$id": "http://asyncapi.com/definitions/common/avroSchema_v1.json",
             "definitions": {
                 "avroSchema": {
                     "title": "Avro Schema",

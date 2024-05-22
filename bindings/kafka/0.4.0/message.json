@@ -19,7 +19,7 @@
           "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
         },
         {
-          "$ref": "http://asyncapi.com/common/avroSchema_v1.json"
+          "$ref": "http://asyncapi.com/definitions/common/avroSchema_v1.json"
         }
       ],
       "description": "The message key."

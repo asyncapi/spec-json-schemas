@@ -95,7 +95,7 @@ async function addNewVersion(newVersion) {
   }
 
   //Use the newest version as baseline for the new one
-  const latestVersion = (await execute('ls -d ./definitions/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
+  const latestVersion = (await execute('ls -d ./definitions/*.*.* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
   await execute(`cp -R ./definitions/${latestVersion} ${newVersionDir}`);
 
   const latestExampleVersion = (await execute('ls -d ./examples/* | sort -V -r | head -1 | xargs -n 1 basename')).trim();
