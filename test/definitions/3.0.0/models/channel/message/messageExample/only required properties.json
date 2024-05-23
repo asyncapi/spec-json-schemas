@@ -1,0 +1,14 @@
+{
+  "headers": {
+    "correlationId": "my-correlation-id",
+    "applicationInstanceId": "myInstanceId"
+  },
+  "payload": {
+    "user": {
+      "someUserKey": "someUserValue"
+    },
+    "signup": {
+      "someSignupKey": "someSignupValue"
+    }
+  }
+}
