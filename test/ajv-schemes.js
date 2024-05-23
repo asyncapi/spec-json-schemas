@@ -109,6 +109,7 @@ function schemesV3_0_0(ajv) {
   ajv.addSchema(require('../definitions/3.0.0/operationBindingsObject.json'));
   ajv.addSchema(require('../definitions/3.0.0/operationReply.json'));
   ajv.addSchema(require('../definitions/3.0.0/operationReplyAddress.json'));
+  ajv.addSchema(require('../definitions/3.0.0/operation.json'));
   ajv.addSchema(require('../definitions/3.0.0/operations.json'));
   ajv.addSchema(require('../definitions/3.0.0/operationTrait.json'));
   ajv.addSchema(require('../definitions/3.0.0/parameter.json'));
