@@ -118,6 +118,7 @@ function schemesV3_0_0(ajv) {
   ajv.addSchema(require('../definitions/3.0.0/SaslGssapiSecurityScheme.json'));
   ajv.addSchema(require('../definitions/3.0.0/SaslPlainSecurityScheme.json'));
   ajv.addSchema(require('../definitions/3.0.0/SaslSecurityScheme.json'));
+  ajv.addSchema(require('../definitions/3.0.0/SaslScramSecurityScheme.json'));
   ajv.addSchema(require('../definitions/3.0.0/schema.json'));
   ajv.addSchema(require('../definitions/3.0.0/securityRequirements.json'));
   ajv.addSchema(require('../definitions/3.0.0/SecurityScheme.json'));
