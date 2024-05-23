@@ -13,6 +13,7 @@ const ajv = new Ajv({
 });
 addFormats(ajv);
 
+const jsonSchemaName = 'HTTP Basic';
 const jsonSchema = require('../../../../../definitions/3.0.0/NonBearerHTTPSecurityScheme.json');
 const validator = ajv
   .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
@@ -20,6 +21,13 @@ const validator = ajv
   .compile(jsonSchema);
 
 describe('HTTP Basic', () => {
+  it('example', () => {
+    const info = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
+    const validationResult = validator(info);
+
+    assert(validationResult === true, `${jsonSchemaName} example MUST be valid`);
+  });
+
   it('empty', () => {
     const model = JSON.parse(fs.readFileSync(`${__dirname}/empty.json`, 'utf-8'));
     const validationResult = validator(model);
