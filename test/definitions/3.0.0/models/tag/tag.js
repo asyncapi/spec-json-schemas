@@ -13,6 +13,7 @@ const ajv = new Ajv({
 });
 addFormats(ajv);
 
+const jsonSchemaName = 'Tag';
 const infoJsonSchema = require('../../../../../definitions/3.0.0/tag.json');
 const validator = ajv
   .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
@@ -23,6 +24,13 @@ const validator = ajv
   .compile(infoJsonSchema);
 
 describe('Reference', () => {
+  it('example', () => {
+    const info = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
+    const validationResult = validator(info);
+
+    assert(validationResult === true, `${jsonSchemaName} example MUST be valid`);
+  });
+
   it('empty', () => {
     const info = JSON.parse(fs.readFileSync(`${__dirname}/empty.json`, 'utf-8'));
     const validationResult = validator(info);

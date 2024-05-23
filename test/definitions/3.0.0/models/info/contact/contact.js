@@ -13,13 +13,21 @@ const ajv = new Ajv({
 });
 addFormats(ajv);
 
-const infoJsonSchema = require('../../../../../../definitions/3.0.0/contact.json');
+const jsonSchemaName = 'Contact';
+const jsonSchema = require('../../../../../../definitions/3.0.0/contact.json');
 const validator = ajv
   .addMetaSchema(require('../../../../../../definitions/3.0.0/schema.json'))
   .addSchema(require('../../../../../../definitions/3.0.0/specificationExtension.json'))
-  .compile(infoJsonSchema);
+  .compile(jsonSchema);
 
 describe('Contact', () => {
+  it('example', () => {
+    const info = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
+    const validationResult = validator(info);
+
+    assert(validationResult === true, `${jsonSchemaName} example MUST be valid`);
+  });
+
   it('empty', () => {
     const info = JSON.parse(fs.readFileSync(`${__dirname}/empty.json`, 'utf-8'));
     const validationResult = validator(info);
