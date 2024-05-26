@@ -13,13 +13,13 @@ const ajv = new Ajv({
 });
 addFormats(ajv);
 
-const jsonSchema = require('../../../../../definitions/3.0.0/HTTPSecurityScheme.json');
+const jsonSchema = require('@definitions/3.0.0/HTTPSecurityScheme.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/NonBearerHTTPSecurityScheme.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/BearerHTTPSecurityScheme.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/APIKeyHTTPSecurityScheme.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/NonBearerHTTPSecurityScheme.json'))
+  .addSchema(require('@definitions/3.0.0/BearerHTTPSecurityScheme.json'))
+  .addSchema(require('@definitions/3.0.0/APIKeyHTTPSecurityScheme.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 describe('HTTP Security Scheme', () => {

@@ -14,10 +14,10 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'User Password';
-const jsonSchema = require('../../../../../definitions/3.0.0/userPassword.json');
+const jsonSchema = require('@definitions/3.0.0/userPassword.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 describe('User Password', () => {

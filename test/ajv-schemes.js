@@ -1,43 +1,43 @@
 module.exports = schemesV3_0_0;
 
 function bindingSchemes(ajv) {
-  ajv.addSchema(require('../bindings/amqp/0.2.0/channel.json'));
-  ajv.addSchema(require('../bindings/amqp/0.2.0/message.json'));
-  ajv.addSchema(require('../bindings/amqp/0.2.0/operation.json'));
-  ajv.addSchema(require('../bindings/amqp/0.3.0/channel.json'));
-  ajv.addSchema(require('../bindings/amqp/0.3.0/message.json'));
-  ajv.addSchema(require('../bindings/amqp/0.3.0/operation.json'));
+  ajv.addSchema(require('@bindings/amqp/0.2.0/channel.json'));
+  ajv.addSchema(require('@bindings/amqp/0.2.0/message.json'));
+  ajv.addSchema(require('@bindings/amqp/0.2.0/operation.json'));
+  ajv.addSchema(require('@bindings/amqp/0.3.0/channel.json'));
+  ajv.addSchema(require('@bindings/amqp/0.3.0/message.json'));
+  ajv.addSchema(require('@bindings/amqp/0.3.0/operation.json'));
 
-  ajv.addSchema(require('../bindings/anypointmq/0.0.1/channel.json'));
-  ajv.addSchema(require('../bindings/anypointmq/0.0.1/message.json'));
+  ajv.addSchema(require('@bindings/anypointmq/0.0.1/channel.json'));
+  ajv.addSchema(require('@bindings/anypointmq/0.0.1/message.json'));
 
-  ajv.addSchema(require('../bindings/googlepubsub/0.1.0/channel.json'));
-  ajv.addSchema(require('../bindings/googlepubsub/0.1.0/message.json'));
-  ajv.addSchema(require('../bindings/googlepubsub/0.2.0/channel.json'));
-  ajv.addSchema(require('../bindings/googlepubsub/0.2.0/message.json'));
+  ajv.addSchema(require('@bindings/googlepubsub/0.1.0/channel.json'));
+  ajv.addSchema(require('@bindings/googlepubsub/0.1.0/message.json'));
+  ajv.addSchema(require('@bindings/googlepubsub/0.2.0/channel.json'));
+  ajv.addSchema(require('@bindings/googlepubsub/0.2.0/message.json'));
 
-  ajv.addSchema(require('../bindings/http/0.1.0/message.json'));
-  ajv.addSchema(require('../bindings/http/0.1.0/operation.json'));
-  ajv.addSchema(require('../bindings/http/0.2.0/message.json'));
-  ajv.addSchema(require('../bindings/http/0.2.0/operation.json'));
-  ajv.addSchema(require('../bindings/http/0.3.0/message.json'));
-  ajv.addSchema(require('../bindings/http/0.3.0/operation.json'));
+  ajv.addSchema(require('@bindings/http/0.1.0/message.json'));
+  ajv.addSchema(require('@bindings/http/0.1.0/operation.json'));
+  ajv.addSchema(require('@bindings/http/0.2.0/message.json'));
+  ajv.addSchema(require('@bindings/http/0.2.0/operation.json'));
+  ajv.addSchema(require('@bindings/http/0.3.0/message.json'));
+  ajv.addSchema(require('@bindings/http/0.3.0/operation.json'));
 
-  ajv.addSchema(require('../bindings/ibmmq/0.1.0/channel.json'));
-  ajv.addSchema(require('../bindings/ibmmq/0.1.0/message.json'));
-  ajv.addSchema(require('../bindings/ibmmq/0.1.0/server.json'));
+  ajv.addSchema(require('@bindings/ibmmq/0.1.0/channel.json'));
+  ajv.addSchema(require('@bindings/ibmmq/0.1.0/message.json'));
+  ajv.addSchema(require('@bindings/ibmmq/0.1.0/server.json'));
 
-  ajv.addSchema(require('../bindings/jms/0.0.1/channel.json'));
-  ajv.addSchema(require('../bindings/jms/0.0.1/message.json'));
-  ajv.addSchema(require('../bindings/jms/0.0.1/server.json'));
+  ajv.addSchema(require('@bindings/jms/0.0.1/channel.json'));
+  ajv.addSchema(require('@bindings/jms/0.0.1/message.json'));
+  ajv.addSchema(require('@bindings/jms/0.0.1/server.json'));
 
-  ajv.addSchema(require('../bindings/kafka/0.1.0/message.json'));
-  ajv.addSchema(require('../bindings/kafka/0.1.0/operation.json'));
-  ajv.addSchema(require('../bindings/kafka/0.3.0/channel.json'));
-  ajv.addSchema(require('../bindings/kafka/0.3.0/message.json'));
-  ajv.addSchema(require('../bindings/kafka/0.3.0/operation.json'));
-  ajv.addSchema(require('../bindings/kafka/0.3.0/server.json'));
-  ajv.addSchema(require('../bindings/kafka/0.4.0/channel.json'));
+  ajv.addSchema(require('@bindings/kafka/0.1.0/message.json'));
+  ajv.addSchema(require('@bindings/kafka/0.1.0/operation.json'));
+  ajv.addSchema(require('@bindings/kafka/0.3.0/channel.json'));
+  ajv.addSchema(require('@bindings/kafka/0.3.0/message.json'));
+  ajv.addSchema(require('@bindings/kafka/0.3.0/operation.json'));
+  ajv.addSchema(require('@bindings/kafka/0.3.0/server.json'));
+  ajv.addSchema(require('@bindings/kafka/0.4.0/channel.json'));
   ajv.addSchema(require('../bindings/kafka/0.4.0/message.json'));
   ajv.addSchema(require('../bindings/kafka/0.4.0/operation.json'));
   ajv.addSchema(require('../bindings/kafka/0.4.0/server.json'));

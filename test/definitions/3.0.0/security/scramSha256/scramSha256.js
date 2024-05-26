@@ -14,10 +14,10 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'SCRAM-SHA-256';
-const jsonSchema = require('../../../../../definitions/3.0.0/SaslScramSecurityScheme.json');
+const jsonSchema = require('@definitions/3.0.0/SaslScramSecurityScheme.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 describe('SCRAM-SHA-256', () => {

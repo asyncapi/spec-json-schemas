@@ -14,10 +14,10 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'GSS-API';
-const jsonSchema = require('../../../../../definitions/3.0.0/SaslGssapiSecurityScheme.json');
+const jsonSchema = require('@definitions/3.0.0/SaslGssapiSecurityScheme.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 describe('GSS-API', () => {

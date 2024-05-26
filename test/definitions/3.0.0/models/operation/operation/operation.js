@@ -14,8 +14,8 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'Operation';
-const jsonSchema = require('../../../../../../definitions/3.0.0/operation.json');
-const schemesV3_0_0 = require('../../../../../ajv-schemes');
+const jsonSchema = require('@definitions/3.0.0/operation.json');
+import schemesV3_0_0 from '@test/ajv-schemes';
 const validator = schemesV3_0_0(ajv).compile(jsonSchema);
 
 describe.skip(`${jsonSchemaName}. Reason: errors with bindings, external docs, ...`, () => {

@@ -13,11 +13,11 @@ const ajv = new Ajv({
 });
 addFormats(ajv);
 
-const jsonSchema = require('../../../../../../../definitions/3.0.0/oauth2Flow.json');
+const jsonSchema = require('@definitions/3.0.0/oauth2Flow.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../../../definitions/3.0.0/schema.json'))
-  .addMetaSchema(require('../../../../../../../definitions/3.0.0/oauth2Scopes.json'))
-  .addSchema(require('../../../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addMetaSchema(require('@definitions/3.0.0/oauth2Scopes.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 const schemaName = 'Authorization Code Flow';

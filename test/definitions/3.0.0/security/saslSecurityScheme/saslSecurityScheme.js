@@ -13,13 +13,13 @@ const ajv = new Ajv({
 });
 addFormats(ajv);
 
-const jsonSchema = require('../../../../../definitions/3.0.0/SaslSecurityScheme.json');
+const jsonSchema = require('@definitions/3.0.0/SaslSecurityScheme.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/SaslScramSecurityScheme.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/SaslPlainSecurityScheme.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/SaslGssapiSecurityScheme.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/SaslScramSecurityScheme.json'))
+  .addSchema(require('@definitions/3.0.0/SaslPlainSecurityScheme.json'))
+  .addSchema(require('@definitions/3.0.0/SaslGssapiSecurityScheme.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 describe('SASL Security Scheme', () => {

@@ -14,8 +14,8 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'Message trait';
-const jsonSchema = require('../../../../../../../definitions/3.0.0/messageTrait.json');
-const schemesV3_0_0 = require('../../../../../../ajv-schemes');
+const jsonSchema = require('@definitions/3.0.0/messageTrait.json');
+import schemesV3_0_0 from '@test/ajv-schemes';
 const validator = schemesV3_0_0(ajv).compile(jsonSchema);
 
 describe.skip(`${jsonSchemaName}. Issues with bindings`, () => {

@@ -15,13 +15,13 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'Tag';
-const jsonSchema = require('../../../../../definitions/3.0.0/tag.json');
+const jsonSchema = require('@definitions/3.0.0/tag.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/Reference.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/ReferenceObject.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/externalDocs.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/Reference.json'))
+  .addSchema(require('@definitions/3.0.0/ReferenceObject.json'))
+  .addSchema(require('@definitions/3.0.0/externalDocs.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 describe(`${jsonSchemaName}`, () => {

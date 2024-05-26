@@ -15,10 +15,10 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'Reference';
-const infoJsonSchema = require('../../../../../definitions/3.0.0/Reference.json');
+const infoJsonSchema = require('@definitions/3.0.0/Reference.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../definitions/3.0.0/ReferenceObject.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/ReferenceObject.json'))
   .compile(infoJsonSchema);
 
 describe('Reference', () => {

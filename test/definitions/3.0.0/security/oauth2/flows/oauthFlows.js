@@ -13,12 +13,12 @@ const ajv = new Ajv({
 });
 addFormats(ajv);
 
-const jsonSchema = require('../../../../../../definitions/3.0.0/oauth2Flows.json');
+const jsonSchema = require('@definitions/3.0.0/oauth2Flows.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../../definitions/3.0.0/oauth2Scopes.json'))
-  .addSchema(require('../../../../../../definitions/3.0.0/oauth2Flow.json'))
-  .addSchema(require('../../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/oauth2Scopes.json'))
+  .addSchema(require('@definitions/3.0.0/oauth2Flow.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(jsonSchema);
 
 const schemaName = 'OAuth2 Flows';

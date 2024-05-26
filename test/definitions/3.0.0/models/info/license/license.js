@@ -14,10 +14,10 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'License';
-const infoJsonSchema = require('../../../../../../definitions/3.0.0/license.json');
+const infoJsonSchema = require('@definitions/3.0.0/license.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../../definitions/3.0.0/specificationExtension.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
   .compile(infoJsonSchema);
 
 describe('License', () => {

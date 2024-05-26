@@ -14,11 +14,11 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'Info Extensions';
-const jsonSchema = require('../../../../../../definitions/3.0.0/infoExtensions.json');
+const jsonSchema = require('@definitions/3.0.0/infoExtensions.json');
 const validator = ajv
-  .addMetaSchema(require('../../../../../../definitions/3.0.0/schema.json'))
-  .addSchema(require('../../../../../../extensions/linkedin/0.1.0/schema.json'))
-  .addSchema(require('../../../../../../extensions/x/0.1.0/schema.json'))
+  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
+  .addSchema(require('@extensions/linkedin/0.1.0/schema.json'))
+  .addSchema(require('@extensions/x/0.1.0/schema.json'))
   .compile(jsonSchema);
 
 describe('InfoExtensions', () => {

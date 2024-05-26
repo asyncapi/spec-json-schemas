@@ -14,8 +14,8 @@ const ajv = new Ajv({
 addFormats(ajv);
 
 const jsonSchemaName = 'Operation Reply Address';
-const jsonSchema = require('../../../../../../definitions/3.0.0/operationReplyAddress.json');
-const schemesV3_0_0 = require('../../../../../ajv-schemes');
+const jsonSchema = require('@definitions/3.0.0/operationReplyAddress.json');
+import schemesV3_0_0 from '@test/ajv-schemes';
 const validator = schemesV3_0_0(ajv).compile(jsonSchema);
 
 describe(`${jsonSchemaName}`, () => {
