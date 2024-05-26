@@ -2,6 +2,7 @@ const Ajv = require('ajv');
 const assert = require('assert');
 const addFormats = require('ajv-formats');
 const fs = require('fs');
+const path = require('path');
 
 const ajv = new Ajv({
   jsonPointers: true,
@@ -48,15 +49,17 @@ describe.skip(`${jsonSchemaName}. Reason: errors with bindings, external docs, .
   });
 
   it.skip('extended. Reason: schema doesn\'t check for extensions', () => {
-    const info = JSON.parse(fs.readFileSync(`${__dirname}/extended.json`, 'utf-8'));
-    const validationResult = validator(info);
+    const filePath = path.resolve(__dirname, '../../../../extended.json');
+    const model = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const validationResult = validator(model);
 
     assert(validationResult === true, `${jsonSchemaName} can be extended`);
   });
 
   it.skip('wrongly extended. Reason: schema doesn\'t check for extensions', () => {
-    const info = JSON.parse(fs.readFileSync(`${__dirname}/wrongly extended.json`, 'utf-8'));
-    const validationResult = validator(info);
+    const filePath = path.resolve(__dirname, '../../../../wrongly extended.json');
+    const model = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+    const validationResult = validator(model);
 
     assert(validationResult === false, `${jsonSchemaName} is not valid when was wrongly extended`);
     assert(validator.errors[0].message === 'must NOT have additional properties');

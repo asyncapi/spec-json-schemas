@@ -3,7 +3,7 @@ describe('Models', () => {
   require('./channel');
   require('./operation');
   require('./server');
-  require('./tag/tag.js');
-  require('./reference/reference.js');
-  require('./reference object/reference-object.js');
+  require('./tag');
+  require('./reference');
+  require('./reference object');
 });
