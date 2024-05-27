@@ -1,0 +1,8 @@
+{
+    "topic": "projects/your-project/topics/topic-proto-schema",
+    "schemaSettings": {
+        "encoding": "binary",
+        "name": "projects/your-project/schemas/message-proto"
+    },
+    "bindingVersion": "0.1.0"
+}
