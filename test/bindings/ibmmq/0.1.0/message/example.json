@@ -1,0 +1,5 @@
+{
+    "type": "jms",
+    "description": "JMS stream message",
+    "expiry": 0
+}

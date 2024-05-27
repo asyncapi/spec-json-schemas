@@ -1,0 +1,9 @@
+{
+    "namespace": "staging",
+    "persistence": "persistent",
+    "x-number": 0,
+    "x-string": "",
+    "x-object": {
+        "property": {}
+    }
+}

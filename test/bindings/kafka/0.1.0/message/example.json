@@ -1,0 +1,8 @@
+{
+    "key": {
+        "type": "string",
+        "enum": [
+            "myKey"
+        ]
+    }
+}
