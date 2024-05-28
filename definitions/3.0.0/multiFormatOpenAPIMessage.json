@@ -21,7 +21,7 @@
             "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
           },
           {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
+            "$ref": "http://asyncapi.com/definitions/common/openapiSchema_3_0.json"
           }
         ]
       }
