@@ -23,7 +23,6 @@ describe.skip(`${jsonSchemaName} Reason: errors with bindings, external docs, ..
     const info = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
     const validationResult = validator(info);
 
-    console.log(validator.errors);
     assert(validationResult === true, `${jsonSchemaName} example MUST be valid`);
   });
 

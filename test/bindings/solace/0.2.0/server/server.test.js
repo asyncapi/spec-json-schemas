@@ -10,7 +10,6 @@ describe(`${title}`, () => {
     const model = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
     const validationResult = validator(model);
 
-    console.log(validator.errors);
     assert(validationResult === true, `Example MUST be valid`);
   });
 

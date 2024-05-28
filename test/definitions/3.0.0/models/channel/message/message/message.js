@@ -37,7 +37,6 @@ describe.skip(`${jsonSchemaName}. Issues with bindings`, () => {
     const info = JSON.parse(fs.readFileSync(`${__dirname}/without required properties.json`, 'utf-8'));
     const validationResult = validator(info);
 
-    console.log(validator.errors);
     assert(validationResult === true, `${jsonSchemaName} without required properties is valid`);
   });
 
