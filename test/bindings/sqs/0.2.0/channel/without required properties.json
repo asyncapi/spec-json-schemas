@@ -1,0 +1,10 @@
+{
+    "deadLetterQueue": {
+        "name": "myQueue_error",
+        "fifoQueue": false,
+        "deliveryDelay": 0,
+        "visibilityTimeout": 0,
+        "receiveMessageWaitTime": 0,
+        "messageRetentionPeriod": 604800
+    }
+}
