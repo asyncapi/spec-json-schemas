@@ -137,5 +137,8 @@ function schemesV3_0_0(ajv) {
   ajv.addSchema(require('@common/avroSchema_v1.json'));
   ajv.addSchema(require('@common/openapiSchema_3_0.json'));
 
+  ajv.addSchema(require('@extensions/x/0.1.0/schema.json'));
+  ajv.addSchema(require('@extensions/linkedin/0.1.0/schema.json'));
+
   return bindingSchemes(ajv);
 }

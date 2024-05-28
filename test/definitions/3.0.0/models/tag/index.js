@@ -1,35 +1,16 @@
-const Ajv = require('ajv');
-const assert = require('assert');
-const addFormats = require('ajv-formats');
+import TestHelper from '@test/test-helper';
+
 const fs = require('fs');
-const path = require('path');
+const assert = require('assert');
+const title = 'Tag';
+const validator = TestHelper.validator(require('@definitions/3.0.0/tag.json'));
 
-const ajv = new Ajv({
-  jsonPointers: true,
-  allErrors: true,
-  schemaId: '$id',
-  logger: false,
-  validateFormats: true,
-  strict: false,
-});
-addFormats(ajv);
-
-const jsonSchemaName = 'Tag';
-const jsonSchema = require('@definitions/3.0.0/tag.json');
-const validator = ajv
-  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
-  .addSchema(require('@definitions/3.0.0/Reference.json'))
-  .addSchema(require('@definitions/3.0.0/ReferenceObject.json'))
-  .addSchema(require('@definitions/3.0.0/externalDocs.json'))
-  .addSchema(require('@definitions/3.0.0/specificationExtension.json'))
-  .compile(jsonSchema);
-
-describe(`${jsonSchemaName}`, () => {
+describe(`${title}`, () => {
   it('example', () => {
     const model = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
     const validationResult = validator(model);
 
-    assert(validationResult === true, `${jsonSchemaName} example MUST be valid`);
+    assert(validationResult === true, `${title} example MUST be valid`);
   });
 
   it('empty', () => {

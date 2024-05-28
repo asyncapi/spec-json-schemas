@@ -1,25 +1,11 @@
-const Ajv = require('ajv');
-const assert = require('assert');
-const addFormats = require('ajv-formats');
+import TestHelper from '@test/test-helper';
+
 const fs = require('fs');
+const assert = require('assert');
+const title = 'Reference Object';
+const validator = TestHelper.validator(require('@definitions/3.0.0/Reference.json'));
 
-const ajv = new Ajv({
-  jsonPointers: true,
-  allErrors: true,
-  schemaId: '$id',
-  logger: false,
-  validateFormats: true,
-  strict: false,
-});
-addFormats(ajv);
-
-const infoJsonSchema = require('@definitions/3.0.0/Reference.json');
-const validator = ajv
-  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
-  .addMetaSchema(require('@definitions/3.0.0/ReferenceObject.json'))
-  .compile(infoJsonSchema);
-
-describe('ReferenceObject', () => {
+describe(`${title}`, () => {
   it('empty', () => {
     const info = JSON.parse(fs.readFileSync(`${__dirname}/empty.json`, 'utf-8'));
     const validationResult = validator(info);

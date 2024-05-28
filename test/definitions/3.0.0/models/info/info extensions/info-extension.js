@@ -1,32 +1,16 @@
-const Ajv = require('ajv');
-const assert = require('assert');
-const addFormats = require('ajv-formats');
+import TestHelper from '@test/test-helper';
+
 const fs = require('fs');
-
-const ajv = new Ajv({
-  jsonPointers: true,
-  allErrors: true,
-  schemaId: '$id',
-  logger: false,
-  validateFormats: true,
-  strict: false,
-});
-addFormats(ajv);
-
-const jsonSchemaName = 'Info Extensions';
-const jsonSchema = require('@definitions/3.0.0/infoExtensions.json');
-const validator = ajv
-  .addMetaSchema(require('@definitions/3.0.0/schema.json'))
-  .addSchema(require('@extensions/linkedin/0.1.0/schema.json'))
-  .addSchema(require('@extensions/x/0.1.0/schema.json'))
-  .compile(jsonSchema);
+const assert = require('assert');
+const title = 'Info Extensions';
+const validator = TestHelper.validator(require('@definitions/3.0.0/infoExtensions.json'));
 
 describe('InfoExtensions', () => {
   it('example', () => {
     const info = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
     const validationResult = validator(info);
 
-    assert(validationResult === true, `${jsonSchemaName} example MUST be valid`);
+    assert(validationResult === true, `${title} example MUST be valid`);
   });
 
   it('empty', () => {
