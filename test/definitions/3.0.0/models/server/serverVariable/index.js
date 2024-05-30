@@ -1,55 +1,37 @@
+import {describe, it} from 'vitest';
 import TestHelper from '@test/test-helper';
+import path from 'path';
 
-const fs = require('fs');
-const assert = require('assert');
-const title = 'Server Variable';
-const validator = TestHelper.validator(require('@definitions/3.0.0/serverVariable.json'));
+const jsonSchema = require('@definitions/3.0.0/serverVariable.json');
 
-describe(`${title}`, () => {
-  it('example', () => {
-    const info = JSON.parse(fs.readFileSync(`${__dirname}/example.json`, 'utf-8'));
-    const validationResult = validator(info);
+describe('Server Variable', () => {
+  it('example', () => TestHelper.objectIsValid(
+    jsonSchema,
+    path.resolve(__dirname, './example.json'),
+  ));
 
-    assert(validationResult === true, `${title} example MUST be valid`);
-  });
+  it('empty', () => TestHelper.objectIsValid(
+    jsonSchema,
+    path.resolve(__dirname, './empty.json'),
+  ));
 
-  it('empty', () => {
-    const info = JSON.parse(fs.readFileSync(`${__dirname}/empty.json`, 'utf-8'));
-    const validationResult = validator(info);
+  it('without required properties', () => TestHelper.objectIsValid(
+    jsonSchema,
+    path.resolve(__dirname, './without required properties.json'),
+  ));
 
-    assert(validationResult === true, `${title} with empty body is valid`);
-  });
+  it('only required properties', () => TestHelper.objectIsValid(
+    jsonSchema,
+    path.resolve(__dirname, './only required properties.json'),
+  ));
 
-  it('without required properties', () => {
-    const info = JSON.parse(fs.readFileSync(`${__dirname}/without required properties.json`, 'utf-8'));
-    const validationResult = validator(info);
+  it.skip('extended. Reason: schema doesn\'t check for extensions', () => TestHelper.objectIsValid(
+    jsonSchema,
+    path.resolve(__dirname, '../../../../extended.json')
+  ));
 
-    assert(validationResult === true, `${title} without required properties is valid`);
-  });
-
-  it('only required properties', () => {
-    const info = JSON.parse(fs.readFileSync(`${__dirname}/only required properties.json`, 'utf-8'));
-    const validationResult = validator(info);
-
-    assert(validationResult === true, `${title} is valid with only required properties`);
-  });
-
-  it.skip('extended. Reason: schema doesn\'t check for extensions', () => {
-    const filePath = path.resolve(__dirname, '../../../../extended.json');
-    const model = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    const validationResult = validator(model);
-
-    assert(validationResult === true, `${title} can be extended`);
-  });
-
-  it.skip('wrongly extended. Reason: schema doesn\'t check for extensions', () => {
-    const filePath = path.resolve(__dirname, '../../../../wrongly extended.json');
-    const model = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-    const validationResult = validator(model);
-
-    assert(validationResult === false, `${title} is not valid when was wrongly extended`);
-    assert(validator.errors[0].message === 'must NOT have additional properties');
-    assert(validator.errors[0].params.additionalProperty === 'ext-number');
-    assert(validator.errors.length === 1);
-  });
+  it.skip('wrongly extended. Reason: schema doesn\'t check for extensions', () => TestHelper.wronglyExtended(
+    jsonSchema,
+    path.resolve(__dirname, '../../../../wrongly extended.json')
+  ));
 });
