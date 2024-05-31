@@ -7,7 +7,8 @@ export default defineConfig({
   test: {
     globals: true,
     include: [
-        '**/test/index.test.mjs'
+        '**/test/index.test.mjs',
+        '**/test/schemas.mjs'
     ]
   },
   resolve: {
