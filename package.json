@@ -5,7 +5,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "npm run build && vitest --no-watch && npm run validate:schemas",
+    "test": "npm run build && vitest run && npm run validate:schemas",
     "build": "npm run bundle",
     "generate:assets": "npm run build",
     "prepublishOnly": "npm run build",
@@ -44,7 +44,6 @@
     "ajv-formats": "^3.0.1",
     "eslint": "^8.56.0",
     "eslint-plugin-sonarjs": "^0.23.0",
-    "mocha": "^10.0.0",
     "nyc": "^15.1.0",
     "vite-require": "^0.2.3",
     "vitest": "^1.6.0"

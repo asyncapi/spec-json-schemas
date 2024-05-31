@@ -47,7 +47,7 @@ export default class TestHelper {
     const model = JSON.parse(fs.readFileSync(objectFilePath, 'utf-8'));
 
     const validationResult = validator(model);
-    assert(validationResult === false, `${title} is not valid when was wrongly extended`);
+    assert(validationResult === false, 'Object is not valid when was wrongly extended');
     assert(validator.errors[0].message === 'must NOT have additional properties');
     assert(validator.errors[0].params.additionalProperty === 'ext-number');
     assert(validator.errors.length === 1);

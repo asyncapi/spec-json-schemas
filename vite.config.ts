@@ -5,7 +5,10 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   plugins: [viteRequire()],
   test: {
-    globals: true
+    globals: true,
+    include: [
+        '**/test/index.test.mjs'
+    ]
   },
   resolve: {
       alias: {
