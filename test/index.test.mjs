@@ -17,6 +17,9 @@ suite('AsyncAPI: 3.0.0', () => {
   suite('Security', () => {
     test('Security Test Suite', () => require('./definitions/3.0.0/security'));
   });
+  suite('Bundler', () => {
+    test('Validator Test Suite', () => require('@test/schemas.mjs'));
+  })
 });
 
 describe('AsyncAPI: Bundler', () => {
