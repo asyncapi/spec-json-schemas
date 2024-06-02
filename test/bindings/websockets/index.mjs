@@ -1,7 +1,7 @@
-import {describe, suite} from 'vitest';
+import {describe} from 'vitest';
 
-describe('WebSockets', () => {
-  suite('0.1.0', () => {
-    test('Channel', require('./0.1.0/channel/channel.test.js'));
+describe('WebSockets Test Suite', () => {
+  describe('0.1.0', async () => {
+    await import('@test/bindings/websockets/0.1.0/channel/channel.test.mjs')
   });
 })

@@ -8,7 +8,9 @@ export default defineConfig({
     globals: true,
     include: [
         '**/test/index.test.mjs',
-    ]
+        '**/test/bindings/bindings.suite.mjs',
+    ],
+    reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
   },
   resolve: {
       alias: {

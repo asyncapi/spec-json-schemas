@@ -1,17 +1,17 @@
-import {describe, suite} from 'vitest';
+import {describe} from 'vitest';
 
-describe('AMQP', () => {
-  suite('0.2.0', () => {
-    test('Channel', require('./0.2.0/channel/channel.test.js'));
-    test('Message', require('./0.2.0/message/message.test.js'));
-    test('Operation', require('./0.2.0/operation/operation.test.js'));
-    test('Server', require('./0.2.0/server/server.test.js'));
+describe('AMQP Test Suite', () => {
+  describe('0.2.0', async () => {
+    await import('./0.2.0/channel/channel.test.js');
+    await import('./0.2.0/message/message.test.js');
+    await import('./0.2.0/operation/operation.test.js');
+    await import('./0.2.0/server/server.test.mjs');
   });
 
-  suite('0.3.0', () => {
-    test('Channel', require('./0.3.0/channel/channel.test.js'));
-    test('Message', require('./0.3.0/message/message.test.js'));
-    test('Operation', require('./0.3.0/operation/operation.test.js'));
-    test('Server', require('./0.3.0/server/server.test.js'));
+  describe('0.3.0', async () => {
+    await import('./0.3.0/channel/channel.test.js');
+    await import('./0.3.0/message/message.test.js');
+    await import('./0.3.0/operation/operation.test.js');
+    await import('./0.3.0/server/server.test.js');
   });
 })

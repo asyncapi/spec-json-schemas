@@ -1,9 +1,9 @@
-import {describe, suite} from 'vitest';
+import {describe} from 'vitest';
 
-describe('JMS', () => {
-  suite('0.1.0', () => {
-    test('Channel', require('./0.1.0/channel/channel.test.js'));
-    test('Message', require('./0.1.0/message/message.test.js'));
-    test('Server', require('./0.1.0/server/server.test.js'));
+describe('JMS Test Suite', () => {
+  describe('0.1.0', async () => {
+    await import('./0.1.0/channel/channel.test.js');
+    await import('./0.1.0/message/message.test.js');
+    await import('./0.1.0/server/server.test.js');
   });
 })

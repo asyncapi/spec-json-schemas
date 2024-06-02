@@ -1,8 +1,8 @@
-import {describe, suite} from 'vitest';
+import {describe} from 'vitest';
 
-describe('Amazon SNS', () => {
-  suite('0.1.0', () => {
-    test('Channel', require('./0.1.0/channel/channel.test.js'));
-    test('Operation', require('./0.1.0/operation/operation.test.js'));
+describe('Amazon SNS Test Suite', () => {
+  describe('0.1.0', async () => {
+    await import('./0.1.0/channel/channel.test.js');
+    await import('./0.1.0/operation/operation.test.js');
   });
 })

@@ -1,3 +1,4 @@
+import {describe, it} from 'vitest';
 import TestHelper from '@test/test-helper';
 
 const fs = require('fs');

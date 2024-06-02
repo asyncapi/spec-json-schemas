@@ -1,8 +1,8 @@
-import {describe, suite} from 'vitest';
+import {describe} from 'vitest';
 
-describe('Anypoint MQ', () => {
-  suite('0.0.1', () => {
-    test('Channel', require('./0.0.1/channel/channel.test.js'));
-    test('Message', require('./0.0.1/message/message.test.js'));
+describe('Anypoint MQ Test Suite', () => {
+  describe('0.0.1', async () => {
+    await import('./0.0.1/channel/channel.test.js');
+    await import('./0.0.1/message/message.test.js');
   });
 })

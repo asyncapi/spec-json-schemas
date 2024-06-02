@@ -22,10 +22,6 @@ suite('AsyncAPI: 3.0.0', () => {
   })
 });
 
-suite('Bindings', () => {
-  test('Bindings Test Suite', () => require('./bindings'));
-});
-
 describe('AsyncAPI: Bundler', () => {
   it('should return an object', () => {
     const asyncapi = require('..');

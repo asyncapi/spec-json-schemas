@@ -1,7 +1,7 @@
-import {describe, suite} from 'vitest';
+import {describe} from 'vitest';
 
-describe('NATS', () => {
-  suite('0.1.0', () => {
-    test('Operation', require('./0.1.0/operation/operation.test.js'));
+describe('NATS Test Suite', () => {
+  describe('0.1.0', async () => {
+    await import('./0.1.0/operation/operation.test.js');
   });
 })

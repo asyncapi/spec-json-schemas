@@ -1,18 +1,18 @@
-import {describe, suite} from 'vitest';
+import {describe} from 'vitest';
 
-describe('AMQP', () => {
-  suite('0.2.0', () => {
-    test('Operation', require('./0.2.0/operation/operation.test.js'));
-    test('Server', require('./0.2.0/server/server.test.js'));
+describe('Solace Test Suite', () => {
+  describe('0.2.0', async () => {
+    await import('./0.2.0/operation/operation.test.js')
+    await import('./0.2.0/server/server.test.js')
   });
 
-  suite('0.3.0', () => {
-    test('Operation', require('./0.3.0/operation/operation.test.js'));
-    test('Server', require('./0.3.0/server/server.test.js'));
+  describe('0.3.0', async () => {
+    await import('./0.3.0/operation/operation.test.js')
+    await import('./0.3.0/server/server.test.js')
   });
 
-  suite('0.4.0', () => {
-    test('Operation', require('./0.4.0/operation/operation.test.js'));
-    test('Server', require('./0.4.0/server/server.test.js'));
+  describe('0.4.0', async () => {
+    await import('./0.4.0/operation/operation.test.js')
+    await import('./0.4.0/server/server.test.js')
   });
 })
