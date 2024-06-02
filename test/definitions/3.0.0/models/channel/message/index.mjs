@@ -1,8 +1,8 @@
-import {describe, test} from 'vitest';
+import {describe} from 'vitest';
 
-describe('Message test suite', () => {
-  test('Correlation Id', require('./correlationId'));
-  test('Message', require('./message'));
-  test('Message Example', require('./messageExample'));
-  test('Message Trait', require('./messageTrait'));
+describe('Message Test Suite', async () => {
+  await import('./correlationId');
+  await import('./message');
+  await import('./messageExample');
+  await import('./messageTrait');
 });

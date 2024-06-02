@@ -1,7 +1,7 @@
-import {describe, test} from 'vitest';
+import {describe} from 'vitest';
 
-describe('Channel test suite', () => {
-  test('Channel', require('./channel'));
-  test('Message', require('./message'));
-  test('Parameter', require('./parameter'));
+describe('Channel Test Suite', async () => {
+  await import('./channel');
+  await import('./message');
+  await import('./parameter');
 });

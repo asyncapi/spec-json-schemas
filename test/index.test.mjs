@@ -5,15 +5,6 @@ const fs = require('fs');
 const path = require('path');
 
 suite('AsyncAPI: 3.0.0', () => {
-  suite('Models', () => {
-    test('Info Test Suite', () => require('./definitions/3.0.0/models/info'));
-    test('Channel Test Suite', () => require('./definitions/3.0.0/models/channel'));
-    test('Operation Test Suite', () => require('./definitions/3.0.0/models/operation'));
-    test('Server Test Suite', () => require('./definitions/3.0.0/models/server'));
-    test('Tag Test Suite', () => require('./definitions/3.0.0/models/tag'));
-    test('Reference Test Suite', () => require('./definitions/3.0.0/models/reference'));
-    test('Reference Object Test Suite', () => require('./definitions/3.0.0/models/reference object'));
-  });
   suite('Bundler', () => {
     test('Validator Test Suite', () => require('@test/schemas.mjs'));
   })

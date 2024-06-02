@@ -1,6 +1,6 @@
-import {describe, it} from 'vitest';
+import {describe} from 'vitest';
 
-describe('Server test suite', () => {
-  it('Server', () => require('./server'));
-  it('Server Variable', () => require('./serverVariable'));
+describe('Server Test Suite', async () => {
+  await import('./server');
+  await import('./serverVariable');
 });
