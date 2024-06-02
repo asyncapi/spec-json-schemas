@@ -1,5 +1,5 @@
 import path from 'path';
-import TestHelper from '@test/test-helper.js';
+import TestHelper from '@test/test-helper';
 
 const jsonSchema = require('@definitions/3.0.0/Reference.json');
 
