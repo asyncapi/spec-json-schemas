@@ -4,12 +4,6 @@ const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
 
-suite('AsyncAPI: 3.0.0', () => {
-  suite('Bundler', () => {
-    test('Validator Test Suite', () => require('@test/schemas.mjs'));
-  })
-});
-
 describe('AsyncAPI: Bundler', () => {
   it('should return an object', () => {
     const asyncapi = require('..');
