@@ -14,9 +14,6 @@ suite('AsyncAPI: 3.0.0', () => {
     test('Reference Test Suite', () => require('./definitions/3.0.0/models/reference'));
     test('Reference Object Test Suite', () => require('./definitions/3.0.0/models/reference object'));
   });
-  suite('Security', () => {
-    test('Security Test Suite', () => require('./definitions/3.0.0/security'));
-  });
   suite('Bundler', () => {
     test('Validator Test Suite', () => require('@test/schemas.mjs'));
   })

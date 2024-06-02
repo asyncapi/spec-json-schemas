@@ -1,20 +1,20 @@
-import {describe, test} from 'vitest';
+import {describe} from 'vitest';
 
-describe('Security Schemes', () => {
-  test('API Key', require('./apiKey'));
-  test('Asymmetric Encryption', require('./asymmetricEncryption'));
-  test('GSS-API', require('./gssapi'));
-  test('OpenID Connect', require('./openIdconnect'));
-  test('SASL Security Scheme', require('./saslSecurityScheme'));
-  test('Plain', require('./plain'));
-  test('SCRAM-SHA-256', require('./scramSha256'));
-  test('SCRAM-SHA-512', require('./scramSha512'));
-  test('Symmetric Encryption', require('./symmetricEncryption'));
-  test('user Password', require('./userPassword'));
-  test('x509', require('./x509'));
-  test('HTTP Security Scheme', require('./httpSecurityScheme'));
-  test('HTTP API Key', require('./httpApiKey'));
-  test('HTTP Bearer', require('./httpBearer'));
-  test('HTTP Basic', require('./httpBasic'));
-  test('OAuth2', require('./oauth2'));
+describe('Security Schemes Test Suite', async () => {
+  await import('./apiKey');
+  await import('./asymmetricEncryption');
+  await import('./gssapi');
+  await import('./openIdconnect');
+  await import('./saslSecurityScheme');
+  await import('./plain');
+  await import('./scramSha256');
+  await import('./scramSha512');
+  await import('./symmetricEncryption');
+  await import('./userPassword');
+  await import('./x509');
+  await import('./httpSecurityScheme');
+  await import('./httpApiKey');
+  await import('./httpBearer');
+  await import('./httpBasic');
+  await import('./oauth2');
 });

@@ -9,6 +9,7 @@ export default defineConfig({
     include: [
         '**/test/index.test.mjs',
         '**/test/bindings/bindings.suite.mjs',
+        '**/test/definitions/3.0.0/definitions.suite.mjs',
     ],
     reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
   },
