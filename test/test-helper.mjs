@@ -53,4 +53,15 @@ export default class TestHelper {
     assert(validator.errors.length === 1);
   }
 
+  static cantBeExtended(jsonSchemaPath, objectFilePath, unexpectedProperties) {
+    const validator = this.validator(jsonSchemaPath);
+    const model = JSON.parse(fs.readFileSync(objectFilePath, 'utf-8'));
+
+    const validationResult = validator(model);
+    assert(validationResult === false, `Object can't be extended`);
+    for (let [index, unexpectedProperty] of unexpectedProperties.entries()) {
+      assert(validator.errors[index].params.additionalProperty === unexpectedProperty);
+    }
+    assert(validator.errors.length === unexpectedProperties.length);
+  }
 }
