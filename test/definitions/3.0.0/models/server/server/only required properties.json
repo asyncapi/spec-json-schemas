@@ -1,1 +1,4 @@
-{}
+{
+    "host": "dev.env.lo",
+    "protocol": "mqtt"
+}
