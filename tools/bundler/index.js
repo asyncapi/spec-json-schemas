@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const traverse = require('json-schema-traverse');
 const definitionsDirectory = path.resolve(__dirname, '../../definitions');
-const commonSchemasDirectory = path.resolve(__dirname, '../../common');
+const commonSchemasDirectory = path.resolve(__dirname, '../../definitions/common');
 const bindingsDirectory = path.resolve(__dirname, '../../bindings');
 const extensionsDirectory = path.resolve(__dirname, '../../extensions');
 const outputDirectory = path.resolve(__dirname, '../../schemas');
@@ -25,7 +25,7 @@ const extensionsRegex = /http:\/\/asyncapi\.com\/(extensions\/[^/]+)\/([^/]+)\/(
  * When run, go through all versions that have split definitions and bundles them together.
  */
 (async () => {
-  const versions = await fs.promises.readdir(definitionsDirectory);
+  const versions = (await fs.promises.readdir(definitionsDirectory)).filter((value) => !value.includes('common'));
   console.log(`Ensuring output directory is present ${outputDirectory}`);
   if (!fs.existsSync(outputDirectory)) {
     await fs.promises.mkdir(outputDirectory);
