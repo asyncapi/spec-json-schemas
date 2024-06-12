@@ -1,29 +1,31 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json",
   "type": "object",
   "required": [
     "type",
     "openIdConnectUrl"
   ],
   "properties": {
+    "description": {
+      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+      "type": "string"
+    },
     "type": {
-      "type": "string",
       "description": "The type of the security scheme.",
+      "type": "string",
       "enum": [
         "openIdConnect"
       ]
     },
-    "description": {
-      "type": "string",
-      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation."
-    },
     "openIdConnectUrl": {
+      "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL.",
       "type": "string",
-      "format": "uri",
-      "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL."
+      "format": "uri"
     },
     "scopes": {
-      "type": "array",
       "description": "List of the needed scope names. An empty array means no scopes are needed.",
+      "type": "array",
       "items": {
         "type": "string"
       }
@@ -34,7 +36,5 @@
       "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
     }
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json"
+  "additionalProperties": false
 }

@@ -1,20 +1,22 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json",
   "type": "object",
   "required": [
     "type"
   ],
   "properties": {
+    "description": {
+      "description": "A short description for security scheme.",
+      "type": "string"
+    },
     "type": {
-      "type": "string",
       "description": "The type of the security scheme.",
+      "type": "string",
       "enum": [
         "scramSha256",
         "scramSha512"
       ]
-    },
-    "description": {
-      "type": "string",
-      "description": "A short description for security scheme."
     }
   },
   "patternProperties": {
@@ -22,10 +24,8 @@
       "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
     }
   },
+  "additionalProperties": false,
   "example": {
     "$ref": "http://asyncapi.com/examples/3.0.0/Sasl.json"
-  },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json"
+  }
 }

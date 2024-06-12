@@ -1,4 +1,6 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json",
   "description": "Defines a security scheme that can be used by the operations.",
   "oneOf": [
     {
@@ -31,7 +33,5 @@
   ],
   "example": {
     "$ref": "http://asyncapi.com/examples/3.0.0/SecurityScheme.json"
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+  }
 }
