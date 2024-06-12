@@ -16,8 +16,16 @@ export default class TestHelper {
     return 'can be empty';
   }
 
+  static get cannotBeEmptyTestName() {
+    return 'cannot be empty';
+  }
+
   static get isValidWithoutRequiredPropertiesTestName() {
     return 'is valid without required properties';
+  }
+
+  static get isNotValidWithoutRequiredPropertiesTestName() {
+    return 'is not valid without required properties';
   }
 
   static get isValidWithOnlyRequiredPropertiesTestName() {
