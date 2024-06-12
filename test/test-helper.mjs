@@ -8,6 +8,30 @@ const fs = require('fs');
 
 export default class TestHelper {
 
+  static get exampleIsValidTestName() {
+    return 'example is valid';
+  }
+
+  static get canBeEmptyTestName() {
+    return 'can be empty';
+  }
+
+  static get isValidWithoutRequiredPropertiesTestName() {
+    return 'is valid without required properties';
+  }
+
+  static get isValidWithOnlyRequiredPropertiesTestName() {
+    return 'is valid with only required properties';
+  }
+
+  static get isValidWhenIsExtendedTestName() {
+    return 'is valid when is extended';
+  }
+
+  static get isNotValidWhenIsWronglyExtendedTestName() {
+    return 'is not valid when is wrongly extended';
+  }
+
   static validator(jsonSchema) {
     const ajv = new Ajv({
       jsonPointers: true,
