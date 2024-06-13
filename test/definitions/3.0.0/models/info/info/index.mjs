@@ -4,7 +4,14 @@ import path from 'path';
 
 const jsonSchema = require('@definitions/3.0.0/info.json');
 
-describe('Info', () => {
+describe('Info', async () => {
+  await import('./properties/description.mjs');
+  await import('./properties/termsOfService.mjs');
+  await import('./properties/contact.mjs');
+  await import('./properties/license.mjs');
+  await import('./properties/tags.mjs');
+  await import('./properties/externalDocs.mjs');
+
   it(TestHelper.exampleIsValidTestName, () => TestHelper.objectIsValid(
     jsonSchema,
     path.resolve(__dirname, './example.json'),

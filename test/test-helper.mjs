@@ -40,6 +40,14 @@ export default class TestHelper {
     return 'is not valid when is wrongly extended';
   }
 
+  static get propertyIsValidWhenIsTestName() {
+    return 'property is valid when is';
+  }
+
+  static get propertyIsNotValidWhenIsTestName() {
+    return 'property is not valid when is';
+  }
+
   static validator(jsonSchema) {
     const ajv = new Ajv({
       jsonPointers: true,
@@ -54,17 +62,36 @@ export default class TestHelper {
     return schemesV3_0_0(ajv).compile(jsonSchema);
   }
 
-  static objectIsValid(jsonSchemaPath, objectFilePath) {
+  /**
+   * Expects that given json is valid against given Json Schema.
+   *
+   * @param jsonSchemaPath is a path to required Json Schema
+   * @param json is a path to Json file or is as raw Json
+   */
+  static objectIsValid(jsonSchemaPath, json) {
     const validator = this.validator(jsonSchemaPath);
-    const model = JSON.parse(fs.readFileSync(objectFilePath, 'utf-8'));
+    const model = (typeof json === 'string')
+      ? JSON.parse(fs.readFileSync(json, 'utf-8'))
+      : json
+    ;
 
     const validationResult = validator(model);
     assert(validationResult === true, `Object MUST be valid`);
   }
 
-  static objectIsNotValid(jsonSchemaPath, objectFilePath, expectedValidationErrorMessages) {
+  /**
+   * Expects that given json is not valid against given Json Schema.
+   *
+   * @param jsonSchemaPath is a path to required Json Schema
+   * @param json is a path to Json file or is as raw Json
+   * @param expectedValidationErrorMessages list of expected error messages
+   */
+  static objectIsNotValid(jsonSchemaPath, json, expectedValidationErrorMessages) {
     const validator = this.validator(jsonSchemaPath);
-    const model = JSON.parse(fs.readFileSync(objectFilePath, 'utf-8'));
+    const model = (typeof json === 'string')
+      ? JSON.parse(fs.readFileSync(json, 'utf-8'))
+      : json
+    ;
 
     const validationResult = validator(model);
     assert(validationResult === false, `Object MUST NOT be valid`);
