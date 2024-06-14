@@ -23,6 +23,7 @@ export default defineConfig({
         '**/test/bindings/pulsar/pulsar.test.mjs',
         '**/test/bindings/sns/sns.test.mjs',
         '**/test/bindings/solace/solace.test.mjs',
+        '**/test/bindings/sqs/sqs.test.mjs',
         '**/test/definitions/3.0.0/definitions.suite.mjs',
     ],
     reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
