@@ -4,7 +4,7 @@ import path from 'path';
 
 describe.each([
   '0.1.0',
-])('Pulsar bindings v%s', async (bindingVersion) => {
+])('SNS bindings v%s', async (bindingVersion) => {
 
   const channelSchema = await import(`@bindings/sns/${bindingVersion}/channel.json`);
   const operationSchema = await import(`@bindings/sns/${bindingVersion}/operation.json`);
