@@ -1,10 +1,10 @@
 module.exports = schemesV3_0_0;
 
 function bindingSchemes(ajv) {
-  // ajv.addSchema(require('@bindings/amqp/0.2.0/channel.json'));
+  ajv.addSchema(require('@bindings/amqp/0.2.0/channel.json'));
   ajv.addSchema(require('@bindings/amqp/0.2.0/message.json'));
   ajv.addSchema(require('@bindings/amqp/0.2.0/operation.json'));
-  // ajv.addSchema(require('@bindings/amqp/0.3.0/channel.json'));
+  ajv.addSchema(require('@bindings/amqp/0.3.0/channel.json'));
   ajv.addSchema(require('@bindings/amqp/0.3.0/message.json'));
   ajv.addSchema(require('@bindings/amqp/0.3.0/operation.json'));
 
