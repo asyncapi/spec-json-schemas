@@ -20,6 +20,7 @@ export default defineConfig({
         '**/test/bindings/kafka/kafka.test.mjs',
         '**/test/bindings/mqtt/mqtt.test.mjs',
         '**/test/bindings/nats/nats.test.mjs',
+        '**/test/bindings/pulsar/pulsar.test.mjs',
         '**/test/definitions/3.0.0/definitions.suite.mjs',
     ],
     reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
