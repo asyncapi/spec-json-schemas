@@ -10,7 +10,6 @@ export default defineConfig({
         '**/test/schemas.mjs',
         '**/test/bundler.mjs',
         '**/test/index.test.mjs',
-        '**/test/bindings/bindings.suite.mjs',
         '**/test/bindings/amqp/amqp.test.mjs',
         '**/test/bindings/anypointmq/anypointmq.test.mjs',
         '**/test/bindings/googlepubsub/googlepubsub.test.mjs',
@@ -24,6 +23,7 @@ export default defineConfig({
         '**/test/bindings/sns/sns.test.mjs',
         '**/test/bindings/solace/solace.test.mjs',
         '**/test/bindings/sqs/sqs.test.mjs',
+        '**/test/bindings/websockets/websockets.test.mjs',
         '**/test/definitions/3.0.0/definitions.suite.mjs',
     ],
     reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
