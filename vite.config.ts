@@ -12,6 +12,7 @@ export default defineConfig({
         '**/test/index.test.mjs',
         '**/test/bindings/bindings.suite.mjs',
         '**/test/bindings/amqp/amqp.test.mjs',
+        '**/test/bindings/anypointmq/anypointmq.test.mjs',
         '**/test/definitions/3.0.0/definitions.suite.mjs',
     ],
     reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
