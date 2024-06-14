@@ -7,8 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     include: [
-        '**/test/schemas.mjs',
-        '**/test/bundler.mjs',
+        '**/test/*.test.mjs',
         '**/test/index.test.mjs',
         '**/test/bindings/**/*.test.mjs',
         '**/test/definitions/3.0.0/definitions.suite.mjs',
