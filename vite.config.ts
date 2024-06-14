@@ -14,6 +14,7 @@ export default defineConfig({
         '**/test/bindings/amqp/amqp.test.mjs',
         '**/test/bindings/anypointmq/anypointmq.test.mjs',
         '**/test/bindings/googlepubsub/googlepubsub.test.mjs',
+        '**/test/bindings/ibmmq/ibmmq.test.mjs',
         '**/test/bindings/http/http.test.mjs',
         '**/test/definitions/3.0.0/definitions.suite.mjs',
     ],
