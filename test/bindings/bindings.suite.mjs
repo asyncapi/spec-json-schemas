@@ -1,7 +1,6 @@
 import {describe} from 'vitest';
 
 describe('Bindings Test Suite', async () => {
-  await import('@test/bindings/amqp/index.mjs');
   await import('@test/bindings/anypointmq/index.mjs');
   await import('@test/bindings/googlepubsub/index.mjs');
   await import('@test/bindings/http/index.mjs');

@@ -76,6 +76,7 @@ export default class TestHelper {
     ;
 
     const validationResult = validator(model);
+    // console.log(validator.errors);
     assert(validationResult === true, `Object MUST be valid`);
   }
 
