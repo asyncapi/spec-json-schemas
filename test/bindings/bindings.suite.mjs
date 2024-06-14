@@ -1,7 +1,6 @@
 import {describe} from 'vitest';
 
 describe('Bindings Test Suite', async () => {
-  await import('@test/bindings/jms/index.mjs');
   await import('@test/bindings/kafka/index.mjs');
   await import('@test/bindings/mqtt/index.mjs');
   await import('@test/bindings/nats/index.mjs');
