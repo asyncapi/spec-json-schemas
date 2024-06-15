@@ -14,7 +14,6 @@ export default defineConfig({
     ],
     reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
   },
-  root: "./",
   resolve: {
       alias: {
         // @ts-ignore
