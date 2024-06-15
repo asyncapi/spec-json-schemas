@@ -12,9 +12,5 @@ describe('Security Schemes Test Suite', async () => {
   await import('./symmetricEncryption');
   await import('./userPassword');
   await import('./x509');
-  await import('./httpSecurityScheme');
-  await import('./httpApiKey');
-  await import('./httpBearer');
-  await import('./httpBasic');
   await import('./oauth2');
 });

@@ -11,6 +11,7 @@ export default defineConfig({
         '**/test/*.test.mjs',
         '**/test/index.test.mjs',
         '**/test/bindings/**/*.test.mjs',
+        '**/test/definitions/**/*.test.mjs',
         '**/test/definitions/3.0.0/definitions.suite.mjs',
     ],
     reporters: ['verbose'] // https://vitest.dev/guide/reporters#custom-reporters
