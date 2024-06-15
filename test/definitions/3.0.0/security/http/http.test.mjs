@@ -2,37 +2,37 @@ import {describe, it} from 'vitest';
 import TestHelper from '@test/test-helper';
 import path from 'path';
 
-describe.each([
-  {
-    name: 'API key',
-    json: {
-      "type": "httpApiKey",
-      "description": "httpApiKey",
-      "name": "api_key",
-      "in": "header"
-    }
-  },
-  {
-    name: 'Basic',
-    json: {
-      "type": "http",
-      "description": "http",
-      "scheme": "basic"
-    }
-  },
-  {
-    name: 'Bearer',
-    json: {
-      "type": "http",
-      "description": "http",
-      "scheme": "bearer",
-      "bearerFormat": "JWT"
-    }
-  }
-])('HTTP Security: ', async (httpSecurity) => {
+describe('HTTP Security Scheme', async (httpSecurity) => {
   const httpSecurityScheme = await import('@definitions/3.0.0/HTTPSecurityScheme.json');
 
-  it(`oneOf recognize: ${httpSecurity.name}`, () => TestHelper.objectIsValid(
+  it.each([
+    {
+      name: 'API key',
+      json: {
+        "type": "httpApiKey",
+        "description": "httpApiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      name: 'Basic',
+      json: {
+        "type": "http",
+        "description": "http",
+        "scheme": "basic"
+      }
+    },
+    {
+      name: 'Bearer',
+      json: {
+        "type": "http",
+        "description": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  ])('oneOf recognize: $name', (httpSecurity) => TestHelper.objectIsValid(
     httpSecurityScheme,
     httpSecurity.json,
   ));
