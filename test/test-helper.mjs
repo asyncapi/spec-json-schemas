@@ -103,7 +103,10 @@ export default class TestHelper {
 
   static wronglyExtended(jsonSchemaPath, objectFilePath) {
     const validator = this.validator(jsonSchemaPath);
-    const model = JSON.parse(fs.readFileSync(objectFilePath, 'utf-8'));
+    const model = (typeof objectFilePath === 'string')
+      ? JSON.parse(fs.readFileSync(objectFilePath, 'utf-8'))
+      : objectFilePath
+    ;
 
     const validationResult = validator(model);
     assert(validationResult === false, 'Object is not valid when was wrongly extended');

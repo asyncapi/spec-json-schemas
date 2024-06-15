@@ -1,9 +1,0 @@
-{
-  "type": "openIdConnect",
-  "description": "openIdConnect",
-  "openIdConnectUrl": "https://server.com/.well-known/openid-configuration",
-  "scopes": [
-    "write:pets",
-    "read:pets"
-  ]
-}
