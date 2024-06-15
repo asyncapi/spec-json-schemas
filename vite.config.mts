@@ -1,5 +1,6 @@
 import { viteRequire } from 'vite-require';
 import { defineConfig } from 'vitest/config';
+import * as path from "node:path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -17,17 +18,17 @@ export default defineConfig({
   resolve: {
       alias: {
         // @ts-ignore
-        '@extensions': new URL('./extensions', import.meta.url).pathname,
+        '@extensions': path.resolve(__dirname, './extensions'),
         // @ts-ignore
-        '@examples': new URL('./examples', import.meta.url).pathname,
+        '@examples': path.resolve(__dirname, './examples'),
         // @ts-ignore
-        '@definitions': new URL('./definitions', import.meta.url).pathname,
+        '@definitions': path.resolve(__dirname, './definitions'),
         // @ts-ignore
-        '@bindings': new URL('./bindings', import.meta.url).pathname,
+        '@bindings': path.resolve(__dirname, './bindings'),
         // @ts-ignore
-        '@common': new URL('./common', import.meta.url).pathname,
+        '@common': path.resolve(__dirname, './common'),
         // @ts-ignore
-        '@test': new URL('./test', import.meta.url).pathname
+        '@test': path.resolve(__dirname, './test'),
       },
     },
 })
