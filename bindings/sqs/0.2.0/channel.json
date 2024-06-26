@@ -193,6 +193,24 @@
               "items": {
                 "type": "string"
               }
+            },
+            {
+              "type": "object",
+              "patternProperties": {
+                ".*": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
             }
           ]
         },
@@ -209,6 +227,46 @@
               }
             }
           ]
+        },
+        "resource": {
+          "description": "The resource that this policy applies to.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "condition": {
+          "type": "object",
+          "patternProperties": {
+            ".*": {  
+              "type": "object",
+              "patternProperties": {
+                ".*": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }        
         }
       },
       "required": [
