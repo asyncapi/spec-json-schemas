@@ -185,7 +185,7 @@
           ]
         },
         "principal": {
-          "description": "The AWS account(s) or resource ARN(s) that this statement applies to.",
+          "description": "The AWS account or resource ARN that this statement applies to.",
           "oneOf": [
             {
               "type": "string"
@@ -194,30 +194,12 @@
               "type": "array",
               "items": {
                 "type": "string"
-              }
-            },
-            {
-              "type": "object",
-              "patternProperties": {
-                ".*": {
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  ]
-                }
               }
             }
           ]
         },
         "action": {
-          "description": "The SQS permission(s) being allowed or denied e.g. sqs:ReceiveMessage",
+          "description": "The SQS permission being allowed or denied e.g. sqs:ReceiveMessage",
           "oneOf": [
             {
               "type": "string"
@@ -229,47 +211,6 @@
               }
             }
           ]
-        },
-        "resource": {
-          "description": "The resource(s) that this policy applies to.",
-          "oneOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          ]
-        },
-        "condition": {
-          "description": "Specific circumstances under which the policy grants permission",
-          "type": "object",
-          "patternProperties": {
-            ".*": {  
-              "type": "object",
-              "patternProperties": {
-                ".*": {
-                  "oneOf": [
-                    {
-                      "type": "string"
-                    },
-                    {
-                      "type": "boolean"
-                    },
-                    {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }        
         }
       },
       "required": [
