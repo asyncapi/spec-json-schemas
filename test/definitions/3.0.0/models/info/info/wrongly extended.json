@@ -1,0 +1,37 @@
+{
+  "title": "AsyncApi sample",
+  "version": "1.2.34",
+  "description": "Short description",
+  "termsOfService": "https://www.asyncapi.com/about/",
+  "contact": {
+    "name": "AsyncApi",
+    "url": "https://www.asyncapi.com",
+    "email": "java@asyncapi.com"
+  },
+  "license": {
+    "name": "Apache License 2.0",
+    "url": "http://www.apache.org/licenses/"
+  },
+  "tags": [
+    {
+      "name": "user",
+      "description": "User-related messages",
+      "externalDocs": {
+        "description": "Find more info here",
+        "url": "https://example.com"
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "Find more info here",
+    "url": "https://example.com"
+  },
+  "ext-number": 1,
+  "x-number" : 0,
+  "x-string" : "",
+  "x-object" : {
+    "property" : { }
+  },
+  "x-x": "PBodiachevskii",
+  "x-linkedin": "https://www.linkedin.com/company/asyncapi/"
+}

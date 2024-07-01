@@ -1,0 +1,8 @@
+{
+  "$ref": "#/components/schemas/user",
+  "x-number": 0,
+  "x-string": "",
+  "x-object": {
+    "property": {}
+  }
+}

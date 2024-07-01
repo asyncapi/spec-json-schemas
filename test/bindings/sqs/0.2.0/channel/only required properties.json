@@ -1,0 +1,6 @@
+{
+    "queue": {
+        "name": "myQueue",
+        "fifoQueue": true
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "policy": {
+        "statements": [
+            {
+                "effect": "Allow",
+                "principal": "*",
+                "action": "SNS:Publish"
+            }
+        ]
+    }
+}

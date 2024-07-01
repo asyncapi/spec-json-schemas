@@ -1,0 +1,10 @@
+{
+    "destinationType": "topic",
+    "topic": {
+        "string": "messages",
+        "objectName": "message",
+        "durablePermitted": true,
+        "lastMsgRetained": true
+    },
+    "maxMsgLength": 1024
+}

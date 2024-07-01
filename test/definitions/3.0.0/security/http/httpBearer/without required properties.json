@@ -1,0 +1,4 @@
+{
+  "description": "http",
+  "bearerFormat": "JWT"
+}
