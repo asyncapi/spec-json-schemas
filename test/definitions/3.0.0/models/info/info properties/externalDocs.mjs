@@ -1,18 +1,21 @@
 import {describe, it} from 'vitest';
-import TestHelper from '@test/test-helper';
-import path from 'path';
+import TestHelper from '@test/test-helper.mjs';
 
 const jsonSchema = require('@definitions/3.0.0/info.json');
 
-describe('Info: license', () => {
+describe('Info: externalDocs', () => {
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} null`, () => TestHelper.objectIsNotValid(
     jsonSchema,
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "license": null
+      "externalDocs": null
     },
-    ['must be object']
+    [
+      'must be object',
+      'must be object',
+      'must match exactly one schema in oneOf'
+    ]
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} empty`, () => TestHelper.objectIsNotValid(
@@ -20,9 +23,13 @@ describe('Info: license', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "license": {}
+      "externalDocs": {}
     },
-    ['must have required property \'name\'']
+    [
+      'must have required property \'$ref\'',
+      'must have required property \'url\'',
+      'must match exactly one schema in oneOf'
+    ]
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} string`, () => TestHelper.objectIsNotValid(
@@ -30,9 +37,13 @@ describe('Info: license', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "license": "short description"
+      "externalDocs": "short description"
     },
-    ['must be object']
+    [
+      'must be object',
+      'must be object',
+      'must match exactly one schema in oneOf'
+    ]
   ));
 
   it(`${TestHelper.propertyIsValidWhenIsTestName} object`, () => TestHelper.objectIsValid(
@@ -40,9 +51,9 @@ describe('Info: license', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "license": {
-        "name": "Apache License 2.0",
-        "url": "http://www.apache.org/licenses/"
+      "externalDocs": {
+        "description" : "Find more info here",
+        "url" : "https://example.com"
       }
     },
   ));
@@ -52,11 +63,15 @@ describe('Info: license', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "license": [
+      "externalDocs": [
         null, [], "", {}, false, 123
       ]
     },
-    ['must be object']
+    [
+      'must be object',
+      'must be object',
+      'must match exactly one schema in oneOf'
+    ]
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} number`, () => TestHelper.objectIsNotValid(
@@ -64,9 +79,13 @@ describe('Info: license', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "license": 123
+      "externalDocs": 123
     },
-    ['must be object']
+    [
+      'must be object',
+      'must be object',
+      'must match exactly one schema in oneOf'
+    ]
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} boolean`, () => TestHelper.objectIsNotValid(
@@ -74,8 +93,12 @@ describe('Info: license', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "license": false
+      "externalDocs": false
     },
-    ['must be object']
+    [
+      'must be object',
+      'must be object',
+      'must match exactly one schema in oneOf'
+    ]
   ));
 });

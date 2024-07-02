@@ -1,18 +1,17 @@
 import {describe, it} from 'vitest';
-import TestHelper from '@test/test-helper';
-import path from 'path';
+import TestHelper from '@test/test-helper.mjs';
 
 const jsonSchema = require('@definitions/3.0.0/info.json');
 
-describe('Info: description', () => {
+describe('Info: contact', () => {
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} null`, () => TestHelper.objectIsNotValid(
     jsonSchema,
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "description": null
+      "contact": null
     },
-    ['must be string']
+    ['must be object']
   ));
 
   it(`${TestHelper.propertyIsValidWhenIsTestName} empty`, () => TestHelper.objectIsValid(
@@ -20,30 +19,31 @@ describe('Info: description', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "description": ""
+      "contact": {}
     },
   ));
 
-  it(`${TestHelper.propertyIsValidWhenIsTestName} string`, () => TestHelper.objectIsValid(
+  it(`${TestHelper.propertyIsNotValidWhenIsTestName} string`, () => TestHelper.objectIsNotValid(
     jsonSchema,
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "description": "short description"
+      "contact": "short description"
     },
+    ['must be object']
   ));
 
-  it(`${TestHelper.propertyIsNotValidWhenIsTestName} object`, () => TestHelper.objectIsNotValid(
+  it(`${TestHelper.propertyIsValidWhenIsTestName} object`, () => TestHelper.objectIsValid(
     jsonSchema,
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "description": {
-        "longVariant": "",
-        "shortVariant": ""
+      "contact":  {
+        "name": "AsyncAPI",
+        "url": "https://www.asyncapi.com",
+        "email": "java@asyncapi.com"
       }
     },
-    ['must be string']
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} array`, () => TestHelper.objectIsNotValid(
@@ -51,11 +51,11 @@ describe('Info: description', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "description": [
+      "contact": [
         null, [], "", {}, false, 123
       ]
     },
-    ['must be string']
+    ['must be object']
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} number`, () => TestHelper.objectIsNotValid(
@@ -63,9 +63,9 @@ describe('Info: description', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "description": 123
+      "contact": 123
     },
-    ['must be string']
+    ['must be object']
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} boolean`, () => TestHelper.objectIsNotValid(
@@ -73,8 +73,8 @@ describe('Info: description', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "description": false
+      "contact": false
     },
-    ['must be string']
+    ['must be object']
   ));
 });

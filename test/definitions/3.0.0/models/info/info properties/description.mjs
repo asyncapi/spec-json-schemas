@@ -1,47 +1,35 @@
 import {describe, it} from 'vitest';
-import TestHelper from '@test/test-helper';
-import path from 'path';
+import TestHelper from '@test/test-helper.mjs';
 
 const jsonSchema = require('@definitions/3.0.0/info.json');
 
-describe('Info: termsOfService', () => {
-  it(`${TestHelper.propertyIsValidWhenIsTestName} URI`, () => TestHelper.objectIsValid(
-    jsonSchema,
-    {
-      "title": "AsyncApi sample",
-      "version": "2.0",
-      "termsOfService": "https://stage.lo/terms-of-service"
-    },
-  ));
-
+describe('Info: description', () => {
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} null`, () => TestHelper.objectIsNotValid(
     jsonSchema,
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "termsOfService": null
+      "description": null
     },
     ['must be string']
   ));
 
-  it(`${TestHelper.propertyIsNotValidWhenIsTestName} empty`, () => TestHelper.objectIsNotValid(
+  it(`${TestHelper.propertyIsValidWhenIsTestName} empty`, () => TestHelper.objectIsValid(
     jsonSchema,
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "termsOfService": ""
+      "description": ""
     },
-    ['must match format "uri"']
   ));
 
-  it(`${TestHelper.propertyIsNotValidWhenIsTestName} string`, () => TestHelper.objectIsNotValid(
+  it(`${TestHelper.propertyIsValidWhenIsTestName} string`, () => TestHelper.objectIsValid(
     jsonSchema,
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "termsOfService": "terms of service"
+      "description": "short description"
     },
-    ['must match format "uri"']
   ));
 
   it(`${TestHelper.propertyIsNotValidWhenIsTestName} object`, () => TestHelper.objectIsNotValid(
@@ -49,7 +37,7 @@ describe('Info: termsOfService', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "termsOfService": {
+      "description": {
         "longVariant": "",
         "shortVariant": ""
       }
@@ -62,7 +50,7 @@ describe('Info: termsOfService', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "termsOfService": [
+      "description": [
         null, [], "", {}, false, 123
       ]
     },
@@ -74,7 +62,7 @@ describe('Info: termsOfService', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "termsOfService": 123
+      "description": 123
     },
     ['must be string']
   ));
@@ -84,7 +72,7 @@ describe('Info: termsOfService', () => {
     {
       "title": "AsyncApi sample",
       "version": "2.0",
-      "termsOfService": false
+      "description": false
     },
     ['must be string']
   ));
