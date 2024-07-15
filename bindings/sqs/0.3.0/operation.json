@@ -57,13 +57,19 @@
         },
         "deduplicationScope": {
           "type": "string",
-          "enum": ["queue", "messageGroup"],
+          "enum": [
+            "queue",
+            "messageGroup"
+          ],
           "description": "Specifies whether message deduplication occurs at the message group or queue level. Valid values are messageGroup and queue (default).",
           "default": "queue"
         },
         "fifoThroughputLimit": {
           "type": "string",
-          "enum": ["perQueue", "perMessageGroupId"],
+          "enum": [
+            "perQueue",
+            "perMessageGroupId"
+          ],
           "description": "Specifies whether the FIFO queue throughput quota applies to the entire queue or per message group. Valid values are perQueue (default) and perMessageGroupId.",
           "default": "perQueue"
         },
@@ -118,7 +124,7 @@
       },
       "properties": {
         "deadLetterQueue": {
-          "$ref": "http://asyncapi.com/bindings/sqs/0.3.0/operation.json#/definitions/identifier"          
+          "$ref": "http://asyncapi.com/bindings/sqs/0.3.0/operation.json#/definitions/identifier"
         },
         "maxReceiveCount": {
           "type": "integer",
@@ -193,8 +199,8 @@
             },
             {
               "type": "object",
-              "patternProperties": {
-                ".*": {
+              "properties": {
+                "AWS": {
                   "oneOf": [
                     {
                       "type": "string"
@@ -207,7 +213,33 @@
                     }
                   ]
                 }
-              }
+              },
+              "required": [
+                "AWS"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "Service": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "Service"
+              ],
+              "additionalProperties": false
             }
           ]
         },
@@ -243,7 +275,7 @@
           "description": "Specific circumstances under which the policy grants permission",
           "type": "object",
           "patternProperties": {
-            ".*": {  
+            ".*": {
               "type": "object",
               "patternProperties": {
                 ".*": {
@@ -261,7 +293,7 @@
                 }
               }
             }
-          }        
+          }
         }
       },
       "required": [
@@ -275,29 +307,29 @@
     {
       "queues": [
         {
-         "name": "myQueue",
-         "fifoQueue": true,
-         "deduplicationScope": "messageGroup",
-         "fifoThroughputLimit": "perMessageGroupId",
-         "deliveryDelay": 10,
-         "redrivePolicy": {
+          "name": "myQueue",
+          "fifoQueue": true,
+          "deduplicationScope": "messageGroup",
+          "fifoThroughputLimit": "perMessageGroupId",
+          "deliveryDelay": 10,
+          "redrivePolicy": {
             "deadLetterQueue": {
               "name": "myQueue_error"
             },
             "maxReceiveCount": 15
-         },
-         "policy": {
+          },
+          "policy": {
             "statements": [
               {
                 "effect": "Deny",
                 "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
                 "action": [
-                    "sqs:SendMessage",
-                    "sqs:ReceiveMessage"
+                  "sqs:SendMessage",
+                  "sqs:ReceiveMessage"
                 ]
               }
             ]
-         }
+          }
         },
         {
           "name": "myQueue_error",

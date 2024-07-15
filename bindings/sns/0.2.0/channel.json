@@ -105,8 +105,8 @@
             },
             {
               "type": "object",
-              "patternProperties": {
-                ".*": {
+              "properties": {
+                "AWS": {
                   "oneOf": [
                     {
                       "type": "string"
@@ -119,7 +119,33 @@
                     }
                   ]
                 }
-              }
+              },
+              "required": [
+                "AWS"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "Service": {
+                  "oneOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "Service"
+              ],
+              "additionalProperties": false
             }
           ]
         },
