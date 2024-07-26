@@ -1,8 +1,0 @@
-{
-    "contentType": "application/json",
-    "correlationData": {
-        "type": "string",
-        "format": "uuid"
-    },
-    "responseTopic": "application/responses"
-}

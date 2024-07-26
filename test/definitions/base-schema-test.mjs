@@ -55,10 +55,12 @@ export class JsonSchemaTestSuite {
 
     testSuite() {
 
-        it(TestHelper.exampleIsValidTestName, () => TestHelper.objectIsValid(
-          this.data.jsonSchema,
-          this.data.examples[0],
-        ));
+        for (const example of this.data.examples) {
+            it(TestHelper.exampleIsValidTestName, () => TestHelper.objectIsValid(
+              this.data.jsonSchema,
+              example,
+            ));
+        }
 
         if (this.config.hasRequiredProperties) {
 

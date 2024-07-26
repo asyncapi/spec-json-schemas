@@ -1,4 +1,0 @@
-{
-    "schemaRegistryUrl": "https://my-schema-registry.com",
-    "schemaRegistryVendor": "confluent"
-}
