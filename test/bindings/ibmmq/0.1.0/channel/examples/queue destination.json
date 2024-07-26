@@ -1,9 +1,0 @@
-{
-    "destinationType": "queue",
-    "queue": {
-        "objectName": "message",
-        "isPartitioned": false,
-        "exclusive": true
-    },
-    "maxMsgLength": 1024
-}
