@@ -17,7 +17,7 @@ func TestGet(t *testing.T) {
 	}{
 		{
 			name: "All schemas should be available",
-			versions: []string{"1.0.0", "1.1.0", "1.2.0", "2.0.0-rc1", "2.0.0-rc2", "2.1.0", "2.2.0"},
+			versions: []string{"1.0.0", "1.1.0", "1.2.0", "2.1.0", "2.2.0"},
 		},
 		{
 			name: "Missing schema should return nil",
