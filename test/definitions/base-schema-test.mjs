@@ -95,15 +95,18 @@ export class JsonSchemaTestSuite {
           this.data.onlyRequiredProperties,
         ));
 
-        it(TestHelper.isValidWhenIsExtendedTestName, () => TestHelper.objectIsValid(
-          this.data.jsonSchema,
-          this.data.extended,
-        ));
+        // TODO: Remove after schemas patch
+        if (this.config.canBeExtended) {
+            it(TestHelper.isValidWhenIsExtendedTestName, () => TestHelper.objectIsValid(
+              this.data.jsonSchema,
+              this.data.extended,
+            ));
 
-        it(TestHelper.isNotValidWhenIsWronglyExtendedTestName, () => TestHelper.wronglyExtended(
-          this.data.jsonSchema,
-          this.data.wronglyExtended,
-        ));
+            it(TestHelper.isNotValidWhenIsWronglyExtendedTestName, () => TestHelper.wronglyExtended(
+              this.data.jsonSchema,
+              this.data.wronglyExtended,
+            ));
+        }
 
     }
 

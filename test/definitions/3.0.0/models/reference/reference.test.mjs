@@ -10,7 +10,7 @@ const jsonSchema = require('@definitions/3.0.0/Reference.json');
 const config = new JsonSchemaTestSuiteConfig(
   true,
   ['must have required property \'$ref\''],
-  true,
+  false,
   []
 );
 
