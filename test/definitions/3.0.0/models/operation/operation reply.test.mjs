@@ -1,4 +1,10 @@
 // TODO: enable after reference patch
+import {describe, it} from 'vitest';
+
+describe.skip('Operation Reply: enable after reference patch', () => {
+
+});
+
 /*
 Validation error:
 
