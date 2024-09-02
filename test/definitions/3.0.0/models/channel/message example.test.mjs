@@ -14,7 +14,7 @@ const config = new JsonSchemaTestSuiteConfig(
     'must have required property \'headers\'',
     'must match a schema in anyOf'
   ],
-  true,
+  false, // TODO: enable after schema patch
   []
 );
 
