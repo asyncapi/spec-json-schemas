@@ -1,3 +1,5 @@
+import {describe, it} from 'vitest';
+
 const assert = require('assert');
 const fs = require('fs');
 const path = require('path');
@@ -8,7 +10,6 @@ const versionsToTest = [
   }
 ];
 describe('Should be able to validate', function () {
-  this.timeout(30000); 
   it('all valid documents', () => {
     const asyncapi = require('..');
     for (const versionToTest of versionsToTest) {
@@ -26,12 +27,12 @@ describe('Should be able to validate', function () {
         });
         const documentPaths = fs.readdirSync(path.resolve(__dirname, `./docs/${version}`)).map((pathToDoc) => {return path.resolve(__dirname, `./docs/${version}/${pathToDoc}`);});
         for (const documentPath of documentPaths) {
-          const document = require(documentPath);
+          const document = JSON.parse(fs.readFileSync(documentPath, 'utf-8'));
           const validate = ajv.compile(schema);
           const valid = validate(document);
           assert(valid === true, `Document ${  documentPath  } must be validated correctly: ${  JSON.stringify(validate.errors, null, 4)}`);
         }
       }
     }
-  });
+  }, 30000);
 });
