@@ -160,12 +160,100 @@ let data = {
       },
       "ext-number": 1
     }
+  ),
+  "0.4.0": new JsonSchemaTestSuiteData(
+    require(`@bindings/amqp/0.4.0/channel.json`),
+    [
+      {
+        "is": "queue",
+        "queue": {
+          "name": "my-queue-name",
+          "durable": true,
+          "exclusive": true,
+          "autoDelete": false,
+          "vhost": "/"
+        },
+        "bindingVersion": "0.4.0"
+      },
+      {
+        "is": "routingKey",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false,
+          "vhost": "/"
+        },
+        "bindingVersion": "0.4.0"
+      },
+      {
+        "is": "routingKey",
+        "name": "routingKeyName",
+        "channel": {
+          "$ref": "#/components/channels/queue-update"
+        },
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false,
+          "vhost": "/"
+        },
+        "bindingVersion": "0.4.0"
+      }
+    ],
+    {
+      "is": "queue",
+      "queue": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false,
+        "vhost": "/"
+      },
+      "bindingVersion": "0.4.0"
+    },
+    {
+      "bindingVersion": "0.4.0"
+    },
+    {
+      "is": "queue",
+      "queue": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false,
+        "vhost": "/"
+      },
+      "x-number": 0,
+      "x-string": "",
+      "x-object": {
+        "property": {}
+      }
+    },
+    {
+      "is": "queue",
+      "queue": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false,
+        "vhost": "/"
+      },
+      "x-number": 0,
+      "x-string": "",
+      "x-object": {
+        "property": {}
+      },
+      "ext-number": 1
+    }
   )
 }
 
 describe.each([
   '0.2.0',
-  '0.3.0'
+  '0.3.0',
+  '0.4.0',
 ])('AMQP channel binding v%s', (bindingVersion) => {
   new JsonSchemaTestSuite(data[bindingVersion], config).testSuite()
 })
