@@ -7,6 +7,9 @@ function bindingSchemes(ajv) {
   ajv.addSchema(require('@bindings/amqp/0.3.0/channel.json'));
   ajv.addSchema(require('@bindings/amqp/0.3.0/message.json'));
   ajv.addSchema(require('@bindings/amqp/0.3.0/operation.json'));
+  ajv.addSchema(require('@bindings/amqp/0.4.0/channel.json'));
+  ajv.addSchema(require('@bindings/amqp/0.4.0/message.json'));
+  ajv.addSchema(require('@bindings/amqp/0.4.0/operation.json'));
 
   ajv.addSchema(require('@bindings/anypointmq/0.0.1/channel.json'));
   ajv.addSchema(require('@bindings/anypointmq/0.0.1/message.json'));
