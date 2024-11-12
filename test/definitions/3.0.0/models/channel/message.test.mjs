@@ -20,6 +20,7 @@ const data = new JsonSchemaTestSuiteData(
     {
       "name": "UserSignup",
       "title": "User signup",
+      "version": "1.0.0",
       "summary": "Action to sign a user up.",
       "description": "A longer description",
       "contentType": "application/json",
