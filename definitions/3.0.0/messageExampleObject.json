@@ -23,10 +23,11 @@
       "description": "A brief summary of the message example."
     },
     "headers": {
-      "type": "object",
+      "type": ["number", "string", "boolean", "object", "array", "null"],
       "description": "Example of the application headers. It can be of any type."
     },
     "payload": {
+      "type": ["number", "string", "boolean", "object", "array", "null"],
       "description": "Example of the message payload. It can be of any type."
     }
   },
