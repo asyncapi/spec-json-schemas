@@ -3,7 +3,7 @@ name: Sync Schema Update to Website
 on:
   push:
     branches:
-      - main
+      - master
       - automate-spec-update-to-website
     paths:
       - schemas/3.0.0-without-$id.json # Monitor changes in this v3 file
@@ -44,5 +44,5 @@ jobs:
           labels: |
             automated
             schema-sync
-          base: main
+          base: master
           delete-branch: true
