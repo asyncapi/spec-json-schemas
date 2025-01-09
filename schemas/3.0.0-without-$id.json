@@ -148,7 +148,7 @@
         },
         "contact": {
             "type": "object",
-            "description": "Contact information for the exposed",
+            "description": "Contact information",
             "additionalProperties": false,
             "properties": {
                 "name": {
