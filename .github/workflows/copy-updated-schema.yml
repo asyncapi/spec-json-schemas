@@ -4,9 +4,10 @@ on:
   push:
     branches:
       - master
-      - automate-spec-update-to-website
     paths:
-      - schemas/3.0.0-without-$id.json # Monitor changes in this v3 file
+     # Monitor changes in this v3 file
+      - schemas/3.0.0-without-$id.json
+      - schemas/3.0.0.json
 
 jobs:
   sync-schema:
@@ -16,42 +17,33 @@ jobs:
       - name: Checkout spec-json-schema repo
         uses: actions/checkout@v3
 
-      - name: Debug Token Presence
-        run: |
-          if [ -n "${{ secrets.GH_TOKEN }}" ]; then
-            echo "Token is present"
-          else
-            echo "Token is empty"
-          fi
-
       - name: Checkout website repo
         uses: actions/checkout@v3
         with:
-          repository: acethecreator/website
-          token: ${{ secrets.GH_TOKEN }}
+          repository: asyncapi/website
+          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
           path: ./website
 
-      - name: Copy Schema File
+      - name: Copy version 3 Schema File
         run: |
           cp -r schemas/3.0.0-without-\$id.json website/config
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
           path: website
-          commit-message: "chore: sync latest schema updates"
+          commit-message: "chore: sync latest spec json schema updates"
           committer: asyncapi-bot <info@asyncapi.io>
           author: asyncapi-bot <info@asyncapi.io>
-          title: "chore: sync latest schema update"
+          title: "chore: sync latest spec-json-schema update"
           body: |
-            Automated PR to sync latest schema update from spec-json-schema repository.
+            Automated Pull Request to sync latest schema update from spec-json-schema repository.
             
-            Updates to: `3.0.0-without-$id.json`
-            Triggered by commit: ${{ github.sha }}
-          branch: update-schema
+            Updates to: `config/3.0.0-without-$id.json`
+          branch: update-schema/${{ github.sha }}
           labels: |
             automated
-            schema-sync
+            spec-json-schema-sync
           base: master
           delete-branch: true

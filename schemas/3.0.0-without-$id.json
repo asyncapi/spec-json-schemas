@@ -123,7 +123,7 @@
                 {
                     "title": "AsyncAPI Sample App",
                     "version": "1.0.1",
-                    "description": "This is a test",
+                    "description": "This is a sample app.",
                     "termsOfService": "https://asyncapi.org/terms/",
                     "contact": {
                         "name": "API Support",
@@ -135,7 +135,7 @@
                         "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
                     },
                     "externalDocs": {
-                        "description": "Find more info",
+                        "description": "Find more info here",
                         "url": "https://www.asyncapi.org"
                     },
                     "tags": [
@@ -148,7 +148,7 @@
         },
         "contact": {
             "type": "object",
-            "description": "Contact information",
+            "description": "Contact information for the exposed API.",
             "additionalProperties": false,
             "properties": {
                 "name": {
