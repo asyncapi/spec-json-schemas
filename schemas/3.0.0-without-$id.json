@@ -135,7 +135,7 @@
                         "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
                     },
                     "externalDocs": {
-                        "description": "Find more info here",
+                        "description": "Find more info",
                         "url": "https://www.asyncapi.org"
                     },
                     "tags": [
