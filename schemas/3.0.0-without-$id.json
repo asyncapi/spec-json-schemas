@@ -148,7 +148,7 @@
         },
         "contact": {
             "type": "object",
-            "description": "Contact information for the exposed API.",
+            "description": "Update contact",
             "additionalProperties": false,
             "properties": {
                 "name": {
