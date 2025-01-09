@@ -123,7 +123,7 @@
                 {
                     "title": "AsyncAPI Sample App",
                     "version": "1.0.1",
-                    "description": "This",
+                    "description": "This is a test",
                     "termsOfService": "https://asyncapi.org/terms/",
                     "contact": {
                         "name": "API Support",
