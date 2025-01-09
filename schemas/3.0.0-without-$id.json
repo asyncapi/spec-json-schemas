@@ -148,7 +148,7 @@
         },
         "contact": {
             "type": "object",
-            "description": "Update contact",
+            "description": "Contact information for the exposed",
             "additionalProperties": false,
             "properties": {
                 "name": {
