@@ -14,6 +14,14 @@ jobs:
     steps:
       - name: Checkout spec-json-schema repo
         uses: actions/checkout@v3
+        
+      - name: Debug Token Presence
+        run: |
+          if [ -n "${{ secrets.GH_TOKEN }}" ]; then
+            echo "Token is present"
+          else
+            echo "Token is empty"
+          fi
 
       - name: Checkout website repo
         uses: actions/checkout@v3
