@@ -24,7 +24,7 @@
     },
     "headers": {
       "type": "object",
-      "description": "Example of the application headers. MUST be a map of key-value pairs."
+      "description": "Example of the application headers. It MUST be a map of key-value pairs."
     },
     "payload": {
       "type": ["number", "string", "boolean", "object", "array", "null"],
