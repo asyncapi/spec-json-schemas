@@ -3618,9 +3618,17 @@
                 },
                 "headers": {
                     "type": "object",
-                    "description": "Example of the application headers. It can be of any type."
+                    "description": "Example of the application headers. It MUST be a map of key-value pairs."
                 },
                 "payload": {
+                    "type": [
+                        "number",
+                        "string",
+                        "boolean",
+                        "object",
+                        "array",
+                        "null"
+                    ],
                     "description": "Example of the message payload. It can be of any type."
                 }
             }
