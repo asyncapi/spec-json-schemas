@@ -26,7 +26,7 @@ jobs:
 
       - name: Copy version 3 Schema File
         run: |
-          cp -r schemas/3.0.0-without-\$id.json website/config
+          cp schemas/3.0.0-without-\$id.json website/config
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
