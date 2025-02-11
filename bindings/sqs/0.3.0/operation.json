@@ -77,7 +77,7 @@
           "type": "integer",
           "description": "The number of seconds to delay before a message sent to the queue can be received. Used to create a delay queue.",
           "minimum": 0,
-          "maximum": 15,
+          "maximum": 900,
           "default": 0
         },
         "visibilityTimeout": {
