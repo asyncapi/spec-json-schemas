@@ -44,7 +44,12 @@
               "application/vnd.apache.avro+json;version=1.9.0",
               "application/vnd.apache.avro+yaml;version=1.9.0",
 
-              "application/raml+yaml;version=1.0"
+              "application/raml+yaml;version=1.0",
+
+              "application/vnd.google.protobuf;version=2",
+              "application/vnd.google.protobuf;version=3",
+
+              "application/xml"
             ]
           }
         ]
@@ -189,6 +194,37 @@
                 },
                 {
                   "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "required": [
+            "schemaFormat"
+          ],
+          "properties": {
+            "schemaFormat": {
+              "enum": [
+                "application/raml+yaml;version=1.0",
+                "application/vnd.google.protobuf;version=2",
+                "application/vnd.google.protobuf;version=3",
+                "application/xml"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                {
+                  "type": ["string", "object"]
                 }
               ]
             }
