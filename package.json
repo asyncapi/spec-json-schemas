@@ -46,7 +46,7 @@
     "eslint-plugin-sonarjs": "^0.23.0",
     "nyc": "^15.1.0",
     "vite-require": "^0.2.3",
-    "vitest": "^1.6.0"
+    "vitest": "^3.0.9"
   },
   "dependencies": {
     "@types/json-schema": "^7.0.11"
