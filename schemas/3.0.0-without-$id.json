@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "title": "AsyncAPI 3.0.0 schema.",
   "type": "object",
-  "required": ["asyncapi", "inf"],
+  "required": ["asyncapi", "info"],
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
@@ -13,7 +13,7 @@
     "asyncapi": {
       "type": "string",
       "const": "3.0.0",
-      "description": "The AsyncAPI's specification version of this document."
+      "description": "The AsyncAPI specification version of this document."
     },
     "id": {
       "type": "string",

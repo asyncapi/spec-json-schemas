@@ -13,24 +13,15 @@ on:
 jobs:
   sync-schema:
     runs-on: ubuntu-latest
-    environment: GH_TOKEN
     steps:
       - name: Checkout spec-json-schema repo
         uses: actions/checkout@v3
-
-      - name: Debug Token Presence
-        run: |
-          if [ -n "${{secrets.GH_TOKEN}}" ]; then
-            echo "Token is Present"
-          else
-            echo "Token is empty"
-          fi
-             
+        
       - name: Checkout website repo
         uses: actions/checkout@v3
         with:
           repository: acethecreator/website
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
           path: ./website
 
       - name: Copy version 3 Schema File
@@ -40,7 +31,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
           path: website
           commit-message: "chore: sync latest spec json schema updates"
           committer: asyncapi-bot <info@asyncapi.io>
@@ -50,7 +41,7 @@ jobs:
             Automated Pull Request to sync latest schema update from spec-json-schema repository.
             
             Updates to: `config/3.0.0-without-$id.json`
-          branch: new-schema-update
+          branch: update-schema-${{ github.sha }}
           labels: |
             automated
             spec-json-schema-sync
