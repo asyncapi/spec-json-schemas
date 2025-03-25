@@ -13,6 +13,7 @@ on:
 jobs:
   sync-schema:
     runs-on: ubuntu-latest
+    environment: GH_TOKEN
     steps:
       - name: Checkout spec-json-schema repo
         uses: actions/checkout@v3
