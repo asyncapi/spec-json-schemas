@@ -20,7 +20,7 @@ jobs:
 
       - name: Debug Token Presence
         run: |
-          if [-n "${{secrets.GH_TOKEN}}"]; then
+          if [ -n "${{secrets.GH_TOKEN}}"]; then
             echo "Token is Present"
           else
             echo "Token is empty"
