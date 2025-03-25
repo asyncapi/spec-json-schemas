@@ -50,7 +50,7 @@ jobs:
             Automated Pull Request to sync latest schema update from spec-json-schema repository.
             
             Updates to: `config/3.0.0-without-$id.json`
-          branch: update-schema/${{ github.sha }}
+          branch: new-schema-update
           labels: |
             automated
             spec-json-schema-sync
