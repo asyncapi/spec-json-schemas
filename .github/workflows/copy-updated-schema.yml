@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+      - automate-spec-update-to-website
+
     paths:
      # Monitor changes in this v3 file
       - schemas/3.0.0-without-$id.json
