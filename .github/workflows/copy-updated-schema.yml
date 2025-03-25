@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-     # Monitor changes in this v3 file
+     # Monitor changes in this v3 files
       - schemas/3.0.0-without-$id.json
       - schemas/3.0.0.json
 
