@@ -19,7 +19,7 @@ jobs:
       - name: Checkout website repo
         uses: actions/checkout@v3
         with:
-          repository: asyncapi/website
+          repository: acethecreator/website
           token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
           path: ./website
 
