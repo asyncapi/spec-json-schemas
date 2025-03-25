@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: acethecreator/website
-          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN}}
           path: ./website
 
       - name: Copy version 3 Schema File
@@ -31,7 +31,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
           path: website
           commit-message: "chore: sync latest spec json schema updates"
           committer: asyncapi-bot <info@asyncapi.io>
@@ -41,7 +41,7 @@ jobs:
             Automated Pull Request to sync latest schema update from spec-json-schema repository.
             
             Updates to: `config/3.0.0-without-$id.json`
-          branch: update-schema
+          branch: update-schema-${{ github.sha }}
           labels: |
             automated
             spec-json-schema-sync
