@@ -13,7 +13,7 @@
     "asyncapi": {
       "type": "string",
       "const": "3.0.0",
-      "description": "The Async specification version of this document."
+      "description": "The As specification version of this document."
     },
     "id": {
       "type": "string",
