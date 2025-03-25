@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema",
   "title": "AsyncAPI 3.0.0 schema.",
   "type": "object",
-  "required": ["asyncapi", "info"],
+  "required": ["asyncapi", "inf"],
   "additionalProperties": false,
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
