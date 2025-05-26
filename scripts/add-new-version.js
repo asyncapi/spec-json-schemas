@@ -7,6 +7,20 @@ const fs = require('fs');
 const inputNewVersion = process.env.newVersion;
 //Regex taken from https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
 const versionRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/g; //NOSONAR
+const cachedFiles = {};
+
+function readJsonFile(filePath){
+  if(!cachedFiles[filePath]){
+    cachedFiles[filePath] = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  }
+  return cachedFiles[filePath];
+}
+
+function writeJsonFile(filePath){
+  if(cachedFiles[filePath]){
+    fs.writeFileSync(filePath, JSON.stringify(cachedFiles[filePath], null, 2));
+  }
+}
 
 /**
  * Promise based function to execute commands 
@@ -39,7 +53,7 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
   //Did the major version (first char) change from last to new version?
   const isMajorVersionChange = newVersion.charAt(0) !== latestVersion.charAt(0);
   const objFile = path.resolve(newVersionDir, 'multiFormatSchema.json');
-  const obj = require(objFile);
+  const obj = readJsonFile(objFile);
 
   // Adapt all the MUST supported schema formats
   let mustSupportedSchemaFormats = obj && obj.else && obj.else.properties && obj.else.properties.schemaFormat && obj.else.properties.schemaFormat.anyOf && obj.else.properties.schemaFormat.anyOf[1] && obj.else.properties.schemaFormat.anyOf[1].enum ? obj.else.properties.schemaFormat.anyOf[1].enum : [];
@@ -68,7 +82,7 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
     throw new Error('Could not find location for schemaFormats that applies the AsyncAPI Schema object to the schema property');
   }
   
-  fs.writeFileSync(objFile, JSON.stringify(obj, null, 2));
+  cachedFiles[objFile] = obj;
 }
 
 /**
@@ -76,10 +90,10 @@ function addNewSchemaVersion(newVersion, newVersionDir, latestVersion) {
  */
 function adaptRootObject(newVersion, newVersionDir) {
   const objFile = path.resolve(newVersionDir, 'asyncapi.json');
-  const obj = require(objFile);
+  const obj = readJsonFile(objFile);
   obj.title = `AsyncAPI ${newVersion} schema.`;
   obj.properties.asyncapi.const = newVersion;
-  fs.writeFileSync(objFile, JSON.stringify(obj, null, 2));
+  cachedFiles[objFile] = obj;
 }
 
 async function addNewVersion(newVersion) {
@@ -111,6 +125,8 @@ async function addNewVersion(newVersion) {
   // Add new schemaFormat version entries
   addNewSchemaVersion(newVersion, newVersionDir, latestVersion);
 
+  Object.keys(cachedFiles).forEach(writeJsonFile);
+  
   console.log(`New version added to ${newVersionDir}`);
 }
 
