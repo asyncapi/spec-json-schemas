@@ -1,0 +1,75 @@
+{
+  "type": "object",
+  "description": "This object contains information about the operation representation in ROS 2.",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+    }
+  },
+  "required": [
+    "role",
+    "node"
+  ],
+  "properties": {
+    "role": {
+      "type": "string",
+      "description": "Specifies the ROS 2 type of the node for this operation.",
+      "enum": ["publisher", "action_client", "service_client", "subscriber", "action_server", "service_server"]
+    },
+    "node": {
+      "type": "string",
+      "description": "The name of the ROS 2 node that implements this operation."
+    },
+    "qosPolicies": {
+      "type": "object",
+      "properties": {
+        "reliability": {
+            "type": "string",
+            "description": "Specifies the communication guarantee model that determines whether message delivery confirmation between publisher and subscriber is required.",
+            "enum": ["best_effort", "realiable"]
+        },
+        "history": {
+            "type": "string",
+            "description": "Policy parameter that defines the maximum number of samples maintained in the middleware queue",
+            "enum": ["keep_last", "keep_all", "unknown"]
+        },
+        "durability": {
+            "type": "string",
+            "description": "Persistence specification that determines message availability for late-joining subscribers",
+            "enum": ["transient_local", "volatile"]
+        },
+        "lifespan": {
+            "type": "integer",
+            "description": "The maximum amount of time between the publishing and the reception of a message without the message being considered stale or expired. -1 means infinite."
+        },
+        "deadline": {
+            "type": "integer",
+            "description": "The expected maximum amount of time between subsequent messages being published to a topic. -1 means infinite."
+        },
+        "liveliness": {
+            "type": "string",
+            "description": "Defines the mechanism by which the system monitors and determines the operational status of communication entities within the network.",
+            "enum": ["automatic", "manual"]
+        },
+        "leaseDuration": {
+            "type": "integer",
+            "description": "The maximum period of time a publisher has to indicate that it is alive before the system considers it to have lost liveliness. -1 means infinite."
+        }
+      }
+    }
+  },
+  "examples": {
+    "role": "subscriber",
+    "node": "/turtlesim",
+    "qosPolicies": {
+        "history": "unknown",
+        "reliability": "reliable",
+        "durability": "volatile",
+        "lifespan": "-1",
+        "deadline": "-1",
+        "liveliness": "automatic",
+        "leaseDuration": "-1"
+    }
+  }
+}
