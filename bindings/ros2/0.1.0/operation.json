@@ -57,6 +57,13 @@
             "description": "The maximum period of time a publisher has to indicate that it is alive before the system considers it to have lost liveliness. -1 means infinite."
         }
       }
+    },
+    "bindingVersion": {
+      "type": "string",
+      "enum": [
+        "0.1.0"
+      ],
+      "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
     }
   },
   "examples": {
