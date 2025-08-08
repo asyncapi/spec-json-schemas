@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/specs",
-  "version": "6.8.1",
+  "version": "6.9.0",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
   "types": "index.d.ts",
