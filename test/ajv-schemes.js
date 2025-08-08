@@ -58,6 +58,9 @@ function bindingSchemes(ajv) {
   ajv.addSchema(require('@bindings/pulsar/0.1.0/channel.json'));
   ajv.addSchema(require('@bindings/pulsar/0.1.0/server.json'));
 
+  ajv.addSchema(require('@bindings/ros2/0.1.0/operation.json'));
+  ajv.addSchema(require('@bindings/ros2/0.1.0/server.json'));
+
   ajv.addSchema(require('@bindings/sns/0.1.0/channel.json'));
   ajv.addSchema(require('@bindings/sns/0.1.0/operation.json'));
 
