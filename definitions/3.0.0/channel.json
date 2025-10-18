@@ -77,9 +77,11 @@
       }
     }
   },
-  "example": {
-    "$ref": "http://asyncapi.com/examples/3.0.0/channel.json"
-  },
+  "examples": [
+      {
+          "$ref": "http://asyncapi.com/examples/3.0.0/channel.json"
+      }
+  ],
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.0.0/channel.json"
 }
