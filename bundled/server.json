@@ -1,0 +1,1884 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://asyncapi.com/definitions/3.0.0/server.json",
+    "description": "An object representing a message broker, a server or any other kind of computer program capable of sending and/or receiving data.",
+    "type": "object",
+    "required": [ "host", "protocol" ],
+    "properties": {
+        "title": {
+            "description": "A human-friendly title for the server.",
+            "type": "string"
+        },
+        "description": {
+            "description": "A longer description of the server. CommonMark is allowed.",
+            "type": "string"
+        },
+        "bindings": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+            }
+        },
+        "externalDocs": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+            }
+        },
+        "host": {
+            "description": "The server host name. It MAY include the port. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}.",
+            "type": "string"
+        },
+        "pathname": {
+            "description": "The path to a resource in the host. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}.",
+            "type": "string"
+        },
+        "protocol": {
+            "description": "The protocol this server supports for connection.",
+            "type": "string"
+        },
+        "protocolVersion": {
+            "description": "An optional string describing the server. CommonMark syntax MAY be used for rich text representation.",
+            "type": "string"
+        },
+        "security": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
+        },
+        "summary": {
+            "description": "A brief summary of the server.",
+            "type": "string"
+        },
+        "tags": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "if": {
+                    "required": [ "$ref" ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                }
+            }
+        },
+        "variables": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariables.json"
+        }
+    },
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json",
+            "title": "IBM MQ server bindings object",
+            "description": "This object contains server connection information about the IBM MQ server, referred to as an IBM MQ queue manager. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.1.0",
+                    "cipherSpec": "ANY_TLS12_OR_HIGHER",
+                    "groupId": "PRODCLSTR1"
+                },
+                {
+                    "bindingVersion": "0.1.0",
+                    "groupId": "PRODCLSTR1"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.1.0" ]
+                },
+                "ccdtQueueManagerName": {
+                    "description": "The name of the IBM MQ queue manager to bind to in the CCDT file.",
+                    "default": "*",
+                    "type": "string"
+                },
+                "cipherSpec": {
+                    "description": "The recommended cipher specification used to establish a TLS connection between the client and the IBM MQ queue manager. More information on SSL/TLS cipher specifications supported by IBM MQ can be found on this page in the IBM MQ Knowledge Center.",
+                    "type": "string"
+                },
+                "groupId": {
+                    "description": "Defines a logical group of IBM MQ server objects. This is necessary to specify multi-endpoint configurations used in high availability deployments. If omitted, the server object is not part of a group.",
+                    "type": "string"
+                },
+                "heartBeatInterval": {
+                    "description": "The recommended value (in seconds) for the heartbeat sent to the queue manager during periods of inactivity. A value of zero means that no heart beats are sent. A value of 1 means that the client will use the value defined by the queue manager. More information on heart beat interval can be found on this page in the IBM MQ Knowledge Center.",
+                    "default": 300,
+                    "type": "integer",
+                    "maximum": 999999,
+                    "minimum": 0
+                },
+                "multiEndpointServer": {
+                    "description": "If 'multiEndpointServer' is 'true' then multiple connections can be workload balanced and applications should not make assumptions as to where messages are processed. Where message ordering, or affinity to specific message resources is necessary, a single endpoint ('multiEndpointServer' = 'false') may be required.",
+                    "default": false,
+                    "type": "boolean"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/jms/0.0.1/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/jms/0.0.1/server.json",
+            "title": "Server Schema",
+            "description": "This object contains configuration for describing a JMS broker as an AsyncAPI server. This objects only contains configuration that can not be provided in the AsyncAPI standard server object.",
+            "examples": [
+                {
+                    "properties": [
+                        {
+                            "name": "disableTimeStampsByDefault",
+                            "value": false
+                        }
+                    ],
+                    "bindingVersion": "0.0.1",
+                    "clientID": "my-application-1",
+                    "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+                }
+            ],
+            "type": "object",
+            "required": [ "jmsConnectionFactory" ],
+            "properties": {
+                "properties": {
+                    "description": "Additional properties to set on the JMS ConnectionFactory implementation for the JMS Provider.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/bindings/jms/0.0.1/server.json#/definitions/property"
+                    }
+                },
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.0.1" ]
+                },
+                "clientID": {
+                    "description": "A client identifier for applications that use this JMS connection factory. If the Client ID Policy is set to 'Restricted' (the default), then configuring a Client ID on the ConnectionFactory prevents more than one JMS client from using a connection from this factory.",
+                    "type": "string"
+                },
+                "jmsConnectionFactory": {
+                    "description": "The classname of the ConnectionFactory implementation for the JMS Provider.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "definitions": {
+                "property": {
+                    "type": "object",
+                    "required": [ "name", "value" ],
+                    "properties": {
+                        "name": {
+                            "description": "The name of a property",
+                            "type": "string"
+                        },
+                        "value": {
+                            "description": "The name of a property",
+                            "type": [ "string", "boolean", "number", "null" ]
+                        }
+                    }
+                }
+            }
+        },
+        "http://asyncapi.com/bindings/kafka/0.3.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.3.0/server.json",
+            "title": "Server Schema",
+            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "schemaRegistryUrl": "https://my-schema-registry.com",
+                    "schemaRegistryVendor": "confluent"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "schemaRegistryUrl": {
+                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used).",
+                    "type": "string"
+                },
+                "schemaRegistryVendor": {
+                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.4.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.4.0/server.json",
+            "title": "Server Schema",
+            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.4.0",
+                    "schemaRegistryUrl": "https://my-schema-registry.com",
+                    "schemaRegistryVendor": "confluent"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.4.0" ]
+                },
+                "schemaRegistryUrl": {
+                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used).",
+                    "type": "string"
+                },
+                "schemaRegistryVendor": {
+                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.5.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.5.0/server.json",
+            "title": "Server Schema",
+            "description": "This object contains server connection information to a Kafka broker. This object contains additional information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.5.0",
+                    "schemaRegistryUrl": "https://my-schema-registry.com",
+                    "schemaRegistryVendor": "confluent"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.5.0" ]
+                },
+                "schemaRegistryUrl": {
+                    "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used).",
+                    "type": "string"
+                },
+                "schemaRegistryVendor": {
+                    "description": "The vendor of the Schema Registry and Kafka serdes library that should be used.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/mqtt/0.2.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/mqtt/0.2.0/server.json",
+            "title": "Server Schema",
+            "description": "This object contains information about the server representation in MQTT.",
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0",
+                    "cleanSession": true,
+                    "clientId": "guest",
+                    "keepAlive": 60,
+                    "lastWill": {
+                        "message": "Guest gone offline.",
+                        "qos": 2,
+                        "retain": false,
+                        "topic": "/last-wills"
+                    },
+                    "maximumPacketSize": 1024,
+                    "sessionExpiryInterval": 120
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "cleanSession": {
+                    "description": "Whether to create a persistent connection or not. When 'false', the connection will be persistent. This is called clean start in MQTTv5.",
+                    "type": "boolean"
+                },
+                "clientId": {
+                    "description": "The client identifier.",
+                    "type": "string"
+                },
+                "keepAlive": {
+                    "description": "Interval in seconds of the longest period of time the broker and the client can endure without sending a message.",
+                    "type": "integer"
+                },
+                "lastWill": {
+                    "description": "Last Will and Testament configuration.",
+                    "type": "object",
+                    "properties": {
+                        "message": {
+                            "description": "Last Will message.",
+                            "type": "string"
+                        },
+                        "qos": {
+                            "description": "Defines how hard the broker/client will try to ensure that the Last Will and Testament message is received. Its value MUST be either 0, 1 or 2.",
+                            "type": "integer",
+                            "enum": [ 0, 1, 2 ]
+                        },
+                        "retain": {
+                            "description": "Whether the broker should retain the Last Will and Testament message or not.",
+                            "type": "boolean"
+                        },
+                        "topic": {
+                            "description": "The topic where the Last Will and Testament message will be sent.",
+                            "type": "string"
+                        }
+                    }
+                },
+                "maximumPacketSize": {
+                    "description": "Number of bytes or a Schema Object representing the Maximum Packet Size the Client is willing to accept.",
+                    "oneOf": [
+                        {
+                            "type": "integer",
+                            "maximum": 4294967295,
+                            "minimum": 1
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ]
+                },
+                "sessionExpiryInterval": {
+                    "description": "Interval time in seconds or a Schema Object containing the definition of the interval.  The broker maintains a session for a disconnected client until this interval expires.",
+                    "oneOf": [
+                        {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/pulsar/0.1.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json",
+            "title": "Server Schema",
+            "description": "This object contains server information of Pulsar broker, which covers cluster and tenant admin configuration. This object contains additional information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.1.0",
+                    "tenant": "contoso"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.1.0" ]
+                },
+                "tenant": {
+                    "description": "The pulsar tenant. If omitted, 'public' MUST be assumed.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/solace/0.2.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/solace/0.2.0/server.json",
+            "title": "Solace server bindings object",
+            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0",
+                    "msgVpn": "ProdVPN"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "msvVpn": {
+                    "description": "The name of the Virtual Private Network to connect to on the Solace broker.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/solace/0.3.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/solace/0.3.0/server.json",
+            "title": "Solace server bindings object",
+            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "msgVpn": "ProdVPN"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "msgVpn": {
+                    "description": "The name of the Virtual Private Network to connect to on the Solace broker.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/solace/0.4.0/server.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/solace/0.4.0/server.json",
+            "title": "Solace server bindings object",
+            "description": "This object contains server connection information about the Solace broker. This object contains additional connectivity information not possible to represent within the core AsyncAPI specification.",
+            "examples": [
+                {
+                    "bindingVersion": "0.4.0",
+                    "msgVpn": "ProdVPN"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.4.0" ]
+                },
+                "clientName": {
+                    "description": "A unique client name to use to register to the appliance. If specified, it must be a valid Topic name, and a maximum of 160 bytes in length when encoded as UTF-8.",
+                    "type": "string",
+                    "maxLength": 160,
+                    "minLength": 1
+                },
+                "msgVpn": {
+                    "description": "The name of the Virtual Private Network to connect to on the Solace broker.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json",
+            "type": "object",
+            "required": [ "type", "name", "in" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "httpApiKey" ]
+                },
+                "in": {
+                    "description": "The location of the API key",
+                    "type": "string",
+                    "enum": [ "header", "query", "cookie" ]
+                },
+                "name": {
+                    "description": "The name of the header, query or cookie parameter to be used.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/APIKeyHTTPSecurityScheme.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json",
+            "type": "object",
+            "required": [ "type", "scheme" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "http" ]
+                },
+                "bearerFormat": {
+                    "description": "A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.",
+                    "type": "string"
+                },
+                "scheme": {
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.",
+                    "type": "string",
+                    "enum": [ "bearer" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json",
+            "type": "object",
+            "not": {
+                "type": "object",
+                "properties": {
+                    "scheme": {
+                        "description": "A short description for security scheme.",
+                        "type": "string",
+                        "enum": [ "bearer" ]
+                    }
+                }
+            },
+            "required": [ "scheme", "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "http" ]
+                },
+                "scheme": {
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/Reference.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/Reference.json",
+            "description": "A simple object to allow referencing other components in the specification, internally and externally.",
+            "type": "object",
+            "required": [ "$ref" ],
+            "properties": {
+                "$ref": {
+                    "description": "The reference string.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                }
+            },
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/ReferenceObject.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json",
+            "type": "string",
+            "format": "uri-reference"
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "gssapi" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/Sasl.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme. Valid values",
+                    "type": "string",
+                    "enum": [ "plain" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/Sasl.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "scramSha256", "scramSha512" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/Sasl.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json",
+            "description": "Defines a security scheme that can be used by the operations.",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/userPassword.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/apiKey.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/X509.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json"
+                }
+            ],
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/SecurityScheme.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/X509.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/X509.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [ "X509" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/X509.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/apiKey.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/apiKey.json",
+            "type": "object",
+            "required": [ "type", "in" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme",
+                    "type": "string",
+                    "enum": [ "apiKey" ]
+                },
+                "in": {
+                    "description": " The location of the API key.",
+                    "type": "string",
+                    "enum": [ "user", "password" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/apiKey.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "asymmetricEncryption" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/externalDocs.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/externalDocs.json",
+            "description": "Allows referencing an external resource for extended documentation.",
+            "type": "object",
+            "required": [ "url" ],
+            "properties": {
+                "description": {
+                    "description": "A short description of the target documentation. CommonMark syntax can be used for rich text representation.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The URL for the target documentation. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/externalDocs.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json",
+            "description": "Configuration details for a supported OAuth Flow",
+            "type": "object",
+            "properties": {
+                "authorizationUrl": {
+                    "description": "The authorization URL to be used for this flow. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "availableScopes": {
+                    "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json"
+                },
+                "refreshUrl": {
+                    "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "tokenUrl": {
+                    "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/oauth2Flow.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json",
+            "description": "Allows configuration of the supported OAuth Flows.",
+            "type": "object",
+            "required": [ "type", "flows" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "oauth2" ]
+                },
+                "flows": {
+                    "type": "object",
+                    "properties": {
+                        "authorizationCode": {
+                            "description": "Configuration for the OAuth Authorization Code flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "authorizationUrl", "tokenUrl", "availableScopes" ]
+                                }
+                            ]
+                        },
+                        "clientCredentials": {
+                            "description": "Configuration for the OAuth Client Credentials flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "tokenUrl", "availableScopes" ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [ "authorizationUrl" ]
+                                    }
+                                }
+                            ]
+                        },
+                        "implicit": {
+                            "description": "Configuration for the OAuth Implicit flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "authorizationUrl", "availableScopes" ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [ "tokenUrl" ]
+                                    }
+                                }
+                            ]
+                        },
+                        "password": {
+                            "description": "Configuration for the OAuth Resource Owner Protected Credentials flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "tokenUrl", "availableScopes" ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [ "authorizationUrl" ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "scopes": {
+                    "description": "List of the needed scope names.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/openIdConnect.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json",
+            "type": "object",
+            "required": [ "type", "openIdConnectUrl" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "openIdConnect" ]
+                },
+                "openIdConnectUrl": {
+                    "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "scopes": {
+                    "description": "List of the needed scope names. An empty array means no scopes are needed.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/schema.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/schema.json",
+            "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is a superset of the JSON Schema Specification Draft 07. The empty schema (which allows any instance to validate) MAY be represented by the boolean value true and a schema which allows no instance to validate MAY be represented by the boolean value false.",
+            "allOf": [
+                {
+                    "$ref": "http://json-schema.org/draft-07/schema#"
+                },
+                {
+                    "properties": {
+                        "deprecated": {
+                            "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage. Default value is false.",
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "allOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "anyOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "oneOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "not": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "contains": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "items": {
+                            "default": {},
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                    }
+                                }
+                            ]
+                        },
+                        "propertyNames": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "properties": {
+                            "default": {},
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "patternProperties": {
+                            "default": {},
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "additionalProperties": {
+                            "default": {},
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "type": "boolean"
+                                }
+                            ]
+                        },
+                        "discriminator": {
+                            "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details.",
+                            "type": "string"
+                        },
+                        "externalDocs": {
+                            "if": {
+                                "required": [ "$ref" ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/securityRequirements.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json",
+            "description": "An array representing security requirements.",
+            "type": "array",
+            "items": {
+                "if": {
+                    "required": [ "$ref" ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json",
+            "description": "Map describing protocol-specific definitions for a server.",
+            "type": "object",
+            "properties": {
+                "amqp": {},
+                "amqp1": {},
+                "anypointmq": {},
+                "googlepubsub": {},
+                "http": {},
+                "ibmmq": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.1.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/server.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.1.0" ]
+                        }
+                    }
+                },
+                "jms": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/jms/0.0.1/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.0.1"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/jms/0.0.1/server.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.0.1" ]
+                        }
+                    }
+                },
+                "kafka": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.5.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.4.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/server.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.5.0", "0.4.0", "0.3.0" ]
+                        }
+                    }
+                },
+                "mqtt": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/server.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.2.0" ]
+                        }
+                    }
+                },
+                "nats": {},
+                "pulsar": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.1.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/pulsar/0.1.0/server.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.1.0" ]
+                        }
+                    }
+                },
+                "redis": {},
+                "sns": {},
+                "solace": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.4.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/server.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.2.0/server.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.4.0", "0.3.0", "0.2.0" ]
+                        }
+                    }
+                },
+                "sqs": {},
+                "stomp": {},
+                "ws": {}
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/serverVariable.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/serverVariable.json",
+            "description": "An object representing a Server Variable for server URL template substitution.",
+            "type": "object",
+            "properties": {
+                "description": {
+                    "description": "An optional description for the server variable. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "examples": {
+                    "description": "An array of examples of the server variable.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "default": {
+                    "description": "The default value to use for substitution, and to send, if an alternate value is not supplied.",
+                    "type": "string"
+                },
+                "enum": {
+                    "description": "An enumeration of string values to be used if the substitution options are from a limited set.",
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/serverVariable.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/serverVariables.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/serverVariables.json",
+            "type": "object",
+            "additionalProperties": {
+                "if": {
+                    "required": [ "$ref" ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/specificationExtension.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json",
+            "description": "Any property starting with x- is valid.",
+            "additionalItems": true,
+            "additionalProperties": true
+        },
+        "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [ "symmetricEncryption" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/symmetricEncryption.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/tag.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/tag.json",
+            "description": "Allows adding metadata to a single tag.",
+            "type": "object",
+            "required": [ "name" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for the tag. CommonMark syntax can be used for rich text representation.",
+                    "type": "string"
+                },
+                "externalDocs": {
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
+                },
+                "name": {
+                    "description": "The name of the tag.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/tag.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/userPassword.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/userPassword.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [ "userPassword" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/userPassword.json"
+            }
+        },
+        "http://json-schema.org/draft-07/schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://json-schema.org/draft-07/schema",
+            "title": "Core schema meta-schema",
+            "default": true,
+            "type": [ "object", "boolean" ],
+            "properties": {
+                "$schema": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "$id": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "$comment": {
+                    "type": "string"
+                },
+                "examples": {
+                    "type": "array",
+                    "items": true
+                },
+                "readOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "writeOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "default": true,
+                "$ref": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/simpleTypes"
+                        },
+                        {
+                            "type": "array",
+                            "minItems": 1,
+                            "uniqueItems": true,
+                            "items": {
+                                "$ref": "#/definitions/simpleTypes"
+                            }
+                        }
+                    ]
+                },
+                "const": true,
+                "enum": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": true
+                },
+                "allOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "anyOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "oneOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "not": {
+                    "$ref": "#"
+                },
+                "if": {
+                    "$ref": "#"
+                },
+                "then": {
+                    "$ref": "#"
+                },
+                "else": {
+                    "$ref": "#"
+                },
+                "exclusiveMaximum": {
+                    "type": "number"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "number"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "multipleOf": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "pattern": {
+                    "type": "string",
+                    "format": "regex"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "maxLength": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minLength": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "contentEncoding": {
+                    "type": "string"
+                },
+                "contentMediaType": {
+                    "type": "string"
+                },
+                "maxItems": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minItems": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "uniqueItems": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "contains": {
+                    "$ref": "#"
+                },
+                "items": {
+                    "default": true,
+                    "anyOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/schemaArray"
+                        }
+                    ]
+                },
+                "additionalItems": {
+                    "$ref": "#"
+                },
+                "required": {
+                    "$ref": "#/definitions/stringArray"
+                },
+                "maxProperties": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minProperties": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "propertyNames": {
+                    "$ref": "#"
+                },
+                "properties": {
+                    "default": {},
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                },
+                "patternProperties": {
+                    "default": {},
+                    "type": "object",
+                    "propertyNames": {
+                        "format": "regex"
+                    },
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#"
+                },
+                "dependencies": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/stringArray"
+                            }
+                        ]
+                    }
+                },
+                "definitions": {
+                    "default": {},
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                }
+            },
+            "definitions": {
+                "nonNegativeInteger": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "nonNegativeIntegerDefault0": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/nonNegativeInteger"
+                        },
+                        {
+                            "default": 0
+                        }
+                    ]
+                },
+                "schemaArray": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#"
+                    }
+                },
+                "simpleTypes": {
+                    "enum": [
+                        "array",
+                        "boolean",
+                        "integer",
+                        "null",
+                        "number",
+                        "object",
+                        "string"
+                    ]
+                },
+                "stringArray": {
+                    "default": [],
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "example": {
+        "$ref": "http://asyncapi.com/examples/3.0.0/server.json"
+    }
+}
