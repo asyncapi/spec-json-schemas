@@ -2,14 +2,15 @@
   "description": "An object representing multiple servers.",
   "type": "object",
   "additionalProperties": {
-    "oneOf": [
-      {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-      },
-      {
-  	"$ref": "http://asyncapi.com/definitions/3.0.0/server.json"
-      }
-    ]
+    "if": {
+      "required": ["$ref"]
+    },
+    "then": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+    },
+    "else": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/server.json"
+    }
   },
   "example": {
     "$ref": "http://asyncapi.com/examples/3.0.0/servers.json"

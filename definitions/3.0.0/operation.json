@@ -28,27 +28,29 @@
       }
     },
     "reply": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+      }
     },
     "traits": {
       "type": "array",
       "description": "A list of traits to apply to the operation object. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Operation Object.",
       "items": {
-        "oneOf": [
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-          },
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-          }
-        ]
+        "if": {
+          "required": ["$ref"]
+        },
+        "then": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        "else": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+        }
       }
     },
     "title": {
@@ -70,36 +72,39 @@
       "type": "array",
       "description": "A list of tags for logical grouping and categorization of operations.",
       "items": {
-        "oneOf": [
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-          },
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-          }
-        ]
+        "if": {
+          "required": ["$ref"]
+        },
+        "then": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        "else": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+        }
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      }
     },
     "bindings": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+      }
     }
   },
   "example": {

@@ -19,26 +19,28 @@
       "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
     },
     "correlationId": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+      }
     },
     "tags": {
       "type": "array",
       "items": {
-        "oneOf": [
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-          },
-          {
-            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-          }
-        ]
+        "if": {
+          "required": ["$ref"]
+        },
+        "then": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        "else": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+        }
       },
       "uniqueItems": true
     },
@@ -59,14 +61,15 @@
       "description": "A longer description of the message. CommonMark is allowed."
     },
     "externalDocs": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      }
     },
     "deprecated": {
       "type": "boolean",
@@ -80,14 +83,15 @@
       }
     },
     "bindings": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+      }
     },
     "traits": {
       "type": "array",

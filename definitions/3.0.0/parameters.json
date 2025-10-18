@@ -1,14 +1,15 @@
 {
   "type": "object",
   "additionalProperties": {
-    "oneOf": [
-      {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-      },
-      {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-      }
-    ]
+    "if": {
+      "required": ["$ref"]
+    },
+    "then": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+    },
+    "else": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
+    }
   },
   "description": "JSON objects describing re-usable channel parameters.",
   "example": {

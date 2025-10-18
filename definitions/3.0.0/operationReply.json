@@ -9,14 +9,15 @@
   },
   "properties": {
     "address": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
+      }
     },
     "channel": {
       "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"

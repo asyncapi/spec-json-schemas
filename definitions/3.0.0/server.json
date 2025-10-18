@@ -3,10 +3,8 @@
   "description": "An object representing a message broker, a server or any other kind of computer program capable of sending and/or receiving data.",
   "required": ["host", "protocol"],
   "additionalProperties": false,
-  "patternProperties": {    	
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-    }
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
   },
   "properties": {	
     "host": {
@@ -46,36 +44,39 @@
     "tags": {
       "type": "array",
       "items": {
-        "oneOf": [
-	  {
-  	    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-	  },
-  	  {
-  	    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-  	  }
-  	]
+        "if": {
+          "required": ["$ref"]
+        },
+        "then": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        "else": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+        }
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "oneOf": [
-        {
-	  "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-  	},
-	{
-  	  "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-	}
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      }
     },
     "bindings": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+      }
     }
   },
   "example": {

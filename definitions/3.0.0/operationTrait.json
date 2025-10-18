@@ -34,14 +34,15 @@
     },
     "bindings": {
       "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the operation.",
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+      }
     }
   },
   "example": {

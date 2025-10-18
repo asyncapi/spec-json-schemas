@@ -2,14 +2,15 @@
   "type": "object",
   "description": "Holds a dictionary with all the operations this application MUST implement.",
   "additionalProperties": {
-    "oneOf": [
-      { 
-        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json" 
-      },
-      { 
-        "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json" 
-      }
-    ]
+    "if": {
+      "required": ["$ref"]
+    },
+    "then": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+    },
+    "else": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
+    }
   },
   "example": {
     "$ref": "http://asyncapi.com/examples/3.0.0/operations.json"

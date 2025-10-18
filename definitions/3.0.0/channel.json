@@ -42,36 +42,39 @@
       "type": "array",
       "description": "A list of tags for logical grouping of channels.",
       "items": {
-        "oneOf": [
-  	  {
-	    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-	  },
-	  {
-  	    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-	  }
-	]
+        "if": {
+          "required": ["$ref"]
+        },
+        "then": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        "else": {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+        }
       },
       "uniqueItems": true
     },
     "externalDocs": {
-      "oneOf": [
-        {
-  	  "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-	},
-	{
-  	  "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-	}
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+      }
     },
     "bindings": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
-        }
-      ]
+      "if": {
+        "required": ["$ref"]
+      },
+      "then": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      },
+      "else": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+      }
     }
   },
   "example": {

@@ -38,26 +38,28 @@
           "type": "array",
           "description": "A list of tags for application API documentation control. Tags can be used for logical grouping of applications.",
           "items": {
-            "oneOf": [
-              {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-              },
-              {
-                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-              }
-            ]
+            "if": {
+              "required": ["$ref"]
+            },
+            "then": {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+            }
           },
           "uniqueItems": true
         },
         "externalDocs": {
-          "oneOf": [
-            {
-              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-            },
-            {
-              "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-            }
-          ]
+          "if": {
+            "required": ["$ref"]
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+          },
+          "else": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+          }
         }
       }
     },

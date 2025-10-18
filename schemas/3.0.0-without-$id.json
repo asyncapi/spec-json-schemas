@@ -92,26 +92,32 @@
                             "type": "array",
                             "description": "A list of tags for application API documentation control. Tags can be used for logical grouping of applications.",
                             "items": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "#/definitions/Reference"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/tag"
-                                    }
-                                ]
+                                "if": {
+                                    "required": [
+                                        "$ref"
+                                    ]
+                                },
+                                "then": {
+                                    "$ref": "#/definitions/Reference"
+                                },
+                                "else": {
+                                    "$ref": "#/definitions/tag"
+                                }
                             },
                             "uniqueItems": true
                         },
                         "externalDocs": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/externalDocs"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/externalDocs"
+                            }
                         }
                     }
                 },
@@ -247,14 +253,17 @@
                     "description": "A short description for the tag. CommonMark syntax can be used for rich text representation."
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/externalDocs"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/externalDocs"
+                    }
                 }
             },
             "patternProperties": {
@@ -332,14 +341,17 @@
             "description": "An object representing multiple servers.",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/Reference"
-                    },
-                    {
-                        "$ref": "#/definitions/server"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "else": {
+                    "$ref": "#/definitions/server"
+                }
             },
             "examples": [
                 {
@@ -391,9 +403,7 @@
             ],
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "#/definitions/specificationExtension"
-                }
+                "^x-[\\w\\d\\.\\x2d_]+$": true
             },
             "properties": {
                 "host": {
@@ -433,36 +443,45 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/Reference"
-                            },
-                            {
-                                "$ref": "#/definitions/tag"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        "else": {
+                            "$ref": "#/definitions/tag"
+                        }
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/externalDocs"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/externalDocs"
+                    }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/serverBindingsObject"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/serverBindingsObject"
+                    }
                 }
             },
             "examples": [
@@ -483,14 +502,17 @@
         "serverVariables": {
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/Reference"
-                    },
-                    {
-                        "$ref": "#/definitions/serverVariable"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "else": {
+                    "$ref": "#/definitions/serverVariable"
+                }
             }
         },
         "serverVariable": {
@@ -549,14 +571,17 @@
             "description": "An array representing security requirements.",
             "type": "array",
             "items": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/Reference"
-                    },
-                    {
-                        "$ref": "#/definitions/SecurityScheme"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "else": {
+                    "$ref": "#/definitions/SecurityScheme"
+                }
             }
         },
         "SecurityScheme": {
@@ -1705,14 +1730,17 @@
                             "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details."
                         },
                         "externalDocs": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/externalDocs"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/externalDocs"
+                            }
                         },
                         "deprecated": {
                             "type": "boolean",
@@ -2332,14 +2360,17 @@
             "type": "object",
             "description": "An object containing all the Channel Object definitions the Application MUST use during runtime.",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/Reference"
-                    },
-                    {
-                        "$ref": "#/definitions/channel"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "else": {
+                    "$ref": "#/definitions/channel"
+                }
             },
             "examples": [
                 {
@@ -2401,36 +2432,45 @@
                     "type": "array",
                     "description": "A list of tags for logical grouping of channels.",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/Reference"
-                            },
-                            {
-                                "$ref": "#/definitions/tag"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        "else": {
+                            "$ref": "#/definitions/tag"
+                        }
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/externalDocs"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/externalDocs"
+                    }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/channelBindingsObject"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/channelBindingsObject"
+                    }
                 }
             },
             "examples": [
@@ -2483,14 +2523,17 @@
         "channelMessages": {
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/Reference"
-                    },
-                    {
-                        "$ref": "#/definitions/messageObject"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "else": {
+                    "$ref": "#/definitions/messageObject"
+                }
             },
             "description": "A map of the messages that will be sent to this channel by any application at any time. **Every message sent to this channel MUST be valid against one, and only one, of the message objects defined in this map.**"
         },
@@ -2515,26 +2558,32 @@
                     "$ref": "#/definitions/anySchema"
                 },
                 "correlationId": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/correlationId"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/correlationId"
+                    }
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/Reference"
-                            },
-                            {
-                                "$ref": "#/definitions/tag"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        "else": {
+                            "$ref": "#/definitions/tag"
+                        }
                     },
                     "uniqueItems": true
                 },
@@ -2555,14 +2604,17 @@
                     "description": "A longer description of the message. CommonMark is allowed."
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/externalDocs"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/externalDocs"
+                    }
                 },
                 "deprecated": {
                     "type": "boolean",
@@ -2576,14 +2628,17 @@
                     }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/messageBindingsObject"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/messageBindingsObject"
+                    }
                 },
                 "traits": {
                     "type": "array",
@@ -4624,26 +4679,32 @@
                     "$ref": "#/definitions/anySchema"
                 },
                 "correlationId": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/correlationId"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/correlationId"
+                    }
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/Reference"
-                            },
-                            {
-                                "$ref": "#/definitions/tag"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        "else": {
+                            "$ref": "#/definitions/tag"
+                        }
                     },
                     "uniqueItems": true
                 },
@@ -4664,14 +4725,17 @@
                     "description": "A longer description of the message. CommonMark is allowed."
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/externalDocs"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/externalDocs"
+                    }
                 },
                 "deprecated": {
                     "type": "boolean",
@@ -4685,14 +4749,17 @@
                     }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/messageBindingsObject"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/messageBindingsObject"
+                    }
                 }
             },
             "examples": [
@@ -4704,14 +4771,17 @@
         "parameters": {
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/Reference"
-                    },
-                    {
-                        "$ref": "#/definitions/parameter"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "else": {
+                    "$ref": "#/definitions/parameter"
+                }
             },
             "description": "JSON objects describing re-usable channel parameters.",
             "examples": [
@@ -6440,14 +6510,17 @@
             "type": "object",
             "description": "Holds a dictionary with all the operations this application MUST implement.",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "#/definitions/Reference"
-                    },
-                    {
-                        "$ref": "#/definitions/operation"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "#/definitions/Reference"
+                },
+                "else": {
+                    "$ref": "#/definitions/operation"
+                }
             },
             "examples": [
                 {
@@ -6517,27 +6590,33 @@
                     }
                 },
                 "reply": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/operationReply"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/operationReply"
+                    }
                 },
                 "traits": {
                     "type": "array",
                     "description": "A list of traits to apply to the operation object. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Operation Object.",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/Reference"
-                            },
-                            {
-                                "$ref": "#/definitions/operationTrait"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        "else": {
+                            "$ref": "#/definitions/operationTrait"
+                        }
                     }
                 },
                 "title": {
@@ -6559,36 +6638,45 @@
                     "type": "array",
                     "description": "A list of tags for logical grouping and categorization of operations.",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "#/definitions/Reference"
-                            },
-                            {
-                                "$ref": "#/definitions/tag"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        "else": {
+                            "$ref": "#/definitions/tag"
+                        }
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/externalDocs"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/externalDocs"
+                    }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/operationBindingsObject"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/operationBindingsObject"
+                    }
                 }
             },
             "examples": [
@@ -6661,14 +6749,17 @@
             },
             "properties": {
                 "address": {
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/operationReplyAddress"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/operationReplyAddress"
+                    }
                 },
                 "channel": {
                     "$ref": "#/definitions/Reference"
@@ -6748,14 +6839,17 @@
                 },
                 "bindings": {
                     "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the operation.",
-                    "oneOf": [
-                        {
-                            "$ref": "#/definitions/Reference"
-                        },
-                        {
-                            "$ref": "#/definitions/operationBindingsObject"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "#/definitions/Reference"
+                    },
+                    "else": {
+                        "$ref": "#/definitions/operationBindingsObject"
+                    }
                 }
             },
             "examples": [
@@ -8539,14 +8633,17 @@
                     "description": "An object to hold reusable Server Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/server"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/server"
+                            }
                         }
                     }
                 },
@@ -8555,14 +8652,17 @@
                     "description": "An object to hold reusable Channel Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/channel"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/channel"
+                            }
                         }
                     }
                 },
@@ -8571,14 +8671,17 @@
                     "description": "An object to hold reusable Server Variable Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/serverVariable"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/serverVariable"
+                            }
                         }
                     }
                 },
@@ -8586,14 +8689,17 @@
                     "type": "object",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/operation"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/operation"
+                            }
                         }
                     }
                 },
@@ -8602,14 +8708,17 @@
                     "description": "An object to hold reusable Message Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/messageObject"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/messageObject"
+                            }
                         }
                     }
                 },
@@ -8618,14 +8727,17 @@
                     "description": "An object to hold reusable Security Scheme Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/SecurityScheme"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/SecurityScheme"
+                            }
                         }
                     }
                 },
@@ -8634,14 +8746,17 @@
                     "description": "An object to hold reusable Parameter Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/parameter"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/parameter"
+                            }
                         }
                     }
                 },
@@ -8650,14 +8765,17 @@
                     "description": "An object to hold reusable Correlation ID Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/correlationId"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/correlationId"
+                            }
                         }
                     }
                 },
@@ -8666,14 +8784,17 @@
                     "description": "An object to hold reusable Operation Trait Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/operationTrait"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/operationTrait"
+                            }
                         }
                     }
                 },
@@ -8682,14 +8803,17 @@
                     "description": "An object to hold reusable Message Trait Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/messageTrait"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/messageTrait"
+                            }
                         }
                     }
                 },
@@ -8698,14 +8822,17 @@
                     "description": "An object to hold reusable Operation Reply Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/operationReply"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/operationReply"
+                            }
                         }
                     }
                 },
@@ -8714,14 +8841,17 @@
                     "description": "An object to hold reusable Operation Reply Address Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/operationReplyAddress"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/operationReplyAddress"
+                            }
                         }
                     }
                 },
@@ -8730,14 +8860,17 @@
                     "description": "An object to hold reusable Server Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/serverBindingsObject"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/serverBindingsObject"
+                            }
                         }
                     }
                 },
@@ -8746,14 +8879,17 @@
                     "description": "An object to hold reusable Channel Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/channelBindingsObject"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/channelBindingsObject"
+                            }
                         }
                     }
                 },
@@ -8762,14 +8898,17 @@
                     "description": "An object to hold reusable Operation Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/operationBindingsObject"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/operationBindingsObject"
+                            }
                         }
                     }
                 },
@@ -8778,14 +8917,17 @@
                     "description": "An object to hold reusable Message Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/messageBindingsObject"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/messageBindingsObject"
+                            }
                         }
                     }
                 },
@@ -8794,14 +8936,17 @@
                     "description": "An object to hold reusable Tag Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/tag"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/tag"
+                            }
                         }
                     }
                 },
@@ -8810,14 +8955,17 @@
                     "description": "An object to hold reusable External Documentation Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "#/definitions/Reference"
-                                },
-                                {
-                                    "$ref": "#/definitions/externalDocs"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "#/definitions/Reference"
+                            },
+                            "else": {
+                                "$ref": "#/definitions/externalDocs"
+                            }
                         }
                     }
                 }

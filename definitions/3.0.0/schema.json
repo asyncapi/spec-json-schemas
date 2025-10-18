@@ -86,14 +86,15 @@
           "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details."
         },
         "externalDocs": {
-          "oneOf": [
-            {
-              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-            },
-            {
-              "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-            }
-          ]
+          "if": {
+            "required": ["$ref"]
+          },
+          "then": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+          },
+          "else": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+          }
         },
         "deprecated": {
           "type": "boolean",

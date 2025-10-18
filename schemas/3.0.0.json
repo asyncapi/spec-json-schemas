@@ -95,26 +95,32 @@
                             "type": "array",
                             "description": "A list of tags for application API documentation control. Tags can be used for logical grouping of applications.",
                             "items": {
-                                "oneOf": [
-                                    {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                    },
-                                    {
-                                        "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                                    }
-                                ]
+                                "if": {
+                                    "required": [
+                                        "$ref"
+                                    ]
+                                },
+                                "then": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                },
+                                "else": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                                }
                             },
                             "uniqueItems": true
                         },
                         "externalDocs": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
                         }
                     }
                 },
@@ -255,14 +261,17 @@
                     "description": "A short description for the tag. CommonMark syntax can be used for rich text representation."
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
                 }
             },
             "patternProperties": {
@@ -345,14 +354,17 @@
             "description": "An object representing multiple servers.",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/server.json"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/server.json"
+                }
             },
             "examples": [
                 {
@@ -405,9 +417,7 @@
             ],
             "additionalProperties": false,
             "patternProperties": {
-                "^x-[\\w\\d\\.\\x2d_]+$": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-                }
+                "^x-[\\w\\d\\.\\x2d_]+$": true
             },
             "properties": {
                 "host": {
@@ -447,36 +457,45 @@
                 "tags": {
                     "type": "array",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        "else": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        }
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+                    }
                 }
             },
             "examples": [
@@ -498,14 +517,17 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/serverVariables.json",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                }
             }
         },
         "http://asyncapi.com/definitions/3.0.0/serverVariable.json": {
@@ -566,14 +588,17 @@
             "description": "An array representing security requirements.",
             "type": "array",
             "items": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+                }
             }
         },
         "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json": {
@@ -1743,14 +1768,17 @@
                             "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details."
                         },
                         "externalDocs": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
                         },
                         "deprecated": {
                             "type": "boolean",
@@ -2381,14 +2409,17 @@
             "type": "object",
             "description": "An object containing all the Channel Object definitions the Application MUST use during runtime.",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
+                }
             },
             "examples": [
                 {
@@ -2451,36 +2482,45 @@
                     "type": "array",
                     "description": "A list of tags for logical grouping of channels.",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        "else": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        }
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+                    }
                 }
             },
             "examples": [
@@ -2534,14 +2574,17 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/channelMessages.json",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
+                }
             },
             "description": "A map of the messages that will be sent to this channel by any application at any time. **Every message sent to this channel MUST be valid against one, and only one, of the message objects defined in this map.**"
         },
@@ -2567,26 +2610,32 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                 },
                 "correlationId": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+                    }
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        "else": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        }
                     },
                     "uniqueItems": true
                 },
@@ -2607,14 +2656,17 @@
                     "description": "A longer description of the message. CommonMark is allowed."
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
                 },
                 "deprecated": {
                     "type": "boolean",
@@ -2628,14 +2680,17 @@
                     }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                    }
                 },
                 "traits": {
                     "type": "array",
@@ -4695,26 +4750,32 @@
                     "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
                 },
                 "correlationId": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+                    }
                 },
                 "tags": {
                     "type": "array",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        "else": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        }
                     },
                     "uniqueItems": true
                 },
@@ -4735,14 +4796,17 @@
                     "description": "A longer description of the message. CommonMark is allowed."
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
                 },
                 "deprecated": {
                     "type": "boolean",
@@ -4756,14 +4820,17 @@
                     }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                    }
                 }
             },
             "examples": [
@@ -4776,14 +4843,17 @@
             "$id": "http://asyncapi.com/definitions/3.0.0/parameters.json",
             "type": "object",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
+                }
             },
             "description": "JSON objects describing re-usable channel parameters.",
             "examples": [
@@ -6527,14 +6597,17 @@
             "type": "object",
             "description": "Holds a dictionary with all the operations this application MUST implement.",
             "additionalProperties": {
-                "oneOf": [
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                    },
-                    {
-                        "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
-                    }
-                ]
+                "if": {
+                    "required": [
+                        "$ref"
+                    ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
+                }
             },
             "examples": [
                 {
@@ -6605,27 +6678,33 @@
                     }
                 },
                 "reply": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+                    }
                 },
                 "traits": {
                     "type": "array",
                     "description": "A list of traits to apply to the operation object. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Operation Object.",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        "else": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+                        }
                     }
                 },
                 "title": {
@@ -6647,36 +6726,45 @@
                     "type": "array",
                     "description": "A list of tags for logical grouping and categorization of operations.",
                     "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                            },
-                            {
-                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                            }
-                        ]
+                        "if": {
+                            "required": [
+                                "$ref"
+                            ]
+                        },
+                        "then": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        "else": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        }
                     },
                     "uniqueItems": true
                 },
                 "externalDocs": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
                 },
                 "bindings": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                    }
                 }
             },
             "examples": [
@@ -6750,14 +6838,17 @@
             },
             "properties": {
                 "address": {
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
+                    }
                 },
                 "channel": {
                     "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
@@ -6839,14 +6930,17 @@
                 },
                 "bindings": {
                     "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the operation.",
-                    "oneOf": [
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                        },
-                        {
-                            "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
-                        }
-                    ]
+                    "if": {
+                        "required": [
+                            "$ref"
+                        ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                    }
                 }
             },
             "examples": [
@@ -8645,14 +8739,17 @@
                     "description": "An object to hold reusable Server Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/server.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/server.json"
+                            }
                         }
                     }
                 },
@@ -8661,14 +8758,17 @@
                     "description": "An object to hold reusable Channel Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
+                            }
                         }
                     }
                 },
@@ -8677,14 +8777,17 @@
                     "description": "An object to hold reusable Server Variable Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/serverVariable.json"
+                            }
                         }
                     }
                 },
@@ -8692,14 +8795,17 @@
                     "type": "object",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json"
+                            }
                         }
                     }
                 },
@@ -8708,14 +8814,17 @@
                     "description": "An object to hold reusable Message Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageObject.json"
+                            }
                         }
                     }
                 },
@@ -8724,14 +8833,17 @@
                     "description": "An object to hold reusable Security Scheme Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+                            }
                         }
                     }
                 },
@@ -8740,14 +8852,17 @@
                     "description": "An object to hold reusable Parameter Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/parameter.json"
+                            }
                         }
                     }
                 },
@@ -8756,14 +8871,17 @@
                     "description": "An object to hold reusable Correlation ID Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+                            }
                         }
                     }
                 },
@@ -8772,14 +8890,17 @@
                     "description": "An object to hold reusable Operation Trait Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+                            }
                         }
                     }
                 },
@@ -8788,14 +8909,17 @@
                     "description": "An object to hold reusable Message Trait Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+                            }
                         }
                     }
                 },
@@ -8804,14 +8928,17 @@
                     "description": "An object to hold reusable Operation Reply Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+                            }
                         }
                     }
                 },
@@ -8820,14 +8947,17 @@
                     "description": "An object to hold reusable Operation Reply Address Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
+                            }
                         }
                     }
                 },
@@ -8836,14 +8966,17 @@
                     "description": "An object to hold reusable Server Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/serverBindingsObject.json"
+                            }
                         }
                     }
                 },
@@ -8852,14 +8985,17 @@
                     "description": "An object to hold reusable Channel Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/channelBindingsObject.json"
+                            }
                         }
                     }
                 },
@@ -8868,14 +9004,17 @@
                     "description": "An object to hold reusable Operation Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                            }
                         }
                     }
                 },
@@ -8884,14 +9023,17 @@
                     "description": "An object to hold reusable Message Bindings Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                            }
                         }
                     }
                 },
@@ -8900,14 +9042,17 @@
                     "description": "An object to hold reusable Tag Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                            }
                         }
                     }
                 },
@@ -8916,14 +9061,17 @@
                     "description": "An object to hold reusable External Documentation Objects.",
                     "patternProperties": {
                         "^[\\w\\d\\.\\-_]+$": {
-                            "oneOf": [
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-                                },
-                                {
-                                    "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
-                                }
-                            ]
+                            "if": {
+                                "required": [
+                                    "$ref"
+                                ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
                         }
                     }
                 }

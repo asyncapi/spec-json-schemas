@@ -2,14 +2,15 @@
   "type": "object",
   "description": "An object containing all the Channel Object definitions the Application MUST use during runtime.",
   "additionalProperties": {
-    "oneOf": [
-      {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-      },
-      {
-	"$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
-      }
-    ]
+    "if": {
+      "required": ["$ref"]
+    },
+    "then": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+    },
+    "else": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/channel.json"
+    }
   },
   "example": {
     "$ref": "http://asyncapi.com/examples/3.0.0/channels.json"
