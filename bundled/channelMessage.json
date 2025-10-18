@@ -1,0 +1,2436 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://asyncapi.com/definitions/3.0.0/messageObject.json",
+    "description": "Describes a message received on a given channel and operation.",
+    "type": "object",
+    "properties": {
+        "title": {
+            "description": "A human-friendly title for the message.",
+            "type": "string"
+        },
+        "description": {
+            "description": "A longer description of the message. CommonMark is allowed.",
+            "type": "string"
+        },
+        "examples": {
+            "description": "List of examples.",
+            "type": "array",
+            "items": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/messageExampleObject.json"
+            }
+        },
+        "deprecated": {
+            "default": false,
+            "type": "boolean"
+        },
+        "bindings": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+            }
+        },
+        "contentType": {
+            "description": "The content type to use when encoding/decoding a message's payload. The value MUST be a specific media type (e.g. application/json). When omitted, the value MUST be the one specified on the defaultContentType field.",
+            "type": "string"
+        },
+        "correlationId": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+            }
+        },
+        "externalDocs": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+            }
+        },
+        "headers": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+        },
+        "name": {
+            "description": "Name of the message.",
+            "type": "string"
+        },
+        "payload": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+        },
+        "summary": {
+            "description": "A brief summary of the message.",
+            "type": "string"
+        },
+        "tags": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "if": {
+                    "required": [ "$ref" ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                }
+            }
+        },
+        "traits": {
+            "description": "A list of traits to apply to the message object. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Message Object.",
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+                    },
+                    {
+                        "type": "array",
+                        "items": [
+                            {
+                                "oneOf": [
+                                    {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                    },
+                                    {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageTrait.json"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "object",
+                                "additionalItems": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "http://asyncapi.com/bindings/amqp/0.3.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/amqp/0.3.0/message.json",
+            "title": "AMQP message bindings object",
+            "description": "This object contains information about the message representation in AMQP.",
+            "examples": [
+                {
+                    "contentEncoding": "gzip",
+                    "bindingVersion": "0.3.0",
+                    "messageType": "user.signup"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "contentEncoding": {
+                    "description": "A MIME encoding for the message content.",
+                    "type": "string"
+                },
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "messageType": {
+                    "description": "Application-specific message type.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/anypointmq/0.0.1/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/anypointmq/0.0.1/message.json",
+            "title": "Anypoint MQ message bindings object",
+            "description": "This object contains configuration for describing an Anypoint MQ message as an AsyncAPI message. This objects only contains configuration that can not be provided in the AsyncAPI standard message object.",
+            "examples": [
+                {
+                    "bindingVersion": "0.0.1",
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "messageId": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.0.1" ]
+                },
+                "headers": {
+                    "description": "A Schema object containing the definitions for Anypoint MQ-specific headers (protocol headers). This schema MUST be of type 'object' and have a 'properties' key. Examples of Anypoint MQ protocol headers are 'messageId' and 'messageGroupId'.",
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json",
+            "title": "Cloud Pub/Sub Channel Schema",
+            "description": "This object contains information about the message representation for Google Cloud Pub/Sub.",
+            "examples": [
+                {
+                    "schema": {
+                        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+                    }
+                },
+                {
+                    "schema": {
+                        "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "object"
+                },
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "orderingKey": {
+                    "type": "string"
+                },
+                "schema": {
+                    "type": "object",
+                    "additionalItems": false,
+                    "required": [ "name" ],
+                    "properties": {
+                        "name": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/http/0.2.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/http/0.2.0/message.json",
+            "title": "HTTP message bindings object",
+            "description": "This object contains information about the message representation in HTTP.",
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0",
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "Content-Type": {
+                                "type": "string",
+                                "enum": [ "application/json" ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "headers": {
+                    "description": "\tA Schema object containing the definitions for HTTP-specific headers. This schema MUST be of type 'object' and have a 'properties' key.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/http/0.3.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/http/0.3.0/message.json",
+            "title": "HTTP message bindings object",
+            "description": "This object contains information about the message representation in HTTP.",
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "headers": {
+                        "type": "object",
+                        "properties": {
+                            "Content-Type": {
+                                "type": "string",
+                                "enum": [ "application/json" ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "headers": {
+                    "description": "\tA Schema object containing the definitions for HTTP-specific headers. This schema MUST be of type 'object' and have a 'properties' key.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                },
+                "statusCode": {
+                    "description": "The HTTP response status code according to [RFC 9110](https://httpwg.org/specs/rfc9110.html#overview.of.status.codes). `statusCode` is only relevant for messages referenced by the [Operation Reply Object](https://www.asyncapi.com/docs/reference/specification/v3.0.0#operationReplyObject), as it defines the status code for the response. In all other cases, this value can be safely ignored.",
+                    "type": "number"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/ibmmq/0.1.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/ibmmq/0.1.0/message.json",
+            "title": "IBM MQ message bindings object",
+            "description": "This object contains information about the message representation in IBM MQ.",
+            "examples": [
+                {
+                    "type": "string",
+                    "bindingVersion": "0.1.0"
+                },
+                {
+                    "description": "JMS stream message",
+                    "type": "jms",
+                    "bindingVersion": "0.1.0"
+                }
+            ],
+            "type": "object",
+            "oneOf": [
+                {
+                    "properties": {
+                        "type": {
+                            "const": "binary"
+                        }
+                    }
+                },
+                {
+                    "not": {
+                        "required": [ "headers" ]
+                    },
+                    "properties": {
+                        "type": {
+                            "const": "jms"
+                        }
+                    }
+                },
+                {
+                    "not": {
+                        "required": [ "headers" ]
+                    },
+                    "properties": {
+                        "type": {
+                            "const": "string"
+                        }
+                    }
+                }
+            ],
+            "properties": {
+                "description": {
+                    "description": "Provides additional information for application developers: describes the message type or format.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the message.",
+                    "default": "string",
+                    "type": "string",
+                    "enum": [ "string", "jms", "binary" ]
+                },
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "type": "string",
+                    "enum": [ "0.1.0" ]
+                },
+                "expiry": {
+                    "description": "The recommended setting the client should use for the TTL (Time-To-Live) of the message. This is a period of time expressed in milliseconds and set by the application that puts the message. 'expiry' values are API dependant e.g., MQI and JMS use different units of time and default values for 'unlimited'. General information on IBM MQ message expiry can be found on this [page](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=mqmd-expiry-mqlong) in the IBM MQ Knowledge Center.",
+                    "default": 0,
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "headers": {
+                    "description": "Defines the IBM MQ message headers to include with this message. More than one header can be specified as a comma separated list. Supporting information on IBM MQ message formats can be found on this [page](https://www.ibm.com/docs/en/ibm-mq/9.2?topic=mqmd-format-mqchar8) in the IBM MQ Knowledge Center.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/jms/0.0.1/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/jms/0.0.1/message.json",
+            "title": "Message Schema",
+            "description": "This object contains configuration for describing a JMS message as an AsyncAPI message. This objects only contains configuration that can not be provided in the AsyncAPI standard message object.",
+            "examples": [
+                {
+                    "bindingVersion": "0.0.1",
+                    "headers": {
+                        "type": "object",
+                        "required": [ "JMSMessageID" ],
+                        "properties": {
+                            "JMSCorrelationID": {
+                                "description": "The correlation identifier of the message. A client can use the 'JMSCorrelationID' header field to link one message with another. A typical use is to link a response message with its request message. Since each message sent by a JMS provider is assigned a message ID value, it is convenient to link messages via message ID, such message ID values must start with the 'ID:' prefix. Conversely, application-specified values must not start with the 'ID:' prefix; this is reserved for provider-generated message ID values.",
+                                "type": [ "string", "null" ]
+                            },
+                            "JMSDeliveryMode": {
+                                "description": "Denotes the delivery mode for the message. This may be set by your JMS Provider on your behalf.",
+                                "default": "PERSISTENT",
+                                "type": "string",
+                                "enum": [ "PERSISTENT", "NON_PERSISTENT" ]
+                            },
+                            "JMSExpires": {
+                                "description": "The time at which the message expires. This may be set by your JMS Provider on your behalf. A value of zero means that the message does not expire. Any non-zero value is the amount of time, measured in milliseconds, that has elapsed since midnight, January 1, 1970, UTC, at which the message will expire.",
+                                "type": "integer"
+                            },
+                            "JMSMessageID": {
+                                "description": "A unique message identifier. This may be set by your JMS Provider on your behalf.",
+                                "type": [ "string", "null" ]
+                            },
+                            "JMSPriority": {
+                                "description": "The priority of the message. This may be set by your JMS Provider on your behalf.",
+                                "default": 4,
+                                "type": "integer"
+                            },
+                            "JMSReplyTo": {
+                                "description": "The queue or topic that the message sender expects replies to.",
+                                "type": "string"
+                            },
+                            "JMSTimestamp": {
+                                "description": "The time the message was sent. This may be set by your JMS Provider on your behalf. The time the message was sent. The value of the timestamp is the amount of time, measured in milliseconds, that has elapsed since midnight, January 1, 1970, UTC.",
+                                "type": "integer"
+                            },
+                            "JMSType": {
+                                "description": "The type of message. Some JMS providers use a message repository that contains the definitions of messages sent by applications. The 'JMSType' header field may reference a message's definition in the provider's repository. The JMS API does not define a standard message definition repository, nor does it define a naming policy for the definitions it contains. Some messaging systems require that a message type definition for each application message be created and that each message specify its type. In order to work with such JMS providers, JMS clients should assign a value to 'JMSType', whether the application makes use of it or not. This ensures that the field is properly set for those providers that require it.",
+                                "type": [ "string", "null" ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.0.1" ]
+                },
+                "headers": {
+                    "description": "A Schema object containing the definitions for JMS headers (protocol headers). This schema MUST be of type 'object' and have a 'properties' key. Examples of JMS protocol headers are 'JMSMessageID', 'JMSTimestamp', and 'JMSCorrelationID'.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.3.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.3.0/message.json",
+            "title": "Message Schema",
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "key": {
+                        "type": "string",
+                        "enum": [ "myKey" ]
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "apicurio-new",
+                    "schemaLookupStrategy": "TopicIdStrategy"
+                },
+                {
+                    "bindingVersion": "0.3.0",
+                    "key": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "4"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "key": {
+                    "description": "The message key.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                },
+                "schemaIdLocation": {
+                    "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored.",
+                    "type": "string",
+                    "enum": [ "header", "payload" ]
+                },
+                "schemaIdPayloadEncoding": {
+                    "description": "Number of bytes or vendor specific values when schema id is encoded in payload.",
+                    "type": "string"
+                },
+                "schemaLookupStrategy": {
+                    "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.4.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.4.0/message.json",
+            "title": "Message Schema",
+            "examples": [
+                {
+                    "bindingVersion": "0.4.0",
+                    "key": {
+                        "type": "string",
+                        "enum": [ "myKey" ]
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "apicurio-new",
+                    "schemaLookupStrategy": "TopicIdStrategy"
+                },
+                {
+                    "bindingVersion": "0.4.0",
+                    "key": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "4"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.4.0" ]
+                },
+                "key": {
+                    "description": "The message key.",
+                    "anyOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                        }
+                    ]
+                },
+                "schemaIdLocation": {
+                    "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored.",
+                    "type": "string",
+                    "enum": [ "header", "payload" ]
+                },
+                "schemaIdPayloadEncoding": {
+                    "description": "Number of bytes or vendor specific values when schema id is encoded in payload.",
+                    "type": "string"
+                },
+                "schemaLookupStrategy": {
+                    "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.5.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.5.0/message.json",
+            "title": "Message Schema",
+            "examples": [
+                {
+                    "bindingVersion": "0.5.0",
+                    "key": {
+                        "type": "string",
+                        "enum": [ "myKey" ]
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "apicurio-new",
+                    "schemaLookupStrategy": "TopicIdStrategy"
+                },
+                {
+                    "bindingVersion": "0.5.0",
+                    "key": {
+                        "$ref": "path/to/user-create.avsc#/UserCreate"
+                    },
+                    "schemaIdLocation": "payload",
+                    "schemaIdPayloadEncoding": "4"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.5.0" ]
+                },
+                "key": {
+                    "description": "The message key.",
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        }
+                    ]
+                },
+                "schemaIdLocation": {
+                    "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored.",
+                    "type": "string",
+                    "enum": [ "header", "payload" ]
+                },
+                "schemaIdPayloadEncoding": {
+                    "description": "Number of bytes or vendor specific values when schema id is encoded in payload.",
+                    "type": "string"
+                },
+                "schemaLookupStrategy": {
+                    "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/mqtt/0.2.0/message.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/mqtt/0.2.0/message.json",
+            "title": "MQTT message bindings object",
+            "description": "This object contains information about the message representation in MQTT.",
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0"
+                },
+                {
+                    "bindingVersion": "0.2.0",
+                    "contentType": "application/json",
+                    "correlationData": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "responseTopic": "application/responses"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "contentType": {
+                    "description": "String describing the content type of the message payload. This should not conflict with the contentType field of the associated AsyncAPI Message object.",
+                    "type": "string"
+                },
+                "correlationData": {
+                    "description": "Correlation Data is used by the sender of the request message to identify which request the response message is for when it is received.",
+                    "oneOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ]
+                },
+                "payloadFormatIndicator": {
+                    "description": "1 indicates that the payload is UTF-8 encoded character data.  0 indicates that the payload format is unspecified.",
+                    "default": 0,
+                    "type": "integer",
+                    "enum": [ 0, 1 ]
+                },
+                "responseTopic": {
+                    "description": "The topic (channel URI) to be used for a response message.",
+                    "oneOf": [
+                        {
+                            "type": "string",
+                            "format": "uri-template",
+                            "minLength": 1
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/Reference.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/Reference.json",
+            "description": "A simple object to allow referencing other components in the specification, internally and externally.",
+            "type": "object",
+            "required": [ "$ref" ],
+            "properties": {
+                "$ref": {
+                    "description": "The reference string.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                }
+            },
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/ReferenceObject.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json",
+            "type": "string",
+            "format": "uri-reference"
+        },
+        "http://asyncapi.com/definitions/3.0.0/anySchema.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/anySchema.json",
+            "description": "An object representing either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise.",
+            "if": {
+                "required": [ "schema" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json",
+            "title": "Avro Schema Definition",
+            "description": "Json-Schema definition for Avro AVSC files.",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/avroSchema"
+                }
+            ],
+            "definitions": {
+                "avroArray": {
+                    "title": "Array",
+                    "description": "An array",
+                    "type": "object",
+                    "required": [ "type", "items" ],
+                    "properties": {
+                        "type": {
+                            "const": "array"
+                        },
+                        "items": {
+                            "$ref": "#/definitions/types"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        }
+                    }
+                },
+                "avroEnum": {
+                    "title": "Enum",
+                    "description": "An enumeration",
+                    "type": "object",
+                    "required": [ "type", "name", "symbols" ],
+                    "properties": {
+                        "type": {
+                            "const": "enum"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "symbols": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        }
+                    }
+                },
+                "avroField": {
+                    "title": "Field",
+                    "description": "A field within a Record",
+                    "type": "object",
+                    "required": [ "name", "type" ],
+                    "properties": {
+                        "default": true,
+                        "type": {
+                            "$ref": "#/definitions/types"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "order": {
+                            "enum": [ "ascending", "descending", "ignore" ]
+                        }
+                    }
+                },
+                "avroFixed": {
+                    "title": "Fixed",
+                    "description": "A fixed sized array of bytes",
+                    "type": "object",
+                    "required": [ "type", "name", "size" ],
+                    "properties": {
+                        "type": {
+                            "const": "fixed"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "size": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "avroMap": {
+                    "title": "Map",
+                    "description": "A map of values",
+                    "type": "object",
+                    "required": [ "type", "values" ],
+                    "properties": {
+                        "type": {
+                            "const": "map"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        },
+                        "values": {
+                            "$ref": "#/definitions/types"
+                        }
+                    }
+                },
+                "avroRecord": {
+                    "title": "Record",
+                    "description": "A Record",
+                    "type": "object",
+                    "required": [ "type", "name", "fields" ],
+                    "properties": {
+                        "type": {
+                            "const": "record"
+                        },
+                        "aliases": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/name"
+                            }
+                        },
+                        "doc": {
+                            "type": "string"
+                        },
+                        "fields": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/avroField"
+                            }
+                        },
+                        "name": {
+                            "$ref": "#/definitions/name"
+                        },
+                        "namespace": {
+                            "$ref": "#/definitions/namespace"
+                        }
+                    }
+                },
+                "avroSchema": {
+                    "title": "Avro Schema",
+                    "description": "Root Schema",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/types"
+                        }
+                    ]
+                },
+                "avroUnion": {
+                    "title": "Union",
+                    "description": "A Union of types",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/avroSchema"
+                    }
+                },
+                "customTypeReference": {
+                    "title": "Custom Type",
+                    "description": "Reference to a ComplexType",
+                    "type": "string",
+                    "not": {
+                        "$ref": "#/definitions/primitiveType"
+                    },
+                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*$"
+                },
+                "name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+                },
+                "namespace": {
+                    "type": "string",
+                    "pattern": "^([A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)*)*$"
+                },
+                "primitiveType": {
+                    "title": "Primitive Type",
+                    "description": "Basic type primitives.",
+                    "enum": [
+                        "null",
+                        "boolean",
+                        "int",
+                        "long",
+                        "float",
+                        "double",
+                        "bytes",
+                        "string"
+                    ]
+                },
+                "primitiveTypeWithMetadata": {
+                    "title": "Primitive Type With Metadata",
+                    "description": "A primitive type with metadata attached.",
+                    "type": "object",
+                    "required": [ "type" ],
+                    "properties": {
+                        "type": {
+                            "$ref": "#/definitions/primitiveType"
+                        }
+                    }
+                },
+                "types": {
+                    "title": "Avro Types",
+                    "description": "Allowed Avro types",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/primitiveType"
+                        },
+                        {
+                            "$ref": "#/definitions/primitiveTypeWithMetadata"
+                        },
+                        {
+                            "$ref": "#/definitions/customTypeReference"
+                        },
+                        {
+                            "$ref": "#/definitions/avroRecord"
+                        },
+                        {
+                            "$ref": "#/definitions/avroEnum"
+                        },
+                        {
+                            "$ref": "#/definitions/avroArray"
+                        },
+                        {
+                            "$ref": "#/definitions/avroMap"
+                        },
+                        {
+                            "$ref": "#/definitions/avroFixed"
+                        },
+                        {
+                            "$ref": "#/definitions/avroUnion"
+                        }
+                    ]
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/correlationId.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/correlationId.json",
+            "description": "An object that specifies an identifier at design time that can used for message tracing and correlation.",
+            "type": "object",
+            "required": [ "location" ],
+            "properties": {
+                "description": {
+                    "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A runtime expression that specifies the location of the correlation ID",
+                    "type": "string",
+                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/correlationId.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/externalDocs.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/externalDocs.json",
+            "description": "Allows referencing an external resource for extended documentation.",
+            "type": "object",
+            "required": [ "url" ],
+            "properties": {
+                "description": {
+                    "description": "A short description of the target documentation. CommonMark syntax can be used for rich text representation.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The URL for the target documentation. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/externalDocs.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json",
+            "description": "Map describing protocol-specific definitions for a message.",
+            "type": "object",
+            "properties": {
+                "amqp": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.3.0" ]
+                        }
+                    }
+                },
+                "amqp1": {},
+                "anypointmq": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.0.1"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/anypointmq/0.0.1/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.0.1" ]
+                        }
+                    }
+                },
+                "googlepubsub": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/googlepubsub/0.2.0/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.2.0" ]
+                        }
+                    }
+                },
+                "http": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.3.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.2.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.3.0/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.2.0", "0.3.0" ]
+                        }
+                    }
+                },
+                "ibmmq": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.1.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/ibmmq/0.1.0/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.1.0" ]
+                        }
+                    }
+                },
+                "jms": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/jms/0.0.1/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.0.1"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/jms/0.0.1/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.0.1" ]
+                        }
+                    }
+                },
+                "kafka": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.5.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.4.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.5.0", "0.4.0", "0.3.0" ]
+                        }
+                    }
+                },
+                "mqtt": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/message.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/message.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.2.0" ]
+                        }
+                    }
+                },
+                "nats": {},
+                "redis": {},
+                "sns": {},
+                "solace": {},
+                "sqs": {},
+                "stomp": {},
+                "ws": {}
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/messageExampleObject.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/messageExampleObject.json",
+            "type": "object",
+            "anyOf": [
+                {
+                    "required": [ "payload" ]
+                },
+                {
+                    "required": [ "headers" ]
+                }
+            ],
+            "properties": {
+                "headers": {
+                    "description": "Example of the application headers. It can be of any type.",
+                    "type": "object"
+                },
+                "name": {
+                    "description": "Machine readable name of the message example.",
+                    "type": "string"
+                },
+                "payload": {
+                    "description": "Example of the message payload. It can be of any type."
+                },
+                "summary": {
+                    "description": "A brief summary of the message example.",
+                    "type": "string"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/messageTrait.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/messageTrait.json",
+            "description": "Describes a trait that MAY be applied to a Message Object. This object MAY contain any property from the Message Object, except payload and traits.",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "A human-friendly title for the message.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A longer description of the message. CommonMark is allowed.",
+                    "type": "string"
+                },
+                "examples": {
+                    "description": "List of examples.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageExampleObject.json"
+                    }
+                },
+                "deprecated": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "bindings": {
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/messageBindingsObject.json"
+                    }
+                },
+                "contentType": {
+                    "description": "The content type to use when encoding/decoding a message's payload. The value MUST be a specific media type (e.g. application/json). When omitted, the value MUST be the one specified on the defaultContentType field.",
+                    "type": "string"
+                },
+                "correlationId": {
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/correlationId.json"
+                    }
+                },
+                "externalDocs": {
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
+                },
+                "headers": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/anySchema.json"
+                },
+                "name": {
+                    "description": "Name of the message.",
+                    "type": "string"
+                },
+                "summary": {
+                    "description": "A brief summary of the message.",
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "if": {
+                            "required": [ "$ref" ]
+                        },
+                        "then": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        },
+                        "else": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                        }
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/messageTrait.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/multiFormatSchema.json",
+            "description": "The Multi Format Schema Object represents a schema definition. It differs from the Schema Object in that it supports multiple schema formats or languages (e.g., JSON Schema, Avro, etc.).",
+            "type": "object",
+            "if": {
+                "not": {
+                    "type": "object"
+                }
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+            },
+            "else": {
+                "allOf": [
+                    {
+                        "if": {
+                            "not": {
+                                "description": "If no schemaFormat has been defined, default to schema or reference",
+                                "required": [ "schemaFormat" ]
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "description": "If schemaFormat has been defined check if it's one of the AsyncAPI Schema Object formats",
+                            "required": [ "schemaFormat" ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/vnd.aai.asyncapi;version=2.0.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.0.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                                        "application/vnd.aai.asyncapi;version=2.1.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.1.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                                        "application/vnd.aai.asyncapi;version=2.2.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.2.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                                        "application/vnd.aai.asyncapi;version=2.3.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.3.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                                        "application/vnd.aai.asyncapi;version=2.4.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.4.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                                        "application/vnd.aai.asyncapi;version=2.5.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.5.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                                        "application/vnd.aai.asyncapi;version=2.6.0",
+                                        "application/vnd.aai.asyncapi+json;version=2.6.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                                        "application/vnd.aai.asyncapi;version=3.0.0",
+                                        "application/vnd.aai.asyncapi+json;version=3.0.0",
+                                        "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "required": [ "schemaFormat" ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/schema+json;version=draft-07",
+                                        "application/schema+yaml;version=draft-07"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "$ref": "http://json-schema.org/draft-07/schema"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "required": [ "schemaFormat" ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/vnd.oai.openapi;version=3.0.0",
+                                        "application/vnd.oai.openapi+json;version=3.0.0",
+                                        "application/vnd.oai.openapi+yaml;version=3.0.0"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "if": {
+                            "required": [ "schemaFormat" ],
+                            "properties": {
+                                "schemaFormat": {
+                                    "enum": [
+                                        "application/vnd.apache.avro;version=1.9.0",
+                                        "application/vnd.apache.avro+json;version=1.9.0",
+                                        "application/vnd.apache.avro+yaml;version=1.9.0"
+                                    ]
+                                }
+                            }
+                        },
+                        "then": {
+                            "properties": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                        },
+                                        {
+                                            "$ref": "http://asyncapi.com/definitions/3.0.0/avroSchema_v1.json"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                ],
+                "properties": {
+                    "schemaFormat": {
+                        "description": "A string containing the name of the schema format that is used to define the information. If schemaFormat is missing, it MUST default to application/vnd.aai.asyncapi+json;version={{asyncapi}} where {{asyncapi}} matches the AsyncAPI Version String. In such a case, this would make the Multi Format Schema Object equivalent to the Schema Object. When using Reference Object within the schema, the schemaFormat of the resource being referenced MUST match the schemaFormat of the schema that contains the initial reference. For example, if you reference Avro schema, then schemaFormat of referencing resource and the resource being reference MUST match.",
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "description": "All the schema formats tooling MUST support",
+                                "enum": [
+                                    "application/schema+json;version=draft-07",
+                                    "application/schema+yaml;version=draft-07",
+                                    "application/vnd.aai.asyncapi;version=3.0.0",
+                                    "application/vnd.aai.asyncapi+json;version=3.0.0",
+                                    "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+                                ]
+                            },
+                            {
+                                "description": "All the schema formats tools are RECOMMENDED to support",
+                                "enum": [
+                                    "application/vnd.oai.openapi;version=3.0.0",
+                                    "application/vnd.oai.openapi+json;version=3.0.0",
+                                    "application/vnd.oai.openapi+yaml;version=3.0.0",
+                                    "application/vnd.apache.avro;version=1.9.0",
+                                    "application/vnd.apache.avro+json;version=1.9.0",
+                                    "application/vnd.apache.avro+yaml;version=1.9.0",
+                                    "application/raml+yaml;version=1.0"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/openapiSchema_3_0.json",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "deprecated": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "readOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "writeOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "default": true,
+                "type": {
+                    "enum": [ "array", "boolean", "integer", "number", "object", "string" ]
+                },
+                "enum": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": false
+                },
+                "allOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "anyOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "oneOf": {
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "not": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        }
+                    ]
+                },
+                "exclusiveMaximum": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "multipleOf": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "pattern": {
+                    "type": "string",
+                    "format": "regex"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "maxLength": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minLength": {
+                    "default": 0,
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "maxItems": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minItems": {
+                    "default": 0,
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "uniqueItems": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "items": {
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        }
+                    ]
+                },
+                "required": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "maxProperties": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "minProperties": {
+                    "default": 0,
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "properties": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "oneOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/Reference"
+                            }
+                        ]
+                    }
+                },
+                "additionalProperties": {
+                    "default": true,
+                    "oneOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "type": "boolean"
+                        }
+                    ]
+                },
+                "discriminator": {
+                    "$ref": "#/definitions/Discriminator"
+                },
+                "example": true,
+                "externalDocs": {
+                    "$ref": "#/definitions/ExternalDocumentation"
+                },
+                "nullable": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "xml": {
+                    "$ref": "#/definitions/XML"
+                }
+            },
+            "patternProperties": {
+                "^x-": true
+            },
+            "additionalProperties": false,
+            "definitions": {
+                "Discriminator": {
+                    "type": "object",
+                    "required": [ "propertyName" ],
+                    "properties": {
+                        "mapping": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        },
+                        "propertyName": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "ExternalDocumentation": {
+                    "type": "object",
+                    "required": [ "url" ],
+                    "properties": {
+                        "description": {
+                            "type": "string"
+                        },
+                        "url": {
+                            "type": "string",
+                            "format": "uri-reference"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-": {}
+                    },
+                    "additionalProperties": false
+                },
+                "Reference": {
+                    "type": "object",
+                    "required": [ "$ref" ],
+                    "patternProperties": {
+                        "^\\$ref$": {
+                            "type": "string",
+                            "format": "uri-reference"
+                        }
+                    }
+                },
+                "XML": {
+                    "type": "object",
+                    "properties": {
+                        "attribute": {
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "namespace": {
+                            "type": "string",
+                            "format": "uri"
+                        },
+                        "prefix": {
+                            "type": "string"
+                        },
+                        "wrapped": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-": {}
+                    },
+                    "additionalProperties": false
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/schema.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/schema.json",
+            "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is a superset of the JSON Schema Specification Draft 07. The empty schema (which allows any instance to validate) MAY be represented by the boolean value true and a schema which allows no instance to validate MAY be represented by the boolean value false.",
+            "allOf": [
+                {
+                    "$ref": "http://json-schema.org/draft-07/schema#"
+                },
+                {
+                    "properties": {
+                        "deprecated": {
+                            "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage. Default value is false.",
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "allOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "anyOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "oneOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "not": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "contains": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "items": {
+                            "default": {},
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                    }
+                                }
+                            ]
+                        },
+                        "propertyNames": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "properties": {
+                            "default": {},
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "patternProperties": {
+                            "default": {},
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "additionalProperties": {
+                            "default": {},
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "type": "boolean"
+                                }
+                            ]
+                        },
+                        "discriminator": {
+                            "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details.",
+                            "type": "string"
+                        },
+                        "externalDocs": {
+                            "if": {
+                                "required": [ "$ref" ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/specificationExtension.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json",
+            "description": "Any property starting with x- is valid.",
+            "additionalItems": true,
+            "additionalProperties": true
+        },
+        "http://asyncapi.com/definitions/3.0.0/tag.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/tag.json",
+            "description": "Allows adding metadata to a single tag.",
+            "type": "object",
+            "required": [ "name" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for the tag. CommonMark syntax can be used for rich text representation.",
+                    "type": "string"
+                },
+                "externalDocs": {
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
+                },
+                "name": {
+                    "description": "The name of the tag.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/tag.json"
+            }
+        },
+        "http://json-schema.org/draft-07/schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://json-schema.org/draft-07/schema",
+            "title": "Core schema meta-schema",
+            "default": true,
+            "type": [ "object", "boolean" ],
+            "properties": {
+                "$schema": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "$id": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "$comment": {
+                    "type": "string"
+                },
+                "examples": {
+                    "type": "array",
+                    "items": true
+                },
+                "readOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "writeOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "default": true,
+                "$ref": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/simpleTypes"
+                        },
+                        {
+                            "type": "array",
+                            "minItems": 1,
+                            "uniqueItems": true,
+                            "items": {
+                                "$ref": "#/definitions/simpleTypes"
+                            }
+                        }
+                    ]
+                },
+                "const": true,
+                "enum": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": true
+                },
+                "allOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "anyOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "oneOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "not": {
+                    "$ref": "#"
+                },
+                "if": {
+                    "$ref": "#"
+                },
+                "then": {
+                    "$ref": "#"
+                },
+                "else": {
+                    "$ref": "#"
+                },
+                "exclusiveMaximum": {
+                    "type": "number"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "number"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "multipleOf": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "pattern": {
+                    "type": "string",
+                    "format": "regex"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "maxLength": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minLength": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "contentEncoding": {
+                    "type": "string"
+                },
+                "contentMediaType": {
+                    "type": "string"
+                },
+                "maxItems": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minItems": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "uniqueItems": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "contains": {
+                    "$ref": "#"
+                },
+                "items": {
+                    "default": true,
+                    "anyOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/schemaArray"
+                        }
+                    ]
+                },
+                "additionalItems": {
+                    "$ref": "#"
+                },
+                "required": {
+                    "$ref": "#/definitions/stringArray"
+                },
+                "maxProperties": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minProperties": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "propertyNames": {
+                    "$ref": "#"
+                },
+                "properties": {
+                    "default": {},
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                },
+                "patternProperties": {
+                    "default": {},
+                    "type": "object",
+                    "propertyNames": {
+                        "format": "regex"
+                    },
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#"
+                },
+                "dependencies": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/stringArray"
+                            }
+                        ]
+                    }
+                },
+                "definitions": {
+                    "default": {},
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                }
+            },
+            "definitions": {
+                "nonNegativeInteger": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "nonNegativeIntegerDefault0": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/nonNegativeInteger"
+                        },
+                        {
+                            "default": 0
+                        }
+                    ]
+                },
+                "schemaArray": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#"
+                    }
+                },
+                "simpleTypes": {
+                    "enum": [
+                        "array",
+                        "boolean",
+                        "integer",
+                        "null",
+                        "number",
+                        "object",
+                        "string"
+                    ]
+                },
+                "stringArray": {
+                    "default": [],
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "example": {
+        "$ref": "http://asyncapi.com/examples/3.0.0/messageObject.json"
+    }
+}

@@ -1,0 +1,2819 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://asyncapi.com/definitions/3.0.0/operation.json",
+    "description": "Describes a specific operation.",
+    "type": "object",
+    "required": [ "action", "channel" ],
+    "properties": {
+        "title": {
+            "description": "A human-friendly title for the operation.",
+            "type": "string"
+        },
+        "description": {
+            "description": "A longer description of the operation. CommonMark is allowed.",
+            "type": "string"
+        },
+        "action": {
+            "description": "Allowed values are send and receive. Use send when it's expected that the application will send a message to the given channel, and receive when the application should expect receiving messages from the given channel.",
+            "type": "string",
+            "enum": [ "send", "receive" ]
+        },
+        "bindings": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+            }
+        },
+        "channel": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        "externalDocs": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+            }
+        },
+        "messages": {
+            "description": "A list of $ref pointers pointing to the supported Message Objects that can be processed by this operation. It MUST contain a subset of the messages defined in the channel referenced in this operation. Every message processed by this operation MUST be valid against one, and only one, of the message objects referenced in this list. Please note the messages property value MUST be a list of Reference Objects and, therefore, MUST NOT contain Message Objects. However, it is RECOMMENDED that parsers (or other software) dereference this property for a better development experience.",
+            "type": "array",
+            "items": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            }
+        },
+        "reply": {
+            "if": {
+                "required": [ "$ref" ]
+            },
+            "then": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            "else": {
+                "$ref": "http://asyncapi.com/definitions/3.0.0/operationReply.json"
+            }
+        },
+        "security": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json"
+        },
+        "summary": {
+            "description": "A brief summary of the operation.",
+            "type": "string"
+        },
+        "tags": {
+            "description": "A list of tags for logical grouping and categorization of operations.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "if": {
+                    "required": [ "$ref" ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/tag.json"
+                }
+            }
+        },
+        "traits": {
+            "description": "A list of traits to apply to the operation object. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Operation Object.",
+            "type": "array",
+            "items": {
+                "if": {
+                    "required": [ "$ref" ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operationTrait.json"
+                }
+            }
+        }
+    },
+    "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+        }
+    },
+    "additionalProperties": false,
+    "definitions": {
+        "http://asyncapi.com/bindings/amqp/0.3.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/amqp/0.3.0/operation.json",
+            "title": "AMQP operation bindings object",
+            "description": "This object contains information about the operation representation in AMQP.",
+            "examples": [
+                {
+                    "ack": false,
+                    "bcc": [ "external.audit" ],
+                    "bindingVersion": "0.3.0",
+                    "cc": [ "user.logs" ],
+                    "deliveryMode": 2,
+                    "expiration": 100000,
+                    "mandatory": false,
+                    "priority": 10,
+                    "timestamp": true,
+                    "userId": "guest"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "ack": {
+                    "description": "Whether the consumer should ack the message or not.",
+                    "type": "boolean"
+                },
+                "bcc": {
+                    "description": "Like cc but consumers will not receive this information.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "cc": {
+                    "description": "The routing keys the message should be routed to at the time of publishing.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "deliveryMode": {
+                    "description": "Delivery mode of the message. Its value MUST be either 1 (transient) or 2 (persistent).",
+                    "type": "integer",
+                    "enum": [ 1, 2 ]
+                },
+                "expiration": {
+                    "description": "TTL (Time-To-Live) for the message. It MUST be greater than or equal to zero.",
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "mandatory": {
+                    "description": "Whether the message is mandatory or not.",
+                    "type": "boolean"
+                },
+                "priority": {
+                    "description": "A priority for the message.",
+                    "type": "integer"
+                },
+                "timestamp": {
+                    "description": "Whether the message should include a timestamp or not.",
+                    "type": "boolean"
+                },
+                "userId": {
+                    "description": "Identifies the user who has sent the message.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/http/0.2.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/http/0.2.0/operation.json",
+            "title": "HTTP operation bindings object",
+            "description": "This object contains information about the operation representation in HTTP.",
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0",
+                    "query": {
+                        "type": "object",
+                        "required": [ "companyId" ],
+                        "properties": {
+                            "companyId": {
+                                "description": "The Id of the company.",
+                                "type": "number",
+                                "minimum": 1
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                {
+                    "bindingVersion": "0.2.0",
+                    "method": "GET",
+                    "query": {
+                        "type": "object",
+                        "required": [ "companyId" ],
+                        "properties": {
+                            "companyId": {
+                                "description": "The Id of the company.",
+                                "type": "number",
+                                "minimum": 1
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "method": {
+                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'.",
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "PATCH",
+                        "DELETE",
+                        "HEAD",
+                        "OPTIONS",
+                        "CONNECT",
+                        "TRACE"
+                    ]
+                },
+                "query": {
+                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/http/0.3.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/http/0.3.0/operation.json",
+            "title": "HTTP operation bindings object",
+            "description": "This object contains information about the operation representation in HTTP.",
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "query": {
+                        "type": "object",
+                        "required": [ "companyId" ],
+                        "properties": {
+                            "companyId": {
+                                "description": "The Id of the company.",
+                                "type": "number",
+                                "minimum": 1
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                {
+                    "bindingVersion": "0.3.0",
+                    "method": "GET",
+                    "query": {
+                        "type": "object",
+                        "required": [ "companyId" ],
+                        "properties": {
+                            "companyId": {
+                                "description": "The Id of the company.",
+                                "type": "number",
+                                "minimum": 1
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "method": {
+                    "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'.",
+                    "type": "string",
+                    "enum": [
+                        "GET",
+                        "PUT",
+                        "POST",
+                        "PATCH",
+                        "DELETE",
+                        "HEAD",
+                        "OPTIONS",
+                        "CONNECT",
+                        "TRACE"
+                    ]
+                },
+                "query": {
+                    "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.3.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json",
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in Kafka.",
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "clientId": {
+                        "type": "string",
+                        "enum": [ "myClientId" ]
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "enum": [ "myGroupId" ]
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "clientId": {
+                    "description": "Id of the consumer inside a consumer group.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                },
+                "groupId": {
+                    "description": "Id of the consumer group.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.4.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json",
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in Kafka.",
+            "examples": [
+                {
+                    "bindingVersion": "0.4.0",
+                    "clientId": {
+                        "type": "string",
+                        "enum": [ "myClientId" ]
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "enum": [ "myGroupId" ]
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.4.0" ]
+                },
+                "clientId": {
+                    "description": "Id of the consumer inside a consumer group.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                },
+                "groupId": {
+                    "description": "Id of the consumer group.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/kafka/0.5.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/kafka/0.5.0/operation.json",
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in Kafka.",
+            "examples": [
+                {
+                    "bindingVersion": "0.5.0",
+                    "clientId": {
+                        "type": "string",
+                        "enum": [ "myClientId" ]
+                    },
+                    "groupId": {
+                        "type": "string",
+                        "enum": [ "myGroupId" ]
+                    }
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.5.0" ]
+                },
+                "clientId": {
+                    "description": "Id of the consumer inside a consumer group.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                },
+                "groupId": {
+                    "description": "Id of the consumer group.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/mqtt/0.2.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/mqtt/0.2.0/operation.json",
+            "title": "MQTT operation bindings object",
+            "description": "This object contains information about the operation representation in MQTT.",
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0",
+                    "messageExpiryInterval": 60,
+                    "qos": 2,
+                    "retain": true
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "messageExpiryInterval": {
+                    "description": "Lifetime of the message in seconds",
+                    "oneOf": [
+                        {
+                            "type": "integer",
+                            "maximum": 4294967295,
+                            "minimum": 0
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ]
+                },
+                "qos": {
+                    "description": "Defines the Quality of Service (QoS) levels for the message flow between client and server. Its value MUST be either 0 (At most once delivery), 1 (At least once delivery), or 2 (Exactly once delivery).",
+                    "type": "integer",
+                    "enum": [ 0, 1, 2 ]
+                },
+                "retain": {
+                    "description": "Whether the broker should retain the message or not.",
+                    "type": "boolean"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/nats/0.1.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/nats/0.1.0/operation.json",
+            "title": "NATS operation bindings object",
+            "description": "This object contains information about the operation representation in NATS.",
+            "examples": [
+                {
+                    "bindingVersion": "0.1.0",
+                    "queue": "MyCustomQueue"
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.1.0" ]
+                },
+                "queue": {
+                    "description": "Defines the name of the queue to use. It MUST NOT exceed 255 characters.",
+                    "type": "string",
+                    "maxLength": 255
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/sns/0.1.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/sns/0.1.0/operation.json",
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in SNS.",
+            "examples": [
+                {
+                    "consumers": [
+                        {
+                            "deliveryPolicy": {
+                                "backoffFunction": "linear",
+                                "maxDelayTarget": 100,
+                                "maxReceivesPerSecond": 2,
+                                "minDelayTarget": 10,
+                                "numMaxDelayRetries": 5,
+                                "numMinDelayRetries": 3,
+                                "numNoDelayRetries": 2,
+                                "numRetries": 5
+                            },
+                            "endpoint": {
+                                "name": "someQueue"
+                            },
+                            "filterPolicy": {
+                                "customer_interests": [ "rugby", "football", "baseball" ],
+                                "event": [
+                                    {
+                                        "anything-but": "order_cancelled"
+                                    }
+                                ],
+                                "store": [ "asyncapi_corp" ]
+                            },
+                            "filterPolicyScope": "MessageAttributes",
+                            "protocol": "sqs",
+                            "rawMessageDelivery": false,
+                            "redrivePolicy": {
+                                "deadLetterQueue": {
+                                    "arn": "arn:aws:SQS:eu-west-1:0000000:123456789"
+                                },
+                                "maxReceiveCount": 25
+                            }
+                        }
+                    ],
+                    "topic": {
+                        "name": "someTopic"
+                    }
+                }
+            ],
+            "type": "object",
+            "required": [ "consumers" ],
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding.",
+                    "default": "latest",
+                    "type": "string"
+                },
+                "consumers": {
+                    "description": "The protocols that listen to this topic and their endpoints.",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/consumer"
+                    }
+                },
+                "deliveryPolicy": {
+                    "description": "Policy for retries to HTTP. The field is the default for HTTP receivers of the SNS Topic which may be overridden by a specific consumer.",
+                    "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/deliveryPolicy"
+                },
+                "topic": {
+                    "description": "Often we can assume that the SNS Topic is the channel name-we provide this field in case the you need to supply the ARN, or the Topic name is not the channel name in the AsyncAPI document.",
+                    "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/identifier"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "definitions": {
+                "consumer": {
+                    "type": "object",
+                    "required": [ "protocol", "endpoint", "rawMessageDelivery" ],
+                    "properties": {
+                        "deliveryPolicy": {
+                            "description": "Policy for retries to HTTP. The parameter is for that SNS Subscription and overrides any policy on the SNS Topic.",
+                            "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/deliveryPolicy"
+                        },
+                        "displayName": {
+                            "description": "The display name to use with an SNS subscription",
+                            "type": "string"
+                        },
+                        "endpoint": {
+                            "description": "The endpoint messages are delivered to.",
+                            "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/identifier"
+                        },
+                        "filterPolicy": {
+                            "description": "Only receive a subset of messages from the channel, determined by this policy. Depending on the FilterPolicyScope, a map of either a message attribute or message body to an array of possible matches. The match may be a simple string for an exact match, but it may also be an object that represents a constraint and values for that constraint.",
+                            "type": "object",
+                            "patternProperties": {
+                                "^x-[\\w\\d\\.\\x2d_]+$": {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                                }
+                            },
+                            "additionalProperties": {
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "filterPolicyScope": {
+                            "description": "Determines whether the FilterPolicy applies to MessageAttributes or MessageBody.",
+                            "default": "MessageAttributes",
+                            "type": "string",
+                            "enum": [ "MessageAttributes", "MessageBody" ]
+                        },
+                        "protocol": {
+                            "description": "The protocol that this endpoint receives messages by.",
+                            "type": "string",
+                            "enum": [
+                                "http",
+                                "https",
+                                "email",
+                                "email-json",
+                                "sms",
+                                "sqs",
+                                "application",
+                                "lambda",
+                                "firehose"
+                            ]
+                        },
+                        "rawMessageDelivery": {
+                            "description": "If true AWS SNS attributes are removed from the body, and for SQS, SNS message attributes are copied to SQS message attributes. If false the SNS attributes are included in the body.",
+                            "type": "boolean"
+                        },
+                        "redrivePolicy": {
+                            "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/redrivePolicy"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                },
+                "deliveryPolicy": {
+                    "type": "object",
+                    "properties": {
+                        "backoffFunction": {
+                            "description": "The algorithm for backoff between retries.",
+                            "type": "string",
+                            "enum": [ "arithmetic", "exponential", "geometric", "linear" ]
+                        },
+                        "maxDelayTarget": {
+                            "description": "The maximum delay for a retry in seconds.",
+                            "type": "integer"
+                        },
+                        "maxReceivesPerSecond": {
+                            "description": "The maximum number of deliveries per second, per subscription.",
+                            "type": "integer"
+                        },
+                        "minDelayTarget": {
+                            "description": "The minimum delay for a retry in seconds.",
+                            "type": "integer"
+                        },
+                        "numMaxDelayRetries": {
+                            "description": "The number of post-backoff phase retries, with the maximum delay between retries.",
+                            "type": "integer"
+                        },
+                        "numMinDelayRetries": {
+                            "description": "The number of immediate retries (with delay).",
+                            "type": "integer"
+                        },
+                        "numNoDelayRetries": {
+                            "description": "The number of immediate retries (with no delay).",
+                            "type": "integer"
+                        },
+                        "numRetries": {
+                            "description": "The total number of retries, including immediate, pre-backoff, backoff, and post-backoff retries.",
+                            "type": "integer"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                },
+                "identifier": {
+                    "type": "object",
+                    "properties": {
+                        "arn": {
+                            "description": "The target is an ARN. For example, for SQS, the identifier may be an ARN, which will be of the form: arn:aws:sqs:{region}:{account-id}:{queueName}",
+                            "type": "string"
+                        },
+                        "email": {
+                            "description": "The endpoint is an email address.",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The endpoint is identified by a name, which corresponds to an identifying field called 'name' of a binding for that protocol on this publish Operation Object. For example, if the protocol is 'sqs' then the name refers to the name field sqs binding. We don't use $ref because we are referring, not including.",
+                            "type": "string"
+                        },
+                        "phone": {
+                            "description": "The endpoint is a phone number.",
+                            "type": "string"
+                        },
+                        "url": {
+                            "description": "The endpoint is a URL.",
+                            "type": "string"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                },
+                "redrivePolicy": {
+                    "description": "Prevent poison pill messages by moving un-processable messages to an SQS dead letter queue.",
+                    "type": "object",
+                    "required": [ "deadLetterQueue" ],
+                    "properties": {
+                        "deadLetterQueue": {
+                            "description": "The SQS queue to use as a dead letter queue (DLQ).",
+                            "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json#/definitions/identifier"
+                        },
+                        "maxReceiveCount": {
+                            "description": "The number of times a message is delivered to the source queue before being moved to the dead-letter queue.",
+                            "default": 10,
+                            "type": "integer"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                }
+            }
+        },
+        "http://asyncapi.com/bindings/solace/0.2.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/solace/0.2.0/operation.json",
+            "title": "Solace operation bindings object",
+            "description": "This object contains information about the operation representation in Solace.",
+            "examples": [
+                {
+                    "bindingVersion": "0.2.0",
+                    "destinations": [
+                        {
+                            "destinationType": "queue",
+                            "queue": {
+                                "accessType": "nonexclusive",
+                                "name": "sampleQueue",
+                                "topicSubscriptions": [ "samples/*" ]
+                            }
+                        },
+                        {
+                            "destinationType": "topic",
+                            "topicSubscriptions": [ "samples/*" ]
+                        }
+                    ]
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.2.0" ]
+                },
+                "destinations": {
+                    "description": "The list of Solace destinations referenced in the operation.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name.",
+                                        "type": "string",
+                                        "const": "queue"
+                                    },
+                                    "queue": {
+                                        "type": "object",
+                                        "properties": {
+                                            "accessType": {
+                                                "type": "string",
+                                                "enum": [ "exclusive", "nonexclusive" ]
+                                            },
+                                            "name": {
+                                                "description": "The name of the queue",
+                                                "type": "string"
+                                            },
+                                            "topicSubscriptions": {
+                                                "description": "The list of topics that the queue subscribes to.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name.",
+                                        "type": "string",
+                                        "const": "topic"
+                                    },
+                                    "topicSubscriptions": {
+                                        "description": "The list of topics that the client subscribes to.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "properties": {
+                            "deliveryMode": {
+                                "type": "string",
+                                "enum": [ "direct", "persistent" ]
+                            }
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/solace/0.3.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/solace/0.3.0/operation.json",
+            "title": "Solace operation bindings object",
+            "description": "This object contains information about the operation representation in Solace.",
+            "examples": [
+                {
+                    "bindingVersion": "0.3.0",
+                    "destinations": [
+                        {
+                            "destinationType": "queue",
+                            "queue": {
+                                "accessType": "nonexclusive",
+                                "name": "sampleQueue",
+                                "topicSubscriptions": [ "samples/*" ]
+                            }
+                        },
+                        {
+                            "destinationType": "topic",
+                            "topicSubscriptions": [ "samples/*" ]
+                        }
+                    ]
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.3.0" ]
+                },
+                "destinations": {
+                    "description": "The list of Solace destinations referenced in the operation.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name.",
+                                        "type": "string",
+                                        "const": "queue"
+                                    },
+                                    "queue": {
+                                        "type": "object",
+                                        "properties": {
+                                            "accessType": {
+                                                "type": "string",
+                                                "enum": [ "exclusive", "nonexclusive" ]
+                                            },
+                                            "maxMsgSpoolUsage": {
+                                                "description": "The maximum amount of message spool that the given queue may use",
+                                                "type": "string"
+                                            },
+                                            "maxTtl": {
+                                                "description": "The maximum TTL to apply to messages to be spooled.",
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "description": "The name of the queue",
+                                                "type": "string"
+                                            },
+                                            "topicSubscriptions": {
+                                                "description": "The list of topics that the queue subscribes to.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name.",
+                                        "type": "string",
+                                        "const": "topic"
+                                    },
+                                    "topicSubscriptions": {
+                                        "description": "The list of topics that the client subscribes to.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "properties": {
+                            "deliveryMode": {
+                                "type": "string",
+                                "enum": [ "direct", "persistent" ]
+                            }
+                        }
+                    }
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/solace/0.4.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/solace/0.4.0/operation.json",
+            "title": "Solace operation bindings object",
+            "description": "This object contains information about the operation representation in Solace.",
+            "examples": [
+                {
+                    "bindingVersion": "0.4.0",
+                    "destinations": [
+                        {
+                            "destinationType": "queue",
+                            "queue": {
+                                "accessType": "nonexclusive",
+                                "name": "sampleQueue",
+                                "topicSubscriptions": [ "samples/*" ]
+                            }
+                        },
+                        {
+                            "destinationType": "topic",
+                            "topicSubscriptions": [ "samples/*" ]
+                        }
+                    ]
+                }
+            ],
+            "type": "object",
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, \"latest\" MUST be assumed.",
+                    "type": "string",
+                    "enum": [ "0.4.0" ]
+                },
+                "destinations": {
+                    "description": "The list of Solace destinations referenced in the operation.",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name.",
+                                        "type": "string",
+                                        "const": "queue"
+                                    },
+                                    "queue": {
+                                        "type": "object",
+                                        "properties": {
+                                            "accessType": {
+                                                "type": "string",
+                                                "enum": [ "exclusive", "nonexclusive" ]
+                                            },
+                                            "maxMsgSpoolUsage": {
+                                                "description": "The maximum amount of message spool that the given queue may use",
+                                                "type": "string"
+                                            },
+                                            "maxTtl": {
+                                                "description": "The maximum TTL to apply to messages to be spooled.",
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "description": "The name of the queue",
+                                                "type": "string"
+                                            },
+                                            "topicSubscriptions": {
+                                                "description": "The list of topics that the queue subscribes to.",
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "destinationType": {
+                                        "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name.",
+                                        "type": "string",
+                                        "const": "topic"
+                                    },
+                                    "topicSubscriptions": {
+                                        "description": "The list of topics that the client subscribes to.",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        ],
+                        "properties": {
+                            "deliveryMode": {
+                                "type": "string",
+                                "enum": [ "direct", "persistent" ]
+                            }
+                        }
+                    }
+                },
+                "dmqEligible": {
+                    "description": "Set the message to be eligible to be moved to a Dead Message Queue. The default value is false.",
+                    "type": "boolean"
+                },
+                "priority": {
+                    "description": "The valid priority value range is 0-255 with 0 as the lowest priority and 255 as the highest or a Schema Object containing the definition of the priority.",
+                    "type": "integer",
+                    "maximum": 255,
+                    "minimum": 0
+                },
+                "timeToLive": {
+                    "description": "Interval in milliseconds or a Schema Object containing the definition of the lifetime of the message.",
+                    "type": "integer"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/bindings/sqs/0.2.0/operation.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json",
+            "title": "Operation Schema",
+            "description": "This object contains information about the operation representation in SQS.",
+            "examples": [
+                {
+                    "queues": [
+                        {
+                            "deduplicationScope": "messageGroup",
+                            "deliveryDelay": 10,
+                            "fifoQueue": true,
+                            "fifoThroughputLimit": "perMessageGroupId",
+                            "name": "myQueue",
+                            "policy": {
+                                "statements": [
+                                    {
+                                        "action": [ "sqs:SendMessage", "sqs:ReceiveMessage" ],
+                                        "effect": "Deny",
+                                        "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+                                    }
+                                ]
+                            },
+                            "redrivePolicy": {
+                                "deadLetterQueue": {
+                                    "name": "myQueue_error"
+                                },
+                                "maxReceiveCount": 15
+                            }
+                        },
+                        {
+                            "deliveryDelay": 10,
+                            "name": "myQueue_error"
+                        }
+                    ]
+                }
+            ],
+            "type": "object",
+            "required": [ "queues" ],
+            "properties": {
+                "bindingVersion": {
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
+                    "default": "latest",
+                    "type": "string",
+                    "enum": [ "0.1.0", "0.2.0" ]
+                },
+                "queues": {
+                    "description": "Queue objects that are either the endpoint for an SNS Operation Binding Object, or the deadLetterQueue of the SQS Operation Binding Object.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json#/definitions/queue"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "definitions": {
+                "identifier": {
+                    "description": "The SQS queue to use as a dead letter queue (DLQ).",
+                    "type": "object",
+                    "properties": {
+                        "arn": {
+                            "description": "The target is an ARN. For example, for SQS, the identifier may be an ARN, which will be of the form: arn:aws:sqs:{region}:{account-id}:{queueName}",
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The endpoint is identified by a name, which corresponds to an identifying field called 'name' of a binding for that protocol on this publish Operation Object. For example, if the protocol is 'sqs' then the name refers to the name field sqs binding.",
+                            "type": "string"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                },
+                "policy": {
+                    "description": "The security policy for the SQS Queue",
+                    "type": "object",
+                    "required": [ "statements" ],
+                    "properties": {
+                        "statements": {
+                            "description": "An array of statement objects, each of which controls a permission for this queue.",
+                            "type": "array",
+                            "items": {
+                                "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json#/definitions/statement"
+                            }
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                },
+                "queue": {
+                    "description": "A definition of a queue.",
+                    "type": "object",
+                    "required": [ "name" ],
+                    "properties": {
+                        "$ref": {
+                            "description": "Allows for an external definition of a queue. The referenced structure MUST be in the format of a Queue. If there are conflicts between the referenced definition and this Queue's definition, the behavior is undefined.",
+                            "type": "string"
+                        },
+                        "deduplicationScope": {
+                            "description": "Specifies whether message deduplication occurs at the message group or queue level. Valid values are messageGroup and queue (default).",
+                            "default": "queue",
+                            "type": "string",
+                            "enum": [ "queue", "messageGroup" ]
+                        },
+                        "deliveryDelay": {
+                            "description": "The number of seconds to delay before a message sent to the queue can be received. Used to create a delay queue.",
+                            "default": 0,
+                            "type": "integer",
+                            "maximum": 15,
+                            "minimum": 0
+                        },
+                        "fifoQueue": {
+                            "description": "Is this a FIFO queue?",
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "fifoThroughputLimit": {
+                            "description": "Specifies whether the FIFO queue throughput quota applies to the entire queue or per message group. Valid values are perQueue (default) and perMessageGroupId.",
+                            "default": "perQueue",
+                            "type": "string",
+                            "enum": [ "perQueue", "perMessageGroupId" ]
+                        },
+                        "messageRetentionPeriod": {
+                            "description": "How long to retain a message on the queue in seconds, unless deleted.",
+                            "default": 345600,
+                            "type": "integer",
+                            "maximum": 1209600,
+                            "minimum": 60
+                        },
+                        "name": {
+                            "description": "The name of the queue. When an SNS Operation Binding Object references an SQS queue by name, the identifier should be the one in this field.",
+                            "type": "string"
+                        },
+                        "policy": {
+                            "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json#/definitions/policy"
+                        },
+                        "receiveMessageWaitTime": {
+                            "description": "Determines if the queue uses short polling or long polling. Set to zero the queue reads available messages and returns immediately. Set to a non-zero integer, long polling waits the specified number of seconds for messages to arrive before returning.",
+                            "default": 0,
+                            "type": "integer"
+                        },
+                        "redrivePolicy": {
+                            "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json#/definitions/redrivePolicy"
+                        },
+                        "tags": {
+                            "description": "Key-value pairs that represent AWS tags on the queue.",
+                            "type": "object"
+                        },
+                        "visibilityTimeout": {
+                            "description": "The length of time, in seconds, that a consumer locks a message - hiding it from reads - before it is unlocked and can be read again.",
+                            "default": 30,
+                            "type": "integer",
+                            "maximum": 43200,
+                            "minimum": 0
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                },
+                "redrivePolicy": {
+                    "description": "Prevent poison pill messages by moving un-processable messages to an SQS dead letter queue.",
+                    "type": "object",
+                    "required": [ "deadLetterQueue" ],
+                    "properties": {
+                        "deadLetterQueue": {
+                            "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json#/definitions/identifier"
+                        },
+                        "maxReceiveCount": {
+                            "description": "The number of times a message is delivered to the source queue before being moved to the dead-letter queue.",
+                            "default": 10,
+                            "type": "integer"
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                },
+                "statement": {
+                    "type": "object",
+                    "required": [ "effect", "principal", "action" ],
+                    "properties": {
+                        "action": {
+                            "description": "The SQS permission being allowed or denied e.g. sqs:ReceiveMessage",
+                            "oneOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            ]
+                        },
+                        "effect": {
+                            "type": "string",
+                            "enum": [ "Allow", "Deny" ]
+                        },
+                        "principal": {
+                            "description": "The AWS account or resource ARN that this statement applies to.",
+                            "oneOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json",
+            "type": "object",
+            "required": [ "type", "name", "in" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "httpApiKey" ]
+                },
+                "in": {
+                    "description": "The location of the API key",
+                    "type": "string",
+                    "enum": [ "header", "query", "cookie" ]
+                },
+                "name": {
+                    "description": "The name of the header, query or cookie parameter to be used.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/APIKeyHTTPSecurityScheme.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json",
+            "type": "object",
+            "required": [ "type", "scheme" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "http" ]
+                },
+                "bearerFormat": {
+                    "description": "A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes.",
+                    "type": "string"
+                },
+                "scheme": {
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.",
+                    "type": "string",
+                    "enum": [ "bearer" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/BearerHTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/APIKeyHTTPSecurityScheme.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/NonBearerHTTPSecurityScheme.json",
+            "type": "object",
+            "not": {
+                "type": "object",
+                "properties": {
+                    "scheme": {
+                        "description": "A short description for security scheme.",
+                        "type": "string",
+                        "enum": [ "bearer" ]
+                    }
+                }
+            },
+            "required": [ "scheme", "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "http" ]
+                },
+                "scheme": {
+                    "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/Reference.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/Reference.json",
+            "description": "A simple object to allow referencing other components in the specification, internally and externally.",
+            "type": "object",
+            "required": [ "$ref" ],
+            "properties": {
+                "$ref": {
+                    "description": "The reference string.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json"
+                }
+            },
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/ReferenceObject.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/ReferenceObject.json",
+            "type": "string",
+            "format": "uri-reference"
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "gssapi" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/Sasl.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme. Valid values",
+                    "type": "string",
+                    "enum": [ "plain" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/Sasl.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "scramSha256", "scramSha512" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/Sasl.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslPlainSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslScramSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslGssapiSecurityScheme.json"
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json",
+            "description": "Defines a security scheme that can be used by the operations.",
+            "oneOf": [
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/userPassword.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/apiKey.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/X509.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/HTTPSecurityScheme.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json"
+                },
+                {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SaslSecurityScheme.json"
+                }
+            ],
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/SecurityScheme.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/X509.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/X509.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [ "X509" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/X509.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/apiKey.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/apiKey.json",
+            "type": "object",
+            "required": [ "type", "in" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme",
+                    "type": "string",
+                    "enum": [ "apiKey" ]
+                },
+                "in": {
+                    "description": " The location of the API key.",
+                    "type": "string",
+                    "enum": [ "user", "password" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/apiKey.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/asymmetricEncryption.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "asymmetricEncryption" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/externalDocs.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/externalDocs.json",
+            "description": "Allows referencing an external resource for extended documentation.",
+            "type": "object",
+            "required": [ "url" ],
+            "properties": {
+                "description": {
+                    "description": "A short description of the target documentation. CommonMark syntax can be used for rich text representation.",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The URL for the target documentation. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/externalDocs.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json",
+            "description": "Configuration details for a supported OAuth Flow",
+            "type": "object",
+            "properties": {
+                "authorizationUrl": {
+                    "description": "The authorization URL to be used for this flow. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "availableScopes": {
+                    "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json"
+                },
+                "refreshUrl": {
+                    "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "tokenUrl": {
+                    "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/oauth2Flow.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Flows.json",
+            "description": "Allows configuration of the supported OAuth Flows.",
+            "type": "object",
+            "required": [ "type", "flows" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "oauth2" ]
+                },
+                "flows": {
+                    "type": "object",
+                    "properties": {
+                        "authorizationCode": {
+                            "description": "Configuration for the OAuth Authorization Code flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "authorizationUrl", "tokenUrl", "availableScopes" ]
+                                }
+                            ]
+                        },
+                        "clientCredentials": {
+                            "description": "Configuration for the OAuth Client Credentials flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "tokenUrl", "availableScopes" ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [ "authorizationUrl" ]
+                                    }
+                                }
+                            ]
+                        },
+                        "implicit": {
+                            "description": "Configuration for the OAuth Implicit flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "authorizationUrl", "availableScopes" ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [ "tokenUrl" ]
+                                    }
+                                }
+                            ]
+                        },
+                        "password": {
+                            "description": "Configuration for the OAuth Resource Owner Protected Credentials flow.",
+                            "allOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/oauth2Flow.json"
+                                },
+                                {
+                                    "required": [ "tokenUrl", "availableScopes" ]
+                                },
+                                {
+                                    "not": {
+                                        "required": [ "authorizationUrl" ]
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "additionalProperties": false
+                },
+                "scopes": {
+                    "description": "List of the needed scope names.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/oauth2Scopes.json",
+            "type": "object",
+            "additionalProperties": {
+                "type": "string"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/openIdConnect.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/openIdConnect.json",
+            "type": "object",
+            "required": [ "type", "openIdConnectUrl" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The type of the security scheme.",
+                    "type": "string",
+                    "enum": [ "openIdConnect" ]
+                },
+                "openIdConnectUrl": {
+                    "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL.",
+                    "type": "string",
+                    "format": "uri"
+                },
+                "scopes": {
+                    "description": "List of the needed scope names. An empty array means no scopes are needed.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json",
+            "description": "Map describing protocol-specific definitions for an operation.",
+            "type": "object",
+            "properties": {
+                "amqp": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/amqp/0.3.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.3.0" ]
+                        }
+                    }
+                },
+                "amqp1": {},
+                "anypointmq": {},
+                "googlepubsub": {},
+                "http": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.3.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.2.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/http/0.3.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.2.0", "0.3.0" ]
+                        }
+                    }
+                },
+                "ibmmq": {},
+                "jms": {},
+                "kafka": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.5.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.5.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.4.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.4.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/kafka/0.3.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.5.0", "0.4.0", "0.3.0" ]
+                        }
+                    }
+                },
+                "mqtt": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/mqtt/0.2.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.2.0" ]
+                        }
+                    }
+                },
+                "nats": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.1.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/nats/0.1.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.1.0" ]
+                        }
+                    }
+                },
+                "redis": {},
+                "sns": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.1.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/sns/0.1.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.1.0" ]
+                        }
+                    }
+                },
+                "solace": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.4.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.4.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.3.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.3.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/solace/0.2.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.4.0", "0.3.0", "0.2.0" ]
+                        }
+                    }
+                },
+                "sqs": {
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [ "bindingVersion" ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [ "bindingVersion" ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/bindings/sqs/0.2.0/operation.json"
+                            }
+                        }
+                    ],
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [ "0.2.0" ]
+                        }
+                    }
+                },
+                "stomp": {},
+                "ws": {}
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationReply.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationReply.json",
+            "description": "Describes the reply part that MAY be applied to an Operation Object. If an operation implements the request/reply pattern, the reply object represents the response message.",
+            "type": "object",
+            "properties": {
+                "address": {
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json"
+                    }
+                },
+                "channel": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "messages": {
+                    "description": "A list of $ref pointers pointing to the supported Message Objects that can be processed by this operation as reply. It MUST contain a subset of the messages defined in the channel referenced in this operation reply. Every message processed by this operation MUST be valid against one, and only one, of the message objects referenced in this list. Please note the messages property value MUST be a list of Reference Objects and, therefore, MUST NOT contain Message Objects. However, it is RECOMMENDED that parsers (or other software) dereference this property for a better development experience.",
+                    "type": "array",
+                    "items": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    }
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationReplyAddress.json",
+            "description": "An object that specifies where an operation has to send the reply",
+            "type": "object",
+            "required": [ "location" ],
+            "properties": {
+                "description": {
+                    "description": "An optional description of the address. CommonMark is allowed.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "A runtime expression that specifies the location of the reply address.",
+                    "type": "string",
+                    "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/operationReplyAddress.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/operationTrait.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/operationTrait.json",
+            "description": "Describes a trait that MAY be applied to an Operation Object. This object MAY contain any property from the Operation Object, except the action, channel and traits ones.",
+            "type": "object",
+            "properties": {
+                "title": {
+                    "description": "A human-friendly title for the operation.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/title"
+                },
+                "description": {
+                    "description": "A verbose explanation of the operation. CommonMark syntax can be used for rich text representation.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/description"
+                },
+                "bindings": {
+                    "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the operation.",
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/operationBindingsObject.json"
+                    }
+                },
+                "externalDocs": {
+                    "description": "Additional external documentation for this operation.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/externalDocs"
+                },
+                "security": {
+                    "description": "A declaration of which security schemes are associated with this operation. Only one of the security scheme objects MUST be satisfied to authorize an operation. In cases where Server Security also applies, it MUST also be satisfied.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/security"
+                },
+                "summary": {
+                    "description": "A short summary of what the operation is about.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/summary"
+                },
+                "tags": {
+                    "description": "A list of tags for logical grouping and categorization of operations.",
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/operation.json#/properties/tags"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/operationTrait.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/schema.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/schema.json",
+            "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is a superset of the JSON Schema Specification Draft 07. The empty schema (which allows any instance to validate) MAY be represented by the boolean value true and a schema which allows no instance to validate MAY be represented by the boolean value false.",
+            "allOf": [
+                {
+                    "$ref": "http://json-schema.org/draft-07/schema#"
+                },
+                {
+                    "properties": {
+                        "deprecated": {
+                            "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage. Default value is false.",
+                            "default": false,
+                            "type": "boolean"
+                        },
+                        "allOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "anyOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "oneOf": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "not": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "contains": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "items": {
+                            "default": {},
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "type": "array",
+                                    "minItems": 1,
+                                    "items": {
+                                        "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                    }
+                                }
+                            ]
+                        },
+                        "propertyNames": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        "properties": {
+                            "default": {},
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "patternProperties": {
+                            "default": {},
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                            }
+                        },
+                        "additionalProperties": {
+                            "default": {},
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "type": "boolean"
+                                }
+                            ]
+                        },
+                        "discriminator": {
+                            "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details.",
+                            "type": "string"
+                        },
+                        "externalDocs": {
+                            "if": {
+                                "required": [ "$ref" ]
+                            },
+                            "then": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                            },
+                            "else": {
+                                "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                            }
+                        }
+                    },
+                    "patternProperties": {
+                        "^x-[\\w\\d\\.\\x2d_]+$": {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                        }
+                    }
+                }
+            ]
+        },
+        "http://asyncapi.com/definitions/3.0.0/securityRequirements.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/securityRequirements.json",
+            "description": "An array representing security requirements.",
+            "type": "array",
+            "items": {
+                "if": {
+                    "required": [ "$ref" ]
+                },
+                "then": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                },
+                "else": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+                }
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/specificationExtension.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json",
+            "description": "Any property starting with x- is valid.",
+            "additionalItems": true,
+            "additionalProperties": true
+        },
+        "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/symmetricEncryption.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [ "symmetricEncryption" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/symmetricEncryption.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/tag.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/tag.json",
+            "description": "Allows adding metadata to a single tag.",
+            "type": "object",
+            "required": [ "name" ],
+            "properties": {
+                "description": {
+                    "description": "A short description for the tag. CommonMark syntax can be used for rich text representation.",
+                    "type": "string"
+                },
+                "externalDocs": {
+                    "if": {
+                        "required": [ "$ref" ]
+                    },
+                    "then": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                    },
+                    "else": {
+                        "$ref": "http://asyncapi.com/definitions/3.0.0/externalDocs.json"
+                    }
+                },
+                "name": {
+                    "description": "The name of the tag.",
+                    "type": "string"
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/tag.json"
+            }
+        },
+        "http://asyncapi.com/definitions/3.0.0/userPassword.json": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://asyncapi.com/definitions/3.0.0/userPassword.json",
+            "type": "object",
+            "required": [ "type" ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [ "userPassword" ]
+                }
+            },
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+                }
+            },
+            "additionalProperties": false,
+            "example": {
+                "$ref": "http://asyncapi.com/examples/3.0.0/userPassword.json"
+            }
+        },
+        "http://json-schema.org/draft-07/schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "$id": "http://json-schema.org/draft-07/schema",
+            "title": "Core schema meta-schema",
+            "default": true,
+            "type": [ "object", "boolean" ],
+            "properties": {
+                "$schema": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "$id": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "$comment": {
+                    "type": "string"
+                },
+                "examples": {
+                    "type": "array",
+                    "items": true
+                },
+                "readOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "writeOnly": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "default": true,
+                "$ref": {
+                    "type": "string",
+                    "format": "uri-reference"
+                },
+                "type": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/definitions/simpleTypes"
+                        },
+                        {
+                            "type": "array",
+                            "minItems": 1,
+                            "uniqueItems": true,
+                            "items": {
+                                "$ref": "#/definitions/simpleTypes"
+                            }
+                        }
+                    ]
+                },
+                "const": true,
+                "enum": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": true
+                },
+                "allOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "anyOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "oneOf": {
+                    "$ref": "#/definitions/schemaArray"
+                },
+                "not": {
+                    "$ref": "#"
+                },
+                "if": {
+                    "$ref": "#"
+                },
+                "then": {
+                    "$ref": "#"
+                },
+                "else": {
+                    "$ref": "#"
+                },
+                "exclusiveMaximum": {
+                    "type": "number"
+                },
+                "maximum": {
+                    "type": "number"
+                },
+                "exclusiveMinimum": {
+                    "type": "number"
+                },
+                "minimum": {
+                    "type": "number"
+                },
+                "multipleOf": {
+                    "type": "number",
+                    "exclusiveMinimum": 0
+                },
+                "pattern": {
+                    "type": "string",
+                    "format": "regex"
+                },
+                "format": {
+                    "type": "string"
+                },
+                "maxLength": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minLength": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "contentEncoding": {
+                    "type": "string"
+                },
+                "contentMediaType": {
+                    "type": "string"
+                },
+                "maxItems": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minItems": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "uniqueItems": {
+                    "default": false,
+                    "type": "boolean"
+                },
+                "contains": {
+                    "$ref": "#"
+                },
+                "items": {
+                    "default": true,
+                    "anyOf": [
+                        {
+                            "$ref": "#"
+                        },
+                        {
+                            "$ref": "#/definitions/schemaArray"
+                        }
+                    ]
+                },
+                "additionalItems": {
+                    "$ref": "#"
+                },
+                "required": {
+                    "$ref": "#/definitions/stringArray"
+                },
+                "maxProperties": {
+                    "$ref": "#/definitions/nonNegativeInteger"
+                },
+                "minProperties": {
+                    "$ref": "#/definitions/nonNegativeIntegerDefault0"
+                },
+                "propertyNames": {
+                    "$ref": "#"
+                },
+                "properties": {
+                    "default": {},
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                },
+                "patternProperties": {
+                    "default": {},
+                    "type": "object",
+                    "propertyNames": {
+                        "format": "regex"
+                    },
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                },
+                "additionalProperties": {
+                    "$ref": "#"
+                },
+                "dependencies": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#"
+                            },
+                            {
+                                "$ref": "#/definitions/stringArray"
+                            }
+                        ]
+                    }
+                },
+                "definitions": {
+                    "default": {},
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#"
+                    }
+                }
+            },
+            "definitions": {
+                "nonNegativeInteger": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "nonNegativeIntegerDefault0": {
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/nonNegativeInteger"
+                        },
+                        {
+                            "default": 0
+                        }
+                    ]
+                },
+                "schemaArray": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#"
+                    }
+                },
+                "simpleTypes": {
+                    "enum": [
+                        "array",
+                        "boolean",
+                        "integer",
+                        "null",
+                        "number",
+                        "object",
+                        "string"
+                    ]
+                },
+                "stringArray": {
+                    "default": [],
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "example": {
+        "$ref": "http://asyncapi.com/examples/3.0.0/operation.json"
+    }
+}
