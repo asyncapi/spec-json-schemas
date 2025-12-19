@@ -17,5 +17,6 @@
 /bindings/pulsar/       @VisualBean
 /bindings/sns/          @dpwdec @iancooper
 /bindings/sqs/          @dpwdec @iancooper
+/bindings/ros2/         @gramss @amparosancho
 
 /bindings/*.json        @KhudaDad414
