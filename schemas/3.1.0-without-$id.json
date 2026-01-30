@@ -8606,10 +8606,6 @@
                 }
             ],
             "type": "object",
-            "required": [
-                "host",
-                "protocol"
-            ],
             "properties": {
                 "bindingVersion": {
                     "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",

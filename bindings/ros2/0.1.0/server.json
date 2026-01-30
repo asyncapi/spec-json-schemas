@@ -9,7 +9,6 @@
     }
   ],
   "type": "object",
-  "required": [ "host", "protocol" ],
   "properties": {
     "bindingVersion": {
       "description": "The version of this binding. If omitted, 'latest' MUST be assumed.",
@@ -29,7 +28,7 @@
   },
   "patternProperties": {
     "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+      "$ref": "http://asyncapi.com/definitions/3.1.0/specificationExtension.json"
     }
   }
 }
