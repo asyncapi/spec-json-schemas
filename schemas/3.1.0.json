@@ -5534,7 +5534,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings//0.1.0/operation.json"
+                                "$ref": "http://asyncapi.com/bindings/ros2/0.1.0/operation.json"
                             }
                         },
                         {
@@ -5549,7 +5549,7 @@
                                 }
                             },
                             "then": {
-                                "$ref": "http://asyncapi.com/bindings//0.1.0/operation.json"
+                                "$ref": "http://asyncapi.com/bindings/ros2/0.1.0/operation.json"
                             }
                         }
                     ]
@@ -6181,7 +6181,7 @@
                 }
             ]
         },
-        "http://asyncapi.com/bindings//0.1.0/operation.json": {
+        "http://asyncapi.com/bindings/ros2/0.1.0/operation.json": {
             "$id": "http://asyncapi.com/bindings/ros2/0.1.0/operation.json",
             "description": "This object contains information about the operation representation in ROS 2.",
             "examples": [
