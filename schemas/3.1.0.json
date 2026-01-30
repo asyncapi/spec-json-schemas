@@ -5515,7 +5515,7 @@
                     }
                 },
                 "redis": {},
-                "": {
+                "ros2": {
                     "properties": {
                         "bindingVersion": {
                             "enum": [
