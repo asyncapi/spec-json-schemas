@@ -1,5 +1,5 @@
 {
-  "description": "An array representing security requirements.",
+  "description": "An array of security requirement objects. Each object in the array represents an OR condition, while multiple properties within a single object represent AND conditions.",
   "type": "array",
   "items": {
     "oneOf": [
@@ -7,7 +7,15 @@
         "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
       },
       {
-        "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+        "type": "object",
+        "description": "Lists the required security schemes to execute this operation. The object can have multiple named security schemes declared, each with an array of security scheme references required for the execution. When multiple schemes are defined in the same object, all schemes MUST be satisfied for the operation to be authorized (AND logic).",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+          },
+          "uniqueItems": true
+        }
       }
     ]
   },
