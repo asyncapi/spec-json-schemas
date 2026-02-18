@@ -45,12 +45,12 @@
       "properties": {
         "time": {
           "type": "integer",
-          "minimum": 0,
-          "description": "Time given in Minutes. `0` = Disable message retention."
+          "minimum": -1,
+          "description": "Time given in Minutes. `0` = Disable message retention. `-1` = Infinite retention."
         },
         "size": {
           "type": "integer",
-          "minimum": 0,
+          "minimum": -1,
           "description": "Size given in MegaBytes. `0` = Disable message retention."
         }
       }
