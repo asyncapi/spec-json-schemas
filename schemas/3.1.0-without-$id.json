@@ -5959,6 +5959,7 @@
         },
         "bindings-ros2-0.1.0-operation": {
             "description": "This object contains information about the operation representation in ROS 2.",
+            "title": "Operation Schema",
             "examples": [
                 {
                     "node": "/turtlesim",
@@ -8599,6 +8600,8 @@
         },
         "bindings-ros2-0.1.0-server": {
             "description": "This object contains information about the server representation in ROS 2.",
+            "title": "Server Schema",
+            "additionalProperties": false,
             "examples": [
                 {
                     "domainId": "0",
