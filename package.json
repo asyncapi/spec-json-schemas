@@ -10,10 +10,10 @@
     "generate:assets": "npm run build",
     "prepublishOnly": "npm run build",
     "bundle": "cd tools/bundler && npm i && npm run bundle",
-    "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
+    "startNewVersion": "cross-env newVersion=$npm_config_new_version node scripts/add-new-version.js",
     "lint": "eslint --max-warnings 0 --config .eslintrc.yml .",
     "lint:fix": "eslint --max-warnings 0 --config .eslintrc.yml --fix .",
-    "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",
+    "bump:version": "cross-env npm --no-git-tag-version --allow-same-version version $VERSION",
     "validate:schemas": "node scripts/validate-schemas.js"
   },
   "repository": {
@@ -46,7 +46,8 @@
     "eslint-plugin-sonarjs": "^0.23.0",
     "nyc": "^15.1.0",
     "vite-require": "^0.2.3",
-    "vitest": "^3.0.9"
+    "vitest": "^3.0.9",
+    "cross-env": "^7.0.3"
   },
   "dependencies": {
     "@types/json-schema": "^7.0.11"
