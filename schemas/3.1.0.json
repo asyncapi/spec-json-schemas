@@ -6184,6 +6184,7 @@
         "http://asyncapi.com/bindings/ros2/0.1.0/operation.json": {
             "$id": "http://asyncapi.com/bindings/ros2/0.1.0/operation.json",
             "description": "This object contains information about the operation representation in ROS 2.",
+            "title": "Operation Schema",
             "examples": [
                 {
                     "node": "/turtlesim",
@@ -8861,6 +8862,8 @@
         "http://asyncapi.com/bindings/ros2/0.1.0/server.json": {
             "$id": "http://asyncapi.com/bindings/ros2/0.1.0/server.json",
             "description": "This object contains information about the server representation in ROS 2.",
+            "title": "Server Schema",
+            "additionalProperties": false,
             "examples": [
                 {
                     "domainId": "0",
