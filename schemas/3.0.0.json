@@ -7932,11 +7932,55 @@
             },
             "properties": {
                 "groupId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1,
+                            "uniqueItems": true
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                }
+                            ]
+                        }
+                    ],
                     "description": "Id of the consumer group."
                 },
                 "clientId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1,
+                            "uniqueItems": true
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                }
+                            ]
+                        }
+                    ],
                     "description": "Id of the consumer inside a consumer group."
                 },
                 "transactional": {
@@ -8054,18 +8098,11 @@
             },
             "examples": [
                 {
-                    "groupId": {
-                        "type": "string",
-                        "enum": [
-                            "myGroupId"
-                        ]
-                    },
-                    "clientId": {
-                        "type": "string",
-                        "enum": [
-                            "myClientId"
-                        ]
-                    },
+                    "groupId": "myGroupId",
+                    "clientId": [
+                        "myClientId",
+                        "myOtherClientId"
+                    ],
                     "bindingVersion": "0.6.0"
                 },
                 {
@@ -8079,6 +8116,9 @@
                         "enum": [
                             "myGroupId"
                         ]
+                    },
+                    "clientId": {
+                        "$ref": "#/components/schemas/kafkaClientId"
                     },
                     "isolationLevel": "read_committed",
                     "errorTopics": {

@@ -164,18 +164,11 @@ let data = {
     require(`@bindings/kafka/0.6.0/operation.json`),
     [
       {
-        "groupId": {
-          "type": "string",
-          "enum": [
-            "myGroupId"
-          ]
-        },
-        "clientId": {
-          "type": "string",
-          "enum": [
-            "myClientId"
-          ]
-        },
+        "groupId": "myGroupId",
+        "clientId": [
+          "myClientId",
+          "myOtherClientId"
+        ],
         "bindingVersion": "0.6.0"
       },
       {
@@ -276,6 +269,105 @@ describe('Kafka operation binding v0.6.0 errorTopics', () => {
 
     assert(validationResult === false, 'Object MUST NOT be valid');
     assert(validator.errors.some(error => error.message === "must have required property 'retryTopics'"));
+  });
+})
+
+describe('Kafka operation binding v0.6.0 groupId and clientId', () => {
+  const schema = require(`@bindings/kafka/0.6.0/operation.json`);
+
+  it('allows string values', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "groupId": "payments-consumer-group",
+      "clientId": "payments-client",
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('allows unique arrays of strings', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "groupId": [
+        "payments-consumer-group",
+        "payments-consumer-group-replay"
+      ],
+      "clientId": [
+        "payments-client",
+        "payments-client-replay"
+      ],
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('allows schema objects', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "groupId": {
+        "type": "string",
+        "enum": [
+          "payments-consumer-group"
+        ]
+      },
+      "clientId": {
+        "type": "string",
+        "enum": [
+          "payments-client"
+        ]
+      },
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('allows references', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "groupId": {
+        "$ref": "#/components/schemas/kafkaGroupId"
+      },
+      "clientId": {
+        "$ref": "#/components/schemas/kafkaClientId"
+      },
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('rejects empty arrays', () => {
+    const validator = TestHelper.validator(schema);
+    const validationResult = validator({
+      "groupId": [],
+      "bindingVersion": "0.6.0"
+    });
+
+    assert(validationResult === false, 'Object MUST NOT be valid');
+    assert(validator.errors.some(error => error.message === "must NOT have fewer than 1 items"));
+  });
+
+  it('rejects arrays with non-string items', () => {
+    const validator = TestHelper.validator(schema);
+    const validationResult = validator({
+      "clientId": [
+        "payments-client",
+        1
+      ],
+      "bindingVersion": "0.6.0"
+    });
+
+    assert(validationResult === false, 'Object MUST NOT be valid');
+    assert(validator.errors.some(error => error.message === "must be string"));
+  });
+
+  it('rejects arrays with duplicate values', () => {
+    const validator = TestHelper.validator(schema);
+    const validationResult = validator({
+      "groupId": [
+        "payments-consumer-group",
+        "payments-consumer-group"
+      ],
+      "bindingVersion": "0.6.0"
+    });
+
+    assert(validationResult === false, 'Object MUST NOT be valid');
+    assert(validator.errors.some(error => error.message.includes("must NOT have duplicate items")));
   });
 })
 

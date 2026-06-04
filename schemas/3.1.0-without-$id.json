@@ -6033,11 +6033,55 @@
             },
             "properties": {
                 "groupId": {
-                    "$ref": "#/definitions/schema",
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1,
+                            "uniqueItems": true
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/definitions/schema"
+                                },
+                                {
+                                    "$ref": "#/definitions/Reference"
+                                }
+                            ]
+                        }
+                    ],
                     "description": "Id of the consumer group."
                 },
                 "clientId": {
-                    "$ref": "#/definitions/schema",
+                    "oneOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            },
+                            "minItems": 1,
+                            "uniqueItems": true
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/definitions/schema"
+                                },
+                                {
+                                    "$ref": "#/definitions/Reference"
+                                }
+                            ]
+                        }
+                    ],
                     "description": "Id of the consumer inside a consumer group."
                 },
                 "transactional": {
@@ -6155,18 +6199,11 @@
             },
             "examples": [
                 {
-                    "groupId": {
-                        "type": "string",
-                        "enum": [
-                            "myGroupId"
-                        ]
-                    },
-                    "clientId": {
-                        "type": "string",
-                        "enum": [
-                            "myClientId"
-                        ]
-                    },
+                    "groupId": "myGroupId",
+                    "clientId": [
+                        "myClientId",
+                        "myOtherClientId"
+                    ],
                     "bindingVersion": "0.6.0"
                 },
                 {
@@ -6180,6 +6217,9 @@
                         "enum": [
                             "myGroupId"
                         ]
+                    },
+                    "clientId": {
+                        "$ref": "#/components/schemas/kafkaClientId"
                     },
                     "isolationLevel": "read_committed",
                     "errorTopics": {
