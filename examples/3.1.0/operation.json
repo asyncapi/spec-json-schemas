@@ -18,7 +18,7 @@
 		}
 	},
 	"traits": [{ "$ref": "#/components/operationTraits/kafka" }],
-	"messages": [{ "$ref": "/components/messages/userSignedUp" }],
+	"messages": [{ "$ref": "#/components/messages/userSignedUp" }],
 	"reply": {
 		"address": {
 			"location": "$message.header#/replyTo"
@@ -26,6 +26,6 @@
 		"channel": {
 			"$ref": "#/channels/userSignupReply"
 		},
-		"messages": [{ "$ref": "/components/messages/userSignedUpReply" }]
+		"messages": [{ "$ref": "#/components/messages/userSignedUpReply" }]
 	}
 }]
