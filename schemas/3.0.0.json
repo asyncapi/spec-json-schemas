@@ -7932,17 +7932,30 @@
             },
             "properties": {
                 "groupId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+                    "anyOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ],
                     "description": "Id of the consumer group."
                 },
                 "clientId": {
-                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json",
+                    "anyOf": [
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                        },
+                        {
+                            "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                        }
+                    ],
                     "description": "Id of the consumer inside a consumer group."
                 },
-                "transactional": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "When true, marks this producer as transactional. The Kafka client MUST be configured with a transactional.id at runtime. Only applies to send operations."
+                "transactionalIdPrefix": {
+                    "type": "string",
+                    "description": "Prefix used by this producer operation for Kafka transactional.id values. Presence of this field implies transactional behavior. Only applies to send operations."
                 },
                 "isolationLevel": {
                     "type": "string",
@@ -7983,6 +7996,17 @@
                             "type": "integer",
                             "minimum": 1,
                             "description": "Number of retry topics to create (named retry-0 through retry-{N-1})."
+                        },
+                        "extraHeaders": {
+                            "description": "Schema of the headers injected by the error-handling framework on top of the original message (e.g. Spring Kafka kafka_original_* headers). Follows the same shape as AsyncAPI message headers.",
+                            "anyOf": [
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+                                },
+                                {
+                                    "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+                                }
+                            ]
                         },
                         "retry": {
                             "description": "Topic configuration applied to each retry topic.",
@@ -8055,21 +8079,15 @@
             "examples": [
                 {
                     "groupId": {
-                        "type": "string",
-                        "enum": [
-                            "myGroupId"
-                        ]
+                        "const": "myGroupId"
                     },
                     "clientId": {
-                        "type": "string",
-                        "enum": [
-                            "myClientId"
-                        ]
+                        "const": "myClientId"
                     },
                     "bindingVersion": "0.6.0"
                 },
                 {
-                    "transactional": true,
+                    "transactionalIdPrefix": "payments-service-",
                     "principal": "User:payment-producer",
                     "bindingVersion": "0.6.0"
                 },
@@ -8080,10 +8098,16 @@
                             "myGroupId"
                         ]
                     },
+                    "clientId": {
+                        "$ref": "#/components/schemas/kafkaClientId"
+                    },
                     "isolationLevel": "read_committed",
                     "errorTopics": {
                         "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
                         "retryTopics": 3,
+                        "extraHeaders": {
+                            "$ref": "#/components/schemas/SpringKafkaErrorHeaders"
+                        },
                         "retry": {
                             "partitions": 1,
                             "replicas": 2,

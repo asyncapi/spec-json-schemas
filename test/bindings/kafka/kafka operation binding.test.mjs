@@ -165,21 +165,15 @@ let data = {
     [
       {
         "groupId": {
-          "type": "string",
-          "enum": [
-            "myGroupId"
-          ]
+          "const": "myGroupId"
         },
         "clientId": {
-          "type": "string",
-          "enum": [
-            "myClientId"
-          ]
+          "const": "myClientId"
         },
         "bindingVersion": "0.6.0"
       },
       {
-        "transactional": true,
+        "transactionalIdPrefix": "payments-service-",
         "principal": "User:payment-producer",
         "bindingVersion": "0.6.0"
       },
@@ -194,6 +188,9 @@ let data = {
         "errorTopics": {
           "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
           "retryTopics": 3,
+          "extraHeaders": {
+            "$ref": "#/components/schemas/SpringKafkaErrorHeaders"
+          },
           "retry": {
             "partitions": 1,
             "replicas": 2,
@@ -245,6 +242,37 @@ describe.each([
 describe('Kafka operation binding v0.6.0 errorTopics', () => {
   const schema = require(`@bindings/kafka/0.6.0/operation.json`);
 
+  it('allows root-level extraHeaders schema objects', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "errorTopics": {
+        "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
+        "extraHeaders": {
+          "type": "object",
+          "properties": {
+            "kafka_originalTopic": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('allows root-level extraHeaders references', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "errorTopics": {
+        "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
+        "extraHeaders": {
+          "$ref": "#/components/schemas/SpringKafkaErrorHeaders"
+        }
+      },
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
   it('allows retry and dlq references', () => TestHelper.objectIsValid(
     schema,
     {
@@ -279,13 +307,100 @@ describe('Kafka operation binding v0.6.0 errorTopics', () => {
   });
 })
 
+describe('Kafka operation binding v0.6.0 groupId and clientId', () => {
+  const schema = require(`@bindings/kafka/0.6.0/operation.json`);
+
+  it('allows schema objects', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "groupId": {
+        "type": "string",
+        "enum": [
+          "payments-consumer-group"
+        ]
+      },
+      "clientId": {
+        "type": "string",
+        "enum": [
+          "payments-client"
+        ]
+      },
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('allows references', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "groupId": {
+        "$ref": "#/components/schemas/kafkaGroupId"
+      },
+      "clientId": {
+        "$ref": "#/components/schemas/kafkaClientId"
+      },
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('rejects string values', () => {
+    const validator = TestHelper.validator(schema);
+    const validationResult = validator({
+      "groupId": "payments-consumer-group",
+      "clientId": "payments-client",
+      "bindingVersion": "0.6.0"
+    });
+
+    assert(validationResult === false, 'Object MUST NOT be valid');
+  });
+
+  it('rejects arrays', () => {
+    const validator = TestHelper.validator(schema);
+    const validationResult = validator({
+      "groupId": [
+        "payments-consumer-group",
+        "payments-consumer-group-replay"
+      ],
+      "clientId": [
+        "payments-client",
+        "payments-client-replay"
+      ],
+      "bindingVersion": "0.6.0"
+    });
+
+    assert(validationResult === false, 'Object MUST NOT be valid');
+  });
+})
+
+describe('Kafka operation binding v0.6.0 transactions', () => {
+  const schema = require(`@bindings/kafka/0.6.0/operation.json`);
+
+  it('allows transactionalIdPrefix', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "transactionalIdPrefix": "payments-service-",
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('rejects transactional boolean', () => TestHelper.objectIsNotValid(
+    schema,
+    {
+      "transactional": true,
+      "bindingVersion": "0.6.0"
+    },
+    [
+      "must NOT have additional properties"
+    ]
+  ));
+})
+
 describe('Kafka operation binding v0.6.0 bindingVersion', () => {
   const schema = require(`@bindings/kafka/0.6.0/operation.json`);
 
   it('rejects previous bindingVersion values', () => TestHelper.objectIsNotValid(
     schema,
     {
-      "transactional": true,
+      "transactionalIdPrefix": "payments-service-",
       "bindingVersion": "0.5.0"
     },
     [
