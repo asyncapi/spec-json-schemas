@@ -1,6 +1,6 @@
 {
   "name": "@asyncapi/specs",
-  "version": "6.13.5",
+  "version": "6.11.2",
   "description": "AsyncAPI schema versions",
   "main": "index.js",
   "types": "index.d.ts",
@@ -33,7 +33,6 @@
       "email": "bpedro@hitchhq.com"
     }
   ],
-  
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/asyncapi/spec-json-schemas/issues"
