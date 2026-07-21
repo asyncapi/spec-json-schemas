@@ -8,6 +8,22 @@
       },
       {
         "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+      },
+      {
+        "type": "array",
+        "description": "Array of security schemes that must all be satisfied (AND logic)",
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/SecurityScheme.json"
+            }
+          ]
+        },
+        "minItems": 1,
+        "uniqueItems": true
       }
     ]
   },
