@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/bindings/kafka/0.6.0/operation.json",
+  "title": "Operation Schema",
+  "description": "This object contains information about the operation representation in Kafka.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+    }
+  },
+  "properties": {
+    "groupId": {
+      "anyOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        }
+      ],
+      "description": "Id of the consumer group."
+    },
+    "clientId": {
+      "anyOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        }
+      ],
+      "description": "Id of the consumer inside a consumer group."
+    },
+    "transactionalIdPrefix": {
+      "type": "string",
+      "description": "Prefix used by this producer operation for Kafka transactional.id values. Presence of this field implies transactional behavior. Only applies to send operations."
+    },
+    "isolationLevel": {
+      "type": "string",
+      "enum": ["read_uncommitted", "read_committed"],
+      "default": "read_uncommitted",
+      "description": "Controls the visibility of transactional messages to this consumer. Use read_committed when consuming from a topic written by a transactional producer. Only applies to receive operations."
+    },
+    "errorTopics": {
+      "type": "object",
+      "description": "Configuration for retry and dead-letter queue (DLQ) topics for this consumer operation. Only applies to receive operations.",
+      "required": ["addressTemplate"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "required": ["retry"]
+          },
+          "then": {
+            "required": ["retryTopics"]
+          }
+        }
+      ],
+      "properties": {
+        "addressTemplate": {
+          "type": "string",
+          "description": "Template for generated topic addresses. Supports variables: ${groupId}, ${channel.address}, ${suffix} (retry-0…retry-{N-1}, dlq)."
+        },
+        "retryTopics": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of retry topics to create (named retry-0 through retry-{N-1})."
+        },
+        "extraHeaders": {
+          "description": "Schema of the headers injected by the error-handling framework on top of the original message (e.g. Spring Kafka kafka_original_* headers). Follows the same shape as AsyncAPI message headers.",
+          "anyOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            }
+          ]
+        },
+        "retry": {
+          "description": "Topic configuration applied to each retry topic.",
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "partitions": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Number of partitions for retry topics."
+                },
+                "replicas": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Replication factor for retry topics."
+                },
+                "topicConfiguration": {
+                  "$ref": "http://asyncapi.com/bindings/kafka/0.6.0/channel.json#/properties/topicConfiguration"
+                }
+              }
+            }
+          ]
+        },
+        "dlq": {
+          "description": "Topic configuration applied to the DLQ topic.",
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "partitions": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Number of partitions for the DLQ topic."
+                },
+                "replicas": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Replication factor for the DLQ topic."
+                },
+                "topicConfiguration": {
+                  "$ref": "http://asyncapi.com/bindings/kafka/0.6.0/channel.json#/properties/topicConfiguration"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "principal": {
+      "type": "string",
+      "description": "The Kafka principal (e.g. User:bob) used to authenticate this operation. Intended for ACL documentation purposes."
+    },
+    "bindingVersion": {
+      "type": "string",
+      "enum": [
+        "0.6.0"
+      ],
+      "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+    }
+  },
+  "examples": [
+    {
+      "groupId": {
+        "const": "myGroupId"
+      },
+      "clientId": {
+        "const": "myClientId"
+      },
+      "bindingVersion": "0.6.0"
+    },
+    {
+      "transactionalIdPrefix": "payments-service-",
+      "principal": "User:payment-producer",
+      "bindingVersion": "0.6.0"
+    },
+    {
+      "groupId": { "type": "string", "enum": ["myGroupId"] },
+      "clientId": {
+        "$ref": "#/components/schemas/kafkaClientId"
+      },
+      "isolationLevel": "read_committed",
+      "errorTopics": {
+        "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
+        "retryTopics": 3,
+        "extraHeaders": {
+          "$ref": "#/components/schemas/SpringKafkaErrorHeaders"
+        },
+        "retry": {
+          "partitions": 1,
+          "replicas": 2,
+          "topicConfiguration": { "retention.ms": 259200000 }
+        },
+        "dlq": {
+          "partitions": 1,
+          "replicas": 2,
+          "topicConfiguration": {
+            "retention.ms": 2592000000,
+            "cleanup.policy": ["delete"]
+          }
+        }
+      },
+      "principal": "User:payment-consumer",
+      "bindingVersion": "0.6.0"
+    }
+  ]
+}
