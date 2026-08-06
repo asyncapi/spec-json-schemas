@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "description": "Describes the dead-letter path for a receive operation.",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+    }
+  },
+  "required": ["channel", "messages"],
+  "properties": {
+    "channel": {
+      "description": "A reference to the channel to which dead-letter messages are sent.",
+      "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+    },
+    "messages": {
+      "type": "array",
+      "description": "The dead-letter messages available on the referenced channel.",
+      "minItems": 1,
+      "items": {
+        "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+      }
+    },
+    "maxWaitTime": {
+      "type": "string",
+      "description": "The maximum time an implementation waits for a dead-letter message to appear.",
+      "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.0.0/operationDeadLetter.json"
+}
