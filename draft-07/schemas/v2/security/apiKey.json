@@ -1,39 +1,37 @@
 {
-  "type": "object",
-  "required": [
-    "type",
-    "in"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/security/apiKey.json",
+  "title": "AsyncAPI v2 - API key Authentication",
+  "description": "Contains information about API key Authentication",
+  "examples": [
+    {
+      "type": "apiKey",
+      "in": "user"
+    },
+    {
+      "type": "apiKey",
+      "in": "password",
+      "description": "Simple security mechanism that uses a unique, long-lived alphanumeric string to identify and authorize an application or project making a request to an API"
+    }
   ],
+  "type": "object",
+  "required": [ "type", "in" ],
   "properties": {
+    "description": {
+      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
     "type": {
-      "type": "string",
-      "description": "The type of the security scheme.",
-      "enum": [
-        "apiKey"
-      ]
+      "description": "The type of the security scheme",
+      "const": "apiKey"
     },
     "in": {
-      "type": "string",
-      "description": "The location of the API key. ",
-      "enum": [
-        "user",
-        "password"
-      ]
-    },
-    "description": {
-      "type": "string",
-      "description": "A short description for security scheme."
+      "description": "The location of the API key",
+      "enum": [ "user", "password" ]
     }
   },
   "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
-    }
+    "^x-[\\w\\d\\.\\x2d_]+$": true
   },
-  "example": {
-    "$ref": "http://asyncapi.com/examples/2.6.0/apiKey.json"
-  },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.6.0/apiKey.json"
+  "additionalProperties": false
 }

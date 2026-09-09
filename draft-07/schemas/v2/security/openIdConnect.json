@@ -1,30 +1,46 @@
 {
-  "type": "object",
-  "required": [
-    "type",
-    "openIdConnectUrl"
-  ],
-  "properties": {
-    "type": {
-      "type": "string",
-      "enum": [
-        "openIdConnect"
-      ]
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/security/openIdConnect.json",
+  "title": "AsyncAPI v2 - OpenID Connect Authentication",
+  "description": "Contains information about OpenID Connect Authentication",
+  "examples": [
+    {
+      "type": "openIdConnect",
+      "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
     },
+    {
+      "type": "openIdConnect",
+      "description": "Simple identity authentication layer built on top of the OAuth 2.0 protocol, consisting of the OpenID Provider, ID Token, and Relying Party",
+      "openIdConnectUrl": "https://server.com/.well-known/openid-configuration",
+      "scopes": [ "write:pets", "read:pets" ]
+    }
+  ],
+  "type": "object",
+  "required": [ "type", "openIdConnectUrl" ],
+  "properties": {
     "description": {
+      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
       "type": "string"
     },
+    "type": {
+      "description": "The type of the security scheme",
+      "const": "openIdConnect"
+    },
     "openIdConnectUrl": {
+      "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL",
       "type": "string",
       "format": "uri"
+    },
+    "scopes": {
+      "description": "List of the needed scope names. An empty array means no scopes are needed",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
-    }
+    "^x-[\\w\\d\\.\\x2d_]+$": true
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.6.0/openIdConnect.json"
+  "additionalProperties": false
 }
