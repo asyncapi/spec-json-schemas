@@ -1,0 +1,13 @@
+[{
+	"parameters": {
+		"userId": {
+			"$ref": "#/components/parameters/userId"
+		}
+	},
+	"bindings": {
+		"kafka": {
+			"partitions": 10,
+			"replicas": 3
+		}
+	}
+}]
