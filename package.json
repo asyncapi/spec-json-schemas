@@ -10,7 +10,7 @@
     "generate:assets": "npm run build",
     "prepublishOnly": "npm run build",
     "bundle": "cd tools/bundler && npm i && npm run bundle",
-    "startNewVersion": "newVersion=$npm_config_new_version node scripts/add-new-version.js",
+    "startNewVersion": "node -e \"process.env.newVersion=process.env.npm_config_new_version||\"\";require('./scripts/add-new-version.js')\"",
     "lint": "eslint --max-warnings 0 --config .eslintrc.yml .",
     "lint:fix": "eslint --max-warnings 0 --config .eslintrc.yml --fix .",
     "bump:version": "npm --no-git-tag-version --allow-same-version version $VERSION",

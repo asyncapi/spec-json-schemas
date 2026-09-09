@@ -4,7 +4,7 @@ const path = require('path');
  */
 const exec = require('child_process').exec;
 const fs = require('fs');
-const inputNewVersion = process.env.newVersion;
+const inputNewVersion = process.env.newVersion || process.env.npm_config_new_version;
 //Regex taken from https://semver.org/#is-there-a-suggested-regular-expression-regex-to-check-a-semver-string
 const versionRegex = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/g; //NOSONAR
 
