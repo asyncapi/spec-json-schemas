@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/security/sasl/saslPlainSecuritySchema.json",
+  "title": "AsyncAPI v2 - SASL/PLAIN Authentication",
+  "description": "Contains information about SASL/PLAIN Authentication. SASL/PLAIN is simple user name and password login method that sends credentials in base64 encoding, requiring TLS/SSL encryption to prevent exposure on a network",
+  "examples": [
+    {
+      "type": "plain",
+      "description": "SASL/PLAIN"
+    }
+  ],
+  "type": "object",
+  "required": [ "type" ],
+  "properties": {
+    "description": {
+      "description": "A short description for security scheme",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the security scheme. Valid values",
+      "const": "plain"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

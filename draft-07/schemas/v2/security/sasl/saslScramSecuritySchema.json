@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/security/sasl/saslScramSecuritySchema.json",
+  "title": "AsyncAPI v2 - SASL SCRAM Authentication",
+  "description": "Contains information about SASL SCRAM Authentication. SASL SCRAM is secure password-based challenge-response authentication mechanism that uses Apache Kafka Documentation or similar platforms, utilizing salts and cryptographic hashes like Confluent Platform SCRAM Overview (SCRAM-SHA-256 and SCRAM-SHA-512) to protect credentials from network sniffing and replay attacks",
+  "examples": [
+    {
+      "type": "scramSha256",
+      "description": "SCRAM-SHA-256"
+    },
+    {
+      "type": "scramSha512",
+      "description": "SCRAM-SHA-512"
+    }
+  ],
+  "type": "object",
+  "required": [ "type" ],
+  "properties": {
+    "description": {
+      "description": "A short description for security scheme",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the security scheme",
+      "enum": [ "scramSha256", "scramSha512" ]
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}
