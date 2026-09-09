@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json",
+  "title": "AsyncAPI v3 - Authentication Variants",
+  "description": "Contains information about available authentication variants",
+  "examples": [
+    {
+      "type": "httpApiKey",
+      "description": "httpApiKey",
+      "name": "api_key",
+      "in": "header"
+    },
+    {
+      "type": "http",
+      "description": "http",
+      "scheme": "basic"
+    },
+    {
+      "type": "http",
+      "description": "http",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+    },
+    {
+      "type": "oauth2",
+      "description": "oauth2",
+      "flows": {
+        "authorizationCode": {
+          "authorizationUrl": "https://example.com/api/oauth/dialog",
+          "tokenUrl": "https://example.com/api/oauth/token",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        },
+        "clientCredentials": {
+          "tokenUrl": "https://example.com/api/oauth/token",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        },
+        "implicit": {
+          "authorizationUrl": "https://example.com/api/oauth/dialog",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        },
+        "password": {
+          "tokenUrl": "https://example.com/api/oauth/token",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        }
+      },
+      "scopes": [ "write:pets", "read:pets" ]
+    },
+    {
+      "type": "X509",
+      "description": "X509"
+    },
+    {
+      "type": "apiKey",
+      "description": "apiKey",
+      "in": "user"
+    },
+    {
+      "type": "asymmetricEncryption",
+      "description": "asymmetricEncryption"
+    },
+    {
+      "type": "gssapi",
+      "description": "gssapi"
+    },
+    {
+      "type": "openIdConnect",
+      "description": "openIdConnect",
+      "openIdConnectUrl": "https://server.com/.well-known/openid-configuration",
+      "scopes": [ "write:pets", "read:pets" ]
+    },
+    {
+      "type": "plain",
+      "description": "plain"
+    },
+    {
+      "type": "scramSha256",
+      "description": "scramSha256"
+    },
+    {
+      "type": "scramSha512",
+      "description": "scramSha512"
+    },
+    {
+      "type": "symmetricEncryption",
+      "description": "symmetricEncryption"
+    },
+    {
+      "type": "userPassword",
+      "description": "userPassword"
+    }
+  ],
+  "oneOf": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/userPassword.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/apiKey.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/X509.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/symmetricEncryption.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/asymmetricEncryption.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/httpSecuritySchema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/openIdConnect.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslSecuritySchema.json"
+    }
+  ]
+}

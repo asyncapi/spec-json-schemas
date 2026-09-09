@@ -1,0 +1,187 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageTrait.json",
+  "title": "AsyncAPI v3 - Channel Message Trait",
+  "description": "Describes a trait that MAY be applied to a Message Object. This object MAY contain any property from the Message Object, except payload and traits",
+  "examples": [
+    {
+      "contentType": "application/json",
+      "name": "application-metric.v1",
+      "title": "Application Metric record v1",
+      "summary": "Use it to register single application metric",
+      "correlationId": {
+        "description": "Incoming message correlation-id",
+        "location": "$message.payload#/correlation-id"
+      },
+      "externalDocs": {
+        "$ref": "https://observability.lo/application-metric"
+      },
+      "description": "Represent registrable application metric e.g. number of incoming messages",
+      "deprecated": true
+    },
+    {
+      "contentType": "application/json",
+      "name": "application-metric.v2",
+      "title": "Application Metric record v2",
+      "summary": "Use it to register single application metric",
+      "description": "Represent registrable application metric e.g. number of incoming messages",
+      "correlationId": {
+        "description": "Incoming message correlation-id",
+        "location": "$message.header#/correlation-id"
+      },
+      "externalDocs": {
+        "url": "https://observability.lo/application-metric",
+        "description": "Application Metric format and validation rules"
+      },
+      "tags": [
+        {
+          "name": "observability",
+          "description": "Groups observability components"
+        },
+        {
+          "$ref": "#/tags/monitoring"
+        }
+      ]
+    },
+    {
+      "contentType": "application/json",
+      "name": "application-metric.v3",
+      "title": "Application Metric record v3",
+      "summary": "Use it to register single application metric",
+      "description": "Represent registrable application metric e.g. number of incoming messages",
+      "headers": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+          "correlation-id": {
+            "description": "Incoming message correlation-id",
+            "type": "string",
+            "examples": [
+              {
+                "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "application-metric.v3",
+      "title": "Application Metric record v3",
+      "summary": "Use it to register single application metric",
+      "description": "Represent registrable application metric e.g. number of incoming messages",
+      "headers": {
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "correlation-id": {
+              "description": "Incoming message correlation-id",
+              "type": "string",
+              "examples": [
+                {
+                  "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "application-metric.v3",
+      "title": "Application Metric record v3",
+      "summary": "Use it to register single application metric",
+      "description": "Represent registrable application metric e.g. number of incoming messages",
+      "headers": {
+        "schemaFormat": "application/schema+json;version=draft-07",
+        "schema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "correlation-id": {
+              "description": "Incoming message correlation-id",
+              "type": "string",
+              "examples": [
+                {
+                  "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "contentType": "application/json",
+      "name": "application-metric.v1",
+      "title": "Application Metric record v1",
+      "summary": "Use it to register single application metric",
+      "description": "Represent registrable application metric e.g. number of incoming messages",
+      "deprecated": true,
+      "examples": [
+        {
+          "name": "Application metric example",
+          "summary": "Message with Correlation ID header and application metric",
+          "headers": {
+            "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+          },
+          "payload": {
+            "metric": "messages.incoming:5921"
+          }
+        }
+      ]
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "contentType": {
+      "description": "The content type to use when encoding/decoding a message's payload. The value MUST be a specific media type (e.g. application/json). When omitted, the value MUST be the one specified on the defaultContentType field",
+      "type": "string"
+    },
+    "headers": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/anySchema.json"
+    },
+    "correlationId": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageCorrelationIdOrReference.json"
+    },
+    "tags": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+    },
+    "summary": {
+      "description": "A brief summary of the message",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name of the message",
+      "type": "string"
+    },
+    "title": {
+      "description": "A human-friendly title for the message",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the message. CommonMark is allowed",
+      "type": "string"
+    },
+    "externalDocs": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+    },
+    "deprecated": {
+      "default": false,
+      "type": "boolean"
+    },
+    "examples": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageExamples.json"
+    },
+    "bindings": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/messageBindings.json"
+    },
+    "patternProperties": {
+      "^x-[\\w\\d\\.\\x2d_]+$": true
+    },
+    "additionalProperties": false
+  }
+}

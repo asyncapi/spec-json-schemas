@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/http/nonBearerHTTPSecuritySchema.json",
+  "title": "AsyncAPI v3 - HTTP based Authentication",
+  "description": "Contains information about HTTP based Authentication",
+  "examples": [
+    {
+      "type": "http",
+      "description": "HTTP - Basic",
+      "scheme": "basic"
+    }
+  ],
+  "type": "object",
+  "not": {
+    "type": "object",
+    "properties": {
+      "scheme": {
+        "description": "A short description for security scheme",
+        "const": "bearer"
+      }
+    }
+  },
+  "required": [ "scheme", "type" ],
+  "properties": {
+    "description": {
+      "description": "A short description for security scheme",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the security scheme",
+      "const": "http"
+    },
+    "scheme": {
+      "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

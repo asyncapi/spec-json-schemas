@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/info/extensions/linkedin/0.1.0/schema.json",
+  "title": "AsyncAPI - Info LinkedIn extension",
+  "description": "This extension allows you to provide the Linkedin profile URL of the account representing the team/company of the API",
+  "examples": [
+    "https://www.linkedin.com/company/asyncapi/",
+    "https://www.linkedin.com/in/sambhavgupta0705/"
+  ],
+  "type": "string",
+  "pattern": "^http(s)?://(www\\.)?linkedin\\.com.*$"
+}

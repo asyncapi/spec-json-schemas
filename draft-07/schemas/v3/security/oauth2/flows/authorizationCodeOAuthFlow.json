@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/authorizationCodeOAuthFlow.json",
+  "title": "AsyncAPI v3 - OAuth2 Authorization Code flow",
+  "description": "Contains information about OAuth2 Authorization Code flow. Is a secure, multi-step process where an application trades user consent for an authorization code, which is then exchanged behind the scenes for an access token",
+  "examples": [
+    {
+      "authorizationUrl": "https://example.com/api/oauth/dialog",
+      "tokenUrl": "https://example.com/api/oauth/token",
+      "refreshUrl": "https://example.com/api/oauth/refresh",
+      "availableScopes": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    }
+  ],
+  "type": "object",
+  "required": [ "authorizationUrl", "tokenUrl", "availableScopes" ],
+  "properties": {
+    "authorizationUrl": {
+      "description": "The authorization URL to be used for this flow. This MUST be in the form of an absolute URL",
+      "type": "string",
+      "format": "uri"
+    },
+    "availableScopes": {
+      "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it",
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2Scopes.json"
+    },
+    "refreshUrl": {
+      "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL",
+      "type": "string",
+      "format": "uri"
+    },
+    "tokenUrl": {
+      "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

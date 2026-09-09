@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/servers/server.json",
+  "title": "AsyncAPI v3.0.0 - Server",
+  "description": "Represents a message broker, a server or any other kind of computer program capable of sending and/or receiving data",
+  "examples": [
+    {
+      "x-microcks-enabled": true,
+      "title": "Secured MQTT broker",
+      "summary": "MQTT 5.0 broker",
+      "description": "Staging secured MQTT 5.0 broker",
+      "host": "{username}.gigantic-server.com:{port}/{basePath}",
+      "protocol": "secure-mqtt",
+      "protocolVersion": "5",
+      "pathname": "/messages",
+      "variables": {
+        "username": {
+          "description": "This value is assigned by the service provider, in this example `gigantic-server.com`",
+          "default": "production"
+        },
+        "port": {
+          "enum": [ "8883", "14567" ],
+          "default": "8883"
+        },
+        "basePath": {
+          "$ref": "#/components/serverVariables/basePath"
+        }
+      },
+      "security": [
+        {
+          "type": "userPassword",
+          "description": "Sent inside the initial CONNECT message"
+        },
+        {
+          "$ref": "#/components/security/x.509"
+        }
+      ],
+      "tags": [
+        {
+          "name": "env:staging",
+          "description": "This environment is a replica of the production environment"
+        },
+        {
+          "$ref": "#/tags/secured"
+        }
+      ],
+      "externalDocs": {
+        "description": "Reade step by step guide to integrate with Gigantic server",
+        "url": "https://gigantic-server.com/docs/integrations"
+      }
+    }
+  ],
+  "type": "object",
+  "required": [ "host", "protocol" ],
+  "properties": {
+    "host": {
+      "description": "The server host name. It MAY include the port. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}",
+      "type": "string"
+    },
+    "pathname": {
+      "description": "The path to a resource in the host. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}",
+      "type": "string"
+    },
+    "title": {
+      "description": "A human-friendly title for the server",
+      "type": "string"
+    },
+    "summary": {
+      "description": "A brief summary of the server",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the server. CommonMark is allowed",
+      "type": "string"
+    },
+    "protocol": {
+      "description": "The protocol this server supports for connection",
+      "type": "string"
+    },
+    "protocolVersion": {
+      "description": "An optional string describing the server. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
+    "variables": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariables.json"
+    },
+    "security": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json"
+    },
+    "tags": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+    },
+    "externalDocs": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+    },
+    "bindings": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/serverBindings.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

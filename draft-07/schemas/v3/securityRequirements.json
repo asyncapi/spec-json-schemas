@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json",
+  "title": "AsyncAPI v3.0.0 - Security Requirements",
+  "description": "Collection of Security Requirements",
+  "examples": [
+    [
+      {
+        "$ref": "#/security/x.509"
+      },
+      {
+        "type": "X509"
+      },
+      {
+        "type": "apiKey",
+        "in": "user"
+      }
+    ]
+  ],
+  "type": "array",
+  "items": {
+    "if": {
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": true
+      }
+    },
+    "then": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "else": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json"
+    }
+  }
+}

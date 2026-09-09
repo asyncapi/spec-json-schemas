@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageTraits.json",
+  "title": "AsyncAPI v3 - Channel Message Traits",
+  "description": "Collection of Channel Message Traits. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Message Object",
+  "examples": [
+    [
+      {
+        "$ref": "#/application-metric.v3.trait"
+      }
+    ],
+    [
+      {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "headers": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "correlation-id": {
+                "description": "Incoming message correlation-id",
+                "type": "string",
+                "examples": [
+                  {
+                    "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    ],
+    [
+      {
+        "contentType": "application/json",
+        "name": "application-metric.v1",
+        "title": "Application Metric record v1",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "deprecated": true,
+        "examples": [
+          {
+            "name": "Application metric example",
+            "summary": "Message with Correlation ID header and application metric",
+            "headers": {
+              "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+            },
+            "payload": {
+              "metric": "messages.incoming:5921"
+            }
+          }
+        ]
+      }
+    ],
+    [
+      {
+        "$ref": "#/application-metric.v3.trait"
+      },
+      {
+        "contentType": "application/json",
+        "name": "application-metric.v1",
+        "title": "Application Metric record v1",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "deprecated": true,
+        "examples": [
+          {
+            "name": "Application metric example",
+            "summary": "Message with Correlation ID header and application metric",
+            "headers": {
+              "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+            },
+            "payload": {
+              "metric": "messages.incoming:5921"
+            }
+          }
+        ]
+      }
+    ]
+  ],
+  "type": "array",
+  "items": {
+    "if": {
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": true
+      }
+    },
+    "then": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "else": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageTrait.json"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AsyncAPI v3 - Operation Reply Address",
+  "description": "An object that specifies where an operation has to send the reply",
+  "examples": [
+    {
+      "location": "$message.header#/X-REPLY-TO"
+    },
+    {
+      "location": "$message.payload#/X-REPLY-TO"
+    },
+    {
+      "location": "$message.payload#/X-REPLY-TO",
+      "description": "Send operation result to this channel"
+    }
+  ],
+  "type": "object",
+  "required": [ "location" ],
+  "properties": {
+    "location": {
+      "description": "A runtime expression that specifies the location of the reply address",
+      "type": "string",
+      "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+    },
+    "description": {
+      "description": "An optional description of the address. CommonMark is allowed",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

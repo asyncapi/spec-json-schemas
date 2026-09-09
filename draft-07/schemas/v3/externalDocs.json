@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json",
+  "title": "AsyncAPI - Extended Documentation v3.0.0",
+  "description": "Allows referencing an external resource for extended documentation",
+  "examples": [
+    {
+      "url": "https://api.weather-forecast.am/docs"
+    },
+    {
+      "url": "https://api.weather-forecast.am/docs",
+      "description": "Required information to integrate with API"
+    }
+  ],
+  "type": "object",
+  "required": [ "url" ],
+  "properties": {
+    "description": {
+      "description": "A short description of the target documentation. CommonMark syntax can be used for rich text representation",
+      "type": "string"
+    },
+    "url": {
+      "description": "The URL for the target documentation. This MUST be in the form of an absolute URL",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

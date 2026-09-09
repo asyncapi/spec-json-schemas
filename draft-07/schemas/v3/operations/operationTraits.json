@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationTraits.json",
+  "title": "AsyncAPI v3 - Channel Message Traits",
+  "description": "Collection of Channel Message Traits or it's references. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Message Object",
+  "examples": [
+    [],
+    [
+      {
+        "title": "User Activity Events",
+        "summary": "Receive user activity events",
+        "description": "Subscribe to channel which returns detailed events bases on user activity",
+        "tags": [
+          {
+            "$ref": "#/tags/user-activity-public"
+          },
+          {
+            "name": "user-activity",
+            "description": "Groups user activity related operations or messages"
+          }
+        ],
+        "security": [
+          {
+            "type": "openIdConnect",
+            "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+          },
+          {
+            "$ref": "#/security/oauth2"
+          }
+        ],
+        "externalDocs": {
+          "$ref": "#/documents/user-events.v1"
+        }
+      },
+      {
+        "$ref": "#/channels/user-events.v1.traits"
+      }
+    ]
+  ],
+  "type": "array",
+  "items": {
+    "if": {
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": true
+      }
+    },
+    "then": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "else": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationTrait.json"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/info/info.json",
+  "title": "AsyncAPI - Info v3.0.0",
+  "description": "Provides metadata about the API. The metadata can be used by the clients if needed",
+  "examples": [
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "license": {
+        "name": "The MIT License",
+        "url": "https://mit-license.org"
+      }
+    },
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "description": "Streams weather updates by cities, regions or coordinates"
+    },
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "description": "Streams weather updates by cities, regions or coordinates",
+      "externalDocs": {
+        "$ref": "https://api.weather-forecast.am/docs"
+      },
+      "termsOfService": "https://api.weather-forecast.am/terms"
+    },
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "description": "Streams weather updates by cities, regions or coordinates",
+      "externalDocs": {
+        "url": "https://api.weather-forecast.am/docs",
+        "description": "Required information to integrate with API"
+      }
+    },
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "description": "Streams weather updates by cities, regions or coordinates",
+      "contact": {
+        "name": "Weather Forecast",
+        "email": "feedback@weather-forecast.am",
+        "url": "https://weather-forecast.am"
+      },
+      "tags": [
+        {
+          "name": "city",
+          "description": "City forecast for e.g. Yerevan"
+        },
+        {
+          "$ref": "https://api.weather-forecast.am/docs#tags-district"
+        }
+      ],
+      "x-x": "@weather-forecast",
+      "x-linkedin": "https://www.linkedin.com/company/weather-forecast/"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/info/infoExtensions.json"
+    }
+  ],
+  "required": [ "version", "title" ],
+  "properties": {
+    "title": {
+      "description": "A unique and precise title of the API",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the API. Should be different from the title. CommonMark is allowed",
+      "type": "string"
+    },
+    "contact": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/info/contact.json"
+    },
+    "externalDocs": {
+      "oneOf": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+        }
+      ]
+    },
+    "license": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/info/license.json"
+    },
+    "tags": {
+      "description": "A list of tags for application API documentation control. Tags can be used for logical grouping of applications",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tag.json"
+          }
+        ]
+      }
+    },
+    "termsOfService": {
+      "description": "A URL to the Terms of Service for the API. MUST be in the format of a URL",
+      "type": "string",
+      "format": "uri"
+    },
+    "version": {
+      "description": "A semantic version number of the API",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/anySchema.json",
+  "title": "AsyncAPI v3 - Multi-Format Schema or Schema",
+  "description": "Represents either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise",
+  "type": "object",
+  "examples": [
+    {
+      "schemaFormat": "application/schema+json;version=draft-07",
+      "schema": {
+        "$id": "https://example.com/user-profile.schema.json",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "A representation of a user profile",
+        "type": "object",
+        "required": ["username", "email"],
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "location": {
+            "type": "string"
+          },
+          "interests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "$id": "https://example.com/user-profile.schema.json",
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "description": "A representation of a user profile",
+      "type": "object",
+      "required": ["username", "email"],
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "fullName": {
+          "type": "string"
+        },
+        "age": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "location": {
+          "type": "string"
+        },
+        "interests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "if": {
+    "required": [
+      "schema"
+    ],
+    "properties": {
+      "schema": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/multiFormatSchema.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+  }
+}

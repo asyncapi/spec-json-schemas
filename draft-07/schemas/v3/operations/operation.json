@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/operations/operation.json",
+  "title": "AsyncAPI v3 - Operation",
+  "description": "Describes a specific operation",
+  "examples": [
+    {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/user-events.v1"
+      },
+      "reply": {
+        "channel": {
+          "$ref": "#/channels/user-events-replies.v1"
+        }
+      },
+      "security": [
+        {
+          "type": "openIdConnect",
+          "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+        },
+        {
+          "$ref": "#/security/oauth2"
+        }
+      ],
+      "externalDocs": {
+        "$ref": "#/documents/user-events.v1"
+      }
+    },
+    {
+      "action": "receive",
+      "channel": {
+        "$ref": "#/channels/user-events.v1"
+      },
+      "reply": {
+        "$ref": "#/channels/user-events-replies.v1"
+      },
+      "externalDocs": {
+        "url": "https://docs.lo/user-events.v1"
+      }
+    },
+    {
+      "action": "receive",
+      "channel": {
+        "$ref": "#/channels/user-events.v1"
+      },
+      "title": "User Activity Events",
+      "summary": "Receive user activity events",
+      "description": "Subscribe to channel which returns detailed events bases on user activity",
+      "tags": [
+        {
+          "$ref": "#/tags/user-activity-public"
+        },
+        {
+          "name": "user-activity",
+          "description": "Groups user activity related operations or messages"
+        }
+      ],
+      "messages": [
+        {
+          "$ref": "#/messages/user/signed-up"
+        },
+        {
+          "$ref": "#/messages/user/signed-out"
+        }
+      ]
+    }
+  ],
+  "type": "object",
+  "required": [ "action", "channel" ],
+  "properties": {
+    "action": {
+      "description": "Allowed values are send and receive. Use send when it's expected that the application will send a message to the given channel, and receive when the application should expect receiving messages from the given channel",
+      "enum": [ "send", "receive" ]
+    },
+    "channel": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "messages": {
+      "description": "A list of $ref pointers pointing to the supported Message Objects that can be processed by this operation. It MUST contain a subset of the messages defined in the channel referenced in this operation. Every message processed by this operation MUST be valid against one, and only one, of the message objects referenced in this list. Please note the messages property value MUST be a list of Reference Objects and, therefore, MUST NOT contain Message Objects. However, it is RECOMMENDED that parsers (or other software) dereference this property for a better development experience",
+      "type": "array",
+      "items": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      }
+    },
+    "reply": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReplyOrReference.json"
+    },
+    "traits": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationTraits.json"
+    },
+    "title": {
+      "description": "A human-friendly title for the operation",
+      "type": "string"
+    },
+    "summary": {
+      "description": "A brief summary of the operation",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the operation. CommonMark is allowed",
+      "type": "string"
+    },
+    "security": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json"
+    },
+    "tags": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+    },
+    "externalDocs": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+    },
+    "bindings": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/operationBindings.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

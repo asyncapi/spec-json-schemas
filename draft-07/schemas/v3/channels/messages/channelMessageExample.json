@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageExample.json",
+  "title": "AsyncAPI v3 - Channel Message Example",
+  "description": "Describes a message example which may be received on a given channel and operation",
+  "examples": [
+    {
+      "name": "Application metric example",
+      "summary": "Message with application metric example",
+      "payload": {
+        "metric": "messages.incoming:5921"
+      }
+    },
+    {
+      "name": "Application metric example",
+      "summary": "Message with Correlation ID header",
+      "headers": {
+        "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+      }
+    },
+    {
+      "name": "Application metric example",
+      "summary": "Message with Correlation ID header and application metric",
+      "headers": {
+        "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+      },
+      "payload": {
+        "metric": "messages.incoming:5921"
+      }
+    }
+  ],
+  "type": "object",
+  "anyOf": [
+    {
+      "required": [ "payload" ]
+    },
+    {
+      "required": [ "headers" ]
+    }
+  ],
+  "properties": {
+    "name": {
+      "description": "Machine readable name of the message example",
+      "type": "string"
+    },
+    "summary": {
+      "description": "A brief summary of the message example",
+      "type": "string"
+    },
+    "headers": {
+      "description": "Example of the application headers. It can be of any type",
+      "type": "object"
+    },
+    "payload": {
+      "description": "Example of the message payload. It can be of any type"
+    }
+  },
+  "additionalProperties": false
+}

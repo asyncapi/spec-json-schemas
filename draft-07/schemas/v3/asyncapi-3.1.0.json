@@ -1,0 +1,258 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/asyncapi-3.1.0.json",
+  "title": "AsyncAPI v3.1.0",
+  "description": "AsyncAPI 3.1.0 JSON Schema",
+  "examples": [
+    {
+      "asyncapi": "3.1.0",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "asyncapi": "3.1.0",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      },
+      "servers": {
+        "mqtt": {
+          "$ref": "#/servers/mqtt"
+        },
+        "secure-mqtt": {
+          "host": "{username}.gigantic-server.com:{port}/{basePath}",
+          "protocol": "secure-mqtt",
+          "protocolVersion": "5.0",
+          "bindings": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "schemaRegistryUrl": "https://my-schema-registry.com",
+              "schemaRegistryVendor": "confluent"
+            }
+          }
+        }
+      }
+    },
+    {
+      "asyncapi": "3.1.0",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      },
+      "channels": {
+        "channel-reference-example": {
+          "$ref": "#/channels/some-channel"
+        },
+        "channel-example": {
+          "address": "users.{userId}",
+          "title": "Users channel",
+          "summary": "Messages about user events",
+          "description": "This channel is used to exchange messages about users signing up",
+          "messages": {
+            "user.signedUp": {
+              "$ref": "#/components/user.signedUp"
+            },
+            "metric-message": {
+              "contentType": "application/json",
+              "name": "application-metric.v3",
+              "title": "Application Metric record v3",
+              "summary": "Use it to register single application metric",
+              "description": "Represent registrable application metric e.g. number of incoming messages",
+              "headers": {
+                "schemaFormat": "application/schema+json;version=draft-07",
+                "schema": {
+                  "$schema": "http://json-schema.org/draft-07/schema#",
+                  "type": "object",
+                  "properties": {
+                    "correlation-id": {
+                      "description": "Incoming message correlation-id",
+                      "type": "string",
+                      "examples": [ "01ed08a1-8a7b-4882-85c5-c6e3815353d5" ]
+                    }
+                  }
+                }
+              },
+              "bindings": {
+                "kafka": {
+                  "bindingVersion": "0.5.0",
+                  "key": {
+                    "type": "string",
+                    "enum": [ "myKey" ]
+                  },
+                  "schemaIdLocation": "header",
+                  "schemaIdPayloadEncoding": "apicurio-new",
+                  "schemaLookupStrategy": "TopicIdStrategy"
+                }
+              }
+            }
+          },
+          "bindings": {
+            "pulsar": {
+              "bindingVersion": "0.1.0",
+              "compaction": 1000,
+              "deduplication": true,
+              "geo-replication": [ "us-west", "us-east" ],
+              "namespace": "ns1",
+              "persistence": "persistent",
+              "retention": {
+                "size": 1000,
+                "time": 15
+              },
+              "ttl": 360
+            }
+          }
+        }
+      }
+    },
+    {
+      "asyncapi": "3.1.0",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      },
+      "operations": {
+        "operation-reference-example": {
+          "$ref": "#/operations/some-operation"
+        },
+        "user-events.v1": {
+          "action": "receive",
+          "channel": {
+            "$ref": "#/channels/user-events.v1"
+          },
+          "reply": {
+            "$ref": "#/channels/user-events-replies.v1"
+          },
+          "externalDocs": {
+            "url": "https://docs.lo/user-events.v1"
+          },
+          "bindings": {
+            "sqs": {
+              "queues": [
+                {
+                  "name": "myQueue",
+                  "policy": {
+                    "statements": [
+                      {
+                        "action": [ "sqs:SendMessage", "sqs:ReceiveMessage" ],
+                        "effect": "Deny",
+                        "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                        "condition": {
+                          "ArnEquals": {
+                            "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:MyTopic"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "redrivePolicy": {
+                    "deadLetterQueue": {
+                      "name": "myQueue_error"
+                    },
+                    "maxReceiveCount": 15
+                  }
+                }
+              ],
+              "bindingVersion": "0.3.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "asyncapi": "3.1.0",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      },
+      "components": {
+        "schemas": {
+          "multiformat-schema": {
+            "schemaFormat": "application/schema+json;version=draft-07",
+            "schema": {
+              "$id": "https://example.com/user-profile.schema.json",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "description": "A representation of a user profile",
+              "type": "object",
+              "required": [
+                "username",
+                "email"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "fullName": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "location": {
+                  "type": "string"
+                },
+                "interests": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": {
+          "apache-kafka-v1": {
+            "host": "https://kaas.lo/apache-kafka-v1",
+            "protocol": "kafka"
+          },
+          "apache-kafka-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2"
+          }
+        }
+      }
+    }
+  ],
+  "type": "object",
+  "required": [ "asyncapi", "info" ],
+  "properties": {
+    "asyncapi": {
+      "description": "The AsyncAPI specification version of this document",
+      "const": "3.1.0"
+    },
+    "id": {
+      "description": "A unique id representing the application",
+      "type": "string",
+      "format": "uri"
+    },
+    "defaultContentType": {
+      "description": "Default content type to use when encoding/decoding a message's payload",
+      "type": "string"
+    },
+    "info": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/info/info.json"
+    },
+    "servers": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/servers.json"
+    },
+    "channels": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channels.json"
+    },
+    "operations": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operations.json"
+    },
+    "components": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/components/components.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

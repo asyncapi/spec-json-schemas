@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/tag.json",
+  "title": "AsyncAPI - Tag v3.0.0",
+  "description": "Allows adding metadata to a single tag",
+  "examples": [
+    {
+      "name": "city"
+    },
+    {
+      "name": "city",
+      "description": "City forecast for e.g. Yerevan"
+    },
+    {
+      "name": "city",
+      "externalDocs": {
+        "$ref": "https://api.weather-forecast.am/docs#tags-district"
+      }
+    },
+    {
+      "name": "city",
+      "externalDocs": {
+        "url": "https://api.weather-forecast.am/docs",
+        "description": "Required information to integrate with API"
+      }
+    }
+  ],
+  "type": "object",
+  "required": [ "name" ],
+  "properties": {
+    "description": {
+      "description": "A short description for the tag. CommonMark syntax can be used for rich text representation",
+      "type": "string"
+    },
+    "externalDocs": {
+      "oneOf": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+        }
+      ]
+    },
+    "name": {
+      "description": "The name of the tag",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,148 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/schema.json",
+  "title": "AsyncAPI - Data Types JSON Schema",
+  "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is a superset of the JSON Schema Specification Draft 07. The empty schema (which allows any instance to validate) MAY be represented by the boolean value true and a schema which allows no instance to validate MAY be represented by the boolean value false",
+  "examples": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/draft-07-core-schema-meta-schema.json"
+    }
+  ],
+  "allOf": [
+    {
+      "$ref": "http://json-schema.org/draft-07/schema#"
+    },
+    {
+      "properties": {
+        "deprecated": {
+          "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage. Default value is false",
+          "default": false,
+          "type": "boolean"
+        },
+        "allOf": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          }
+        },
+        "anyOf": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          }
+        },
+        "oneOf": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          }
+        },
+        "not": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+        },
+        "contains": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+        },
+        "items": {
+          "default": {},
+          "anyOf": [
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            },
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              }
+            }
+          ]
+        },
+        "propertyNames": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+        },
+        "properties": {
+          "default": {},
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          }
+        },
+        "patternProperties": {
+          "default": {},
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          }
+        },
+        "additionalProperties": {
+          "default": {},
+          "anyOf": [
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            },
+            {
+              "type": "boolean"
+            }
+          ]
+        },
+        "discriminator": {
+          "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details",
+          "type": "string"
+        },
+        "externalDocs": {
+          "oneOf": [
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            },
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+            }
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    }
+  ]
+}

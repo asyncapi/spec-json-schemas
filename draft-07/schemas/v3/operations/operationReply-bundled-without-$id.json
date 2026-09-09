@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AsyncAPI v3 - Operation Reply",
+  "description": "Describes the reply part that MAY be applied to an Operation Object. If an operation implements the request/reply pattern, the reply object represents the response message",
+  "examples": [
+    {
+      "address": {
+        "$ref": "#/replies/send-notification-reply-address"
+      },
+      "channel": {
+        "$ref": "#/channels/notifications"
+      },
+      "messages": [
+        {
+          "$ref": "#/messages/send-notification-v1"
+        },
+        {
+          "$ref": "#/messages/send-notification-v2"
+        }
+      ]
+    },
+    {
+      "address": {
+        "location": "$message.header#/X-REPLY-TO"
+      },
+      "channel": {
+        "$ref": "#/channels/notifications"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "address": {
+      "$ref": "#/definitions/https:~1~1asyncapi.pavelon.dev~1schemas~1v3~1operations~1operationReplyAddressOrReference.json"
+    },
+    "channel": {
+      "$ref": "#/definitions/https:~1~1asyncapi.pavelon.dev~1schemas~1reference.json"
+    },
+    "messages": {
+      "description": "A list of $ref pointers pointing to the supported Message Objects that can be processed by this operation as reply. It MUST contain a subset of the messages defined in the channel referenced in this operation reply. Every message processed by this operation MUST be valid against one, and only one, of the message objects referenced in this list. Please note the messages property value MUST be a list of Reference Objects and, therefore, MUST NOT contain Message Objects. However, it is RECOMMENDED that parsers (or other software) dereference this property for a better development experience",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/https:~1~1asyncapi.pavelon.dev~1schemas~1reference.json"
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReplyAddress.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AsyncAPI v3 - Operation Reply Address",
+      "description": "An object that specifies where an operation has to send the reply",
+      "examples": [
+        {
+          "location": "$message.header#/X-REPLY-TO"
+        },
+        {
+          "location": "$message.payload#/X-REPLY-TO"
+        },
+        {
+          "location": "$message.payload#/X-REPLY-TO",
+          "description": "Send operation result to this channel"
+        }
+      ],
+      "type": "object",
+      "required": [ "location" ],
+      "properties": {
+        "location": {
+          "description": "A runtime expression that specifies the location of the reply address",
+          "type": "string",
+          "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+        },
+        "description": {
+          "description": "An optional description of the address. CommonMark is allowed",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReplyAddressOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AsyncAPI v3 - Operation Reply Address or Reference",
+      "description": "Generic type which MUST BE Operation Reply Address or Reference",
+      "examples": [
+        {
+          "location": "$message.header#/X-REPLY-TO"
+        },
+        {
+          "$ref": "#/replies/send-notification-reply-address"
+        }
+      ],
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/https:~1~1asyncapi.pavelon.dev~1schemas~1reference.json"
+        },
+        {
+          "$ref": "#/definitions/https:~1~1asyncapi.pavelon.dev~1schemas~1v3~1operations~1operationReplyAddress.json"
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/schemas/reference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "AsyncAPI - Reference",
+      "description": "Allows referencing other components in the specification, internally and externally",
+      "examples": [
+        {
+          "$ref": "#/components/messages/user-signedup"
+        },
+        {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+        }
+      ],
+      "type": "object",
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

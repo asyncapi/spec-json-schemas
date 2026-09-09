@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/symmetricEncryption.json",
+  "title": "AsyncAPI v3 - Symmetric Encryption Authentication",
+  "description": "Contains information about Symmetric Encryption Authentication",
+  "examples": [
+    {
+      "type": "symmetricEncryption"
+    },
+    {
+      "type": "symmetricEncryption",
+      "description": "Uses a single shared secret key to both scramble/unscramble data and verify who sent it"
+    }
+  ],
+  "type": "object",
+  "required": [ "type" ],
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "type": {
+      "const": "symmetricEncryption"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageExamples.json",
+  "title": "AsyncAPI v3 - Channel Message Examples",
+  "description": "Collection of Channel Message Examples",
+  "examples": [
+    [
+      {
+        "name": "Application metric example",
+        "summary": "Message with application metric example",
+        "payload": {
+          "metric": "messages.incoming:5921"
+        }
+      }
+    ],
+    [
+      {
+        "name": "Application metric example",
+        "summary": "Message with Correlation ID header",
+        "headers": {
+          "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+        }
+      }
+    ],
+    [
+      {
+        "name": "Application metric example",
+        "summary": "Message with application metric example",
+        "payload": {
+          "metric": "messages.incoming:5921"
+        }
+      },
+      {
+        "name": "Application metric example",
+        "summary": "Message with Correlation ID header",
+        "headers": {
+          "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+        }
+      },
+      {
+        "name": "Application metric example",
+        "summary": "Message with Correlation ID header and application metric",
+        "headers": {
+          "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+        },
+        "payload": {
+          "metric": "messages.incoming:5921"
+        }
+      }
+    ]
+  ],
+  "type": "array",
+  "items": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageExample.json"
+  }
+}

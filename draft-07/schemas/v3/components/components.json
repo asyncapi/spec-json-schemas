@@ -1,0 +1,984 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/components/components.json",
+  "title": "AsyncAPI v3 - Components",
+  "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI specification. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object",
+  "examples": [
+    {
+      "schemas": {
+        "multiformat-schema": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "$id": "https://example.com/user-profile.schema.json",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "description": "A representation of a user profile",
+            "type": "object",
+            "required": ["username", "email"],
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "fullName": {
+                "type": "string"
+              },
+              "age": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "location": {
+                "type": "string"
+              },
+              "interests": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "schema": {
+          "$id": "https://example.com/user-profile.schema.json",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "description": "A representation of a user profile",
+          "type": "object",
+          "required": ["username", "email"],
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "fullName": {
+              "type": "string"
+            },
+            "age": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "location": {
+              "type": "string"
+            },
+            "interests": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "servers": {
+        "apache-kafka-v1": {
+          "host": "https://kaas.lo/apache-kafka-v1",
+          "protocol": "kafka"
+        },
+        "apache-kafka-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2"
+        }
+      }
+    },
+    {
+      "serverVariables": {
+        "rabbitmq-ports-v1": {
+          "enum": [
+            "5672",
+            "5671"
+          ]
+        },
+        "rabbitmq-ports-v2": {
+          "$ref": "https://catalog.lo/servers/rabbitmq-v2/variables/ports"
+        }
+      }
+    },
+    {
+      "channels": {
+        "user-notifications-v1": {
+          "address": "users.notifications.{userId}",
+          "title": "User notifications"
+        },
+        "user-notifications-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/topics/user-notifications"
+        }
+      }
+    },
+    {
+      "operations": {
+        "notify-user-signed-up-v1": {
+          "action": "send",
+          "channel": {
+            "$ref": "#/components/channels/user-notifications-v1"
+          }
+        },
+        "notify-user-signed-up-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+        }
+      }
+    },
+    {
+      "messages": {
+        "user-signed-up-v1": {
+          "contentType": "application/json",
+          "name": "user-signed-up-v1",
+          "deprecated": true
+        },
+        "user-signed-up-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+        }
+      }
+    },
+    {
+      "securitySchemes": {
+        "apiKey": {
+          "type": "apiKey",
+          "in": "user"
+        },
+        "x.509": {
+          "$ref": "#/components/securitySchemes/x.509"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "accessToken": {
+          "description": "User AccessToken",
+          "examples": [ "Bearer eyJhbGciOiJIUzI1Ni..." ],
+          "location": "$message.header#/authorization"
+        },
+        "userId": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/user-id"
+        }
+      }
+    },
+    {
+      "correlationIds": {
+        "correlation-id-v1": {
+          "description": "Incoming message correlation-id",
+          "location": "$message.payload#/correlation-id"
+        },
+        "correlation-id-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/correlation-id"
+        }
+      }
+    },
+    {
+      "operationTraits": {
+        "notify-user-signed-up-trait-v1": {
+          "summary": "User signed up",
+          "security": [
+            {
+              "type": "openIdConnect",
+              "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+            }
+          ]
+        },
+        "notify-user-signed-up-trait-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-trait"
+        }
+      }
+    },
+    {
+      "messageTraits": {
+        "user-signed-up-trait-v1": {
+          "contentType": "application/json",
+          "name": "user-signed-up-v1",
+          "correlationId": {
+            "description": "Incoming message correlation-id",
+            "location": "$message.payload#/correlation-id"
+          },
+          "deprecated": true
+        },
+        "user-signed-up-trait-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+        }
+      }
+    },
+    {
+      "replies": {
+        "notify-user-signed-up-reply-v1": {
+          "address": {
+            "$ref": "#/components/replyAddresses/notify-user-signed-up-reply-v1"
+          },
+          "channel": {
+            "$ref": "#/components/channels/user-notifications-v1"
+          },
+          "messages": [
+            {
+              "$ref": "#/components/messages/user-signed-up-v1"
+            }
+          ]
+        },
+        "notify-user-signed-up-reply-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply"
+        }
+      }
+    },
+    {
+      "replyAddresses": {
+        "notify-user-signed-up-reply-v1": {
+          "location": "$message.payload#/X-REPLY-TO",
+          "description": "Send operation result to this channel"
+        },
+        "notify-user-signed-up-reply-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply-address"
+        }
+      }
+    },
+    {
+      "serverBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "schemaRegistryUrl": "https://my-schema-registry.com",
+            "schemaRegistryVendor": "confluent"
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0",
+            "tenant": "contoso"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/server"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/server"
+          }
+        }
+      }
+    },
+    {
+      "channelBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic",
+            "topicConfiguration": {
+              "cleanup.policy": [ "compact", "delete" ],
+              "delete.retention.ms": 1000,
+              "max.message.bytes": 2000,
+              "retention.bytes": 10,
+              "retention.ms": 2000,
+              "confluent.key.schema.validation": true,
+              "confluent.key.subject.name.strategy": "schema",
+              "confluent.value.schema.validation": true,
+              "confluent.value.subject.name.strategy": "schema"
+            }
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0",
+            "compaction": 1000,
+            "deduplication": true,
+            "geo-replication": [ "us-west", "us-east" ],
+            "namespace": "ns1",
+            "persistence": "persistent",
+            "retention": {
+              "size": 1000,
+              "time": 15
+            },
+            "ttl": 360
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/channel"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/channel"
+          }
+        }
+      }
+    },
+    {
+      "operationBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "clientId": {
+              "type": "string",
+              "enum": [ "myClientId" ]
+            },
+            "groupId": {
+              "type": "string",
+              "enum": [ "myGroupId" ]
+            }
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/operation"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/operation"
+          }
+        }
+      }
+    },
+    {
+      "messageBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "key": {
+              "type": "string",
+              "enum": [ "myKey" ]
+            },
+            "schemaIdLocation": "header",
+            "schemaIdPayloadEncoding": "apicurio-new",
+            "schemaLookupStrategy": "TopicIdStrategy"
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/message"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/message"
+          }
+        }
+      }
+    },
+    {
+      "tags": {
+        "city": {
+          "name": "city",
+          "externalDocs": {
+            "url": "https://api.weather-forecast.am/docs",
+            "description": "Required information to integrate with API"
+          }
+        },
+        "district": {
+          "$ref": "https://catalog.lo/tags/district"
+        }
+      }
+    },
+    {
+      "externalDocs": {
+        "api-weather-forecast-v1": {
+          "url": "https://api.weather-forecast.am/docs",
+          "description": "Required information to integrate with API"
+        },
+        "api-weather-forecast-v2": {
+          "$ref": "https://catalog.lo/externalDocs/api-weather-forecast-v2"
+        }
+      }
+    },
+    {
+      "servers": {
+        "apache-kafka-v1": {
+          "host": "https://kaas.lo/apache-kafka-v1",
+          "protocol": "kafka"
+        },
+        "apache-kafka-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2"
+        }
+      },
+      "serverVariables": {
+        "rabbitmq-ports-v1": {
+          "enum": [
+            "5672",
+            "5671"
+          ]
+        },
+        "rabbitmq-ports-v2": {
+          "$ref": "https://catalog.lo/servers/rabbitmq-v2/variables/ports"
+        }
+      },
+      "channels": {
+        "user-notifications-v1": {
+          "address": "users.notifications.{userId}",
+          "title": "User notifications"
+        },
+        "user-notifications-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/topics/user-notifications"
+        }
+      },
+      "operations": {
+        "notify-user-signed-up-v1": {
+          "action": "send",
+          "channel": {
+            "$ref": "#/components/channels/user-notifications-v1"
+          }
+        },
+        "notify-user-signed-up-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+        }
+      },
+      "messages": {
+        "user-signed-up-v1": {
+          "contentType": "application/json",
+          "name": "user-signed-up-v1",
+          "deprecated": true
+        },
+        "user-signed-up-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+        }
+      },
+      "securitySchemes": {
+        "apiKey": {
+          "type": "apiKey",
+          "in": "user"
+        },
+        "x.509": {
+          "$ref": "#/components/securitySchemes/x.509"
+        }
+      },
+      "parameters": {
+        "accessToken": {
+          "description": "User AccessToken",
+          "examples": [ "Bearer eyJhbGciOiJIUzI1Ni..." ],
+          "location": "$message.header#/authorization"
+        },
+        "userId": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/user-id"
+        }
+      },
+      "correlationIds": {
+        "correlation-id-v1": {
+          "description": "Incoming message correlation-id",
+          "location": "$message.payload#/correlation-id"
+        },
+        "correlation-id-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/correlation-id"
+        }
+      },
+      "operationTraits": {
+        "notify-user-signed-up-trait-v1": {
+          "summary": "User signed up",
+          "security": [
+            {
+              "type": "openIdConnect",
+              "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+            }
+          ]
+        },
+        "notify-user-signed-up-trait-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-trait"
+        }
+      },
+      "messageTraits": {
+        "user-signed-up-trait-v1": {
+          "contentType": "application/json",
+          "name": "user-signed-up-v1",
+          "correlationId": {
+            "description": "Incoming message correlation-id",
+            "location": "$message.payload#/correlation-id"
+          },
+          "deprecated": true
+        },
+        "user-signed-up-trait-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-trait"
+        }
+      },
+      "replies": {
+        "notify-user-signed-up-reply-v1": {
+          "address": {
+            "$ref": "#/components/replyAddresses/notify-user-signed-up-reply-v1"
+          },
+          "channel": {
+            "$ref": "#/components/channels/user-notifications-v1"
+          },
+          "messages": [
+            {
+              "$ref": "#/components/messages/user-signed-up-v1"
+            }
+          ]
+        },
+        "notify-user-signed-up-reply-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply"
+        }
+      },
+      "replyAddresses": {
+        "notify-user-signed-up-reply-v1": {
+          "location": "$message.payload#/X-REPLY-TO",
+          "description": "Send operation result to this channel"
+        },
+        "notify-user-signed-up-reply-v2": {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply-address"
+        }
+      },
+      "serverBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "schemaRegistryUrl": "https://my-schema-registry.com",
+            "schemaRegistryVendor": "confluent"
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0",
+            "tenant": "contoso"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/server"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/server"
+          }
+        }
+      },
+      "channelBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic",
+            "topicConfiguration": {
+              "cleanup.policy": [ "compact", "delete" ],
+              "delete.retention.ms": 1000,
+              "max.message.bytes": 2000,
+              "retention.bytes": 10,
+              "retention.ms": 2000,
+              "confluent.key.schema.validation": true,
+              "confluent.key.subject.name.strategy": "schema",
+              "confluent.value.schema.validation": true,
+              "confluent.value.subject.name.strategy": "schema"
+            }
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0",
+            "compaction": 1000,
+            "deduplication": true,
+            "geo-replication": [ "us-west", "us-east" ],
+            "namespace": "ns1",
+            "persistence": "persistent",
+            "retention": {
+              "size": 1000,
+              "time": 15
+            },
+            "ttl": 360
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/channel"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/channel"
+          }
+        }
+      },
+      "operationBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "clientId": {
+              "type": "string",
+              "enum": [ "myClientId" ]
+            },
+            "groupId": {
+              "type": "string",
+              "enum": [ "myGroupId" ]
+            }
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/operation"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/operation"
+          }
+        }
+      },
+      "messageBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "key": {
+              "type": "string",
+              "enum": [ "myKey" ]
+            },
+            "schemaIdLocation": "header",
+            "schemaIdPayloadEncoding": "apicurio-new",
+            "schemaLookupStrategy": "TopicIdStrategy"
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/message"
+          },
+          "pulsar": {
+            "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/message"
+          }
+        }
+      },
+      "tags": {
+        "city": {
+          "name": "city",
+          "externalDocs": {
+            "url": "https://api.weather-forecast.am/docs",
+            "description": "Required information to integrate with API"
+          }
+        },
+        "district": {
+          "$ref": "https://catalog.lo/tags/district"
+        }
+      },
+      "externalDocs": {
+        "api-weather-forecast-v1": {
+          "url": "https://api.weather-forecast.am/docs",
+          "description": "Required information to integrate with API"
+        },
+        "api-weather-forecast-v2": {
+          "$ref": "https://catalog.lo/externalDocs/api-weather-forecast-v2"
+        }
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "schemas": {
+      "description": "An object to hold reusable Schema Object. If this is a Schema Object, then the schemaFormat will be assumed to be 'application/vnd.aai.asyncapi+json;version=asyncapi' where the version is equal to the AsyncAPI Version String",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/anySchema.json"
+        }
+      }
+    },
+    "servers": {
+      "description": "An object to hold reusable Server Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/server.json"
+          }
+        }
+      }
+    },
+    "channels": {
+      "description": "An object to hold reusable Channel Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channel.json"
+          }
+        }
+      }
+    },
+    "serverVariables": {
+      "description": "An object to hold reusable Server Variable Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariable.json"
+          }
+        }
+      }
+    },
+    "operations": {
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operation.json"
+          }
+        }
+      }
+    },
+    "messages": {
+      "description": "An object to hold reusable Message Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessage.json"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "description": "An object to hold reusable Security Scheme Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json"
+          }
+        }
+      }
+    },
+    "parameters": {
+      "description": "An object to hold reusable Parameter Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channelAddressParameter.json"
+          }
+        }
+      }
+    },
+    "correlationIds": {
+      "description": "An object to hold reusable Correlation ID Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageCorrelationId.json"
+          }
+        }
+      }
+    },
+    "operationTraits": {
+      "description": "An object to hold reusable Operation Trait Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationTrait.json"
+          }
+        }
+      }
+    },
+    "messageTraits": {
+      "description": "An object to hold reusable Message Trait Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageTrait.json"
+          }
+        }
+      }
+    },
+    "replies": {
+      "description": "An object to hold reusable Operation Reply Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReply.json"
+          }
+        }
+      }
+    },
+    "replyAddresses": {
+      "description": "An object to hold reusable Operation Reply Address Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReplyAddress.json"
+          }
+        }
+      }
+    },
+    "serverBindings": {
+      "description": "An object to hold reusable Server Bindings Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/serverBindings.json"
+        }
+      }
+    },
+    "channelBindings": {
+      "description": "An object to hold reusable Channel Bindings Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/channelBindings.json"
+        }
+      }
+    },
+    "operationBindings": {
+      "description": "An object to hold reusable Operation Bindings Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/operationBindings.json"
+        }
+      }
+    },
+    "messageBindings": {
+      "description": "An object to hold reusable Message Bindings Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/messageBindings.json"
+        }
+      }
+    },
+    "tags": {
+      "description": "An object to hold reusable Tag Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tag.json"
+          }
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "An object to hold reusable External Documentation Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[\\w\\d\\.\\-_]+$": {
+          "if": {
+            "required": [ "$ref" ],
+            "properties": {
+              "$ref": true
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          },
+          "else": {
+            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+          }
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

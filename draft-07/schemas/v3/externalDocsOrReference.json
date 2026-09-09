@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json",
+  "title": "AsyncAPI v3.0.0 - External Docs or Reference",
+  "description": "Generic type which MUST BE External Docs or Reference",
+  "type": "object",
+  "examples": [
+    {
+      "$ref": "https://api.weather-forecast.am/docs"
+    },
+    {
+      "url": "https://api.weather-forecast.am/docs",
+      "description": "Required information to integrate with API"
+    }
+  ],
+  "oneOf": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+    }
+  ]
+}

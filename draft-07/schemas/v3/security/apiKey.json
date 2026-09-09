@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/apiKey.json",
+  "title": "AsyncAPI v3 - API key Authentication",
+  "description": "Contains information about API key Authentication",
+  "examples": [
+    {
+      "type": "apiKey",
+      "in": "user"
+    },
+    {
+      "type": "apiKey",
+      "in": "password",
+      "description": "Simple security mechanism that uses a unique, long-lived alphanumeric string to identify and authorize an application or project making a request to an API"
+    }
+  ],
+  "type": "object",
+  "required": [ "type", "in" ],
+  "properties": {
+    "description": {
+      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the security scheme",
+      "const": "apiKey"
+    },
+    "in": {
+      "description": "The location of the API key",
+      "enum": [ "user", "password" ]
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

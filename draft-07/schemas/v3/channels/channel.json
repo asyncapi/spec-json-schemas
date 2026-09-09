@@ -1,0 +1,141 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/channel.json",
+  "title": "AsyncAPI v3.0.0 - Channel",
+  "description": "Describes a shared communication channel",
+  "examples": [
+    {
+      "address": "users.{userId}",
+      "title": "Users channel",
+      "summary": "Messages about user events",
+      "description": "This channel is used to exchange messages about users signing up",
+      "externalDocs": {
+        "$ref": "#/docs/user-events"
+      }
+    },
+    {
+      "address": "users.{userId}",
+      "title": "Users channel",
+      "summary": "Messages about user events",
+      "description": "This channel is used to exchange messages about users signing up",
+      "parameters": {
+        "userId": {
+          "description": "Id of the user",
+          "default": "0e822ca6-5311-4d4c-b409-993a1820e689",
+          "examples": [
+            "0e822ca6-5311-4d4c-b409-993a1820e689",
+            "381f5ddc-75c6-4c21-9ec1-3919ed345be9",
+            "70559d88-31a5-4ef2-8c34-7fbd04057ed5",
+            "c6dc0047-a90d-4efa-95e3-a272282934e0"
+          ],
+          "location": "$message.payload#/user/id",
+          "x-format": "uuid"
+        }
+      }
+    },
+    {
+      "address": "users.{userId}",
+      "title": "Users channel",
+      "summary": "Messages about user events",
+      "description": "This channel is used to exchange messages about users signing up",
+      "servers": [
+        {
+          "$ref": "#/servers/apache-pulsar"
+        },
+        {
+          "$ref": "#/servers/wss"
+        }
+      ],
+      "tags": [
+        {
+          "$ref": "#/tags/user.events"
+        },
+        {
+          "name": "secured-api",
+          "description": "Groups secured APIs"
+        }
+      ],
+      "externalDocs": {
+        "url": "https://docs.lo/user-events"
+      }
+    },
+    {
+      "address": "users.{userId}",
+      "title": "Users channel",
+      "summary": "Messages about user events",
+      "description": "This channel is used to exchange messages about users signing up",
+      "messages": {
+        "user.signedUp": {
+          "$ref": "#/components/user.signedUp"
+        },
+        "metric-message": {
+          "contentType": "application/json",
+          "name": "application-metric.v3",
+          "title": "Application Metric record v3",
+          "summary": "Use it to register single application metric",
+          "description": "Represent registrable application metric e.g. number of incoming messages",
+          "headers": {
+            "schemaFormat": "application/schema+json;version=draft-07",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "type": "object",
+              "properties": {
+                "correlation-id": {
+                  "description": "Incoming message correlation-id",
+                  "type": "string",
+                  "examples": [ "01ed08a1-8a7b-4882-85c5-c6e3815353d5" ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "address": {
+      "description": "An optional string representation of this channel's address. The address is typically the \"topic name\", \"routing key\", \"event type\", or \"path\". When `null` or absent, it MUST be interpreted as unknown. This is useful when the address is generated dynamically at runtime or can't be known upfront. It MAY contain Channel Address Expressions",
+      "type": [ "string", "null" ]
+    },
+    "messages": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessages.json"
+    },
+    "parameters": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channelAddressParameters.json"
+    },
+    "title": {
+      "description": "A human-friendly title for the channel",
+      "type": "string"
+    },
+    "summary": {
+      "description": "A brief summary of the channel",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the channel. CommonMark is allowed",
+      "type": "string"
+    },
+    "servers": {
+      "description": "The references of the servers on which this channel is available. If absent or empty then this channel must be available on all servers",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      }
+    },
+    "tags": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+    },
+    "externalDocs": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+    },
+    "bindings": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/channelBindings.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

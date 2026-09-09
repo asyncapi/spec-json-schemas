@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/info/contact.json",
+  "title": "AsyncAPI - Info Contact v3.0.0",
+  "description": "Contact information for the exposed API",
+  "examples": [
+    {
+      "name": "Weather Forecast"
+    },
+    {
+      "email": "feedback@weather-forecast.am"
+    },
+    {
+      "url": "https://weather-forecast.am"
+    },
+    {
+      "name": "Weather Forecast",
+      "email": "feedback@weather-forecast.am",
+      "url": "https://weather-forecast.am"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "email": {
+      "description": "The email address of the contact person/organization",
+      "type": "string",
+      "format": "email"
+    },
+    "name": {
+      "description": "The identifying name of the contact person/organization",
+      "type": "string"
+    },
+    "url": {
+      "description": "The URL pointing to the contact information",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

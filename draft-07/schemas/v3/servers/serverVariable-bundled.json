@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariable.json",
+  "title": "AsyncAPI v3.0.0 - Server Variable",
+  "description": "Representing a Server Variable for server URL template substitution",
+  "examples": [
+    {
+      "enum": [ "8883", "8884" ],
+      "default": "8883",
+      "description": "Ports application listening for",
+      "examples": [ "8883", "8884" ]
+    },
+    {
+      "enum": [ "8883", "8884" ],
+      "default": "8883",
+      "description": "Ports application listening for",
+      "examples": [ "8883", "8884" ],
+      "x-lb-strategy": "round-robin"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "enum": {
+      "description": "An enumeration of string values to be used if the substitution options are from a limited set",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "default": {
+      "description": "The default value to use for substitution, and to send, if an alternate value is not supplied",
+      "type": "string"
+    },
+    "description": {
+      "description": "An optional description for the server variable. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
+    "examples": {
+      "description": "An array of examples of the server variable",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

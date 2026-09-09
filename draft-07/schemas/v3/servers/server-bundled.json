@@ -1,0 +1,4671 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/servers/server.json",
+  "title": "AsyncAPI v3.0.0 - Server",
+  "description": "Represents a message broker, a server or any other kind of computer program capable of sending and/or receiving data",
+  "examples": [
+    {
+      "x-microcks-enabled": true,
+      "title": "Secured MQTT broker",
+      "summary": "MQTT 5.0 broker",
+      "description": "Staging secured MQTT 5.0 broker",
+      "host": "{username}.gigantic-server.com:{port}/{basePath}",
+      "protocol": "secure-mqtt",
+      "protocolVersion": "5",
+      "pathname": "/messages",
+      "variables": {
+        "username": {
+          "description": "This value is assigned by the service provider, in this example `gigantic-server.com`",
+          "default": "production"
+        },
+        "port": {
+          "enum": [ "8883", "14567" ],
+          "default": "8883"
+        },
+        "basePath": {
+          "$ref": "#/components/serverVariables/basePath"
+        }
+      },
+      "security": [
+        {
+          "type": "userPassword",
+          "description": "Sent inside the initial CONNECT message"
+        },
+        {
+          "$ref": "#/components/security/x.509"
+        }
+      ],
+      "tags": [
+        {
+          "name": "env:staging",
+          "description": "This environment is a replica of the production environment"
+        },
+        {
+          "$ref": "#/tags/secured"
+        }
+      ],
+      "externalDocs": {
+        "description": "Reade step by step guide to integrate with Gigantic server",
+        "url": "https://gigantic-server.com/docs/integrations"
+      }
+    }
+  ],
+  "type": "object",
+  "required": [ "host", "protocol" ],
+  "properties": {
+    "host": {
+      "description": "The server host name. It MAY include the port. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}",
+      "type": "string"
+    },
+    "pathname": {
+      "description": "The path to a resource in the host. This field supports Server Variables. Variable substitutions will be made when a variable is named in {braces}",
+      "type": "string"
+    },
+    "title": {
+      "description": "A human-friendly title for the server",
+      "type": "string"
+    },
+    "summary": {
+      "description": "A brief summary of the server",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the server. CommonMark is allowed",
+      "type": "string"
+    },
+    "protocol": {
+      "description": "The protocol this server supports for connection",
+      "type": "string"
+    },
+    "protocolVersion": {
+      "description": "An optional string describing the server. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
+    "variables": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariables.json"
+    },
+    "security": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json"
+    },
+    "tags": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+    },
+    "externalDocs": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+    },
+    "bindings": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/serverBindings.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "https://asyncapi.pavelon.dev/bindings/amqp/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp/0.1.0/server.json",
+      "title": "AMQP 0-9-1 - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in AMQP 0-9-1",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amqp/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp/0.2.0/server.json",
+      "title": "AMQP 0-9-1 - Server Binding v0.2.0",
+      "description": "Contains information about the server representation in AMQP 0-9-1",
+      "examples": [
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/server.json",
+      "title": "AMQP 0-9-1 - Server Binding",
+      "description": "Contains information about the server representation in AMQP 0-9-1",
+      "examples": [
+        {
+          "bindingVersion": "0.3.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.3.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amqp/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp/serverBinding.json",
+      "title": "AMQP 0-9-1 - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        },
+        {
+          "bindingVersion": "0.3.0"
+        },
+        {
+          "bindingVersion": "latest"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.2.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0", "0.3.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/schemas/reference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/reference.json",
+      "title": "AsyncAPI - Reference",
+      "description": "Allows referencing other components in the specification, internally and externally",
+      "examples": [
+        {
+          "$ref": "#/components/messages/user-signedup"
+        },
+        {
+          "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+        }
+      ],
+      "type": "object",
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amqp/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp/serverBindingOrReference.json",
+      "title": "AMQP 0-9-1 - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/amqp/my-amqp-server"
+        },
+        {
+          "bindingVersion": "0.3.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/amqp1/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp1/0.1.0/server.json",
+      "title": "AMQP 1.0 - Server Binding v0.1.0",
+      "description": "Contains information about the server binding representation in AMQP 1.0",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amqp1/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp1/serverBinding.json",
+      "title": "AMQP 1.0 - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/amqp1/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amqp1/serverBindingOrReference.json",
+      "title": "AMQP 1.0 - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/amqp/my-amqp-server"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/server.json",
+      "title": "Anypoint MQ - Server Binding v0.0.1",
+      "description": "Contains information about the server representation in Anypoint MQ",
+      "examples": [
+        {
+          "bindingVersion": "0.0.1"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.0.1", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/anypointmq/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/serverBinding.json",
+      "title": "Anypoint MQ - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.0.1"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/anypointmq/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/serverBindingOrReference.json",
+      "title": "Anypoint MQ - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/anypointmq/my-anypointmq-server"
+        },
+        {
+          "bindingVersion": "0.0.1"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.1.0/server.json",
+      "title": "Google Cloud Pub/Sub - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in Google Cloud Pub/Sub",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.2.0/server.json",
+      "title": "Google Cloud Pub/Sub - Server Binding v0.2.0",
+      "description": "Contains information about the server representation in Google Cloud Pub/Sub",
+      "examples": [
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBinding.json",
+      "title": "Google Cloud Pub/Sub - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.2.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.2.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBindingOrReference.json",
+      "title": "Mercure - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/googlepubsub/my-googlepubsub-server"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/http/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/http/0.1.0/server.json",
+      "title": "HTTP - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in HTTP",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/http/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/http/0.2.0/server.json",
+      "title": "HTTP - Server Binding v0.2.0",
+      "description": "Contains information about the server representation in HTTP",
+      "examples": [
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/http/0.3.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/http/0.3.0/server.json",
+      "title": "HTTP - Server Binding v0.3.0",
+      "description": "Contains information about the server representation in HTTP",
+      "examples": [
+        {
+          "bindingVersion": "0.3.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.3.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/http/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/http/serverBinding.json",
+      "title": "HTTP - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        },
+        {
+          "bindingVersion": "0.3.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/http/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/http/0.2.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/http/0.3.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0", "0.3.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/http/0.3.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/http/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/http/serverBindingOrReference.json",
+      "title": "HTTP - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/http/my-http-server"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/http/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/server.json",
+      "title": "IBM MQ - Server Binding v0.1.0",
+      "description": "Contains server connection information about the IBM MQ server, referred to as an IBM MQ queue manager",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0",
+          "cipherSpec": "ANY_TLS12_OR_HIGHER",
+          "groupId": "PRODCLSTR1"
+        },
+        {
+          "bindingVersion": "0.1.0",
+          "groupId": "PRODCLSTR1",
+          "ccdtQueueManagerName": "*",
+          "heartBeatInterval": 1000,
+          "multiEndpointServer": false
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        },
+        "ccdtQueueManagerName": {
+          "description": "The name of the IBM MQ queue manager to bind to in the CCDT file",
+          "default": "*",
+          "type": "string"
+        },
+        "cipherSpec": {
+          "description": "The recommended cipher specification used to establish a TLS connection between the client and the IBM MQ queue manager. More information on SSL/TLS cipher specifications supported by IBM MQ can be found on this page in the IBM MQ Knowledge Center",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Defines a logical group of IBM MQ server objects. This is necessary to specify multi-endpoint configurations used in high availability deployments. If omitted, the server object is not part of a group",
+          "type": "string"
+        },
+        "heartBeatInterval": {
+          "description": "The recommended value (in seconds) for the heartbeat sent to the queue manager during periods of inactivity. A value of zero means that no heart beats are sent. A value of 1 means that the client will use the value defined by the queue manager. More information on heart beat interval can be found on this page in the IBM MQ Knowledge Center",
+          "default": 300,
+          "type": "integer",
+          "maximum": 999999,
+          "minimum": 0
+        },
+        "multiEndpointServer": {
+          "description": "If 'multiEndpointServer' is 'true' then multiple connections can be workload balanced and applications should not make assumptions as to where messages are processed. Where message ordering, or affinity to specific message resources is necessary, a single endpoint ('multiEndpointServer' = 'false') may be required",
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBinding.json",
+      "title": "IBM MQ - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0",
+          "groupId": "PRODCLSTR1",
+          "ccdtQueueManagerName": "*",
+          "heartBeatInterval": 1000,
+          "multiEndpointServer": false
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBindingOrReference.json",
+      "title": "IBM MQ - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/ibmmq/my-ibmmq-server"
+        },
+        {
+          "bindingVersion": "0.1.0",
+          "groupId": "PRODCLSTR1",
+          "ccdtQueueManagerName": "*",
+          "heartBeatInterval": 1000,
+          "multiEndpointServer": false
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json",
+      "title": "JMS - Server Binding v0.0.1",
+      "description": "Contains configuration for describing a JMS broker",
+      "examples": [
+        {
+          "properties": [
+            {
+              "name": "disableTimeStampsByDefault",
+              "value": false
+            }
+          ],
+          "bindingVersion": "0.0.1",
+          "clientID": "my-application-1",
+          "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+        }
+      ],
+      "type": "object",
+      "required": [ "jmsConnectionFactory" ],
+      "properties": {
+        "properties": {
+          "description": "Additional properties to set on the JMS ConnectionFactory implementation for the JMS Provider",
+          "type": "array",
+          "items": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json#/definitions/property"
+          }
+        },
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.0.1", "latest" ]
+        },
+        "clientID": {
+          "description": "A client identifier for applications that use this JMS connection factory. If the Client ID Policy is set to 'Restricted' (the default), then configuring a Client ID on the ConnectionFactory prevents more than one JMS client from using a connection from this factory",
+          "type": "string"
+        },
+        "jmsConnectionFactory": {
+          "description": "The classname of the ConnectionFactory implementation for the JMS Provider",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false,
+      "definitions": {
+        "property": {
+          "type": "object",
+          "required": [ "name", "value" ],
+          "properties": {
+            "name": {
+              "description": "The name of a property",
+              "type": "string"
+            },
+            "value": {
+              "description": "The name of a property",
+              "type": [ "string", "boolean", "number", "null" ]
+            }
+          }
+        }
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/jms/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/jms/serverBinding.json",
+      "title": "JMS - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "properties": [
+            {
+              "name": "disableTimeStampsByDefault",
+              "value": false
+            }
+          ],
+          "bindingVersion": "0.0.1",
+          "clientID": "my-application-1",
+          "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.0.1"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.0.1"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/jms/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/jms/serverBindingOrReference.json",
+      "title": "JMS - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/jms/my-jms-server"
+        },
+        {
+          "properties": [
+            {
+              "name": "disableTimeStampsByDefault",
+              "value": false
+            }
+          ],
+          "bindingVersion": "0.0.1",
+          "clientID": "my-application-1",
+          "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/jms/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/server.json",
+      "title": "Apache Kafka - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in Apache Kafka",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.3.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.3.0/server.json",
+      "title": "Apache Kafka - Server Binding v0.3.0",
+      "description": "Contains server connection information to an Apache Kafka broker",
+      "examples": [
+        {
+          "bindingVersion": "0.3.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.3.0", "latest" ]
+        },
+        "schemaRegistryUrl": {
+          "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)",
+          "type": "string"
+        },
+        "schemaRegistryVendor": {
+          "description": "The vendor of the Schema Registry and Kafka serdes library that should be used",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/server.json",
+      "title": "Apache Kafka - Server Binding v0.4.0",
+      "description": "Contains server connection information to an Apache Kafka broker",
+      "examples": [
+        {
+          "bindingVersion": "0.4.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.4.0", "latest" ]
+        },
+        "schemaRegistryUrl": {
+          "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)",
+          "type": "string"
+        },
+        "schemaRegistryVendor": {
+          "description": "The vendor of the Schema Registry and Kafka serdes library that should be used",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/server.json",
+      "title": "Apache Kafka - Server Binding v0.5.0",
+      "description": "Contains server connection information to a Kafka broker",
+      "examples": [
+        {
+          "bindingVersion": "0.5.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.5.0", "latest" ]
+        },
+        "schemaRegistryUrl": {
+          "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)",
+          "type": "string"
+        },
+        "schemaRegistryVendor": {
+          "description": "The vendor of the Schema Registry and Kafka serdes library that should be used",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBinding.json",
+      "title": "Apache Kafka - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.3.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        },
+        {
+          "bindingVersion": "0.4.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        },
+        {
+          "bindingVersion": "0.5.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.3.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.4.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.5.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBindingOrReference.json",
+      "title": "Apache Kafka - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/apache-kafka/my-apache-kafka-server"
+        },
+        {
+          "bindingVersion": "0.5.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/mercure/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mercure/0.1.0/server.json",
+      "title": "Mercure - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in Mercure",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/mercure/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mercure/serverBinding.json",
+      "title": "Mercure - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/mercure/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mercure/serverBindingOrReference.json",
+      "title": "Mercure - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/mercure/my-mercure-server"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/0.1.0/server.json",
+      "title": "MQTT - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in MQTT",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          }
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        },
+        "cleanSession": {
+          "description": "Whether to create a persistent connection or not. When 'false', the connection will be persistent",
+          "type": "boolean"
+        },
+        "clientId": {
+          "description": "The client identifier",
+          "type": "string"
+        },
+        "keepAlive": {
+          "description": "Interval in seconds of the longest period of time the broker and the client can endure without sending a message",
+          "type": "integer"
+        },
+        "lastWill": {
+          "description": "Last Will and Testament configuration",
+          "type": "object",
+          "properties": {
+            "message": {
+              "description": "Last Will message",
+              "type": "string"
+            },
+            "qos": {
+              "description": "Defines how hard the broker/client will try to ensure that the Last Will and Testament message is received. Its value MUST be either 0, 1 or 2",
+              "enum": [ 0, 1, 2 ]
+            },
+            "retain": {
+              "description": "Whether the broker should retain the Last Will and Testament message or not",
+              "type": "boolean"
+            },
+            "topic": {
+              "description": "The topic where the Last Will and Testament message will be sent",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "http://json-schema.org/draft-07/schema#": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "http://json-schema.org/draft-07/schema#",
+      "title": "Core schema meta-schema",
+      "default": true,
+      "type": [ "object", "boolean" ],
+      "properties": {
+        "$id": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "$schema": {
+          "type": "string",
+          "format": "uri"
+        },
+        "$ref": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "$comment": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "default": true,
+        "readOnly": {
+          "default": false,
+          "type": "boolean"
+        },
+        "writeOnly": {
+          "default": false,
+          "type": "boolean"
+        },
+        "examples": {
+          "type": "array",
+          "items": true
+        },
+        "multipleOf": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maximum": {
+          "type": "number"
+        },
+        "exclusiveMaximum": {
+          "type": "number"
+        },
+        "minimum": {
+          "type": "number"
+        },
+        "exclusiveMinimum": {
+          "type": "number"
+        },
+        "maxLength": {
+          "$ref": "#/definitions/nonNegativeInteger"
+        },
+        "minLength": {
+          "$ref": "#/definitions/nonNegativeIntegerDefault0"
+        },
+        "pattern": {
+          "type": "string",
+          "format": "regex"
+        },
+        "additionalItems": {
+          "$ref": "#"
+        },
+        "items": {
+          "default": true,
+          "anyOf": [
+            {
+              "$ref": "#"
+            },
+            {
+              "$ref": "#/definitions/schemaArray"
+            }
+          ]
+        },
+        "maxItems": {
+          "$ref": "#/definitions/nonNegativeInteger"
+        },
+        "minItems": {
+          "$ref": "#/definitions/nonNegativeIntegerDefault0"
+        },
+        "uniqueItems": {
+          "default": false,
+          "type": "boolean"
+        },
+        "contains": {
+          "$ref": "#"
+        },
+        "maxProperties": {
+          "$ref": "#/definitions/nonNegativeInteger"
+        },
+        "minProperties": {
+          "$ref": "#/definitions/nonNegativeIntegerDefault0"
+        },
+        "required": {
+          "$ref": "#/definitions/stringArray"
+        },
+        "additionalProperties": {
+          "$ref": "#"
+        },
+        "definitions": {
+          "default": {},
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#"
+          }
+        },
+        "properties": {
+          "default": {},
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#"
+          }
+        },
+        "patternProperties": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "format": "regex"
+          },
+          "additionalProperties": {
+            "$ref": "#"
+          }
+        },
+        "dependencies": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "$ref": "#"
+              },
+              {
+                "$ref": "#/definitions/stringArray"
+              }
+            ]
+          }
+        },
+        "propertyNames": {
+          "$ref": "#"
+        },
+        "const": true,
+        "enum": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": true
+        },
+        "type": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/simpleTypes"
+            },
+            {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/definitions/simpleTypes"
+              }
+            }
+          ]
+        },
+        "format": {
+          "type": "string"
+        },
+        "contentMediaType": {
+          "type": "string"
+        },
+        "contentEncoding": {
+          "type": "string"
+        },
+        "if": {
+          "$ref": "#"
+        },
+        "then": {
+          "$ref": "#"
+        },
+        "else": {
+          "$ref": "#"
+        },
+        "allOf": {
+          "$ref": "#/definitions/schemaArray"
+        },
+        "anyOf": {
+          "$ref": "#/definitions/schemaArray"
+        },
+        "oneOf": {
+          "$ref": "#/definitions/schemaArray"
+        },
+        "not": {
+          "$ref": "#"
+        }
+      },
+      "definitions": {
+        "schemaArray": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#"
+          }
+        },
+        "nonNegativeInteger": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "nonNegativeIntegerDefault0": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/nonNegativeInteger"
+            },
+            {
+              "default": 0
+            }
+          ]
+        },
+        "simpleTypes": {
+          "enum": [
+            "array",
+            "boolean",
+            "integer",
+            "null",
+            "number",
+            "object",
+            "string"
+          ]
+        },
+        "stringArray": {
+          "default": [],
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json",
+      "title": "AsyncAPI - Extended Documentation v3.0.0",
+      "description": "Allows referencing an external resource for extended documentation",
+      "examples": [
+        {
+          "url": "https://api.weather-forecast.am/docs"
+        },
+        {
+          "url": "https://api.weather-forecast.am/docs",
+          "description": "Required information to integrate with API"
+        }
+      ],
+      "type": "object",
+      "required": [ "url" ],
+      "properties": {
+        "description": {
+          "description": "A short description of the target documentation. CommonMark syntax can be used for rich text representation",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL for the target documentation. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/schema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/schema.json",
+      "title": "AsyncAPI - Data Types JSON Schema",
+      "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays. This object is a superset of the JSON Schema Specification Draft 07. The empty schema (which allows any instance to validate) MAY be represented by the boolean value true and a schema which allows no instance to validate MAY be represented by the boolean value false",
+      "examples": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/arrays.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/complex-object.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/conditional-validation-if-else.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/enumerated-values.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/person.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/regex-pattern.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/arrays.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/complex-object.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/conditional-validation-if-else.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/enumerated-values.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/person.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/regex-pattern.schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/draft-07-core-schema-meta-schema.json"
+        }
+      ],
+      "allOf": [
+        {
+          "$ref": "http://json-schema.org/draft-07/schema#"
+        },
+        {
+          "properties": {
+            "deprecated": {
+              "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage. Default value is false",
+              "default": false,
+              "type": "boolean"
+            },
+            "allOf": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              }
+            },
+            "anyOf": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              }
+            },
+            "oneOf": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              }
+            },
+            "not": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            },
+            "contains": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            },
+            "items": {
+              "default": {},
+              "anyOf": [
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+                },
+                {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+                  }
+                }
+              ]
+            },
+            "propertyNames": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            },
+            "properties": {
+              "default": {},
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              }
+            },
+            "patternProperties": {
+              "default": {},
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              }
+            },
+            "additionalProperties": {
+              "default": {},
+              "anyOf": [
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+                },
+                {
+                  "type": "boolean"
+                }
+              ]
+            },
+            "discriminator": {
+              "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. The property name used MUST be defined at this schema and it MUST be in the required property list. When used, the value MUST be the name of this schema or any schema that inherits it. See Composition and Inheritance for more details",
+              "type": "string"
+            },
+            "externalDocs": {
+              "oneOf": [
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                },
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+                }
+              ]
+            }
+          },
+          "patternProperties": {
+            "^x-[\\w\\d\\.\\x2d_]+$": true
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/server.json",
+      "title": "MQTT - Server Binding v0.2.0",
+      "description": "Contains information about the server representation in MQTT",
+      "examples": [
+        {
+          "bindingVersion": "0.2.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          },
+          "maximumPacketSize": 1024,
+          "sessionExpiryInterval": 120
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          },
+          "maximumPacketSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          },
+          "maximumPacketSize": {
+            "$ref": "#/maximumPacketSize"
+          },
+          "sessionExpiryInterval": {
+            "$ref": "#/sessionExpiryInterval"
+          }
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        },
+        "cleanSession": {
+          "description": "Whether to create a persistent connection or not. When 'false', the connection will be persistent. This is called clean start in MQTTv5",
+          "type": "boolean"
+        },
+        "clientId": {
+          "description": "The client identifier",
+          "type": "string"
+        },
+        "keepAlive": {
+          "description": "Interval in seconds of the longest period of time the broker and the client can endure without sending a message",
+          "type": "integer"
+        },
+        "lastWill": {
+          "description": "Last Will and Testament configuration",
+          "type": "object",
+          "properties": {
+            "message": {
+              "description": "Last Will message",
+              "type": "string"
+            },
+            "qos": {
+              "description": "Defines how hard the broker/client will try to ensure that the Last Will and Testament message is received. Its value MUST be either 0, 1 or 2",
+              "enum": [ 0, 1, 2 ]
+            },
+            "retain": {
+              "description": "Whether the broker should retain the Last Will and Testament message or not",
+              "type": "boolean"
+            },
+            "topic": {
+              "description": "The topic where the Last Will and Testament message will be sent",
+              "type": "string"
+            }
+          }
+        },
+        "maximumPacketSize": {
+          "description": "Number of bytes or a Schema Object representing the Maximum Packet Size the Client is willing to accept",
+          "oneOf": [
+            {
+              "type": "integer",
+              "maximum": 4294967295,
+              "minimum": 1
+            },
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            }
+          ]
+        },
+        "sessionExpiryInterval": {
+          "description": "Interval time in seconds or a Schema Object containing the definition of the interval.  The broker maintains a session for a disconnected client until this interval expires",
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            }
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBinding.json",
+      "title": "MQTT - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          }
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          },
+          "maximumPacketSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBindingOrReference.json",
+      "title": "MQTT - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/mqtt/my-mqtt-server"
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          },
+          "maximumPacketSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt5/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt5/0.1.0/server.json",
+      "title": "MQTT v5.0 - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in MQTT v5.0",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt5/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt5/0.2.0/server.json",
+      "title": "MQTT v5.0 - Server Binding v0.2.0",
+      "description": "Contains information about the server representation in MQTT5 v5.0",
+      "examples": [
+        {
+          "bindingVersion": "0.2.0",
+          "sessionExpiryInterval": 60
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 100
+          }
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "sessionExpiryInterval": {
+            "$ref": "#/sessionExpiryInterval"
+          }
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        },
+        "sessionExpiryInterval": {
+          "description": "Session Expiry Interval in seconds or a Schema Object containing the definition of the interval",
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 0
+            },
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            }
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\-\\_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBinding.json",
+      "title": "MQTT v5.0 - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 100
+          }
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/0.2.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/0.2.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBindingOrReference.json",
+      "title": "MQTT v5.0 - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/mqtt5/my-mqtt5-server"
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 100
+          }
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/nats/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/nats/0.1.0/server.json",
+      "title": "NATS - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in NATS",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/nats/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/nats/serverBinding.json",
+      "title": "NATS - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/nats/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/nats/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/nats/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/nats/serverBindingOrReference.json",
+      "title": "NATS - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/nats/my-nats-server"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/nats/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/server.json",
+      "title": "Apache Pulsar - Server Binding v0.1.0",
+      "description": "Contains server information of Pulsar broker, which covers cluster and tenant admin configuration",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0",
+          "tenant": "contoso"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        },
+        "tenant": {
+          "description": "The pulsar tenant. If omitted, 'public' MUST be assumed",
+          "default": "public",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBinding.json",
+      "title": "Apache Pulsar - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0",
+          "tenant": "contoso"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBindingOrReference.json",
+      "title": "Apache Pulsar - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/apache-pulsar/my-apache-pulsar-server"
+        },
+        {
+          "bindingVersion": "0.1.0",
+          "tenant": "contoso"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/redis/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/redis/0.1.0/server.json",
+      "title": "Redis - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in Redis",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/redis/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/redis/serverBinding.json",
+      "title": "Redis - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/redis/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/redis/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/redis/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/redis/serverBindingOrReference.json",
+      "title": "Redis - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/redis/my-redis-server"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/redis/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.1.0/server.json",
+      "title": "Amazon SNS - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in Amazon SNS",
+      "examples": [
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json",
+      "title": "Amazon SNS - Server Binding v0.2.0",
+      "description": "Contains information about the server representation in Amazon SNS",
+      "examples": [
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBinding.json",
+      "title": "Amazon SNS - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBindingOrReference.json",
+      "title": "Amazon SNS - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/amazon-sns/my-sns-topic"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/solace/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/solace/0.1.0/server.json",
+      "title": "Solace - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in Solace",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/solace/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/solace/0.2.0/server.json",
+      "title": "Solace - Server Binding v0.2.0",
+      "description": "Contains server connection information about the Solace broker",
+      "examples": [
+        {
+          "bindingVersion": "0.2.0",
+          "msvVpn": "ProdVPN"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        },
+        "msvVpn": {
+          "description": "The name of the Virtual Private Network to connect to on the Solace broker",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/solace/0.3.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/solace/0.3.0/server.json",
+      "title": "Solace - Server Binding v0.3.0",
+      "description": "Contains server connection information about the Solace broker",
+      "examples": [
+        {
+          "bindingVersion": "0.3.0",
+          "msgVpn": "ProdVPN"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.3.0", "latest" ]
+        },
+        "msgVpn": {
+          "description": "The name of the Virtual Private Network to connect to on the Solace broker",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/server.json",
+      "title": "Solace - Server Binding v0.4.0",
+      "description": "Contains server connection information about the Solace broker",
+      "examples": [
+        {
+          "bindingVersion": "0.4.0",
+          "msgVpn": "ProdVPN",
+          "clientName": "production"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.4.0", "latest" ]
+        },
+        "clientName": {
+          "description": "A unique client name to use to register to the appliance. If specified, it must be a valid Topic name, and a maximum of 160 bytes in length when encoded as UTF-8",
+          "type": "string",
+          "maxLength": 160,
+          "minLength": 1
+        },
+        "msgVpn": {
+          "description": "The name of the Virtual Private Network to connect to on the Solace broker",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/solace/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/solace/serverBinding.json",
+      "title": "Solace - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.2.0",
+          "msvVpn": "ProdVPN"
+        },
+        {
+          "bindingVersion": "0.3.0",
+          "msgVpn": "ProdVPN"
+        },
+        {
+          "bindingVersion": "0.4.0",
+          "msgVpn": "ProdVPN",
+          "clientName": "production"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.2.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.3.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.4.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0", "0.3.0", "0.4.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/solace/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/solace/serverBindingOrReference.json",
+      "title": "Solace - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/solace/my-solace-server"
+        },
+        {
+          "bindingVersion": "0.4.0",
+          "msgVpn": "ProdVPN",
+          "clientName": "production"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/server.json",
+      "title": "Amazon SQS - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in Amazon SQS",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/server.json",
+      "title": "Amazon SQS - Server Binding v0.2.0",
+      "description": "Contains information about the server representation in Amazon SQS",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "0.2.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.2.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/server.json",
+      "title": "Amazon SQS - Server Binding v0.3.0",
+      "description": "Contains information about the server representation in Amazon SQS",
+      "examples": [
+        {
+          "bindingVersion": "0.3.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.3.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sqs/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/serverBinding.json",
+      "title": "Amazon SQS - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        },
+        {
+          "bindingVersion": "0.2.0"
+        },
+        {
+          "bindingVersion": "0.3.0"
+        },
+        {
+          "bindingVersion": "latest"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.2.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/server.json"
+          }
+        },
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.3.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "enum": [ "0.1.0", "0.2.0", "0.3.0" ]
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/amazon-sqs/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/serverBindingOrReference.json",
+      "title": "Amazon SQS - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/amazon-sqs/my-sqs-server"
+        },
+        {
+          "bindingVersion": "0.3.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/stomp/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/stomp/0.1.0/server.json",
+      "title": "STOMP - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in STOMP",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/stomp/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/stomp/serverBinding.json",
+      "title": "STOMP - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/stomp/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/stomp/serverBindingOrReference.json",
+      "title": "STOMP - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/stomp/my-stomp-server"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/websockets/0.1.0/server.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/websockets/0.1.0/server.json",
+      "title": "WebSockets - Server Binding v0.1.0",
+      "description": "Contains information about the server representation in WebSocket",
+      "examples": [
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "bindingVersion": {
+          "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+          "default": "latest",
+          "enum": [ "0.1.0", "latest" ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/bindings/websockets/serverBinding.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/websockets/serverBinding.json",
+      "title": "WebSockets - Server Binding",
+      "description": "Describes protocol-specific definitions for a server",
+      "examples": [
+        {},
+        {
+          "bindingVersion": "latest"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "allOf": [
+        {
+          "if": {
+            "required": [ "bindingVersion" ],
+            "properties": {
+              "bindingVersion": {
+                "const": "0.1.0"
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/0.1.0/server.json"
+          }
+        },
+        {
+          "description": "If bindingVersion is omitted, than use latest JSON Schema",
+          "if": {
+            "not": {
+              "required": [ "bindingVersion" ],
+              "properties": {
+                "bindingVersion": {
+                  "const": "0.1.0"
+                }
+              }
+            }
+          },
+          "then": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/0.1.0/server.json"
+          }
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/bindings/websockets/serverBindingOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/websockets/serverBindingOrReference.json",
+      "title": "WebSockets - Server Binding or Reference",
+      "description": "Describes protocol-specific definitions for a server or it's reference",
+      "examples": [
+        {
+          "$ref": "#/bindings/amqp/my-amqp-server"
+        },
+        {
+          "bindingVersion": "0.1.0"
+        }
+      ],
+      "type": "object",
+      "if": {
+        "required": [ "$ref" ],
+        "properties": {
+          "$ref": true
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      },
+      "else": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/serverBinding.json"
+      }
+    },
+    "https://asyncapi.pavelon.dev/bindings/serverBindings.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/bindings/serverBindings.json",
+      "title": "AsyncAPI - server Bindings",
+      "description": "Map describing protocol-specific definitions for an server",
+      "examples": [
+        {
+          "sns": {
+            "$ref": "#/bindings/amazon-sns/my-sns-server"
+          },
+          "sqs": {
+            "$ref": "#/bindings/amazon-sqs/my-sqs-server"
+          },
+          "amqp": {
+            "$ref": "#/bindings/amqp/my-amqp-server"
+          },
+          "amqp1": {
+            "$ref": "#/bindings/amqp1/my-amqp1-server"
+          },
+          "anypointmq": {
+            "$ref": "#/bindings/anypointmq/my-anypointmq-server"
+          },
+          "kafka": {
+            "$ref": "#/bindings/apache-kafka/my-apache-kafka-server"
+          },
+          "pulsar": {
+            "$ref": "#/bindings/apache-pulsar/my-apache-pulsar-server"
+          },
+          "googlepubsub": {
+            "$ref": "#/bindings/googlepubsub/my-googlepubsub-server"
+          },
+          "http": {
+            "$ref": "#/bindings/http/my-http-server"
+          },
+          "ibmmq": {
+            "$ref": "#/bindings/ibmmq/my-ibmmq-server"
+          },
+          "jms": {
+            "$ref": "#/bindings/jms/my-jms-server"
+          },
+          "mercure": {
+            "$ref": "#/bindings/mercure/my-mercure-server"
+          },
+          "mqtt": {
+            "$ref": "#/bindings/mqtt/my-mqtt-server"
+          },
+          "mqtt5": {
+            "$ref": "#/bindings/mqtt5/my-mqtt5-server"
+          },
+          "nats": {
+            "$ref": "#/bindings/nats/my-nats-server"
+          },
+          "redis": {
+            "$ref": "#/bindings/redis/my-redis-server"
+          },
+          "solace": {
+            "$ref": "#/bindings/solace/my-solace-server"
+          },
+          "stomp": {
+            "$ref": "#/bindings/stomp/my-stomp-server"
+          },
+          "ws": {
+            "$ref": "#/bindings/websockets/my-websockets-server"
+          }
+        },
+        {
+          "sns": {
+            "bindingVersion": "0.2.0"
+          },
+          "sqs": {
+            "bindingVersion": "0.3.0"
+          },
+          "amqp": {
+            "bindingVersion": "0.3.0"
+          },
+          "amqp1": {
+            "bindingVersion": "0.1.0"
+          },
+          "anypointmq": {
+            "bindingVersion": "0.0.1"
+          },
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "schemaRegistryUrl": "https://my-schema-registry.com",
+            "schemaRegistryVendor": "confluent"
+          },
+          "pulsar": {
+            "bindingVersion": "0.1.0",
+            "tenant": "contoso"
+          },
+          "googlepubsub": {
+            "bindingVersion": "0.2.0"
+          },
+          "http": {
+            "bindingVersion": "0.3.0"
+          },
+          "ibmmq": {
+            "bindingVersion": "0.1.0",
+            "groupId": "PRODCLSTR1",
+            "ccdtQueueManagerName": "*",
+            "heartBeatInterval": 1000,
+            "multiEndpointServer": false
+          },
+          "jms": {
+            "properties": [
+              {
+                "name": "disableTimeStampsByDefault",
+                "value": false
+              }
+            ],
+            "bindingVersion": "0.0.1",
+            "clientID": "my-application-1",
+            "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+          },
+          "mercure": {
+            "bindingVersion": "0.1.0"
+          },
+          "mqtt": {
+            "bindingVersion": "0.2.0",
+            "cleanSession": true,
+            "clientId": "guest",
+            "keepAlive": 60,
+            "lastWill": {
+              "message": "Guest gone offline.",
+              "qos": 2,
+              "retain": false,
+              "topic": "/last-wills"
+            },
+            "maximumPacketSize": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sessionExpiryInterval": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "mqtt5": {
+            "bindingVersion": "0.2.0",
+            "sessionExpiryInterval": {
+              "type": "integer",
+              "minimum": 100
+            }
+          },
+          "nats": {
+            "bindingVersion": "0.1.0"
+          },
+          "redis": {
+            "bindingVersion": "0.1.0"
+          },
+          "solace": {
+            "bindingVersion": "0.4.0",
+            "msgVpn": "ProdVPN",
+            "clientName": "production"
+          },
+          "stomp": {
+            "bindingVersion": "0.1.0"
+          },
+          "ws": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "sns": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBindingOrReference.json"
+        },
+        "sqs": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/serverBindingOrReference.json"
+        },
+        "amqp": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/serverBindingOrReference.json"
+        },
+        "amqp1": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/serverBindingOrReference.json"
+        },
+        "anypointmq": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/serverBindingOrReference.json"
+        },
+        "kafka": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBindingOrReference.json"
+        },
+        "pulsar": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBindingOrReference.json"
+        },
+        "googlepubsub": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBindingOrReference.json"
+        },
+        "http": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/http/serverBindingOrReference.json"
+        },
+        "ibmmq": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBindingOrReference.json"
+        },
+        "jms": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/jms/serverBindingOrReference.json"
+        },
+        "mercure": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/serverBindingOrReference.json"
+        },
+        "mqtt": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBindingOrReference.json"
+        },
+        "mqtt5": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBindingOrReference.json"
+        },
+        "nats": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/nats/serverBindingOrReference.json"
+        },
+        "redis": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/redis/serverBindingOrReference.json"
+        },
+        "solace": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/solace/serverBindingOrReference.json"
+        },
+        "stomp": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/serverBindingOrReference.json"
+        },
+        "ws": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/serverBindingOrReference.json"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json",
+      "title": "AsyncAPI v3.0.0 - External Docs or Reference",
+      "description": "Generic type which MUST BE External Docs or Reference",
+      "examples": [
+        {
+          "$ref": "https://api.weather-forecast.am/docs"
+        },
+        {
+          "url": "https://api.weather-forecast.am/docs",
+          "description": "Required information to integrate with API"
+        }
+      ],
+      "type": "object",
+      "oneOf": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/userPassword.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/userPassword.json",
+      "title": "AsyncAPI v3 - user/password Authentication",
+      "description": "Contains information about user/password Authentication",
+      "examples": [
+        {
+          "type": "userPassword"
+        },
+        {
+          "type": "userPassword",
+          "description": "Security process that verifies a user's identity using a unique username and a secret password, involving registration, secure storage via hashing, and login verification"
+        }
+      ],
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "const": "userPassword"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/apiKey.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/apiKey.json",
+      "title": "AsyncAPI v3 - API key Authentication",
+      "description": "Contains information about API key Authentication",
+      "examples": [
+        {
+          "type": "apiKey",
+          "in": "user"
+        },
+        {
+          "type": "apiKey",
+          "in": "password",
+          "description": "Simple security mechanism that uses a unique, long-lived alphanumeric string to identify and authorize an application or project making a request to an API"
+        }
+      ],
+      "type": "object",
+      "required": [ "type", "in" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "apiKey"
+        },
+        "in": {
+          "description": "The location of the API key",
+          "enum": [ "user", "password" ]
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/X509.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/X509.json",
+      "title": "AsyncAPI v3 - X.509 Authentication",
+      "description": "Contains information about X.509 Authentication",
+      "examples": [
+        {
+          "type": "X509"
+        },
+        {
+          "type": "X509",
+          "description": "Structured digital document format defined by RFC 5280 that securely binds a public key to an entity's identity using a trusted digital signature"
+        }
+      ],
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "const": "X509"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/symmetricEncryption.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/symmetricEncryption.json",
+      "title": "AsyncAPI v3 - Symmetric Encryption Authentication",
+      "description": "Contains information about Symmetric Encryption Authentication",
+      "examples": [
+        {
+          "type": "symmetricEncryption"
+        },
+        {
+          "type": "symmetricEncryption",
+          "description": "Uses a single shared secret key to both scramble/unscramble data and verify who sent it"
+        }
+      ],
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "const": "symmetricEncryption"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/asymmetricEncryption.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/asymmetricEncryption.json",
+      "title": "AsyncAPI v3 - Asymmetric Encryption Authentication",
+      "description": "Contains information about Asymmetric Encryption Authentication",
+      "examples": [
+        {
+          "type": "asymmetricEncryption"
+        },
+        {
+          "type": "asymmetricEncryption",
+          "description": "Provides authentication by using a public and private key pair to create digital signatures and verify user or device identity"
+        }
+      ],
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "asymmetricEncryption"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/http/nonBearerHTTPSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/http/nonBearerHTTPSecuritySchema.json",
+      "title": "AsyncAPI v3 - HTTP based Authentication",
+      "description": "Contains information about HTTP based Authentication",
+      "examples": [
+        {
+          "type": "http",
+          "description": "HTTP - Basic",
+          "scheme": "basic"
+        }
+      ],
+      "type": "object",
+      "not": {
+        "type": "object",
+        "properties": {
+          "scheme": {
+            "description": "A short description for security scheme",
+            "const": "bearer"
+          }
+        }
+      },
+      "required": [ "scheme", "type" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "http"
+        },
+        "scheme": {
+          "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/http/bearerHTTPSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/http/bearerHTTPSecuritySchema.json",
+      "title": "AsyncAPI v3 - HTTP Bearer Authentication",
+      "description": "Contains information about HTTP Bearer Authentication",
+      "examples": [
+        {
+          "type": "http",
+          "description": "HTTP - Bearer",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      ],
+      "type": "object",
+      "required": [ "type", "scheme" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "http"
+        },
+        "bearerFormat": {
+          "description": "A hint to the client to identify how the bearer token is formatted. Bearer tokens are usually generated by an authorization server, so this information is primarily for documentation purposes",
+          "type": "string"
+        },
+        "scheme": {
+          "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235",
+          "const": "bearer"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/http/apiKeyHTTPSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/http/apiKeyHTTPSecuritySchema.json",
+      "title": "AsyncAPI v3 - HTTP API Key Authentication",
+      "description": "Contains information about HTTP API Key Authentication",
+      "examples": [
+        {
+          "type": "httpApiKey",
+          "description": "HTTP - API Key",
+          "name": "api_key",
+          "in": "header"
+        },
+        {
+          "type": "httpApiKey",
+          "description": "HTTP - API Key",
+          "name": "api_key",
+          "in": "query"
+        },
+        {
+          "type": "httpApiKey",
+          "description": "HTTP - API Key",
+          "name": "api_key",
+          "in": "cookie"
+        }
+      ],
+      "type": "object",
+      "required": [ "type", "name", "in" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "httpApiKey"
+        },
+        "in": {
+          "description": "The location of the API key",
+          "enum": [ "header", "query", "cookie" ]
+        },
+        "name": {
+          "description": "The name of the header, query or cookie parameter to be used",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/http/httpSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/http/httpSecuritySchema.json",
+      "title": "AsyncAPI v3 - HTTP Authentication Variants",
+      "description": "Contains information about available HTTP authentication variants",
+      "examples": [
+        {
+          "type": "httpApiKey",
+          "description": "HTTP - API Key",
+          "name": "api_key",
+          "in": "header"
+        },
+        {
+          "type": "http",
+          "description": "HTTP - Basic",
+          "scheme": "basic"
+        },
+        {
+          "type": "http",
+          "description": "HTTP - Bearer",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      ],
+      "oneOf": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/nonBearerHTTPSecuritySchema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/bearerHTTPSecuritySchema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/apiKeyHTTPSecuritySchema.json"
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2Scopes.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2Scopes.json",
+      "title": "AsyncAPI v3 - OAuth2 Scopes",
+      "description": "Scopes let you specify exactly what type of access you need. Scopes limit access for OAuth tokens. They do not grant any additional permission beyond that which the user already has",
+      "examples": [
+        {
+          "write:pets": "modify pets in your account",
+          "read:pets": "read your pets"
+        }
+      ],
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/authorizationCodeOAuthFlow.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/authorizationCodeOAuthFlow.json",
+      "title": "AsyncAPI v3 - OAuth2 Authorization Code flow",
+      "description": "Contains information about OAuth2 Authorization Code flow. Is a secure, multi-step process where an application trades user consent for an authorization code, which is then exchanged behind the scenes for an access token",
+      "examples": [
+        {
+          "authorizationUrl": "https://example.com/api/oauth/dialog",
+          "tokenUrl": "https://example.com/api/oauth/token",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        }
+      ],
+      "type": "object",
+      "required": [ "authorizationUrl", "tokenUrl", "availableScopes" ],
+      "properties": {
+        "authorizationUrl": {
+          "description": "The authorization URL to be used for this flow. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        },
+        "availableScopes": {
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it",
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2Scopes.json"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/clientCredentialsOAuthFlow.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/clientCredentialsOAuthFlow.json",
+      "title": "AsyncAPI v3 - OAuth2 Client Credentials flow",
+      "description": "Contains information about OAuth2 Client Credentials flow. Is a machine-to-machine (M2M) authentication method where an application uses its own unique ID and secret key to get an access token from a server",
+      "examples": [
+        {
+          "tokenUrl": "https://example.com/api/oauth/token",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        }
+      ],
+      "type": "object",
+      "required": [ "tokenUrl", "availableScopes" ],
+      "properties": {
+        "availableScopes": {
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it",
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2Scopes.json"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/implicitOAuthFlow.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/implicitOAuthFlow.json",
+      "title": "AsyncAPI v3 - OAuth2 Implicit Grant flow",
+      "description": "Contains information about OAuth2 Implicit Grant flow. The Implicit flow was a simplified OAuth flow previously recommended for native apps and JavaScript apps where the access token was returned immediately without an extra authorization code exchange step",
+      "examples": [
+        {
+          "authorizationUrl": "https://example.com/api/oauth/dialog",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        }
+      ],
+      "type": "object",
+      "required": [ "authorizationUrl", "availableScopes" ],
+      "properties": {
+        "authorizationUrl": {
+          "description": "The authorization URL to be used for this flow. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        },
+        "availableScopes": {
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it",
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2Scopes.json"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/passwordOAuthFlow.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/passwordOAuthFlow.json",
+      "title": "AsyncAPI v3 - OAuth2 Password flow (Resource Owner Password Credentials Flow)",
+      "description": "Contains information about OAuth2 Implicit flow. Allows a client application to exchange a user's direct username and password for an access token. However, modern security standards strongly advise against using it because it exposes raw credentials and blocks multi-factor authentication",
+      "examples": [
+        {
+          "tokenUrl": "https://example.com/api/oauth/token",
+          "refreshUrl": "https://example.com/api/oauth/refresh",
+          "availableScopes": {
+            "write:pets": "modify pets in your account",
+            "read:pets": "read your pets"
+          }
+        }
+      ],
+      "type": "object",
+      "required": [ "tokenUrl", "availableScopes" ],
+      "properties": {
+        "availableScopes": {
+          "description": "The available scopes for the OAuth2 security scheme. A map between the scope name and a short description for it",
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2Scopes.json"
+        },
+        "refreshUrl": {
+          "description": "The URL to be used for obtaining refresh tokens. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        },
+        "tokenUrl": {
+          "description": "The token URL to be used for this flow. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2.json",
+      "title": "AsyncAPI v3 - OAuth2 Authentication",
+      "description": "Contains information about OAuth2 Authentication. OAuth 2.0 is an authorization framework rather than a pure authentication protocol",
+      "examples": [
+        {
+          "type": "oauth2",
+          "description": "oauth2",
+          "flows": {
+            "authorizationCode": {
+              "authorizationUrl": "https://example.com/api/oauth/dialog",
+              "tokenUrl": "https://example.com/api/oauth/token",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            },
+            "clientCredentials": {
+              "tokenUrl": "https://example.com/api/oauth/token",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            },
+            "implicit": {
+              "authorizationUrl": "https://example.com/api/oauth/dialog",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            },
+            "password": {
+              "tokenUrl": "https://example.com/api/oauth/token",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            }
+          },
+          "scopes": [ "write:pets", "read:pets" ]
+        }
+      ],
+      "type": "object",
+      "required": [ "type", "flows" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "oauth2"
+        },
+        "flows": {
+          "type": "object",
+          "properties": {
+            "authorizationCode": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/authorizationCodeOAuthFlow.json"
+            },
+            "clientCredentials": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/clientCredentialsOAuthFlow.json"
+            },
+            "implicit": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/implicitOAuthFlow.json"
+            },
+            "password": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/passwordOAuthFlow.json"
+            }
+          },
+          "additionalProperties": false
+        },
+        "scopes": {
+          "description": "List of the needed scope names",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/openIdConnect.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/openIdConnect.json",
+      "title": "AsyncAPI v3 - OpenID Connect Authentication",
+      "description": "Contains information about OpenID Connect Authentication",
+      "examples": [
+        {
+          "type": "openIdConnect",
+          "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+        },
+        {
+          "type": "openIdConnect",
+          "description": "Simple identity authentication layer built on top of the OAuth 2.0 protocol, consisting of the OpenID Provider, ID Token, and Relying Party",
+          "openIdConnectUrl": "https://server.com/.well-known/openid-configuration",
+          "scopes": [ "write:pets", "read:pets" ]
+        }
+      ],
+      "type": "object",
+      "required": [ "type", "openIdConnectUrl" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "openIdConnect"
+        },
+        "openIdConnectUrl": {
+          "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL",
+          "type": "string",
+          "format": "uri"
+        },
+        "scopes": {
+          "description": "List of the needed scope names. An empty array means no scopes are needed",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslPlainSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslPlainSecuritySchema.json",
+      "title": "AsyncAPI v3 - SASL/PLAIN Authentication",
+      "description": "Contains information about SASL/PLAIN Authentication. SASL/PLAIN is simple user name and password login method that sends credentials in base64 encoding, requiring TLS/SSL encryption to prevent exposure on a network",
+      "examples": [
+        {
+          "type": "plain",
+          "description": "SASL/PLAIN"
+        }
+      ],
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme. Valid values",
+          "const": "plain"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslScramSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslScramSecuritySchema.json",
+      "title": "AsyncAPI v3 - SASL SCRAM Authentication",
+      "description": "Contains information about SASL SCRAM Authentication. SASL SCRAM is secure password-based challenge-response authentication mechanism that uses Apache Kafka Documentation or similar platforms, utilizing salts and cryptographic hashes like Confluent Platform SCRAM Overview (SCRAM-SHA-256 and SCRAM-SHA-512) to protect credentials from network sniffing and replay attacks",
+      "examples": [
+        {
+          "type": "scramSha256",
+          "description": "SCRAM-SHA-256"
+        },
+        {
+          "type": "scramSha512",
+          "description": "SCRAM-SHA-512"
+        }
+      ],
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "enum": [ "scramSha256", "scramSha512" ]
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslGssapiSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslGssapiSecuritySchema.json",
+      "title": "AsyncAPI v3 - SASL GSSAPI Authentication",
+      "description": "Contains information about SASL GSSAPI Authentication. SASL GSSAPI is secure method that combines the Simple Authentication and Security Layer framework with the Generic Security Services API, primarily to enable Kerberos V5 network authentication",
+      "examples": [
+        {
+          "type": "gssapi",
+          "description": "SASL GSSAPI"
+        }
+      ],
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "description": {
+          "description": "A short description for security scheme",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the security scheme",
+          "const": "gssapi"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslSecuritySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslSecuritySchema.json",
+      "title": "AsyncAPI v3 - SASL Authentication Variants",
+      "description": "Contains information about available SASL authentication variants. SASL (Simple Authentication and Security Layer) is a framework that separates authentication methods from application protocols, supporting mechanisms like PLAIN, SCRAM, and OAUTHBEARER across services like SMTP, IMAP, and Kafka",
+      "examples": [
+        {
+          "type": "gssapi",
+          "description": "SASL GSSAPI"
+        },
+        {
+          "type": "plain",
+          "description": "SASL/PLAIN"
+        },
+        {
+          "type": "scramSha256",
+          "description": "SCRAM-SHA-256"
+        },
+        {
+          "type": "scramSha512",
+          "description": "SCRAM-SHA-512"
+        }
+      ],
+      "oneOf": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslPlainSecuritySchema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslScramSecuritySchema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslGssapiSecuritySchema.json"
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json",
+      "title": "AsyncAPI v3 - Authentication Variants",
+      "description": "Contains information about available authentication variants",
+      "examples": [
+        {
+          "type": "httpApiKey",
+          "description": "httpApiKey",
+          "name": "api_key",
+          "in": "header"
+        },
+        {
+          "type": "http",
+          "description": "http",
+          "scheme": "basic"
+        },
+        {
+          "type": "http",
+          "description": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        },
+        {
+          "type": "oauth2",
+          "description": "oauth2",
+          "flows": {
+            "authorizationCode": {
+              "authorizationUrl": "https://example.com/api/oauth/dialog",
+              "tokenUrl": "https://example.com/api/oauth/token",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            },
+            "clientCredentials": {
+              "tokenUrl": "https://example.com/api/oauth/token",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            },
+            "implicit": {
+              "authorizationUrl": "https://example.com/api/oauth/dialog",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            },
+            "password": {
+              "tokenUrl": "https://example.com/api/oauth/token",
+              "refreshUrl": "https://example.com/api/oauth/refresh",
+              "availableScopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+              }
+            }
+          },
+          "scopes": [ "write:pets", "read:pets" ]
+        },
+        {
+          "type": "X509",
+          "description": "X509"
+        },
+        {
+          "type": "apiKey",
+          "description": "apiKey",
+          "in": "user"
+        },
+        {
+          "type": "asymmetricEncryption",
+          "description": "asymmetricEncryption"
+        },
+        {
+          "type": "gssapi",
+          "description": "gssapi"
+        },
+        {
+          "type": "openIdConnect",
+          "description": "openIdConnect",
+          "openIdConnectUrl": "https://server.com/.well-known/openid-configuration",
+          "scopes": [ "write:pets", "read:pets" ]
+        },
+        {
+          "type": "plain",
+          "description": "plain"
+        },
+        {
+          "type": "scramSha256",
+          "description": "scramSha256"
+        },
+        {
+          "type": "scramSha512",
+          "description": "scramSha512"
+        },
+        {
+          "type": "symmetricEncryption",
+          "description": "symmetricEncryption"
+        },
+        {
+          "type": "userPassword",
+          "description": "userPassword"
+        }
+      ],
+      "oneOf": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/userPassword.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/apiKey.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/X509.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/symmetricEncryption.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/asymmetricEncryption.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/httpSecuritySchema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/openIdConnect.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslSecuritySchema.json"
+        }
+      ]
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json",
+      "title": "AsyncAPI v3.0.0 - Security Requirements",
+      "description": "Collection of Security Requirements",
+      "examples": [
+        [
+          {
+            "$ref": "#/security/x.509"
+          },
+          {
+            "type": "X509"
+          },
+          {
+            "type": "apiKey",
+            "in": "user"
+          }
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "if": {
+          "required": [ "$ref" ],
+          "properties": {
+            "$ref": true
+          }
+        },
+        "then": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        },
+        "else": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json"
+        }
+      }
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/tag.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/tag.json",
+      "title": "AsyncAPI - Tag v3.0.0",
+      "description": "Allows adding metadata to a single tag",
+      "examples": [
+        {
+          "name": "city"
+        },
+        {
+          "name": "city",
+          "description": "City forecast for e.g. Yerevan"
+        },
+        {
+          "name": "city",
+          "externalDocs": {
+            "$ref": "https://api.weather-forecast.am/docs#tags-district"
+          }
+        },
+        {
+          "name": "city",
+          "externalDocs": {
+            "url": "https://api.weather-forecast.am/docs",
+            "description": "Required information to integrate with API"
+          }
+        }
+      ],
+      "type": "object",
+      "required": [ "name" ],
+      "properties": {
+        "description": {
+          "description": "A short description for the tag. CommonMark syntax can be used for rich text representation",
+          "type": "string"
+        },
+        "externalDocs": {
+          "oneOf": [
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            },
+            {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+            }
+          ]
+        },
+        "name": {
+          "description": "The name of the tag",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/tags.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/tags.json",
+      "title": "AsyncAPI v3.0.0 - Tags",
+      "description": "Collection of Tags",
+      "examples": [
+        [
+          {
+            "$ref": "#/tags/secured"
+          },
+          {
+            "name": "secured",
+            "description": "Groups secured APIs"
+          }
+        ]
+      ],
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "if": {
+          "required": [ "$ref" ],
+          "properties": {
+            "$ref": true
+          }
+        },
+        "then": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        },
+        "else": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tag.json"
+        }
+      }
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariable.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariable.json",
+      "title": "AsyncAPI v3.0.0 - Server Variable",
+      "description": "Representing a Server Variable for server URL template substitution",
+      "examples": [
+        {
+          "enum": [ "8883", "8884" ],
+          "default": "8883",
+          "description": "Ports application listening for",
+          "examples": [ "8883", "8884" ]
+        },
+        {
+          "enum": [ "8883", "8884" ],
+          "default": "8883",
+          "description": "Ports application listening for",
+          "examples": [ "8883", "8884" ],
+          "x-lb-strategy": "round-robin"
+        }
+      ],
+      "type": "object",
+      "properties": {
+        "enum": {
+          "description": "An enumeration of string values to be used if the substitution options are from a limited set",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "default": {
+          "description": "The default value to use for substitution, and to send, if an alternate value is not supplied",
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description for the server variable. CommonMark syntax MAY be used for rich text representation",
+          "type": "string"
+        },
+        "examples": {
+          "description": "An array of examples of the server variable",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      },
+      "additionalProperties": false
+    },
+    "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariables.json": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariables.json",
+      "title": "AsyncAPI v3.0.0 - Server Variables Map",
+      "description": "A key-value map where key is variable ID and value is variable representation",
+      "examples": [
+        {
+          "port": {
+            "enum": [ "8883", "8884" ],
+            "default": "8883",
+            "description": "Ports application listening for",
+            "examples": [ "8883", "8884" ]
+          },
+          "basePath": {
+            "$ref": "#/variables/base-path"
+          }
+        }
+      ],
+      "type": "object",
+      "additionalProperties": {
+        "if": {
+          "required": [ "$ref" ],
+          "properties": {
+            "$ref": true
+          }
+        },
+        "then": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        },
+        "else": {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariable.json"
+        }
+      }
+    }
+  }
+}

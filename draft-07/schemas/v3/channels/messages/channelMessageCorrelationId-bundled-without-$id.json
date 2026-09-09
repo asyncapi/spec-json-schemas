@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AsyncAPI v3 - Channel Message Correlation ID",
+  "description": "Represents an identifier at design time that can used for message tracing and correlation",
+  "examples": [
+    {
+      "description": "Incoming message correlation-id",
+      "location": "$message.payload#/correlation-id"
+    },
+    {
+      "description": "Incoming message correlation-id",
+      "location": "$message.header#/correlation-id",
+      "x-format": "uuid"
+    }
+  ],
+  "type": "object",
+  "required": [ "location" ],
+  "properties": {
+    "description": {
+      "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed",
+      "type": "string"
+    },
+    "location": {
+      "description": "A runtime expression that specifies the location of the correlation ID",
+      "type": "string",
+      "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

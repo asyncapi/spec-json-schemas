@@ -1,0 +1,2843 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/multiFormatSchema.json",
+  "description": "The Multi Format Schema Object represents a schema definition. It differs from the Schema Object in that it supports multiple schema formats or languages (e.g., JSON Schema, Avro, etc.).",
+  "examples": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+json/draft-07-core-schema-meta-schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+yaml/draft-07-core-schema-meta-schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/json/schema+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.0/vnd.oai.openapi/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.0/vnd.oai.openapi+json/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.0/vnd.oai.openapi/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.0/vnd.oai.openapi+yaml/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi+json/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi+yaml/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi+json/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi+yaml/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi+json/schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi+yaml/schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/draft-07-core-schema-meta-schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/draft-07-core-schema-meta-schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20empty/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/draft-07-core-schema-meta-schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/draft-07-core-schema-meta-schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/schemaFormat%20is%20null/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/draft-07-core-schema-meta-schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/draft-07-core-schema-meta-schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/without%20schemaFormat/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.0/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.1/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.9.2/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.0/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.1/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.10.2/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.0/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/ApplicationEvent.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/DocumentInfo.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/foo.Bar.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/full_record_v1.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/full_record_v2.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/logical-uuid.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/logical_types_with_multiple_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/MyResponse.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/regression_error_field_in_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/schema-location.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/schema-location-read.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/schema-location-write.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/SchemaBuilder.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/simple_record.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/TestRecordWithLogicalTypes.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/TestRecordWithMapsAndArrays.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/TestUnionRecord.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+json/union_and_fixed_fields.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/ApplicationEvent.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/DocumentInfo.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/foo.Bar.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/full_record_v1.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/full_record_v2.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/logical-uuid.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/logical_types_with_multiple_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/MyResponse.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/regression_error_field_in_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/schema-location.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/schema-location-read.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/schema-location-write.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/SchemaBuilder.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/simple_record.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/TestRecordWithLogicalTypes.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/TestRecordWithMapsAndArrays.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/TestUnionRecord.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/avro/1.11.1/vnd.apache.avro+yaml/union_and_fixed_fields.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.0.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.1.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.2.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.3.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.4.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.5.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/2.6.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+json/arrays.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+json/complex-object.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+json/conditional-validation-if-else.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+json/draft-07-core-schema-meta-schema.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+json/enumerated-values.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+json/person.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+json/regex-pattern.schema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+yaml/arrays.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+yaml/complex-object.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+yaml/conditional-validation-if-else.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+yaml/draft-07-core-schema-meta-schema.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+yaml/enumerated-values.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+yaml/person.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/asyncapi/3.0.0/vnd.aai.asyncapi+yaml/regex-pattern.schema.yaml"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/xml/user.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/examples/schemas/multiformat/xml/user.yaml"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "not": {
+      "type": "object"
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+  },
+  "else": {
+    "allOf": [
+      {
+        "if": {
+          "not": {
+            "description": "If no schemaFormat has been defined, default to schema or reference",
+            "required": [ "schemaFormat" ]
+          }
+        },
+        "then": {
+          "properties": {
+            "schema": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "description": "If schemaFormat has been defined check if it's one of the AsyncAPI Schema Object formats",
+          "required": [ "schemaFormat" ],
+          "properties": {
+            "schemaFormat": {
+              "enum": [
+                "application/vnd.aai.asyncapi;version=2.0.0",
+                "application/vnd.aai.asyncapi+json;version=2.0.0",
+                "application/vnd.aai.asyncapi+yaml;version=2.0.0",
+                "application/vnd.aai.asyncapi;version=2.1.0",
+                "application/vnd.aai.asyncapi+json;version=2.1.0",
+                "application/vnd.aai.asyncapi+yaml;version=2.1.0",
+                "application/vnd.aai.asyncapi;version=2.2.0",
+                "application/vnd.aai.asyncapi+json;version=2.2.0",
+                "application/vnd.aai.asyncapi+yaml;version=2.2.0",
+                "application/vnd.aai.asyncapi;version=2.3.0",
+                "application/vnd.aai.asyncapi+json;version=2.3.0",
+                "application/vnd.aai.asyncapi+yaml;version=2.3.0",
+                "application/vnd.aai.asyncapi;version=2.4.0",
+                "application/vnd.aai.asyncapi+json;version=2.4.0",
+                "application/vnd.aai.asyncapi+yaml;version=2.4.0",
+                "application/vnd.aai.asyncapi;version=2.5.0",
+                "application/vnd.aai.asyncapi+json;version=2.5.0",
+                "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                "application/vnd.aai.asyncapi;version=2.6.0",
+                "application/vnd.aai.asyncapi+json;version=2.6.0",
+                "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                "application/vnd.aai.asyncapi;version=3.0.0",
+                "application/vnd.aai.asyncapi+json;version=3.0.0",
+                "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "schema": {
+              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "required": [ "schemaFormat" ],
+          "properties": {
+            "schemaFormat": {
+              "enum": [
+                "application/schema+json;version=draft-07",
+                "application/schema+yaml;version=draft-07"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "schema": {
+              "$ref": "http://json-schema.org/draft-07/schema"
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "required": [ "schemaFormat" ],
+          "properties": {
+            "schemaFormat": {
+              "enum": [
+                "application/vnd.oai.openapi;version=3.0.0",
+                "application/vnd.oai.openapi+json;version=3.0.0",
+                "application/vnd.oai.openapi+yaml;version=3.0.0"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                },
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/openapiSchema_3_0.json"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "required": [ "schemaFormat" ],
+          "properties": {
+            "schemaFormat": {
+              "enum": [
+                "application/vnd.apache.avro;version=1.9.0",
+                "application/vnd.apache.avro+json;version=1.9.0",
+                "application/vnd.apache.avro+yaml;version=1.9.0"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                },
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/avroSchema_v1.json"
+                }
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "required": [ "schemaFormat" ],
+          "properties": {
+            "schemaFormat": {
+              "enum": [
+                "application/raml+yaml;version=1.0",
+                "application/vnd.google.protobuf;version=2",
+                "application/vnd.google.protobuf;version=3",
+                "application/xml"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                },
+                {
+                  "type": [ "string", "object" ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "properties": {
+      "schemaFormat": {
+        "description": "A string containing the name of the schema format that is used to define the information. If schemaFormat is missing, it MUST default to application/vnd.aai.asyncapi+json;version={{asyncapi}} where {{asyncapi}} matches the AsyncAPI Version String. In such a case, this would make the Multi Format Schema Object equivalent to the Schema Object. When using Reference Object within the schema, the schemaFormat of the resource being referenced MUST match the schemaFormat of the schema that contains the initial reference. For example, if you reference Avro schema, then schemaFormat of referencing resource and the resource being reference MUST match.",
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "description": "All the schema formats tooling MUST support",
+            "enum": [
+              "application/schema+json;version=draft-07",
+              "application/schema+yaml;version=draft-07",
+              "application/vnd.aai.asyncapi;version=3.0.0",
+              "application/vnd.aai.asyncapi+json;version=3.0.0",
+              "application/vnd.aai.asyncapi+yaml;version=3.0.0"
+            ]
+          },
+          {
+            "description": "All the schema formats tools are RECOMMENDED to support",
+            "enum": [
+              "application/vnd.oai.openapi;version=3.0.0",
+              "application/vnd.oai.openapi+json;version=3.0.0",
+              "application/vnd.oai.openapi+yaml;version=3.0.0",
+              "application/vnd.apache.avro;version=1.9.0",
+              "application/vnd.apache.avro+json;version=1.9.0",
+              "application/vnd.apache.avro+yaml;version=1.9.0",
+              "application/raml+yaml;version=1.0",
+              "application/vnd.google.protobuf;version=2",
+              "application/vnd.google.protobuf;version=3",
+              "application/xml"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  }
+}

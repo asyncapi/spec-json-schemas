@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationTrait.json",
+  "title": "AsyncAPI v3 - Operation Trait",
+  "description": "Describes a trait that MAY be applied to an Operation Object. This object MAY contain any property from the Operation Object, except the action, channel and traits ones",
+  "examples": [
+    {},
+    {
+      "title": "User Activity Events",
+      "summary": "Receive user activity events",
+      "description": "Subscribe to channel which returns detailed events bases on user activity",
+      "tags": [
+        {
+          "$ref": "#/tags/user-activity-public"
+        },
+        {
+          "name": "user-activity",
+          "description": "Groups user activity related operations or messages"
+        }
+      ],
+      "security": [
+        {
+          "type": "openIdConnect",
+          "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+        },
+        {
+          "$ref": "#/security/oauth2"
+        }
+      ],
+      "externalDocs": {
+        "$ref": "#/documents/user-events.v1"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "A human-friendly title for the operation",
+      "type": "string"
+    },
+    "summary": {
+      "description": "A short summary of what the operation is about",
+      "type": "string"
+    },
+    "description": {
+      "description": "A verbose explanation of the operation. CommonMark syntax can be used for rich text representation",
+      "type": "string"
+    },
+    "security": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json"
+    },
+    "tags": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+    },
+    "externalDocs": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+    },
+    "bindings": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/operationBindings.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

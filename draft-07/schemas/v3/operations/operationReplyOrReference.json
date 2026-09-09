@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReplyOrReference.json",
+  "title": "AsyncAPI v3 - Operation Reply or Reference",
+  "description": "Generic type which MUST BE Operation Reply or Reference",
+  "examples": [
+    {
+      "$ref": "#/replies/send-notification-reply"
+    },
+    {
+      "address": {
+        "location": "$message.header#/X-REPLY-TO"
+      },
+      "channel": {
+        "$ref": "#/channels/notifications"
+      }
+    }
+  ],
+  "type": "object",
+  "oneOf": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReply.json"
+    }
+  ]
+}

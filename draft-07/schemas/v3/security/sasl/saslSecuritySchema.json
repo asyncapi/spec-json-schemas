@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslSecuritySchema.json",
+  "title": "AsyncAPI v3 - SASL Authentication Variants",
+  "description": "Contains information about available SASL authentication variants. SASL (Simple Authentication and Security Layer) is a framework that separates authentication methods from application protocols, supporting mechanisms like PLAIN, SCRAM, and OAUTHBEARER across services like SMTP, IMAP, and Kafka",
+  "examples": [
+    {
+      "type": "gssapi",
+      "description": "SASL GSSAPI"
+    },
+    {
+      "type": "plain",
+      "description": "SASL/PLAIN"
+    },
+    {
+      "type": "scramSha256",
+      "description": "SCRAM-SHA-256"
+    },
+    {
+      "type": "scramSha512",
+      "description": "SCRAM-SHA-512"
+    }
+  ],
+  "oneOf": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslPlainSecuritySchema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslScramSecuritySchema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslGssapiSecuritySchema.json"
+    }
+  ]
+}

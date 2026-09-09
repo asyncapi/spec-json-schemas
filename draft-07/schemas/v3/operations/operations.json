@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/schemas/v3/operations/operations.json",
+  "title": "AsyncAPI v3 - Operations Map",
+  "description": "A key-value map where key is operation ID and value is operation representation or it's reference",
+  "examples": [
+    {
+      "user-signed-up": {
+        "$ref": "#/operations/user-signed-up"
+      },
+      "user-signed-out": {
+        "action": "receive",
+        "channel": {
+          "$ref": "#/channels/user-events.v1"
+        },
+        "reply": {
+          "$ref": "#/channels/user-events-replies.v1"
+        },
+        "externalDocs": {
+          "url": "https://docs.lo/user-events.v1"
+        }
+      }
+    }
+  ],
+  "type": "object",
+  "additionalProperties": {
+    "if": {
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": true
+      }
+    },
+    "then": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "else": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operation.json"
+    }
+  }
+}
