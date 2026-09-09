@@ -1,0 +1,48 @@
+name: Sync Schema Update to Website
+
+on:
+  push:
+    branches:
+      - master
+
+    paths:
+     # Monitor changes in this v3 file
+      - schemas/3.0.0-without-$id.json
+
+jobs:
+  sync-schema:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout spec-json-schema repo
+        uses: actions/checkout@v3
+        
+      - name: Checkout website repo
+        uses: actions/checkout@v3
+        with:
+          repository: asyncapi/website
+          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+          path: ./website
+
+      - name: Copy version 3 Schema File
+        run: |
+          cp schemas/3.0.0-without-\$id.json website/config/3.0.0.json
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@4e1beaa7521e8b457b572c090b25bd3db56bf1c5 # use 5 https://github.com/peter-evans/create-pull-request/releases/tag/v5
+        with:
+          token: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+          path: website
+          commit-message: "chore: sync latest spec json schema updates"
+          committer: asyncapi-bot <info@asyncapi.io>
+          author: asyncapi-bot <info@asyncapi.io>
+          title: "chore: sync latest spec-json-schema update"
+          body: |
+            Automated Pull Request to sync latest schema update from spec-json-schema repository.
+            
+            Updates to: `config/3.0.0`
+          branch: update-schema-${{ github.sha }}
+          labels: |
+            automated
+            spec-json-schema-sync
+          base: master
+          delete-branch: true

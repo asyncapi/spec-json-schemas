@@ -224,4 +224,3 @@ Extensions are a way to [extend AsyncAPI specification](https://www.asyncapi.com
 4. All the schemas must be added in a file named `schema.json` just as one is defined for [x extension](./extensions/x/0.1.0/schema.json).
 
 5. Extension schema should not be referenced directly in the definition of the object it extends. For example if you add an extension for `info`, your extension's schema should not be referenced from `info.json` but [infoExtensions.json](./definitions/3.0.0/infoExtensions.json). If the object that you extend doesn't have a corresponding `*Extensions.json` file, you need to create one.
-

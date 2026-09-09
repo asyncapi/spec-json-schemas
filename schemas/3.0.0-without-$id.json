@@ -3560,9 +3560,17 @@
                 },
                 "headers": {
                     "type": "object",
-                    "description": "Example of the application headers. It can be of any type."
+                    "description": "Example of the application headers. It MUST be a map of key-value pairs."
                 },
                 "payload": {
+                    "type": [
+                        "number",
+                        "string",
+                        "boolean",
+                        "object",
+                        "array",
+                        "null"
+                    ],
                     "description": "Example of the message payload. It can be of any type."
                 }
             }
@@ -5938,7 +5946,7 @@
                             "type": "integer",
                             "description": "The number of seconds to delay before a message sent to the queue can be received. used to create a delay queue.",
                             "minimum": 0,
-                            "maximum": 15,
+                            "maximum": 900,
                             "default": 0
                         },
                         "visibilityTimeout": {
@@ -6631,7 +6639,7 @@
                     ],
                     "messages": [
                         {
-                            "$ref": "/components/messages/userSignedUp"
+                            "$ref": "#/components/messages/userSignedUp"
                         }
                     ],
                     "reply": {
@@ -6643,7 +6651,7 @@
                         },
                         "messages": [
                             {
-                                "$ref": "/components/messages/userSignedUpReply"
+                                "$ref": "#/components/messages/userSignedUpReply"
                             }
                         ]
                     }
@@ -7987,7 +7995,7 @@
                             "type": "integer",
                             "description": "The number of seconds to delay before a message sent to the queue can be received. Used to create a delay queue.",
                             "minimum": 0,
-                            "maximum": 15,
+                            "maximum": 900,
                             "default": 0
                         },
                         "visibilityTimeout": {
