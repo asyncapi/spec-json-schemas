@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBindingOrReference.json",
+  "title": "Mercure - Server Binding or Reference",
+  "description": "Describes protocol-specific definitions for a server or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/googlepubsub/my-googlepubsub-server"
+    },
+    {
+      "bindingVersion": "0.2.0"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBinding.json"
+  }
+}

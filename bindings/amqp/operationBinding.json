@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/operationBinding.json",
+  "title": "AMQP 0-9-1 - Operation Binding",
+  "description": "Describes protocol-specific definitions for a operation",
+  "examples": [
+    {
+      "ack": false,
+      "bcc": [ "external.audit" ],
+      "cc": [ "user.logs" ],
+      "deliveryMode": 2,
+      "expiration": 100000,
+      "mandatory": false,
+      "priority": 10,
+      "replyTo": "user.signedup",
+      "timestamp": true,
+      "userId": "guest",
+      "bindingVersion": "0.1.0"
+    },
+    {
+      "ack": false,
+      "bcc": [ "external.audit" ],
+      "cc": [ "user.logs" ],
+      "deliveryMode": 2,
+      "expiration": 100000,
+      "mandatory": false,
+      "priority": 10,
+      "replyTo": "user.signedup",
+      "timestamp": true,
+      "userId": "guest",
+      "bindingVersion": "0.2.0"
+    },
+    {
+      "ack": false,
+      "bcc": [ "external.audit" ],
+      "cc": [ "user.logs" ],
+      "deliveryMode": 2,
+      "expiration": 100000,
+      "mandatory": false,
+      "priority": 10,
+      "timestamp": true,
+      "userId": "guest",
+      "bindingVersion": "0.3.0"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.1.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.2.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.2.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.3.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/operation.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "enum": [ "0.1.0", "0.2.0", "0.3.0" ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/operation.json"
+      }
+    }
+  ]
+}

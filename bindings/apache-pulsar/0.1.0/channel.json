@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/channel.json",
+  "title": "Apache Pulsar - Channel Binding v0.1.0",
+  "description": "Contains information about the channel representation in Pulsar, which covers namespace and topic level admin configuration",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0",
+      "compaction": 1000,
+      "deduplication": true,
+      "geo-replication": [ "us-west", "us-east" ],
+      "namespace": "ns1",
+      "persistence": "persistent",
+      "retention": {
+        "size": 1000,
+        "time": 15
+      },
+      "ttl": 360
+    },
+    {
+      "bindingVersion": "0.1.0",
+      "compaction": 1000,
+      "deduplication": true,
+      "geo-replication": [ "us-west", "us-east" ],
+      "namespace": "ns1",
+      "persistence": "non-persistent",
+      "retention": {
+        "size": 1000,
+        "time": 15
+      },
+      "ttl": 360
+    }
+  ],
+  "type": "object",
+  "required": [ "namespace", "persistence" ],
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.1.0", "latest" ]
+    },
+    "compaction": {
+      "description": "Topic compaction threshold given in MB",
+      "type": "integer",
+      "minimum": 0
+    },
+    "deduplication": {
+      "description": "Whether deduplication of events is enabled or not",
+      "type": "boolean"
+    },
+    "geo-replication": {
+      "description": "A list of clusters the topic is replicated to",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "namespace": {
+      "description": "The namespace, the channel is associated with",
+      "type": "string"
+    },
+    "persistence": {
+      "description": "persistence of the topic in Pulsar",
+      "enum": [ "persistent", "non-persistent" ]
+    },
+    "retention": {
+      "type": "object",
+      "properties": {
+        "size": {
+          "description": "Size given in MegaBytes. `0` = Disable message retention",
+          "type": "integer",
+          "minimum": 0
+        },
+        "time": {
+          "description": "Time given in Minutes. `0` = Disable message retention",
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "ttl": {
+      "description": "TTL in seconds for the specified topic",
+      "type": "integer"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

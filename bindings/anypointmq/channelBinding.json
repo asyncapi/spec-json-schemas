@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/channelBinding.json",
+  "title": "Anypoint MQ - Channel Binding",
+  "description": "Describes protocol-specific definitions for a channel",
+  "examples": [
+    {
+      "bindingVersion": "0.0.1",
+      "destination": "user-signup-fifo-queue",
+      "destinationType": "fifo-queue"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/channel.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.1.0"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/channel.json"
+      }
+    }
+  ]
+}

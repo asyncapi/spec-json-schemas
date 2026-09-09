@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json",
+  "title": "Amazon SNS - Channel Binding v0.2.0",
+  "description": "Contains information about the channel representation in Amazon SNS",
+  "examples": [
+    {
+      "name": "my-sns-topic",
+      "bindingVersion": "latest"
+    },
+    {
+      "name": "my-sns-topic",
+      "policy": {
+        "statements": [
+          {
+            "action": "SNS:Publish",
+            "effect": "Allow",
+            "principal": "*",
+            "condition": {
+              "StringEquals": {
+                "aws:SourceAccount": "123456789012"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "required": [ "name" ],
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    },
+    "name": {
+      "description": "The name of the topic. Can be different from the channel name to allow flexibility around AWS resource naming limitations",
+      "type": "string"
+    },
+    "ordering": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json#/definitions/ordering"
+    },
+    "policy": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json#/definitions/policy"
+    },
+    "tags": {
+      "description": "Key-value pairs that represent AWS tags on the topic",
+      "type": "object"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "ordering": {
+      "description": "By default, we assume an unordered SNS topic. This field allows configuration of a FIFO SNS Topic",
+      "type": "object",
+      "required": [ "type" ],
+      "properties": {
+        "type": {
+          "description": "Defines the type of SNS Topic",
+          "enum": [ "standard", "FIFO" ]
+        },
+        "contentBasedDeduplication": {
+          "description": "True to turn on de-duplication of messages for a channel",
+          "type": "boolean"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    },
+    "policy": {
+      "description": "The security policy for the SNS Topic",
+      "type": "object",
+      "required": [ "statements" ],
+      "properties": {
+        "statements": {
+          "description": "An array of statement objects, each of which controls a permission for this topic",
+          "type": "array",
+          "items": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json#/definitions/statement"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    },
+    "statement": {
+      "type": "object",
+      "required": [ "effect", "principal", "action" ],
+      "properties": {
+        "action": {
+          "description": "The SNS permission(s) being allowed or denied e.g. sns:Publish",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "condition": {
+          "description": "Specific circumstances under which the policy grants permission",
+          "type": "object",
+          "patternProperties": {
+            ".*": {
+              "type": "object",
+              "patternProperties": {
+                ".*": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "effect": {
+          "enum": [ "Allow", "Deny" ]
+        },
+        "principal": {
+          "description": "The AWS account(s) or resource ARN(s) that this statement applies to",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "required": [ "AWS" ],
+              "properties": {
+                "AWS": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": [ "Service" ],
+              "properties": {
+                "Service": {
+                  "anyOf": [
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "resource": {
+          "description": "The resource(s) that this policy applies to",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/solace/operationBinding.json",
+  "title": "Solace - Operation Binding",
+  "description": "Describes protocol-specific definitions for a operation",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0"
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "destinations": [
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "nonexclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ]
+          }
+        },
+        {
+          "destinationType": "topic",
+          "topicSubscriptions": [ "samples/*" ]
+        }
+      ]
+    },
+    {
+      "bindingVersion": "0.3.0",
+      "destinations": [
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "nonexclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ]
+          }
+        },
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "exclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ],
+            "maxMsgSpoolUsage": "4",
+            "maxTtl": "1"
+          }
+        },
+        {
+          "destinationType": "topic",
+          "topicSubscriptions": [ "samples/*" ]
+        }
+      ]
+    },
+    {
+      "bindingVersion": "0.4.0",
+      "destinations": [
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "nonexclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ]
+          }
+        },
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "exclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ],
+            "maxMsgSpoolUsage": "4",
+            "maxTtl": "1"
+          }
+        },
+        {
+          "destinationType": "topic",
+          "topicSubscriptions": [ "samples/*" ]
+        }
+      ],
+      "dmqEligible": true,
+      "priority": 20,
+      "timeToLive": 10
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.1.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.2.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.2.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.3.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.3.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.4.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/operation.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "enum": [ "0.1.0", "0.2.0", "0.3.0", "0.4.0" ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/operation.json"
+      }
+    }
+  ]
+}

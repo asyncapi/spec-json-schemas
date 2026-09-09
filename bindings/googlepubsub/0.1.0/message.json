@@ -1,55 +1,52 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/googlepubsub/0.1.0/message.json",
-  "title": "Cloud Pub/Sub Channel Schema",
-  "description": "This object contains information about the message representation for Google Cloud Pub/Sub.",
-  "type": "object",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-    }
-  },
-  "properties": {
-    "bindingVersion": {
-      "type": "string",
-      "enum": [
-        "0.1.0"
-      ],
-      "description": "The version of this binding."
+  "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.1.0/message.json",
+  "title": "Google Cloud Pub/Sub - Message Binding v0.1.0",
+  "description": "Contains information about the message representation for Google Cloud Pub/Sub",
+  "examples": [
+    {
+      "orderingKey": "uuid",
+      "schema": {
+        "type": "avro",
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
     },
+    {
+      "schema": {
+        "type": "protobuf",
+        "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
     "attributes": {
       "type": "object"
+    },
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.1.0", "latest" ]
     },
     "orderingKey": {
       "type": "string"
     },
     "schema": {
       "type": "object",
-      "additionalItems": false,
+      "required": [ "name", "type" ],
       "properties": {
-        "name": {
+        "type": {
           "type": "string"
         },
-        "type": {
+        "name": {
           "type": "string"
         }
       },
-      "required": ["name", "type"]
+      "additionalProperties": false
     }
   },
-  "examples": [
-    {
-      "schema": {
-        "name": "projects/your-project-id/schemas/your-avro-schema-id",
-        "type": "avro"
-      }
-    },
-    {
-      "schema": {
-        "name": "projects/your-project-id/schemas/your-protobuf-schema-id",
-        "type": "protobuf"
-      }
-    }
-  ]
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
 }

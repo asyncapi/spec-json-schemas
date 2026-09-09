@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/messageBinding.json",
+  "title": "IBM MQ - Message Binding",
+  "description": "Describes protocol-specific definitions for a message",
+  "examples": [
+    {
+      "type": "binary",
+      "description": "Binary message",
+      "expiry": 10,
+      "headers": "k=v;",
+      "bindingVersion": "0.1.0"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/message.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.1.0"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/message.json"
+      }
+    }
+  ]
+}

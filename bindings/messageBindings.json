@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/messageBindings.json",
+  "title": "AsyncAPI - Message Bindings",
+  "description": "Map describing protocol-specific definitions for an message",
+  "examples": [
+    {
+      "sns": {
+        "$ref": "#/bindings/amazon-sns/my-sns-message"
+      },
+      "sqs": {
+        "$ref": "#/bindings/amazon-sqs/my-sqs-message"
+      },
+      "amqp": {
+        "$ref": "#/bindings/amqp/my-amqp-message"
+      },
+      "amqp1": {
+        "$ref": "#/bindings/amqp1/my-amqp1-message"
+      },
+      "anypointmq": {
+        "$ref": "#/bindings/anypointmq/my-anypointmq-message"
+      },
+      "kafka": {
+        "$ref": "#/bindings/apache-kafka/my-apache-kafka-message"
+      },
+      "pulsar": {
+        "$ref": "#/bindings/apache-pulsar/my-apache-pulsar-message"
+      },
+      "googlepubsub": {
+        "$ref": "#/bindings/googlepubsub/my-googlepubsub-message"
+      },
+      "http": {
+        "$ref": "#/bindings/http/my-http-message"
+      },
+      "ibmmq": {
+        "$ref": "#/bindings/ibmmq/my-ibmmq-message"
+      },
+      "jms": {
+        "$ref": "#/bindings/jms/my-jms-message"
+      },
+      "mercure": {
+        "$ref": "#/bindings/mercure/my-mercure-message"
+      },
+      "mqtt": {
+        "$ref": "#/bindings/mqtt/my-mqtt-message"
+      },
+      "mqtt5": {
+        "$ref": "#/bindings/mqtt5/my-mqtt5-message"
+      },
+      "nats": {
+        "$ref": "#/bindings/nats/my-nats-message"
+      },
+      "redis": {
+        "$ref": "#/bindings/redis/my-redis-message"
+      },
+      "solace": {
+        "$ref": "#/bindings/solace/my-solace-message"
+      },
+      "stomp": {
+        "$ref": "#/bindings/stomp/my-stomp-message"
+      },
+      "ws": {
+        "$ref": "#/bindings/websockets/my-websockets-message"
+      }
+    },
+    {
+      "sns": {
+        "bindingVersion": "0.2.0"
+      },
+      "sqs": {
+        "bindingVersion": "0.3.0"
+      },
+      "amqp": {
+        "contentEncoding": "gzip",
+        "messageType": "user.signup",
+        "bindingVersion": "0.3.0"
+      },
+      "amqp1": {
+        "bindingVersion": "0.1.0"
+      },
+      "anypointmq": {
+        "bindingVersion": "0.0.1",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "messageId": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "kafka": {
+        "bindingVersion": "0.5.0",
+        "key": {
+          "type": "string",
+          "enum": [ "myKey" ]
+        },
+        "schemaIdLocation": "header",
+        "schemaIdPayloadEncoding": "apicurio-new",
+        "schemaLookupStrategy": "TopicIdStrategy"
+      },
+      "pulsar": {
+        "bindingVersion": "0.1.0"
+      },
+      "googlepubsub": {
+        "schema": {
+          "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+        },
+        "bindingVersion": "0.2.0"
+      },
+      "http": {
+        "bindingVersion": "0.3.0"
+      },
+      "ibmmq": {
+        "type": "binary",
+        "description": "Binary message",
+        "expiry": 10,
+        "headers": "k=v;",
+        "bindingVersion": "0.1.0"
+      },
+      "jms": {
+        "bindingVersion": "0.0.1",
+        "headers": {
+          "type": "object",
+          "required": [ "JMSMessageID" ],
+          "properties": {
+            "JMSCorrelationID": {
+              "description": "The correlation identifier of the message. A client can use the 'JMSCorrelationID' header field to link one message with another. A typical use is to link a response message with its request message. Since each message sent by a JMS provider is assigned a message ID value, it is convenient to link messages via message ID, such message ID values must start with the 'ID:' prefix. Conversely, application-specified values must not start with the 'ID:' prefix; this is reserved for provider-generated message ID values.",
+              "type": [ "string", "null" ]
+            },
+            "JMSDeliveryMode": {
+              "description": "Denotes the delivery mode for the message. This may be set by your JMS Provider on your behalf.",
+              "default": "PERSISTENT",
+              "type": "string",
+              "enum": [ "PERSISTENT", "NON_PERSISTENT" ]
+            },
+            "JMSExpires": {
+              "description": "The time at which the message expires. This may be set by your JMS Provider on your behalf. A value of zero means that the message does not expire. Any non-zero value is the amount of time, measured in milliseconds, that has elapsed since midnight, January 1, 1970, UTC, at which the message will expire.",
+              "type": "integer"
+            },
+            "JMSMessageID": {
+              "description": "A unique message identifier. This may be set by your JMS Provider on your behalf.",
+              "type": [ "string", "null" ]
+            },
+            "JMSPriority": {
+              "description": "The priority of the message. This may be set by your JMS Provider on your behalf.",
+              "default": 4,
+              "type": "integer"
+            },
+            "JMSReplyTo": {
+              "description": "The queue or topic that the message sender expects replies to.",
+              "type": "string"
+            },
+            "JMSTimestamp": {
+              "description": "The time the message was sent. This may be set by your JMS Provider on your behalf. The time the message was sent. The value of the timestamp is the amount of time, measured in milliseconds, that has elapsed since midnight, January 1, 1970, UTC.",
+              "type": "integer"
+            },
+            "JMSType": {
+              "description": "The type of message. Some JMS providers use a message repository that contains the definitions of messages sent by applications. The 'JMSType' header field may reference a message's definition in the provider's repository. The JMS API does not define a standard message definition repository, nor does it define a naming policy for the definitions it contains. Some messaging systems require that a message type definition for each application message be created and that each message specify its type. In order to work with such JMS providers, JMS clients should assign a value to 'JMSType', whether the application makes use of it or not. This ensures that the field is properly set for those providers that require it.",
+              "type": [ "string", "null" ]
+            }
+          }
+        }
+      },
+      "mercure": {
+        "bindingVersion": "0.1.0"
+      },
+      "mqtt": {
+        "bindingVersion": "0.2.0",
+        "contentType": "application/json",
+        "correlationData": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "responseTopic": "application/responses"
+      },
+      "mqtt5": {
+        "bindingVersion": "0.2.0"
+      },
+      "nats": {
+        "bindingVersion": "0.1.0"
+      },
+      "redis": {
+        "bindingVersion": "0.1.0"
+      },
+      "solace": {
+        "bindingVersion": "0.4.0"
+      },
+      "stomp": {
+        "bindingVersion": "0.1.0"
+      },
+      "ws": {
+        "bindingVersion": "0.1.0"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "sns": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/messageBindingOrReference.json"
+    },
+    "sqs": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/messageBindingOrReference.json"
+    },
+    "amqp": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/messageBindingOrReference.json"
+    },
+    "amqp1": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/messageBindingOrReference.json"
+    },
+    "anypointmq": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/messageBindingOrReference.json"
+    },
+    "kafka": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/messageBindingOrReference.json"
+    },
+    "pulsar": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/messageBindingOrReference.json"
+    },
+    "googlepubsub": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/messageBindingOrReference.json"
+    },
+    "http": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/http/messageBindingOrReference.json"
+    },
+    "ibmmq": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/messageBindingOrReference.json"
+    },
+    "jms": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/jms/messageBindingOrReference.json"
+    },
+    "mercure": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/messageBindingOrReference.json"
+    },
+    "mqtt": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/messageBindingOrReference.json"
+    },
+    "mqtt5": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/messageBindingOrReference.json"
+    },
+    "nats": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/nats/messageBindingOrReference.json"
+    },
+    "redis": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/redis/messageBindingOrReference.json"
+    },
+    "solace": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/solace/messageBindingOrReference.json"
+    },
+    "stomp": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/messageBindingOrReference.json"
+    },
+    "ws": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/messageBindingOrReference.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

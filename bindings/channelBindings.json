@@ -1,0 +1,276 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/channelBindings.json",
+  "title": "AsyncAPI - Channel Bindings",
+  "description": "Map describing protocol-specific definitions for an channel",
+  "examples": [
+    {
+      "sns": {
+        "$ref": "#/bindings/amazon-sns/my-sns-channel"
+      },
+      "sqs": {
+        "$ref": "#/bindings/amazon-sqs/my-sqs-channel"
+      },
+      "amqp": {
+        "$ref": "#/bindings/amqp/my-amqp-channel"
+      },
+      "amqp1": {
+        "$ref": "#/bindings/amqp1/my-amqp1-channel"
+      },
+      "anypointmq": {
+        "$ref": "#/bindings/anypointmq/my-anypointmq-channel"
+      },
+      "kafka": {
+        "$ref": "#/bindings/apache-kafka/my-apache-kafka-channel"
+      },
+      "pulsar": {
+        "$ref": "#/bindings/apache-pulsar/my-apache-pulsar-channel"
+      },
+      "googlepubsub": {
+        "$ref": "#/bindings/googlepubsub/my-googlepubsub-channel"
+      },
+      "http": {
+        "$ref": "#/bindings/http/my-http-channel"
+      },
+      "ibmmq": {
+        "$ref": "#/bindings/ibmmq/my-ibmmq-channel"
+      },
+      "jms": {
+        "$ref": "#/bindings/jms/my-jms-channel"
+      },
+      "mercure": {
+        "$ref": "#/bindings/mercure/my-mercure-channel"
+      },
+      "mqtt": {
+        "$ref": "#/bindings/mqtt/my-mqtt-channel"
+      },
+      "mqtt5": {
+        "$ref": "#/bindings/mqtt5/my-mqtt5-channel"
+      },
+      "nats": {
+        "$ref": "#/bindings/nats/my-nats-channel"
+      },
+      "redis": {
+        "$ref": "#/bindings/redis/my-redis-channel"
+      },
+      "solace": {
+        "$ref": "#/bindings/solace/my-solace-channel"
+      },
+      "stomp": {
+        "$ref": "#/bindings/stomp/my-stomp-channel"
+      },
+      "ws": {
+        "$ref": "#/bindings/websockets/my-websockets-channel"
+      }
+    },
+    {
+      "sns": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": "*",
+              "condition": {
+                "StringEquals": {
+                  "aws:SourceAccount": "123456789012"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "sqs": {
+        "queue": {
+          "fifoQueue": true,
+          "name": "my-sqs-queue"
+        },
+        "deadLetterQueue": {
+          "fifoQueue": true,
+          "name": "my-sqs-queue.dlq"
+        },
+        "bindingVersion": "0.3.0"
+      },
+      "amqp": {
+        "bindingVersion": "0.3.0",
+        "exchange": {
+          "type": "fanout",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange",
+          "vhost": "/"
+        },
+        "is": "routingKey"
+      },
+      "amqp1": {
+        "bindingVersion": "0.1.0"
+      },
+      "anypointmq": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signup-fifo-queue",
+        "destinationType": "fifo-queue"
+      },
+      "kafka": {
+        "bindingVersion": "0.5.0",
+        "partitions": 20,
+        "replicas": 3,
+        "topic": "my-specific-topic",
+        "topicConfiguration": {
+          "cleanup.policy": [ "compact", "delete" ],
+          "delete.retention.ms": 1000,
+          "max.message.bytes": 2000,
+          "retention.bytes": 10,
+          "retention.ms": 2000,
+          "confluent.key.schema.validation": true,
+          "confluent.key.subject.name.strategy": "schema",
+          "confluent.value.schema.validation": true,
+          "confluent.value.subject.name.strategy": "schema"
+        }
+      },
+      "pulsar": {
+        "bindingVersion": "0.1.0",
+        "compaction": 1000,
+        "deduplication": true,
+        "geo-replication": [ "us-west", "us-east" ],
+        "namespace": "ns1",
+        "persistence": "persistent",
+        "retention": {
+          "size": 1000,
+          "time": 15
+        },
+        "ttl": 360
+      },
+      "googlepubsub": {
+        "labels": {
+          "label1": "value1",
+          "label2": "value2"
+        },
+        "messageRetentionDuration": "86400s",
+        "messageStoragePolicy": {
+          "allowedPersistenceRegions": [ "us-central1", "us-east1" ]
+        },
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema",
+          "firstRevisionId": "1",
+          "lastRevisionId": "2"
+        },
+        "bindingVersion": "0.2.0"
+      },
+      "http": {
+        "bindingVersion": "0.3.0"
+      },
+      "ibmmq": {
+        "bindingVersion": "0.1.0",
+        "destinationType": "topic",
+        "topic": {
+          "durablePermitted": true,
+          "lastMsgRetained": false,
+          "objectName": "myTopicName",
+          "string": "key"
+        }
+      },
+      "jms": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signed-up",
+        "destinationType": "queue"
+      },
+      "mercure": {
+        "bindingVersion": "0.1.0"
+      },
+      "mqtt": {
+        "bindingVersion": "0.2.0"
+      },
+      "mqtt5": {
+        "bindingVersion": "0.2.0"
+      },
+      "nats": {
+        "bindingVersion": "0.1.0"
+      },
+      "redis": {
+        "bindingVersion": "0.1.0"
+      },
+      "solace": {
+        "bindingVersion": "0.4.0"
+      },
+      "stomp": {
+        "bindingVersion": "0.1.0"
+      },
+      "ws": {
+        "bindingVersion": "0.1.0",
+        "headers": {
+          "session-id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "method": "GET"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "sns": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/channelBindingOrReference.json"
+    },
+    "sqs": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/channelBindingOrReference.json"
+    },
+    "amqp": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/channelBindingOrReference.json"
+    },
+    "amqp1": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/channelBindingOrReference.json"
+    },
+    "anypointmq": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/channelBindingOrReference.json"
+    },
+    "kafka": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/channelBindingOrReference.json"
+    },
+    "pulsar": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/channelBindingOrReference.json"
+    },
+    "googlepubsub": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/channelBindingOrReference.json"
+    },
+    "http": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/http/channelBindingOrReference.json"
+    },
+    "ibmmq": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/channelBindingOrReference.json"
+    },
+    "jms": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/jms/channelBindingOrReference.json"
+    },
+    "mercure": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/channelBindingOrReference.json"
+    },
+    "mqtt": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/channelBindingOrReference.json"
+    },
+    "mqtt5": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/channelBindingOrReference.json"
+    },
+    "nats": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/nats/channelBindingOrReference.json"
+    },
+    "redis": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/redis/channelBindingOrReference.json"
+    },
+    "solace": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/solace/channelBindingOrReference.json"
+    },
+    "stomp": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/channelBindingOrReference.json"
+    },
+    "ws": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/channelBindingOrReference.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/solace/serverBindingOrReference.json",
+  "title": "Solace - Server Binding or Reference",
+  "description": "Describes protocol-specific definitions for a server or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/solace/my-solace-server"
+    },
+    {
+      "bindingVersion": "0.4.0",
+      "msgVpn": "ProdVPN",
+      "clientName": "production"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/solace/serverBinding.json"
+  }
+}

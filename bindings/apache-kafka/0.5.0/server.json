@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/server.json",
+  "title": "Apache Kafka - Server Binding v0.5.0",
+  "description": "Contains server connection information to a Kafka broker",
+  "examples": [
+    {
+      "bindingVersion": "0.5.0",
+      "schemaRegistryUrl": "https://my-schema-registry.com",
+      "schemaRegistryVendor": "confluent"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.5.0", "latest" ]
+    },
+    "schemaRegistryUrl": {
+      "description": "API URL for the Schema Registry used when producing Kafka messages (if a Schema Registry was used)",
+      "type": "string"
+    },
+    "schemaRegistryVendor": {
+      "description": "The vendor of the Schema Registry and Kafka serdes library that should be used",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

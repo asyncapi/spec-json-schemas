@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/operationBinding.json",
+  "title": "Apache Kafka - Operation Binding",
+  "description": "Describes protocol-specific definitions for a operation",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0",
+      "clientId": {
+        "type": "string",
+        "enum": [ "myClientId" ]
+      },
+      "groupId": {
+        "type": "string",
+        "enum": [ "myGroupId" ]
+      }
+    },
+    {
+      "bindingVersion": "0.3.0",
+      "clientId": {
+        "type": "string",
+        "enum": [ "myClientId" ]
+      },
+      "groupId": {
+        "type": "string",
+        "enum": [ "myGroupId" ]
+      }
+    },
+    {
+      "bindingVersion": "0.4.0",
+      "clientId": {
+        "type": "string",
+        "enum": [ "myClientId" ]
+      },
+      "groupId": {
+        "type": "string",
+        "enum": [ "myGroupId" ]
+      }
+    },
+    {
+      "bindingVersion": "0.5.0",
+      "clientId": {
+        "type": "string",
+        "enum": [ "myClientId" ]
+      },
+      "groupId": {
+        "type": "string",
+        "enum": [ "myGroupId" ]
+      }
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.3.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.3.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.4.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.5.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/operation.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "enum": [ "0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.0" ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/operation.json"
+      }
+    }
+  ]
+}

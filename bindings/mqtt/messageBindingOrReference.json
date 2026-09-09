@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/messageBindingOrReference.json",
+  "title": "MQTT - Message Binding or Reference",
+  "description": "Describes protocol-specific definitions for a message or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/mqtt/my-mqtt-queue"
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "contentType": "application/json",
+      "correlationData": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "responseTopic": "application/responses"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/messageBinding.json"
+  }
+}

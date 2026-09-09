@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/solace/operationBindingOrReference.json",
+  "title": "Solace - Operation Binding or Reference",
+  "description": "Describes protocol-specific definitions for a operation or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/solace/my-solace-operation"
+    },
+    {
+      "bindingVersion": "0.4.0",
+      "destinations": [
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "nonexclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ]
+          }
+        },
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "exclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ],
+            "maxMsgSpoolUsage": "4",
+            "maxTtl": "1"
+          }
+        },
+        {
+          "destinationType": "topic",
+          "topicSubscriptions": [ "samples/*" ]
+        }
+      ],
+      "dmqEligible": true,
+      "priority": 20,
+      "timeToLive": 10
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/solace/operationBinding.json"
+  }
+}

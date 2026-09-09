@@ -1,0 +1,222 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/operation.json",
+  "title": "Amazon SQS - Operation Binding v0.2.0",
+  "description": "Contains information about the operation representation in Amazon SQS",
+  "examples": [
+    {
+      "queues": [
+        {
+          "deduplicationScope": "messageGroup",
+          "deliveryDelay": 10,
+          "fifoQueue": true,
+          "fifoThroughputLimit": "perMessageGroupId",
+          "name": "myQueue",
+          "policy": {
+            "statements": [
+              {
+                "action": [ "sqs:SendMessage", "sqs:ReceiveMessage" ],
+                "effect": "Deny",
+                "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+              }
+            ]
+          },
+          "redrivePolicy": {
+            "deadLetterQueue": {
+              "name": "myQueue_error"
+            },
+            "maxReceiveCount": 15
+          }
+        },
+        {
+          "deliveryDelay": 10,
+          "name": "myQueue_error"
+        }
+      ]
+    }
+  ],
+  "type": "object",
+  "required": [ "queues" ],
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    },
+    "queues": {
+      "description": "Queue objects that are either the endpoint for an SNS Operation Binding Object, or the deadLetterQueue of the SQS Operation Binding Object",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/operation.json#/definitions/queue"
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "identifier": {
+      "description": "The SQS queue to use as a dead letter queue (DLQ)",
+      "type": "object",
+      "properties": {
+        "arn": {
+          "description": "The target is an ARN. For example, for SQS, the identifier may be an ARN, which will be of the form: arn:aws:sqs:{region}:{account-id}:{queueName}",
+          "type": "string"
+        },
+        "name": {
+          "description": "The endpoint is identified by a name, which corresponds to an identifying field called 'name' of a binding for that protocol on this publish Operation Object. For example, if the protocol is 'sqs' then the name refers to the name field sqs binding",
+          "type": "string"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    },
+    "policy": {
+      "description": "The security policy for the SQS Queue",
+      "type": "object",
+      "required": [ "statements" ],
+      "properties": {
+        "statements": {
+          "description": "An array of statement objects, each of which controls a permission for this queue",
+          "type": "array",
+          "items": {
+            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/operation.json#/definitions/statement"
+          }
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    },
+    "queue": {
+      "description": "A definition of a queue",
+      "type": "object",
+      "required": [ "name" ],
+      "properties": {
+        "$ref": {
+          "description": "Allows for an external definition of a queue. The referenced structure MUST be in the format of a Queue. If there are conflicts between the referenced definition and this Queue's definition, the behavior is undefined",
+          "type": "string"
+        },
+        "deduplicationScope": {
+          "description": "Specifies whether message deduplication occurs at the message group or queue level. Valid values are messageGroup and queue (default)",
+          "default": "queue",
+          "enum": [ "queue", "messageGroup" ]
+        },
+        "deliveryDelay": {
+          "description": "The number of seconds to delay before a message sent to the queue can be received. Used to create a delay queue",
+          "default": 0,
+          "type": "integer",
+          "maximum": 900,
+          "minimum": 0
+        },
+        "fifoQueue": {
+          "description": "Is this a FIFO queue?",
+          "default": false,
+          "type": "boolean"
+        },
+        "fifoThroughputLimit": {
+          "description": "Specifies whether the FIFO queue throughput quota applies to the entire queue or per message group. Valid values are perQueue (default) and perMessageGroupId",
+          "default": "perQueue",
+          "enum": [ "perQueue", "perMessageGroupId" ]
+        },
+        "messageRetentionPeriod": {
+          "description": "How long to retain a message on the queue in seconds, unless deleted",
+          "default": 345600,
+          "type": "integer",
+          "maximum": 1209600,
+          "minimum": 60
+        },
+        "name": {
+          "description": "The name of the queue. When an SNS Operation Binding Object references an SQS queue by name, the identifier should be the one in this field",
+          "type": "string"
+        },
+        "policy": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/operation.json#/definitions/policy"
+        },
+        "receiveMessageWaitTime": {
+          "description": "Determines if the queue uses short polling or long polling. Set to zero the queue reads available messages and returns immediately. Set to a non-zero integer, long polling waits the specified number of seconds for messages to arrive before returning",
+          "default": 0,
+          "type": "integer"
+        },
+        "redrivePolicy": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/operation.json#/definitions/redrivePolicy"
+        },
+        "tags": {
+          "description": "Key-value pairs that represent AWS tags on the queue",
+          "type": "object"
+        },
+        "visibilityTimeout": {
+          "description": "The length of time, in seconds, that a consumer locks a message - hiding it from reads - before it is unlocked and can be read again",
+          "default": 30,
+          "type": "integer",
+          "maximum": 43200,
+          "minimum": 0
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    },
+    "redrivePolicy": {
+      "description": "Prevent poison pill messages by moving un-processable messages to an SQS dead letter queue",
+      "type": "object",
+      "required": [ "deadLetterQueue" ],
+      "properties": {
+        "deadLetterQueue": {
+          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/operation.json#/definitions/identifier"
+        },
+        "maxReceiveCount": {
+          "description": "The number of times a message is delivered to the source queue before being moved to the dead-letter queue",
+          "default": 10,
+          "type": "integer"
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    },
+    "statement": {
+      "type": "object",
+      "required": [ "effect", "principal", "action" ],
+      "properties": {
+        "action": {
+          "description": "The SQS permission being allowed or denied e.g. sqs:ReceiveMessage",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "effect": {
+          "enum": [ "Allow", "Deny" ]
+        },
+        "principal": {
+          "description": "The AWS account or resource ARN that this statement applies to",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "patternProperties": {
+        "^x-[\\w\\d\\.\\x2d_]+$": true
+      }
+    }
+  }
+}

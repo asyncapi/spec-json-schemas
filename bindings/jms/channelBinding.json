@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/jms/channelBinding.json",
+  "title": "JMS - Channel Binding",
+  "description": "Describes protocol-specific definitions for a channel",
+  "examples": [
+    {
+      "bindingVersion": "0.0.1",
+      "destination": "user-signed-up",
+      "destinationType": "queue"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.0.1"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/channel.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.0.1"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/channel.json"
+      }
+    }
+  ]
+}

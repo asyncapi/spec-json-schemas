@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/messageBindingOrReference.json",
+  "title": "Anypoint MQ - Message Binding or Reference",
+  "description": "Describes protocol-specific definitions for a message or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/anypointmq/my-anypointmq-queue"
+    },
+    {
+      "bindingVersion": "0.0.1",
+      "headers": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/messageBinding.json"
+  }
+}

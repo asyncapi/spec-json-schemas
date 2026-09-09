@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/channelBindingOrReference.json",
+  "title": "Apache Kafka - Channel Binding or Reference",
+  "description": "Describes protocol-specific definitions for a channel or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/apache-kafka/my-apache-kafka-queue"
+    },
+    {
+      "bindingVersion": "0.5.0",
+      "partitions": 20,
+      "replicas": 3,
+      "topic": "my-specific-topic",
+      "topicConfiguration": {
+        "cleanup.policy": [ "compact", "delete" ],
+        "delete.retention.ms": 1000,
+        "max.message.bytes": 2000,
+        "retention.bytes": 10,
+        "retention.ms": 2000,
+        "confluent.key.schema.validation": true,
+        "confluent.key.subject.name.strategy": "schema",
+        "confluent.value.schema.validation": true,
+        "confluent.value.subject.name.strategy": "schema"
+      }
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/channelBinding.json"
+  }
+}

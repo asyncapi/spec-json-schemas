@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/operationBinding.json",
+  "title": "Amazon SQS - Operation Binding",
+  "description": "Describes protocol-specific definitions for a operation",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0"
+    },
+    {
+      "queues": [
+        {
+          "deduplicationScope": "messageGroup",
+          "deliveryDelay": 10,
+          "fifoQueue": true,
+          "fifoThroughputLimit": "perMessageGroupId",
+          "name": "myQueue",
+          "policy": {
+            "statements": [
+              {
+                "action": [ "sqs:SendMessage", "sqs:ReceiveMessage" ],
+                "effect": "Deny",
+                "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+              }
+            ]
+          },
+          "redrivePolicy": {
+            "deadLetterQueue": {
+              "name": "myQueue_error"
+            },
+            "maxReceiveCount": 15
+          }
+        },
+        {
+          "deliveryDelay": 10,
+          "name": "myQueue_error"
+        }
+      ],
+      "bindingVersion": "0.2.0"
+    },
+    {
+      "queues": [
+        {
+          "name": "myQueue",
+          "policy": {
+            "statements": [
+              {
+                "action": [ "sqs:SendMessage", "sqs:ReceiveMessage" ],
+                "effect": "Deny",
+                "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                "condition": {
+                  "ArnEquals": {
+                    "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:MyTopic"
+                  }
+                }
+              }
+            ]
+          },
+          "redrivePolicy": {
+            "deadLetterQueue": {
+              "name": "myQueue_error"
+            },
+            "maxReceiveCount": 15
+          }
+        }
+      ],
+      "bindingVersion": "0.3.0"
+    },
+    {
+      "queues": [
+        {
+          "name": "myQueue",
+          "policy": {
+            "statements": [
+              {
+                "action": [ "sqs:SendMessage", "sqs:ReceiveMessage" ],
+                "effect": "Deny",
+                "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                "condition": {
+                  "ArnEquals": {
+                    "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:MyTopic"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "bindingVersion": "latest"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.2.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/operation.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.3.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/operation.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "enum": [ "0.1.0", "0.2.0", "0.3.0" ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/operation.json"
+      }
+    }
+  ]
+}

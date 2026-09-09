@@ -1,0 +1,288 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/operationBindings.json",
+  "title": "AsyncAPI - operation Bindings",
+  "description": "Map describing protocol-specific definitions for an operation",
+  "examples": [
+    {
+      "sns": {
+        "$ref": "#/bindings/amazon-sns/my-sns-operation"
+      },
+      "sqs": {
+        "$ref": "#/bindings/amazon-sqs/my-sqs-operation"
+      },
+      "amqp": {
+        "$ref": "#/bindings/amqp/my-amqp-operation"
+      },
+      "amqp1": {
+        "$ref": "#/bindings/amqp1/my-amqp1-operation"
+      },
+      "anypointmq": {
+        "$ref": "#/bindings/anypointmq/my-anypointmq-operation"
+      },
+      "kafka": {
+        "$ref": "#/bindings/apache-kafka/my-apache-kafka-operation"
+      },
+      "pulsar": {
+        "$ref": "#/bindings/apache-pulsar/my-apache-pulsar-operation"
+      },
+      "googlepubsub": {
+        "$ref": "#/bindings/googlepubsub/my-googlepubsub-operation"
+      },
+      "http": {
+        "$ref": "#/bindings/http/my-http-operation"
+      },
+      "ibmmq": {
+        "$ref": "#/bindings/ibmmq/my-ibmmq-operation"
+      },
+      "jms": {
+        "$ref": "#/bindings/jms/my-jms-operation"
+      },
+      "mercure": {
+        "$ref": "#/bindings/mercure/my-mercure-operation"
+      },
+      "mqtt": {
+        "$ref": "#/bindings/mqtt/my-mqtt-operation"
+      },
+      "mqtt5": {
+        "$ref": "#/bindings/mqtt5/my-mqtt5-operation"
+      },
+      "nats": {
+        "$ref": "#/bindings/nats/my-nats-operation"
+      },
+      "redis": {
+        "$ref": "#/bindings/redis/my-redis-operation"
+      },
+      "solace": {
+        "$ref": "#/bindings/solace/my-solace-operation"
+      },
+      "stomp": {
+        "$ref": "#/bindings/stomp/my-stomp-operation"
+      },
+      "ws": {
+        "$ref": "#/bindings/websockets/my-websockets-operation"
+      }
+    },
+    {
+      "sns": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "topic": {
+          "name": "someTopic"
+        },
+        "bindingVersion": "0.2.0"
+      },
+      "sqs": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "policy": {
+              "statements": [
+                {
+                  "action": [ "sqs:SendMessage", "sqs:ReceiveMessage" ],
+                  "effect": "Deny",
+                  "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                  "condition": {
+                    "ArnEquals": {
+                      "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:MyTopic"
+                    }
+                  }
+                }
+              ]
+            },
+            "redrivePolicy": {
+              "deadLetterQueue": {
+                "name": "myQueue_error"
+              },
+              "maxReceiveCount": 15
+            }
+          }
+        ],
+        "bindingVersion": "0.3.0"
+      },
+      "amqp": {
+        "ack": false,
+        "bcc": [ "external.audit" ],
+        "cc": [ "user.logs" ],
+        "deliveryMode": 2,
+        "expiration": 100000,
+        "mandatory": false,
+        "priority": 10,
+        "timestamp": true,
+        "userId": "guest",
+        "bindingVersion": "0.3.0"
+      },
+      "amqp1": {
+        "bindingVersion": "0.1.0"
+      },
+      "anypointmq": {
+        "bindingVersion": "0.0.1"
+      },
+      "kafka": {
+        "bindingVersion": "0.5.0",
+        "clientId": {
+          "type": "string",
+          "enum": [ "myClientId" ]
+        },
+        "groupId": {
+          "type": "string",
+          "enum": [ "myGroupId" ]
+        }
+      },
+      "pulsar": {
+        "bindingVersion": "0.1.0"
+      },
+      "googlepubsub": {
+        "bindingVersion": "0.2.0"
+      },
+      "http": {
+        "bindingVersion": "0.3.0",
+        "method": "GET",
+        "query": {
+          "type": "object",
+          "required": [ "companyId" ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "ibmmq": {
+        "bindingVersion": "0.1.0"
+      },
+      "jms": {
+        "bindingVersion": "0.0.1"
+      },
+      "mercure": {
+        "bindingVersion": "0.1.0"
+      },
+      "mqtt": {
+        "bindingVersion": "0.2.0",
+        "messageExpiryInterval": 60,
+        "qos": 2,
+        "retain": true
+      },
+      "mqtt5": {
+        "bindingVersion": "0.2.0"
+      },
+      "nats": {
+        "bindingVersion": "0.1.0",
+        "queue": "MyCustomQueue"
+      },
+      "redis": {
+        "bindingVersion": "0.1.0"
+      },
+      "solace": {
+        "bindingVersion": "0.4.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [ "samples/*" ]
+            }
+          },
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "exclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [ "samples/*" ],
+              "maxMsgSpoolUsage": "4",
+              "maxTtl": "1"
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [ "samples/*" ]
+          }
+        ],
+        "dmqEligible": true,
+        "priority": 20,
+        "timeToLive": 10
+      },
+      "stomp": {
+        "bindingVersion": "0.1.0"
+      },
+      "ws": {
+        "bindingVersion": "0.1.0"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "sns": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/operationBindingOrReference.json"
+    },
+    "sqs": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/operationBindingOrReference.json"
+    },
+    "amqp": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/operationBindingOrReference.json"
+    },
+    "amqp1": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/operationBindingOrReference.json"
+    },
+    "anypointmq": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/operationBindingOrReference.json"
+    },
+    "kafka": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/operationBindingOrReference.json"
+    },
+    "pulsar": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/operationBindingOrReference.json"
+    },
+    "googlepubsub": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/operationBindingOrReference.json"
+    },
+    "http": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/http/operationBindingOrReference.json"
+    },
+    "ibmmq": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/operationBindingOrReference.json"
+    },
+    "jms": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/jms/operationBindingOrReference.json"
+    },
+    "mercure": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/operationBindingOrReference.json"
+    },
+    "mqtt": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/operationBindingOrReference.json"
+    },
+    "mqtt5": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/operationBindingOrReference.json"
+    },
+    "nats": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/nats/operationBindingOrReference.json"
+    },
+    "redis": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/redis/operationBindingOrReference.json"
+    },
+    "solace": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/solace/operationBindingOrReference.json"
+    },
+    "stomp": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/operationBindingOrReference.json"
+    },
+    "ws": {
+      "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/operationBindingOrReference.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/jms/operationBindingOrReference.json",
+  "title": "JMS - Operation Binding or Reference",
+  "description": "Describes protocol-specific definitions for a operation or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/jms/my-jms-operation"
+    },
+    {
+      "bindingVersion": "0.0.1"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/jms/operationBinding.json"
+  }
+}

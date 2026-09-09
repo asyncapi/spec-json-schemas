@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/0.1.0/channel.json",
+  "title": "AMQP 0-9-1 - Channel Binding v0.1.0",
+  "description": "Contains information about the channel representation in AMQP 0-9-1",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0",
+      "exchange": {
+        "type": "topic",
+        "autoDelete": false,
+        "durable": true,
+        "name": "myExchange"
+      },
+      "is": "routingKey"
+    },
+    {
+      "bindingVersion": "0.1.0",
+      "exchange": {
+        "type": "direct",
+        "autoDelete": false,
+        "durable": true,
+        "name": "myExchange"
+      },
+      "is": "routingKey"
+    },
+    {
+      "bindingVersion": "0.1.0",
+      "exchange": {
+        "type": "fanout",
+        "autoDelete": false,
+        "durable": true,
+        "name": "myExchange"
+      },
+      "is": "routingKey"
+    },
+    {
+      "bindingVersion": "0.1.0",
+      "exchange": {
+        "type": "default",
+        "autoDelete": false,
+        "durable": true,
+        "name": "myExchange"
+      },
+      "is": "routingKey"
+    },
+    {
+      "bindingVersion": "0.1.0",
+      "exchange": {
+        "type": "headers",
+        "autoDelete": false,
+        "durable": true,
+        "name": "myExchange"
+      },
+      "is": "routingKey"
+    },
+    {
+      "bindingVersion": "0.1.0",
+      "is": "queue",
+      "queue": {
+        "autoDelete": false,
+        "durable": true,
+        "exclusive": true,
+        "name": "my-queue-name"
+      }
+    }
+  ],
+  "type": "object",
+  "oneOf": [
+    {
+      "not": {
+        "required": [ "queue" ]
+      },
+      "required": [ "exchange" ],
+      "properties": {
+        "is": {
+          "const": "routingKey"
+        }
+      }
+    },
+    {
+      "not": {
+        "required": [ "exchange" ]
+      },
+      "required": [ "queue" ],
+      "properties": {
+        "is": {
+          "const": "queue"
+        }
+      }
+    }
+  ],
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.1.0", "latest" ]
+    },
+    "exchange": {
+      "description": "When is=routingKey, this object defines the exchange properties",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of the exchange. Can be either 'topic', 'direct', 'fanout', 'default' or 'headers'",
+          "enum": [ "topic", "direct", "fanout", "default", "headers" ]
+        },
+        "autoDelete": {
+          "description": "Whether the exchange should be deleted when the last queue is unbound from it",
+          "type": "boolean"
+        },
+        "durable": {
+          "description": "Whether the exchange should survive broker restarts or not",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the exchange. It MUST NOT exceed 255 characters long",
+          "type": "string",
+          "maxLength": 255
+        }
+      }
+    },
+    "is": {
+      "description": "Defines what type of channel is it. Can be either 'queue' or 'routingKey' (default)",
+      "enum": [ "queue", "routingKey" ]
+    },
+    "queue": {
+      "description": "When is=queue, this object defines the queue properties",
+      "type": "object",
+      "properties": {
+        "autoDelete": {
+          "description": "Whether the queue should be deleted when the last consumer unsubscribes",
+          "type": "boolean"
+        },
+        "durable": {
+          "description": "Whether the queue should survive broker restarts or not",
+          "type": "boolean"
+        },
+        "exclusive": {
+          "description": "Whether the queue should be used only by one connection or not",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name of the queue. It MUST NOT exceed 255 characters long",
+          "type": "string",
+          "maxLength": 255
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

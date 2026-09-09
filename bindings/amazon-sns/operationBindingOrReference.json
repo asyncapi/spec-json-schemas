@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/operationBindingOrReference.json",
+  "title": "Amazon SNS - Operation Binding or Reference",
+  "description": "Describes protocol-specific definitions for a operation or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/amazon-sns/my-sns-topic"
+    },
+    {
+      "consumers": [
+        {
+          "endpoint": {
+            "name": "someQueue"
+          },
+          "protocol": "sqs",
+          "rawMessageDelivery": false
+        }
+      ],
+      "topic": {
+        "name": "someTopic"
+      },
+      "bindingVersion": "0.2.0"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/operationBinding.json"
+  }
+}

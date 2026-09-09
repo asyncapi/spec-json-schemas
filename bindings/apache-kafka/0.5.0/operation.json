@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/operation.json",
+  "title": "Apache Kafka - Operation Binding v0.5.0",
+  "description": "Contains information about the operation representation in Apache Kafka",
+  "examples": [
+    {
+      "bindingVersion": "0.5.0",
+      "clientId": {
+        "type": "string",
+        "enum": [ "myClientId" ]
+      },
+      "groupId": {
+        "type": "string",
+        "enum": [ "myGroupId" ]
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.5.0", "latest" ]
+    },
+    "clientId": {
+      "description": "Id of the consumer inside a consumer group",
+      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+    },
+    "groupId": {
+      "description": "Id of the consumer group",
+      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/operationBindingOrReference.json",
+  "title": "AMQP 0-9-1 - Operation Binding or Reference",
+  "description": "Describes protocol-specific definitions for a operation or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/amqp/my-amqp-operation"
+    },
+    {
+      "bindingVersion": "0.3.0"
+    },
+    {
+      "ack": false,
+      "bcc": [ "external.audit" ],
+      "cc": [ "user.logs" ],
+      "deliveryMode": 2,
+      "expiration": 100000,
+      "mandatory": false,
+      "priority": 10,
+      "timestamp": true,
+      "userId": "guest",
+      "bindingVersion": "0.3.0"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/operationBinding.json"
+  }
+}

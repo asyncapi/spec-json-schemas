@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/messageBindingOrReference.json",
+  "title": "Mercure - Message Binding or Reference",
+  "description": "Describes protocol-specific definitions for a message or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/googlepubsub/my-googlepubsub-queue"
+    },
+    {
+      "schema": {
+        "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+      },
+      "bindingVersion": "0.2.0"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/messageBinding.json"
+  }
+}

@@ -1,71 +1,66 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/mqtt/0.1.0/server.json",
-  "title": "MQTT server bindings object",
-  "description": "This object contains information about the server representation in MQTT.",
-  "type": "object",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-    }
-  },
-  "properties": {
-    "clientId": {
-      "type": "string",
-      "description": "The client identifier."
-    },
-    "cleanSession": {
-      "type": "boolean",
-      "description": "Whether to create a persistent connection or not. When 'false', the connection will be persistent."
-    },
-    "lastWill": {
-      "type": "object",
-      "description": "Last Will and Testament configuration.",
-      "properties": {
-        "topic": {
-          "type": "string",
-          "description": "The topic where the Last Will and Testament message will be sent."
-        },
-        "qos": {
-          "type": "integer",
-          "enum": [0,1,2],
-          "description": "Defines how hard the broker/client will try to ensure that the Last Will and Testament message is received. Its value MUST be either 0, 1 or 2."
-        },
-        "message": {
-          "type": "string",
-          "description": "Last Will message."
-        },
-        "retain": {
-          "type": "boolean",
-          "description": "Whether the broker should retain the Last Will and Testament message or not."
-        }
-      }
-    },
-    "keepAlive": {
-      "type": "integer",
-      "description": "Interval in seconds of the longest period of time the broker and the client can endure without sending a message."
-    },
-    "bindingVersion": {
-      "type": "string",
-      "enum": [
-        "0.1.0"
-      ],
-      "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-    }
-  },
+  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/0.1.0/server.json",
+  "title": "MQTT - Server Binding v0.1.0",
+  "description": "Contains information about the server representation in MQTT",
   "examples": [
     {
-      "clientId": "guest",
+      "bindingVersion": "0.1.0",
       "cleanSession": true,
-      "lastWill": {
-        "topic": "/last-wills",
-        "qos": 2,
-        "message": "Guest gone offline.",
-        "retain": false
-      },
+      "clientId": "guest",
       "keepAlive": 60,
-      "bindingVersion": "0.1.0"
+      "lastWill": {
+        "message": "Guest gone offline.",
+        "qos": 2,
+        "retain": false,
+        "topic": "/last-wills"
+      }
     }
-  ]
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.1.0", "latest" ]
+    },
+    "cleanSession": {
+      "description": "Whether to create a persistent connection or not. When 'false', the connection will be persistent",
+      "type": "boolean"
+    },
+    "clientId": {
+      "description": "The client identifier",
+      "type": "string"
+    },
+    "keepAlive": {
+      "description": "Interval in seconds of the longest period of time the broker and the client can endure without sending a message",
+      "type": "integer"
+    },
+    "lastWill": {
+      "description": "Last Will and Testament configuration",
+      "type": "object",
+      "properties": {
+        "message": {
+          "description": "Last Will message",
+          "type": "string"
+        },
+        "qos": {
+          "description": "Defines how hard the broker/client will try to ensure that the Last Will and Testament message is received. Its value MUST be either 0, 1 or 2",
+          "enum": [ 0, 1, 2 ]
+        },
+        "retain": {
+          "description": "Whether the broker should retain the Last Will and Testament message or not",
+          "type": "boolean"
+        },
+        "topic": {
+          "description": "The topic where the Last Will and Testament message will be sent",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
 }

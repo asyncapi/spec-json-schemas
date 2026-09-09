@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/jms/serverBindingOrReference.json",
+  "title": "JMS - Server Binding or Reference",
+  "description": "Describes protocol-specific definitions for a server or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/jms/my-jms-server"
+    },
+    {
+      "properties": [
+        {
+          "name": "disableTimeStampsByDefault",
+          "value": false
+        }
+      ],
+      "bindingVersion": "0.0.1",
+      "clientID": "my-application-1",
+      "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/jms/serverBinding.json"
+  }
+}

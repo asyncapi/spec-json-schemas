@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/operationBindingOrReference.json",
+  "title": "Apache Kafka - Operation Binding or Reference",
+  "description": "Describes protocol-specific definitions for a operation or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/apache-kafka/my-apache-kafka-operation"
+    },
+    {
+      "bindingVersion": "0.5.0",
+      "clientId": {
+        "type": "string",
+        "enum": [ "myClientId" ]
+      },
+      "groupId": {
+        "type": "string",
+        "enum": [ "myGroupId" ]
+      }
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/operationBinding.json"
+  }
+}

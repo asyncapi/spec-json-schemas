@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/channelBindingOrReference.json",
+  "title": "AMQP 0-9-1 - Channel Binding or Reference",
+  "description": "Describes protocol-specific definitions for a channel or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/amqp/my-amqp-queue"
+    },
+    {
+      "bindingVersion": "0.3.0",
+      "exchange": {
+        "type": "fanout",
+        "autoDelete": false,
+        "durable": true,
+        "name": "myExchange",
+        "vhost": "/"
+      },
+      "is": "routingKey"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/channelBinding.json"
+  }
+}

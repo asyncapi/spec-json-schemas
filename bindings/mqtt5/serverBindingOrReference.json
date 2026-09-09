@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBindingOrReference.json",
+  "title": "MQTT v5.0 - Server Binding or Reference",
+  "description": "Describes protocol-specific definitions for a server or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/mqtt5/my-mqtt5-server"
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "sessionExpiryInterval": {
+        "type": "integer",
+        "minimum": 100
+      }
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBinding.json"
+  }
+}

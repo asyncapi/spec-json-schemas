@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/channelBinding.json",
+  "title": "Amazon SQS - Channel Binding",
+  "description": "Describes protocol-specific definitions for a channel",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0"
+    },
+    {
+      "queue": {
+        "fifoQueue": true,
+        "name": "my-sqs-queue"
+      },
+      "bindingVersion": "0.2.0"
+    },
+    {
+      "queue": {
+        "fifoQueue": true,
+        "name": "my-sqs-queue"
+      },
+      "deadLetterQueue": {
+        "fifoQueue": true,
+        "name": "my-sqs-queue.dlq"
+      },
+      "bindingVersion": "0.3.0"
+    },
+    {
+      "queue": {
+        "fifoQueue": true,
+        "name": "my-sqs-queue"
+      },
+      "deadLetterQueue": {
+        "fifoQueue": true,
+        "name": "my-sqs-queue.dlq"
+      },
+      "bindingVersion": "latest"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/channel.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.2.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/channel.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.3.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "enum": [ "0.1.0", "0.2.0", "0.3.0" ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/message.json",
+  "title": "Apache Kafka - Message Binding v0.4.0",
+  "description": "Contains information about the message representation in Apache Kafka",
+  "examples": [
+    {
+      "bindingVersion": "0.4.0",
+      "key": {
+        "type": "string",
+        "enum": [ "myKey" ]
+      },
+      "schemaIdLocation": "header",
+      "schemaIdPayloadEncoding": "apicurio-new",
+      "schemaLookupStrategy": "TopicIdStrategy"
+    },
+    {
+      "bindingVersion": "0.4.0",
+      "key": {
+        "$ref": "path/to/user-create.avsc#/UserCreate"
+      },
+      "schemaIdLocation": "payload",
+      "schemaIdPayloadEncoding": "4"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.4.0", "latest" ]
+    },
+    "key": {
+      "description": "The message key",
+      "anyOf": [
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+        },
+        {
+          "$ref": "https://asyncapi.pavelon.dev/schemas/avroSchema_v1.json"
+        }
+      ]
+    },
+    "schemaIdLocation": {
+      "description": "If a Schema Registry is used when performing this operation, tells where the id of schema is stored",
+      "enum": [ "header", "payload" ]
+    },
+    "schemaIdPayloadEncoding": {
+      "description": "Number of bytes or vendor specific values when schema id is encoded in payload",
+      "type": "string"
+    },
+    "schemaLookupStrategy": {
+      "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

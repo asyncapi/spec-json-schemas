@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/operationBinding.json",
+  "title": "Anypoint MQ - Operation Binding",
+  "description": "Describes protocol-specific definitions for a operation",
+  "examples": [
+    {},
+    {
+      "bindingVersion": "latest"
+    },
+    {
+      "bindingVersion": "0.0.1"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/operation.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.1.0"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/operation.json"
+      }
+    }
+  ]
+}

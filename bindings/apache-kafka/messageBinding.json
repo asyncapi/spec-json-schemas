@@ -1,0 +1,112 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/messageBinding.json",
+  "title": "Apache Kafka - Message Binding",
+  "description": "Describes protocol-specific definitions for a message",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0",
+      "key": {
+        "type": "string",
+        "enum": [ "myKey" ]
+      }
+    },
+    {
+      "bindingVersion": "0.3.0",
+      "key": {
+        "$ref": "path/to/user-create.avsc#/UserCreate"
+      },
+      "schemaIdLocation": "payload",
+      "schemaIdPayloadEncoding": "4"
+    },
+    {
+      "bindingVersion": "0.4.0",
+      "key": {
+        "$ref": "path/to/user-create.avsc#/UserCreate"
+      },
+      "schemaIdLocation": "payload",
+      "schemaIdPayloadEncoding": "4"
+    },
+    {
+      "bindingVersion": "0.5.0",
+      "key": {
+        "type": "string",
+        "enum": [ "myKey" ]
+      },
+      "schemaIdLocation": "header",
+      "schemaIdPayloadEncoding": "apicurio-new",
+      "schemaLookupStrategy": "TopicIdStrategy"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/message.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.3.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.3.0/message.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.4.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/message.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.5.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/message.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "enum": [ "0.1.0", "0.3.0", "0.4.0", "0.5.0" ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/message.json"
+      }
+    }
+  ]
+}

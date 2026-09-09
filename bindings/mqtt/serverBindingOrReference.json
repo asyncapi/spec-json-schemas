@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBindingOrReference.json",
+  "title": "MQTT - Server Binding or Reference",
+  "description": "Describes protocol-specific definitions for a server or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/mqtt/my-mqtt-server"
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "cleanSession": true,
+      "clientId": "guest",
+      "keepAlive": 60,
+      "lastWill": {
+        "message": "Guest gone offline.",
+        "qos": 2,
+        "retain": false,
+        "topic": "/last-wills"
+      },
+      "maximumPacketSize": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "sessionExpiryInterval": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBinding.json"
+  }
+}

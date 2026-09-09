@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBinding.json",
+  "title": "Apache Kafka - Server Binding",
+  "description": "Describes protocol-specific definitions for a server",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0"
+    },
+    {
+      "bindingVersion": "0.3.0",
+      "schemaRegistryUrl": "https://my-schema-registry.com",
+      "schemaRegistryVendor": "confluent"
+    },
+    {
+      "bindingVersion": "0.4.0",
+      "schemaRegistryUrl": "https://my-schema-registry.com",
+      "schemaRegistryVendor": "confluent"
+    },
+    {
+      "bindingVersion": "0.5.0",
+      "schemaRegistryUrl": "https://my-schema-registry.com",
+      "schemaRegistryVendor": "confluent"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/server.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.3.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.3.0/server.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.4.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/server.json"
+      }
+    },
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.5.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/server.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "enum": [ "0.1.0", "0.2.0", "0.3.0", "0.4.0", "0.5.0" ]
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/server.json"
+      }
+    }
+  ]
+}

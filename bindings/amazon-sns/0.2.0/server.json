@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json",
+  "title": "Amazon SNS - Server Binding v0.2.0",
+  "description": "Contains information about the server representation in Amazon SNS",
+  "examples": [
+    {
+      "bindingVersion": "latest"
+    },
+    {
+      "bindingVersion": "0.2.0"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    }
+  },
+  "additionalProperties": false
+}

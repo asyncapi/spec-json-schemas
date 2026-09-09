@@ -1,26 +1,85 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/http/0.1.0/operation.json",
-  "title": "HTTP operation bindings object",
-  "description": "This object contains information about the operation representation in HTTP.",
-  "type": "object",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+  "$id": "https://asyncapi.pavelon.dev/bindings/http/0.1.0/operation.json",
+  "title": "HTTP - Operation Binding v0.1.0",
+  "description": "Contains information about the operation representation in HTTP",
+  "examples": [
+    {
+      "type": "response",
+      "bindingVersion": "0.1.0",
+      "query": {
+        "type": "object",
+        "required": [ "companyId" ],
+        "properties": {
+          "companyId": {
+            "description": "The Id of the company.",
+            "type": "number",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "type": "request",
+      "bindingVersion": "0.1.0",
+      "method": "GET",
+      "query": {
+        "type": "object",
+        "required": [ "companyId" ],
+        "properties": {
+          "companyId": {
+            "description": "The Id of the company.",
+            "type": "number",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "type": "request",
+      "bindingVersion": "0.1.0",
+      "method": "GET",
+      "query": {
+        "$ref": "#/response"
+      }
     }
-  },
+  ],
+  "type": "object",
+  "oneOf": [
+    {
+      "required": [ "method" ],
+      "properties": {
+        "type": {
+          "const": "request"
+        }
+      }
+    },
+    {
+      "not": {
+        "required": [ "method" ]
+      },
+      "properties": {
+        "is": {
+          "const": "response"
+        }
+      }
+    }
+  ],
+  "required": [ "type" ],
   "properties": {
     "type": {
-      "type": "string",
-      "enum": [
-        "request",
-        "response"
-      ],
-      "description": "Required. Type of operation. Its value MUST be either 'request' or 'response'."
+      "description": "Required. Type of operation. Its value MUST be either 'request' or 'response'",
+      "enum": [ "request", "response" ]
+    },
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.1.0", "latest" ]
     },
     "method": {
-      "type": "string",
+      "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'",
       "enum": [
         "GET",
         "PUT",
@@ -31,96 +90,15 @@
         "OPTIONS",
         "CONNECT",
         "TRACE"
-      ],
-      "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'."
-    },
-    "query": {
-      "oneOf": [
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/schema.json"
-        },
-        {
-          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
-        }
-      ],
-      "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key."
-    },
-    "bindingVersion": {
-      "type": "string",
-      "enum": [
-        "0.1.0"
-      ],
-      "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
-    }
-  },
-  "required": [
-    "type"
-  ],
-  "oneOf": [
-    {
-      "properties": {
-        "type": {
-          "const": "request"
-        }
-      },
-      "required": [
-        "method"
       ]
     },
-    {
-      "properties": {
-        "is": {
-          "const": "response"
-        }
-      },
-      "not": {
-        "required": [
-          "method"
-        ]
-      }
+    "query": {
+      "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key",
+      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
     }
-  ],
-  "examples": [
-    {
-      "type": "response",
-      "query": {
-        "type": "object",
-        "required": [
-          "companyId"
-        ],
-        "properties": {
-          "companyId": {
-            "type": "number",
-            "minimum": 1,
-            "description": "The Id of the company."
-          }
-        },
-        "additionalProperties": false
-      },
-      "bindingVersion": "0.1.0"
-    },
-    {
-      "type": "request",
-      "method": "GET",
-      "query": {
-        "type": "object",
-        "required": [
-          "companyId"
-        ],
-        "properties": {
-          "companyId": {
-            "type": "number",
-            "minimum": 1,
-            "description": "The Id of the company."
-          }
-        },
-        "additionalProperties": false
-      },
-      "bindingVersion": "0.1.0"
-    }
-  ]
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
 }
-
-
-
-

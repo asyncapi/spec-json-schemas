@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/messageBindingOrReference.json",
+  "title": "Amazon SQS - Message Binding or Reference",
+  "description": "Describes protocol-specific definitions for a message or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/amazon-sqs/my-sqs-message"
+    },
+    {
+      "bindingVersion": "0.3.0"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/messageBinding.json"
+  }
+}

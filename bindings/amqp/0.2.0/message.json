@@ -1,37 +1,33 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/bindings/amqp/0.2.0/message.json",
-  "title": "AMQP message bindings object",
-  "description": "This object contains information about the message representation in AMQP.",
-  "type": "object",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
-    }
-  },
-  "properties": {
-    "contentEncoding": {
-      "type": "string",
-      "description": "A MIME encoding for the message content."
-    },
-    "messageType": {
-      "type": "string",
-      "description": "Application-specific message type."
-    },
-    "bindingVersion": {
-      "type": "string",
-      "enum": [
-        "0.2.0"
-      ],
-      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed."
-    }
-  },
+  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/0.2.0/message.json",
+  "title": "AMQP 0-9-1 - Message Binding v0.2.0",
+  "description": "Contains information about the message representation in AMQP 0-9-1",
   "examples": [
     {
       "contentEncoding": "gzip",
-      "messageType": "user.signup",
-      "bindingVersion": "0.2.0"
+      "bindingVersion": "0.2.0",
+      "messageType": "user.signup"
     }
-  ]
+  ],
+  "type": "object",
+  "properties": {
+    "contentEncoding": {
+      "description": "A MIME encoding for the message content",
+      "type": "string"
+    },
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    },
+    "messageType": {
+      "description": "Application-specific message type",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
 }
