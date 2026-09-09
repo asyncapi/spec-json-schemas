@@ -1,0 +1,159 @@
+{
+  "url": "https://asyncapi.pavelon.dev",
+  "html": {
+    "name": "AsyncAPI"
+  },
+  "contents": {
+    "bindings": {
+      "title": "Supported Message Broker Integrations",
+      "description": "Explore AsyncAPI protocol bindings for Kafka, AMQP, MQTT, SQS, SNS, and more. Learn to define channel, operation, message, and server bindings for event-driven APIs",
+      "path": "./draft-07/bindings",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings"
+    },
+    "bindings/amazon-sns": {
+      "title": "Amazon SNS Integrations",
+      "description": "Amazon SNS is a web service that coordinates and manages the delivery or sending of messages to subscribing endpoints or clients",
+      "website": "https://aws.amazon.com/sns/",
+      "path": "./draft-07/bindings/amazon-sns",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/amazon-sns"
+    },
+    "bindings/amazon-sqs": {
+      "title": "Amazon SQS Integrations",
+      "description": "Amazon SQS lets you send, store, and receive messages between software components at any volume, without losing messages",
+      "website": "https://aws.amazon.com/sqs/",
+      "path": "./draft-07/bindings/amazon-sqs",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/amazon-sqs"
+    },
+    "bindings/amqp": {
+      "title": "AMQP 0-9-1 Integrations",
+      "description": "AMQP 0-9-1 is a binary messaging protocol and semantic framework for microservices and enterprise messaging",
+      "website": "https://www.amqp.org",
+      "path": "./draft-07/bindings/amqp",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/amqp"
+    },
+    "bindings/amqp1": {
+      "title": "AMQP 1.0 Integrations",
+      "description": "AMQP 1.0 is an open, standard wire-level messaging protocol approved by OASIS and ISO/IEC that enables the transfer of messages between peers. Unlike older versions like AMQP 0-9-1, it operates on a peer-to-peer model without a fixed broker topology",
+      "website": "https://www.amqp.org",
+      "path": "./draft-07/bindings/amqp1",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/amqp1"
+    },
+    "bindings/anypointmq": {
+      "title": "Anypoint MQ Integrations",
+      "description": "Anypoint MQ is a multi-tenant, cloud-based message queuing service for exchanging data asynchronously between your applications",
+      "website": "https://docs.mulesoft.com/mq/",
+      "path": "./draft-07/bindings/anypointmq",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/anypointmq"
+    },
+    "bindings/apache-kafka": {
+      "title": "Apache Kafka Integrations",
+      "description": "Apache Kafka is an open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications",
+      "website": "https://kafka.apache.org",
+      "github": "https://github.com/apache/kafka",
+      "path": "./draft-07/bindings/apache-kafka",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/apache-kafka"
+    },
+    "bindings/apache-pulsar": {
+      "title": "Apache Pulsar Integrations",
+      "description": "Apache Pulsar is an open-source, distributed messaging and streaming platform built for the cloud",
+      "website": "https://pulsar.apache.org",
+      "github": "https://github.com/apache/pulsar",
+      "path": "./draft-07/bindings/apache-pulsar",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/apache-pulsar"
+    },
+    "bindings/googlepubsub": {
+      "title": "Google Cloud Pub/Sub Integrations",
+      "description": "Pub/Sub works as a messaging middleware for traditional service integration or a simple communication medium for modern microservices",
+      "website": "https://cloud.google.com/pubsub",
+      "path": "./draft-07/bindings/googlepubsub",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/googlepubsub"
+    },
+    "bindings/http": {
+      "title": "HTTP Integrations",
+      "path": "./draft-07/bindings/http",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/http"
+    },
+    "bindings/ibmmq": {
+      "title": "IBM MQ Message Broker Integrations",
+      "description": "IBM MQ is a secure, reliable message-oriented middleware that lets independent software systems connect and share data using messages and queues",
+      "website": "https://www.ibm.com/products/mq",
+      "path": "./draft-07/bindings/ibmmq",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/ibmmq"
+    },
+    "bindings/jms": {
+      "title": "JMS Message Broker Integrations",
+      "description": "The Java Message Service (JMS) API is a messaging standard that allows application components based on the Java Platform Enterprise Edition (Java EE) to create, send, receive, and read messages. It enables distributed communication that is loosely coupled, reliable, and asynchronous",
+      "website": "https://jakarta.ee/specifications/messaging/",
+      "github": "https://github.com/jakartaee/messaging",
+      "path": "./draft-07/bindings/jms",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/jms"
+    },
+    "bindings/mercure": {
+      "title": "Mercure Message Broker Integrations",
+      "description": "Mercure streams real-time updates from your servers to any client. It is a fast, reliable, battery-efficient replacement for WebSockets and every library, framework, or hosted service built on top of them",
+      "website": "https://mercure.rocks",
+      "github": "https://github.com/dunglas/mercure",
+      "path": "./draft-07/bindings/mercure",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/mercure"
+    },
+    "bindings/mqtt": {
+      "title": "MQTT Message Broker Integrations",
+      "description": "Lightweight, publish-and-subscribe network protocol for the Internet of Things (IoT) that introduces reason codes, user properties, and message expiration",
+      "website": "https://mqtt.org/mqtt-specification/",
+      "path": "./draft-07/bindings/mqtt",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/mqtt"
+    },
+    "bindings/mqtt5": {
+      "title": "MQTT v5.0 Message Broker Integrations",
+      "description": "Lightweight, publish-and-subscribe network protocol for the Internet of Things (IoT) that introduces reason codes, user properties, and message expiration",
+      "website": "https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html",
+      "path": "./draft-07/bindings/mqtt5",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/mqtt5"
+    },
+    "bindings/nats": {
+      "title": "NATS Message Broker Integrations",
+      "description": "NATS unifies messaging, streaming, and state into one real-time system — connecting services, devices, and AI agents from cloud to edge",
+      "website": "https://nats.io",
+      "github": "https://github.com/nats-io",
+      "path": "./draft-07/bindings/nats",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/nats"
+    },
+    "bindings/redis": {
+      "title": "Redis Message Broker Integrations",
+      "description": "Redis for faster messaging",
+      "website": "https://redis.io/solutions/messaging/",
+      "github": "https://github.com/redis/redis",
+      "path": "./draft-07/bindings/redis",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/redis"
+    },
+    "bindings/solace": {
+      "title": "Solace Event Broker Integrations",
+      "description": "Solace Event Broker is a complete event streaming solution that enables the design, deployment, and operation of Event-Driven Architecture (EDA) across hybrid cloud, multi-cloud and IoT environments",
+      "website": "https://www.solace.dev",
+      "github": "https://github.com/solacelabs",
+      "path": "./draft-07/bindings/solace",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/solace"
+    },
+    "bindings/stomp": {
+      "title": "STOMP Integrations",
+      "description": "STOMP (Simple (or Streaming) Text Orientated Messaging Protocol) provides an interoperable wire format so that STOMP clients can communicate with any STOMP message broker to provide easy and widespread messaging interoperability among many languages, platforms and brokers",
+      "website": "https://stomp.github.io",
+      "github": "https://github.com/stomp",
+      "path": "./draft-07/bindings/stomp",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/stomp"
+    },
+    "bindings/websockets": {
+      "title": "WebSockets Integrations",
+      "description": "WebSocket is a computer communication protocol providing full-duplex, two-way interactive communication over a single, persistent TCP connection. It eliminates HTTP request-response overhead, enabling real-time data flow for clients and servers",
+      "website": "https://datatracker.ietf.org/doc/html/rfc6455",
+      "path": "./draft-07/bindings/websockets",
+      "baseUri": "https://asyncapi.pavelon.dev/bindings/websockets"
+    },
+    "schemas": {
+      "title": "AsyncAPI Schemas - Data Definition and Validation for Event-Driven APIs",
+      "description": "Learn about AsyncAPI Schemas, how they define and validate message payloads in event-driven APIs using JSON Schema and other formats like Avro, XML, and Protobuf",
+      "path": "./draft-07/schemas",
+      "baseUri": "https://asyncapi.pavelon.dev/schemas"
+    }
+  }
+}
