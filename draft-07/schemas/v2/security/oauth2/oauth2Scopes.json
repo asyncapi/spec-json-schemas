@@ -1,8 +1,16 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/security/oauth2/oauth2Scopes.json",
+  "title": "AsyncAPI v2 - OAuth2 Scopes",
+  "description": "Scopes let you specify exactly what type of access you need. Scopes limit access for OAuth tokens. They do not grant any additional permission beyond that which the user already has",
+  "examples": [
+    {
+      "write:pets": "modify pets in your account",
+      "read:pets": "read your pets"
+    }
+  ],
   "type": "object",
   "additionalProperties": {
     "type": "string"
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.6.0/oauth2Scopes.json"
+  }
 }
