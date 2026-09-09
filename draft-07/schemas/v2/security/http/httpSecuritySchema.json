@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/security/http/httpSecuritySchema.json",
+  "title": "AsyncAPI v2 - HTTP Authentication Variants",
+  "description": "Contains information about available HTTP authentication variants",
+  "examples": [
+    {
+      "type": "httpApiKey",
+      "description": "HTTP - API Key",
+      "name": "api_key",
+      "in": "header"
+    },
+    {
+      "type": "http",
+      "description": "HTTP - Basic",
+      "scheme": "basic"
+    },
+    {
+      "type": "http",
+      "description": "HTTP - Bearer",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
+    }
+  ],
+  "oneOf": [
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/nonBearerHTTPSecuritySchema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/bearerHTTPSecuritySchema.json"
+    },
+    {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/apiKeyHTTPSecuritySchema.json"
+    }
+  ]
+}
