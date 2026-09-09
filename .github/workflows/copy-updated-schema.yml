@@ -7,7 +7,7 @@ on:
 
     paths:
      # Monitor changes in this v3 file
-      - schemas/3.0.0-without-$id.json
+      - ../../review/schemas/3.0.0-without-$id.json
 
 jobs:
   sync-schema:

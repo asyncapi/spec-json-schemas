@@ -121,29 +121,29 @@ func Do() {
 
 ## Migration guidelines
 
-If you are currently using version 2, check out [migration guideline to version 3](./migrations/migrate-to-version-3.md).
-If you are currently using version 3, check out [migration guideline to version 4](./migrations/migrate-to-version-4.md).
-If you are currently using version 4, check out [migration guideline to version 5](./migrations/migrate-to-version-5.md).
-If you are currently using version 5, check out [migration guideline to version 6](./migrations/migrate-to-version-6.md).
+If you are currently using version 2, check out [migration guideline to version 3](review/migrations/migrate-to-version-3.md).
+If you are currently using version 3, check out [migration guideline to version 4](review/migrations/migrate-to-version-4.md).
+If you are currently using version 4, check out [migration guideline to version 5](review/migrations/migrate-to-version-5.md).
+If you are currently using version 5, check out [migration guideline to version 6](review/migrations/migrate-to-version-6.md).
 
 ## Repository structure
 
 This is the current project structure explained:
 
-- [./definitions](./definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](./schemas).
-- [./examples](./examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](./schemas).
+- [./definitions](review/definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](review/schemas).
+- [./examples](review/examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](review/schemas).
 - [./tools/bundler](./tools/bundler) - is the tool that bundles all the individual schemas together.
-- [./schemas](./schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](./definitions).
-- [./extensions](./extensions) - contains all the schemas of the extensions that will automatically be bundled to provide informations about extensions.
+- [./schemas](review/schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](review/definitions).
+- [./extensions](review/extensions) - contains all the schemas of the extensions that will automatically be bundled to provide informations about extensions.
 
 
 ## Schema Bundling
 
-Changes should not be done manually to the schemas in [./schemas](./schemas), but instead, be done in their individual definitions located in [./definitions](./definitions).
+Changes should not be done manually to the schemas in [./schemas](review/schemas), but instead, be done in their individual definitions located in [./definitions](review/definitions).
 
 These definitions are automatically bundled together on new releases through the npm script `prepublishOnly`, which ensures the project is built. This is where the [bundler](./tools/bundler) is called. 
 
-For example, for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](./schemas/2.2.0.json).
+For example, for [2.2.0](review/definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](review/definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](review/schemas/2.2.0.json).
 
 ## Creating a new version
 
@@ -168,15 +168,15 @@ The manual process of creating a new version is to:
 
 1. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
    ```js
-   '2.6.0': require('./schemas/2.6.0.json'),
-   '2.6.0-without-$id': require('./schemas/2.6.0-without-$id.json'),
+   '2.6.0': require('./review/schemas/2.6.0.json'),
+   '2.6.0-without-$id': require('./review/schemas/2.6.0-without-$id.json'),
    ```
 1. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e.:
    ```js
    '2.6.0': JSONSchema7;
    '2.6.0-without-$id': JSONSchema7;
    ```
-1. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
+1. Edit the [schemas/all.schema-store.json](review/schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
 
     ```json
     {
@@ -218,9 +218,9 @@ Whenever you make changes in AsyncAPI JSON Schema, you should always manually ve
 Extensions are a way to [extend AsyncAPI specification](https://www.asyncapi.com/docs/concepts/asyncapi-document/extending-specification) with fields that are not yet defined inside the specification. To add JSON schema of the extension in this repository, you need to first make sure it is added to the [extension-catalog](https://github.com/asyncapi/extensions-catalog) repository.
 ### How to add schema of the extension
 
-1. All the extensions must be present in [./extensions](./extensions) folder.
+1. All the extensions must be present in [./extensions](review/extensions) folder.
 2. A proper folder structure must be followed to add the extensions.
-3. A new folder just as [x extension](./extensions/x) must be added with proper `versioning` and `schema file`.
-4. All the schemas must be added in a file named `schema.json` just as one is defined for [x extension](./extensions/x/0.1.0/schema.json).
+3. A new folder just as [x extension](review/extensions/x) must be added with proper `versioning` and `schema file`.
+4. All the schemas must be added in a file named `schema.json` just as one is defined for [x extension](review/extensions/x/0.1.0/schema.json).
 
-5. Extension schema should not be referenced directly in the definition of the object it extends. For example if you add an extension for `info`, your extension's schema should not be referenced from `info.json` but [infoExtensions.json](./definitions/3.0.0/infoExtensions.json). If the object that you extend doesn't have a corresponding `*Extensions.json` file, you need to create one.
+5. Extension schema should not be referenced directly in the definition of the object it extends. For example if you add an extension for `info`, your extension's schema should not be referenced from `info.json` but [infoExtensions.json](review/definitions/3.0.0/infoExtensions.json). If the object that you extend doesn't have a corresponding `*Extensions.json` file, you need to create one.
