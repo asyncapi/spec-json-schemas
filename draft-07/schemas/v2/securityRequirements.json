@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/securityRequirements.json",
+  "title": "AsyncAPI v2 - Operation Security Requirements",
+  "description": "Lists of the required security schemes that can be used to execute an operation",
+  "type": "object",
+  "additionalProperties": {
+    "type": "array",
+    "uniqueItems": true,
+    "items": {
+      "type": "string"
+    }
+  }
+}
