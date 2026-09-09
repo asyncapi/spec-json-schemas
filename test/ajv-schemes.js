@@ -45,6 +45,10 @@ function bindingSchemes(ajv) {
   ajv.addSchema(require('@bindings/kafka/0.5.0/message.json'));
   ajv.addSchema(require('@bindings/kafka/0.5.0/operation.json'));
   ajv.addSchema(require('@bindings/kafka/0.5.0/server.json'));
+  ajv.addSchema(require('@bindings/kafka/0.6.0/channel.json'));
+  ajv.addSchema(require('@bindings/kafka/0.6.0/message.json'));
+  ajv.addSchema(require('@bindings/kafka/0.6.0/operation.json'));
+  ajv.addSchema(require('@bindings/kafka/0.6.0/server.json'));
 
   ajv.addSchema(require('@bindings/mqtt/0.1.0/message.json'));
   ajv.addSchema(require('@bindings/mqtt/0.1.0/operation.json'));
