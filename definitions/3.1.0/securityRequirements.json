@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://asyncapi.com/definitions/3.1.0/securityRequirements.json",
-  "description": "An array representing security requirements.",
+  "description": "An array representing security requirements. Single-level array items represent OR logic (any one scheme satisfies the requirement). Nested arrays represent AND logic (all schemes in the inner array must be satisfied). The outer array always represents OR logic between its elements.",
   "type": "array",
   "items": {
     "oneOf": [
@@ -10,6 +10,22 @@
       },
       {
         "$ref": "http://asyncapi.com/definitions/3.1.0/SecurityScheme.json"
+      },
+      {
+        "type": "array",
+        "description": "An array of security schemes that must all be satisfied (AND logic).",
+        "items": {
+          "oneOf": [
+            {
+              "$ref": "http://asyncapi.com/definitions/3.1.0/Reference.json"
+            },
+            {
+              "$ref": "http://asyncapi.com/definitions/3.1.0/SecurityScheme.json"
+            }
+          ]
+        },
+        "minItems": 1,
+        "uniqueItems": true
       }
     ]
   }
