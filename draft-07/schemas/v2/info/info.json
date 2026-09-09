@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://asyncapi.com/definitions/2.6.0/info.json",
+  "description": "The object provides metadata about the API. The metadata can be used by the clients if needed.",
+  "examples": [
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "license": {
+        "name": "The MIT License",
+        "url": "https://mit-license.org"
+      }
+    },
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "description": "Streams weather updates by cities, regions or coordinates"
+    },
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "description": "Streams weather updates by cities, regions or coordinates",
+      "termsOfService": "https://api.weather-forecast.am/terms"
+    },
+    {
+      "version": "2.39.7",
+      "title": "Weather forecast updated",
+      "description": "Streams weather updates by cities, regions or coordinates",
+      "contact": {
+        "name": "Weather Forecast",
+        "email": "feedback@weather-forecast.am",
+        "url": "https://weather-forecast.am"
+      }
+    }
+  ],
+  "type": "object",
+  "required": [ "version", "title" ],
+  "properties": {
+    "title": {
+      "description": "A unique and precise title of the API.",
+      "type": "string"
+    },
+    "version": {
+      "description": "A semantic version number of the API.",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the API. Should be different from the title. CommonMark is allowed.",
+      "type": "string"
+    },
+    "termsOfService": {
+      "description": "A URL to the Terms of Service for the API. MUST be in the format of a URL.",
+      "type": "string",
+      "format": "uri"
+    },
+    "contact": {
+      "$ref": "https://asyncapi.com/definitions/2.6.0/contact.json"
+    },
+    "license": {
+      "$ref": "https://asyncapi.com/definitions/2.6.0/license.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}
