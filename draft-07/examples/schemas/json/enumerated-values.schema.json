@@ -1,0 +1,21 @@
+{
+  "$id": "https://example.com/enumerated-values.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Representation of enumerated values using JSON Schema dictionary",
+  "type": "object",
+  "properties": {
+    "data": {
+      "enum": [
+        42,
+        true,
+        "hello",
+        null,
+        [
+          1,
+          2,
+          3
+        ]
+      ]
+    }
+  }
+}

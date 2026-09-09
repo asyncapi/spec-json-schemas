@@ -1,0 +1,27 @@
+{
+  "$id": "https://example.com/enumerated-values.schema.json",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Representation of enumerated values using AsyncAPI Schema dictionary",
+  "type": "object",
+  "properties": {
+    "data": {
+      "enum": [
+        42,
+        true,
+        "hello",
+        null,
+        [
+          1,
+          2,
+          3
+        ]
+      ]
+    }
+  },
+  "externalDocs": {
+    "url": "https://external-documentation.com",
+    "description": "External Documentation description"
+  },
+  "discriminator": "discriminator value",
+  "deprecated": false
+}
