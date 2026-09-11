@@ -16,7 +16,7 @@
     },
     "externalDocs": {
       "description": "Additional external documentation for this tag.",
-      "$ref": "http://asyncapi.com/definitions/2.6.0/externalDocs.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
     }
   },
   "patternProperties": {

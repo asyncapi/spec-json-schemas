@@ -53,7 +53,7 @@
       "uniqueItems": true
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0/externalDocs.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
     }
   }
 }
