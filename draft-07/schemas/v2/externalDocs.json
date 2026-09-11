@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json",
+  "title": "AsyncAPI v2 - Extended Documentation",
+  "description": "Allows referencing an external resource for extended documentation",
+  "examples": [
+    {
+      "url": "https://api.weather-forecast.am/docs"
+    },
+    {
+      "url": "https://api.weather-forecast.am/docs",
+      "description": "Required information to integrate with API"
+    }
+  ],
+  "type": "object",
+  "required": [ "url" ],
+  "properties": {
+    "description": {
+      "description": "A short description of the target documentation. CommonMark syntax can be used for rich text representation",
+      "type": "string"
+    },
+    "url": {
+      "description": "The URL for the target documentation. This MUST be in the form of an absolute URL",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}
