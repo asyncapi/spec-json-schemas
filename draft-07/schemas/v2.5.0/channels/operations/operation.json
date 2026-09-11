@@ -35,7 +35,7 @@
     "tags": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/2.5.0/tag.json"
+        "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
       },
       "uniqueItems": true
     },
