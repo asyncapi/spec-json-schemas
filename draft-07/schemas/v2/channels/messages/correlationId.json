@@ -1,29 +1,34 @@
 {
-  "type": "object",
-  "description": "An object that specifies an identifier at design time that can used for message tracing and correlation.",
-  "required": [
-    "location"
-  ],
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/channels/messages/correlationId.json",
+  "title": "AsyncAPI v2 - Channel Message Correlation ID",
+  "description": "Represents an identifier at design time that can used for message tracing and correlation",
+  "examples": [
+    {
+      "description": "Incoming message correlation-id",
+      "location": "$message.payload#/correlation-id"
+    },
+    {
+      "description": "Incoming message correlation-id",
+      "location": "$message.header#/correlation-id",
+      "x-format": "uuid"
     }
-  },
+  ],
+  "type": "object",
+  "required": [ "location" ],
   "properties": {
     "description": {
-      "type": "string",
-      "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed."
+      "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed.",
+      "type": "string"
     },
     "location": {
-      "type": "string",
       "description": "A runtime expression that specifies the location of the correlation ID",
+      "type": "string",
       "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
     }
   },
-  "example": {
-    "$ref": "http://asyncapi.com/examples/2.6.0/correlationId.json"
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
   },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.6.0/correlationId.json"
+  "additionalProperties": false
 }
