@@ -28,7 +28,7 @@
       "format": "uri"
     },
     "info": {
-      "$ref": "http://asyncapi.com/definitions/2.5.0/info.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/info/info.json"
     },
     "servers": {
       "$ref": "http://asyncapi.com/definitions/2.5.0/servers.json"
