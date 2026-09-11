@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.com/definitions/2.6.0/license.json",
+  "$id": "http://localhost:8080/draft-07/schemas/v2/info/license.json",
   "title": "AsyncAPI v2 - Info License",
   "description": "License information for the exposed API",
   "examples": [
