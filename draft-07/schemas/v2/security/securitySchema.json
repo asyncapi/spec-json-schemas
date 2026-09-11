@@ -107,31 +107,31 @@
   ],
   "oneOf": [
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/userPassword.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/userPassword.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/apiKey.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/apiKey.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/X509.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/X509.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/symmetricEncryption.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/symmetricEncryption.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/asymmetricEncryption.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/asymmetricEncryption.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/httpSecuritySchema.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/http/httpSecuritySchema.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/oauth2/oauth2.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/openIdConnect.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/openIdConnect.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslSecuritySchema.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/security/sasl/saslSecuritySchema.json"
     }
   ]
 }
