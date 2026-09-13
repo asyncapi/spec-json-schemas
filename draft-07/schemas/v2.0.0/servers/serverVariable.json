@@ -3,34 +3,22 @@
   "$id": "http://localhost:8080/draft-07/schemas/v2.0.0/servers/serverVariable.json",
   "title": "AsyncAPI v2.0.0 - Server Variable",
   "description": "Representing a Server Variable for server URL template substitution",
-  "type": "object",
   "examples": [
     {
-      "enum": [
-        "8883",
-        "8884"
-      ],
+      "enum": [ "8883", "8884" ],
       "default": "8883",
       "description": "Ports application listening for",
-      "examples": [
-        "8883",
-        "8884"
-      ]
+      "examples": [ "8883", "8884" ]
     },
     {
-      "enum": [
-        "8883",
-        "8884"
-      ],
+      "enum": [ "8883", "8884" ],
       "default": "8883",
       "description": "Ports application listening for",
-      "examples": [
-        "8883",
-        "8884"
-      ],
+      "examples": [ "8883", "8884" ],
       "x-lb-strategy": "round-robin"
     }
   ],
+  "type": "object",
   "properties": {
     "enum": {
       "description": "An enumeration of string values to be used if the substitution options are from a limited set",
