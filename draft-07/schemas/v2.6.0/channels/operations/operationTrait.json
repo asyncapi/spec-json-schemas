@@ -1,50 +1,77 @@
 {
-  "type": "object",
-  "description": "Describes a trait that MAY be applied to an Operation Object.",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.6.0/channels/operations/operationTrait.json",
+  "title": "AsyncAPI v2.6.0 - Channel Operation Trait",
+  "description": "Describes a trait that MAY be applied to an Channel Operation",
+  "examples": [
+    {
+      "operationId": "sendMessage",
+      "summary": "Secured Send message",
+      "security": [
+        {
+          "type": "userPassword",
+          "description": "Sent inside the initial CONNECT message"
+        }
+      ]
+    },
+    {
+      "operationId": "sendMessage",
+      "summary": "Send message",
+      "description": "Send message to remote server",
+      "tags": [
+        {
+          "name": "messages",
+          "description": "operations with messages",
+          "externalDocs": {
+            "description": "Messages validation rules",
+            "url": "messages/validation-rules"
+          }
+        }
+      ],
+      "externalDocs": {
+        "description": "Messages sending rules",
+        "url": "messages/sending-rules"
+      }
     }
-  },
+  ],
+  "type": "object",
   "properties": {
     "summary": {
-      "type": "string",
-      "description": "A short summary of what the operation is about."
+      "description": "A short summary of what the operation is about.",
+      "type": "string"
     },
     "description": {
-      "type": "string",
-      "description": "A verbose explanation of the operation."
+      "description": "A verbose explanation of the operation.",
+      "type": "string"
     },
     "tags": {
-      "type": "array",
       "description": "A list of tags for logical grouping and categorization of operations.",
+      "type": "array",
+      "uniqueItems": true,
       "items": {
         "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
-      },
-      "uniqueItems": true
+      }
     },
     "externalDocs": {
       "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
     },
     "operationId": {
-      "type": "string",
-      "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API."
+      "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API.",
+      "type": "string"
     },
     "security": {
-      "type": "array",
       "description": "A declaration of which security mechanisms are associated with this operation. ",
+      "type": "array",
       "items": {
         "$ref": "http://asyncapi.com/definitions/2.6.0/SecurityRequirement.json"
       }
     },
     "bindings": {
-      "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.6.0/bindingsObject.json"
     }
   },
-  "example": {
-    "$ref": "http://asyncapi.com/examples/2.6.0/operationTrait.json"
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
   },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.6.0/operationTrait.json"
+  "additionalProperties": false
 }
