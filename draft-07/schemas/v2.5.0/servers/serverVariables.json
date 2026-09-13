@@ -1,15 +1,34 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.5.0/servers/serverVariables.json",
+  "title": "AsyncAPI v2.5.0 - Server Variables Map",
+  "description": "A key-value map where key is variable ID and value is variable representation",
+  "examples": [
+    {
+      "host": {
+        "$ref": "#/components/serverVariables/host"
+      },
+      "port": {
+        "enum": [ "8883", "8884" ],
+        "default": "8883",
+        "description": "Ports application listening for",
+        "examples": [ "8883", "8884" ]
+      }
+    }
+  ],
   "type": "object",
   "additionalProperties": {
-    "oneOf": [
-      {
-        "$ref": "http://asyncapi.com/definitions/2.5.0/Reference.json"
-      },
-      {
-        "$ref": "http://asyncapi.com/definitions/2.5.0/serverVariable.json"
+    "if": {
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": true
       }
-    ]
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.5.0/serverVariables.json"
+    },
+    "then": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "else": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/servers/serverVariable.json"
+    }
+  }
 }
