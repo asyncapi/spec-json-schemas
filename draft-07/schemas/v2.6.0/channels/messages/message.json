@@ -1,169 +1,47 @@
 {
-  "description": "Describes a message received on a given channel and operation.",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.6.0/channels/messages/message.json",
+  "title": "AsyncAPI v2.6.0 - Channel Operation Message",
+  "description": "Describes a message received on a given channel and operation",
   "oneOf": [
     {
-      "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
     },
     {
       "oneOf": [
         {
           "type": "object",
-          "required": ["oneOf"],
-          "additionalProperties": false,
+          "required": [ "oneOf" ],
           "properties": {
             "oneOf": {
               "type": "array",
               "items": {
-                "$ref": "http://asyncapi.com/definitions/2.6.0/message.json"
+                "$ref": "http://localhost:8080/draft-07/schemas/v2.6.0/channels/messages/message.json"
               }
             }
-          }
+          },
+          "additionalProperties": false
         },
         {
           "type": "object",
-          "additionalProperties": false,
-          "patternProperties": {
-            "^x-[\\w\\d\\.\\x2d_]+$": {
-              "$ref": "http://asyncapi.com/definitions/2.6.0/specificationExtension.json"
-            }
-          },
-          "properties": {
-            "schemaFormat": {
-              "type": "string"
-            },
-            "contentType": {
-              "type": "string"
-            },
-            "headers": {
-              "allOf": [
-                {
-                  "$ref": "http://asyncapi.com/definitions/2.6.0/schema.json"
-                },
-                {
-                  "properties": {
-                    "type": {
-                      "const": "object"
-                    }
-                  }
-                }
-              ]
-            },
-            "messageId": {
-              "type": "string"
-            },
-            "payload": {},
-            "correlationId": {
-              "oneOf": [
-                {
-                  "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
-                },
-                {
-                  "$ref": "http://asyncapi.com/definitions/2.6.0/correlationId.json"
-                }
-              ]
-            },
-            "tags": {
-              "type": "array",
-              "items": {
-                "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
-              },
-              "uniqueItems": true
-            },
-            "summary": {
-              "type": "string",
-              "description": "A brief summary of the message."
-            },
-            "name": {
-              "type": "string",
-              "description": "Name of the message."
-            },
-            "title": {
-              "type": "string",
-              "description": "A human-friendly title for the message."
-            },
-            "description": {
-              "type": "string",
-              "description": "A longer description of the message. CommonMark is allowed."
-            },
-            "externalDocs": {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
-            },
-            "deprecated": {
-              "type": "boolean",
-              "default": false
-            },
-            "examples": {
-              "type": "array",
-              "description": "List of examples.",
-              "items": {
-                "type": "object",
-                "additionalProperties": false,
-                "anyOf": [
-                  {
-                    "required": ["payload"]
-                  },
-                  {
-                    "required": ["headers"]
-                  }
-                ],
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "description": "Machine readable name of the message example."
-                  },
-                  "summary": {
-                    "type": "string",
-                    "description": "A brief summary of the message example."
-                  },
-                  "headers": {
-                    "type": "object",
-                    "description": "Schema definition of the application headers."
-                  },
-                  "payload": {
-                    "description": "Definition of the message payload. It can be of any type"
-                  }
-                }
-              }
-            },
-            "bindings": {
-              "$ref": "http://asyncapi.com/definitions/2.6.0/bindingsObject.json"
-            },
-            "traits": {
-              "type": "array",
-              "items": {
-                "oneOf": [
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/Reference.json"
-                  },
-                  {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/messageTrait.json"
-                  }
-                ]
-              }
-            }
-          },
           "allOf": [
             {
               "if": {
                 "not": {
-                  "required": [
-                    "schemaFormat"
-                  ]
+                  "required": [ "schemaFormat" ]
                 }
               },
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/schema.json"
+                    "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
                   }
                 }
               }
             },
             {
               "if": {
-                "required": [
-                  "schemaFormat"
-                ],
+                "required": [ "schemaFormat" ],
                 "properties": {
                   "schemaFormat": {
                     "enum": [
@@ -182,9 +60,9 @@
                       "application/vnd.aai.asyncapi;version=2.4.0",
                       "application/vnd.aai.asyncapi+json;version=2.4.0",
                       "application/vnd.aai.asyncapi+yaml;version=2.4.0",
-                      "application/vnd.aai.asyncapi;version=2.5.0",
-                      "application/vnd.aai.asyncapi+json;version=2.5.0",
-                      "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                      "application/vnd.aai.asyncapi;version=2.6.0",
+                      "application/vnd.aai.asyncapi+json;version=2.6.0",
+                      "application/vnd.aai.asyncapi+yaml;version=2.6.0",
                       "application/vnd.aai.asyncapi;version=2.6.0",
                       "application/vnd.aai.asyncapi+json;version=2.6.0",
                       "application/vnd.aai.asyncapi+yaml;version=2.6.0"
@@ -195,16 +73,14 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/schema.json"
+                    "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
                   }
                 }
               }
             },
             {
               "if": {
-                "required": [
-                  "schemaFormat"
-                ],
+                "required": [ "schemaFormat" ],
                 "properties": {
                   "schemaFormat": {
                     "enum": [
@@ -224,14 +100,12 @@
             },
             {
               "if": {
-                "required": [
-                  "schemaFormat"
-                ],
+                "required": [ "schemaFormat" ],
                 "properties": {
                   "schemaFormat": {
                     "enum": [
-                      "application/vnd.oai.openapi;version=3.0.0", 
-                      "application/vnd.oai.openapi+json;version=3.0.0", 
+                      "application/vnd.oai.openapi;version=3.0.0",
+                      "application/vnd.oai.openapi+json;version=3.0.0",
                       "application/vnd.oai.openapi+yaml;version=3.0.0"
                     ]
                   }
@@ -240,16 +114,14 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/openapiSchema_3_0.json"
+                    "$ref": "http://localhost:8080/draft-07/integrations/openapi/v3.0.0/openapiSchema.json"
                   }
                 }
               }
             },
             {
               "if": {
-                "required": [
-                  "schemaFormat"
-                ],
+                "required": [ "schemaFormat" ],
                 "properties": {
                   "schemaFormat": {
                     "enum": [
@@ -263,19 +135,133 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://asyncapi.com/definitions/2.6.0/avroSchema_v1.json"
+                    "$ref": "http://localhost:8080/draft-07/integrations/avro/v1/avroSchema.json"
                   }
                 }
               }
             }
-          ]
+          ],
+          "properties": {
+            "schemaFormat": {
+              "type": "string"
+            },
+            "contentType": {
+              "type": "string"
+            },
+            "headers": {
+              "allOf": [
+                {
+                  "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+                },
+                {
+                  "properties": {
+                    "type": {
+                      "const": "object"
+                    }
+                  }
+                }
+              ]
+            },
+            "messageId": {
+              "type": "string"
+            },
+            "payload": {},
+            "correlationId": {
+              "oneOf": [
+                {
+                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                },
+                {
+                  "$ref": "http://localhost:8080/draft-07/schemas/v2/channels/messages/correlationId.json"
+                }
+              ]
+            },
+            "tags": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
+              }
+            },
+            "summary": {
+              "description": "A brief summary of the message.",
+              "type": "string"
+            },
+            "name": {
+              "description": "Name of the message.",
+              "type": "string"
+            },
+            "title": {
+              "description": "A human-friendly title for the message.",
+              "type": "string"
+            },
+            "description": {
+              "description": "A longer description of the message. CommonMark is allowed.",
+              "type": "string"
+            },
+            "externalDocs": {
+              "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
+            },
+            "deprecated": {
+              "default": false,
+              "type": "boolean"
+            },
+            "examples": {
+              "description": "List of examples.",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "anyOf": [
+                  {
+                    "required": [ "payload" ]
+                  },
+                  {
+                    "required": [ "headers" ]
+                  }
+                ],
+                "properties": {
+                  "name": {
+                    "description": "Machine readable name of the message example.",
+                    "type": "string"
+                  },
+                  "summary": {
+                    "description": "A brief summary of the message example.",
+                    "type": "string"
+                  },
+                  "headers": {
+                    "description": "Schema definition of the application headers.",
+                    "type": "object"
+                  },
+                  "payload": {
+                    "description": "Definition of the message payload. It can be of any type"
+                  }
+                },
+                "additionalProperties": false
+              }
+            },
+            "bindings": {
+              "$ref": "http://localhost:8080/draft-07/schemas/v2.6.0/bindingsObject.json"
+            },
+            "traits": {
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                  },
+                  {
+                    "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/channels/messages/messageTrait.json"
+                  }
+                ]
+              }
+            }
+          },
+          "patternProperties": {
+            "^x-[\\w\\d\\.\\x2d_]+$": true
+          },
+          "additionalProperties": false
         }
       ]
     }
-  ],
-  "example": {
-    "$ref": "http://asyncapi.com/examples/2.6.0/message.json"
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.6.0/message.json"
+  ]
 }
