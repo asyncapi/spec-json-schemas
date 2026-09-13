@@ -1,59 +1,59 @@
 {
-  "title": "AsyncAPI 2.2.0 schema.",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.2.0/asyncapi.json",
-  "type": "object",
-  "required": [
-    "asyncapi",
-    "info",
-    "channels"
-  ],
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.2.0/specificationExtension.json"
+  "$id": "http://localhost:8080/draft-07/schemas/v2.2.0/asyncapi.json",
+  "title": "AsyncAPI v2.2.0",
+  "description": "AsyncAPI 2.2.0 JSON Schema",
+  "examples": [
+    {
+      "asyncapi": "2.2.0",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      },
+      "channels": []
     }
-  },
+  ],
+  "type": "object",
+  "required": [ "asyncapi", "info", "channels" ],
   "properties": {
     "asyncapi": {
+      "description": "The AsyncAPI specification version of this document.",
       "type": "string",
-      "enum": [
-        "2.2.0"
-      ],
-      "description": "The AsyncAPI specification version of this document."
+      "const": "2.2.0"
     },
     "id": {
-      "type": "string",
       "description": "A unique id representing the application.",
+      "type": "string",
       "format": "uri"
     },
     "info": {
       "$ref": "http://localhost:8080/draft-07/schemas/v2/info/info.json"
     },
     "servers": {
-      "type": "object",
-      "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.2.0/server.json"
-      }
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/servers/servers.json"
     },
     "defaultContentType": {
       "type": "string"
     },
     "channels": {
-      "$ref": "http://asyncapi.com/definitions/2.2.0/channels.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/channels/channels.json"
     },
     "components": {
-      "$ref": "http://asyncapi.com/definitions/2.2.0/components.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/components/components.json"
     },
     "tags": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
-      },
-      "uniqueItems": true
+      }
     },
     "externalDocs": {
       "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
     }
-  }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
 }
