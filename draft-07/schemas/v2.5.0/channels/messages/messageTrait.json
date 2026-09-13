@@ -6,12 +6,15 @@
   "type": "object",
   "properties": {
     "schemaFormat": {
+      "description": "A string containing the name of the schema format/language used to define the message payload.",
       "type": "string"
     },
     "contentType": {
+      "description": "The content type to use when encoding/decoding a message's payload.",
       "type": "string"
     },
     "headers": {
+      "description": "Schema definition of the application headers.",
       "allOf": [
         {
           "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
@@ -26,9 +29,11 @@
       ]
     },
     "messageId": {
+      "description": "Unique string used to identify the message. The id MUST be unique among all messages described in the API.",
       "type": "string"
     },
     "correlationId": {
+      "description": "Definition of the correlation ID used for message tracing or matching.",
       "oneOf": [
         {
           "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
@@ -39,6 +44,7 @@
       ]
     },
     "tags": {
+      "description": "A list of tags for logical grouping and categorization of messages.",
       "type": "array",
       "uniqueItems": true,
       "items": {
@@ -69,6 +75,7 @@
       "type": "boolean"
     },
     "examples": {
+      "description": "List of examples.",
       "type": "array",
       "items": {
         "type": "object"

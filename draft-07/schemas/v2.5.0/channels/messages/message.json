@@ -57,9 +57,9 @@
                       "application/vnd.aai.asyncapi;version=2.3.0",
                       "application/vnd.aai.asyncapi+json;version=2.3.0",
                       "application/vnd.aai.asyncapi+yaml;version=2.3.0",
-                      "application/vnd.aai.asyncapi;version=2.5.0",
-                      "application/vnd.aai.asyncapi+json;version=2.5.0",
-                      "application/vnd.aai.asyncapi+yaml;version=2.5.0",
+                      "application/vnd.aai.asyncapi;version=2.4.0",
+                      "application/vnd.aai.asyncapi+json;version=2.4.0",
+                      "application/vnd.aai.asyncapi+yaml;version=2.4.0",
                       "application/vnd.aai.asyncapi;version=2.5.0",
                       "application/vnd.aai.asyncapi+json;version=2.5.0",
                       "application/vnd.aai.asyncapi+yaml;version=2.5.0"
@@ -204,6 +204,7 @@
               "type": "boolean"
             },
             "examples": {
+              "description": "List of examples.",
               "type": "array",
               "items": {
                 "type": "object",
@@ -225,9 +226,12 @@
                     "type": "string"
                   },
                   "headers": {
+                    "description": "Schema definition of the application headers.",
                     "type": "object"
                   },
-                  "payload": {}
+                  "payload": {
+                    "description": "Definition of the message payload. It can be of any type"
+                  }
                 },
                 "additionalProperties": false
               }
