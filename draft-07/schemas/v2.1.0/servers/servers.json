@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.1.0/servers/servers.json",
+  "title": "AsyncAPI v2.1.0 - Servers Map",
+  "description": "A key-value map where key is server ID and value is server representation",
+  "examples": [
+    {
+      "dev": {
+        "url": "development.gigantic-server.com",
+        "protocol": "kafka",
+        "description": "Kafka development server",
+        "protocolVersion": "4.3"
+      },
+      "dev-secured": {
+        "url": "development.gigantic-server.com",
+        "protocol": "kafka",
+        "security": [
+          {
+            "type": "userPassword",
+            "description": "Sent inside the initial CONNECT message"
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "http://localhost:8080/draft-07/schemas/v2.1.0/servers/server.json"
+  }
+}
