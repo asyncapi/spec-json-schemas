@@ -1,6 +1,9 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.1.0/bindingsObject.json",
+  "title": "AsyncAPI v2.1.0 - Bindings",
+  "description": "Map describing protocol-specific definitions",
   "type": "object",
-  "additionalProperties": true,
   "properties": {
     "http": {},
     "ws": {},
@@ -17,6 +20,5 @@
     "redis": {},
     "ibmmq": {}
   },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.1.0/bindingsObject.json"
+  "additionalProperties": true
 }
