@@ -25,6 +25,17 @@
   ],
   "type": "object",
   "additionalProperties": {
-    "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/servers/server.json"
+    "if": {
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": true
+      }
+    },
+    "then": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "else": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/servers/server.json"
+    }
   }
 }
