@@ -1,24 +1,20 @@
 {
-  "type": "object",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.3.0/components/components.json",
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-[\\w\\d\\.\\x2d_]+$": {
-      "$ref": "http://asyncapi.com/definitions/2.3.0/specificationExtension.json"
-    }
-  },
+  "type": "object",
   "properties": {
     "schemas": {
-      "$ref": "http://asyncapi.com/definitions/2.3.0/schemas.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/schemas.json"
     },
     "servers": {
-      "$ref": "http://asyncapi.com/definitions/2.3.0/servers.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/servers/servers.json"
     },
     "channels": {
-      "$ref": "http://asyncapi.com/definitions/2.3.0/channels.json"
+      "$id": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/channels.json"
     },
     "messages": {
-      "$ref": "http://asyncapi.com/definitions/2.3.0/messages.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/channels/messages/messages.json"
     },
     "securitySchemes": {
       "type": "object",
@@ -26,17 +22,17 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "http://asyncapi.com/definitions/2.3.0/Reference.json"
+              "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
             },
             {
-              "$ref": "http://asyncapi.com/definitions/2.3.0/SecurityScheme.json"
+              "$ref": "http://localhost:8080/draft-07/schemas/v2/security/securitySchema.json"
             }
           ]
         }
       }
     },
     "parameters": {
-      "$ref": "http://asyncapi.com/definitions/2.3.0/parameters.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/parameters.json"
     },
     "correlationIds": {
       "type": "object",
@@ -44,10 +40,10 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "http://asyncapi.com/definitions/2.3.0/Reference.json"
+              "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
             },
             {
-              "$ref": "http://asyncapi.com/definitions/2.3.0/correlationId.json"
+              "$ref": "http://localhost:8080/draft-07/schemas/v2/channels/messages/correlationId.json"
             }
           ]
         }
@@ -56,40 +52,42 @@
     "operationTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.3.0/operationTrait.json"
+        "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/operations/operationTrait.json"
       }
     },
     "messageTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.3.0/messageTrait.json"
+        "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/messages/messageTrait.json"
       }
     },
     "serverBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.3.0/bindingsObject.json"
+        "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/bindingsObject.json"
       }
     },
     "channelBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.3.0/bindingsObject.json"
+        "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/bindingsObject.json"
       }
     },
     "operationBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.3.0/bindingsObject.json"
+        "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/bindingsObject.json"
       }
     },
     "messageBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://asyncapi.com/definitions/2.3.0/bindingsObject.json"
+        "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/bindingsObject.json"
       }
     }
   },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.3.0/components.json"
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
 }
