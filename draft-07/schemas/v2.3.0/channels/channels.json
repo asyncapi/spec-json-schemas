@@ -1,4 +1,35 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/channels.json",
+  "title": "AsyncAPI v2.3.0 - Channels Map",
+  "description": "A key-value map where key is channel ID and value is channel representation. Channel paths are relative to servers",
+  "examples": [
+    {
+      "my-channel": {
+        "$ref": "#/channels/my-channel"
+      },
+      "user/{userId}/sendMessage": {
+        "description": "This channel is used to exchange messages about users signing up",
+        "subscribe": {
+          "operationId": "sendMessage",
+          "summary": "Send message",
+          "description": "Send message to remote server",
+          "message": {
+            "$ref": "#/components/schemas/sendMessage"
+          }
+        },
+        "parameters": {
+          "userId": {
+            "description": "Id of the user.",
+            "schema": {
+              "type": "string"
+            },
+            "location": "$message.payload#/user/id"
+          }
+        }
+      }
+    }
+  ],
   "type": "object",
   "propertyNames": {
     "type": "string",
@@ -6,8 +37,6 @@
     "minLength": 1
   },
   "additionalProperties": {
-    "$ref": "http://asyncapi.com/definitions/2.3.0/channelItem.json"
-  },
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://asyncapi.com/definitions/2.3.0/channels.json"
+    "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/channelItem.json"
+  }
 }
