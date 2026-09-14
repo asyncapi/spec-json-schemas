@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/channels/parameter.json",
+  "title": "AsyncAPI v2.0.0-rc1 - Channel Parameter",
+  "description": "Describes a parameter included in a channel",
+  "properties": {
+    "description": {
+      "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed.",
+      "type": "string"
+    },
+    "name": {
+      "description": "The name of the parameter.",
+      "type": "string"
+    },
+    "schema": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/schema.json"
+    },
+    "$ref": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}
