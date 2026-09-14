@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/parameter.json",
+  "title": "AsyncAPI v2.0.0-rc2 - Channel Parameter",
+  "description": "Describes a parameter included in a channel",
+  "examples": [
+    {
+      "location": "$message.payload#/user/id"
+    },
+    {
+      "description": "Id of the user.",
+      "schema": {
+        "type": "string"
+      },
+      "location": "$message.payload#/user/id"
+    }
+  ],
+  "properties": {
+    "description": {
+      "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed.",
+      "type": "string"
+    },
+    "schema": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/schema.json"
+    },
+    "location": {
+      "description": "A runtime expression that specifies the location of the parameter value",
+      "type": "string",
+      "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
+    },
+    "$ref": {
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}
