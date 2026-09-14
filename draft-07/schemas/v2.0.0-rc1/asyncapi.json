@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/asyncapi.json",
+  "title": "AsyncAPI v2.0.0-rc1",
+  "description": "AsyncAPI 2.0.0-rc1 JSON Schema",
+  "type": "object",
+  "examples": [
+    {
+      "asyncapi": "2.0.0-rc1",
+      "id": "",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      },
+      "channels": []
+    }
+  ],
+  "required": [ "asyncapi", "id", "info", "channels" ],
+  "properties": {
+    "asyncapi": {
+      "description": "The AsyncAPI specification version of this document.",
+      "type": "string",
+      "const": "2.0.0-rc1"
+    },
+    "id": {
+      "description": "A unique id representing the application.",
+      "type": "string",
+      "format": "uri-reference"
+    },
+    "info": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/info/info.json"
+    },
+    "servers": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/servers/server.json"
+      }
+    },
+    "defaultContentType": {
+      "type": "string"
+    },
+    "channels": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/channels/channels.json"
+    },
+    "components": {
+      "$ref": "http://localhost:8080/draft-07/schemas/2.0.0-rc1/components/components.json"
+    },
+    "tags": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
+      }
+    },
+    "externalDocs": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}
