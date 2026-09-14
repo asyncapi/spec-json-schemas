@@ -24,13 +24,13 @@
   ],
   "oneOf": [
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/nonBearerHTTPSecuritySchema.json"
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v2/security/http/nonBearerHTTPSecuritySchema.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/bearerHTTPSecuritySchema.json"
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v2/security/http/bearerHTTPSecuritySchema.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/http/apiKeyHTTPSecuritySchema.json"
+      "$ref": "https://asyncapi.pavelon.dev/schemas/v2/security/http/apiKeyHTTPSecuritySchema.json"
     }
   ]
 }
