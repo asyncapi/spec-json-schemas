@@ -224,7 +224,7 @@
               }
             },
             "bindings": {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/bindingsObject.json"
+              "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/bindingsObject.json"
             },
             "traits": {
               "type": "array",
@@ -234,7 +234,7 @@
                     "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
                   },
                   {
-                    "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/channels/messages/messageTrait.json"
+                    "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/messages/messageTrait.json"
                   }
                 ]
               }

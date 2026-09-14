@@ -14,7 +14,7 @@
       "$id": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/channels.json"
     },
     "messages": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.2.0/channels/messages/messages.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/channels/messages/messages.json"
     },
     "securitySchemes": {
       "type": "object",

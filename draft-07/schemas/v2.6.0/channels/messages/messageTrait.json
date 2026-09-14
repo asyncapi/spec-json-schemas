@@ -108,7 +108,7 @@
       }
     },
     "bindings": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/bindingsObject.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.6.0/bindingsObject.json"
     }
   },
   "patternProperties": {
