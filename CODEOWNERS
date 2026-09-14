@@ -8,15 +8,15 @@
 
 * @fmvilas @derberg @dalelane @char0n @GreenRover @jonaslagoni @pakisan @asyncapi-bot-eve
 
-/bindings/anypointmq/   @mboss37 @GeraldLoeffler
-/bindings/ibmmq/        @rcoppen
-/bindings/jms/          @rcoppen @SrfHead
-/bindings/kafka/        @lbroudoux @dalelane
-/bindings/googlepubsub/ @whitlockjc
-/bindings/solace/       @damaru-inc @CameronRushton
-/bindings/pulsar/       @VisualBean
-/bindings/sns/          @dpwdec @iancooper
-/bindings/sqs/          @dpwdec @iancooper
-/bindings/ros2/         @gramss @amparosancho
+/draft-07/bindings/amazon-sns/    @dpwdec @iancooper
+/draft-07/bindings/amazon-sqs/    @dpwdec @iancooper
+/draft-07/bindings/anypointmq/    @mboss37 @GeraldLoeffler
+/draft-07/bindings/apache-kafka/  @lbroudoux @dalelane
+/draft-07/bindings/apache-pulsar/ @VisualBean
+/draft-07/bindings/googlepubsub/  @whitlockjc
+/draft-07/bindings/ibmmq/         @rcoppen
+/draft-07/bindings/jms/           @rcoppen @SrfHead
+/draft-07/bindings/ros2/          @gramss @amparosancho
+/draft-07/bindings/solace/        @damaru-inc @CameronRushton
 
-/bindings/*.json        @KhudaDad414
+/draft-07/bindings/*.json        @KhudaDad414
