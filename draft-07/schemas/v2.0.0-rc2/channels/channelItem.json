@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/channelItem.json",
+  "title": "AsyncAPI v2.0.0-rc2 - Channel",
+  "description": "Describes the operations available on a single channel.",
+  "examples": [
+    {
+      "$ref": "#/channels/my-channel"
+    },
+    {
+      "description": "This channel is used to exchange messages about users signing up",
+      "subscribe": {
+        "operationId": "sendMessage",
+        "summary": "Send message",
+        "description": "Send message to remote server",
+        "message": {
+          "$ref": "#/components/schemas/sendMessage"
+        }
+      }
+    },
+    {
+      "description": "This channel is used to exchange messages about users signing up",
+      "publish": {
+        "operationId": "sendMessage",
+        "summary": "Send message",
+        "description": "Send message to remote server",
+        "traits": [
+          {
+            "$ref": "#/components/operationTraits/sendMessage"
+          }
+        ],
+        "message": {
+          "headers": {
+            "type": "object",
+            "properties": {
+              "correlationId": {
+                "description": "Correlation ID set by application",
+                "type": "string"
+              },
+              "applicationInstanceId": {
+                "description": "Unique identifier for a given instance of the publishing application",
+                "type": "string"
+              }
+            }
+          },
+          "payload": {
+            "type": "object",
+            "properties": {
+              "user": {
+                "$ref": "#/components/schemas/userCreate"
+              },
+              "signup": {
+                "$ref": "#/components/schemas/signup"
+              }
+            }
+          },
+          "correlationId": {
+            "description": "Default Correlation ID",
+            "location": "$message.header#/correlationId"
+          },
+          "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+          "contentType": "application/json",
+          "name": "UserSignup",
+          "title": "User signup",
+          "summary": "Action to sign a user up.",
+          "description": "A longer description",
+          "examples": [
+            {
+              "headers": {
+                "correlationId": "my-correlation-id",
+                "applicationInstanceId": "myInstanceId"
+              },
+              "payload": {
+                "user": {
+                  "someUserKey": "someUserValue"
+                },
+                "signup": {
+                  "someSignupKey": "someSignupValue"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "parameters": {
+        "userId": {
+          "description": "Id of the user.",
+          "schema": {
+            "type": "string"
+          },
+          "location": "$message.payload#/user/id"
+        }
+      },
+      "deprecated": true
+    }
+  ],
+  "minProperties": 1,
+  "type": "object",
+  "properties": {
+    "$ref": {
+      "description": "Allows for an external definition of this channel item. The referenced structure MUST be in the format of a Channel Item Object. If there are conflicts between the referenced definition and this Channel Item's definition, the behavior is undefined.",
+      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    },
+    "parameters": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/parameters.json"
+    },
+    "description": {
+      "description": "A description of the channel",
+      "type": "string"
+    },
+    "publish": {
+      "description": "A definition of the PUBLISH operation",
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/operations/operation.json"
+    },
+    "subscribe": {
+      "description": "A definition of the SUBSCRIBE operation",
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/operations/operation.json"
+    },
+    "deprecated": {
+      "default": false,
+      "type": "boolean"
+    },
+    "bindings": {
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/bindingsObject.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}
