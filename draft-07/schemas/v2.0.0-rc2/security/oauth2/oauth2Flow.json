@@ -16,7 +16,7 @@
       "format": "uri"
     },
     "scopes": {
-      "$ref": "http://asyncapi.com/definitions/2.0.0-rc2/oauth2Scopes.json"
+      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/security/oauth2/oauth2Scopes.json"
     }
   },
   "patternProperties": {
