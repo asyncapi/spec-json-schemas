@@ -30,13 +30,6 @@
       "description": "OpenId Connect URL to discover OAuth2 configuration values. This MUST be in the form of an absolute URL",
       "type": "string",
       "format": "uri"
-    },
-    "scopes": {
-      "description": "List of the needed scope names. An empty array means no scopes are needed",
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
     }
   },
   "patternProperties": {
