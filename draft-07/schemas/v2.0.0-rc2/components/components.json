@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0/components/components.json",
+  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/components/components.json",
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
   "type": "object",
   "properties": {
