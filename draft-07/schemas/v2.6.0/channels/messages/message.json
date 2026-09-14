@@ -60,9 +60,9 @@
                       "application/vnd.aai.asyncapi;version=2.4.0",
                       "application/vnd.aai.asyncapi+json;version=2.4.0",
                       "application/vnd.aai.asyncapi+yaml;version=2.4.0",
-                      "application/vnd.aai.asyncapi;version=2.6.0",
-                      "application/vnd.aai.asyncapi+json;version=2.6.0",
-                      "application/vnd.aai.asyncapi+yaml;version=2.6.0",
+                      "application/vnd.aai.asyncapi;version=2.5.0",
+                      "application/vnd.aai.asyncapi+json;version=2.5.0",
+                      "application/vnd.aai.asyncapi+yaml;version=2.5.0",
                       "application/vnd.aai.asyncapi;version=2.6.0",
                       "application/vnd.aai.asyncapi+json;version=2.6.0",
                       "application/vnd.aai.asyncapi+yaml;version=2.6.0"
