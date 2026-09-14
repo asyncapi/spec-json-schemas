@@ -94,8 +94,8 @@
       "deprecated": true
     }
   ],
-  "minProperties": 1,
   "type": "object",
+  "minProperties": 1,
   "properties": {
     "$ref": {
       "description": "Allows for an external definition of this channel item. The referenced structure MUST be in the format of a Channel Item Object. If there are conflicts between the referenced definition and this Channel Item's definition, the behavior is undefined.",

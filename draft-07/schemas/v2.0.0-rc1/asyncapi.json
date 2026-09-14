@@ -3,7 +3,6 @@
   "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/asyncapi.json",
   "title": "AsyncAPI v2.0.0-rc1",
   "description": "AsyncAPI 2.0.0-rc1 JSON Schema",
-  "type": "object",
   "examples": [
     {
       "asyncapi": "2.0.0-rc1",
@@ -15,6 +14,7 @@
       "channels": []
     }
   ],
+  "type": "object",
   "required": [ "asyncapi", "id", "info", "channels" ],
   "properties": {
     "asyncapi": {

@@ -6,16 +6,10 @@
   "examples": [
     {
       "port": {
-        "enum": [
-          "8883",
-          "8884"
-        ],
+        "enum": [ "8883", "8884" ],
         "default": "8883",
         "description": "Ports application listening for",
-        "examples": [
-          "8883",
-          "8884"
-        ]
+        "examples": [ "8883", "8884" ]
       },
       "basePath": {
         "$ref": "#/variables/base-path"

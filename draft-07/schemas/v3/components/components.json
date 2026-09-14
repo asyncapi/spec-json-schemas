@@ -13,7 +13,7 @@
             "$schema": "http://json-schema.org/draft-07/schema#",
             "description": "A representation of a user profile",
             "type": "object",
-            "required": ["username", "email"],
+            "required": [ "username", "email" ],
             "properties": {
               "username": {
                 "type": "string"
@@ -46,7 +46,7 @@
           "$schema": "http://json-schema.org/draft-07/schema#",
           "description": "A representation of a user profile",
           "type": "object",
-          "required": ["username", "email"],
+          "required": [ "username", "email" ],
           "properties": {
             "username": {
               "type": "string"
@@ -89,10 +89,7 @@
     {
       "serverVariables": {
         "rabbitmq-ports-v1": {
-          "enum": [
-            "5672",
-            "5671"
-          ]
+          "enum": [ "5672", "5671" ]
         },
         "rabbitmq-ports-v2": {
           "$ref": "https://catalog.lo/servers/rabbitmq-v2/variables/ports"
@@ -391,10 +388,7 @@
       },
       "serverVariables": {
         "rabbitmq-ports-v1": {
-          "enum": [
-            "5672",
-            "5671"
-          ]
+          "enum": [ "5672", "5671" ]
         },
         "rabbitmq-ports-v2": {
           "$ref": "https://catalog.lo/servers/rabbitmq-v2/variables/ports"
