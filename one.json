@@ -15,6 +15,9 @@
     },
     "draft-07/integrations": {
       "include": "./schemas/draft-07/integrations"
+    },
+    "draft-07/schemas": {
+      "include": "./schemas/draft-07/schemas"
     }
   }
 }

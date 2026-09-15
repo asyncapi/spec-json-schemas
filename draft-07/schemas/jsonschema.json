@@ -1,0 +1,24 @@
+{
+  "title": "AsyncAPI Specification",
+  "description": "Explore AsyncAPI specifications and theirs components",
+  "contents": {
+    "v1": {
+      "title": "AsyncAPI v1",
+      "description": "Contains \"Lego bricks\" to compose AsyncAPI v1.*",
+      "path": "./draft-07/schemas/v1",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v1"
+    },
+    "v2": {
+      "title": "AsyncAPI v2",
+      "description": "Contains \"Lego bricks\" to compose AsyncAPI v2.*",
+      "path": "./draft-07/schemas/v2",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2"
+    },
+    "v3": {
+      "title": "AsyncAPI v3",
+      "description": "Contains \"Lego bricks\" to compose AsyncAPI v3.*",
+      "path": "./draft-07/schemas/v3",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v3"
+    }
+  }
+}
