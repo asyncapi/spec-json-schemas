@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/servers/server.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/servers/server.json",
   "title": "AsyncAPI v2.0.0-rc1 - Server",
   "description": "Represents a message broker, a server or any other kind of computer program capable of sending and/or receiving data",
   "type": "object",
@@ -20,7 +20,7 @@
       "type": "string"
     },
     "variables": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/servers/serverVariables.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/servers/serverVariables.json"
     },
     "baseChannel": {
       "x-format": "uri-path",
@@ -29,7 +29,7 @@
     "security": {
       "type": "array",
       "items": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2/securityRequirements.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2/securityRequirements.json"
       }
     }
   },

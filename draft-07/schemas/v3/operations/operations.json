@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/operations/operations.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/operations/operations.json",
   "title": "AsyncAPI v3 - Operations Map",
   "description": "A key-value map where key is operation ID and value is operation representation or it's reference",
   "examples": [
@@ -31,10 +31,10 @@
       }
     },
     "then": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operation.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operation.json"
     }
   }
 }

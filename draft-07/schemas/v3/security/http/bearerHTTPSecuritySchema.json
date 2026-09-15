@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/http/bearerHTTPSecuritySchema.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/security/http/bearerHTTPSecuritySchema.json",
   "title": "AsyncAPI v3 - HTTP Bearer Authentication",
   "description": "Contains information about HTTP Bearer Authentication",
   "examples": [

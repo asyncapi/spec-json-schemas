@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/channel.json",
+  "$id": "http://localhost:8000/draft-07/bindings/apache-pulsar/0.1.0/channel.json",
   "title": "Apache Pulsar - Channel Binding v0.1.0",
   "description": "Contains information about the channel representation in Pulsar, which covers namespace and topic level admin configuration",
   "examples": [

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/operationBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/ibmmq/operationBinding.json",
   "title": "IBM MQ - Operation Binding",
   "description": "Describes protocol-specific definitions for a operation",
   "examples": [
@@ -24,7 +24,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/operation.json"
       }
     },
     {
@@ -40,7 +40,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/operation.json"
       }
     }
   ]

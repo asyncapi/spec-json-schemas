@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/messageBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/anypointmq/messageBinding.json",
   "title": "Anypoint MQ - Message Binding",
   "description": "Describes protocol-specific definitions for a message",
   "examples": [
@@ -28,7 +28,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/message.json"
       }
     },
     {
@@ -44,7 +44,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/message.json"
       }
     }
   ]

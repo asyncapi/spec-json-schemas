@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/channel.json",
+  "$id": "http://localhost:8000/draft-07/bindings/jms/0.0.1/channel.json",
   "title": "JMS - Channel Binding v0.0.1",
   "description": "Contains configuration for describing a JMS queue, or FIFO queue",
   "examples": [

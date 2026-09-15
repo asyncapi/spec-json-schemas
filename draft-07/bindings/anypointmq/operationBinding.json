@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/operationBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/anypointmq/operationBinding.json",
   "title": "Anypoint MQ - Operation Binding",
   "description": "Describes protocol-specific definitions for a operation",
   "examples": [
@@ -24,7 +24,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/operation.json"
       }
     },
     {
@@ -40,7 +40,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/operation.json"
       }
     }
   ]

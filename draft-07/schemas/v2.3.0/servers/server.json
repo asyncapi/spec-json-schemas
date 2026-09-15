@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.3.0/servers/server.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.3.0/servers/server.json",
   "title": "AsyncAPI v2.3.0 - Server",
   "description": "Represents a message broker, a server or any other kind of computer program capable of sending and/or receiving data",
   "examples": [
@@ -65,18 +65,18 @@
     },
     "variables": {
       "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/servers/serverVariables.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.3.0/servers/serverVariables.json"
     },
     "security": {
       "description": "A declaration of which security mechanisms can be used with this server. The list of values includes alternative security requirement objects that can be used. ",
       "type": "array",
       "items": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2/security/securitySchema.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2/security/securitySchema.json"
       }
     },
     "bindings": {
       "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the server.",
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.3.0/bindingsObject.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.3.0/bindingsObject.json"
     }
   },
   "patternProperties": {

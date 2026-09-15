@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/message.json",
+  "$id": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/message.json",
   "title": "MQTT - Message Binding v0.2.0",
   "description": "Contains information about the message representation in MQTT",
   "examples": [
@@ -52,7 +52,7 @@
     },
     "correlationData": {
       "description": "Correlation Data is used by the sender of the request message to identify which request the response message is for when it is received",
-      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
     },
     "payloadFormatIndicator": {
       "description": "1 indicates that the payload is UTF-8 encoded character data.  0 indicates that the payload format is unspecified",
@@ -68,7 +68,7 @@
           "minLength": 1
         },
         {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
         }
       ]
     }

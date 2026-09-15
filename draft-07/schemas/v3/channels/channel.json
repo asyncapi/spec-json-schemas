@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/channel.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/channels/channel.json",
   "title": "AsyncAPI v3.0.0 - Channel",
   "description": "Describes a shared communication channel",
   "examples": [
@@ -99,10 +99,10 @@
       "type": [ "string", "null" ]
     },
     "messages": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessages.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessages.json"
     },
     "parameters": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channelAddressParameters.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/channelAddressParameters.json"
     },
     "title": {
       "description": "A human-friendly title for the channel",
@@ -121,17 +121,17 @@
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
       }
     },
     "tags": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/tags.json"
     },
     "externalDocs": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json"
     },
     "bindings": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/channelBindings.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/channelBindings.json"
     }
   },
   "patternProperties": {

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/channelBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/ibmmq/channelBinding.json",
   "title": "IBM MQ - Channel Binding",
   "description": "Describes protocol-specific definitions for a channel",
   "examples": [
@@ -27,7 +27,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/channel.json"
       }
     },
     {
@@ -43,7 +43,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/channel.json"
       }
     }
   ]

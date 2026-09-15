@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json",
+  "$id": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json",
   "title": "JMS - Server Binding v0.0.1",
   "description": "Contains configuration for describing a JMS broker",
   "examples": [
@@ -23,7 +23,7 @@
       "description": "Additional properties to set on the JMS ConnectionFactory implementation for the JMS Provider",
       "type": "array",
       "items": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json#/definitions/property"
+        "$ref": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json#/definitions/property"
       }
     },
     "bindingVersion": {

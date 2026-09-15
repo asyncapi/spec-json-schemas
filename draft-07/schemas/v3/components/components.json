@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/components/components.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/components/components.json",
   "title": "AsyncAPI v3 - Components",
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI specification. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object",
   "examples": [
@@ -651,7 +651,7 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/anySchema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/anySchema.json"
         }
       }
     },
@@ -667,10 +667,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/server.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/servers/server.json"
           }
         }
       }
@@ -687,10 +687,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channel.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/channel.json"
           }
         }
       }
@@ -707,10 +707,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariable.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/servers/serverVariable.json"
           }
         }
       }
@@ -726,10 +726,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operation.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operation.json"
           }
         }
       }
@@ -746,10 +746,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessage.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessage.json"
           }
         }
       }
@@ -766,10 +766,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/security/securitySchema.json"
           }
         }
       }
@@ -786,10 +786,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channelAddressParameter.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/channelAddressParameter.json"
           }
         }
       }
@@ -806,10 +806,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageCorrelationId.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageCorrelationId.json"
           }
         }
       }
@@ -826,10 +826,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationTrait.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operationTrait.json"
           }
         }
       }
@@ -846,10 +846,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageTrait.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageTrait.json"
           }
         }
       }
@@ -866,10 +866,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReply.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operationReply.json"
           }
         }
       }
@@ -886,10 +886,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/operations/operationReplyAddress.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operationReplyAddress.json"
           }
         }
       }
@@ -899,7 +899,7 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "https://asyncapi.pavelon.dev/bindings/serverBindings.json"
+          "$ref": "http://localhost:8000/draft-07/bindings/serverBindings.json"
         }
       }
     },
@@ -908,7 +908,7 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "https://asyncapi.pavelon.dev/bindings/channelBindings.json"
+          "$ref": "http://localhost:8000/draft-07/bindings/channelBindings.json"
         }
       }
     },
@@ -917,7 +917,7 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "https://asyncapi.pavelon.dev/bindings/operationBindings.json"
+          "$ref": "http://localhost:8000/draft-07/bindings/operationBindings.json"
         }
       }
     },
@@ -926,7 +926,7 @@
       "type": "object",
       "patternProperties": {
         "^[\\w\\d\\.\\-_]+$": {
-          "$ref": "https://asyncapi.pavelon.dev/bindings/messageBindings.json"
+          "$ref": "http://localhost:8000/draft-07/bindings/messageBindings.json"
         }
       }
     },
@@ -942,10 +942,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tag.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/tag.json"
           }
         }
       }
@@ -962,10 +962,10 @@
             }
           },
           "then": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocs.json"
           }
         }
       }

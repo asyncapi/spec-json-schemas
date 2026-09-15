@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/info/info.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/info/info.json",
   "title": "AsyncAPI - Info v3.0.0",
   "description": "Provides metadata about the API. The metadata can be used by the clients if needed",
   "examples": [
@@ -60,7 +60,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/info/infoExtensions.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/info/infoExtensions.json"
     }
   ],
   "required": [ "version", "title" ],
@@ -74,20 +74,20 @@
       "type": "string"
     },
     "contact": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/info/contact.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/info/contact.json"
     },
     "externalDocs": {
       "oneOf": [
         {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
         },
         {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocs.json"
         }
       ]
     },
     "license": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/info/license.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/info/license.json"
     },
     "tags": {
       "description": "A list of tags for application API documentation control. Tags can be used for logical grouping of applications",
@@ -96,10 +96,10 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tag.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3/tag.json"
           }
         ]
       }

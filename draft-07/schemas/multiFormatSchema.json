@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/multiFormatSchema.json",
+  "$id": "http://localhost:8000/draft-07/schemas/multiFormatSchema.json",
   "description": "The Multi Format Schema Object represents a schema definition. It differs from the Schema Object in that it supports multiple schema formats or languages (e.g., JSON Schema, Avro, etc.).",
   "examples": [
     {
@@ -2633,7 +2633,7 @@
     }
   },
   "then": {
-    "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
   },
   "else": {
     "allOf": [
@@ -2647,7 +2647,7 @@
         "then": {
           "properties": {
             "schema": {
-              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
             }
           }
         }
@@ -2690,7 +2690,7 @@
         "then": {
           "properties": {
             "schema": {
-              "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
             }
           }
         }
@@ -2733,10 +2733,10 @@
             "schema": {
               "oneOf": [
                 {
-                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
                 },
                 {
-                  "$ref": "https://asyncapi.pavelon.dev/schemas/openapiSchema_3_0.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/openapiSchema_3_0.json"
                 }
               ]
             }
@@ -2761,10 +2761,10 @@
             "schema": {
               "oneOf": [
                 {
-                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
                 },
                 {
-                  "$ref": "https://asyncapi.pavelon.dev/schemas/avroSchema_v1.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/avroSchema_v1.json"
                 }
               ]
             }
@@ -2790,7 +2790,7 @@
             "schema": {
               "anyOf": [
                 {
-                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
                 },
                 {
                   "type": [ "string", "object" ]

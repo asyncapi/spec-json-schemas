@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/messageBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sqs/messageBinding.json",
   "title": "Amazon SQS - Message Binding",
   "description": "Describes protocol-specific definitions for a message",
   "examples": [
@@ -29,7 +29,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.1.0/message.json"
       }
     },
     {
@@ -42,7 +42,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.2.0/message.json"
       }
     },
     {
@@ -55,7 +55,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/message.json"
       }
     },
     {
@@ -71,7 +71,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/message.json"
       }
     }
   ]

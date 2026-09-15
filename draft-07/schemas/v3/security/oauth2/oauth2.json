@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/oauth2.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/security/oauth2/oauth2.json",
   "title": "AsyncAPI v3 - OAuth2 Authentication",
   "description": "Contains information about OAuth2 Authentication. OAuth 2.0 is an authorization framework rather than a pure authentication protocol",
   "examples": [
@@ -60,16 +60,16 @@
       "type": "object",
       "properties": {
         "authorizationCode": {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/authorizationCodeOAuthFlow.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v3/security/oauth2/flows/authorizationCodeOAuthFlow.json"
         },
         "clientCredentials": {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/clientCredentialsOAuthFlow.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v3/security/oauth2/flows/clientCredentialsOAuthFlow.json"
         },
         "implicit": {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/implicitOAuthFlow.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v3/security/oauth2/flows/implicitOAuthFlow.json"
         },
         "password": {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/oauth2/flows/passwordOAuthFlow.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v3/security/oauth2/flows/passwordOAuthFlow.json"
         }
       },
       "additionalProperties": false

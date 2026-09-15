@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/http/0.2.0/operation.json",
+  "$id": "http://localhost:8000/draft-07/bindings/http/0.2.0/operation.json",
   "title": "HTTP - Operation Binding v0.2.0",
   "description": "Contains information about the operation representation in HTTP",
   "examples": [
@@ -66,7 +66,7 @@
     },
     "query": {
       "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key",
-      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
     }
   },
   "patternProperties": {

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/solace/0.1.0/channel.json",
+  "$id": "http://localhost:8000/draft-07/bindings/solace/0.1.0/channel.json",
   "title": "Solace - Channel Binding v0.1.0",
   "description": "Contains information about the channel representation in Solace",
   "examples": [

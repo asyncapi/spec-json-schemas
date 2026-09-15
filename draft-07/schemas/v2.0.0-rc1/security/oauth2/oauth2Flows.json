@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flows.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flows.json",
   "title": "AsyncAPI v2.0.0-rc1 - OAuth2 flows",
   "description": "Contains information about OAuth2 flows",
   "type": "object",
@@ -20,7 +20,7 @@
         "implicit": {
           "allOf": [
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
             },
             {
               "required": [ "authorizationUrl", "scopes" ]
@@ -35,7 +35,7 @@
         "password": {
           "allOf": [
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
             },
             {
               "required": [ "tokenUrl", "scopes" ]
@@ -50,7 +50,7 @@
         "clientCredentials": {
           "allOf": [
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
             },
             {
               "required": [ "tokenUrl", "scopes" ]
@@ -65,7 +65,7 @@
         "authorizationCode": {
           "allOf": [
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/security/oauth2/oauth2Flow.json"
             },
             {
               "required": [ "authorizationUrl", "tokenUrl", "scopes" ]

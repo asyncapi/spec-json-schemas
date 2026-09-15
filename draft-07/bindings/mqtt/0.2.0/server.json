@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/server.json",
+  "$id": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/server.json",
   "title": "MQTT - Server Binding v0.2.0",
   "description": "Contains information about the server representation in MQTT",
   "examples": [
@@ -107,7 +107,7 @@
           "minimum": 1
         },
         {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
         }
       ]
     },
@@ -119,7 +119,7 @@
           "minimum": 0
         },
         {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
         }
       ]
     }

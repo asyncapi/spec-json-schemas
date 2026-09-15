@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBindingOrReference.json",
+  "$id": "http://localhost:8000/draft-07/bindings/apache-pulsar/serverBindingOrReference.json",
   "title": "Apache Pulsar - Server Binding or Reference",
   "description": "Describes protocol-specific definitions for a server or it's reference",
   "examples": [
@@ -20,9 +20,9 @@
     }
   },
   "then": {
-    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
   },
   "else": {
-    "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBinding.json"
+    "$ref": "http://localhost:8000/draft-07/bindings/apache-pulsar/serverBinding.json"
   }
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/channels/operations/operation.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/operations/operation.json",
   "title": "AsyncAPI v2.0.0-rc1 - Channel Operation",
   "description": "Describes a publish or a subscribe operation. This provides a place to document how and why messages are sent and received",
   "type": "object",
@@ -10,10 +10,10 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           {
-            "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/channels/operations/operationTrait.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/operations/operationTrait.json"
           }
         ]
       }
@@ -28,11 +28,11 @@
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2/tag.json"
       }
     },
     "externalDocs": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2/externalDocs.json"
     },
     "operationId": {
       "type": "string"
@@ -46,7 +46,7 @@
     "message": {
       "oneOf": [
         {
-          "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/channels/messages/message.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/messages/message.json"
         },
         {
           "type": "object",
@@ -56,7 +56,7 @@
               "type": "array",
               "minItems": 2,
               "items": {
-                "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc1/channels/messages/message.json"
+                "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/messages/message.json"
               }
             }
           },

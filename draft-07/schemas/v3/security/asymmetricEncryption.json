@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/asymmetricEncryption.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/security/asymmetricEncryption.json",
   "title": "AsyncAPI v3 - Asymmetric Encryption Authentication",
   "description": "Contains information about Asymmetric Encryption Authentication",
   "examples": [

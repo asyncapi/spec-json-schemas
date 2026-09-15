@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/channelBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/apache-pulsar/channelBinding.json",
   "title": "Apache Pulsar - Channel Binding",
   "description": "Describes protocol-specific definitions for a channel",
   "examples": [
@@ -30,7 +30,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/apache-pulsar/0.1.0/channel.json"
       }
     },
     {
@@ -46,7 +46,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/0.1.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/apache-pulsar/0.1.0/channel.json"
       }
     }
   ]

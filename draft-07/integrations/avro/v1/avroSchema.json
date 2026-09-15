@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/integrations/avro/v1/avroSchema.json",
+  "$id": "http://localhost:8000/draft-07/integrations/avro/v1/avroSchema.json",
   "title": "Avro Schema Definition",
   "description": "Json-Schema definition for Avro AVSC files.",
   "oneOf": [

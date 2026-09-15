@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/anypointmq/0.0.1/message.json",
+  "$id": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/message.json",
   "title": "Anypoint MQ - Message Binding v0.0.1",
   "description": "Contains configuration for describing an Anypoint MQ message as an AsyncAPI message",
   "examples": [
@@ -31,7 +31,7 @@
     },
     "headers": {
       "description": "A Schema object containing the definitions for Anypoint MQ-specific headers (protocol headers). This schema MUST be of type 'object' and have a 'properties' key. Examples of Anypoint MQ protocol headers are 'messageId' and 'messageGroupId'",
-      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
     }
   },
   "patternProperties": {

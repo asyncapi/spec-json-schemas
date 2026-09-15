@@ -1,11 +1,11 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.4.0/channels/messages/message.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.4.0/channels/messages/message.json",
   "title": "AsyncAPI v2.4.0 - Channel Operation Message",
   "description": "Describes a message received on a given channel and operation",
   "oneOf": [
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     {
       "oneOf": [
@@ -16,7 +16,7 @@
             "oneOf": {
               "type": "array",
               "items": {
-                "$ref": "http://localhost:8080/draft-07/schemas/v2.4.0/channels/messages/message.json"
+                "$ref": "http://localhost:8000/draft-07/schemas/v2.4.0/channels/messages/message.json"
               }
             }
           },
@@ -34,7 +34,7 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+                    "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
                   }
                 }
               }
@@ -67,7 +67,7 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+                    "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
                   }
                 }
               }
@@ -108,7 +108,7 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://localhost:8080/draft-07/integrations/openapi/v3.0.0/openapiSchema.json"
+                    "$ref": "http://localhost:8000/draft-07/integrations/openapi/v3.0.0/openapiSchema.json"
                   }
                 }
               }
@@ -129,7 +129,7 @@
               "then": {
                 "properties": {
                   "payload": {
-                    "$ref": "http://localhost:8080/draft-07/integrations/avro/v1/avroSchema.json"
+                    "$ref": "http://localhost:8000/draft-07/integrations/avro/v1/avroSchema.json"
                   }
                 }
               }
@@ -145,7 +145,7 @@
             "headers": {
               "allOf": [
                 {
-                  "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
                 },
                 {
                   "properties": {
@@ -163,10 +163,10 @@
             "correlationId": {
               "oneOf": [
                 {
-                  "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
                 },
                 {
-                  "$ref": "http://localhost:8080/draft-07/schemas/v2/channels/messages/correlationId.json"
+                  "$ref": "http://localhost:8000/draft-07/schemas/v2/channels/messages/correlationId.json"
                 }
               ]
             },
@@ -174,7 +174,7 @@
               "type": "array",
               "uniqueItems": true,
               "items": {
-                "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
+                "$ref": "http://localhost:8000/draft-07/schemas/v2/tag.json"
               }
             },
             "summary": {
@@ -194,7 +194,7 @@
               "type": "string"
             },
             "externalDocs": {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2/externalDocs.json"
             },
             "deprecated": {
               "default": false,
@@ -230,17 +230,17 @@
               }
             },
             "bindings": {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2.4.0/bindingsObject.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2.4.0/bindingsObject.json"
             },
             "traits": {
               "type": "array",
               "items": {
                 "oneOf": [
                   {
-                    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+                    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
                   },
                   {
-                    "$ref": "http://localhost:8080/draft-07/schemas/v2.4.0/channels/messages/messageTrait.json"
+                    "$ref": "http://localhost:8000/draft-07/schemas/v2.4.0/channels/messages/messageTrait.json"
                   }
                 ]
               }

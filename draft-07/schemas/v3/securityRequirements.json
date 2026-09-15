@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/securityRequirements.json",
   "title": "AsyncAPI v3.0.0 - Security Requirements",
   "description": "Collection of Security Requirements",
   "examples": [
@@ -26,10 +26,10 @@
       }
     },
     "then": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/security/securitySchema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/security/securitySchema.json"
     }
   }
 }

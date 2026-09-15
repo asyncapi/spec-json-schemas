@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/channel.json",
+  "$id": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/channel.json",
   "title": "MQTT - Channel Binding v0.2.0",
   "description": "Contains information about the channel representation in MQTT",
   "examples": [

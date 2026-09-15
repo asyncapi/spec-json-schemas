@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/operation.json",
+  "$id": "http://localhost:8000/draft-07/bindings/jms/0.0.1/operation.json",
   "title": "JMS - Operation Binding v0.0.1",
   "description": "Contains information about the operation representation in JMS",
   "examples": [

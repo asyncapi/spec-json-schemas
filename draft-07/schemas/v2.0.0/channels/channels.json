@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0/channels/channels.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.0.0/channels/channels.json",
   "title": "AsyncAPI v2.0.0 - Channels Map",
   "description": "A key-value map where key is channel ID and value is channel representation. Channel paths are relative to servers",
   "examples": [
@@ -37,6 +37,6 @@
     "minLength": 1
   },
   "additionalProperties": {
-    "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0/channels/channelItem.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0/channels/channelItem.json"
   }
 }

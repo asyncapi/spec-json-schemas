@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2/security/symmetricEncryption.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2/security/symmetricEncryption.json",
   "title": "AsyncAPI v2 - Symmetric Encryption Authentication",
   "description": "Contains information about Symmetric Encryption Authentication",
   "examples": [

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/messageBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/apache-kafka/messageBinding.json",
   "title": "Apache Kafka - Message Binding",
   "description": "Describes protocol-specific definitions for a message",
   "examples": [
@@ -50,7 +50,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/0.1.0/message.json"
       }
     },
     {
@@ -63,7 +63,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.3.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/0.3.0/message.json"
       }
     },
     {
@@ -76,7 +76,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.4.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/0.4.0/message.json"
       }
     },
     {
@@ -89,7 +89,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/0.5.0/message.json"
       }
     },
     {
@@ -105,7 +105,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.5.0/message.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/0.5.0/message.json"
       }
     }
   ]

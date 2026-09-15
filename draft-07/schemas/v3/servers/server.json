@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/servers/server.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/servers/server.json",
   "title": "AsyncAPI v3.0.0 - Server",
   "description": "Represents a message broker, a server or any other kind of computer program capable of sending and/or receiving data",
   "examples": [
@@ -82,19 +82,19 @@
       "type": "string"
     },
     "variables": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/servers/serverVariables.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/servers/serverVariables.json"
     },
     "security": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/securityRequirements.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/securityRequirements.json"
     },
     "tags": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/tags.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/tags.json"
     },
     "externalDocs": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json"
     },
     "bindings": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/serverBindings.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/serverBindings.json"
     }
   },
   "patternProperties": {

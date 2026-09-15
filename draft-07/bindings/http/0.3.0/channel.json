@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/http/0.3.0/channel.json",
+  "$id": "http://localhost:8000/draft-07/bindings/http/0.3.0/channel.json",
   "title": "HTTP - Channel Binding v0.3.0",
   "description": "Contains information about the channel representation in HTTP",
   "examples": [

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/mercure/0.1.0/server.json",
+  "$id": "http://localhost:8000/draft-07/bindings/mercure/0.1.0/server.json",
   "title": "Mercure - Server Binding v0.1.0",
   "description": "Contains information about the server representation in Mercure",
   "examples": [

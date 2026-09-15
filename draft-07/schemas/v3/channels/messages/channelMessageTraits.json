@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageTraits.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageTraits.json",
   "title": "AsyncAPI v3 - Channel Message Traits",
   "description": "Collection of Channel Message Traits. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Message Object",
   "examples": [
@@ -93,10 +93,10 @@
       }
     },
     "then": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageTrait.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageTrait.json"
     }
   }
 }

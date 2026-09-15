@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/security/sasl/saslGssapiSecuritySchema.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/security/sasl/saslGssapiSecuritySchema.json",
   "title": "AsyncAPI v3 - SASL GSSAPI Authentication",
   "description": "Contains information about SASL GSSAPI Authentication. SASL GSSAPI is secure method that combines the Simple Authentication and Security Layer framework with the Generic Security Services API, primarily to enable Kerberos V5 network authentication",
   "examples": [

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/server.json",
   "title": "Amazon SNS - Server Binding v0.2.0",
   "description": "Contains information about the server representation in Amazon SNS",
   "examples": [

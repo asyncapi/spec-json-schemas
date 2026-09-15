@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/messageBindingOrReference.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amqp/messageBindingOrReference.json",
   "title": "AMQP 0-9-1 - Message Binding or Reference",
   "description": "Describes protocol-specific definitions for a message or it's reference",
   "examples": [
@@ -21,9 +21,9 @@
     }
   },
   "then": {
-    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
   },
   "else": {
-    "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/messageBinding.json"
+    "$ref": "http://localhost:8000/draft-07/bindings/amqp/messageBinding.json"
   }
 }

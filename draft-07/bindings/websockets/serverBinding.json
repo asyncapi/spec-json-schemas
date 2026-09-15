@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/websockets/serverBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/websockets/serverBinding.json",
   "title": "WebSockets - Server Binding",
   "description": "Describes protocol-specific definitions for a server",
   "examples": [
@@ -24,7 +24,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/0.1.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/websockets/0.1.0/server.json"
       }
     },
     {
@@ -40,7 +40,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/0.1.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/websockets/0.1.0/server.json"
       }
     }
   ]

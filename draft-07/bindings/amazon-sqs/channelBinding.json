@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/channelBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sqs/channelBinding.json",
   "title": "Amazon SQS - Channel Binding",
   "description": "Describes protocol-specific definitions for a channel",
   "examples": [
@@ -49,7 +49,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.1.0/channel.json"
       }
     },
     {
@@ -62,7 +62,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.2.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.2.0/channel.json"
       }
     },
     {
@@ -75,7 +75,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json"
       }
     },
     {
@@ -91,7 +91,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json"
       }
     }
   ]

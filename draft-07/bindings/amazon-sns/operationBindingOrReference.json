@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/operationBindingOrReference.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sns/operationBindingOrReference.json",
   "title": "Amazon SNS - Operation Binding or Reference",
   "description": "Describes protocol-specific definitions for a operation or it's reference",
   "examples": [
@@ -31,9 +31,9 @@
     }
   },
   "then": {
-    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
   },
   "else": {
-    "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/operationBinding.json"
+    "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/operationBinding.json"
   }
 }

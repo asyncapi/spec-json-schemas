@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json",
   "title": "Amazon SQS - Channel Binding v0.3.0",
   "description": "Contains information about the channel representation in Amazon SQS",
   "examples": [
@@ -54,11 +54,11 @@
     },
     "deadLetterQueue": {
       "description": "A definition of the queue that will be used for un-processable messages",
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json#/definitions/queue"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/queue"
     },
     "queue": {
       "description": "A definition of the queue that will be used as the channel",
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json#/definitions/queue"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/queue"
     }
   },
   "patternProperties": {
@@ -92,7 +92,7 @@
           "description": "An array of statement objects, each of which controls a permission for this queue",
           "type": "array",
           "items": {
-            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json#/definitions/statement"
+            "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/statement"
           }
         }
       },
@@ -139,7 +139,7 @@
           "type": "string"
         },
         "policy": {
-          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json#/definitions/policy"
+          "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/policy"
         },
         "receiveMessageWaitTime": {
           "description": "Determines if the queue uses short polling or long polling. Set to zero the queue reads available messages and returns immediately. Set to a non-zero integer, long polling waits the specified number of seconds for messages to arrive before returning",
@@ -147,7 +147,7 @@
           "type": "integer"
         },
         "redrivePolicy": {
-          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json#/definitions/redrivePolicy"
+          "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/redrivePolicy"
         },
         "tags": {
           "description": "Key-value pairs that represent AWS tags on the queue",
@@ -171,7 +171,7 @@
       "required": [ "deadLetterQueue" ],
       "properties": {
         "deadLetterQueue": {
-          "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.3.0/channel.json#/definitions/identifier"
+          "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/identifier"
         },
         "maxReceiveCount": {
           "description": "The number of times a message is delivered to the source queue before being moved to the dead-letter queue",

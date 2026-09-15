@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/mqtt/serverBinding.json",
   "title": "MQTT - Server Binding",
   "description": "Describes protocol-specific definitions for a server",
   "examples": [
@@ -49,7 +49,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/0.1.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/mqtt/0.1.0/server.json"
       }
     },
     {
@@ -62,7 +62,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/server.json"
       }
     },
     {
@@ -78,7 +78,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/server.json"
       }
     }
   ]

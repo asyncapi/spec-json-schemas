@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/externalDocsOrReference.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json",
   "title": "AsyncAPI v3.0.0 - External Docs or Reference",
   "description": "Generic type which MUST BE External Docs or Reference",
   "examples": [
@@ -15,10 +15,10 @@
   "type": "object",
   "oneOf": [
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/externalDocs.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocs.json"
     }
   ]
 }

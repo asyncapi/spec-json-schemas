@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/channelBindings.json",
+  "$id": "http://localhost:8000/draft-07/bindings/channelBindings.json",
   "title": "AsyncAPI - Channel Bindings",
   "description": "Map describing protocol-specific definitions for an channel",
   "examples": [
@@ -212,61 +212,61 @@
   "type": "object",
   "properties": {
     "sns": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/channelBindingOrReference.json"
     },
     "sqs": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/channelBindingOrReference.json"
     },
     "amqp": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amqp/channelBindingOrReference.json"
     },
     "amqp1": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amqp1/channelBindingOrReference.json"
     },
     "anypointmq": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/channelBindingOrReference.json"
     },
     "kafka": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/channelBindingOrReference.json"
     },
     "pulsar": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/apache-pulsar/channelBindingOrReference.json"
     },
     "googlepubsub": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/googlepubsub/channelBindingOrReference.json"
     },
     "http": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/http/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/http/channelBindingOrReference.json"
     },
     "ibmmq": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/channelBindingOrReference.json"
     },
     "jms": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/jms/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/jms/channelBindingOrReference.json"
     },
     "mercure": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/mercure/channelBindingOrReference.json"
     },
     "mqtt": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/mqtt/channelBindingOrReference.json"
     },
     "mqtt5": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/mqtt5/channelBindingOrReference.json"
     },
     "nats": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/nats/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/nats/channelBindingOrReference.json"
     },
     "redis": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/redis/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/redis/channelBindingOrReference.json"
     },
     "solace": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/solace/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/solace/channelBindingOrReference.json"
     },
     "stomp": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/stomp/channelBindingOrReference.json"
     },
     "ws": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/channelBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/websockets/channelBindingOrReference.json"
     }
   },
   "patternProperties": {

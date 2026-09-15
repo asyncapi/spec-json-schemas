@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/channels.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/channels/channels.json",
   "title": "AsyncAPI v3 - Channels Map",
   "description": "A key-value map where key is channel ID and value is channel representation",
   "examples": [
@@ -51,10 +51,10 @@
       }
     },
     "then": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/channel.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/channel.json"
     }
   }
 }

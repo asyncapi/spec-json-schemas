@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.1.0/channels/parameter.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.1.0/channels/parameter.json",
   "title": "AsyncAPI v2.1.0 - Channel Parameter",
   "description": "Describes a parameter included in a channel",
   "examples": [
@@ -21,7 +21,7 @@
       "type": "string"
     },
     "schema": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
     },
     "location": {
       "description": "A runtime expression that specifies the location of the parameter value",
@@ -29,7 +29,7 @@
       "pattern": "^\\$message\\.(header|payload)#(\\/(([^\\/~])|(~[01]))*)*"
     },
     "$ref": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     }
   },
   "patternProperties": {

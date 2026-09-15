@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.5.0/channels/messages/messageTrait.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/messages/messageTrait.json",
   "title": "AsyncAPI v2.5.0 - Channel Operation Message Trait",
   "description": "Describes a trait that MAY be applied to an Channel Operation Message",
   "type": "object",
@@ -17,7 +17,7 @@
       "description": "Schema definition of the application headers.",
       "allOf": [
         {
-          "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
         },
         {
           "properties": {
@@ -36,10 +36,10 @@
       "description": "Definition of the correlation ID used for message tracing or matching.",
       "oneOf": [
         {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
         },
         {
-          "$ref": "http://localhost:8080/draft-07/schemas/v2/channels/messages/correlationId.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2/channels/messages/correlationId.json"
         }
       ]
     },
@@ -48,7 +48,7 @@
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2/tag.json"
       }
     },
     "summary": {
@@ -68,7 +68,7 @@
       "type": "string"
     },
     "externalDocs": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2/externalDocs.json"
     },
     "deprecated": {
       "default": false,
@@ -82,7 +82,7 @@
       }
     },
     "bindings": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/bindingsObject.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
     }
   },
   "patternProperties": {

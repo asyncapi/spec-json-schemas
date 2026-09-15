@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2/schema.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2/schema.json",
   "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays.",
   "allOf": [
     {
@@ -13,7 +13,7 @@
           "default": {},
           "anyOf": [
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
             },
             {
               "type": "boolean"
@@ -24,13 +24,13 @@
           "default": {},
           "anyOf": [
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
             },
             {
               "type": "array",
               "minItems": 1,
               "items": {
-                "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+                "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
               }
             }
           ]
@@ -39,45 +39,45 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
           }
         },
         "oneOf": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
           }
         },
         "anyOf": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
           }
         },
         "not": {
-          "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
         },
         "properties": {
           "default": {},
           "type": "object",
           "additionalProperties": {
-            "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
           }
         },
         "patternProperties": {
           "default": {},
           "type": "object",
           "additionalProperties": {
-            "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
           }
         },
         "propertyNames": {
-          "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
         },
         "contains": {
-          "$ref": "http://localhost:8080/draft-07/schemas/v2/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2/schema.json"
         },
         "discriminator": {
           "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schema that inherit this schema. ",
@@ -85,7 +85,7 @@
         },
         "externalDocs": {
           "description": "Additional external documentation for this schema.",
-          "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2/externalDocs.json"
         },
         "deprecated": {
           "description": "Specifies that a schema is deprecated and SHOULD be transitioned out of usage",

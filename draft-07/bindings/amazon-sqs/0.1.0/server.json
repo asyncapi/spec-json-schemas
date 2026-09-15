@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/0.1.0/server.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.1.0/server.json",
   "title": "Amazon SQS - Server Binding v0.1.0",
   "description": "Contains information about the server representation in Amazon SQS",
   "examples": [

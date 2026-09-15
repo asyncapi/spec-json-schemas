@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBindingOrReference.json",
+  "$id": "http://localhost:8000/draft-07/bindings/ibmmq/serverBindingOrReference.json",
   "title": "IBM MQ - Server Binding or Reference",
   "description": "Describes protocol-specific definitions for a server or it's reference",
   "examples": [
@@ -23,9 +23,9 @@
     }
   },
   "then": {
-    "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
   },
   "else": {
-    "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBinding.json"
+    "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/serverBinding.json"
   }
 }

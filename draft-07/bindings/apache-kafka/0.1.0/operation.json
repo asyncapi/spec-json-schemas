@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/apache-kafka/0.1.0/operation.json",
+  "$id": "http://localhost:8000/draft-07/bindings/apache-kafka/0.1.0/operation.json",
   "title": "Apache Kafka - Operation Binding v0.1.0",
   "description": "Contains information about the operation representation in Apache Kafka",
   "examples": [
@@ -25,11 +25,11 @@
     },
     "clientId": {
       "description": "Id of the consumer inside a consumer group",
-      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
     },
     "groupId": {
       "description": "Id of the consumer group",
-      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
     }
   },
   "patternProperties": {

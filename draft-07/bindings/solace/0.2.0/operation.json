@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/solace/0.2.0/operation.json",
+  "$id": "http://localhost:8000/draft-07/bindings/solace/0.2.0/operation.json",
   "title": "Solace - Operation Bindings v0.2.0",
   "description": "Contains information about the operation representation in Solace",
   "examples": [

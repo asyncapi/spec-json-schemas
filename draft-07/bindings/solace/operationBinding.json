@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/solace/operationBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/solace/operationBinding.json",
   "title": "Solace - Operation Binding",
   "description": "Describes protocol-specific definitions for a operation",
   "examples": [
@@ -94,7 +94,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.1.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/solace/0.1.0/operation.json"
       }
     },
     {
@@ -107,7 +107,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.2.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/solace/0.2.0/operation.json"
       }
     },
     {
@@ -120,7 +120,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.3.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/solace/0.3.0/operation.json"
       }
     },
     {
@@ -133,7 +133,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/solace/0.4.0/operation.json"
       }
     },
     {
@@ -149,7 +149,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/solace/0.4.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/solace/0.4.0/operation.json"
       }
     }
   ]

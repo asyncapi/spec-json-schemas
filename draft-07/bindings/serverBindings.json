@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/serverBindings.json",
+  "$id": "http://localhost:8000/draft-07/bindings/serverBindings.json",
   "title": "AsyncAPI - server Bindings",
   "description": "Map describing protocol-specific definitions for an server",
   "examples": [
@@ -164,61 +164,61 @@
   "type": "object",
   "properties": {
     "sns": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/serverBindingOrReference.json"
     },
     "sqs": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sqs/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/serverBindingOrReference.json"
     },
     "amqp": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amqp/serverBindingOrReference.json"
     },
     "amqp1": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amqp1/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/amqp1/serverBindingOrReference.json"
     },
     "anypointmq": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/anypointmq/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/serverBindingOrReference.json"
     },
     "kafka": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-kafka/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/serverBindingOrReference.json"
     },
     "pulsar": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/apache-pulsar/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/apache-pulsar/serverBindingOrReference.json"
     },
     "googlepubsub": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/googlepubsub/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/googlepubsub/serverBindingOrReference.json"
     },
     "http": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/http/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/http/serverBindingOrReference.json"
     },
     "ibmmq": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/ibmmq/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/serverBindingOrReference.json"
     },
     "jms": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/jms/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/jms/serverBindingOrReference.json"
     },
     "mercure": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/mercure/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/mercure/serverBindingOrReference.json"
     },
     "mqtt": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/mqtt/serverBindingOrReference.json"
     },
     "mqtt5": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/mqtt5/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/mqtt5/serverBindingOrReference.json"
     },
     "nats": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/nats/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/nats/serverBindingOrReference.json"
     },
     "redis": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/redis/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/redis/serverBindingOrReference.json"
     },
     "solace": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/solace/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/solace/serverBindingOrReference.json"
     },
     "stomp": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/stomp/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/stomp/serverBindingOrReference.json"
     },
     "ws": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/websockets/serverBindingOrReference.json"
+      "$ref": "http://localhost:8000/draft-07/bindings/websockets/serverBindingOrReference.json"
     }
   },
   "patternProperties": {

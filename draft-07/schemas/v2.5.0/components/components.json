@@ -1,23 +1,23 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.5.0/components/components.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.5.0/components/components.json",
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification.",
   "type": "object",
   "properties": {
     "schemas": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2/schemas.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2/schemas.json"
     },
     "servers": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/servers/servers.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/servers/servers.json"
     },
     "channels": {
-      "$id": "http://localhost:8080/draft-07/schemas/v2.5.0/channels/channels.json"
+      "$id": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/channels.json"
     },
     "serverVariables": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/servers/serverVariables.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/servers/serverVariables.json"
     },
     "messages": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/channels/messages/messages.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/messages/messages.json"
     },
     "securitySchemes": {
       "type": "object",
@@ -25,17 +25,17 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
             },
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2/security/securitySchema.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2/security/securitySchema.json"
             }
           ]
         }
       }
     },
     "parameters": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/channels/parameters.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/parameters.json"
     },
     "correlationIds": {
       "type": "object",
@@ -43,10 +43,10 @@
         "^[\\w\\d\\.\\-_]+$": {
           "oneOf": [
             {
-              "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
             },
             {
-              "$ref": "http://localhost:8080/draft-07/schemas/v2/channels/messages/correlationId.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2/channels/messages/correlationId.json"
             }
           ]
         }
@@ -55,37 +55,37 @@
     "operationTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/channels/operations/operationTrait.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/operations/operationTrait.json"
       }
     },
     "messageTraits": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/channels/messages/messageTrait.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/messages/messageTrait.json"
       }
     },
     "serverBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
       }
     },
     "channelBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
       }
     },
     "operationBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
       }
     },
     "messageBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
       }
     }
   },

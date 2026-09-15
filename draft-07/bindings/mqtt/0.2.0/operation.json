@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/mqtt/0.2.0/operation.json",
+  "$id": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/operation.json",
   "title": "MQTT - Operation Binding v0.2.0",
   "description": "Contains information about the operation representation in MQTT",
   "examples": [
@@ -44,7 +44,7 @@
           "minimum": 0
         },
         {
-          "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
         }
       ]
     },

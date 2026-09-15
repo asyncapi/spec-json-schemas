@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.1.0/channels/parameters.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.1.0/channels/parameters.json",
   "title": "AsyncAPI v2.1.0 - Channel Parameters Map",
   "description": "A key-value map where key is parameter ID and value is parameter representation",
   "examples": [
@@ -19,10 +19,10 @@
       }
     },
     "then": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.1.0/channels/parameters.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.1.0/channels/parameters.json"
     }
   }
 }

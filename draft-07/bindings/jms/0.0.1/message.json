@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/message.json",
+  "$id": "http://localhost:8000/draft-07/bindings/jms/0.0.1/message.json",
   "title": "JMS - Message Binding v0.0.1",
   "description": "Contains configuration for describing a JMS message",
   "examples": [
@@ -58,7 +58,7 @@
     },
     "headers": {
       "description": "A Schema object containing the definitions for JMS headers (protocol headers). This schema MUST be of type 'object' and have a 'properties' key. Examples of JMS protocol headers are 'JMSMessageID', 'JMSTimestamp', and 'JMSCorrelationID'",
-      "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
     }
   },
   "patternProperties": {

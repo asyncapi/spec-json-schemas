@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.1.0/operation.json",
+  "$id": "http://localhost:8000/draft-07/bindings/googlepubsub/0.1.0/operation.json",
   "title": "Google Cloud Pub/Sub - Operation Binding v0.1.0",
   "description": "Contains information about the operation representation in Google Cloud Pub/Sub",
   "examples": [

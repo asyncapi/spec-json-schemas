@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/channel.json",
   "title": "Amazon SNS - Channel Binding v0.2.0",
   "description": "Contains information about the channel representation in Amazon SNS",
   "examples": [
@@ -39,10 +39,10 @@
       "type": "string"
     },
     "ordering": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json#/definitions/ordering"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/channel.json#/definitions/ordering"
     },
     "policy": {
-      "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json#/definitions/policy"
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/channel.json#/definitions/policy"
     },
     "tags": {
       "description": "Key-value pairs that represent AWS tags on the topic",
@@ -81,7 +81,7 @@
           "description": "An array of statement objects, each of which controls a permission for this topic",
           "type": "array",
           "items": {
-            "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/channel.json#/definitions/statement"
+            "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/channel.json#/definitions/statement"
           }
         }
       },

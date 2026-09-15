@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/channelBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amqp/channelBinding.json",
   "title": "AMQP 0-9-1 - Channel Binding",
   "description": "Describes protocol-specific definitions for a channel",
   "examples": [
@@ -59,7 +59,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.1.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.1.0/channel.json"
       }
     },
     {
@@ -72,7 +72,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.2.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.2.0/channel.json"
       }
     },
     {
@@ -85,7 +85,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.3.0/channel.json"
       }
     },
     {
@@ -101,7 +101,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/channel.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.3.0/channel.json"
       }
     }
   ]

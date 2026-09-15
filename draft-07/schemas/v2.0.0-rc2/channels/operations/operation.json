@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/operations/operation.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2/channels/operations/operation.json",
   "title": "AsyncAPI v2.0.0-rc2 - Channel Operation",
   "description": "Describes a publish or a subscribe operation. This provides a place to document how and why messages are sent and received",
   "examples": [
@@ -101,10 +101,10 @@
       "items": {
         "oneOf": [
           {
-            "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           {
-            "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/operations/operationTrait.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2/channels/operations/operationTrait.json"
           }
         ]
       }
@@ -119,20 +119,20 @@
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$ref": "http://localhost:8080/draft-07/schemas/v2/tag.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2/tag.json"
       }
     },
     "externalDocs": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2/externalDocs.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2/externalDocs.json"
     },
     "operationId": {
       "type": "string"
     },
     "bindings": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/bindingsObject.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2/bindingsObject.json"
     },
     "message": {
-      "$ref": "http://localhost:8080/draft-07/schemas/v2.0.0-rc2/channels/messages/message.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2/channels/messages/message.json"
     }
   },
   "patternProperties": {

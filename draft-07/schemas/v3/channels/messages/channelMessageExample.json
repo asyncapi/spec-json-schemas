@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessageExample.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageExample.json",
   "title": "AsyncAPI v3 - Channel Message Example",
   "description": "Describes a message example which may be received on a given channel and operation",
   "examples": [

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/jms/serverBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/jms/serverBinding.json",
   "title": "JMS - Server Binding",
   "description": "Describes protocol-specific definitions for a server",
   "examples": [
@@ -28,7 +28,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json"
       }
     },
     {
@@ -44,7 +44,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/jms/0.0.1/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json"
       }
     }
   ]

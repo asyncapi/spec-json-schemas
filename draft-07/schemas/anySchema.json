@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/anySchema.json",
+  "$id": "http://localhost:8000/draft-07/schemas/anySchema.json",
   "title": "AsyncAPI v3 - Multi-Format Schema or Schema",
   "description": "Represents either a schema or a multiFormatSchema based on the existence of the 'schema' property. If the property 'schema' is present, use the multi-format schema. Use the default AsyncAPI Schema otherwise",
   "examples": [
@@ -80,9 +80,9 @@
     }
   },
   "then": {
-    "$ref": "https://asyncapi.pavelon.dev/schemas/multiFormatSchema.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/multiFormatSchema.json"
   },
   "else": {
-    "$ref": "https://asyncapi.pavelon.dev/schemas/schema.json"
+    "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
   }
 }

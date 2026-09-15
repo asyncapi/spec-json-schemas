@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amazon-sns/serverBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amazon-sns/serverBinding.json",
   "title": "Amazon SNS - Server Binding",
   "description": "Describes protocol-specific definitions for a server",
   "examples": [
@@ -26,7 +26,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.1.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/server.json"
       }
     },
     {
@@ -39,7 +39,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/server.json"
       }
     },
     {
@@ -55,7 +55,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amazon-sns/0.2.0/server.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/server.json"
       }
     }
   ]

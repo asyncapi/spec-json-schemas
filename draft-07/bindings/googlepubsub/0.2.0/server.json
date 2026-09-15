@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/googlepubsub/0.2.0/server.json",
+  "$id": "http://localhost:8000/draft-07/bindings/googlepubsub/0.2.0/server.json",
   "title": "Google Cloud Pub/Sub - Server Binding v0.2.0",
   "description": "Contains information about the server representation in Google Cloud Pub/Sub",
   "examples": [

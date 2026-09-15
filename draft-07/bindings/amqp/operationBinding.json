@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/amqp/operationBinding.json",
+  "$id": "http://localhost:8000/draft-07/bindings/amqp/operationBinding.json",
   "title": "AMQP 0-9-1 - Operation Binding",
   "description": "Describes protocol-specific definitions for a operation",
   "examples": [
@@ -55,7 +55,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.1.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.1.0/operation.json"
       }
     },
     {
@@ -68,7 +68,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.2.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.2.0/operation.json"
       }
     },
     {
@@ -81,7 +81,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.3.0/operation.json"
       }
     },
     {
@@ -97,7 +97,7 @@
         }
       },
       "then": {
-        "$ref": "https://asyncapi.pavelon.dev/bindings/amqp/0.3.0/operation.json"
+        "$ref": "http://localhost:8000/draft-07/bindings/amqp/0.3.0/operation.json"
       }
     }
   ]

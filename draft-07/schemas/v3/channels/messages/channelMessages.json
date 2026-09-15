@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessages.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessages.json",
   "title": "AsyncAPI v3 - Channel Messages Map",
   "description": "A key-value map where key is message ID and value is message representation",
   "examples": [
@@ -69,10 +69,10 @@
       }
     },
     "then": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/reference.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "https://asyncapi.pavelon.dev/schemas/v3/channels/messages/channelMessage.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessage.json"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://asyncapi.pavelon.dev/bindings/ibmmq/0.1.0/server.json",
+  "$id": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/server.json",
   "title": "IBM MQ - Server Binding v0.1.0",
   "description": "Contains server connection information about the IBM MQ server, referred to as an IBM MQ queue manager",
   "examples": [
