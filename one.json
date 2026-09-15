@@ -12,6 +12,9 @@
     },
     "draft-07/bindings": {
       "include": "./schemas/draft-07/bindings"
+    },
+    "draft-07/integrations": {
+      "include": "./schemas/draft-07/integrations"
     }
   }
 }
