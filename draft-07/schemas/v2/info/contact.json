@@ -22,16 +22,16 @@
   "type": "object",
   "properties": {
     "name": {
-      "description": "The identifying name of the contact person/organization.",
+      "description": "The identifying name of the contact person/organization",
       "type": "string"
     },
     "url": {
-      "description": "The URL pointing to the contact information.",
+      "description": "The URL pointing to the contact information",
       "type": "string",
       "format": "uri"
     },
     "email": {
-      "description": "The email address of the contact person/organization.",
+      "description": "The email address of the contact person/organization",
       "type": "string",
       "format": "email"
     }

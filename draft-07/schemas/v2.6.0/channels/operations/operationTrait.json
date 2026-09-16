@@ -37,15 +37,15 @@
   "type": "object",
   "properties": {
     "summary": {
-      "description": "A short summary of what the operation is about.",
+      "description": "A short summary of what the operation is about",
       "type": "string"
     },
     "description": {
-      "description": "A verbose explanation of the operation.",
+      "description": "A verbose explanation of the operation",
       "type": "string"
     },
     "tags": {
-      "description": "A list of tags for logical grouping and categorization of operations.",
+      "description": "A list of tags for logical grouping and categorization of operations",
       "type": "array",
       "uniqueItems": true,
       "items": {
@@ -56,7 +56,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/v2/externalDocs.json"
     },
     "operationId": {
-      "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API.",
+      "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API",
       "type": "string"
     },
     "security": {

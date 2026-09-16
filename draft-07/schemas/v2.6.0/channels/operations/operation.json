@@ -107,7 +107,7 @@
   "type": "object",
   "properties": {
     "traits": {
-      "description": "A list of traits to apply to the operation object.",
+      "description": "A list of traits to apply to the operation object",
       "type": "array",
       "items": {
         "oneOf": [
@@ -121,22 +121,22 @@
       }
     },
     "summary": {
-      "description": "A short summary of what the operation is about.",
+      "description": "A short summary of what the operation is about",
       "type": "string"
     },
     "description": {
-      "description": "A verbose explanation of the operation.",
+      "description": "A verbose explanation of the operation",
       "type": "string"
     },
     "security": {
-      "description": "A declaration of which security mechanisms are associated with this operation.",
+      "description": "A declaration of which security mechanisms are associated with this operation",
       "type": "array",
       "items": {
         "$ref": "http://localhost:8000/draft-07/schemas/v2/security/securitySchema.json"
       }
     },
     "tags": {
-      "description": "A list of tags for logical grouping and categorization of operations.",
+      "description": "A list of tags for logical grouping and categorization of operations",
       "type": "array",
       "uniqueItems": true,
       "items": {

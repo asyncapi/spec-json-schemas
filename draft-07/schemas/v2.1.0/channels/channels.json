@@ -20,7 +20,7 @@
         },
         "parameters": {
           "userId": {
-            "description": "Id of the user.",
+            "description": "Id of the user",
             "schema": {
               "type": "string"
             },

@@ -48,23 +48,23 @@
   "required": [ "url", "protocol" ],
   "properties": {
     "url": {
-      "description": "A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the AsyncAPI document is being served.",
+      "description": "A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the AsyncAPI document is being served",
       "type": "string"
     },
     "description": {
-      "description": "An optional string describing the host designated by the URL. CommonMark syntax MAY be used for rich text representation.",
+      "description": "An optional string describing the host designated by the URL. CommonMark syntax MAY be used for rich text representation",
       "type": "string"
     },
     "protocol": {
-      "description": "The protocol this URL supports for connection. Supported protocol include, but are not limited to: amqp, amqps, http, https, ibmmq, jms, kafka, kafka-secure, anypointmq, mqtt, secure-mqtt, solace, stomp, stomps, ws, wss, mercure, googlepubsub.",
+      "description": "The protocol this URL supports for connection. Supported protocol include, but are not limited to: amqp, amqps, http, https, ibmmq, jms, kafka, kafka-secure, anypointmq, mqtt, secure-mqtt, solace, stomp, stomps, ws, wss, mercure, googlepubsub",
       "type": "string"
     },
     "protocolVersion": {
-      "description": "The version of the protocol used for connection. For instance: AMQP 0.9.1, HTTP 2.0, Kafka 1.0.0, etc.",
+      "description": "The version of the protocol used for connection. For instance: AMQP 0.9.1, HTTP 2.0, Kafka 1.0.0, etc",
       "type": "string"
     },
     "variables": {
-      "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template.",
+      "description": "A map between a variable name and its value. The value is used for substitution in the server's URL template",
       "$ref": "http://localhost:8000/draft-07/schemas/v2.2.0/servers/serverVariables.json"
     },
     "security": {
@@ -75,7 +75,7 @@
       }
     },
     "bindings": {
-      "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the server.",
+      "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the server",
       "$ref": "http://localhost:8000/draft-07/schemas/v2.2.0/bindingsObject.json"
     }
   },

@@ -13,7 +13,7 @@
       "type": "string"
     },
     "protocol": {
-      "description": "The transfer protocol.",
+      "description": "The transfer protocol",
       "type": "string"
     },
     "protocolVersion": {

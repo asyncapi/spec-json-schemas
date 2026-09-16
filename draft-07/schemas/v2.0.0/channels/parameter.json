@@ -8,7 +8,7 @@
       "location": "$message.payload#/user/id"
     },
     {
-      "description": "Id of the user.",
+      "description": "Id of the user",
       "schema": {
         "type": "string"
       },
@@ -17,7 +17,7 @@
   ],
   "properties": {
     "description": {
-      "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed.",
+      "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed",
       "type": "string"
     },
     "schema": {

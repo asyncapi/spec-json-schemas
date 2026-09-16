@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0/channels/channelItem.json",
   "title": "AsyncAPI v2.0.0 - Channel",
-  "description": "Describes the operations available on a single channel.",
+  "description": "Describes the operations available on a single channel",
   "examples": [
     {
       "$ref": "#/channels/my-channel"
@@ -62,7 +62,7 @@
           "contentType": "application/json",
           "name": "UserSignup",
           "title": "User signup",
-          "summary": "Action to sign a user up.",
+          "summary": "Action to sign a user up",
           "description": "A longer description",
           "examples": [
             {
@@ -84,7 +84,7 @@
       },
       "parameters": {
         "userId": {
-          "description": "Id of the user.",
+          "description": "Id of the user",
           "schema": {
             "type": "string"
           },
@@ -97,7 +97,7 @@
   "type": "object",
   "properties": {
     "$ref": {
-      "description": "Allows for an external definition of this channel item. The referenced structure MUST be in the format of a Channel Item Object. If there are conflicts between the referenced definition and this Channel Item's definition, the behavior is undefined.",
+      "description": "Allows for an external definition of this channel item. The referenced structure MUST be in the format of a Channel Item Object. If there are conflicts between the referenced definition and this Channel Item's definition, the behavior is undefined",
       "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "parameters": {

@@ -5,11 +5,11 @@
   "description": "Describes a parameter included in a channel",
   "properties": {
     "description": {
-      "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed.",
+      "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed",
       "type": "string"
     },
     "name": {
-      "description": "The name of the parameter.",
+      "description": "The name of the parameter",
       "type": "string"
     },
     "schema": {

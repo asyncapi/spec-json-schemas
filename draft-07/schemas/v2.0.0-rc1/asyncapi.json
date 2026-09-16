@@ -18,12 +18,12 @@
   "required": [ "asyncapi", "id", "info", "channels" ],
   "properties": {
     "asyncapi": {
-      "description": "The AsyncAPI specification version of this document.",
+      "description": "The AsyncAPI specification version of this document",
       "type": "string",
       "const": "2.0.0-rc1"
     },
     "id": {
-      "description": "A unique id representing the application.",
+      "description": "A unique id representing the application",
       "type": "string",
       "format": "uri-reference"
     },

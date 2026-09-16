@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/avroSchema_v1.json",
   "title": "Avro Schema Definition",
-  "description": "Json-Schema definition for Avro AVSC files.",
+  "description": "Json-Schema definition for Avro AVSC files",
   "oneOf": [
     {
       "$ref": "#/definitions/avroSchema"
@@ -229,7 +229,7 @@
     },
     "primitiveType": {
       "title": "Primitive Type",
-      "description": "Basic type primitives.",
+      "description": "Basic type primitives",
       "type": "string",
       "enum": [
         "null",
@@ -244,7 +244,7 @@
     },
     "primitiveTypeWithMetadata": {
       "title": "Primitive Type With Metadata",
-      "description": "A primitive type with metadata attached.",
+      "description": "A primitive type with metadata attached",
       "type": "object",
       "required": [ "type" ],
       "properties": {

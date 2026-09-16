@@ -18,7 +18,7 @@
   "required": [ "location" ],
   "properties": {
     "description": {
-      "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed.",
+      "description": "A optional description of the correlation ID. GitHub Flavored Markdown is allowed",
       "type": "string"
     },
     "location": {

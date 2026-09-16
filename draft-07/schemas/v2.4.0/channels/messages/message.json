@@ -178,19 +178,19 @@
               }
             },
             "summary": {
-              "description": "A brief summary of the message.",
+              "description": "A brief summary of the message",
               "type": "string"
             },
             "name": {
-              "description": "Name of the message.",
+              "description": "Name of the message",
               "type": "string"
             },
             "title": {
-              "description": "A human-friendly title for the message.",
+              "description": "A human-friendly title for the message",
               "type": "string"
             },
             "description": {
-              "description": "A longer description of the message. CommonMark is allowed.",
+              "description": "A longer description of the message. CommonMark is allowed",
               "type": "string"
             },
             "externalDocs": {
@@ -214,11 +214,11 @@
                 ],
                 "properties": {
                   "name": {
-                    "description": "Machine readable name of the message example.",
+                    "description": "Machine readable name of the message example",
                     "type": "string"
                   },
                   "summary": {
-                    "description": "A brief summary of the message example.",
+                    "description": "A brief summary of the message example",
                     "type": "string"
                   },
                   "headers": {

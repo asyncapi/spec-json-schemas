@@ -39,19 +39,19 @@
       }
     },
     "summary": {
-      "description": "A brief summary of the message.",
+      "description": "A brief summary of the message",
       "type": "string"
     },
     "name": {
-      "description": "Name of the message.",
+      "description": "Name of the message",
       "type": "string"
     },
     "title": {
-      "description": "A human-friendly title for the message.",
+      "description": "A human-friendly title for the message",
       "type": "string"
     },
     "description": {
-      "description": "A longer description of the message. CommonMark is allowed.",
+      "description": "A longer description of the message. CommonMark is allowed",
       "type": "string"
     },
     "externalDocs": {
