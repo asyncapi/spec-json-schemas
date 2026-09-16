@@ -11,8 +11,7 @@
     {
       "type": "openIdConnect",
       "description": "Simple identity authentication layer built on top of the OAuth 2.0 protocol, consisting of the OpenID Provider, ID Token, and Relying Party",
-      "openIdConnectUrl": "https://server.com/.well-known/openid-configuration",
-      "scopes": [ "write:pets", "read:pets" ]
+      "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
     }
   ],
   "type": "object",
