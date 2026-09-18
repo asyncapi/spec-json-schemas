@@ -31,7 +31,7 @@
           "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
         },
         {
-          "$ref": "http://localhost:8000/draft-07/schemas/2.0.0-rc1/channels/messages/correlationId.json"
+          "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/messages/correlationId.json"
         }
       ]
     },
