@@ -1,7 +1,24 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/traits.json",
+  "title": "AsyncAPI v2.0.0-rc1 - Traits",
+  "description": "Describes a traits that MAY be applied to an Channel Operation or Channel Operation Message",
   "type": "object",
+  "examples": [
+    {},
+    {
+      "messageId": "userSignup",
+      "name": "UserSignup Trait",
+      "title": "User signup Trait",
+      "summary": "Action to sign a user up",
+      "contentType": "application/json"
+    },
+    {
+      "operationId": "registerUser",
+      "summary": "Action to sign a user up",
+      "description": "registerUser Trait"
+    }
+  ],
   "additionalProperties": {
     "anyOf": [
       {
