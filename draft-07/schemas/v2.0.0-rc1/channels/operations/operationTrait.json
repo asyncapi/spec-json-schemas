@@ -3,6 +3,14 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/operations/operationTrait.json",
   "title": "AsyncAPI v2.0.0-rc1 - Channel Operation Trait",
   "description": "Describes a trait that MAY be applied to an Channel Operation",
+  "examples": [
+    {},
+    {
+      "operationId": "registerUser",
+      "summary": "Action to sign a user up",
+      "description": "registerUser Trait"
+    }
+  ],
   "type": "object",
   "properties": {
     "summary": {

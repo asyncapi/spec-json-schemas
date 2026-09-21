@@ -4,6 +4,22 @@
   "title": "AsyncAPI v2.0.0-rc1 - Channel Operation",
   "description": "Describes a publish or a subscribe operation. This provides a place to document how and why messages are sent and received",
   "type": "object",
+  "examples": [
+    {},
+    {
+      "operationId": "registerUser",
+      "summary": "Action to sign a user up",
+      "description": "registerUser Trait"
+    },
+    {
+      "operationId": "registerUser",
+      "message": {
+        "name": "UserSignup",
+        "title": "User signup",
+        "contentType": "application/json"
+      }
+    }
+  ],
   "properties": {
     "traits": {
       "type": "array",
