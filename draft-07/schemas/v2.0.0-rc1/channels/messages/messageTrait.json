@@ -4,6 +4,15 @@
   "title": "AsyncAPI v2.0.0-rc1 - Channel Operation Message Trait",
   "description": "Describes a trait that MAY be applied to an Channel Operation Message",
   "type": "object",
+  "examples": [
+    {},
+    {
+      "name": "UserSignup Trait",
+      "title": "User signup Trait",
+      "summary": "Action to sign a user up",
+      "contentType": "application/json"
+    }
+  ],
   "properties": {
     "schemaFormat": {
       "type": "string"

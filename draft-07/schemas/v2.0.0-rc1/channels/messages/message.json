@@ -3,6 +3,27 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/messages/message.json",
   "title": "AsyncAPI v2.0.0-rc1 - Channel Operation Message",
   "description": "Describes a message received on a given channel and operation",
+  "examples": [
+    {},
+    {
+      "name": "UserSignup",
+      "title": "User signup",
+      "contentType": "application/json"
+    },
+    {
+      "traits": [
+        {
+          "$ref": "#/components/traits/userSignup-v2"
+        },
+        {
+          "name": "UserSignup",
+          "title": "User signup",
+          "summary": "Action to sign a user up",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ],
   "type": "object",
   "properties": {
     "schemaFormat": {
@@ -24,7 +45,7 @@
         ]
       }
     },
-    "payload": {},
+    "payload": true,
     "correlationId": {
       "oneOf": [
         {

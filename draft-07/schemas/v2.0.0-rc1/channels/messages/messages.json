@@ -4,6 +4,28 @@
   "title": "AsyncAPI v2.0.0-rc1 - Channel Operation Messages Map",
   "description": "A key-value map where key is message ID and value is message representation",
   "type": "object",
+  "examples": [
+    {
+      "v1": {
+        "name": "UserSignup",
+        "title": "User signup",
+        "contentType": "application/json"
+      },
+      "v2": {
+        "traits": [
+          {
+            "$ref": "#/components/traits/userSignup-v2"
+          },
+          {
+            "name": "UserSignup",
+            "title": "User signup",
+            "summary": "Action to sign a user up",
+            "contentType": "application/json"
+          }
+        ]
+      }
+    }
+  ],
   "additionalProperties": {
     "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/messages/message.json"
   }
