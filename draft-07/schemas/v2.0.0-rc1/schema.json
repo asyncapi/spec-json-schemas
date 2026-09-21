@@ -1,7 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/schema.json",
+  "title": "AsyncAPI v2.0.0-rc1 - Schema",
   "description": "The Schema Object allows the definition of input and output data types. These types can be objects, but also primitives and arrays",
+  "examples": [
+    {},
+    {
+      "title": "Example Object",
+      "type": "object",
+      "properties": {
+        "string": {
+          "type": "string",
+          "default": ""
+        },
+        "boolean": {
+          "type": "boolean"
+        }
+      }
+    },
+    {
+      "title": "Example Object",
+      "discriminator": "objectType"
+    }
+  ],
   "type": "object",
   "properties": {
     "$ref": {
