@@ -10,7 +10,28 @@
         "title": "MQTT 5.0 example",
         "version": "1.0.0"
       },
-      "channels": []
+      "channels": {
+        "user/{userId}/sendMessage": {
+          "description": "This channel is used to exchange messages about users signing up",
+          "subscribe": {
+            "operationId": "sendMessage",
+            "summary": "Send message",
+            "description": "Send message to remote server",
+            "message": {
+              "$ref": "#/components/schemas/sendMessage"
+            }
+          },
+          "parameters": {
+            "userId": {
+              "description": "Id of the user",
+              "schema": {
+                "type": "string"
+              },
+              "location": "$message.payload#/user/id"
+            }
+          }
+        }
+      }
     }
   ],
   "type": "object",
@@ -18,7 +39,6 @@
   "properties": {
     "asyncapi": {
       "description": "The AsyncAPI specification version of this document",
-      "type": "string",
       "const": "2.6.0"
     },
     "id": {

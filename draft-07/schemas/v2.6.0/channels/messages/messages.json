@@ -4,6 +4,30 @@
   "title": "AsyncAPI v2.6.0 - Channel Operation Messages Map",
   "description": "A key-value map where key is message ID and value is message representation",
   "type": "object",
+  "examples": [
+    {
+      "userSignup": {
+        "$ref": "#/components/messages/userSignup"
+      }
+    },
+    {
+      "userSignup": {
+        "messageId": "userSignup",
+        "name": "UserSignup",
+        "title": "User signup",
+        "summary": "Action to sign a user up.",
+        "description": "A longer description",
+        "tags": [
+          { "name": "user" },
+          { "name": "signup" },
+          { "name": "register" }
+        ],
+        "payload": {
+          "$ref": "path/to/user-create.avsc#/UserCreate"
+        }
+      }
+    }
+  ],
   "additionalProperties": {
     "$ref": "http://localhost:8000/draft-07/schemas/v2.6.0/channels/messages/message.json"
   }

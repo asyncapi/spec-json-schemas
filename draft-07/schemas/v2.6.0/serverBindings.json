@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.6.0/serverBindings.json",
+  "title": "AsyncAPI v2.6.0 - Server Bindings",
+  "description": "Map describing protocol-specific definitions for an server",
+  "examples": [
+    {
+      "sns": {
+        "$ref": "#/bindings/amazon-sns/my-sns-server"
+      },
+      "sqs": {
+        "$ref": "#/bindings/amazon-sqs/my-sqs-server"
+      },
+      "amqp": {
+        "$ref": "#/bindings/amqp/my-amqp-server"
+      },
+      "amqp1": {
+        "$ref": "#/bindings/amqp1/my-amqp1-server"
+      },
+      "anypointmq": {
+        "$ref": "#/bindings/anypointmq/my-anypointmq-server"
+      },
+      "kafka": {
+        "$ref": "#/bindings/apache-kafka/my-apache-kafka-server"
+      },
+      "pulsar": {
+        "$ref": "#/bindings/apache-pulsar/my-apache-pulsar-server"
+      },
+      "googlepubsub": {
+        "$ref": "#/bindings/googlepubsub/my-googlepubsub-server"
+      },
+      "http": {
+        "$ref": "#/bindings/http/my-http-server"
+      },
+      "ibmmq": {
+        "$ref": "#/bindings/ibmmq/my-ibmmq-server"
+      },
+      "jms": {
+        "$ref": "#/bindings/jms/my-jms-server"
+      },
+      "mqtt": {
+        "$ref": "#/bindings/mqtt/my-mqtt-server"
+      },
+      "mqtt5": {
+        "$ref": "#/bindings/mqtt5/my-mqtt5-server"
+      },
+      "nats": {
+        "$ref": "#/bindings/nats/my-nats-server"
+      },
+      "redis": {
+        "$ref": "#/bindings/redis/my-redis-server"
+      },
+      "solace": {
+        "$ref": "#/bindings/solace/my-solace-server"
+      },
+      "stomp": {
+        "$ref": "#/bindings/stomp/my-stomp-server"
+      },
+      "ws": {
+        "$ref": "#/bindings/websockets/my-websockets-server"
+      }
+    },
+    {
+      "sns": {
+        "bindingVersion": "0.2.0"
+      },
+      "sqs": {
+        "bindingVersion": "0.3.0"
+      },
+      "amqp": {
+        "bindingVersion": "0.3.0"
+      },
+      "amqp1": {
+        "bindingVersion": "0.1.0"
+      },
+      "anypointmq": {
+        "bindingVersion": "0.0.1"
+      },
+      "kafka": {
+        "bindingVersion": "0.5.0",
+        "schemaRegistryUrl": "https://my-schema-registry.com",
+        "schemaRegistryVendor": "confluent"
+      },
+      "pulsar": {
+        "bindingVersion": "0.1.0",
+        "tenant": "contoso"
+      },
+      "googlepubsub": {
+        "bindingVersion": "0.2.0"
+      },
+      "http": {
+        "bindingVersion": "0.3.0"
+      },
+      "ibmmq": {
+        "bindingVersion": "0.1.0",
+        "groupId": "PRODCLSTR1",
+        "ccdtQueueManagerName": "*",
+        "heartBeatInterval": 1000,
+        "multiEndpointServer": false
+      },
+      "jms": {
+        "properties": [
+          {
+            "name": "disableTimeStampsByDefault",
+            "value": false
+          }
+        ],
+        "bindingVersion": "0.0.1",
+        "clientID": "my-application-1",
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      },
+      "mqtt": {
+        "bindingVersion": "0.2.0",
+        "cleanSession": true,
+        "clientId": "guest",
+        "keepAlive": 60,
+        "lastWill": {
+          "message": "Guest gone offline.",
+          "qos": 2,
+          "retain": false,
+          "topic": "/last-wills"
+        },
+        "maximumPacketSize": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sessionExpiryInterval": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "mqtt5": {
+        "bindingVersion": "0.2.0",
+        "sessionExpiryInterval": {
+          "type": "integer",
+          "minimum": 100
+        }
+      },
+      "nats": {
+        "bindingVersion": "0.1.0"
+      },
+      "redis": {
+        "bindingVersion": "0.1.0"
+      },
+      "solace": {
+        "bindingVersion": "0.4.0",
+        "msgVpn": "ProdVPN",
+        "clientName": "production"
+      },
+      "stomp": {
+        "bindingVersion": "0.1.0"
+      },
+      "ws": {
+        "bindingVersion": "0.1.0"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "http": {
+      "$ref": "http://localhost:8000/draft-07/bindings/http/serverBindingOrReference.json"
+    },
+    "ws": {
+      "$ref": "http://localhost:8000/draft-07/bindings/websockets/serverBindingOrReference.json"
+    },
+    "amqp": {
+      "$ref": "http://localhost:8000/draft-07/bindings/amqp/serverBindingOrReference.json"
+    },
+    "amqp1": {
+      "$ref": "http://localhost:8000/draft-07/bindings/amqp1/serverBindingOrReference.json"
+    },
+    "mqtt": {
+      "$ref": "http://localhost:8000/draft-07/bindings/mqtt/serverBindingOrReference.json"
+    },
+    "mqtt5": {
+      "$ref": "http://localhost:8000/draft-07/bindings/mqtt5/serverBindingOrReference.json"
+    },
+    "kafka": {
+      "$ref": "http://localhost:8000/draft-07/bindings/apache-kafka/serverBindingOrReference.json"
+    },
+    "anypointmq": {
+      "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/serverBindingOrReference.json"
+    },
+    "nats": {
+      "$ref": "http://localhost:8000/draft-07/bindings/nats/serverBindingOrReference.json"
+    },
+    "jms": {
+      "$ref": "http://localhost:8000/draft-07/bindings/jms/serverBindingOrReference.json"
+    },
+    "sns": {
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sns/serverBindingOrReference.json"
+    },
+    "sqs": {
+      "$ref": "http://localhost:8000/draft-07/bindings/amazon-sqs/serverBindingOrReference.json"
+    },
+    "stomp": {
+      "$ref": "http://localhost:8000/draft-07/bindings/stomp/serverBindingOrReference.json"
+    },
+    "redis": {
+      "$ref": "http://localhost:8000/draft-07/bindings/redis/serverBindingOrReference.json"
+    },
+    "ibmmq": {
+      "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/serverBindingOrReference.json"
+    },
+    "solace": {
+      "$ref": "http://localhost:8000/draft-07/bindings/solace/serverBindingOrReference.json"
+    },
+    "googlepubsub": {
+      "$ref": "http://localhost:8000/draft-07/bindings/googlepubsub/serverBindingOrReference.json"
+    },
+    "pulsar": {
+      "$ref": "http://localhost:8000/draft-07/bindings/apache-pulsar/serverBindingOrReference.json"
+    }
+  },
+  "additionalProperties": true
+}

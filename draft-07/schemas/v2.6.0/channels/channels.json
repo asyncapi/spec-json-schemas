@@ -32,7 +32,6 @@
   ],
   "type": "object",
   "propertyNames": {
-    "type": "string",
     "format": "uri-template",
     "minLength": 1
   },

@@ -62,7 +62,6 @@
             "description": "Default Correlation ID",
             "location": "$message.header#/correlationId"
           },
-          "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
           "contentType": "application/json",
           "name": "UserSignup",
           "title": "User signup",
@@ -102,7 +101,8 @@
   "properties": {
     "$ref": {
       "description": "Allows for an external definition of this channel item. The referenced structure MUST be in the format of a Channel Item Object. If there are conflicts between the referenced definition and this Channel Item's definition, the behavior is undefined",
-      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+      "type": "string",
+      "format": "uri-reference"
     },
     "parameters": {
       "$ref": "http://localhost:8000/draft-07/schemas/v2.6.0/channels/parameters.json"
@@ -132,7 +132,7 @@
       "type": "boolean"
     },
     "bindings": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v2.6.0/bindingsObject.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.6.0/channelBindings.json"
     }
   },
   "patternProperties": {
