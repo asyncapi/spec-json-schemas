@@ -1,7 +1,274 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/v2.5.0/components/components.json",
+  "title": "AsyncAPI v2.5.0 - Components",
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification",
+  "examples": [
+    {
+      "schemas": {
+        "address": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "address": {
+              "$ref": "#/components/schemas/Address"
+            },
+            "age": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          }
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        }
+      }
+    },
+    {
+      "servers": {
+        "dev": {
+          "url": "development.gigantic-server.com",
+          "protocol": "kafka",
+          "description": "Kafka development server",
+          "protocolVersion": "4.3"
+        },
+        "dev-secured": {
+          "$ref": "#/components/servers/dev-secured"
+        }
+      }
+    },
+    {
+      "channels": {
+        "my-channel": {
+          "$ref": "#/channels/my-channel"
+        },
+        "user/{userId}/sendMessage": {
+          "description": "This channel is used to exchange messages about users signing up",
+          "subscribe": {
+            "operationId": "sendMessage",
+            "summary": "Send message",
+            "description": "Send message to remote server",
+            "message": {
+              "$ref": "#/components/schemas/sendMessage"
+            }
+          },
+          "parameters": {
+            "userId": {
+              "description": "Id of the user",
+              "schema": {
+                "type": "string"
+              },
+              "location": "$message.payload#/user/id"
+            }
+          }
+        }
+      }
+    },
+    {
+      "serverVariables": {
+        "host": {
+          "$ref": "#/components/serverVariables/host"
+        },
+        "port": {
+          "enum": [ "8883", "8884" ],
+          "default": "8883",
+          "description": "Ports application listening for",
+          "examples": [ "8883", "8884" ]
+        }
+      }
+    },
+    {
+      "messages": {
+        "userSignup": {
+          "messageId": "userSignup",
+          "name": "UserSignup",
+          "title": "User signup",
+          "summary": "Action to sign a user up.",
+          "description": "A longer description",
+          "tags": [
+            { "name": "user" },
+            { "name": "signup" },
+            { "name": "register" }
+          ],
+          "payload": {
+            "$ref": "path/to/user-create.avsc#/UserCreate"
+          }
+        }
+      }
+    },
+    {
+      "securitySchemes": {
+        "http-bearer": {
+          "type": "http",
+          "description": "HTTP - Bearer",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        },
+        "http-apiKey": {
+          "$ref": "#/components/securitySchemes/http-apiKey"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "userId": {
+          "$ref": "#/components/parameters/userId"
+        },
+        "accessToken": {
+          "description": "Access-Token",
+          "schema": {
+            "type": "string"
+          },
+          "location": "$message.header#/authorization"
+        }
+      }
+    },
+    {
+      "correlationIds": {
+        "userSignup": {
+          "$ref": "#/components/correlationIds/userSignup"
+        },
+        "correlation-id": {
+          "description": "Incoming message correlation-id",
+          "location": "$message.header#/correlation-id",
+          "x-format": "uuid"
+        }
+      }
+    },
+    {
+      "operationTraits": {
+        "sendMessage": {
+          "operationId": "sendMessage",
+          "summary": "Secured Send message",
+          "security": [
+            {
+              "messages": ["write:messages", "read:messages"]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "messageTraits": {
+        "userSignup": {
+          "messageId": "userSignup",
+          "summary": "Action to sign a user up.",
+          "description": "A longer description",
+          "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+          "examples": [
+            {
+              "name": "SimpleSignup",
+              "summary": "A simple UserSignup example message",
+              "headers": {
+                "correlationId": "my-correlation-id",
+                "applicationInstanceId": "myInstanceId"
+              },
+              "payload": {
+                "user": {
+                  "someUserKey": "someUserValue"
+                },
+                "signup": {
+                  "someSignupKey": "someSignupValue"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "serverBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "schemaRegistryUrl": "https://my-schema-registry.com",
+            "schemaRegistryVendor": "confluent"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/server"
+          }
+        }
+      }
+    },
+    {
+      "channelBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic",
+            "topicConfiguration": {
+              "cleanup.policy": [ "compact", "delete" ],
+              "delete.retention.ms": 1000,
+              "max.message.bytes": 2000,
+              "retention.bytes": 10,
+              "retention.ms": 2000,
+              "confluent.key.schema.validation": true,
+              "confluent.key.subject.name.strategy": "schema",
+              "confluent.value.schema.validation": true,
+              "confluent.value.subject.name.strategy": "schema"
+            }
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/channel"
+          }
+        }
+      }
+    },
+    {
+      "operationBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "clientId": {
+              "type": "string",
+              "enum": [ "myClientId" ]
+            },
+            "groupId": {
+              "type": "string",
+              "enum": [ "myGroupId" ]
+            }
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/operation"
+          }
+        }
+      }
+    },
+    {
+      "messageBindings": {
+        "v1": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "key": {
+              "type": "string",
+              "enum": [ "myKey" ]
+            },
+            "schemaIdLocation": "header",
+            "schemaIdPayloadEncoding": "apicurio-new",
+            "schemaLookupStrategy": "TopicIdStrategy"
+          }
+        },
+        "v2": {
+          "kafka": {
+            "$ref": "https://catalog.lo/bindings/apache-kafka-v2/message"
+          }
+        }
+      }
+    }
+  ],
   "type": "object",
   "properties": {
     "schemas": {
@@ -67,25 +334,25 @@
     "serverBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/serverBindings.json"
       }
     },
     "channelBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channelBindings.json"
       }
     },
     "operationBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/operationBindings.json"
       }
     },
     "messageBindings": {
       "type": "object",
       "additionalProperties": {
-        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
+        "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/messageBindings.json"
       }
     }
   },

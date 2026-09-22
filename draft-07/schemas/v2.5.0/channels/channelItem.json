@@ -34,56 +34,25 @@
           }
         ],
         "message": {
-          "headers": {
-            "type": "object",
-            "properties": {
-              "correlationId": {
-                "description": "Correlation ID set by application",
-                "type": "string"
-              },
-              "applicationInstanceId": {
-                "description": "Unique identifier for a given instance of the publishing application",
-                "type": "string"
-              }
-            }
-          },
-          "payload": {
-            "type": "object",
-            "properties": {
-              "user": {
-                "$ref": "#/components/schemas/userCreate"
-              },
-              "signup": {
-                "$ref": "#/components/schemas/signup"
-              }
-            }
-          },
-          "correlationId": {
-            "description": "Default Correlation ID",
-            "location": "$message.header#/correlationId"
-          },
-          "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
-          "contentType": "application/json",
+          "messageId": "userSignup",
           "name": "UserSignup",
           "title": "User signup",
-          "summary": "Action to sign a user up",
+          "summary": "Action to sign a user up.",
           "description": "A longer description",
-          "examples": [
+          "tags": [
             {
-              "headers": {
-                "correlationId": "my-correlation-id",
-                "applicationInstanceId": "myInstanceId"
-              },
-              "payload": {
-                "user": {
-                  "someUserKey": "someUserValue"
-                },
-                "signup": {
-                  "someSignupKey": "someSignupValue"
-                }
-              }
+              "name": "user"
+            },
+            {
+              "name": "signup"
+            },
+            {
+              "name": "register"
             }
-          ]
+          ],
+          "payload": {
+            "$ref": "path/to/user-create.avsc#/UserCreate"
+          }
         }
       },
       "parameters": {
@@ -102,7 +71,8 @@
   "properties": {
     "$ref": {
       "description": "Allows for an external definition of this channel item. The referenced structure MUST be in the format of a Channel Item Object. If there are conflicts between the referenced definition and this Channel Item's definition, the behavior is undefined",
-      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+      "type": "string",
+      "format": "uri-reference"
     },
     "parameters": {
       "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/parameters.json"
@@ -132,7 +102,7 @@
       "type": "boolean"
     },
     "bindings": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/bindingsObject.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channelBindings.json"
     }
   },
   "patternProperties": {

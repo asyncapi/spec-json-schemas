@@ -4,9 +4,19 @@
   "title": "AsyncAPI v2.5.0 - Channel Parameters Map",
   "description": "A key-value map where key is parameter ID and value is parameter representation",
   "examples": [
+
     {
       "accessToken": {
-        "location": "$message.header#/authorization"
+        "$ref": "#/parameters/accessToken"
+      }
+    },
+    {
+      "userId": {
+        "description": "Id of the user",
+        "schema": {
+          "type": "string"
+        },
+        "location": "$message.payload#/user/id"
       }
     }
   ],
@@ -22,7 +32,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/parameters.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/parameter.json"
     }
   }
 }
