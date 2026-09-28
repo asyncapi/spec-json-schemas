@@ -3,6 +3,26 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.4.0/channels/messages/message.json",
   "title": "AsyncAPI v2.4.0 - Channel Operation Message",
   "description": "Describes a message received on a given channel and operation",
+  "examples": [
+    {
+      "$ref": "#/components/messages/userSignup"
+    },
+    {
+      "messageId": "userSignup",
+      "name": "UserSignup",
+      "title": "User signup",
+      "summary": "Action to sign a user up.",
+      "description": "A longer description",
+      "tags": [
+        { "name": "user" },
+        { "name": "signup" },
+        { "name": "register" }
+      ],
+      "payload": {
+        "$ref": "path/to/user-create.avsc#/UserCreate"
+      }
+    }
+  ],
   "oneOf": [
     {
       "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
@@ -201,6 +221,7 @@
               "type": "boolean"
             },
             "examples": {
+              "description": "List of examples",
               "type": "array",
               "items": {
                 "type": "object",
@@ -222,15 +243,18 @@
                     "type": "string"
                   },
                   "headers": {
+                    "description": "Schema definition of the application headers",
                     "type": "object"
                   },
-                  "payload": {}
+                  "payload": {
+                    "description": "Definition of the message payload. It can be of any type"
+                  }
                 },
                 "additionalProperties": false
               }
             },
             "bindings": {
-              "$ref": "http://localhost:8000/draft-07/schemas/v2.4.0/bindingsObject.json"
+              "$ref": "http://localhost:8000/draft-07/schemas/v2.4.0/messageBindings.json"
             },
             "traits": {
               "type": "array",
