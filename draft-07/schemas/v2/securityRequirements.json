@@ -5,7 +5,7 @@
   "description": "Lists of the required security schemes that can be used to execute an operation",
   "examples": [
     {
-      "petstore_auth": ["write:pets", "read:pets"]
+      "petstore_auth": [ "write:pets", "read:pets" ]
     }
   ],
   "type": "object",
