@@ -1,18 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/asyncapi-3.0.0.json",
-  "title": "AsyncAPI v3.0.0",
-  "description": "AsyncAPI 3.0.0 JSON Schema",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.1.0/asyncapi.json",
+  "title": "AsyncAPI v3.1.0",
+  "description": "AsyncAPI 3.1.0 JSON Schema",
   "examples": [
     {
-      "asyncapi": "3.0.0",
+      "asyncapi": "3.1.0",
       "info": {
         "title": "MQTT 5.0 example",
         "version": "1.0.0"
       }
     },
     {
-      "asyncapi": "3.0.0",
+      "asyncapi": "3.1.0",
       "info": {
         "title": "MQTT 5.0 example",
         "version": "1.0.0"
@@ -36,7 +36,7 @@
       }
     },
     {
-      "asyncapi": "3.0.0",
+      "asyncapi": "3.1.0",
       "info": {
         "title": "MQTT 5.0 example",
         "version": "1.0.0"
@@ -107,7 +107,7 @@
       }
     },
     {
-      "asyncapi": "3.0.0",
+      "asyncapi": "3.1.0",
       "info": {
         "title": "MQTT 5.0 example",
         "version": "1.0.0"
@@ -161,7 +161,7 @@
       }
     },
     {
-      "asyncapi": "3.0.0",
+      "asyncapi": "3.1.0",
       "info": {
         "title": "MQTT 5.0 example",
         "version": "1.0.0"
@@ -221,7 +221,7 @@
   "properties": {
     "asyncapi": {
       "description": "The AsyncAPI specification version of this document",
-      "const": "3.0.0"
+      "const": "3.1.0"
     },
     "id": {
       "description": "A unique id representing the application",
