@@ -4,11 +4,41 @@
   "title": "AsyncAPI v2.0.0-rc2",
   "description": "AsyncAPI 2.0.0-rc2 JSON Schema",
   "type": "object",
+  "examples": [
+    {
+      "asyncapi": "2.0.0-rc2",
+      "info": {
+        "title": "MQTT 5.0 example",
+        "version": "1.0.0"
+      },
+      "channels": {
+        "user/{userId}/sendMessage": {
+          "description": "This channel is used to exchange messages about users signing up",
+          "subscribe": {
+            "operationId": "sendMessage",
+            "summary": "Send message",
+            "description": "Send message to remote server",
+            "message": {
+              "$ref": "#/components/schemas/sendMessage"
+            }
+          },
+          "parameters": {
+            "userId": {
+              "description": "Id of the user",
+              "schema": {
+                "type": "string"
+              },
+              "location": "$message.payload#/user/id"
+            }
+          }
+        }
+      }
+    }
+  ],
   "required": [ "asyncapi", "info", "channels" ],
   "properties": {
     "asyncapi": {
       "description": "The AsyncAPI specification version of this document",
-      "type": "string",
       "const": "2.0.0-rc2"
     },
     "id": {

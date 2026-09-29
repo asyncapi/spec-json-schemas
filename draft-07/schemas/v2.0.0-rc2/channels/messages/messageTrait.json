@@ -3,12 +3,39 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2/channels/messages/messageTrait.json",
   "title": "AsyncAPI v2.0.0-rc2 - Channel Operation Message Trait",
   "description": "Describes a trait that MAY be applied to an Channel Operation Message",
+  "examples": [
+    {
+      "summary": "Action to sign a user up.",
+      "description": "A longer description",
+      "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+      "examples": [
+        {
+          "name": "SimpleSignup",
+          "summary": "A simple UserSignup example message",
+          "headers": {
+            "correlationId": "my-correlation-id",
+            "applicationInstanceId": "myInstanceId"
+          },
+          "payload": {
+            "user": {
+              "someUserKey": "someUserValue"
+            },
+            "signup": {
+              "someSignupKey": "someSignupValue"
+            }
+          }
+        }
+      ]
+    }
+  ],
   "type": "object",
   "properties": {
     "schemaFormat": {
+      "description": "A string containing the name of the schema format/language used to define the message payload",
       "type": "string"
     },
     "contentType": {
+      "description": "The content type to use when encoding/decoding a message's payload",
       "type": "string"
     },
     "headers": {
@@ -22,6 +49,7 @@
       ]
     },
     "correlationId": {
+      "description": "Definition of the correlation ID used for message tracing or matching",
       "oneOf": [
         {
           "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
@@ -32,6 +60,7 @@
       ]
     },
     "tags": {
+      "description": "A list of tags for logical grouping and categorization of messages",
       "type": "array",
       "uniqueItems": true,
       "items": {
@@ -62,13 +91,14 @@
       "type": "boolean"
     },
     "examples": {
+      "description": "List of examples",
       "type": "array",
       "items": {
         "type": "object"
       }
     },
     "bindings": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2/bindingsObject.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2/messageBindings.json"
     }
   },
   "patternProperties": {
