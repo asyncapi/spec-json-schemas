@@ -3,6 +3,16 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/servers/serverVariables.json",
   "title": "AsyncAPI v2.0.0-rc1 - Server Variables Map",
   "description": "A key-value map where key is variable ID and value is variable representation",
+  "examples": [
+    {
+      "port": {
+        "enum": [ "8883", "8884" ],
+        "default": "8883",
+        "description": "Ports application listening for",
+        "examples": [ "8883", "8884" ]
+      }
+    }
+  ],
   "type": "object",
   "additionalProperties": {
     "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/servers/serverVariable.json"

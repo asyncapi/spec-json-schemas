@@ -3,6 +3,18 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/channelItem.json",
   "title": "AsyncAPI v2.0.0-rc1 - Channel",
   "description": "Describes the operations available on a single channel",
+  "examples": [
+    {
+      "subscribe": {
+        "operationId": "registerUser",
+        "message": {
+          "name": "UserSignup",
+          "title": "User signup",
+          "contentType": "application/json"
+        }
+      }
+    }
+  ],
   "type": "object",
   "minProperties": 1,
   "properties": {
@@ -10,7 +22,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "parameters": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/parameter.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/parameters.json"
     },
     "publish": {
       "description": "A definition of the PUBLISH operation",

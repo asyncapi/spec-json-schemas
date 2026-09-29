@@ -6,12 +6,28 @@
   "examples": [
     {
       "asyncapi": "2.0.0-rc1",
-      "id": "",
+      "id": "mqtt:example:1.0.0",
       "info": {
         "title": "MQTT 5.0 example",
         "version": "1.0.0"
       },
-      "channels": []
+      "channels": {
+        "user/{userId}/sendMessage": {
+          "subscribe": {
+            "operationId": "sendMessage",
+            "summary": "Send message",
+            "description": "Send message to remote server"
+          },
+          "parameters": {
+            "userId": {
+              "description": "Id of the user",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
     }
   ],
   "type": "object",
@@ -19,7 +35,6 @@
   "properties": {
     "asyncapi": {
       "description": "The AsyncAPI specification version of this document",
-      "type": "string",
       "const": "2.0.0-rc1"
     },
     "id": {

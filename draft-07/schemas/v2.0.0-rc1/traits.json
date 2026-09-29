@@ -7,7 +7,6 @@
   "examples": [
     {},
     {
-      "messageId": "userSignup",
       "name": "UserSignup Trait",
       "title": "User signup Trait",
       "summary": "Action to sign a user up",
@@ -19,14 +18,12 @@
       "description": "registerUser Trait"
     }
   ],
-  "additionalProperties": {
-    "anyOf": [
-      {
-        "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/operations/operationTrait.json"
-      },
-      {
-        "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/messages/messageTrait.json"
-      }
-    ]
-  }
+  "anyOf": [
+    {
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/messages/messageTrait.json"
+    },
+    {
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/operations/operationTrait.json"
+    }
+  ]
 }

@@ -4,6 +4,13 @@
   "title": "AsyncAPI v2.0.0-rc1 - OAuth2 Scopes",
   "description": "Scopes let you specify exactly what type of access you need. Scopes limit access for OAuth tokens. They do not grant any additional permission beyond that which the user already has",
   "type": "object",
+  "examples": [
+    {},
+    {
+      "write:pets": "modify pets in your account",
+      "read:pets": "read your pets"
+    }
+  ],
   "additionalProperties": {
     "type": "string"
   }

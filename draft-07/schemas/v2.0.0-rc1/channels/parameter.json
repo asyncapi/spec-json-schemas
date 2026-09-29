@@ -3,6 +3,23 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/parameter.json",
   "title": "AsyncAPI v2.0.0-rc1 - Channel Parameter",
   "description": "Describes a parameter included in a channel",
+  "examples": [
+    {},
+    {
+      "$ref": {
+        "$ref": "#/components/parameters/param"
+      }
+    },
+    {
+      "name": "userId"
+    },
+    {
+      "description": "Id of the user",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
   "properties": {
     "description": {
       "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed",

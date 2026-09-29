@@ -3,6 +3,21 @@
   "$id": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1/channels/parameters.json",
   "title": "AsyncAPI v2.0.0-rc1 - Channel Parameters Map",
   "description": "A key-value map where key is parameter ID and value is parameter representation",
+  "examples": [
+    {
+      "accessToken": {
+        "$ref": "#/parameters/accessToken"
+      }
+    },
+    {
+      "accessToken": {
+        "description": "Access-Token",
+        "schema": {
+          "type": "string"
+        }
+      }
+    }
+  ],
   "type": "object",
   "additionalProperties": {
     "if": {
