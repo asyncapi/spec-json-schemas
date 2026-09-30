@@ -14,11 +14,77 @@
       "path": "./draft-07/schemas/v2",
       "baseUri": "http://localhost:8000/draft-07/schemas/v2"
     },
+    "v2.0.0-rc1": {
+      "title": "AsyncAPI v2.0.0-rc1",
+      "description": "Contains AsyncAPI v2.0.0-rc1 JSON Schemas",
+      "path": "./draft-07/schemas/v2.0.0-rc1",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.0.0-rc1"
+    },
+    "v2.0.0-rc2": {
+      "title": "AsyncAPI v2.0.0-rc2",
+      "description": "Contains AsyncAPI v2.0.0-rc2 JSON Schemas",
+      "path": "./draft-07/schemas/v2.0.0-rc2",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.0.0-rc2"
+    },
+    "v2.0.0": {
+      "title": "AsyncAPI v2.0.0",
+      "description": "Contains AsyncAPI v2.0.0 JSON Schemas",
+      "path": "./draft-07/schemas/v2.0.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.0.0"
+    },
+    "v2.1.0": {
+      "title": "AsyncAPI v2.1.0",
+      "description": "Contains AsyncAPI v2.1.0 JSON Schemas",
+      "path": "./draft-07/schemas/v2.1.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.1.0"
+    },
+    "v2.2.0": {
+      "title": "AsyncAPI v2.2.0",
+      "description": "Contains AsyncAPI v2.2.0 JSON Schemas",
+      "path": "./draft-07/schemas/v2.2.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.2.0"
+    },
+    "v2.3.0": {
+      "title": "AsyncAPI v2.3.0",
+      "description": "Contains AsyncAPI v2.3.0 JSON Schemas",
+      "path": "./draft-07/schemas/v2.3.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.3.0"
+    },
+    "v2.4.0": {
+      "title": "AsyncAPI v2.4.0",
+      "description": "Contains AsyncAPI v2.4.0 JSON Schemas",
+      "path": "./draft-07/schemas/v2.4.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.4.0"
+    },
+    "v2.5.0": {
+      "title": "AsyncAPI v2.5.0",
+      "description": "Contains AsyncAPI v2.5.0 JSON Schemas",
+      "path": "./draft-07/schemas/v2.5.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.5.0"
+    },
+    "v2.6.0": {
+      "title": "AsyncAPI v2.6.0",
+      "description": "Contains AsyncAPI v2.6.0 JSON Schemas",
+      "path": "./draft-07/schemas/v2.6.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v2.6.0"
+    },
     "v3": {
       "title": "AsyncAPI v3",
       "description": "Contains \"Lego bricks\" to compose AsyncAPI v3.*",
       "path": "./draft-07/schemas/v3",
       "baseUri": "http://localhost:8000/draft-07/schemas/v3"
+    },
+    "v3.0.0": {
+      "title": "AsyncAPI v3.0.0",
+      "description": "Contains AsyncAPI v3.0.0 JSON Schemas",
+      "path": "./draft-07/schemas/v3.0.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v3.0.0"
+    },
+    "v3.1.0": {
+      "title": "AsyncAPI v3.1.0",
+      "description": "Contains AsyncAPI v3.1.0 JSON Schemas",
+      "path": "./draft-07/schemas/v3.1.0",
+      "baseUri": "http://localhost:8000/draft-07/schemas/v3.1.0"
     }
   }
 }
