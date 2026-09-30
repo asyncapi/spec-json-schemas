@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/ros2/operationBinding.json",
+  "title": "ROS 2 - Operation Binding",
+  "description": "Describes protocol-specific definitions for a operation",
+  "examples": [
+    {
+      "node": "/turtlesim",
+      "qosPolicies": {
+        "deadline": -1,
+        "durability": "volatile",
+        "history": "unknown",
+        "leaseDuration": -1,
+        "lifespan": -1,
+        "liveliness": "automatic",
+        "reliability": "reliable"
+      },
+      "role": "subscriber"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.1.0"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json"
+      }
+    }
+  ]
+}

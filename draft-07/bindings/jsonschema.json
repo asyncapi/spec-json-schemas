@@ -118,6 +118,14 @@
       "path": "./draft-07/bindings/redis",
       "baseUri": "http://localhost:8000/draft-07/bindings/redis"
     },
+    "ros2": {
+      "title": "ROS 2 Integrations",
+      "description": "The ROS 2 (Robot Operating System 2) protocol enable seamless integration between ROS 2 robotics systems and event-driven architectures",
+      "website": "https://docs.ros.org/en/rolling/",
+      "github": "https://github.com/ros2",
+      "path": "./draft-07/bindings/ros2",
+      "baseUri": "http://localhost:8000/draft-07/bindings/ros2"
+    },
     "solace": {
       "title": "Solace Event Broker Integrations",
       "description": "Solace Event Broker is a complete event streaming solution that enables the design, deployment, and operation of Event-Driven Architecture (EDA) across hybrid cloud, multi-cloud and IoT environments",

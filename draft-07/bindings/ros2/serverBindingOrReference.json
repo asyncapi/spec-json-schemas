@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/ros2/serverBindingOrReference.json",
+  "title": "ROS 2 - Server Binding or Reference",
+  "description": "Describes protocol-specific definitions for a server or it's reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/ros2/my-ros2-server"
+    },
+    {
+      "domainId": 0,
+      "rmwImplementation": "rmw_fastrtps_cpp"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "http://localhost:8000/draft-07/bindings/ros2/serverBinding.json"
+  }
+}

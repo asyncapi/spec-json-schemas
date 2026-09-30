@@ -1,13 +1,19 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/message.json",
-  "title": "Message Schema",
-  "description": "Contains information about the server representation in ROS.",
+  "title": "ROS 2 - Message Binding v0.1.0",
+  "description": "Contains information about the message representation in ROS 2",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0"
+    }
+  ],
   "type": "object",
   "properties": {
     "bindingVersion": {
-      "default": "0.1.0",
-      "type": "string"
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.1.0", "latest" ]
     }
   },
   "additionalProperties": false

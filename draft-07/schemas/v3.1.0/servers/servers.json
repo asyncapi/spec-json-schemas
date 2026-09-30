@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.1.0/servers/servers.json",
+  "title": "AsyncAPI v3.1.0 - Servers Map",
+  "description": "A key-value map where key is server ID and value is server representation",
+  "examples": [
+    {
+      "mqtt": {
+        "$ref": "#/servers/mqtt"
+      }
+    },
+    {
+      "secure-mqtt": {
+        "host": "{username}.gigantic-server.com:{port}/{basePath}",
+        "protocol": "secure-mqtt",
+        "protocolVersion": "5.0"
+      }
+    },
+    {
+      "mqtt": {
+        "$ref": "#/servers/mqtt"
+      },
+      "secure-mqtt": {
+        "host": "{username}.gigantic-server.com:{port}/{basePath}",
+        "protocol": "secure-mqtt",
+        "protocolVersion": "5.0"
+      }
+    }
+  ],
+  "type": "object",
+  "additionalProperties": {
+    "if": {
+      "required": [ "$ref" ],
+      "properties": {
+        "$ref": true
+      }
+    },
+    "then": {
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+    },
+    "else": {
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.1.0/servers/server.json"
+    }
+  }
+}
