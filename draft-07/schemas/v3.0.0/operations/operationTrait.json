@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/operations/operationTrait.json",
-  "title": "AsyncAPI v3 - Operation Trait",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTrait.json",
+  "title": "AsyncAPI v3.0.0 - Operation Trait",
   "description": "Describes a trait that MAY be applied to an Operation Object. This object MAY contain any property from the Operation Object, except the action, channel and traits ones",
   "examples": [
     {},
@@ -56,7 +56,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json"
     },
     "bindings": {
-      "$ref": "http://localhost:8000/draft-07/bindings/operationBindings.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operationBindings.json"
     }
   },
   "patternProperties": {

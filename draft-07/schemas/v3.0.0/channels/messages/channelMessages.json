@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessages.json",
-  "title": "AsyncAPI v3 - Channel Messages Map",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/messages/channelMessages.json",
+  "title": "AsyncAPI v3.0.0 - Channel Messages Map",
   "description": "A key-value map where key is message ID and value is message representation",
   "examples": [
     {
@@ -72,7 +72,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessage.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/messages/channelMessage.json"
     }
   }
 }

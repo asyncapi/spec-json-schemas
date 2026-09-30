@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/components/components.json",
-  "title": "AsyncAPI v3 - Components",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.0.0/components/components.json",
+  "title": "AsyncAPI v3.0.0 - Components",
   "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI specification. All objects defined within the components object will have no effect on the API unless they are explicitly referenced from properties outside the components object",
   "examples": [
     {
@@ -670,7 +670,7 @@
             "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "http://localhost:8000/draft-07/schemas/v3/servers/server.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/servers/server.json"
           }
         }
       }
@@ -690,7 +690,7 @@
             "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/channel.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/channel.json"
           }
         }
       }
@@ -729,7 +729,7 @@
             "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operation.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operation.json"
           }
         }
       }
@@ -749,7 +749,7 @@
             "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessage.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/messages/channelMessage.json"
           }
         }
       }
@@ -829,7 +829,7 @@
             "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operationTrait.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTrait.json"
           }
         }
       }
@@ -849,7 +849,7 @@
             "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
           },
           "else": {
-            "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageTrait.json"
+            "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/messages/channelMessageTrait.json"
           }
         }
       }

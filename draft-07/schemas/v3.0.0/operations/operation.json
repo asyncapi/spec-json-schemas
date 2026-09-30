@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/operations/operation.json",
-  "title": "AsyncAPI v3 - Operation",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operation.json",
+  "title": "AsyncAPI v3.0.0 - Operation",
   "description": "Describes a specific operation",
   "examples": [
     {
@@ -87,7 +87,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operationReplyOrReference.json"
     },
     "traits": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operationTraits.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTraits.json"
     },
     "title": {
       "description": "A human-friendly title for the operation",
@@ -111,7 +111,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json"
     },
     "bindings": {
-      "$ref": "http://localhost:8000/draft-07/bindings/operationBindings.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operationBindings.json"
     }
   },
   "patternProperties": {

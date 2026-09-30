@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/operations/operationTraits.json",
-  "title": "AsyncAPI v3 - Channel Message Traits",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTraits.json",
+  "title": "AsyncAPI v3.0.0 - Channel Message Traits",
   "description": "Collection of Channel Message Traits or it's references. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Message Object",
   "examples": [
     [],
@@ -49,7 +49,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operationTrait.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTrait.json"
     }
   }
 }

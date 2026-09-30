@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/v3/tag.json",
-  "title": "AsyncAPI - Tag v3.0.0",
+  "title": "AsyncAPI v3 - Tag",
   "description": "Allows adding metadata to a single tag",
   "examples": [
     {

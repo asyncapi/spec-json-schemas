@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/v3/securityRequirements.json",
-  "title": "AsyncAPI v3.0.0 - Security Requirements",
+  "title": "AsyncAPI v3 - Security Requirements",
   "description": "Collection of Security Requirements",
   "examples": [
     [

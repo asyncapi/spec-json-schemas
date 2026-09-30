@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/channels/channel.json",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/channel.json",
   "title": "AsyncAPI v3.0.0 - Channel",
   "description": "Describes a shared communication channel",
   "examples": [
@@ -99,7 +99,7 @@
       "type": [ "string", "null" ]
     },
     "messages": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessages.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/messages/channelMessages.json"
     },
     "parameters": {
       "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/channelAddressParameters.json"
@@ -131,7 +131,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json"
     },
     "bindings": {
-      "$ref": "http://localhost:8000/draft-07/bindings/channelBindings.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/channelBindings.json"
     }
   },
   "patternProperties": {

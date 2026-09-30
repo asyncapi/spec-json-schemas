@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/schemas/v3/externalDocs.json",
-  "title": "AsyncAPI - Extended Documentation v3.0.0",
+  "title": "AsyncAPI v3 - Extended Documentation",
   "description": "Allows referencing an external resource for extended documentation",
   "examples": [
     {

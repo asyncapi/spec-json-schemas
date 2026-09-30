@@ -236,16 +236,16 @@
       "$ref": "http://localhost:8000/draft-07/schemas/v3/info/info.json"
     },
     "servers": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/servers/servers.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/servers/servers.json"
     },
     "channels": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/channels/channels.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/channels.json"
     },
     "operations": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operations.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operations.json"
     },
     "components": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/components/components.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/components/components.json"
     }
   },
   "patternProperties": {

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://localhost:8000/draft-07/schemas/v3/operations/operations.json",
-  "title": "AsyncAPI v3 - Operations Map",
+  "$id": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operations.json",
+  "title": "AsyncAPI v3.0.0 - Operations Map",
   "description": "A key-value map where key is operation ID and value is operation representation or it's reference",
   "examples": [
     {
@@ -34,7 +34,7 @@
       "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
     },
     "else": {
-      "$ref": "http://localhost:8000/draft-07/schemas/v3/operations/operation.json"
+      "$ref": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operation.json"
     }
   }
 }
