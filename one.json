@@ -1,7 +1,14 @@
 {
-  "url": "http://localhost:8000",
+  "url": "https://schemas.asyncapi.pavelon.dev",
   "html": {
-    "name": "AsyncAPI"
+    "name": "AsyncAPI",
+    "description": "AsyncAPI JSON Schemas - nightly builds channel. Refactored and improved by Pavel Bodiachevskii",
+    "hero": "<div>Welcome to <a href=\"https://www.asyncapi.com/\">AsyncAPI</a> JSON Schemas - nightly build channel<br><br>You may trait this as nightly builds channel where latest changes will be presented. This schemas were refactored and improved by <a href=\"https://github.com/pakisan\">Pavel Bodiachevskii</a><br><ul><li>You can build your own instance from <a href=\"https://github.com/asyncapi/spec-json-schemas/pull/665\">this MR</a> (it's huge, so I don't expect that will be reviewed soon)</li><li>I'll say thank you if you will support current work trough GitHub sponsors or mentioned there alternatives</li><li>If you are working with Spring and queues or brokers, here is <a href=\"https://pavelon.dev/posts/asyncapi-jetbrains-plugin-empowers-spring-messaging/\">JetBrains Plugin</a> which empowers Spring Messaging</li></ul></div>",
+    "action": {
+      "title": "Support",
+      "icon": "github",
+      "url": "https://github.com/sponsors/Pakisan"
+    }
   },
   "contents": {
     "draft-07": {
