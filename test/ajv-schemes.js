@@ -91,10 +91,13 @@ function schemesV3_0_0(ajv) {
   ajv.addSchema(require('@definitions/3.0.0/contact.json'));
   ajv.addSchema(require('@definitions/3.0.0/correlationId.json'));
   ajv.addSchema(require('@definitions/3.0.0/externalDocs.json'));
+  ajv.addSchema(require('@definitions/3.0.0/exponentialRetryStrategy.json'));
+  ajv.addSchema(require('@definitions/3.0.0/fixedRetryStrategy.json'));
   ajv.addSchema(require('@definitions/3.0.0/HTTPSecurityScheme.json'));
   ajv.addSchema(require('@definitions/3.0.0/info.json'));
   ajv.addSchema(require('@definitions/3.0.0/infoExtensions.json'));
   ajv.addSchema(require('@definitions/3.0.0/license.json'));
+  ajv.addSchema(require('@definitions/3.0.0/linearRetryStrategy.json'));
   ajv.addSchema(require('@definitions/3.0.0/messageBindingsObject.json'));
   ajv.addSchema(require('@definitions/3.0.0/messageExampleObject.json'));
   ajv.addSchema(require('@definitions/3.0.0/messageObject.json'));
@@ -107,8 +110,10 @@ function schemesV3_0_0(ajv) {
   ajv.addSchema(require('@definitions/3.0.0/oauth2Scopes.json'));
   ajv.addSchema(require('@definitions/3.0.0/openIdConnect.json'));
   ajv.addSchema(require('@definitions/3.0.0/operationBindingsObject.json'));
+  ajv.addSchema(require('@definitions/3.0.0/operationDeadLetter.json'));
   ajv.addSchema(require('@definitions/3.0.0/operationReply.json'));
   ajv.addSchema(require('@definitions/3.0.0/operationReplyAddress.json'));
+  ajv.addSchema(require('@definitions/3.0.0/operationRetry.json'));
   ajv.addSchema(require('@definitions/3.0.0/operation.json'));
   ajv.addSchema(require('@definitions/3.0.0/operations.json'));
   ajv.addSchema(require('@definitions/3.0.0/operationTrait.json'));
