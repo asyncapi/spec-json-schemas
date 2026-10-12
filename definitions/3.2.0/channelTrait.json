@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/definitions/3.2.0/channelTrait.json",
+  "description": "Describes a trait that MAY be applied to a Channel Object. This object MAY contain any property from the Channel Object, except the address, messages and traits ones.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "description": "A human-friendly title for the channel.",
+      "$ref": "http://asyncapi.com/definitions/3.2.0/channel.json#/properties/title"
+    },
+    "description": {
+      "description": "A longer description of the channel. CommonMark is allowed.",
+      "$ref": "http://asyncapi.com/definitions/3.2.0/channel.json#/properties/description"
+    },
+    "bindings": {
+      "description": "A map where the keys describe the name of the protocol and the values describe protocol-specific definitions for the channel.",
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.2.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.2.0/channelBindingsObject.json"
+        }
+      ]
+    },
+    "externalDocs": {
+      "description": "Additional external documentation for this channel.",
+      "$ref": "http://asyncapi.com/definitions/3.2.0/channel.json#/properties/externalDocs"
+    },
+    "summary": {
+      "description": "A brief summary of the channel.",
+      "$ref": "http://asyncapi.com/definitions/3.2.0/channel.json#/properties/summary"
+    },
+    "servers": {
+      "description": "The references of the servers on which this channel is available.",
+      "$ref": "http://asyncapi.com/definitions/3.2.0/channel.json#/properties/servers"
+    },
+    "parameters": {
+      "description": "A map of the parameters included in the channel address.",
+      "$ref": "http://asyncapi.com/definitions/3.2.0/channel.json#/properties/parameters"
+    },
+    "tags": {
+      "description": "A list of tags for logical grouping of channels.",
+      "$ref": "http://asyncapi.com/definitions/3.2.0/channel.json#/properties/tags"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.2.0/specificationExtension.json"
+    }
+  },
+  "additionalProperties": false,
+  "example": {
+    "$ref": "http://asyncapi.com/examples/3.2.0/channelTrait.json"
+  }
+}
