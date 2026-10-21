@@ -37,6 +37,28 @@
         }
       ]
     },
+    "retry": {
+      "description": "The retry route and policy for a receive operation when processing does not complete successfully.",
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/operationRetry.json"
+        }
+      ]
+    },
+    "deadLetter": {
+      "description": "The dead-letter route for a receive operation when processing cannot be recovered.",
+      "oneOf": [
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/Reference.json"
+        },
+        {
+          "$ref": "http://asyncapi.com/definitions/3.0.0/operationDeadLetter.json"
+        }
+      ]
+    },
     "traits": {
       "type": "array",
       "description": "A list of traits to apply to the operation object. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Operation Object.",
@@ -102,6 +124,32 @@
       ]
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "required": ["retry"]
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "const": "receive"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": ["deadLetter"]
+      },
+      "then": {
+        "properties": {
+          "action": {
+            "const": "receive"
+          }
+        }
+      }
+    }
+  ],
   "example": {
     "$ref": "http://asyncapi.com/examples/3.0.0/operation.json"
   },
