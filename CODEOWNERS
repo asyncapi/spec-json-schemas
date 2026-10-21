@@ -18,5 +18,6 @@
 /bindings/sns/          @dpwdec @iancooper
 /bindings/sqs/          @dpwdec @iancooper
 /bindings/ros2/         @gramss @amparosancho
+/bindings/redis/        @NefixEstrada
 
 /bindings/*.json        @KhudaDad414
