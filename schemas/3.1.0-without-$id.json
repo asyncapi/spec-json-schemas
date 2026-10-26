@@ -3495,7 +3495,7 @@
                     "type": "string",
                     "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied."
                 },
-                "compatibility": {
+                "schemaCompatibility": {
                     "type": "string",
                     "enum": [
                         "BACKWARD",
@@ -3540,7 +3540,7 @@
                 {
                     "schemaIdLocation": "payload",
                     "schemaLookupStrategy": "TopicNameStrategy",
-                    "compatibility": "BACKWARD",
+                    "schemaCompatibility": "BACKWARD",
                     "bindingVersion": "0.6.0"
                 }
             ]
@@ -6086,17 +6086,39 @@
                                     "retryTopics"
                                 ]
                             }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "retrySuffixes"
+                                ]
+                            },
+                            "then": {
+                                "required": [
+                                    "retryTopics"
+                                ]
+                            }
                         }
                     ],
                     "properties": {
                         "addressTemplate": {
                             "type": "string",
-                            "description": "Template for generated topic addresses. Supports variables: ${groupId}, ${channel.address}, ${suffix} (retry-0…retry-{N-1}, dlq)."
+                            "description": "Template for generated topic addresses. Supports variables: ${groupId}, ${channel.address}, ${suffix} (retry-0…retry-{N-1} or the values of retrySuffixes, and dlq)."
                         },
                         "retryTopics": {
                             "type": "integer",
                             "minimum": 1,
-                            "description": "Number of retry topics to create (named retry-0 through retry-{N-1})."
+                            "description": "Number of retry topics to create (named retry-0 through retry-{N-1} unless retrySuffixes is provided)."
+                        },
+                        "retrySuffixes": {
+                            "type": "array",
+                            "minItems": 1,
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "description": "Explicit suffixes for retry topics, in order (e.g. retry-5s, retry-30s, retry-5m). Replaces the default retry-0…retry-{N-1}. Its length MUST equal retryTopics."
                         },
                         "extraHeaders": {
                             "description": "Schema of the headers injected by the error-handling framework on top of the original message (e.g. Spring Kafka kafka_original_* headers). Follows the same shape as AsyncAPI message headers.",

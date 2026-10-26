@@ -161,7 +161,7 @@ let data = {
       {
         "schemaIdLocation": "payload",
         "schemaLookupStrategy": "TopicNameStrategy",
-        "compatibility": "BACKWARD",
+        "schemaCompatibility": "BACKWARD",
         "bindingVersion": "0.6.0"
       }
     ],
@@ -201,11 +201,22 @@ describe('Kafka message binding v0.6.0 bindingVersion', () => {
   it('rejects previous bindingVersion values', () => TestHelper.objectIsNotValid(
     schema,
     {
-      "compatibility": "BACKWARD",
+      "schemaCompatibility": "BACKWARD",
       "bindingVersion": "0.5.0"
     },
     [
       "must be equal to one of the allowed values"
+    ]
+  ));
+
+  it('rejects unprefixed compatibility field', () => TestHelper.objectIsNotValid(
+    schema,
+    {
+      "compatibility": "BACKWARD",
+      "bindingVersion": "0.6.0"
+    },
+    [
+      "must NOT have additional properties"
     ]
   ));
 })

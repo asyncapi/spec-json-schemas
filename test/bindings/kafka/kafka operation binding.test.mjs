@@ -305,6 +305,46 @@ describe('Kafka operation binding v0.6.0 errorTopics', () => {
     assert(validationResult === false, 'Object MUST NOT be valid');
     assert(validator.errors.some(error => error.message === "must have required property 'retryTopics'"));
   });
+
+  it('allows retrySuffixes', () => TestHelper.objectIsValid(
+    schema,
+    {
+      "errorTopics": {
+        "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
+        "retryTopics": 3,
+        "retrySuffixes": ["retry-5s", "retry-30s", "retry-5m"]
+      },
+      "bindingVersion": "0.6.0"
+    },
+  ));
+
+  it('requires retryTopics when retrySuffixes is present', () => {
+    const validator = TestHelper.validator(schema);
+    const validationResult = validator({
+      "errorTopics": {
+        "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
+        "retrySuffixes": ["retry-5s"]
+      },
+      "bindingVersion": "0.6.0"
+    });
+
+    assert(validationResult === false, 'Object MUST NOT be valid');
+    assert(validator.errors.some(error => error.message === "must have required property 'retryTopics'"));
+  });
+
+  it('rejects duplicate retrySuffixes', () => {
+    const validator = TestHelper.validator(schema);
+    const validationResult = validator({
+      "errorTopics": {
+        "addressTemplate": "${groupId}.__.${channel.address}.${suffix}",
+        "retryTopics": 2,
+        "retrySuffixes": ["retry-5s", "retry-5s"]
+      },
+      "bindingVersion": "0.6.0"
+    });
+
+    assert(validationResult === false, 'Object MUST NOT be valid');
+  });
 })
 
 describe('Kafka operation binding v0.6.0 groupId and clientId', () => {

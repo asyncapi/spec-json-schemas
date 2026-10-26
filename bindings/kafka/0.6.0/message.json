@@ -34,7 +34,7 @@
       "type": "string",
       "description": "Freeform string for any naming strategy class to use. Clients should default to the vendor default if not supplied."
     },
-    "compatibility": {
+    "schemaCompatibility": {
       "type": "string",
       "enum": ["BACKWARD", "BACKWARD_TRANSITIVE", "FORWARD", "FORWARD_TRANSITIVE", "FULL", "FULL_TRANSITIVE", "NONE"],
       "description": "The schema compatibility mode used when registering this schema with the schema registry. Values derive from compatibility types defined by Confluent Schema Registry and supported by Apicurio Registry and Karapace. MUST NOT be specified if schemaRegistryUrl is not specified at the Server level."
@@ -72,7 +72,7 @@
     {
       "schemaIdLocation": "payload",
       "schemaLookupStrategy": "TopicNameStrategy",
-      "compatibility": "BACKWARD",
+      "schemaCompatibility": "BACKWARD",
       "bindingVersion": "0.6.0"
     }
   ]
