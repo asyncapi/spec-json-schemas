@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/bindings/redis/0.2.0/channel.json",
+  "title": "Redis channel bindings object",
+  "description": "This object contains information about the channel representation in Redis.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "stream",
+        "pubsub"
+      ],
+      "description": "The Redis messaging primitive used by this channel."
+    },
+    "maxLen": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Maximum number of entries kept in the stream (exact XADD MAXLEN). Only allowed when type is 'stream'."
+    },
+    "bindingVersion": {
+      "type": "string",
+      "enum": [
+        "0.2.0"
+      ],
+      "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "const": "pubsub"
+          }
+        }
+      },
+      "then": {
+        "not": {
+          "required": [
+            "maxLen"
+          ]
+        }
+      }
+    }
+  ],
+  "examples": [
+    {
+      "type": "stream",
+      "maxLen": 1,
+      "bindingVersion": "0.2.0"
+    },
+    {
+      "type": "pubsub",
+      "bindingVersion": "0.2.0"
+    }
+  ]
+}
