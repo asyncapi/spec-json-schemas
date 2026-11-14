@@ -1,0 +1,135 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.2.0/servers/server.json",
+  "tests": [
+    {
+      "description": "valid: 0.0.1 example #1",
+      "valid": true,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": {
+            "properties": [
+              {
+                "name": "disableTimeStampsByDefault",
+                "value": false
+              }
+            ],
+            "bindingVersion": "0.0.1",
+            "clientID": "my-application-1",
+            "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.0.1 missing jmsConnectionFactory",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": {
+            "clientID": "my-application-1",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.0.1 is used)",
+      "valid": true,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": {
+            "properties": [
+              {
+                "name": "disableTimeStampsByDefault",
+                "value": false
+              }
+            ],
+            "clientID": "my-application-1",
+            "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": {
+            "$ref": "#/components/serverBindings/my-jms"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": {
+            "$ref": "#/components/serverBindings/my-jms",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": "jms"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "jms",
+        "bindings": {
+          "jms": null
+        }
+      }
+    }
+  ]
+}
