@@ -1,19 +1,25 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/topicItem.json",
+  "title": "AsyncAPI v1.0.0 - Topic Item",
+  "description": "Describes the operations available on a single topic",
   "type": "object",
   "minProperties": 1,
   "properties": {
     "$ref": {
+      "description": "Allows for an external definition of this topic item. The referenced structure MUST be in the format of a Topic Item Object",
       "type": "string"
     },
     "publish": {
+      "description": "Describes a message received on a given topic and operation",
       "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/messages/message.json"
     },
     "subscribe": {
+      "description": "Describes a message received on a given topic and operation",
       "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/messages/message.json"
     },
     "deprecated": {
+      "description": "Declares this topic to be deprecated. Usage of the declared topic SHOULD be refrained",
       "default": false,
       "type": "boolean"
     }

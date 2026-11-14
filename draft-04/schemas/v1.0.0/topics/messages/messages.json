@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/messages/messages.json",
-  "description": "JSON objects describing the messages being consumed and produced by the API.",
+  "title": "AsyncAPI v1.0.0 - Messages Map",
+  "description": "JSON objects describing the messages being consumed and produced by the API",
   "type": "object",
   "additionalProperties": {
     "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/messages/message.json"
