@@ -1,0 +1,636 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/user-events.v1"
+        },
+        "reply": {
+          "channel": {
+            "$ref": "#/channels/user-events-replies.v1"
+          }
+        },
+        "security": [
+          {
+            "type": "openIdConnect",
+            "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+          },
+          {
+            "$ref": "#/security/oauth2"
+          }
+        ],
+        "externalDocs": {
+          "$ref": "#/documents/user-events.v1"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "action": "receive",
+        "channel": {
+          "$ref": "#/channels/user-events.v1"
+        },
+        "reply": {
+          "$ref": "#/channels/user-events-replies.v1"
+        },
+        "externalDocs": {
+          "url": "https://docs.lo/user-events.v1"
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "action": "receive",
+        "channel": {
+          "$ref": "#/channels/user-events.v1"
+        },
+        "title": "User Activity Events",
+        "summary": "Receive user activity events",
+        "description": "Subscribe to channel which returns detailed events bases on user activity",
+        "tags": [
+          {
+            "$ref": "#/tags/user-activity-public"
+          },
+          {
+            "name": "user-activity",
+            "description": "Groups user activity related operations or messages"
+          }
+        ],
+        "messages": [
+          {
+            "$ref": "#/messages/user/signed-up"
+          },
+          {
+            "$ref": "#/messages/user/signed-out"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: minimal send",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        }
+      }
+    },
+    {
+      "description": "valid: minimal receive",
+      "valid": true,
+      "data": {
+        "action": "receive",
+        "channel": {
+          "$ref": "#/channels/users"
+        }
+      }
+    },
+    {
+      "description": "valid: messages references",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/users/messages/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: empty messages",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "messages": []
+      }
+    },
+    {
+      "description": "valid: duplicated messages are accepted (no uniqueItems)",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "messages": [
+          {
+            "$ref": "#/a"
+          },
+          {
+            "$ref": "#/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: reply",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "reply": {
+          "address": {
+            "location": "$message.header#/replyTo"
+          },
+          "channel": {
+            "$ref": "#/channels/replies"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reply reference",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "reply": {
+          "$ref": "#/components/replies/a"
+        }
+      }
+    },
+    {
+      "description": "valid: traits",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "traits": [
+          {
+            "$ref": "#/components/operationTraits/a"
+          },
+          {
+            "title": "t"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: security",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "security": [
+          {
+            "type": "X509"
+          },
+          {
+            "$ref": "#/components/securitySchemes/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: missing action",
+      "valid": false,
+      "data": {
+        "channel": {
+          "$ref": "#/channels/users"
+        }
+      }
+    },
+    {
+      "description": "invalid: missing channel",
+      "valid": false,
+      "data": {
+        "action": "send"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: action publish (v2 keyword)",
+      "valid": false,
+      "data": {
+        "action": "publish",
+        "channel": {
+          "$ref": "#/channels/users"
+        }
+      }
+    },
+    {
+      "description": "invalid: action subscribe (v2 keyword)",
+      "valid": false,
+      "data": {
+        "action": "subscribe",
+        "channel": {
+          "$ref": "#/channels/users"
+        }
+      }
+    },
+    {
+      "description": "invalid: action in other case",
+      "valid": false,
+      "data": {
+        "action": "Send",
+        "channel": {
+          "$ref": "#/channels/users"
+        }
+      }
+    },
+    {
+      "description": "invalid: inline channel",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "address": "users.{userId}"
+        }
+      }
+    },
+    {
+      "description": "invalid: channel reference with sibling",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users",
+          "address": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: inline message in messages",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "messages": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: reply with inline channel",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "reply": {
+          "channel": {
+            "address": "users.{userId}"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: trait with action",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "traits": [
+          {
+            "action": "send"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security with unknown type",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "security": [
+          {
+            "type": "kerberos"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: operationId is not allowed (v2 field)",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "operationId": "sendUser"
+      }
+    },
+    {
+      "description": "valid: tags with reference and tag",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "tags": [
+          {
+            "name": "b"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "tags": [
+          {
+            "description": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs object",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: bindings with x- extension",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "x-custom": {
+            "any": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: bindings reference per protocol",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings as a reference (only per protocol)",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "$ref": "#/components/bindings/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown protocol in bindings",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "unknown": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": []
+      }
+    },
+    {
+      "description": "invalid: ros2 binding is not available in v3.0.0",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "operationId": "x"
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "$ref": "#/components/x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "action": "send",
+          "channel": {
+            "$ref": "#/channels/users"
+          }
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}

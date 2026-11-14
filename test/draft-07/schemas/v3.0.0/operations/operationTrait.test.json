@@ -1,0 +1,350 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTrait.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "title": "User Activity Events",
+        "summary": "Receive user activity events",
+        "description": "Subscribe to channel which returns detailed events bases on user activity",
+        "tags": [
+          {
+            "$ref": "#/tags/user-activity-public"
+          },
+          {
+            "name": "user-activity",
+            "description": "Groups user activity related operations or messages"
+          }
+        ],
+        "security": [
+          {
+            "type": "openIdConnect",
+            "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+          },
+          {
+            "$ref": "#/security/oauth2"
+          }
+        ],
+        "externalDocs": {
+          "$ref": "#/documents/user-events.v1"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: all trait fields",
+      "valid": true,
+      "data": {
+        "title": "t",
+        "summary": "s",
+        "description": "d",
+        "security": [
+          {
+            "type": "X509"
+          }
+        ],
+        "tags": [
+          {
+            "name": "a"
+          }
+        ],
+        "externalDocs": {
+          "url": "https://docs.lo"
+        },
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "0.5.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: action is not allowed",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "action": "send"
+      }
+    },
+    {
+      "description": "invalid: channel is not allowed",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "channel": {
+          "$ref": "#/channels/users"
+        }
+      }
+    },
+    {
+      "description": "invalid: messages is not allowed",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "messages": [
+          {
+            "$ref": "#/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: reply is not allowed",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "reply": {
+          "$ref": "#/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: traits is not allowed",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "traits": []
+      }
+    },
+    {
+      "description": "invalid: security with unknown type",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "security": [
+          {
+            "type": "kerberos"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "description": 1
+      }
+    },
+    {
+      "description": "valid: tags with reference and tag",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "tags": [
+          {
+            "name": "b"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "tags": [
+          {
+            "description": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs object",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: bindings with x- extension",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "x-custom": {
+            "any": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: bindings reference per protocol",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings as a reference (only per protocol)",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "$ref": "#/components/bindings/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown protocol in bindings",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "unknown": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": []
+      }
+    },
+    {
+      "description": "invalid: ros2 binding is not available in v3.0.0",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "operationId": "x"
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "$ref": "#/components/x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "title": "Send user"
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}
