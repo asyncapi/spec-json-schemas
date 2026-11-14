@@ -1,0 +1,84 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/operationBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/apache-kafka/my-apache-kafka-operation"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "clientId": {
+          "type": "string",
+          "enum": [
+            "myClientId"
+          ]
+        },
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channelBindings/my-kafka-topic"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/apache-kafka"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/channelBindings/my-kafka-topic",
+        "bindingVersion": "0.5.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "groupId": "myGroupId"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/components/channelBindings/my-kafka-topic"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/operationBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "clientId": {
+          "type": "string",
+          "enum": [
+            "myClientId"
+          ]
+        },
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "clientId": {
+          "type": "string",
+          "enum": [
+            "myClientId"
+          ]
+        },
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "clientId": {
+          "type": "string",
+          "enum": [
+            "myClientId"
+          ]
+        },
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "clientId": {
+          "type": "string",
+          "enum": [
+            "myClientId"
+          ]
+        },
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: empty object uses 0.5.0",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: groupId with 0.1.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: groupId with 0.3.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: groupId with 0.4.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: groupId with 0.5.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.4.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.5.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "invalid: unknown property without bindingVersion uses 0.5.0",
+      "valid": false,
+      "data": {
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "valid: bindingVersion 0.2.0 matches no branch, so nothing is validated (0.2.0 is in the fallback enum)",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "topic": 1
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.5.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myGroupId"
+    }
+  ]
+}
