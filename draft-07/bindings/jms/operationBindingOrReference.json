@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/bindings/jms/operationBindingOrReference.json",
   "title": "JMS - Operation Binding or Reference",
-  "description": "Describes protocol-specific definitions for a operation or its reference",
+  "description": "Describes protocol-specific definitions for an operation or its reference",
   "examples": [
     {
       "$ref": "#/bindings/jms/my-jms-operation"

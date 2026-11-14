@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/bindings/amqp/operationBinding.json",
   "title": "AMQP 0-9-1 - Operation Binding",
-  "description": "Describes protocol-specific definitions for a operation",
+  "description": "Describes protocol-specific definitions for an operation",
   "examples": [
     {
       "ack": false,
