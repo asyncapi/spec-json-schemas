@@ -1,0 +1,79 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/messages/messages.json",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: several messages",
+      "valid": true,
+      "data": {
+        "cityUpdated": {
+          "summary": "Weather update for a city",
+          "description": "Sent every time the **forecast** changes",
+          "headers": {
+            "type": "object",
+            "properties": {
+              "correlationId": {
+                "type": "string"
+              }
+            }
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "city"
+            ],
+            "properties": {
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "temperature": {
+                "type": "number",
+                "minimum": -100,
+                "maximum": 100
+              }
+            }
+          },
+          "tags": [
+            {
+              "name": "city"
+            }
+          ],
+          "externalDocs": {
+            "url": "https://api.weather-forecast.am/docs"
+          },
+          "deprecated": false,
+          "example": {
+            "city": "Yerevan",
+            "temperature": 21.5
+          }
+        },
+        "cityRequested": {
+          "payload": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: message with unknown property",
+      "valid": false,
+      "data": {
+        "cityUpdated": {
+          "foo": "bar"
+        }
+      }
+    },
+    {
+      "description": "invalid: message is not an object",
+      "valid": false,
+      "data": {
+        "cityUpdated": "message"
+      }
+    }
+  ]
+}
