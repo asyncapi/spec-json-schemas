@@ -43,6 +43,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3 info](#v3-info) | `info`, `contact`, `license`, `infoExtensions`, `extensions/x/0.1.0`, `extensions/linkedin/0.1.0` | 92 | 6 |
 | [v3 server variables](#v3-server-variables) | `servers/serverVariable`, `servers/serverVariables` | 30 | 4 |
 | [v3 security](#v3-security) | `security/**`, `securityRequirements` | 331 | 8 |
+| [v3 channels](#v3-channels) | `channels/channelAddressParameter(s)`, `channels/messages/*` | 86 | 7 |
 
 ---
 
@@ -92,3 +93,15 @@ All 14 security types are mutually exclusive in `securitySchema.json` `oneOf`: e
 | SEC6 | Text | `sasl/saslPlainSecuritySchema.json` `type`; `sasl/saslScramSecuritySchema.json` `description`; `http/nonBearerHTTPSecuritySchema.json` `not.properties.scheme` | "The type of the security scheme. **Valid values**" is cut off. The SCRAM description contains link titles pasted as text ("uses **Apache Kafka Documentation** or similar platforms, utilizing … like **Confluent Platform SCRAM Overview** (…)"). The `not` scheme is described as "A short description for security scheme". | Open |
 | SEC7 | Consistency | `userPassword.json`, `X509.json`, `symmetricEncryption.json` | `description` and `type` have no `description`; every other security type documents them. | Open |
 | SEC8 | Example | `securityRequirements.json` example | `"$ref": "#/security/x.509"` points to a path that doesn't exist; security schemes live under `#/components/securitySchemes/…`. `v3.0.0` / `v3.1.0` `server.json` examples use `#/components/security/x.509`, which doesn't exist either. | Open |
+
+## v3 channels
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| CHAN1 | Validation | `channelAddressParameter.json` | There's no `"type": "object"`, so any non-object passes as a parameter, e.g. `"user-id"` or `1`. | Open |
+| CHAN2 | Validation | `channelAddressParameter.json`, `messages/channelMessageCorrelationId.json` `location` | The runtime-expression pattern has no `$` anchor, so after `#` anything passes: `$message.payload#user.id` is accepted although a JSON Pointer must start with `/`. | Open |
+| CHAN3 | Validation | `channelAddressParameter.json` `enum`, `default` | `enum` has no `uniqueItems` (Server Variable has it), and `default` isn't checked against `enum` (see SVAR1). | Open |
+| CHAN4 | Validation | `channelAddressParameters.json` | Map keys aren't validated (see SVAR3). | Open |
+| CHAN5 | Validation | `messages/channelMessageExample.json` | `additionalProperties: false` with no `patternProperties`, so `x-` extensions are rejected; the spec says the Message Example Object MAY be extended. `headers` is described as "It can be of any type" but is `type: object`. | Open |
+| CHAN6 | Text | `messages/channelMessageCorrelationId.json` | "…an identifier at design time that **can used** for…" and "**A optional** description". | Open |
+| CHAN7 | Example | `channelAddressParameters.json`, `messages/channelMessageCorrelationIdOrReference.json` | `$ref`s point to paths that don't exist: `#/parameters/time-zone` and `#/messages/profile-updates/correlation-id`; they should be `#/components/parameters/…` and `#/components/correlationIds/…`. | Open |
