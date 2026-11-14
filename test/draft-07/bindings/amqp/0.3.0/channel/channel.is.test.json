@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.3.0/channel.json#/properties/is",
+  "tests": [
+    {
+      "description": "valid: queue",
+      "valid": true,
+      "data": "queue"
+    },
+    {
+      "description": "valid: routingKey",
+      "valid": true,
+      "data": "routingKey"
+    },
+    {
+      "description": "invalid: exchange",
+      "valid": false,
+      "data": "exchange"
+    },
+    {
+      "description": "invalid: lower case routingkey",
+      "valid": false,
+      "data": "routingkey"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: boolean",
+      "valid": false,
+      "data": true
+    }
+  ]
+}
