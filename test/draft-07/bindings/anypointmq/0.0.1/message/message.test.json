@@ -1,0 +1,98 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "messageId": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "headers": {
+          "$ref": "#/headers/message-id"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: headers only",
+      "valid": true,
+      "data": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "messageId": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "messageId": {
+              "type": "string"
+            }
+          }
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid headers",
+      "valid": false,
+      "data": {
+        "headers": "messageId"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "messageId": {
+              "type": "string"
+            }
+          }
+        },
+        "properties": {}
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "messageId"
+    }
+  ]
+}

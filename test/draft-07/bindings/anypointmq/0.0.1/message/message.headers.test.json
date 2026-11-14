@@ -1,0 +1,102 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/message.json#/properties/headers",
+  "tests": [
+    {
+      "description": "valid: object schema",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/headers/message-id"
+      }
+    },
+    {
+      "description": "valid: boolean true schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "valid: boolean false schema",
+      "valid": true,
+      "data": false
+    },
+    {
+      "description": "valid: empty schema",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: AsyncAPI discriminator keyword",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "discriminator": "kind"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "x-format": "uuid"
+      }
+    },
+    {
+      "description": "valid: unknown keyword is not validated",
+      "valid": true,
+      "data": {
+        "foo": "bar"
+      }
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "messageId"
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "date"
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "description": "Headers docs"
+        }
+      }
+    },
+    {
+      "description": "invalid: deprecated is not a boolean",
+      "valid": false,
+      "data": {
+        "deprecated": "yes"
+      }
+    },
+    {
+      "description": "invalid: nested property with unknown type",
+      "valid": false,
+      "data": {
+        "type": "object",
+        "properties": {
+          "messageId": {
+            "type": "uuid"
+          }
+        }
+      }
+    }
+  ]
+}
