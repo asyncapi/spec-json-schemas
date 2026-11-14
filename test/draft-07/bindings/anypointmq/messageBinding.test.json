@@ -61,7 +61,7 @@
       }
     },
     {
-      "description": "invalid: bindingVersion 0.1.0 (checked by the if) still uses 0.0.1 and fails its enum",
+      "description": "invalid: unknown bindingVersion 0.1.0 falls back to 0.0.1 and fails its enum",
       "valid": false,
       "data": {
         "bindingVersion": "0.1.0"
