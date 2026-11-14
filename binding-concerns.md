@@ -37,9 +37,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [mqtt](#mqtt) | 0.1.0, 0.2.0 | 288 | 7 |
 | [mqtt5](#mqtt5) | 0.1.0, 0.2.0 | 204 | 5 |
 | [nats](#nats) | 0.1.0 | 128 | 2 |
+| [redis](#redis) | 0.1.0 | 128 | 1 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: redis, ros2, solace, stomp, websockets, and the
+Not covered yet: ros2, solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -209,3 +210,11 @@ Only operation defines a field (`queue`). The root routing (0.1.0 for every bran
 |---|---|---|---|---|---|
 | NATS1 | Validation | 0.1.0 | operation `queue` | There's a `maxLength: 255` but no `minLength`, so `""` passes. | Open |
 | NATS2 | Consistency | 0.1.0 | channel, server, message | No `x-` extensions are allowed; operation allows them (see A4). | Open |
+
+## redis
+
+All four objects define only `bindingVersion`, and the root routing (0.1.0 for every branch) is correct.
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| REDIS1 | Consistency | 0.1.0 | channel, operation, server, message | No `x-` extensions are allowed anywhere (see A4). This is the same as amqp1 and mercure. | Open |
