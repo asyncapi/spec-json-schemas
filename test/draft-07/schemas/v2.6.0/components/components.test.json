@@ -1,0 +1,1212 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.6.0/components/components.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "schemas": {
+          "address": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "address": {
+                "$ref": "#/components/schemas/Address"
+              },
+              "age": {
+                "type": "integer",
+                "format": "int32",
+                "minimum": 0
+              }
+            }
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "servers": {
+          "dev": {
+            "url": "development.gigantic-server.com",
+            "protocol": "kafka",
+            "description": "Kafka development server",
+            "protocolVersion": "4.3"
+          },
+          "dev-secured": {
+            "$ref": "#/components/servers/dev-secured"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "channels": {
+          "my-channel": {
+            "$ref": "#/channels/my-channel"
+          },
+          "user/{userId}/sendMessage": {
+            "description": "This channel is used to exchange messages about users signing up",
+            "subscribe": {
+              "operationId": "sendMessage",
+              "summary": "Send message",
+              "description": "Send message to remote server",
+              "message": {
+                "$ref": "#/components/schemas/sendMessage"
+              }
+            },
+            "parameters": {
+              "userId": {
+                "description": "Id of the user",
+                "schema": {
+                  "type": "string"
+                },
+                "location": "$message.payload#/user/id"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "serverVariables": {
+          "host": {
+            "$ref": "#/components/serverVariables/host"
+          },
+          "port": {
+            "enum": [
+              "8883",
+              "8884"
+            ],
+            "default": "8883",
+            "description": "Ports application listening for",
+            "examples": [
+              "8883",
+              "8884"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "messages": {
+          "userSignup": {
+            "messageId": "userSignup",
+            "name": "UserSignup",
+            "title": "User signup",
+            "summary": "Action to sign a user up.",
+            "description": "A longer description",
+            "tags": [
+              {
+                "name": "user"
+              },
+              {
+                "name": "signup"
+              },
+              {
+                "name": "register"
+              }
+            ],
+            "payload": {
+              "$ref": "path/to/user-create.avsc#/UserCreate"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "http-bearer": {
+            "type": "http",
+            "description": "HTTP - Bearer",
+            "scheme": "bearer",
+            "bearerFormat": "JWT"
+          },
+          "http-apiKey": {
+            "$ref": "#/components/securitySchemes/http-apiKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #7",
+      "valid": true,
+      "data": {
+        "parameters": {
+          "userId": {
+            "$ref": "#/components/parameters/userId"
+          },
+          "accessToken": {
+            "description": "Access-Token",
+            "schema": {
+              "type": "string"
+            },
+            "location": "$message.header#/authorization"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #8",
+      "valid": true,
+      "data": {
+        "correlationIds": {
+          "userSignup": {
+            "$ref": "#/components/correlationIds/userSignup"
+          },
+          "correlation-id": {
+            "description": "Incoming message correlation-id",
+            "location": "$message.header#/correlation-id",
+            "x-format": "uuid"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #9",
+      "valid": true,
+      "data": {
+        "operationTraits": {
+          "sendMessage": {
+            "operationId": "sendMessage",
+            "summary": "Secured Send message",
+            "security": [
+              {
+                "messages": [
+                  "write:messages",
+                  "read:messages"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #10",
+      "valid": true,
+      "data": {
+        "messageTraits": {
+          "userSignup": {
+            "messageId": "userSignup",
+            "summary": "Action to sign a user up.",
+            "description": "A longer description",
+            "schemaFormat": "application/vnd.apache.avro+json;version=1.9.0",
+            "examples": [
+              {
+                "name": "SimpleSignup",
+                "summary": "A simple UserSignup example message",
+                "headers": {
+                  "correlationId": "my-correlation-id",
+                  "applicationInstanceId": "myInstanceId"
+                },
+                "payload": {
+                  "user": {
+                    "someUserKey": "someUserValue"
+                  },
+                  "signup": {
+                    "someSignupKey": "someSignupValue"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #11",
+      "valid": true,
+      "data": {
+        "serverBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "schemaRegistryUrl": "https://my-schema-registry.com",
+              "schemaRegistryVendor": "confluent"
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0",
+              "tenant": "contoso"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/server"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/server"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #12",
+      "valid": true,
+      "data": {
+        "channelBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "partitions": 20,
+              "replicas": 3,
+              "topic": "my-specific-topic",
+              "topicConfiguration": {
+                "cleanup.policy": [
+                  "compact",
+                  "delete"
+                ],
+                "delete.retention.ms": 1000,
+                "max.message.bytes": 2000,
+                "retention.bytes": 10,
+                "retention.ms": 2000,
+                "confluent.key.schema.validation": true,
+                "confluent.key.subject.name.strategy": "schema",
+                "confluent.value.schema.validation": true,
+                "confluent.value.subject.name.strategy": "schema"
+              }
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0",
+              "compaction": 1000,
+              "deduplication": true,
+              "geo-replication": [
+                "us-west",
+                "us-east"
+              ],
+              "namespace": "ns1",
+              "persistence": "persistent",
+              "retention": {
+                "size": 1000,
+                "time": 15
+              },
+              "ttl": 360
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/channel"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/channel"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #13",
+      "valid": true,
+      "data": {
+        "operationBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "clientId": {
+                "type": "string",
+                "enum": [
+                  "myClientId"
+                ]
+              },
+              "groupId": {
+                "type": "string",
+                "enum": [
+                  "myGroupId"
+                ]
+              }
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/operation"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/operation"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #14",
+      "valid": true,
+      "data": {
+        "messageBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "key": {
+                "type": "string",
+                "enum": [
+                  "myKey"
+                ]
+              },
+              "schemaIdLocation": "header",
+              "schemaIdPayloadEncoding": "apicurio-new",
+              "schemaLookupStrategy": "TopicIdStrategy"
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/message"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/message"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: schemas",
+      "valid": true,
+      "data": {
+        "schemas": {
+          "a.b-c_1": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: schemas empty map",
+      "valid": true,
+      "data": {
+        "schemas": {}
+      }
+    },
+    {
+      "description": "invalid: schemas with invalid item",
+      "valid": false,
+      "data": {
+        "schemas": {
+          "a": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: schemas is an array",
+      "valid": false,
+      "data": {
+        "schemas": [
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: schemas invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "schemas": {
+          "a b": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messages",
+      "valid": true,
+      "data": {
+        "messages": {
+          "a.b-c_1": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messages empty map",
+      "valid": true,
+      "data": {
+        "messages": {}
+      }
+    },
+    {
+      "description": "invalid: messages with invalid item",
+      "valid": false,
+      "data": {
+        "messages": {
+          "a": {
+            "payload": true
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messages is an array",
+      "valid": false,
+      "data": {
+        "messages": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: messages invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "messages": {
+          "a b": {
+            "payload": true
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: securitySchemes",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "a.b-c_1": {
+            "type": "X509"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: securitySchemes empty map",
+      "valid": true,
+      "data": {
+        "securitySchemes": {}
+      }
+    },
+    {
+      "description": "invalid: securitySchemes with invalid item",
+      "valid": false,
+      "data": {
+        "securitySchemes": {
+          "a": {
+            "type": "kerberos"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: securitySchemes is an array",
+      "valid": false,
+      "data": {
+        "securitySchemes": [
+          {
+            "type": "X509"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: securitySchemes invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "a b": {
+            "type": "kerberos"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: parameters",
+      "valid": true,
+      "data": {
+        "parameters": {
+          "a.b-c_1": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: parameters empty map",
+      "valid": true,
+      "data": {
+        "parameters": {}
+      }
+    },
+    {
+      "description": "invalid: parameters with invalid item",
+      "valid": false,
+      "data": {
+        "parameters": {
+          "a": {
+            "schema": {
+              "type": "map"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: parameters is an array",
+      "valid": false,
+      "data": {
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: parameters invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "parameters": {
+          "a b": {
+            "schema": {
+              "type": "map"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: correlationIds",
+      "valid": true,
+      "data": {
+        "correlationIds": {
+          "a.b-c_1": {
+            "location": "$message.header#/id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: correlationIds empty map",
+      "valid": true,
+      "data": {
+        "correlationIds": {}
+      }
+    },
+    {
+      "description": "invalid: correlationIds with invalid item",
+      "valid": false,
+      "data": {
+        "correlationIds": {
+          "a": {
+            "description": "id"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationIds is an array",
+      "valid": false,
+      "data": {
+        "correlationIds": [
+          {
+            "location": "$message.header#/id"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: correlationIds invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "correlationIds": {
+          "a b": {
+            "description": "id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationTraits",
+      "valid": true,
+      "data": {
+        "operationTraits": {
+          "a.b-c_1": {
+            "summary": "s"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationTraits empty map",
+      "valid": true,
+      "data": {
+        "operationTraits": {}
+      }
+    },
+    {
+      "description": "invalid: operationTraits with invalid item",
+      "valid": false,
+      "data": {
+        "operationTraits": {
+          "a": {
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operationTraits is an array",
+      "valid": false,
+      "data": {
+        "operationTraits": [
+          {
+            "summary": "s"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: operationTraits invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "operationTraits": {
+          "a b": {
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageTraits",
+      "valid": true,
+      "data": {
+        "messageTraits": {
+          "a.b-c_1": {
+            "name": "n"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageTraits empty map",
+      "valid": true,
+      "data": {
+        "messageTraits": {}
+      }
+    },
+    {
+      "description": "invalid: messageTraits with invalid item",
+      "valid": false,
+      "data": {
+        "messageTraits": {
+          "a": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messageTraits is an array",
+      "valid": false,
+      "data": {
+        "messageTraits": [
+          {
+            "name": "n"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: messageTraits invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "messageTraits": {
+          "a b": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverBindings",
+      "valid": true,
+      "data": {
+        "serverBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverBindings empty map",
+      "valid": true,
+      "data": {
+        "serverBindings": {}
+      }
+    },
+    {
+      "description": "invalid: serverBindings with invalid item",
+      "valid": false,
+      "data": {
+        "serverBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: serverBindings is an array",
+      "valid": false,
+      "data": {
+        "serverBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: serverBindings invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "serverBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channelBindings",
+      "valid": true,
+      "data": {
+        "channelBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channelBindings empty map",
+      "valid": true,
+      "data": {
+        "channelBindings": {}
+      }
+    },
+    {
+      "description": "invalid: channelBindings with invalid item",
+      "valid": false,
+      "data": {
+        "channelBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: channelBindings is an array",
+      "valid": false,
+      "data": {
+        "channelBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: channelBindings invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "channelBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationBindings",
+      "valid": true,
+      "data": {
+        "operationBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationBindings empty map",
+      "valid": true,
+      "data": {
+        "operationBindings": {}
+      }
+    },
+    {
+      "description": "invalid: operationBindings with invalid item",
+      "valid": false,
+      "data": {
+        "operationBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operationBindings is an array",
+      "valid": false,
+      "data": {
+        "operationBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: operationBindings invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "operationBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageBindings",
+      "valid": true,
+      "data": {
+        "messageBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageBindings empty map",
+      "valid": true,
+      "data": {
+        "messageBindings": {}
+      }
+    },
+    {
+      "description": "invalid: messageBindings with invalid item",
+      "valid": false,
+      "data": {
+        "messageBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messageBindings is an array",
+      "valid": false,
+      "data": {
+        "messageBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: messageBindings invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "messageBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: servers",
+      "valid": true,
+      "data": {
+        "servers": {
+          "a.b-c_1": {
+            "url": "broker.mycompany.com:5672",
+            "protocol": "amqp"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: servers empty map",
+      "valid": true,
+      "data": {
+        "servers": {}
+      }
+    },
+    {
+      "description": "invalid: servers with invalid item",
+      "valid": false,
+      "data": {
+        "servers": {
+          "a": {
+            "url": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: servers is an array",
+      "valid": false,
+      "data": {
+        "servers": [
+          {
+            "url": "broker.mycompany.com:5672",
+            "protocol": "amqp"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: servers invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "servers": {
+          "a b": {
+            "url": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverVariables",
+      "valid": true,
+      "data": {
+        "serverVariables": {
+          "a.b-c_1": {
+            "default": "5672"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverVariables empty map",
+      "valid": true,
+      "data": {
+        "serverVariables": {}
+      }
+    },
+    {
+      "description": "invalid: serverVariables with invalid item",
+      "valid": false,
+      "data": {
+        "serverVariables": {
+          "a": {
+            "default": 5672
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: serverVariables is an array",
+      "valid": false,
+      "data": {
+        "serverVariables": [
+          {
+            "default": "5672"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: serverVariables invalid item under any key is validated (no key pattern)",
+      "valid": false,
+      "data": {
+        "serverVariables": {
+          "a b": {
+            "default": 5672
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channels is not validated (declared with $id instead of $ref)",
+      "valid": true,
+      "data": {
+        "channels": {
+          "users": {
+            "publish": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channels of any type is accepted (empty schema)",
+      "valid": true,
+      "data": {
+        "channels": 1
+      }
+    },
+    {
+      "description": "valid: securitySchemes reference",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "a": {
+            "$ref": "#/components/securitySchemes/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messages reference",
+      "valid": true,
+      "data": {
+        "messages": {
+          "a": {
+            "$ref": "#/components/messages/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operationTraits reference (no reference branch)",
+      "valid": false,
+      "data": {
+        "operationTraits": {
+          "a": {
+            "$ref": "#/components/operationTraits/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messageTraits reference (no reference branch)",
+      "valid": false,
+      "data": {
+        "messageTraits": {
+          "a": {
+            "$ref": "#/components/messageTraits/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: schemas boolean schema",
+      "valid": false,
+      "data": {
+        "schemas": {
+          "a": true
+        }
+      }
+    },
+    {
+      "description": "invalid: replies is not allowed (v3 section)",
+      "valid": false,
+      "data": {
+        "replies": {}
+      }
+    },
+    {
+      "description": "invalid: operations is not allowed (v3 section)",
+      "valid": false,
+      "data": {
+        "operations": {}
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    }
+  ]
+}
