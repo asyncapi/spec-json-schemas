@@ -1,0 +1,311 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/channels/channel.json",
+  "tests": [
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "deadLetterQueue": {
+              "fifoQueue": true,
+              "deliveryDelay": 0,
+              "messageRetentionPeriod": 604800,
+              "name": "myQueue_error",
+              "receiveMessageWaitTime": 0,
+              "visibilityTimeout": 0
+            },
+            "queue": {
+              "deduplicationScope": "messageGroup",
+              "deliveryDelay": 15,
+              "fifoQueue": true,
+              "fifoThroughputLimit": "perMessageGroupId",
+              "messageRetentionPeriod": 86400,
+              "name": "myQueue",
+              "policy": {
+                "statements": [
+                  {
+                    "action": [
+                      "sqs:SendMessage",
+                      "sqs:ReceiveMessage"
+                    ],
+                    "effect": "Deny",
+                    "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+                  }
+                ]
+              },
+              "receiveMessageWaitTime": 0,
+              "redrivePolicy": {
+                "deadLetterQueue": {
+                  "arn": "arn:aws:SQS:eu-west-1:0000000:123456789"
+                },
+                "maxReceiveCount": 15
+              },
+              "tags": {
+                "owner": "AsyncAPI.NET",
+                "platform": "AsyncAPIOrg"
+              },
+              "visibilityTimeout": 60
+            },
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 missing queue",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "deadLetterQueue": {
+              "name": "myQueue",
+              "fifoQueue": false
+            },
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "deadLetterQueue": {
+              "fifoQueue": true,
+              "deliveryDelay": 0,
+              "messageRetentionPeriod": 604800,
+              "name": "myQueue_error",
+              "receiveMessageWaitTime": 0,
+              "visibilityTimeout": 0
+            },
+            "queue": {
+              "deduplicationScope": "messageGroup",
+              "deliveryDelay": 15,
+              "fifoQueue": true,
+              "fifoThroughputLimit": "perMessageGroupId",
+              "messageRetentionPeriod": 86400,
+              "name": "myQueue",
+              "policy": {
+                "statements": [
+                  {
+                    "action": [
+                      "sqs:SendMessage",
+                      "sqs:ReceiveMessage"
+                    ],
+                    "effect": "Deny",
+                    "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+                  }
+                ]
+              },
+              "receiveMessageWaitTime": 0,
+              "redrivePolicy": {
+                "deadLetterQueue": {
+                  "arn": "arn:aws:SQS:eu-west-1:0000000:123456789"
+                },
+                "maxReceiveCount": 15
+              },
+              "tags": {
+                "owner": "AsyncAPI.NET",
+                "platform": "AsyncAPIOrg"
+              },
+              "visibilityTimeout": 60
+            },
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 missing queue",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "deadLetterQueue": {
+              "name": "myQueue",
+              "fifoQueue": false
+            },
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #2",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 unknown property",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "queue": {
+              "name": "myQueue",
+              "fifoQueue": false
+            },
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.3.0 is used)",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "deadLetterQueue": {
+              "fifoQueue": true,
+              "deliveryDelay": 0,
+              "messageRetentionPeriod": 604800,
+              "name": "myQueue_error",
+              "receiveMessageWaitTime": 0,
+              "visibilityTimeout": 0
+            },
+            "queue": {
+              "deduplicationScope": "messageGroup",
+              "deliveryDelay": 15,
+              "fifoQueue": true,
+              "fifoThroughputLimit": "perMessageGroupId",
+              "messageRetentionPeriod": 86400,
+              "name": "myQueue",
+              "policy": {
+                "statements": [
+                  {
+                    "action": [
+                      "sqs:SendMessage",
+                      "sqs:ReceiveMessage"
+                    ],
+                    "effect": "Deny",
+                    "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+                  }
+                ]
+              },
+              "receiveMessageWaitTime": 0,
+              "redrivePolicy": {
+                "deadLetterQueue": {
+                  "arn": "arn:aws:SQS:eu-west-1:0000000:123456789"
+                },
+                "maxReceiveCount": 15
+              },
+              "tags": {
+                "owner": "AsyncAPI.NET",
+                "platform": "AsyncAPIOrg"
+              },
+              "visibilityTimeout": 60
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "$ref": "#/components/channelBindings/my-sqs"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "$ref": "#/components/channelBindings/my-sqs",
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": "sqs"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "sqs": null
+        }
+      }
+    },
+    {
+      "description": "invalid: folder name amazon-sqs is not a binding key (use sqs)",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "amazon-sqs": {}
+        }
+      }
+    }
+  ]
+}
