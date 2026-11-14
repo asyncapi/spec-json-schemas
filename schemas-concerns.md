@@ -68,6 +68,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.0.0 components](#v200-components) | `components/components` | 79 | 2 |
 | [v2.0.0 binding maps](#v200-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 2 |
 | [v2.0.0 component bindings](#v200-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
+| [v2.0.0 asyncapi](#v200-asyncapi) | `asyncapi` | 27 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -321,3 +322,7 @@ unclosed `{expressions}` are rejected.
 `{component}.{bindingKey}.test.json` next to server, channelItem, operation, operationTrait, message and messageTrait,
 one file per key of the v2.0.0 binding maps (16 keys), built like [v3.0.0 component bindings](#v300-component-bindings).
 Because the maps are open (V2B1), the folder-name case is recorded as accepted unvalidated. No new concerns.
+
+## v2.0.0 asyncapi
+
+The root requires `asyncapi`, `info` and `channels`, accepts only `"asyncapi": "2.0.0"`, and allows root `tags` and `externalDocs`. No new concerns.
