@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/xml.json",
+  "id": "http://localhost:8000/draft-07/schemas/v1/xml.json",
   "type": "object",
   "properties": {
     "name": {
