@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/events.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1.2.0/events/events.json",
   "title": "Events Object",
   "type": "object",
   "anyOf": [
@@ -19,7 +19,7 @@
       "minItems": 1,
       "uniqueItems": true,
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.2.0/message.json"
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/messages/message.json"
       }
     },
     "send": {
@@ -28,13 +28,13 @@
       "minItems": 1,
       "uniqueItems": true,
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.2.0/message.json"
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/messages/message.json"
       }
     }
   },
   "patternProperties": {
     "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
     }
   },
   "additionalProperties": false

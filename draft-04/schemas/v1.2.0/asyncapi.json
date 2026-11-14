@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/asyncapi.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1.2.0/asyncapi.json",
   "title": "AsyncAPI 1.2.0 schema.",
   "type": "object",
   "oneOf": [
@@ -22,7 +22,7 @@
       "enum": [ "1.0.0", "1.1.0", "1.2.0" ]
     },
     "info": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/info.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/info/info.json"
     },
     "baseTopic": {
       "description": "The base topic to the API. Example: 'hitch'.",
@@ -34,43 +34,43 @@
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.2.0/server.json"
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/servers/server.json"
       }
     },
     "topics": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/topics.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/topics.json"
     },
     "stream": {
       "description": "The list of messages a consumer can read or write from/to a streaming API.",
-      "$ref": "http://asyncapi.com/definitions/1.2.0/stream.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/stream/stream.json"
     },
     "events": {
       "description": "The list of messages an events API sends and/or receives.",
-      "$ref": "http://asyncapi.com/definitions/1.2.0/events.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/events/events.json"
     },
     "components": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/components.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/components/components.json"
     },
     "tags": {
       "type": "array",
       "uniqueItems": true,
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.2.0/tag.json"
+        "$ref": "http://localhost:8000/draft-04/schemas/v1/tag.json"
       }
     },
     "security": {
       "type": "array",
       "items": {
-        "$ref": "http://asyncapi.com/definitions/1.2.0/SecurityRequirement.json"
+        "$ref": "http://localhost:8000/draft-04/schemas/v1/security/securityRequirement.json"
       }
     },
     "externalDocs": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/externalDocs.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/externalDocs.json"
     }
   },
   "patternProperties": {
     "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
     }
   },
   "additionalProperties": false
