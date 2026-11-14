@@ -48,6 +48,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.0.0 servers](#v300-servers) | `servers/server`, `servers/servers` | 58 | 4 |
 | [v3.0.0 channel messages](#v300-channel-messages) | `channels/messages/channelMessage`, `channelMessageTrait(s)`, `channelMessages` | 143 | 6 |
 | [v3.0.0 channels](#v300-channels) | `channels/channel`, `channels/channels` | 54 | 2 |
+| [v3.0.0 operations](#v300-operations) | `operations/operation`, `operationTrait(s)`, `operations` | 101 | 4 |
 
 ---
 
@@ -147,3 +148,12 @@ Reference requires `$ref` and allows nothing else; the other branch has `additio
 |---|---|---|---|---|
 | CH1 | Validation | `channels/channel.json` `address` | No pattern or `minLength`, so `""` passes. It isn't checked that the expressions in `{braces}` have matching `parameters` (parser rule). | Open |
 | CH2 | Example | `channels/channel.json` examples | `$ref`s point to paths that don't exist: `#/docs/user-events`, `#/components/user.signedUp` (should be `#/components/externalDocs/…` and `#/components/messages/…`). | Open |
+
+## v3.0.0 operations
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| OP1 | Text | `operations/operationTraits.json` | `title` is "AsyncAPI v3.0.0 - **Channel Message Traits**" and the description says "Collection of Channel Message Traits … MUST be a valid **Message** Object"; it's the operation traits list. | Open |
+| OP2 | Text | `operations/operationTraits.json`, `operations/operations.json` `description` | "…or **it's** reference(s)" should be "its" (see A2 in binding-concerns.md). | Open |
+| OP3 | Example | `operations/operation.json` examples | `"reply": {"$ref": "#/channels/user-events-replies.v1"}` makes the reply a reference to a **channel**; other `$ref`s point to paths that don't exist (`#/security/oauth2`, `#/documents/…`, `#/messages/user/…`). "events **bases** on" is a typo. | Open |
+| OP4 | Consistency | `operations/operationTrait.json` | `summary` and `description` are documented differently from `operation.json` ("A short summary of what the operation is about" vs "A brief summary of the operation"). | Open |
