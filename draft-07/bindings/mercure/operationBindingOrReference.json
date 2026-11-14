@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/bindings/mercure/operationBindingOrReference.json",
   "title": "Mercure - Operation Binding or Reference",
-  "description": "Describes protocol-specific definitions for a operation or it's reference",
+  "description": "Describes protocol-specific definitions for a operation or its reference",
   "examples": [
     {
       "$ref": "#/bindings/mercure/my-mercure-operation"

@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "http://localhost:8000/draft-07/bindings/ros2/messageBindingOrReference.json",
   "title": "ROS 2 - Message Binding or Reference",
-  "description": "Describes protocol-specific definitions for a message or it's reference",
+  "description": "Describes protocol-specific definitions for a message or its reference",
   "examples": [
     {
       "$ref": "#/bindings/ros2/my-ros2-binding"
