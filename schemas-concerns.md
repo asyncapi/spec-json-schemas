@@ -44,6 +44,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3 server variables](#v3-server-variables) | `servers/serverVariable`, `servers/serverVariables` | 30 | 4 |
 | [v3 security](#v3-security) | `security/**`, `securityRequirements` | 331 | 8 |
 | [v3 channels](#v3-channels) | `channels/channelAddressParameter(s)`, `channels/messages/*` | 86 | 7 |
+| [v3 operation reply](#v3-operation-reply) | `operations/operationReply*` | 49 | 3 |
 
 ---
 
@@ -105,3 +106,14 @@ All 14 security types are mutually exclusive in `securitySchema.json` `oneOf`: e
 | CHAN5 | Validation | `messages/channelMessageExample.json` | `additionalProperties: false` with no `patternProperties`, so `x-` extensions are rejected; the spec says the Message Example Object MAY be extended. `headers` is described as "It can be of any type" but is `type: object`. | Open |
 | CHAN6 | Text | `messages/channelMessageCorrelationId.json` | "…an identifier at design time that **can used** for…" and "**A optional** description". | Open |
 | CHAN7 | Example | `channelAddressParameters.json`, `messages/channelMessageCorrelationIdOrReference.json` | `$ref`s point to paths that don't exist: `#/parameters/time-zone` and `#/messages/profile-updates/correlation-id`; they should be `#/components/parameters/…` and `#/components/correlationIds/…`. | Open |
+
+## v3 operation reply
+
+`operationReplyOrReference.json` and `operationReplyAddressOrReference.json` branches are mutually exclusive:
+Reference requires `$ref` and allows nothing else; the other branch has `additionalProperties: false` without `$ref`.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| REPLY1 | Validation | `operationReplyAddress.json` `location` | Same unanchored runtime-expression pattern as CHAN2. | Open |
+| REPLY2 | Validation | `operationReply.json` `messages` | No `uniqueItems`, so the same message reference can be listed twice. The "subset of the channel's messages" rule needs a parser check. | Open |
+| REPLY3 | Example | `operationReply.json`, `operationReplyOrReference.json`, `operationReplyAddressOrReference.json` | `$ref`s point to paths that don't exist: `#/replies/…` and `#/messages/…`; they should be `#/components/replies/…`, `#/components/replyAddresses/…` and `#/channels/<channel>/messages/…`. | Open |
