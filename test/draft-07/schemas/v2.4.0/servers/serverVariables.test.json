@@ -1,0 +1,80 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.4.0/servers/serverVariables.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "port": {
+          "enum": [
+            "8883",
+            "8884"
+          ],
+          "default": "8883",
+          "description": "Ports application listening for",
+          "examples": [
+            "8883",
+            "8884"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: variable",
+      "valid": true,
+      "data": {
+        "port": {
+          "default": "5672"
+        }
+      }
+    },
+    {
+      "description": "valid: any key is accepted (no key pattern)",
+      "valid": true,
+      "data": {
+        "a b": {
+          "default": "5672"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference is not available in 2.4.0 (added in 2.5.0)",
+      "valid": false,
+      "data": {
+        "port": {
+          "$ref": "#/components/serverVariables/port"
+        }
+      }
+    },
+    {
+      "description": "invalid: variable with numeric default",
+      "valid": false,
+      "data": {
+        "port": {
+          "default": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: variable is a string",
+      "valid": false,
+      "data": {
+        "port": "5672"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "default": "5672"
+        }
+      ]
+    }
+  ]
+}
