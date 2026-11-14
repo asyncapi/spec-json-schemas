@@ -93,6 +93,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.3.0 binding maps](#v230-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 | [v2.3.0 component bindings](#v230-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 | [v2.4.0 servers](#v240-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 0 |
+| [v2.4.0 channels](#v240-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 72 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -454,3 +455,7 @@ Built like [v2.0.0 component bindings](#v200-component-bindings), one file per k
 ## v2.4.0 servers
 
 Same concerns as [v2.0.0 servers](#v200-servers): V2S1–V2S3.
+
+## v2.4.0 channels
+
+Same concerns as [v2.0.0 channels](#v200-channels).
