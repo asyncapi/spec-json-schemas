@@ -1,19 +1,23 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/parameters/parameter.json",
+  "title": "AsyncAPI v1.2.0 - Parameter",
+  "description": "Describes a parameter included in a topic name",
   "properties": {
     "description": {
-      "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed.",
+      "description": "A brief description of the parameter. This could contain examples of use. GitHub Flavored Markdown is allowed",
       "type": "string"
     },
     "name": {
-      "description": "The name of the parameter.",
+      "description": "The name of the parameter",
       "type": "string"
     },
     "schema": {
+      "description": "A deterministic version of a JSON Schema object",
       "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/schema.json"
     },
     "$ref": {
+      "description": "Allows for an external definition of this parameter. The referenced structure MUST be in the format of a Parameter Object",
       "type": "string"
     }
   },
