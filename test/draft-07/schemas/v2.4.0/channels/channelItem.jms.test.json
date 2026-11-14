@@ -1,0 +1,118 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.4.0/channels/channelItem.json",
+  "tests": [
+    {
+      "description": "valid: 0.0.1 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "jms": {
+            "bindingVersion": "0.0.1",
+            "destination": "user-signed-up",
+            "destinationType": "fifo-queue"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.0.1 example #2",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "jms": {
+            "bindingVersion": "0.0.1",
+            "destination": "user-signed-up",
+            "destinationType": "queue"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.0.1 destination is not a string",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "jms": {
+            "destination": 1,
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.0.1 is used)",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "jms": {
+            "destination": "user-signed-up",
+            "destinationType": "fifo-queue"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "jms": {
+            "$ref": "#/components/channelBindings/my-jms"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "jms": {
+            "$ref": "#/components/channelBindings/my-jms",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "jms": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "jms": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "jms": "jms"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "jms": null
+        }
+      }
+    }
+  ]
+}
