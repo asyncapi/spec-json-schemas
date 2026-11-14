@@ -1,0 +1,37 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.2.0/channel.json#/properties/labels",
+  "tests": [
+    {
+      "description": "valid: string labels",
+      "valid": true,
+      "data": {
+        "label1": "value1",
+        "label2": "value2"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: label values are not validated",
+      "valid": true,
+      "data": {
+        "label1": 1
+      }
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        "label1"
+      ]
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "label1=value1"
+    }
+  ]
+}

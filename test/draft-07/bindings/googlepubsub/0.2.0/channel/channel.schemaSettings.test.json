@@ -1,0 +1,94 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.2.0/channel.json#/properties/schemaSettings",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "encoding": "json",
+        "name": "projects/your-project-id/schemas/your-schema"
+      }
+    },
+    {
+      "description": "valid: with revision ids",
+      "valid": true,
+      "data": {
+        "encoding": "json",
+        "name": "projects/your-project-id/schemas/your-schema",
+        "firstRevisionId": "1",
+        "lastRevisionId": "10"
+      }
+    },
+    {
+      "description": "valid: encoding is any string (not an enum)",
+      "valid": true,
+      "data": {
+        "encoding": "xml",
+        "name": "projects/your-project-id/schemas/your-schema"
+      }
+    },
+    {
+      "description": "invalid: missing encoding",
+      "valid": false,
+      "data": {
+        "name": "projects/your-project-id/schemas/your-schema"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "encoding": "json"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "encoding": "json",
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: firstRevisionId is a number",
+      "valid": false,
+      "data": {
+        "encoding": "json",
+        "name": "projects/your-project-id/schemas/your-schema",
+        "firstRevisionId": 1
+      }
+    },
+    {
+      "description": "invalid: lastRevisionId is a number",
+      "valid": false,
+      "data": {
+        "encoding": "json",
+        "name": "projects/your-project-id/schemas/your-schema",
+        "lastRevisionId": 10
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "encoding": "json",
+        "name": "projects/your-project-id/schemas/your-schema",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "encoding": "json",
+        "name": "projects/your-project-id/schemas/your-schema",
+        "definition": "{}"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "json"
+    }
+  ]
+}

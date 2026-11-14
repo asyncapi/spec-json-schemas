@@ -1,0 +1,92 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.2.0/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "schema": {
+          "name": "projects/your-project-id/schemas/your-avro-schema-id"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "schema": {
+          "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: attributes object",
+      "valid": true,
+      "data": {
+        "attributes": {
+          "key": "value"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "schema": {
+          "name": "projects/your-project-id/schemas/your-avro-schema-id"
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: orderingKey is not a string",
+      "valid": false,
+      "data": {
+        "orderingKey": 1
+      }
+    },
+    {
+      "description": "invalid: attributes is not an object",
+      "valid": false,
+      "data": {
+        "attributes": [
+          "key"
+        ]
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: other binding version 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "schema": {
+          "name": "projects/your-project-id/schemas/your-avro-schema-id"
+        },
+        "topic": "messages"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "uuid"
+    }
+  ]
+}
