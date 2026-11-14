@@ -1,0 +1,84 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/security/sasl/saslGssapiSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "gssapi",
+        "description": "SASL GSSAPI"
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "gssapi"
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "gssapi",
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "gssapi",
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType"
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "GSSAPI"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "gssapi",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "gssapi",
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "gssapi",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "gssapi"
+    }
+  ]
+}

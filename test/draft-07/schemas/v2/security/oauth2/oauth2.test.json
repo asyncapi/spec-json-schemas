@@ -1,0 +1,353 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/security/oauth2/oauth2.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "description": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "clientCredentials": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "password": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scopes": [
+          "write:pets",
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "valid: empty flows is accepted (no minProperties)",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "flows": {}
+      }
+    },
+    {
+      "description": "valid: scheme-level scopes (a v3 field) are accepted and not checked against the flow scopes",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scopes": [
+          "write:pets"
+        ]
+      }
+    },
+    {
+      "description": "valid: duplicated scopes are accepted (no uniqueItems)",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scopes": [
+          "read:pets",
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: missing flows",
+      "valid": false,
+      "data": {
+        "type": "oauth2"
+      }
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "OAUTH2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: unknown flow",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "deviceCode": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "scopes": {}
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: flow without scopes",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: flow with relative url",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "/dialog",
+            "scopes": {}
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: x- extension in flows",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          },
+          "x-flow": "custom"
+        }
+      }
+    },
+    {
+      "description": "invalid: flows is an array",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": [
+          {
+            "implicit": {
+              "authorizationUrl": "https://example.com/api/oauth/dialog",
+              "scopes": {
+                "read:pets": "read your pets"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: scopes is a string",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scopes": "read:pets"
+      }
+    },
+    {
+      "description": "invalid: scope is not a string",
+      "valid": false,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scopes": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "oauth2"
+    }
+  ]
+}
