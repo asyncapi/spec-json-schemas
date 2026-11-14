@@ -1,0 +1,171 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/channels/messages/channelMessageTraits.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/application-metric.v3.trait"
+        }
+      ]
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": [
+        {
+          "contentType": "application/json",
+          "name": "application-metric.v3",
+          "title": "Application Metric record v3",
+          "summary": "Use it to register single application metric",
+          "description": "Represent registrable application metric e.g. number of incoming messages",
+          "headers": {
+            "schemaFormat": "application/schema+json;version=draft-07",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "type": "object",
+              "properties": {
+                "correlation-id": {
+                  "description": "Incoming message correlation-id",
+                  "type": "string",
+                  "examples": [
+                    {
+                      "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": [
+        {
+          "contentType": "application/json",
+          "name": "application-metric.v1",
+          "title": "Application Metric record v1",
+          "summary": "Use it to register single application metric",
+          "description": "Represent registrable application metric e.g. number of incoming messages",
+          "deprecated": true,
+          "examples": [
+            {
+              "name": "Application metric example",
+              "summary": "Message with Correlation ID header and application metric",
+              "headers": {
+                "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+              },
+              "payload": {
+                "metric": "messages.incoming:5921"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/application-metric.v3.trait"
+        },
+        {
+          "contentType": "application/json",
+          "name": "application-metric.v1",
+          "title": "Application Metric record v1",
+          "summary": "Use it to register single application metric",
+          "description": "Represent registrable application metric e.g. number of incoming messages",
+          "deprecated": true,
+          "examples": [
+            {
+              "name": "Application metric example",
+              "summary": "Message with Correlation ID header and application metric",
+              "headers": {
+                "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+              },
+              "payload": {
+                "metric": "messages.incoming:5921"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "valid: empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "valid: references only",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/components/a"
+        },
+        {
+          "$ref": "#/components/b"
+        }
+      ]
+    },
+    {
+      "description": "valid: duplicated traits are accepted (no uniqueItems)",
+      "valid": true,
+      "data": [
+        {
+          "name": "UserSignedUp"
+        },
+        {
+          "name": "UserSignedUp"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference with sibling",
+      "valid": false,
+      "data": [
+        {
+          "name": "UserSignedUp",
+          "$ref": "#/components/a"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": [
+        {
+          "$ref": 1
+        }
+      ]
+    },
+    {
+      "description": "invalid: invalid trait",
+      "valid": false,
+      "data": [
+        {
+          "name": 1
+        }
+      ]
+    },
+    {
+      "description": "invalid: trait is a string",
+      "valid": false,
+      "data": [
+        "a"
+      ]
+    },
+    {
+      "description": "invalid: not an array",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp"
+      }
+    }
+  ]
+}
