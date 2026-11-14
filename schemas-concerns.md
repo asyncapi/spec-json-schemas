@@ -52,6 +52,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.0.0 components](#v300-components) | `components/components` | 155 | 3 |
 | [v3.0.0 binding maps](#v300-binding-maps) | `{channel,operation,server,message}Bindings` | 440 | 2 |
 | [v3.0.0 component bindings](#v300-component-bindings) | 6 components × 19 bindings | 1356 | 0 |
+| [v3.0.0 asyncapi](#v300-asyncapi) | `asyncapi` | 32 | 1 |
 
 ---
 
@@ -190,3 +191,12 @@ the folder name used as a key.
 
 Every component routes each key to the right binding and version; no new concerns. Binding-level quirks are in
 [binding-concerns.md](binding-concerns.md).
+
+## v3.0.0 asyncapi
+
+The root accepts only `"asyncapi": "3.0.0"` (`3.1.0`, `2.6.0`, `3.0` and the number `3` are rejected), requires
+`info`, and rejects the v2 root fields `tags` and `externalDocs` that moved into `info`.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| DOC1 | Example | `asyncapi.json` examples #2+, `servers/servers.json` examples | `"mqtt": {"$ref": "#/servers/mqtt"}` is a server that references itself. `#/components/user.signedUp` (see CH2) also appears here. | Open |
