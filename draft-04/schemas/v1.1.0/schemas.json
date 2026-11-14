@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://localhost:8000/draft-04/schemas/v1.1.0/schemas.json",
-  "description": "JSON objects describing schemas the API uses.",
+  "title": "AsyncAPI v1.1.0 - Schemas Map",
+  "description": "JSON objects describing schemas the API uses",
   "type": "object",
   "additionalProperties": {
     "$ref": "http://localhost:8000/draft-04/schemas/v1.1.0/schema.json"

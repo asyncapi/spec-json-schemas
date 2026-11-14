@@ -1,7 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/topics.json",
-  "description": "Relative paths to the individual topics. They must be relative to the 'baseTopic'.",
+  "title": "AsyncAPI v1.1.0 - Topics",
+  "description": "Relative paths to the individual topics. They must be relative to the 'baseTopic'",
   "type": "object",
   "patternProperties": {
     "^x-": {

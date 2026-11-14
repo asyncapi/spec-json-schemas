@@ -1,6 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/operations/operation.json",
+  "title": "AsyncAPI v1.1.0 - Operation",
+  "description": "Describes a publish or a subscribe operation. It can be a single message or a list of alternative messages",
   "oneOf": [
     {
       "$ref": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/messages/message.json"
@@ -10,6 +12,7 @@
       "required": [ "oneOf" ],
       "properties": {
         "oneOf": {
+          "description": "A list of alternative messages for this operation",
           "type": "array",
           "minItems": 2,
           "items": {

@@ -1,13 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://localhost:8000/draft-04/schemas/v1.1.0/schema.json",
-  "description": "A deterministic version of a JSON Schema object.",
+  "title": "AsyncAPI v1.1.0 - Schema",
+  "description": "A deterministic version of a JSON Schema object",
   "type": "object",
   "properties": {
     "$ref": {
+      "description": "A JSON Reference to an internal or external schema",
       "type": "string"
     },
     "format": {
+      "description": "An extending format for the type, e.g. int32, date-time or email",
       "type": "string"
     },
     "title": {
@@ -115,6 +118,7 @@
       }
     },
     "not": {
+      "description": "A deterministic version of a JSON Schema object",
       "$ref": "http://localhost:8000/draft-04/schemas/v1.1.0/schema.json"
     },
     "properties": {
@@ -125,19 +129,25 @@
       }
     },
     "discriminator": {
+      "description": "Adds support for polymorphism. The discriminator is the schema property name that is used to differentiate between other schemas that inherit this schema",
       "type": "string"
     },
     "readOnly": {
+      "description": "Relevant only for schema properties definitions. Declares the property as read only",
       "default": false,
       "type": "boolean"
     },
     "xml": {
+      "description": "Adds additional metadata to describe the XML representation format of this property",
       "$ref": "http://localhost:8000/draft-04/schemas/v1/xml.json"
     },
     "externalDocs": {
+      "description": "Allows referencing an external resource for extended documentation",
       "$ref": "http://localhost:8000/draft-04/schemas/v1/externalDocs.json"
     },
-    "example": {}
+    "example": {
+      "description": "A free-form property to include an example of an instance for this schema"
+    }
   },
   "patternProperties": {
     "^x-": {
