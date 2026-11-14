@@ -40,9 +40,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [redis](#redis) | 0.1.0 | 128 | 1 |
 | [ros2](#ros2) | 0.1.0 | 197 | 5 |
 | [solace](#solace) | 0.1.0, 0.2.0, 0.3.0, 0.4.0 | 453 | 9 |
+| [stomp](#stomp) | 0.1.0 | 128 | 1 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: stomp, websockets, and the
+Not covered yet: websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -249,3 +250,11 @@ The root routing (one branch per version, with fallback to 0.4.0) is correct.
 | SOLACE8 | Text | 0.3.0 | `message.json` `description` | "Contains information about the **server** representation in Solace" should say "message". | Open |
 | SOLACE9 | Validation | 0.4.0 | server `clientName` | The description says "maximum of 160 bytes … encoded as UTF-8", but `maxLength: 160` counts characters, so multi-byte names over 160 bytes pass. | Open |
 | SOLACE10 | Consistency | 0.1.0–0.4.0 | channel, message; 0.1.0 operation and server | No `x-` extensions are allowed (see A4). | Open |
+
+## stomp
+
+All four objects define only `bindingVersion`, and the root routing (0.1.0 for every branch) is correct.
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| STOMP1 | Consistency | 0.1.0 | channel, operation, server, message | No `x-` extensions are allowed anywhere (see A4). This is the same as amqp1, mercure and redis. | Open |
