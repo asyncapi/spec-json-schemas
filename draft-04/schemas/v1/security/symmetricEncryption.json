@@ -1,15 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.0.0/symmetricEncryption.json",
+  "$id": "http://localhost:8000/draft-04/schemas/v1/security/symmetricEncryption.json",
+  "title": "AsyncAPI v1 - Symmetric Encryption Authentication",
+  "description": "Contains information about Symmetric Encryption Authentication",
+  "examples": [
+    {
+      "type": "symmetricEncryption"
+    },
+    {
+      "type": "symmetricEncryption",
+      "description": "Uses a single shared secret key to both scramble/unscramble data and verify who sent it"
+    }
+  ],
   "type": "object",
   "required": [ "type" ],
   "properties": {
+    "description": {
+      "description": "A short description for security scheme",
+      "type": "string"
+    },
     "type": {
+      "description": "The type of the security scheme",
       "type": "string",
       "enum": [ "symmetricEncryption" ]
-    },
-    "description": {
-      "type": "string"
     }
   },
   "patternProperties": {

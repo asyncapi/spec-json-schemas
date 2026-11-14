@@ -1,8 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.0.0/serverVariables.json",
+  "$id": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariables.json",
+  "title": "AsyncAPI v1 - Server Variables Map",
+  "description": "A key-value map where key is variable ID and value is variable representation",
   "type": "object",
   "additionalProperties": {
-    "$ref": "http://asyncapi.com/definitions/1.0.0/serverVariable.json"
+    "$ref": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariable.json"
   }
 }

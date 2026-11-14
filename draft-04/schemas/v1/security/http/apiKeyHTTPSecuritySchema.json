@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "http://localhost:8000/draft-04/schemas/v1/security/http/apiKeyHTTPSecuritySchema.json",
+  "title": "AsyncAPI v1 - HTTP API Key Authentication",
+  "description": "Contains information about HTTP API Key Authentication",
+  "examples": [
+    {
+      "type": "httpApiKey",
+      "description": "HTTP - API Key",
+      "name": "api_key",
+      "in": "header"
+    },
+    {
+      "type": "httpApiKey",
+      "description": "HTTP - API Key",
+      "name": "api_key",
+      "in": "query"
+    },
+    {
+      "type": "httpApiKey",
+      "description": "HTTP - API Key",
+      "name": "api_key",
+      "in": "cookie"
+    }
+  ],
+  "type": "object",
+  "required": [ "type", "name", "in" ],
+  "properties": {
+    "description": {
+      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the security scheme",
+      "type": "string",
+      "enum": [ "httpApiKey" ]
+    },
+    "in": {
+      "description": "The location of the API key",
+      "type": "string",
+      "enum": [ "header", "query", "cookie" ]
+    },
+    "name": {
+      "description": "The name of the header, query or cookie parameter to be used",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-": {}
+  },
+  "additionalProperties": false
+}
