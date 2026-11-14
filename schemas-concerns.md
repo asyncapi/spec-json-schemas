@@ -96,6 +96,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.4.0 channels](#v240-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 72 | 0 |
 | [v2.4.0 messages](#v240-messages) | `channels/messages/message`, `messageTrait`, `messages` | 122 | 0 |
 | [v2.4.0 operations](#v240-operations) | `channels/operations/operation`, `operationTrait` | 79 | 1 |
+| [v2.4.0 components](#v240-components) | `components/components` | 91 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -473,3 +474,7 @@ Same concerns as [v2.0.0 channels](#v200-channels).
 | # | Category | Where | Concern | Status |
 |---|---|---|---|---|
 | V2O3 | Consistency | `channels/operations/operation.json` vs `operationTrait.json` `security` (2.4.0+) | The operation takes inline Security Scheme objects (`v2/security/securitySchema.json`, see V2S1), while the trait takes Security Requirement maps (`v2/securityRequirements.json`). Each rejects the other's form, so a trait's `security` can't be merged into an operation as is. | Open |
+
+## v2.4.0 components
+
+`serverVariables` was added in 2.4.0. Same concerns as V2K1–V2K3; no `asyncapi.test.json` (see V2K3).
