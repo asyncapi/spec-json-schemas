@@ -33,9 +33,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [http](#http) | 0.1.0, 0.2.0, 0.3.0 | 390 | 5 |
 | [ibmmq](#ibmmq) | 0.1.0 | 194 | 7 |
 | [jms](#jms) | 0.0.1 | 157 | 5 |
+| [mercure](#mercure) | 0.1.0 | 128 | 1 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: mercure, mqtt, mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
+Not covered yet: mqtt, mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -164,3 +165,11 @@ The root fallback routes both the matching and the non-matching branch to 0.1.0,
 | JMS3 | Validation | 0.0.1 | message `headers` | The description says the schema "MUST be of type 'object'", but that isn't enforced, so `{"type": "string"}` passes. This is the same as HTTP3. | Open |
 | JMS4 | Consistency | 0.0.1 | operation | No `x-` extensions are allowed; channel, server and message allow them (see A4). | Open |
 | JMS5 | Example | 0.0.1 | `message.json` example, `JMSTimestamp` description | The sentence "The time the message was sent." appears twice. | Open |
+
+## mercure
+
+All four objects define only `bindingVersion`, and the root routing (0.1.0 for every branch) is correct.
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| MERCURE1 | Consistency | 0.1.0 | channel, operation, server, message | No `x-` extensions are allowed anywhere (see A4). This is the same as amqp1. | Open |
