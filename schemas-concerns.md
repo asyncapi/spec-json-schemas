@@ -46,6 +46,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3 channels](#v3-channels) | `channels/channelAddressParameter(s)`, `channels/messages/*` | 86 | 7 |
 | [v3 operation reply](#v3-operation-reply) | `operations/operationReply*` | 49 | 3 |
 | [v3.0.0 servers](#v300-servers) | `servers/server`, `servers/servers` | 58 | 4 |
+| [v3.0.0 channel messages](#v300-channel-messages) | `channels/messages/channelMessage`, `channelMessageTrait(s)`, `channelMessages` | 143 | 6 |
 
 ---
 
@@ -127,3 +128,14 @@ Reference requires `$ref` and allows nothing else; the other branch has `additio
 | SRV2 | Validation | `servers/server.json` `host`, `pathname` | `host` accepts a scheme (`amqp://…`, the spec says host name and port only), and `pathname` doesn't require a leading `/`. | Open |
 | SRV3 | Text | `servers/server.json` `protocolVersion` | It's described as "An optional string describing the server. CommonMark syntax MAY be used…", which is the `description` text; it should be "The version of the protocol used for connection". | Open |
 | SRV4 | Example | `servers/server.json` example | `"$ref": "#/components/security/x.509"` (see SEC8) and `"$ref": "#/tags/secured"` point to paths that don't exist; "**Reade** step by step guide" is a typo. | Open |
+
+## v3.0.0 channel messages
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| MSG1 | Validation | `channels/messages/channelMessageTrait.json` | `patternProperties` and `additionalProperties` are nested **inside** `properties`, so they define two properties with those names instead of restricting the object. As a result any unknown key passes (`messageId`, `$ref`, `x-`), `payload` and `traits` pass although the spec forbids them in a trait, and a property literally named `additionalProperties` is always rejected. `channelMessage.json` has them at the right level. | Open |
+| MSG2 | Validation | `anySchema.json` (`payload`, `headers`, `components.schemas`) | `"type": "object"` rejects boolean schemas, so `"payload": true` fails although the Schema Object description allows `true`/`false`. | Open |
+| MSG3 | Validation | `channels/messages/channelMessage.json` `headers` | The spec says headers MUST be a Schema of type `object`, but `{"type": "string"}` passes. | Open |
+| MSG4 | Validation | `multiFormatSchema.json` | An unknown `schemaFormat` matches no branch, so its `schema` isn't validated (`{"schemaFormat": "application/x-unknown", "schema": 1}` passes), and `schema` isn't required. | Open |
+| MSG5 | Validation | `channels/messages/channelMessage.json` `contentType` | Any string passes, e.g. `json`; there's no media-type pattern. | Open |
+| MSG6 | Validation | `channels/messages/channelMessageTraits.json`, `operations/operationTraits.json` | No `uniqueItems`, so the same trait can be applied twice. | Open |
