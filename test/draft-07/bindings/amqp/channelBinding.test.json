@@ -1,0 +1,197 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/channelBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "exchange": {
+          "type": "direct",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "is": "queue",
+        "queue": {
+          "autoDelete": false,
+          "durable": true,
+          "exclusive": true,
+          "name": "my-queue-name",
+          "vhost": "/"
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "exchange": {
+          "type": "fanout",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange",
+          "vhost": "/"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "exchange": {
+          "type": "fanout",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange",
+          "vhost": "/"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: vhost with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false,
+          "vhost": "/staging"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid vhost with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false,
+          "vhost": 1
+        }
+      }
+    },
+    {
+      "description": "valid: invalid vhost is not validated with 0.1.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false,
+          "vhost": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid vhost without bindingVersion uses 0.3.0",
+      "valid": false,
+      "data": {
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false,
+          "vhost": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid vhost with latest uses 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "latest",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false,
+          "vhost": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: exchange with is queue with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "is": "queue",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: exchange with is queue with 0.2.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "is": "queue",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: exchange with is queue with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "is": "queue",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.3.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: empty object uses 0.3.0 which requires exchange or queue",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "routingKey"
+    }
+  ]
+}
