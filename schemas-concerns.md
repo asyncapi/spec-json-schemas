@@ -51,6 +51,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.0.0 operations](#v300-operations) | `operations/operation`, `operationTrait(s)`, `operations` | 101 | 4 |
 | [v3.0.0 components](#v300-components) | `components/components` | 155 | 3 |
 | [v3.0.0 binding maps](#v300-binding-maps) | `{channel,operation,server,message}Bindings` | 440 | 2 |
+| [v3.0.0 component bindings](#v300-component-bindings) | 6 components × 19 bindings | 1356 | 0 |
 
 ---
 
@@ -177,3 +178,15 @@ without `ros2`. The tests reuse `test/draft-07/bindings/*Bindings.test.json` cas
 |---|---|---|---|---|
 | BMAP1 | Consistency | all four maps | `ros2` is missing, so `bindings.ros2` is rejected on v3.0.0 objects but accepted in v3.0.0 `components.*Bindings` (see COMP2). | Open |
 | BMAP2 | Text | `channelBindings.json`, `serverBindings.json`, `messageBindings.json` `description`; `operationBindings.json`, `serverBindings.json` `title` | Same as MAP1/MAP2 in binding-concerns.md: "for **an** channel/server/message", and lowercase "**server** Bindings", "**operation** Bindings". | Open |
+
+## v3.0.0 component bindings
+
+`{component}.{bindingKey}.test.json` next to each component with `bindings` (server, channel, operation,
+operationTrait, channelMessage, channelMessageTrait), one file per key of the v3.0.0 binding map (19 keys, no `ros2`).
+Each file goes through every binding version from latest to oldest: the version's own examples pass, and one rule
+violation taken from that version's suite in `test/draft-07/bindings` fails. Shared cases cover a reference, a
+reference with extra property, an unknown or non-string `bindingVersion`, a non-object binding and, where it differs,
+the folder name used as a key.
+
+Every component routes each key to the right binding and version; no new concerns. Binding-level quirks are in
+[binding-concerns.md](binding-concerns.md).
