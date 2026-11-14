@@ -50,6 +50,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.0.0 channels](#v300-channels) | `channels/channel`, `channels/channels` | 54 | 2 |
 | [v3.0.0 operations](#v300-operations) | `operations/operation`, `operationTrait(s)`, `operations` | 101 | 4 |
 | [v3.0.0 components](#v300-components) | `components/components` | 155 | 3 |
+| [v3.0.0 binding maps](#v300-binding-maps) | `{channel,operation,server,message}Bindings` | 440 | 2 |
 
 ---
 
@@ -166,3 +167,13 @@ Reference requires `$ref` and allows nothing else; the other branch has `additio
 | COMP1 | Validation | `components/components.json`, every section | Keys are checked with `patternProperties` `^[\w\d\.\-_]+$` but without `additionalProperties: false`, so an entry under a key outside the pattern isn't validated at all: `{"messages": {"a b": {"payload": true}}}` passes. The spec says keys MUST match the pattern. | Open |
 | COMP2 | Consistency | `components/components.json` `*Bindings` | Components use `draft-07/bindings/*Bindings.json`, which include `ros2`, while `server`, `channel`, `operation` and `message` in v3.0.0 use `v3.0.0/*Bindings.json` without `ros2`. A `ros2` binding can be stored in components but not used on an object. | Open |
 | COMP3 | Text | `components/components.json` `operations` | It's the only section without a `description`. | Open |
+
+## v3.0.0 binding maps
+
+`v3.0.0/{channel,operation,server,message}Bindings.json` are copies of `draft-07/bindings/*Bindings.json`
+without `ros2`. The tests reuse `test/draft-07/bindings/*Bindings.test.json` cases, with the `ros2` cases flipped to invalid.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| BMAP1 | Consistency | all four maps | `ros2` is missing, so `bindings.ros2` is rejected on v3.0.0 objects but accepted in v3.0.0 `components.*Bindings` (see COMP2). | Open |
+| BMAP2 | Text | `channelBindings.json`, `serverBindings.json`, `messageBindings.json` `description`; `operationBindings.json`, `serverBindings.json` `title` | Same as MAP1/MAP2 in binding-concerns.md: "for **an** channel/server/message", and lowercase "**server** Bindings", "**operation** Bindings". | Open |
