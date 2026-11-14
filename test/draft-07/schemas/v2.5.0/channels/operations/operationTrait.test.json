@@ -1,0 +1,364 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/operations/operationTrait.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "operationId": "sendMessage",
+        "summary": "Secured Send message",
+        "security": [
+          {
+            "messages": [
+              "write:messages",
+              "read:messages"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: example #2 (relative url messages/validation-rules fails format: uri)",
+      "valid": false,
+      "data": {
+        "operationId": "sendMessage",
+        "summary": "Send message",
+        "description": "Send message to remote server",
+        "tags": [
+          {
+            "name": "messages",
+            "description": "operations with messages",
+            "externalDocs": {
+              "description": "Messages validation rules",
+              "url": "messages/validation-rules"
+            }
+          }
+        ],
+        "externalDocs": {
+          "description": "Messages sending rules",
+          "url": "messages/sending-rules"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "invalid: message is not allowed",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "message": {
+          "payload": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: traits is not allowed",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "traits": []
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/operationTraits/a"
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: operationId is not a string",
+      "valid": false,
+      "data": {
+        "operationId": 1
+      }
+    },
+    {
+      "description": "valid: tags",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "tags": [
+          {
+            "name": "a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "tags": [
+          {
+            "name": "a"
+          },
+          {
+            "name": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "tags": [
+          {
+            "description": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag reference (added in v3)",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "externalDocs": {
+          "description": "d"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs reference (added in v3)",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/a"
+        }
+      }
+    },
+    {
+      "description": "valid: security requirement map (unlike operation.security)",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "security": [
+          {
+            "x509": []
+          },
+          {
+            "petstore_auth": [
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security with inline scheme (unlike operation.security)",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "security": [
+          {
+            "type": "X509"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security with duplicated scopes",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "security": [
+          {
+            "petstore_auth": [
+              "a",
+              "a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security is an object",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "security": {
+          "x509": []
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: binding reference per protocol",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: known protocol with unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: unknown protocol is accepted unvalidated (map has additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": {
+          "unknown": 1
+        }
+      }
+    },
+    {
+      "description": "valid: ros2 is accepted unvalidated (not in the v2 map)",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": []
+      }
+    },
+    {
+      "description": "valid: googlepubsub is accepted unvalidated in 2.5.0 (added to the map in 2.6.0)",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": {
+          "googlepubsub": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: x- extension in bindings",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "bindings": {
+          "x-custom": 1
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "operationId": "sendUser",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "operationId": "sendUser",
+        "action": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "operationId": "sendUser"
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}
