@@ -63,6 +63,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2 shared schemas](#v2-shared-schemas) | `v2/**` (tag, externalDocs, info, correlationId, schema, schemas, security, securityRequirements) | 434 | 2 |
 | [v2.0.0 servers](#v200-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 3 |
 | [v2.0.0 channels](#v200-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 69 | 3 |
+| [v2.0.0 messages](#v200-messages) | `channels/messages/message`, `messageTrait`, `messages`, `security/securitySchema` | 136 | 5 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -279,3 +280,13 @@ unclosed `{expressions}` are rejected.
 | V2C1 | Validation | `channels/channelItem.json` `$ref` | `$ref` is a plain property, so `{"$ref": "…", "publish": {…}}` passes and the siblings are validated as if the channel were inline. | Open |
 | V2C2 | Validation | `channels/parameter.json` `$ref` (2.0.0–2.4.0) | The property is defined as `reference.json`, so it expects an object: `{"$ref": {"$ref": "#/…"}}` passes and `{"$ref": "#/…", "description": "x"}` is rejected. Plain references only work through `parameters.json`, which routes them with `if`/`then`. Removed in 2.5.0. | Open |
 | V2C3 | Validation | `channels/parameter.json` | No `"type": "object"`, so a string or number passes as a parameter (see CHAN1). The `location` pattern is unanchored (see CHAN2). | Open |
+
+## v2.0.0 messages
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2M1 | Validation | `channels/messages/message.json`, `messageTrait.json` `headers` (all v2.x) | `allOf` [schema, `{"properties": {"type": {"const": "object"}}}`] only checks `type` when it's present, so a headers schema without `type` passes. Boolean schemas are rejected (see V2-1). | Open |
+| V2M2 | Validation | `channels/messages/message.json` `payload` (all v2.x) | An unknown `schemaFormat`, or an AsyncAPI format for a later version, matches no branch, so the payload isn't validated (see MSG4/MSG7). | Open |
+| V2M3 | Consistency | `channels/messages/message.json` `examples` | In 2.0.0 example items allow only `headers` and `payload`, with neither required, so `{}` passes and `name` is rejected; 2.1.0+ adds `name`, `summary` and requires one of `payload`/`headers`. | Open |
+| V2M4 | Consistency | `channels/messages/messageTrait.json` `examples` | Items are any object in 2.0.0 and 2.2.0–2.5.0, but fully defined (like the message examples) in 2.1.0 and 2.6.0. | Open |
+| V2M5 | Consistency | `v2.0.0/security/securitySchema.json` | This 2.0.0-only copy (without SASL) isn't referenced: `server.json` and `components.json` use `v2/security/securitySchema.json`, so SASL types (`plain`, `scramSha256`, `gssapi`) are accepted in 2.0.0 documents. | Open |
