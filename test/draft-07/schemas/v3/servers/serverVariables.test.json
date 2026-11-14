@@ -1,0 +1,112 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/servers/serverVariables.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "port": {
+          "enum": [
+            "8883",
+            "8884"
+          ],
+          "default": "8883",
+          "description": "Ports application listening for",
+          "examples": [
+            "8883",
+            "8884"
+          ]
+        },
+        "basePath": {
+          "$ref": "#/variables/base-path"
+        }
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: only references",
+      "valid": true,
+      "data": {
+        "port": {
+          "$ref": "#/components/serverVariables/port"
+        }
+      }
+    },
+    {
+      "description": "valid: empty variable",
+      "valid": true,
+      "data": {
+        "port": {}
+      }
+    },
+    {
+      "description": "valid: any variable name is accepted (no key pattern)",
+      "valid": true,
+      "data": {
+        "{port}": {
+          "default": "8883"
+        },
+        "base path": {
+          "default": "v1"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with sibling default",
+      "valid": false,
+      "data": {
+        "port": {
+          "$ref": "#/components/serverVariables/port",
+          "default": "8883"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "port": {
+          "$ref": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: variable with unknown property",
+      "valid": false,
+      "data": {
+        "port": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "invalid: variable with numeric default",
+      "valid": false,
+      "data": {
+        "port": {
+          "default": 8883
+        }
+      }
+    },
+    {
+      "description": "invalid: variable is a string",
+      "valid": false,
+      "data": {
+        "port": "8883"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "default": "8883"
+        }
+      ]
+    }
+  ]
+}
