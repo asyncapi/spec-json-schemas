@@ -65,6 +65,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.0.0 channels](#v200-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 69 | 3 |
 | [v2.0.0 messages](#v200-messages) | `channels/messages/message`, `messageTrait`, `messages`, `security/securitySchema` | 136 | 5 |
 | [v2.0.0 operations](#v200-operations) | `channels/operations/operation`, `operationTrait` | 69 | 2 |
+| [v2.0.0 components](#v200-components) | `components/components` | 79 | 2 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -298,3 +299,10 @@ unclosed `{expressions}` are rejected.
 |---|---|---|---|---|
 | V2O1 | Example | `channels/operations/operation.json` examples #2, #4; `operationTrait.json` example #1 (all v2.x) | `externalDocs.url` values are relative (`messages/sending-rules`, `messages/validation-rules`), so these examples fail `format: uri`. The tests record them as invalid. | Open |
 | V2O2 | Validation | `channels/operations/operation.json` `message` | Same as V2M2. | Open |
+
+## v2.0.0 components
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2K1 | Validation | `components/components.json` `securitySchemes`, `correlationIds` | Keys are checked with `patternProperties` only, so entries under keys outside `^[\w\d\.\-_]+$` aren't validated (see COMP1). The other sections use `additionalProperties`, so every key is validated but none is restricted. | Open |
+| V2K2 | Validation | `components/components.json` `operationTraits`, `messageTraits` | No Reference branch, so `{"$ref": "#/components/messageTraits/b"}` is rejected for a message trait (`$ref` is an unknown property) and validated as an operation trait. | Open |
