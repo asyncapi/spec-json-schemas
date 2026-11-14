@@ -11,9 +11,18 @@
     }
   },
   "contents": {
+    "draft-04": {
+      "title": "AsyncAPI Draft-04",
+      "description": "AsyncAPI Specification JSON Schemas written using JSON Schema Draft-04",
+      "path": "./schemas/draft-04",
+      "baseUri": "http://localhost:8000/draft-04"
+    },
+    "draft-04/schemas": {
+      "include": "./schemas/draft-04/schemas"
+    },
     "draft-07": {
       "title": "AsyncAPI Draft-07",
-      "description": "AsyncAPI Specification JSON Schemas written using SON Schema Draft-07",
+      "description": "AsyncAPI Specification JSON Schemas written using JSON Schema Draft-07",
       "path": "./schemas/draft-07",
       "baseUri": "http://localhost:8000/draft-07"
     },

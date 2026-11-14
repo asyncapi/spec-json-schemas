@@ -1,6 +1,7 @@
 FROM --platform=linux/x86_64 ghcr.io/sourcemeta/one:7.1 AS build
 
 COPY one.json .
+COPY draft-04/schemas      schemas/draft-04/schemas
 COPY draft-07/bindings     schemas/draft-07/bindings
 COPY draft-07/integrations schemas/draft-07/integrations
 COPY draft-07/schemas      schemas/draft-07/schemas
