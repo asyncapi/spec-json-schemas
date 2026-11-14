@@ -1,0 +1,374 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/info/info.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "license": {
+          "name": "The MIT License",
+          "url": "https://mit-license.org"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates",
+        "externalDocs": {
+          "$ref": "https://api.weather-forecast.am/docs"
+        },
+        "termsOfService": "https://api.weather-forecast.am/terms"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates",
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs",
+          "description": "Required information to integrate with API"
+        }
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates",
+        "contact": {
+          "name": "Weather Forecast",
+          "email": "feedback@weather-forecast.am",
+          "url": "https://weather-forecast.am"
+        },
+        "tags": [
+          {
+            "name": "city",
+            "description": "City forecast for e.g. Yerevan"
+          },
+          {
+            "$ref": "https://api.weather-forecast.am/docs#tags-district"
+          }
+        ],
+        "x-x": "@weather-forecast",
+        "x-linkedin": "https://www.linkedin.com/company/weather-forecast/"
+      }
+    },
+    {
+      "description": "valid: minimal (title and version)",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather"
+      }
+    },
+    {
+      "description": "valid: any version string is accepted (no semver pattern)",
+      "valid": true,
+      "data": {
+        "version": "latest",
+        "title": "Weather"
+      }
+    },
+    {
+      "description": "valid: empty title is accepted (no minLength)",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": ""
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "x-owner": "team-weather"
+      }
+    },
+    {
+      "description": "valid: with x-x and x-linkedin extensions",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "x-x": "AsyncAPISpec",
+        "x-linkedin": "https://www.linkedin.com/company/asyncapi/"
+      }
+    },
+    {
+      "description": "valid: tag reference",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "tags": [
+          {
+            "$ref": "#/components/tags/city"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: empty tags",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "tags": []
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: same tag name twice with different description (names are not unique)",
+      "valid": true,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "tags": [
+          {
+            "name": "city"
+          },
+          {
+            "name": "city",
+            "description": "City"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: missing title",
+      "valid": false,
+      "data": {
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "invalid: missing version",
+      "valid": false,
+      "data": {
+        "title": "Weather"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: version is a number",
+      "valid": false,
+      "data": {
+        "version": 1.0,
+        "title": "Weather"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "description": {
+          "text": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: termsOfService is relative",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "termsOfService": "/terms"
+      }
+    },
+    {
+      "description": "invalid: termsOfService is not a string",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "termsOfService": true
+      }
+    },
+    {
+      "description": "invalid: contact with invalid email",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "contact": {
+          "email": "not-an-email"
+        }
+      }
+    },
+    {
+      "description": "invalid: contact is a string",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "contact": "feedback@weather-forecast.am"
+      }
+    },
+    {
+      "description": "invalid: license without name",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "license": {
+          "url": "https://mit-license.org"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs with $ref and url",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs",
+          "url": "https://api.weather-forecast.am/docs"
+        }
+      }
+    },
+    {
+      "description": "invalid: duplicated tag",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "tags": [
+          {
+            "name": "city"
+          },
+          {
+            "name": "city"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "tags": [
+          {
+            "description": "City"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag reference with sibling",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "tags": [
+          {
+            "$ref": "#/components/tags/city",
+            "name": "city"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tags is an object",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "tags": {
+          "name": "city"
+        }
+      }
+    },
+    {
+      "description": "invalid: x-linkedin is not a linkedin url",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "x-linkedin": "https://x.com/AsyncAPISpec"
+      }
+    },
+    {
+      "description": "invalid: x-x is not a string",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "x-x": 1
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "version": "1.0.0",
+        "title": "Weather",
+        "servers": {}
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "Weather"
+    }
+  ]
+}

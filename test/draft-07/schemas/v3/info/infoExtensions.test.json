@@ -1,0 +1,75 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/info/infoExtensions.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "x-linkedin": "https://www.linkedin.com/in/pavel-bo/"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "x-x": "https://x.com/PBodiachevskii"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "x-linkedin": "https://www.linkedin.com/in/pavel-bo/",
+        "x-x": "https://x.com/PBodiachevskii"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: x username",
+      "valid": true,
+      "data": {
+        "x-x": "AsyncAPISpec"
+      }
+    },
+    {
+      "description": "valid: other properties are not checked here (info.json rejects them)",
+      "valid": true,
+      "data": {
+        "x-owner": "team-weather",
+        "foo": "bar"
+      }
+    },
+    {
+      "description": "invalid: x-linkedin is not a linkedin url",
+      "valid": false,
+      "data": {
+        "x-linkedin": "https://x.com/PBodiachevskii"
+      }
+    },
+    {
+      "description": "invalid: x-linkedin is not a string",
+      "valid": false,
+      "data": {
+        "x-linkedin": {
+          "url": "https://www.linkedin.com/in/pavel-bo/"
+        }
+      }
+    },
+    {
+      "description": "invalid: x-x is not a string",
+      "valid": false,
+      "data": {
+        "x-x": 1
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [ "https://www.linkedin.com/in/pavel-bo/" ]
+    }
+  ]
+}

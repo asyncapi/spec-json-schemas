@@ -1,0 +1,47 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/info/extensions/x/0.1.0/schema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": "sambhavgupta75"
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": "AsyncAPISpec"
+    },
+    {
+      "description": "valid: username with @ is accepted (no pattern)",
+      "valid": true,
+      "data": "@weather-forecast"
+    },
+    {
+      "description": "valid: profile url is accepted (no pattern)",
+      "valid": true,
+      "data": "https://x.com/AsyncAPISpec"
+    },
+    {
+      "description": "valid: empty string is accepted (no minLength)",
+      "valid": true,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "invalid: object",
+      "valid": false,
+      "data": {
+        "username": "AsyncAPISpec"
+      }
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}
