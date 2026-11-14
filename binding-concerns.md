@@ -41,10 +41,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [ros2](#ros2) | 0.1.0 | 197 | 5 |
 | [solace](#solace) | 0.1.0, 0.2.0, 0.3.0, 0.4.0 | 453 | 9 |
 | [stomp](#stomp) | 0.1.0 | 128 | 1 |
+| [websockets](#websockets) | 0.1.0 | 158 | 4 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: websockets, and the
-top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
+Not covered yet: the top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
 
@@ -258,3 +258,14 @@ All four objects define only `bindingVersion`, and the root routing (0.1.0 for e
 | # | Category | Version | Where | Concern | Status |
 |---|---|---|---|---|---|
 | STOMP1 | Consistency | 0.1.0 | channel, operation, server, message | No `x-` extensions are allowed anywhere (see A4). This is the same as amqp1, mercure and redis. | Open |
+
+## websockets
+
+The root routing (0.1.0 for every branch) is correct.
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| WS1 | Example | 0.1.0 | `channel.json` examples #3 and #5, `channelBinding*.json` examples | `headers`/`query` are written as a name map (`{"session-id": {…}}`) rather than an object schema (`{"type": "object", "properties": {"session-id": {…}}}`). They pass only because Schema ignores unknown keywords, so the header definitions aren't actually applied. | Open |
+| WS2 | Validation | 0.1.0 | channel `headers`, `query` | The descriptions say the schema "MUST be of type 'object' and have a 'properties' key", but that isn't enforced, so `{"type": "string"}` passes. This is the same as HTTP3 and JMS3. | Open |
+| WS3 | Example | root | all four `*BindingOrReference.json` | The example `$ref` uses `#/bindings/amqp/…` (see A6). | Open |
+| WS4 | Consistency | 0.1.0 | operation, server, message | No `x-` extensions are allowed; channel allows them (see A4). | Open |
