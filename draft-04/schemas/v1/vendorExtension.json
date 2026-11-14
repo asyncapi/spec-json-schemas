@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://localhost:8000/draft-07/schemas/v1/vendorExtension.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json",
   "description": "Any property starting with x- is valid.",
   "additionalItems": true,
   "additionalProperties": true
