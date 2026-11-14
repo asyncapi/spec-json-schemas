@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariable.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariable.json",
   "title": "AsyncAPI v3 - Server Variable",
   "description": "Representing a Server Variable for server URL template substitution",
   "type": "object",

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "http://localhost:8000/draft-04/schemas/v1/info/contact.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1/info/contact.json",
   "title": "AsyncAPI v1 - Info Contact",
   "description": "Contact information for the exposed API",
   "examples": [

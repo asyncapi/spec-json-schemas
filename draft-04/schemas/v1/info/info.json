@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "http://localhost:8000/draft-04/schemas/v1/info/info.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1/info/info.json",
   "title": "AsyncAPI v1 - Info",
   "description": "Provides metadata about the API. The metadata can be used by the clients if needed",
   "examples": [
