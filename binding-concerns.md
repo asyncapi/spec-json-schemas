@@ -38,9 +38,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [mqtt5](#mqtt5) | 0.1.0, 0.2.0 | 204 | 5 |
 | [nats](#nats) | 0.1.0 | 128 | 2 |
 | [redis](#redis) | 0.1.0 | 128 | 1 |
+| [ros2](#ros2) | 0.1.0 | 197 | 5 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: ros2, solace, stomp, websockets, and the
+Not covered yet: solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -218,3 +219,15 @@ All four objects define only `bindingVersion`, and the root routing (0.1.0 for e
 | # | Category | Version | Where | Concern | Status |
 |---|---|---|---|---|---|
 | REDIS1 | Consistency | 0.1.0 | channel, operation, server, message | No `x-` extensions are allowed anywhere (see A4). This is the same as amqp1 and mercure. | Open |
+
+## ros2
+
+The root routing (0.1.0 for every branch) is correct.
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| ROS2-1 | Validation | 0.1.0 | `server.json` | It has no `additionalProperties: false`, so unknown keys like `namespace` pass. Every other server and every other ros2 object closes its properties. | Open |
+| ROS2-2 | Validation | 0.1.0 | operation `qosPolicies` | No `additionalProperties`, so unknown keys (e.g. `depth`) pass. | Open |
+| ROS2-3 | Validation | 0.1.0 | `qosPolicies.deadline`, `leaseDuration`, `lifespan` | Plain integers documented as "-1 means infinite", with no `minimum`, so `-5` passes. | Open |
+| ROS2-4 | Text | 0.1.0 | `qosPolicies.history` description | It says "defines the maximum number of samples…", but the value is an enum (`keep_last`, `keep_all`, `unknown`), and no depth field exists. | Open |
+| ROS2-5 | Consistency | 0.1.0 | channel, message | No `x-` extensions are allowed; operation and server allow them (see A4). | Open |
