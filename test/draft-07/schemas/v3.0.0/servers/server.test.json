@@ -468,6 +468,8 @@
         "protocol": "amqp",
         "bindings": {
           "ros2": {
+            "domainId": 0,
+            "rmwImplementation": "rmw_fastrtps_cpp",
             "bindingVersion": "0.1.0"
           }
         }

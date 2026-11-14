@@ -290,6 +290,17 @@
         "title": "Send user",
         "bindings": {
           "ros2": {
+            "node": "/turtlesim",
+            "qosPolicies": {
+              "deadline": -1,
+              "durability": "volatile",
+              "history": "unknown",
+              "leaseDuration": -1,
+              "lifespan": -1,
+              "liveliness": "automatic",
+              "reliability": "reliable"
+            },
+            "role": "subscriber",
             "bindingVersion": "0.1.0"
           }
         }
