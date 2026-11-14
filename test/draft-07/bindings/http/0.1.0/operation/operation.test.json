@@ -1,0 +1,181 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.1.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "response",
+        "bindingVersion": "0.1.0",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "request",
+        "bindingVersion": "0.1.0",
+        "method": "GET",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "type": "request",
+        "bindingVersion": "0.1.0",
+        "method": "GET",
+        "query": {
+          "$ref": "#/response"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "request",
+        "method": "GET",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: with query",
+      "valid": true,
+      "data": {
+        "type": "request",
+        "method": "GET",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "type": "number",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid method",
+      "valid": false,
+      "data": {
+        "type": "request",
+        "method": "get"
+      }
+    },
+    {
+      "description": "invalid: invalid query",
+      "valid": false,
+      "data": {
+        "type": "request",
+        "method": "GET",
+        "query": "companyId"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "type": "request",
+        "method": "GET",
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "request",
+        "method": "GET",
+        "statusCode": 200
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "GET"
+    },
+    {
+      "description": "valid: request with method",
+      "valid": true,
+      "data": {
+        "type": "request",
+        "method": "POST"
+      }
+    },
+    {
+      "description": "valid: response without method",
+      "valid": true,
+      "data": {
+        "type": "response"
+      }
+    },
+    {
+      "description": "valid: request without method (oneOf response branch checks 'is', not 'type')",
+      "valid": true,
+      "data": {
+        "type": "request"
+      }
+    },
+    {
+      "description": "invalid: response with method",
+      "valid": false,
+      "data": {
+        "type": "response",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: empty object (type is required)",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: is is not an allowed property",
+      "valid": false,
+      "data": {
+        "type": "response",
+        "is": "response"
+      }
+    }
+  ]
+}

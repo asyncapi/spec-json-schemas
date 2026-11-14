@@ -1,0 +1,40 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.1.0/server.json#/properties/bindingVersion",
+  "tests": [
+    {
+      "description": "valid: 0.1.0",
+      "valid": true,
+      "data": "0.1.0"
+    },
+    {
+      "description": "valid: latest",
+      "valid": true,
+      "data": "latest"
+    },
+    {
+      "description": "invalid: other binding version 0.2.0",
+      "valid": false,
+      "data": "0.2.0"
+    },
+    {
+      "description": "invalid: other binding version 0.3.0",
+      "valid": false,
+      "data": "0.3.0"
+    },
+    {
+      "description": "invalid: unknown binding version 0.4.0",
+      "valid": false,
+      "data": "0.4.0"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 0.1
+    }
+  ]
+}
