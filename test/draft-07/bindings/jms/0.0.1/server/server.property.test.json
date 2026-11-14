@@ -1,0 +1,93 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json#/definitions/property",
+  "tests": [
+    {
+      "description": "valid: boolean value",
+      "valid": true,
+      "data": {
+        "name": "disableTimeStampsByDefault",
+        "value": false
+      }
+    },
+    {
+      "description": "valid: string value",
+      "valid": true,
+      "data": {
+        "name": "brokerURL",
+        "value": "tcp://localhost:61616"
+      }
+    },
+    {
+      "description": "valid: number value",
+      "valid": true,
+      "data": {
+        "name": "sendTimeout",
+        "value": 1000
+      }
+    },
+    {
+      "description": "valid: null value",
+      "valid": true,
+      "data": {
+        "name": "userName",
+        "value": null
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "name": "a",
+        "value": 1,
+        "description": "x"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "value": 1
+      }
+    },
+    {
+      "description": "invalid: missing value",
+      "valid": false,
+      "data": {
+        "name": "a"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1,
+        "value": 1
+      }
+    },
+    {
+      "description": "invalid: object value",
+      "valid": false,
+      "data": {
+        "name": "a",
+        "value": {
+          "x": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: array value",
+      "valid": false,
+      "data": {
+        "name": "a",
+        "value": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "disableTimeStampsByDefault"
+    }
+  ]
+}
