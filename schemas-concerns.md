@@ -12,7 +12,6 @@ and the entry moves to **Fixed**.
 - **Consistency:** the same thing is modeled differently across versions or objects.
 - **Text:** a typo or stale wording in `title`/`description`. These have no effect on validation.
 - **Example:** a wrong value in `examples`. These have no effect on validation.
-- **Regression:** the schema behaves differently from the released schema on `master` (`definitions/<version>/…`). It was introduced while splitting the schemas on this branch.
 
 **Status**
 - **Open:** waiting for review.
