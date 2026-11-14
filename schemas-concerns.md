@@ -42,6 +42,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3 tag and externalDocs](#v3-tag-and-externaldocs) | `tag`, `tags`, `externalDocs`, `externalDocsOrReference` | 63 | 5 |
 | [v3 info](#v3-info) | `info`, `contact`, `license`, `infoExtensions`, `extensions/x/0.1.0`, `extensions/linkedin/0.1.0` | 92 | 6 |
 | [v3 server variables](#v3-server-variables) | `servers/serverVariable`, `servers/serverVariables` | 30 | 4 |
+| [v3 security](#v3-security) | `security/**`, `securityRequirements` | 331 | 8 |
 
 ---
 
@@ -72,5 +73,22 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 |---|---|---|---|---|
 | SVAR1 | Validation | `serverVariable.json` | `default` isn't checked against `enum`: `{"enum": ["8883", "8884"], "default": "1883"}` passes. JSON Schema can't express this; it needs a custom rule in the parser. | Open |
 | SVAR2 | Validation | `serverVariable.json` `enum` | No `minItems`, so `"enum": []` passes, which leaves no valid substitution. | Open |
-| SVAR3 | Validation | `serverVariables.json` | Map keys aren't validated (no `propertyNames`/`patternProperties`), so names like `{port}` or `base path` pass. Other v3 maps restrict keys to `^[\w\d\.\-_]+$`. | Open |
+| SVAR3 | Validation | `serverVariables.json` | Map keys aren't validated (no `propertyNames`/`patternProperties`), so names like `{port}` or `base path` pass. The `components` maps restrict keys to `^[\w\d\.\-_]+$`. | Open |
 | SVAR4 | Example | `serverVariables.json` example | `"$ref": "#/variables/base-path"` points to a path that doesn't exist in an AsyncAPI document; it should be `#/components/serverVariables/…`. | Open |
+
+## v3 security
+
+All 14 security types are mutually exclusive in `securitySchema.json` `oneOf`: every type has its own `const`
+(or enum for SCRAM), and `nonBearerHTTPSecuritySchema.json` excludes `scheme: bearer` with `not`. `apiKey`
+(`in`: user/password) and `httpApiKey` (`in`: header/query/cookie) don't overlap.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| SEC1 | Validation | `http/nonBearerHTTPSecuritySchema.json` | `not` excludes only lowercase `bearer`. RFC 7235 schemes are case-insensitive, so `{"type": "http", "scheme": "Bearer"}` passes as non-bearer, and then `bearerFormat` is rejected. | Open |
+| SEC2 | Validation | `oauth2/oauth2.json` `flows` | No `minProperties`, so `"flows": {}` passes and the scheme has no flow at all. | Open |
+| SEC3 | Validation | `oauth2/oauth2.json`, `openIdConnect.json` `scopes` | No `uniqueItems`, and `oauth2` `scopes` aren't checked against the flows' `availableScopes` (the latter needs a parser rule). | Open |
+| SEC4 | Validation | `securityRequirements.json` | No `uniqueItems`, so the same scheme can be listed twice. | Open |
+| SEC5 | Text | `oauth2/flows/passwordOAuthFlow.json` `description` | It starts "Contains information about OAuth2 **Implicit** flow"; it's the Password flow. | Open |
+| SEC6 | Text | `sasl/saslPlainSecuritySchema.json` `type`; `sasl/saslScramSecuritySchema.json` `description`; `http/nonBearerHTTPSecuritySchema.json` `not.properties.scheme` | "The type of the security scheme. **Valid values**" is cut off. The SCRAM description contains link titles pasted as text ("uses **Apache Kafka Documentation** or similar platforms, utilizing … like **Confluent Platform SCRAM Overview** (…)"). The `not` scheme is described as "A short description for security scheme". | Open |
+| SEC7 | Consistency | `userPassword.json`, `X509.json`, `symmetricEncryption.json` | `description` and `type` have no `description`; every other security type documents them. | Open |
+| SEC8 | Example | `securityRequirements.json` example | `"$ref": "#/security/x.509"` points to a path that doesn't exist; security schemes live under `#/components/securitySchemes/…`. `v3.0.0` / `v3.1.0` `server.json` examples use `#/components/security/x.509`, which doesn't exist either. | Open |
