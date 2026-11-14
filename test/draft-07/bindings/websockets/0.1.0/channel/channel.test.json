@@ -1,0 +1,150 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/websockets/0.1.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "method": "POST",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "method": "GET",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "headers": {
+          "session-id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "method": "GET",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "headers": {
+          "$ref": "#/headers"
+        },
+        "method": "GET",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "query": {
+          "session-id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "method": "GET",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "query": {
+          "$ref": "#/query"
+        },
+        "method": "GET",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: headers and query",
+      "valid": true,
+      "data": {
+        "method": "GET",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "session-id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "session-id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "method": "GET",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid method",
+      "valid": false,
+      "data": {
+        "method": "PUT"
+      }
+    },
+    {
+      "description": "invalid: invalid headers",
+      "valid": false,
+      "data": {
+        "headers": "session-id"
+      }
+    },
+    {
+      "description": "invalid: invalid query",
+      "valid": false,
+      "data": {
+        "query": 1
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "method": "GET",
+        "subprotocol": "graphql-ws"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "GET"
+    }
+  ]
+}
