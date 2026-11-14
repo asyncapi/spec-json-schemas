@@ -1,0 +1,533 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/servers/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "x-microcks-enabled": true,
+        "title": "Secured MQTT broker",
+        "summary": "MQTT 5.0 broker",
+        "description": "Staging secured MQTT 5.0 broker",
+        "host": "{username}.gigantic-server.com:{port}/{basePath}",
+        "protocol": "secure-mqtt",
+        "protocolVersion": "5",
+        "pathname": "/messages",
+        "variables": {
+          "username": {
+            "description": "This value is assigned by the service provider, in this example `gigantic-server.com`",
+            "default": "production"
+          },
+          "port": {
+            "enum": [
+              "8883",
+              "14567"
+            ],
+            "default": "8883"
+          },
+          "basePath": {
+            "$ref": "#/components/serverVariables/basePath"
+          }
+        },
+        "security": [
+          {
+            "type": "userPassword",
+            "description": "Sent inside the initial CONNECT message"
+          },
+          {
+            "$ref": "#/components/security/x.509"
+          }
+        ],
+        "tags": [
+          {
+            "name": "env:staging",
+            "description": "This environment is a replica of the production environment"
+          },
+          {
+            "$ref": "#/tags/secured"
+          }
+        ],
+        "externalDocs": {
+          "description": "Reade step by step guide to integrate with Gigantic server",
+          "url": "https://gigantic-server.com/docs/integrations"
+        }
+      }
+    },
+    {
+      "description": "valid: minimal (host and protocol)",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp"
+      }
+    },
+    {
+      "description": "valid: host with variables",
+      "valid": true,
+      "data": {
+        "host": "{env}.mycompany.com:{port}",
+        "protocol": "amqp"
+      }
+    },
+    {
+      "description": "valid: any protocol string is accepted (no enum)",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "my-protocol"
+      }
+    },
+    {
+      "description": "valid: full server",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "pathname": "/vhost",
+        "title": "Broker",
+        "summary": "s",
+        "description": "d",
+        "protocolVersion": "0.9.1",
+        "variables": {
+          "port": {
+            "default": "5672"
+          }
+        },
+        "security": [
+          {
+            "type": "userPassword"
+          }
+        ],
+        "tags": [
+          {
+            "name": "env:prod"
+          }
+        ],
+        "externalDocs": {
+          "url": "https://docs.lo"
+        },
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: host with scheme is accepted (not checked)",
+      "valid": true,
+      "data": {
+        "host": "amqp://rabbitmq.in.mycompany.com",
+        "protocol": "amqp"
+      }
+    },
+    {
+      "description": "valid: pathname without leading slash is accepted (no pattern)",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "pathname": "vhost"
+      }
+    },
+    {
+      "description": "invalid: missing host",
+      "valid": false,
+      "data": {
+        "protocol": "amqp"
+      }
+    },
+    {
+      "description": "invalid: missing protocol",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: url is not allowed (v2 field, use host)",
+      "valid": false,
+      "data": {
+        "protocol": "amqp",
+        "url": "amqp://rabbitmq.in.mycompany.com"
+      }
+    },
+    {
+      "description": "invalid: host is not a string",
+      "valid": false,
+      "data": {
+        "host": 1,
+        "protocol": "amqp"
+      }
+    },
+    {
+      "description": "invalid: pathname is not a string",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "pathname": 1
+      }
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: protocol is not a string",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": 1
+      }
+    },
+    {
+      "description": "invalid: protocolVersion is not a string",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "protocolVersion": 1
+      }
+    },
+    {
+      "description": "invalid: protocolVersion is a number",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "protocolVersion": 5
+      }
+    },
+    {
+      "description": "valid: variables reference",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "variables": {
+          "port": {
+            "$ref": "#/components/serverVariables/port"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: variable with numeric default",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "variables": {
+          "port": {
+            "default": 5672
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: variables is an array",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "variables": [
+          {
+            "default": "5672"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: security reference",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "security": [
+          {
+            "$ref": "#/components/securitySchemes/plain"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security with unknown type",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "security": [
+          {
+            "type": "kerberos"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security as v2 requirement map",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "security": [
+          {
+            "plain": []
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security is an object",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "security": {
+          "type": "plain"
+        }
+      }
+    },
+    {
+      "description": "valid: tags with reference and tag",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "tags": [
+          {
+            "name": "b"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "tags": [
+          {
+            "description": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs object",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: bindings with x- extension",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "bindings": {
+          "x-custom": {
+            "any": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: bindings reference per protocol",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "bindings": {
+          "amqp": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings as a reference (only per protocol)",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "bindings": {
+          "$ref": "#/components/bindings/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown protocol in bindings",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "bindings": {
+          "unknown": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "bindings": []
+      }
+    },
+    {
+      "description": "invalid: ros2 binding is not available in v3.0.0",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "url": "x"
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "host": "rabbitmq.in.mycompany.com:5672",
+        "protocol": "amqp",
+        "$ref": "#/components/x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "host": "rabbitmq.in.mycompany.com:5672",
+          "protocol": "amqp"
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}
