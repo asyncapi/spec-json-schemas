@@ -1,0 +1,55 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json#/properties/role",
+  "tests": [
+    {
+      "description": "valid: publisher",
+      "valid": true,
+      "data": "publisher"
+    },
+    {
+      "description": "valid: action_client",
+      "valid": true,
+      "data": "action_client"
+    },
+    {
+      "description": "valid: service_client",
+      "valid": true,
+      "data": "service_client"
+    },
+    {
+      "description": "valid: subscriber",
+      "valid": true,
+      "data": "subscriber"
+    },
+    {
+      "description": "valid: action_server",
+      "valid": true,
+      "data": "action_server"
+    },
+    {
+      "description": "valid: service_server",
+      "valid": true,
+      "data": "service_server"
+    },
+    {
+      "description": "invalid: action-client",
+      "valid": false,
+      "data": "action-client"
+    },
+    {
+      "description": "invalid: Publisher",
+      "valid": false,
+      "data": "Publisher"
+    },
+    {
+      "description": "invalid: client",
+      "valid": false,
+      "data": "client"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    }
+  ]
+}

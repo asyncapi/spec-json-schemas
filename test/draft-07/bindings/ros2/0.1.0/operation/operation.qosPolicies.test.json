@@ -1,0 +1,56 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json#/properties/qosPolicies",
+  "tests": [
+    {
+      "description": "valid: all policies",
+      "valid": true,
+      "data": {
+        "deadline": -1,
+        "durability": "volatile",
+        "history": "keep_last",
+        "leaseDuration": 1000,
+        "lifespan": 500,
+        "liveliness": "automatic",
+        "reliability": "best_effort"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "depth": 10
+      }
+    },
+    {
+      "description": "valid: x- property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid durability",
+      "valid": false,
+      "data": {
+        "durability": "persistent"
+      }
+    },
+    {
+      "description": "invalid: invalid history",
+      "valid": false,
+      "data": {
+        "history": "keep"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "reliable"
+    }
+  ]
+}

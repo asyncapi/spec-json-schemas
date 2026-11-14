@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/server.json#/properties/domainId",
+  "tests": [
+    {
+      "description": "valid: minimum 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: maximum 231",
+      "valid": true,
+      "data": 231
+    },
+    {
+      "description": "invalid: below minimum 0",
+      "valid": false,
+      "data": -1
+    },
+    {
+      "description": "invalid: above maximum 231",
+      "valid": false,
+      "data": 232
+    },
+    {
+      "description": "invalid: decimal number",
+      "valid": false,
+      "data": 1.5
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "0"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json#/properties/qosPolicies/properties/history",
+  "tests": [
+    {
+      "description": "valid: keep_last",
+      "valid": true,
+      "data": "keep_last"
+    },
+    {
+      "description": "valid: keep_all",
+      "valid": true,
+      "data": "keep_all"
+    },
+    {
+      "description": "valid: unknown",
+      "valid": true,
+      "data": "unknown"
+    },
+    {
+      "description": "invalid: keep-last",
+      "valid": false,
+      "data": "keep-last"
+    },
+    {
+      "description": "invalid: KEEP_ALL",
+      "valid": false,
+      "data": "KEEP_ALL"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}
