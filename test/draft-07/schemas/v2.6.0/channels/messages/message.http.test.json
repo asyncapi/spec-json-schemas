@@ -1,0 +1,284 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.6.0/channels/messages/message.json",
+  "tests": [
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": "0.3.0",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                }
+              }
+            },
+            "statusCode": 200
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #2",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": "0.3.0",
+            "headers": {
+              "$ref": "#/headers/json-content-type"
+            },
+            "statusCode": 200
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 invalid headers",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "headers": "Content-Type",
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": "0.2.0",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #2",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": "0.2.0",
+            "headers": {
+              "$ref": "#/http/headers/json-content-type"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 invalid headers",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "headers": "Content-Type",
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": "0.1.0",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #2",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": "0.1.0",
+            "headers": {
+              "$ref": "#/http/headers/json-content-type"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 invalid headers",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "headers": "Content-Type",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.3.0 is used)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "headers": {
+              "type": "object",
+              "properties": {
+                "Content-Type": {
+                  "type": "string",
+                  "enum": [
+                    "application/json"
+                  ]
+                }
+              }
+            },
+            "statusCode": 200
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "$ref": "#/components/messageBindings/my-http"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "$ref": "#/components/messageBindings/my-http",
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": "http"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "http": null
+        }
+      }
+    }
+  ]
+}

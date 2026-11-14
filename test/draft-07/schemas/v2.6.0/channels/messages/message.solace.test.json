@@ -1,0 +1,214 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.6.0/channels/messages/message.json",
+  "tests": [
+    {
+      "description": "valid: 0.4.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.4.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.4.0 unknown property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "destinations": [],
+            "bindingVersion": "0.4.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 unknown property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "destinations": [],
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 unknown property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "destinations": [],
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 unknown property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "destinations": [],
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.4.0 is used)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {}
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "$ref": "#/components/messageBindings/my-solace"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "$ref": "#/components/messageBindings/my-solace",
+            "bindingVersion": "0.4.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": "solace"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "solace": null
+        }
+      }
+    }
+  ]
+}
