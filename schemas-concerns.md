@@ -41,6 +41,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 |---|---|---|---|
 | [v3 tag and externalDocs](#v3-tag-and-externaldocs) | `tag`, `tags`, `externalDocs`, `externalDocsOrReference` | 63 | 5 |
 | [v3 info](#v3-info) | `info`, `contact`, `license`, `infoExtensions`, `extensions/x/0.1.0`, `extensions/linkedin/0.1.0` | 92 | 6 |
+| [v3 server variables](#v3-server-variables) | `servers/serverVariable`, `servers/serverVariables` | 30 | 4 |
 
 ---
 
@@ -64,3 +65,12 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | INFO4 | Validation | `extensions/linkedin/0.1.0` | The pattern `^http(s)?://(www\.)?linkedin\.com.*$` isn't anchored to the host, so `https://linkedin.com.evil.example/…` passes, while country subdomains such as `https://am.linkedin.com/in/…` are rejected. | Open |
 | INFO5 | Validation | `extensions/x/0.1.0` | The description asks for a username, but there's no pattern: `@name`, a profile URL and `""` all pass. | Open |
 | INFO6 | Example | `infoExtensions.json` examples #2, #3 | `x-x` is a profile URL (`https://x.com/…`), but the X extension expects a username (its own examples are `AsyncAPISpec`, `sambhavgupta75`). `info.json` example #5 uses `@weather-forecast`, a third form. | Open |
+
+## v3 server variables
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| SVAR1 | Validation | `serverVariable.json` | `default` isn't checked against `enum`: `{"enum": ["8883", "8884"], "default": "1883"}` passes. JSON Schema can't express this; it needs a custom rule in the parser. | Open |
+| SVAR2 | Validation | `serverVariable.json` `enum` | No `minItems`, so `"enum": []` passes, which leaves no valid substitution. | Open |
+| SVAR3 | Validation | `serverVariables.json` | Map keys aren't validated (no `propertyNames`/`patternProperties`), so names like `{port}` or `base path` pass. Other v3 maps restrict keys to `^[\w\d\.\-_]+$`. | Open |
+| SVAR4 | Example | `serverVariables.json` example | `"$ref": "#/variables/base-path"` points to a path that doesn't exist in an AsyncAPI document; it should be `#/components/serverVariables/…`. | Open |
