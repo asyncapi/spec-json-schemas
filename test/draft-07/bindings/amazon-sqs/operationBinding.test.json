@@ -1,0 +1,219 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/operationBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "deduplicationScope": "messageGroup",
+            "deliveryDelay": 10,
+            "fifoQueue": true,
+            "fifoThroughputLimit": "perMessageGroupId",
+            "name": "myQueue",
+            "policy": {
+              "statements": [
+                {
+                  "action": [
+                    "sqs:SendMessage",
+                    "sqs:ReceiveMessage"
+                  ],
+                  "effect": "Deny",
+                  "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+                }
+              ]
+            },
+            "redrivePolicy": {
+              "deadLetterQueue": {
+                "name": "myQueue_error"
+              },
+              "maxReceiveCount": 15
+            }
+          },
+          {
+            "deliveryDelay": 10,
+            "name": "myQueue_error"
+          }
+        ],
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "policy": {
+              "statements": [
+                {
+                  "action": [
+                    "sqs:SendMessage",
+                    "sqs:ReceiveMessage"
+                  ],
+                  "effect": "Deny",
+                  "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                  "condition": {
+                    "ArnEquals": {
+                      "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:MyTopic"
+                    }
+                  }
+                }
+              ]
+            },
+            "redrivePolicy": {
+              "deadLetterQueue": {
+                "name": "myQueue_error"
+              },
+              "maxReceiveCount": 15
+            }
+          }
+        ],
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "policy": {
+              "statements": [
+                {
+                  "action": [
+                    "sqs:SendMessage",
+                    "sqs:ReceiveMessage"
+                  ],
+                  "effect": "Deny",
+                  "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                  "condition": {
+                    "ArnEquals": {
+                      "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:MyTopic"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.1.0 empty binding",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 does not define queues",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "queues": [
+          {
+            "name": "myQueue",
+            "deliveryDelay": 100
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: deliveryDelay 100 with 0.2.0 (maximum 900)",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "deliveryDelay": 100
+          }
+        ],
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: deliveryDelay 100 with 0.3.0 (maximum 15)",
+      "valid": false,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "deliveryDelay": 100
+          }
+        ],
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: deliveryDelay 100 with latest uses 0.3.0",
+      "valid": false,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "deliveryDelay": 100
+          }
+        ],
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "invalid: deliveryDelay 100 without bindingVersion uses 0.3.0",
+      "valid": false,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "deliveryDelay": 100
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.3.0",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "deliveryDelay": 15
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.3.0 which requires queues",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.3.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue"
+          }
+        ],
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": []
+    }
+  ]
+}
