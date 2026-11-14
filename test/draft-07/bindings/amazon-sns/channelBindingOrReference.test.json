@@ -1,0 +1,77 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/channelBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/amazon-sns/my-sns-topic"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": "*"
+            }
+          ]
+        },
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channelBindings/my-sns-topic"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/amazon-sns"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic"
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/channelBindings/my-sns-topic",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/components/channelBindings/my-sns-topic"
+    }
+  ]
+}
