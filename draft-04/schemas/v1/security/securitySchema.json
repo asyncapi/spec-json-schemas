@@ -39,7 +39,7 @@
       "$ref": "http://localhost:8000/draft-04/schemas/v1/security/asymmetricEncryption.json"
     },
     {
-      "$ref": "http://localhost:8000/draft-04/schemas/v1/security/httpSecurityScheme.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/security/http/httpSecuritySchema.json"
     }
   ]
 }
