@@ -111,6 +111,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.6.0 messages](#v260-messages) | `channels/messages/message`, `messageTrait`, `messages` | 122 | 0 |
 | [v2.6.0 operations](#v260-operations) | `channels/operations/operation`, `operationTrait` | 79 | 0 |
 | [v2.6.0 components](#v260-components) | `components/components` | 91 | 0 |
+| [v2.6.0 binding maps](#v260-binding-maps) | `{channel,operation,server,message}Bindings` | 320 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -548,3 +549,7 @@ Same concerns as [v2.0.0 operations](#v200-operations): V2O1, V2O2.
 ## v2.6.0 components
 
 Same concerns as V2K1–V2K3; no `asyncapi.test.json` (see V2K3).
+
+## v2.6.0 binding maps
+
+`googlepubsub` and `pulsar` were added to all four maps in 2.6.0 (18 keys). Same concerns as V2B1, V2B2.
