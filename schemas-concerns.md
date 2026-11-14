@@ -85,6 +85,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.2.0 binding maps](#v220-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 | [v2.2.0 component bindings](#v220-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 | [v2.2.0 asyncapi](#v220-asyncapi) | `asyncapi` | 27 | 0 |
+| [v2.3.0 servers](#v230-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -410,3 +411,7 @@ Built like [v2.0.0 component bindings](#v200-component-bindings), one file per k
 ## v2.2.0 asyncapi
 
 Accepts only `"asyncapi": "2.2.0"`. No new concerns.
+
+## v2.3.0 servers
+
+`servers.json` routes `$ref` to Reference from 2.3.0. Same concerns as [v2.0.0 servers](#v200-servers): V2S1–V2S3.
