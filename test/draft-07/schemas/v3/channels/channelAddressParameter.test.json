@@ -1,0 +1,194 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/channels/channelAddressParameter.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "description": "Id of the user",
+        "default": "0e822ca6-5311-4d4c-b409-993a1820e689",
+        "enum": [
+          "0e822ca6-5311-4d4c-b409-993a1820e689",
+          "381f5ddc-75c6-4c21-9ec1-3919ed345be9",
+          "70559d88-31a5-4ef2-8c34-7fbd04057ed5",
+          "c6dc0047-a90d-4efa-95e3-a272282934e0"
+        ],
+        "location": "$message.payload#/user/id"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "description": "User AccessToken",
+        "examples": [
+          "Bearer eyJhbGciOiJIUzI1Ni..."
+        ],
+        "location": "$message.header#/authorization"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: header location",
+      "valid": true,
+      "data": {
+        "location": "$message.header#/x-user-id"
+      }
+    },
+    {
+      "description": "valid: payload root location",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#"
+      }
+    },
+    {
+      "description": "valid: location with escaped ~0 and ~1",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#/a~1b/c~0d"
+      }
+    },
+    {
+      "description": "valid: location with trailing text after # is accepted (pattern is not anchored at the end)",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#user.id"
+      }
+    },
+    {
+      "description": "valid: default outside of enum is accepted (not checked)",
+      "valid": true,
+      "data": {
+        "enum": [
+          "a",
+          "b"
+        ],
+        "default": "c"
+      }
+    },
+    {
+      "description": "valid: duplicated enum values are accepted (no uniqueItems)",
+      "valid": true,
+      "data": {
+        "enum": [
+          "a",
+          "a"
+        ]
+      }
+    },
+    {
+      "description": "valid: string is accepted (no type: object)",
+      "valid": true,
+      "data": "user-id"
+    },
+    {
+      "description": "valid: number is accepted (no type: object)",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "description": "Id of the user",
+        "x-format": "uuid"
+      }
+    },
+    {
+      "description": "invalid: location without #",
+      "valid": false,
+      "data": {
+        "location": "$message.payload/user/id"
+      }
+    },
+    {
+      "description": "invalid: location with unknown source",
+      "valid": false,
+      "data": {
+        "location": "$message.body#/user/id"
+      }
+    },
+    {
+      "description": "invalid: location without $message",
+      "valid": false,
+      "data": {
+        "location": "payload#/user/id"
+      }
+    },
+    {
+      "description": "invalid: location is not a string",
+      "valid": false,
+      "data": {
+        "location": 1
+      }
+    },
+    {
+      "description": "invalid: enum with a number",
+      "valid": false,
+      "data": {
+        "enum": [
+          "a",
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: enum is a string",
+      "valid": false,
+      "data": {
+        "enum": "a"
+      }
+    },
+    {
+      "description": "invalid: default is a number",
+      "valid": false,
+      "data": {
+        "default": 1
+      }
+    },
+    {
+      "description": "invalid: examples with a number",
+      "valid": false,
+      "data": {
+        "examples": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: schema is not allowed (v2 field)",
+      "valid": false,
+      "data": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/parameters/userId"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "string"
+      }
+    }
+  ]
+}

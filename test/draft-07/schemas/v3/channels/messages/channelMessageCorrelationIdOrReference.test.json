@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageCorrelationIdOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/messages/profile-updates/correlation-id"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "description": "Incoming message correlation-id",
+        "location": "$message.payload#/correlation-id"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "description": "Incoming message correlation-id",
+        "location": "$message.header#/correlation-id",
+        "x-format": "uuid"
+      }
+    },
+    {
+      "description": "valid: reference to components",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/correlationIds/default"
+      }
+    },
+    {
+      "description": "invalid: reference with sibling location",
+      "valid": false,
+      "data": {
+        "location": "$message.header#/correlation-id",
+        "$ref": "#/components/correlationIds/default"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: correlation id without location",
+      "valid": false,
+      "data": {
+        "description": "Correlation id"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "$message.header#/correlation-id"
+    }
+  ]
+}
