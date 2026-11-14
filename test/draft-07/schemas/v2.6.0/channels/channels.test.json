@@ -1,0 +1,135 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.6.0/channels/channels.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "my-channel": {
+          "$ref": "#/channels/my-channel"
+        },
+        "user/{userId}/sendMessage": {
+          "description": "This channel is used to exchange messages about users signing up",
+          "subscribe": {
+            "operationId": "sendMessage",
+            "summary": "Send message",
+            "description": "Send message to remote server",
+            "message": {
+              "$ref": "#/components/schemas/sendMessage"
+            }
+          },
+          "parameters": {
+            "userId": {
+              "description": "Id of the user",
+              "schema": {
+                "type": "string"
+              },
+              "location": "$message.payload#/user/id"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: channel name with path and expression",
+      "valid": true,
+      "data": {
+        "users/{userId}/signedup": {
+          "publish": {
+            "operationId": "sendUser",
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channel name with dots",
+      "valid": true,
+      "data": {
+        "smartylighting.streetlights.1.0.event": {
+          "publish": {
+            "operationId": "sendUser",
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: empty channel name",
+      "valid": false,
+      "data": {
+        "": {
+          "publish": {
+            "operationId": "sendUser",
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: channel name is not a uri-template (unclosed expression)",
+      "valid": false,
+      "data": {
+        "users/{userId": {
+          "publish": {
+            "operationId": "sendUser",
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid channel",
+      "valid": false,
+      "data": {
+        "users": {
+          "publish": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: channel is a string",
+      "valid": false,
+      "data": {
+        "users": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "publish": {
+            "operationId": "sendUser",
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
