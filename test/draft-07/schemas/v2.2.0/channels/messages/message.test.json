@@ -1,0 +1,765 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.2.0/channels/messages/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/messages/userSignup"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "name": "UserSignup",
+        "title": "User signup",
+        "summary": "Action to sign a user up.",
+        "description": "A longer description",
+        "tags": [
+          {
+            "name": "user"
+          },
+          {
+            "name": "signup"
+          },
+          {
+            "name": "register"
+          }
+        ],
+        "payload": {
+          "$ref": "path/to/user-create.avsc#/UserCreate"
+        }
+      }
+    },
+    {
+      "description": "valid: payload as JSON Schema",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: payload of any type without schemaFormat (Schema Object)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "description": "invalid: payload is a boolean schema (v2 schema requires an object)",
+      "valid": false,
+      "data": {
+        "payload": true
+      }
+    },
+    {
+      "description": "invalid: payload with invalid type",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: payload with 2.2.0 schemaFormat",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.2.0",
+        "payload": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "invalid: payload with 2.2.0 schemaFormat and invalid schema",
+      "valid": false,
+      "data": {
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.2.0",
+        "payload": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: payload with a later AsyncAPI schemaFormat is not validated",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/vnd.aai.asyncapi+json;version=2.3.0",
+        "payload": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: Avro payload",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+        "payload": {
+          "type": "record",
+          "name": "User",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: Avro payload with invalid type",
+      "valid": false,
+      "data": {
+        "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+        "payload": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: OpenAPI payload",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
+        "payload": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    },
+    {
+      "description": "invalid: OpenAPI payload with invalid type",
+      "valid": false,
+      "data": {
+        "schemaFormat": "application/vnd.oai.openapi;version=3.0.0",
+        "payload": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: JSON Schema draft-07 payload",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/schema+json;version=draft-07",
+        "payload": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "valid: unknown schemaFormat payload is not validated",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/x-unknown",
+        "payload": 1
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/messages/a"
+      }
+    },
+    {
+      "description": "invalid: reference with sibling",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/messages/a",
+        "name": "a"
+      }
+    },
+    {
+      "description": "valid: oneOf of messages",
+      "valid": true,
+      "data": {
+        "oneOf": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/messages/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: oneOf with invalid message",
+      "valid": false,
+      "data": {
+        "oneOf": [
+          {
+            "payload": true
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: oneOf with sibling property",
+      "valid": false,
+      "data": {
+        "oneOf": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ],
+        "name": "a"
+      }
+    },
+    {
+      "description": "valid: traits",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "traits": [
+          {
+            "$ref": "#/components/messageTraits/a"
+          },
+          {
+            "name": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: trait with payload",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "traits": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: traits is an object",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "traits": {
+          "name": "x"
+        }
+      }
+    },
+    {
+      "description": "valid: v3 multi-format shape is accepted as a Schema Object (unknown keywords)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+          "schema": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example with name and summary",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "examples": [
+          {
+            "name": "a",
+            "summary": "s",
+            "payload": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: example without payload and headers",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "examples": [
+          {
+            "name": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: empty object (no required fields)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: headers object schema",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: headers without type",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: headers of type string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "invalid: headers is a boolean schema",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": true
+      }
+    },
+    {
+      "description": "valid: correlationId",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "correlationId": {
+          "location": "$message.header#/id"
+        }
+      }
+    },
+    {
+      "description": "valid: correlationId reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "correlationId": {
+          "$ref": "#/components/correlationIds/id"
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationId without location",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "correlationId": {
+          "description": "id"
+        }
+      }
+    },
+    {
+      "description": "valid: examples",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "examples": [
+          {
+            "payload": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: examples is an object",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "examples": {
+          "payload": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: deprecated is a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "deprecated": "true"
+      }
+    },
+    {
+      "description": "invalid: schemaFormat is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "schemaFormat": 1
+      }
+    },
+    {
+      "description": "invalid: contentType is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "contentType": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: messageId is not available in 2.2.0 (added in 2.4.0)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "messageId": "userSignedUp"
+      }
+    },
+    {
+      "description": "valid: tags",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "tags": [
+          {
+            "name": "a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "tags": [
+          {
+            "name": "a"
+          },
+          {
+            "name": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "tags": [
+          {
+            "description": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag reference (added in v3)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "externalDocs": {
+          "description": "d"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs reference (added in v3)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/a"
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: binding reference per protocol",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: known protocol with unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: unknown protocol is accepted unvalidated (map has additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "unknown": 1
+        }
+      }
+    },
+    {
+      "description": "valid: ros2 is accepted unvalidated (not in the v2 map)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": []
+      }
+    },
+    {
+      "description": "valid: googlepubsub is accepted unvalidated in 2.2.0 (added to the map in 2.6.0)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: x- extension in bindings",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "x-custom": 1
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "action": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "payload": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}
