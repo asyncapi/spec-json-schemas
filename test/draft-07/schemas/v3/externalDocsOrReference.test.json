@@ -1,0 +1,101 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "https://api.weather-forecast.am/docs"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "description": "Required information to integrate with API"
+      }
+    },
+    {
+      "description": "valid: reference to components",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/externalDocs/weather-docs"
+      }
+    },
+    {
+      "description": "valid: reference to a relative file",
+      "valid": true,
+      "data": {
+        "$ref": "./docs.yaml#/externalDocs"
+      }
+    },
+    {
+      "description": "valid: external docs with x- extension",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "x-owner": "team-weather"
+      }
+    },
+    {
+      "description": "invalid: empty object matches no branch",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: $ref and url together match no branch",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/externalDocs/weather-docs",
+        "url": "https://api.weather-forecast.am/docs"
+      }
+    },
+    {
+      "description": "invalid: reference with x- extension",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/externalDocs/weather-docs",
+        "x-owner": "team-weather"
+      }
+    },
+    {
+      "description": "invalid: $ref is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not a uri reference",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/external docs/{bad}"
+      }
+    },
+    {
+      "description": "invalid: external docs without url",
+      "valid": false,
+      "data": {
+        "description": "Required information to integrate with API"
+      }
+    },
+    {
+      "description": "invalid: external docs with relative url",
+      "valid": false,
+      "data": {
+        "url": "/docs"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "https://api.weather-forecast.am/docs"
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}
