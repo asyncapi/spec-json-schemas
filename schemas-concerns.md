@@ -56,6 +56,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.1.0 servers](#v310-servers) | `servers/server`, `servers/servers` | 58 | 0 (SRV1–SRV4 apply) |
 | [v3.1.0 channel messages](#v310-channel-messages) | `channels/messages/channelMessage`, `channelMessageTrait(s)`, `channelMessages` | 144 | 1 (MSG1–MSG6 apply) |
 | [v3.1.0 channels](#v310-channels) | `channels/channel`, `channels/channels` | 54 | 0 (CH1, CH2 apply) |
+| [v3.1.0 operations](#v310-operations) | `operations/operation`, `operationTrait(s)`, `operations` | 101 | 0 (OP1–OP4 apply) |
 
 ---
 
@@ -221,3 +222,7 @@ Identical to v3.0.0 except `bindings` (`draft-07/bindings/messageBindings.json`)
 ## v3.1.0 channels
 
 Identical to v3.0.0 except `bindings` (`draft-07/bindings/channelBindings.json`). Same concerns as [v3.0.0 channels](#v300-channels): CH1, CH2.
+
+## v3.1.0 operations
+
+Identical to v3.0.0 except `bindings` (`draft-07/bindings/operationBindings.json`). Same concerns as [v3.0.0 operations](#v300-operations): OP1–OP4.
