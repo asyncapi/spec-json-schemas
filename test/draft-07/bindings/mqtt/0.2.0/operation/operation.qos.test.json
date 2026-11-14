@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/operation.json#/properties/qos",
+  "tests": [
+    {
+      "description": "valid: 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: 1",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "valid: 2",
+      "valid": true,
+      "data": 2
+    },
+    {
+      "description": "invalid: 3",
+      "valid": false,
+      "data": 3
+    },
+    {
+      "description": "invalid: -1",
+      "valid": false,
+      "data": -1
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "1"
+    }
+  ]
+}

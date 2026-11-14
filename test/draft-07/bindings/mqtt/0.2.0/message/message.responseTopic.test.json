@@ -1,0 +1,56 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/message.json#/properties/responseTopic",
+  "tests": [
+    {
+      "description": "valid: topic string",
+      "valid": true,
+      "data": "application/responses"
+    },
+    {
+      "description": "valid: uri-template string",
+      "valid": true,
+      "data": "application/{tenant}/responses"
+    },
+    {
+      "description": "valid: schema object",
+      "valid": true,
+      "data": {
+        "type": "string"
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/responseTopic"
+      }
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: unclosed template expression",
+      "valid": false,
+      "data": "application/{tenant"
+    },
+    {
+      "description": "invalid: string with space",
+      "valid": false,
+      "data": "application responses"
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "invalid: invalid schema",
+      "valid": false,
+      "data": {
+        "type": "topic"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/message.json#/properties/correlationData",
+  "tests": [
+    {
+      "description": "valid: schema object",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "format": "uuid"
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/correlationData"
+      }
+    },
+    {
+      "description": "valid: boolean true schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "uuid"
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "uuid"
+      }
+    }
+  ]
+}
