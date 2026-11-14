@@ -78,6 +78,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.1.0 component bindings](#v210-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 | [v2.1.0 asyncapi](#v210-asyncapi) | `asyncapi` | 27 | 0 |
 | [v2.2.0 servers](#v220-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 0 |
+| [v2.2.0 channels](#v220-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 72 | 1 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -371,3 +372,11 @@ Accepts only `"asyncapi": "2.1.0"`. No new concerns.
 ## v2.2.0 servers
 
 Same concerns as [v2.0.0 servers](#v200-servers): V2S1–V2S3.
+
+## v2.2.0 channels
+
+`channelItem.servers` (added in 2.2.0) is a unique list of server names. Same concerns as [v2.0.0 channels](#v200-channels).
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2C4 | Validation | `channels/channelItem.json` `servers` (2.2.0+) | Names aren't checked to exist in `servers` (needs a parser rule), and any string passes, including `""`. | Open |
