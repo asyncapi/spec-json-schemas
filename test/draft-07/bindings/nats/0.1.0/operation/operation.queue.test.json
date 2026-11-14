@@ -1,0 +1,37 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/nats/0.1.0/operation.json#/properties/queue",
+  "tests": [
+    {
+      "description": "valid: queue name",
+      "valid": true,
+      "data": "MyCustomQueue"
+    },
+    {
+      "description": "valid: 255 characters",
+      "valid": true,
+      "data": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+    },
+    {
+      "description": "valid: empty string (no minLength)",
+      "valid": true,
+      "data": ""
+    },
+    {
+      "description": "invalid: 256 characters",
+      "valid": false,
+      "data": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        "MyCustomQueue"
+      ]
+    }
+  ]
+}
