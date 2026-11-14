@@ -1,0 +1,60 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/0.4.0/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "msgVpn": "ProdVPN",
+        "clientName": "production"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: msgVpn",
+      "valid": true,
+      "data": {
+        "msgVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "msgVpn": "ProdVPN",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: msgVpn is not a string",
+      "valid": false,
+      "data": {
+        "msgVpn": 1
+      }
+    },
+    {
+      "description": "invalid: msvVpn is not defined in 0.4.0",
+      "valid": false,
+      "data": {
+        "msvVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.5.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "ProdVPN"
+    }
+  ]
+}

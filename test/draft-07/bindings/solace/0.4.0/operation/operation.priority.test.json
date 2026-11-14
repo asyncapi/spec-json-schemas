@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/0.4.0/operation.json#/properties/priority",
+  "tests": [
+    {
+      "description": "valid: minimum 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: maximum 255",
+      "valid": true,
+      "data": 255
+    },
+    {
+      "description": "invalid: below minimum 0",
+      "valid": false,
+      "data": -1
+    },
+    {
+      "description": "invalid: above maximum 255",
+      "valid": false,
+      "data": 256
+    },
+    {
+      "description": "invalid: decimal number",
+      "valid": false,
+      "data": 1.5
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "20"
+    }
+  ]
+}
