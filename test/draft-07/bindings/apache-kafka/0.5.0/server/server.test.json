@@ -1,0 +1,77 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.5.0/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "schemaRegistryUrl": "https://my-schema-registry.com",
+        "schemaRegistryVendor": "confluent"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: schemaRegistryUrl and schemaRegistryVendor",
+      "valid": true,
+      "data": {
+        "schemaRegistryUrl": "https://my-schema-registry.com",
+        "schemaRegistryVendor": "confluent"
+      }
+    },
+    {
+      "description": "valid: schemaRegistryUrl is not validated as uri",
+      "valid": true,
+      "data": {
+        "schemaRegistryUrl": "not a url"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "schemaRegistryVendor": "confluent",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: schemaRegistryUrl is not a string",
+      "valid": false,
+      "data": {
+        "schemaRegistryUrl": 1
+      }
+    },
+    {
+      "description": "invalid: schemaRegistryVendor is not a string",
+      "valid": false,
+      "data": {
+        "schemaRegistryVendor": [
+          "confluent"
+        ]
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "bootstrapServers": "localhost:9092"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}
