@@ -1,0 +1,171 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/info/info.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "license": {
+          "name": "The MIT License",
+          "url": "https://mit-license.org"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates",
+        "termsOfService": "https://api.weather-forecast.am/terms"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates",
+        "contact": {
+          "name": "Weather Forecast",
+          "email": "feedback@weather-forecast.am",
+          "url": "https://weather-forecast.am"
+        }
+      }
+    },
+    {
+      "description": "valid: minimal (title and version)",
+      "valid": true,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "valid: any version string is accepted (no semver pattern)",
+      "valid": true,
+      "data": {
+        "title": "Weather",
+        "version": "latest"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: missing title",
+      "valid": false,
+      "data": {
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "invalid: missing version",
+      "valid": false,
+      "data": {
+        "title": "Weather"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: version is a number",
+      "valid": false,
+      "data": {
+        "title": "Weather",
+        "version": 1.0
+      }
+    },
+    {
+      "description": "invalid: termsOfService is relative",
+      "valid": false,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0",
+        "termsOfService": "/terms"
+      }
+    },
+    {
+      "description": "invalid: contact with invalid email",
+      "valid": false,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0",
+        "contact": {
+          "email": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: license without name",
+      "valid": false,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0",
+        "license": {
+          "url": "https://mit-license.org"
+        }
+      }
+    },
+    {
+      "description": "invalid: tags are not allowed (added to info in v3)",
+      "valid": false,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0",
+        "tags": [
+          {
+            "name": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: externalDocs is not allowed (added to info in v3)",
+      "valid": false,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0",
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "title": "Weather",
+        "version": "1.0.0",
+        "servers": {}
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "Weather"
+    }
+  ]
+}

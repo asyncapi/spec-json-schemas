@@ -1,0 +1,185 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/schema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "title": "Example Object",
+        "type": "object",
+        "properties": {
+          "string": {
+            "type": "string",
+            "default": ""
+          },
+          "boolean": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "title": "Example Object",
+        "discriminator": "objectType"
+      }
+    },
+    {
+      "description": "valid: primitive schema",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "format": "email"
+      }
+    },
+    {
+      "description": "valid: array schema with tuple items",
+      "valid": true,
+      "data": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: discriminator and externalDocs",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "discriminator": "petType",
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: deprecated",
+      "valid": true,
+      "data": {
+        "deprecated": true
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/a"
+      }
+    },
+    {
+      "description": "valid: x- extension",
+      "valid": true,
+      "data": {
+        "x-internal": true
+      }
+    },
+    {
+      "description": "valid: unknown keyword is accepted (JSON Schema allows it)",
+      "valid": true,
+      "data": {
+        "nullable": true
+      }
+    },
+    {
+      "description": "invalid: boolean true schema (allOf requires type object)",
+      "valid": false,
+      "data": true
+    },
+    {
+      "description": "invalid: boolean false schema",
+      "valid": false,
+      "data": false
+    },
+    {
+      "description": "invalid: nested boolean schema in properties",
+      "valid": false,
+      "data": {
+        "properties": {
+          "a": true
+        }
+      }
+    },
+    {
+      "description": "valid: additionalProperties as boolean",
+      "valid": true,
+      "data": {
+        "additionalProperties": false
+      }
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "map"
+      }
+    },
+    {
+      "description": "invalid: discriminator is an object (OpenAPI style)",
+      "valid": false,
+      "data": {
+        "discriminator": {
+          "propertyName": "petType"
+        }
+      }
+    },
+    {
+      "description": "invalid: deprecated is a string",
+      "valid": false,
+      "data": {
+        "deprecated": "yes"
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "description": "d"
+        }
+      }
+    },
+    {
+      "description": "invalid: empty allOf",
+      "valid": false,
+      "data": {
+        "allOf": []
+      }
+    },
+    {
+      "description": "invalid: nested invalid schema",
+      "valid": false,
+      "data": {
+        "properties": {
+          "a": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: not is a string",
+      "valid": false,
+      "data": {
+        "not": "string"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "string"
+    }
+  ]
+}
