@@ -1,6 +1,6 @@
 # AsyncAPI schemas: validation concerns and typos
 
-Notes collected while writing `jsonschema test` suites for `draft-07/schemas/v3`, `v3.0.0` and `v3.1.0`
+Notes collected while writing `jsonschema test` suites for `draft-07/schemas/v2`, `v2.0.0`–`v2.6.0`, `v3`, `v3.0.0` and `v3.1.0`
 (`test/draft-07/schemas/`). Binding schemas are covered separately in [binding-concerns.md](binding-concerns.md).
 
 Released JSON Schemas are **not changed without review**. Until something is fixed, the tests record the
@@ -12,6 +12,7 @@ and the entry moves to **Fixed**.
 - **Consistency:** the same thing is modeled differently across versions or objects.
 - **Text:** a typo or stale wording in `title`/`description`. These have no effect on validation.
 - **Example:** a wrong value in `examples`. These have no effect on validation.
+- **Regression:** the schema behaves differently from the released schema on `master` (`definitions/<version>/…`). It was introduced while splitting the schemas on this branch.
 
 **Status**
 - **Open:** waiting for review.
@@ -60,6 +61,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.1.0 components](#v310-components) | `components/components` | 155 | 0 (COMP1, COMP3 apply) |
 | [v3.1.0 component bindings](#v310-component-bindings) | 6 components × 20 bindings | 1410 | 0 |
 | [v3.1.0 asyncapi](#v310-asyncapi) | `asyncapi` | 32 | 0 (DOC1 applies) |
+| [v2 shared schemas](#v2-shared-schemas) | `v2/**` (tag, externalDocs, info, correlationId, schema, schemas, security, securityRequirements) | 434 | 2 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -246,3 +248,15 @@ Same layout as [v3.0.0 component bindings](#v300-component-bindings), one file p
 ## v3.1.0 asyncapi
 
 Identical to v3.0.0 except `"asyncapi": "3.1.0"`; `3.0.0` is rejected. DOC1 applies.
+
+## v2 shared schemas
+
+`draft-07/schemas/v2` is shared by v2.0.0–v2.6.0. Security schemas match v3 except that the OAuth2 flows use `scopes`
+(v3: `availableScopes`) and `openIdConnect` has no `scopes`. The v2 security suites are derived from the v3 ones.
+These v3 concerns apply to v2 as well: TAG2, INFO2, CHAN2 (correlationId), SEC1, SEC2, SEC5–SEC7.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2-1 | Validation | `schema.json` | `allOf[1]` has `"type": "object"`, so boolean schemas are rejected: `true`, `false`, and nested ones like `{"properties": {"a": true}}`. JSON Schema draft-07 allows them. `additionalProperties: false` still passes because it's handled separately. | Open |
+| V2-2 | Validation | `security/oauth2/oauth2.json` | It has the scheme-level `scopes` array that AsyncAPI added in v3, so a v2 document with `scopes` next to `flows` passes. | Open |
+| V2-3 | Validation | `schema.json` `discriminator` | `type: string` only, so the OpenAPI form `{"propertyName": "petType"}` is rejected. This matches the v2 spec, but the description says nothing about it. | By design |
