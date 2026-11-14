@@ -49,6 +49,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.0.0 channel messages](#v300-channel-messages) | `channels/messages/channelMessage`, `channelMessageTrait(s)`, `channelMessages` | 143 | 6 |
 | [v3.0.0 channels](#v300-channels) | `channels/channel`, `channels/channels` | 54 | 2 |
 | [v3.0.0 operations](#v300-operations) | `operations/operation`, `operationTrait(s)`, `operations` | 101 | 4 |
+| [v3.0.0 components](#v300-components) | `components/components` | 155 | 3 |
 
 ---
 
@@ -157,3 +158,11 @@ Reference requires `$ref` and allows nothing else; the other branch has `additio
 | OP2 | Text | `operations/operationTraits.json`, `operations/operations.json` `description` | "…or **it's** reference(s)" should be "its" (see A2 in binding-concerns.md). | Open |
 | OP3 | Example | `operations/operation.json` examples | `"reply": {"$ref": "#/channels/user-events-replies.v1"}` makes the reply a reference to a **channel**; other `$ref`s point to paths that don't exist (`#/security/oauth2`, `#/documents/…`, `#/messages/user/…`). "events **bases** on" is a typo. | Open |
 | OP4 | Consistency | `operations/operationTrait.json` | `summary` and `description` are documented differently from `operation.json` ("A short summary of what the operation is about" vs "A brief summary of the operation"). | Open |
+
+## v3.0.0 components
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| COMP1 | Validation | `components/components.json`, every section | Keys are checked with `patternProperties` `^[\w\d\.\-_]+$` but without `additionalProperties: false`, so an entry under a key outside the pattern isn't validated at all: `{"messages": {"a b": {"payload": true}}}` passes. The spec says keys MUST match the pattern. | Open |
+| COMP2 | Consistency | `components/components.json` `*Bindings` | Components use `draft-07/bindings/*Bindings.json`, which include `ros2`, while `server`, `channel`, `operation` and `message` in v3.0.0 use `v3.0.0/*Bindings.json` without `ros2`. A `ros2` binding can be stored in components but not used on an object. | Open |
+| COMP3 | Text | `components/components.json` `operations` | It's the only section without a `description`. | Open |
