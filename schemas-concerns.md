@@ -47,6 +47,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3 operation reply](#v3-operation-reply) | `operations/operationReply*` | 49 | 3 |
 | [v3.0.0 servers](#v300-servers) | `servers/server`, `servers/servers` | 58 | 4 |
 | [v3.0.0 channel messages](#v300-channel-messages) | `channels/messages/channelMessage`, `channelMessageTrait(s)`, `channelMessages` | 143 | 6 |
+| [v3.0.0 channels](#v300-channels) | `channels/channel`, `channels/channels` | 54 | 2 |
 
 ---
 
@@ -139,3 +140,10 @@ Reference requires `$ref` and allows nothing else; the other branch has `additio
 | MSG4 | Validation | `multiFormatSchema.json` | An unknown `schemaFormat` matches no branch, so its `schema` isn't validated (`{"schemaFormat": "application/x-unknown", "schema": 1}` passes), and `schema` isn't required. | Open |
 | MSG5 | Validation | `channels/messages/channelMessage.json` `contentType` | Any string passes, e.g. `json`; there's no media-type pattern. | Open |
 | MSG6 | Validation | `channels/messages/channelMessageTraits.json`, `operations/operationTraits.json` | No `uniqueItems`, so the same trait can be applied twice. | Open |
+
+## v3.0.0 channels
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| CH1 | Validation | `channels/channel.json` `address` | No pattern or `minLength`, so `""` passes. It isn't checked that the expressions in `{braces}` have matching `parameters` (parser rule). | Open |
+| CH2 | Example | `channels/channel.json` examples | `$ref`s point to paths that don't exist: `#/docs/user-events`, `#/components/user.signedUp` (should be `#/components/externalDocs/…` and `#/components/messages/…`). | Open |
