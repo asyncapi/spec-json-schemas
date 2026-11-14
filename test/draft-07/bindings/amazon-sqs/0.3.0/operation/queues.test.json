@@ -1,0 +1,48 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/operation.json#/properties/queues",
+  "tests": [
+    {
+      "description": "valid: single queue",
+      "valid": true,
+      "data": [
+        {
+          "name": "myQueue"
+        }
+      ]
+    },
+    {
+      "description": "valid: several queues",
+      "valid": true,
+      "data": [
+        {
+          "name": "myQueue"
+        },
+        {
+          "name": "myQueue_error",
+          "deliveryDelay": 10
+        }
+      ]
+    },
+    {
+      "description": "invalid: empty array",
+      "valid": false,
+      "data": []
+    },
+    {
+      "description": "invalid: invalid queue",
+      "valid": false,
+      "data": [
+        {
+          "fifoQueue": true
+        }
+      ]
+    },
+    {
+      "description": "invalid: not an array",
+      "valid": false,
+      "data": {
+        "name": "myQueue"
+      }
+    }
+  ]
+}

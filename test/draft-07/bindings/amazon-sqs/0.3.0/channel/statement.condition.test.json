@@ -1,0 +1,92 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/statement/properties/condition",
+  "tests": [
+    {
+      "description": "valid: string value",
+      "valid": true,
+      "data": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:myTopic"
+        }
+      }
+    },
+    {
+      "description": "valid: array of strings value",
+      "valid": true,
+      "data": {
+        "StringLike": {
+          "aws:SourceArn": [
+            "arn:aws:sns:*:123456789012:a",
+            "arn:aws:sns:*:123456789012:b"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: several operators",
+      "valid": true,
+      "data": {
+        "StringEquals": {
+          "aws:SourceAccount": "123456789012"
+        },
+        "ArnLike": {
+          "aws:SourceArn": "arn:aws:sns:*"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: empty operator",
+      "valid": true,
+      "data": {
+        "StringEquals": {}
+      }
+    },
+    {
+      "description": "invalid: operator is not an object",
+      "valid": false,
+      "data": {
+        "ArnEquals": "arn:aws:sns:us-east-1:123456789012:myTopic"
+      }
+    },
+    {
+      "description": "invalid: number value",
+      "valid": false,
+      "data": {
+        "NumericLessThan": {
+          "aws:MultiFactorAuthAge": 3600
+        }
+      }
+    },
+    {
+      "description": "invalid: boolean value",
+      "valid": false,
+      "data": {
+        "Bool": {
+          "aws:SecureTransport": true
+        }
+      }
+    },
+    {
+      "description": "invalid: array with a non string item",
+      "valid": false,
+      "data": {
+        "StringEquals": {
+          "aws:SourceAccount": [
+            "123456789012",
+            1
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "ArnEquals"
+    }
+  ]
+}

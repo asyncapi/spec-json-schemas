@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/queue/properties/deduplicationScope",
+  "tests": [
+    {
+      "description": "valid: queue",
+      "valid": true,
+      "data": "queue"
+    },
+    {
+      "description": "valid: messageGroup",
+      "valid": true,
+      "data": "messageGroup"
+    },
+    {
+      "description": "invalid: capitalized Queue",
+      "valid": false,
+      "data": "Queue"
+    },
+    {
+      "description": "invalid: unknown scope",
+      "valid": false,
+      "data": "message"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    }
+  ]
+}

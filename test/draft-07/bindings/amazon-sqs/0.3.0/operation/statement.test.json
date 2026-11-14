@@ -1,0 +1,95 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/operation.json#/definitions/statement",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*",
+        "x-sid": "AllowSend"
+      }
+    },
+    {
+      "description": "invalid: missing effect",
+      "valid": false,
+      "data": {
+        "action": "sqs:SendMessage",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: missing principal",
+      "valid": false,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow"
+      }
+    },
+    {
+      "description": "invalid: missing action",
+      "valid": false,
+      "data": {
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "sqs:SendMessage"
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*",
+        "resource": "arn:aws:sqs:eu-west-1:123456789012:myQueue",
+        "condition": {
+          "ArnEquals": {
+            "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:myTopic"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid condition",
+      "valid": false,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*",
+        "condition": {
+          "ArnEquals": "arn:aws:sns:us-east-1:123456789012:myTopic"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid resource",
+      "valid": false,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*",
+        "resource": 1
+      }
+    }
+  ]
+}

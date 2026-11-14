@@ -1,0 +1,156 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "deadLetterQueue": {
+          "fifoQueue": true,
+          "deliveryDelay": 0,
+          "messageRetentionPeriod": 604800,
+          "name": "myQueue_error",
+          "receiveMessageWaitTime": 0,
+          "visibilityTimeout": 0
+        },
+        "queue": {
+          "deduplicationScope": "messageGroup",
+          "deliveryDelay": 15,
+          "fifoQueue": true,
+          "fifoThroughputLimit": "perMessageGroupId",
+          "messageRetentionPeriod": 86400,
+          "name": "myQueue",
+          "policy": {
+            "statements": [
+              {
+                "action": [
+                  "sqs:SendMessage",
+                  "sqs:ReceiveMessage"
+                ],
+                "effect": "Deny",
+                "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+              }
+            ]
+          },
+          "receiveMessageWaitTime": 0,
+          "redrivePolicy": {
+            "deadLetterQueue": {
+              "arn": "arn:aws:SQS:eu-west-1:0000000:123456789"
+            },
+            "maxReceiveCount": 15
+          },
+          "tags": {
+            "owner": "AsyncAPI.NET",
+            "platform": "AsyncAPIOrg"
+          },
+          "visibilityTimeout": 60
+        }
+      }
+    },
+    {
+      "description": "valid: queue only",
+      "valid": true,
+      "data": {
+        "queue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        }
+      }
+    },
+    {
+      "description": "valid: queue and deadLetterQueue",
+      "valid": true,
+      "data": {
+        "queue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        },
+        "deadLetterQueue": {
+          "name": "myQueue_error",
+          "fifoQueue": false
+        },
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "queue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: missing queue",
+      "valid": false,
+      "data": {
+        "deadLetterQueue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        }
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: invalid queue",
+      "valid": false,
+      "data": {
+        "queue": {
+          "name": "myQueue"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid deadLetterQueue",
+      "valid": false,
+      "data": {
+        "queue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        },
+        "deadLetterQueue": {
+          "fifoQueue": false
+        }
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "queue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        },
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "queue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        },
+        "queues": [
+          {
+            "name": "myQueue",
+            "fifoQueue": false
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myQueue"
+    }
+  ]
+}
