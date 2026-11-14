@@ -1,0 +1,72 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/security/http/nonBearerHTTPSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: basic scheme",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "description": "HTTP - Basic",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "valid: digest scheme without description",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "scheme": "digest"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "description": "HTTP - Basic",
+        "scheme": "basic",
+        "x-realm": "forecast"
+      }
+    },
+    {
+      "description": "invalid: bearer scheme is forbidden",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    {
+      "description": "invalid: missing scheme",
+      "valid": false,
+      "data": {
+        "type": "http"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: wrong type value",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: bearerFormat is not allowed",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "description": "HTTP - Basic",
+        "scheme": "basic",
+        "bearerFormat": "JWT"
+      }
+    }
+  ]
+}

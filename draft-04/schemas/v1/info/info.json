@@ -3,37 +3,6 @@
   "id": "http://localhost:8000/draft-04/schemas/v1/info/info.json",
   "title": "AsyncAPI v1 - Info",
   "description": "Provides metadata about the API. The metadata can be used by the clients if needed",
-  "examples": [
-    {
-      "version": "2.39.7",
-      "title": "Weather forecast updated",
-      "license": {
-        "name": "The MIT License",
-        "url": "https://mit-license.org"
-      }
-    },
-    {
-      "version": "2.39.7",
-      "title": "Weather forecast updated",
-      "description": "Streams weather updates by cities, regions or coordinates"
-    },
-    {
-      "version": "2.39.7",
-      "title": "Weather forecast updated",
-      "description": "Streams weather updates by cities, regions or coordinates",
-      "termsOfService": "https://api.weather-forecast.am/terms"
-    },
-    {
-      "version": "2.39.7",
-      "title": "Weather forecast updated",
-      "description": "Streams weather updates by cities, regions or coordinates",
-      "contact": {
-        "name": "Weather Forecast",
-        "email": "feedback@weather-forecast.am",
-        "url": "https://weather-forecast.am"
-      }
-    }
-  ],
   "type": "object",
   "required": [ "version", "title" ],
   "properties": {

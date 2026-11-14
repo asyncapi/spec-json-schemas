@@ -3,14 +3,6 @@
   "id": "http://localhost:8000/draft-04/schemas/v1/security/http/bearerHTTPSecuritySchema.json",
   "title": "AsyncAPI v1 - HTTP Bearer Authentication",
   "description": "Contains information about HTTP Bearer Authentication",
-  "examples": [
-    {
-      "type": "http",
-      "description": "HTTP - Bearer",
-      "scheme": "bearer",
-      "bearerFormat": "JWT"
-    }
-  ],
   "type": "object",
   "required": [ "type", "scheme" ],
   "properties": {

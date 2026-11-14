@@ -3,22 +3,6 @@
   "id": "http://localhost:8000/draft-04/schemas/v1/info/contact.json",
   "title": "AsyncAPI v1 - Info Contact",
   "description": "Contact information for the exposed API",
-  "examples": [
-    {
-      "name": "Weather Forecast"
-    },
-    {
-      "email": "feedback@weather-forecast.am"
-    },
-    {
-      "url": "https://weather-forecast.am"
-    },
-    {
-      "name": "Weather Forecast",
-      "email": "feedback@weather-forecast.am",
-      "url": "https://weather-forecast.am"
-    }
-  ],
   "type": "object",
   "properties": {
     "name": {

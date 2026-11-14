@@ -3,17 +3,6 @@
   "id": "http://localhost:8000/draft-04/schemas/v1/security/apiKey.json",
   "title": "AsyncAPI v1 - API key Authentication",
   "description": "Contains information about API key Authentication",
-  "examples": [
-    {
-      "type": "apiKey",
-      "in": "user"
-    },
-    {
-      "type": "apiKey",
-      "in": "password",
-      "description": "Simple security mechanism that uses a unique, long-lived alphanumeric string to identify and authorize an application or project making a request to an API"
-    }
-  ],
   "type": "object",
   "required": [ "type", "in" ],
   "properties": {

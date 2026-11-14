@@ -1,0 +1,72 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/security/X509.json",
+  "tests": [
+    {
+      "description": "valid: type only",
+      "valid": true,
+      "data": {
+        "type": "X509"
+      }
+    },
+    {
+      "description": "valid: type and description",
+      "valid": true,
+      "data": {
+        "type": "X509",
+        "description": "Authentication with X.509 certificates"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "X509",
+        "x-custom": {
+          "any": "value"
+        }
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "description": "Authentication with X.509 certificates"
+      }
+    },
+    {
+      "description": "invalid: wrong type value",
+      "valid": false,
+      "data": {
+        "type": "unknown"
+      }
+    },
+    {
+      "description": "invalid: type is not a string",
+      "valid": false,
+      "data": {
+        "type": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "X509",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "X509",
+        "foo": "bar"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "X509"
+    }
+  ]
+}

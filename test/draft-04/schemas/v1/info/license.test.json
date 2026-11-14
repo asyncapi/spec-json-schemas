@@ -1,0 +1,58 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/info/license.json",
+  "tests": [
+    {
+      "description": "valid: name only",
+      "valid": true,
+      "data": {
+        "name": "The MIT License"
+      }
+    },
+    {
+      "description": "valid: name and url",
+      "valid": true,
+      "data": {
+        "name": "The MIT License",
+        "url": "https://mit-license.org"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "The MIT License",
+        "x-spdx": "MIT"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "url": "https://mit-license.org"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: url is not a uri",
+      "valid": false,
+      "data": {
+        "name": "The MIT License",
+        "url": "not a uri"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "The MIT License",
+        "foo": "bar"
+      }
+    }
+  ]
+}
