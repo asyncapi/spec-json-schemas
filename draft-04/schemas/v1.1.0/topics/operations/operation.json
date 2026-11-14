@@ -1,9 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.1.0/operation.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/operations/operation.json",
   "oneOf": [
     {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/message.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/messages/message.json"
     },
     {
       "type": "object",
@@ -13,13 +13,13 @@
           "type": "array",
           "minItems": 2,
           "items": {
-            "$ref": "http://asyncapi.com/definitions/1.1.0/message.json"
+            "$ref": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/messages/message.json"
           }
         }
       },
       "patternProperties": {
         "^x-": {
-          "$ref": "http://asyncapi.com/definitions/1.1.0/vendorExtension.json"
+          "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
         }
       },
       "additionalProperties": false

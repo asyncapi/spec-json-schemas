@@ -1,14 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.1.0/topics.json",
+  "id": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/topics.json",
   "description": "Relative paths to the individual topics. They must be relative to the 'baseTopic'.",
   "type": "object",
   "patternProperties": {
     "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/vendorExtension.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
     },
     "^[^.]": {
-      "$ref": "http://asyncapi.com/definitions/1.1.0/topicItem.json"
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/topicItem.json"
     }
   },
   "additionalProperties": false
