@@ -36,9 +36,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [mercure](#mercure) | 0.1.0 | 128 | 1 |
 | [mqtt](#mqtt) | 0.1.0, 0.2.0 | 288 | 7 |
 | [mqtt5](#mqtt5) | 0.1.0, 0.2.0 | 204 | 5 |
+| [nats](#nats) | 0.1.0 | 128 | 2 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: nats, redis, ros2, solace, stomp, websockets, and the
+Not covered yet: redis, ros2, solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -199,3 +200,12 @@ Only the 0.2.0 server defines a field (`sessionExpiryInterval`). Everything else
 | MQTT5-3 | Text | 0.2.0 | `server.json` `description` | "…representation in **MQTT5 v5.0**" should be "MQTT v5.0". | Open |
 | MQTT5-4 | Text | 0.2.0 | `channel.json` `description` | "…in MQTT v5"; every other file says "MQTT v5.0". | Open |
 | MQTT5-5 | Consistency | 0.1.0 (all), 0.2.0 (channel, operation, message) | | No `x-` extensions are allowed (see A4). | Open |
+
+## nats
+
+Only operation defines a field (`queue`). The root routing (0.1.0 for every branch) is correct.
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| NATS1 | Validation | 0.1.0 | operation `queue` | There's a `maxLength: 255` but no `minLength`, so `""` passes. | Open |
+| NATS2 | Consistency | 0.1.0 | channel, server, message | No `x-` extensions are allowed; operation allows them (see A4). | Open |
