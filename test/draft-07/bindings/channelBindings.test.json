@@ -1,0 +1,1354 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/channelBindings.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "sns": {
+          "$ref": "#/bindings/amazon-sns/my-sns-channel"
+        },
+        "sqs": {
+          "$ref": "#/bindings/amazon-sqs/my-sqs-channel"
+        },
+        "amqp": {
+          "$ref": "#/bindings/amqp/my-amqp-channel"
+        },
+        "amqp1": {
+          "$ref": "#/bindings/amqp1/my-amqp1-channel"
+        },
+        "anypointmq": {
+          "$ref": "#/bindings/anypointmq/my-anypointmq-channel"
+        },
+        "kafka": {
+          "$ref": "#/bindings/apache-kafka/my-apache-kafka-channel"
+        },
+        "pulsar": {
+          "$ref": "#/bindings/apache-pulsar/my-apache-pulsar-channel"
+        },
+        "googlepubsub": {
+          "$ref": "#/bindings/googlepubsub/my-googlepubsub-channel"
+        },
+        "http": {
+          "$ref": "#/bindings/http/my-http-channel"
+        },
+        "ibmmq": {
+          "$ref": "#/bindings/ibmmq/my-ibmmq-channel"
+        },
+        "jms": {
+          "$ref": "#/bindings/jms/my-jms-channel"
+        },
+        "mercure": {
+          "$ref": "#/bindings/mercure/my-mercure-channel"
+        },
+        "mqtt": {
+          "$ref": "#/bindings/mqtt/my-mqtt-channel"
+        },
+        "mqtt5": {
+          "$ref": "#/bindings/mqtt5/my-mqtt5-channel"
+        },
+        "nats": {
+          "$ref": "#/bindings/nats/my-nats-channel"
+        },
+        "redis": {
+          "$ref": "#/bindings/redis/my-redis-channel"
+        },
+        "ros2": {
+          "$ref": "#/bindings/ros2/my-ros2-channel"
+        },
+        "solace": {
+          "$ref": "#/bindings/solace/my-solace-channel"
+        },
+        "stomp": {
+          "$ref": "#/bindings/stomp/my-stomp-channel"
+        },
+        "ws": {
+          "$ref": "#/bindings/websockets/my-websockets-channel"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "sns": {
+          "name": "my-sns-topic",
+          "policy": {
+            "statements": [
+              {
+                "action": "SNS:Publish",
+                "effect": "Allow",
+                "principal": "*",
+                "condition": {
+                  "StringEquals": {
+                    "aws:SourceAccount": "123456789012"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "sqs": {
+          "queue": {
+            "fifoQueue": true,
+            "name": "my-sqs-queue"
+          },
+          "deadLetterQueue": {
+            "fifoQueue": true,
+            "name": "my-sqs-queue.dlq"
+          },
+          "bindingVersion": "0.3.0"
+        },
+        "amqp": {
+          "bindingVersion": "0.3.0",
+          "exchange": {
+            "type": "fanout",
+            "autoDelete": false,
+            "durable": true,
+            "name": "myExchange",
+            "vhost": "/"
+          },
+          "is": "routingKey"
+        },
+        "amqp1": {
+          "bindingVersion": "0.1.0"
+        },
+        "anypointmq": {
+          "bindingVersion": "0.0.1",
+          "destination": "user-signup-fifo-queue",
+          "destinationType": "fifo-queue"
+        },
+        "kafka": {
+          "bindingVersion": "0.5.0",
+          "partitions": 20,
+          "replicas": 3,
+          "topic": "my-specific-topic",
+          "topicConfiguration": {
+            "cleanup.policy": [
+              "compact",
+              "delete"
+            ],
+            "delete.retention.ms": 1000,
+            "max.message.bytes": 2000,
+            "retention.bytes": 10,
+            "retention.ms": 2000,
+            "confluent.key.schema.validation": true,
+            "confluent.key.subject.name.strategy": "schema",
+            "confluent.value.schema.validation": true,
+            "confluent.value.subject.name.strategy": "schema"
+          }
+        },
+        "pulsar": {
+          "bindingVersion": "0.1.0",
+          "compaction": 1000,
+          "deduplication": true,
+          "geo-replication": [
+            "us-west",
+            "us-east"
+          ],
+          "namespace": "ns1",
+          "persistence": "persistent",
+          "retention": {
+            "size": 1000,
+            "time": 15
+          },
+          "ttl": 360
+        },
+        "googlepubsub": {
+          "labels": {
+            "label1": "value1",
+            "label2": "value2"
+          },
+          "messageRetentionDuration": "86400s",
+          "messageStoragePolicy": {
+            "allowedPersistenceRegions": [
+              "us-central1",
+              "us-east1"
+            ]
+          },
+          "schemaSettings": {
+            "encoding": "json",
+            "name": "projects/your-project-id/schemas/your-schema",
+            "firstRevisionId": "1",
+            "lastRevisionId": "2"
+          },
+          "bindingVersion": "0.2.0"
+        },
+        "http": {
+          "bindingVersion": "0.3.0"
+        },
+        "ibmmq": {
+          "bindingVersion": "0.1.0",
+          "destinationType": "topic",
+          "topic": {
+            "durablePermitted": true,
+            "lastMsgRetained": false,
+            "objectName": "myTopicName",
+            "string": "key"
+          }
+        },
+        "jms": {
+          "bindingVersion": "0.0.1",
+          "destination": "user-signed-up",
+          "destinationType": "queue"
+        },
+        "mercure": {
+          "bindingVersion": "0.1.0"
+        },
+        "mqtt": {
+          "bindingVersion": "0.2.0"
+        },
+        "mqtt5": {
+          "bindingVersion": "0.2.0"
+        },
+        "nats": {
+          "bindingVersion": "0.1.0"
+        },
+        "redis": {
+          "bindingVersion": "0.1.0"
+        },
+        "ros2": {
+          "bindingVersion": "0.1.0"
+        },
+        "solace": {
+          "bindingVersion": "0.4.0"
+        },
+        "stomp": {
+          "bindingVersion": "0.1.0"
+        },
+        "ws": {
+          "bindingVersion": "0.1.0",
+          "headers": {
+            "session-id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: x- extension",
+      "valid": true,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: x- extension holding any value",
+      "valid": true,
+      "data": {
+        "x-owner": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "description": "valid: sns inline binding",
+      "valid": true,
+      "data": {
+        "sns": {
+          "name": "my-sns-topic",
+          "policy": {
+            "statements": [
+              {
+                "action": "SNS:Publish",
+                "effect": "Allow",
+                "principal": "*"
+              }
+            ]
+          },
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: sns reference",
+      "valid": true,
+      "data": {
+        "sns": {
+          "$ref": "#/components/channelBindings/my-amazon-sns"
+        }
+      }
+    },
+    {
+      "description": "invalid: sns unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "sns": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: sns reference with extra property",
+      "valid": false,
+      "data": {
+        "sns": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: sns is not an object",
+      "valid": false,
+      "data": {
+        "sns": "latest"
+      }
+    },
+    {
+      "description": "invalid: folder name amazon-sns is not a binding key (use sns)",
+      "valid": false,
+      "data": {
+        "amazon-sns": {
+          "name": "my-sns-topic",
+          "policy": {
+            "statements": [
+              {
+                "action": "SNS:Publish",
+                "effect": "Allow",
+                "principal": "*"
+              }
+            ]
+          },
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: sqs inline binding",
+      "valid": true,
+      "data": {
+        "sqs": {
+          "queue": {
+            "fifoQueue": true,
+            "name": "my-sqs-queue"
+          },
+          "deadLetterQueue": {
+            "fifoQueue": true,
+            "deliveryDelay": 0,
+            "messageRetentionPeriod": 604800,
+            "name": "my-sqs-queue.dlq",
+            "receiveMessageWaitTime": 0,
+            "visibilityTimeout": 0
+          },
+          "bindingVersion": "0.3.0"
+        }
+      }
+    },
+    {
+      "description": "valid: sqs reference",
+      "valid": true,
+      "data": {
+        "sqs": {
+          "$ref": "#/components/channelBindings/my-amazon-sqs"
+        }
+      }
+    },
+    {
+      "description": "invalid: sqs unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "sqs": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: sqs reference with extra property",
+      "valid": false,
+      "data": {
+        "sqs": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: sqs is not an object",
+      "valid": false,
+      "data": {
+        "sqs": "latest"
+      }
+    },
+    {
+      "description": "invalid: folder name amazon-sqs is not a binding key (use sqs)",
+      "valid": false,
+      "data": {
+        "amazon-sqs": {
+          "queue": {
+            "fifoQueue": true,
+            "name": "my-sqs-queue"
+          },
+          "deadLetterQueue": {
+            "fifoQueue": true,
+            "deliveryDelay": 0,
+            "messageRetentionPeriod": 604800,
+            "name": "my-sqs-queue.dlq",
+            "receiveMessageWaitTime": 0,
+            "visibilityTimeout": 0
+          },
+          "bindingVersion": "0.3.0"
+        }
+      }
+    },
+    {
+      "description": "valid: amqp inline binding",
+      "valid": true,
+      "data": {
+        "amqp": {
+          "bindingVersion": "0.3.0",
+          "exchange": {
+            "type": "fanout",
+            "autoDelete": false,
+            "durable": true,
+            "name": "myExchange",
+            "vhost": "/"
+          },
+          "is": "routingKey"
+        }
+      }
+    },
+    {
+      "description": "valid: amqp reference",
+      "valid": true,
+      "data": {
+        "amqp": {
+          "$ref": "#/components/channelBindings/my-amqp"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "amqp": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp reference with extra property",
+      "valid": false,
+      "data": {
+        "amqp": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp is not an object",
+      "valid": false,
+      "data": {
+        "amqp": "latest"
+      }
+    },
+    {
+      "description": "valid: amqp1 inline binding",
+      "valid": true,
+      "data": {
+        "amqp1": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: amqp1 reference",
+      "valid": true,
+      "data": {
+        "amqp1": {
+          "$ref": "#/components/channelBindings/my-amqp1"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp1 unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "amqp1": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp1 reference with extra property",
+      "valid": false,
+      "data": {
+        "amqp1": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp1 is not an object",
+      "valid": false,
+      "data": {
+        "amqp1": "latest"
+      }
+    },
+    {
+      "description": "valid: anypointmq inline binding",
+      "valid": true,
+      "data": {
+        "anypointmq": {
+          "bindingVersion": "0.0.1",
+          "destination": "user-signup-fifo-queue",
+          "destinationType": "fifo-queue"
+        }
+      }
+    },
+    {
+      "description": "valid: anypointmq reference",
+      "valid": true,
+      "data": {
+        "anypointmq": {
+          "$ref": "#/components/channelBindings/my-anypointmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: anypointmq unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "anypointmq": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: anypointmq reference with extra property",
+      "valid": false,
+      "data": {
+        "anypointmq": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: anypointmq is not an object",
+      "valid": false,
+      "data": {
+        "anypointmq": "latest"
+      }
+    },
+    {
+      "description": "valid: kafka inline binding",
+      "valid": true,
+      "data": {
+        "kafka": {
+          "bindingVersion": "0.5.0",
+          "partitions": 20,
+          "replicas": 3,
+          "topic": "my-specific-topic",
+          "topicConfiguration": {
+            "cleanup.policy": [
+              "compact",
+              "delete"
+            ],
+            "delete.retention.ms": 1000,
+            "max.message.bytes": 2000,
+            "retention.bytes": 10,
+            "retention.ms": 2000,
+            "confluent.key.schema.validation": true,
+            "confluent.key.subject.name.strategy": "schema",
+            "confluent.value.schema.validation": true,
+            "confluent.value.subject.name.strategy": "schema"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: kafka reference",
+      "valid": true,
+      "data": {
+        "kafka": {
+          "$ref": "#/components/channelBindings/my-apache-kafka"
+        }
+      }
+    },
+    {
+      "description": "invalid: kafka unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "kafka": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: kafka reference with extra property",
+      "valid": false,
+      "data": {
+        "kafka": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: kafka is not an object",
+      "valid": false,
+      "data": {
+        "kafka": "latest"
+      }
+    },
+    {
+      "description": "invalid: folder name apache-kafka is not a binding key (use kafka)",
+      "valid": false,
+      "data": {
+        "apache-kafka": {
+          "bindingVersion": "0.5.0",
+          "partitions": 20,
+          "replicas": 3,
+          "topic": "my-specific-topic",
+          "topicConfiguration": {
+            "cleanup.policy": [
+              "compact",
+              "delete"
+            ],
+            "delete.retention.ms": 1000,
+            "max.message.bytes": 2000,
+            "retention.bytes": 10,
+            "retention.ms": 2000,
+            "confluent.key.schema.validation": true,
+            "confluent.key.subject.name.strategy": "schema",
+            "confluent.value.schema.validation": true,
+            "confluent.value.subject.name.strategy": "schema"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: pulsar inline binding",
+      "valid": true,
+      "data": {
+        "pulsar": {
+          "bindingVersion": "0.1.0",
+          "compaction": 1000,
+          "deduplication": true,
+          "geo-replication": [
+            "us-west",
+            "us-east"
+          ],
+          "namespace": "ns1",
+          "persistence": "persistent",
+          "retention": {
+            "size": 1000,
+            "time": 15
+          },
+          "ttl": 360
+        }
+      }
+    },
+    {
+      "description": "valid: pulsar reference",
+      "valid": true,
+      "data": {
+        "pulsar": {
+          "$ref": "#/components/channelBindings/my-apache-pulsar"
+        }
+      }
+    },
+    {
+      "description": "invalid: pulsar unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "pulsar": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: pulsar reference with extra property",
+      "valid": false,
+      "data": {
+        "pulsar": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: pulsar is not an object",
+      "valid": false,
+      "data": {
+        "pulsar": "latest"
+      }
+    },
+    {
+      "description": "invalid: folder name apache-pulsar is not a binding key (use pulsar)",
+      "valid": false,
+      "data": {
+        "apache-pulsar": {
+          "bindingVersion": "0.1.0",
+          "compaction": 1000,
+          "deduplication": true,
+          "geo-replication": [
+            "us-west",
+            "us-east"
+          ],
+          "namespace": "ns1",
+          "persistence": "persistent",
+          "retention": {
+            "size": 1000,
+            "time": 15
+          },
+          "ttl": 360
+        }
+      }
+    },
+    {
+      "description": "valid: googlepubsub inline binding",
+      "valid": true,
+      "data": {
+        "googlepubsub": {
+          "labels": {
+            "label1": "value1",
+            "label2": "value2"
+          },
+          "messageRetentionDuration": "86400s",
+          "messageStoragePolicy": {
+            "allowedPersistenceRegions": [
+              "us-central1",
+              "us-east1"
+            ]
+          },
+          "schemaSettings": {
+            "encoding": "json",
+            "name": "projects/your-project-id/schemas/your-schema",
+            "firstRevisionId": "1",
+            "lastRevisionId": "2"
+          },
+          "bindingVersion": "0.2.0"
+        }
+      }
+    },
+    {
+      "description": "valid: googlepubsub reference",
+      "valid": true,
+      "data": {
+        "googlepubsub": {
+          "$ref": "#/components/channelBindings/my-googlepubsub"
+        }
+      }
+    },
+    {
+      "description": "invalid: googlepubsub unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "googlepubsub": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: googlepubsub reference with extra property",
+      "valid": false,
+      "data": {
+        "googlepubsub": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: googlepubsub is not an object",
+      "valid": false,
+      "data": {
+        "googlepubsub": "latest"
+      }
+    },
+    {
+      "description": "valid: http inline binding",
+      "valid": true,
+      "data": {
+        "http": {
+          "bindingVersion": "0.3.0"
+        }
+      }
+    },
+    {
+      "description": "valid: http reference",
+      "valid": true,
+      "data": {
+        "http": {
+          "$ref": "#/components/channelBindings/my-http"
+        }
+      }
+    },
+    {
+      "description": "invalid: http unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "http": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: http reference with extra property",
+      "valid": false,
+      "data": {
+        "http": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: http is not an object",
+      "valid": false,
+      "data": {
+        "http": "latest"
+      }
+    },
+    {
+      "description": "valid: ibmmq inline binding",
+      "valid": true,
+      "data": {
+        "ibmmq": {
+          "bindingVersion": "0.1.0",
+          "destinationType": "topic",
+          "topic": {
+            "durablePermitted": true,
+            "lastMsgRetained": false,
+            "objectName": "myTopicName",
+            "string": "key"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: ibmmq reference",
+      "valid": true,
+      "data": {
+        "ibmmq": {
+          "$ref": "#/components/channelBindings/my-ibmmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: ibmmq unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "ibmmq": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: ibmmq reference with extra property",
+      "valid": false,
+      "data": {
+        "ibmmq": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: ibmmq is not an object",
+      "valid": false,
+      "data": {
+        "ibmmq": "latest"
+      }
+    },
+    {
+      "description": "valid: jms inline binding",
+      "valid": true,
+      "data": {
+        "jms": {
+          "bindingVersion": "0.0.1",
+          "destination": "user-signed-up",
+          "destinationType": "queue"
+        }
+      }
+    },
+    {
+      "description": "valid: jms reference",
+      "valid": true,
+      "data": {
+        "jms": {
+          "$ref": "#/components/channelBindings/my-jms"
+        }
+      }
+    },
+    {
+      "description": "invalid: jms unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "jms": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: jms reference with extra property",
+      "valid": false,
+      "data": {
+        "jms": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: jms is not an object",
+      "valid": false,
+      "data": {
+        "jms": "latest"
+      }
+    },
+    {
+      "description": "valid: mercure inline binding",
+      "valid": true,
+      "data": {
+        "mercure": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: mercure reference",
+      "valid": true,
+      "data": {
+        "mercure": {
+          "$ref": "#/components/channelBindings/my-mercure"
+        }
+      }
+    },
+    {
+      "description": "invalid: mercure unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "mercure": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: mercure reference with extra property",
+      "valid": false,
+      "data": {
+        "mercure": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: mercure is not an object",
+      "valid": false,
+      "data": {
+        "mercure": "latest"
+      }
+    },
+    {
+      "description": "valid: mqtt inline binding",
+      "valid": true,
+      "data": {
+        "mqtt": {
+          "bindingVersion": "0.2.0"
+        }
+      }
+    },
+    {
+      "description": "valid: mqtt reference",
+      "valid": true,
+      "data": {
+        "mqtt": {
+          "$ref": "#/components/channelBindings/my-mqtt"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "mqtt": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt reference with extra property",
+      "valid": false,
+      "data": {
+        "mqtt": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt is not an object",
+      "valid": false,
+      "data": {
+        "mqtt": "latest"
+      }
+    },
+    {
+      "description": "valid: mqtt5 inline binding",
+      "valid": true,
+      "data": {
+        "mqtt5": {
+          "bindingVersion": "0.2.0"
+        }
+      }
+    },
+    {
+      "description": "valid: mqtt5 reference",
+      "valid": true,
+      "data": {
+        "mqtt5": {
+          "$ref": "#/components/channelBindings/my-mqtt5"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt5 unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "mqtt5": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt5 reference with extra property",
+      "valid": false,
+      "data": {
+        "mqtt5": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt5 is not an object",
+      "valid": false,
+      "data": {
+        "mqtt5": "latest"
+      }
+    },
+    {
+      "description": "valid: nats inline binding",
+      "valid": true,
+      "data": {
+        "nats": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: nats reference",
+      "valid": true,
+      "data": {
+        "nats": {
+          "$ref": "#/components/channelBindings/my-nats"
+        }
+      }
+    },
+    {
+      "description": "invalid: nats unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "nats": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: nats reference with extra property",
+      "valid": false,
+      "data": {
+        "nats": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: nats is not an object",
+      "valid": false,
+      "data": {
+        "nats": "latest"
+      }
+    },
+    {
+      "description": "valid: redis inline binding",
+      "valid": true,
+      "data": {
+        "redis": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: redis reference",
+      "valid": true,
+      "data": {
+        "redis": {
+          "$ref": "#/components/channelBindings/my-redis"
+        }
+      }
+    },
+    {
+      "description": "invalid: redis unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "redis": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: redis reference with extra property",
+      "valid": false,
+      "data": {
+        "redis": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: redis is not an object",
+      "valid": false,
+      "data": {
+        "redis": "latest"
+      }
+    },
+    {
+      "description": "valid: ros2 inline binding",
+      "valid": true,
+      "data": {
+        "ros2": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: ros2 reference",
+      "valid": true,
+      "data": {
+        "ros2": {
+          "$ref": "#/components/channelBindings/my-ros2"
+        }
+      }
+    },
+    {
+      "description": "invalid: ros2 unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "ros2": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: ros2 reference with extra property",
+      "valid": false,
+      "data": {
+        "ros2": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: ros2 is not an object",
+      "valid": false,
+      "data": {
+        "ros2": "latest"
+      }
+    },
+    {
+      "description": "valid: solace inline binding",
+      "valid": true,
+      "data": {
+        "solace": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: solace reference",
+      "valid": true,
+      "data": {
+        "solace": {
+          "$ref": "#/components/channelBindings/my-solace"
+        }
+      }
+    },
+    {
+      "description": "invalid: solace unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "solace": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: solace reference with extra property",
+      "valid": false,
+      "data": {
+        "solace": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: solace is not an object",
+      "valid": false,
+      "data": {
+        "solace": "latest"
+      }
+    },
+    {
+      "description": "valid: stomp inline binding",
+      "valid": true,
+      "data": {
+        "stomp": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: stomp reference",
+      "valid": true,
+      "data": {
+        "stomp": {
+          "$ref": "#/components/channelBindings/my-stomp"
+        }
+      }
+    },
+    {
+      "description": "invalid: stomp unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "stomp": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: stomp reference with extra property",
+      "valid": false,
+      "data": {
+        "stomp": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: stomp is not an object",
+      "valid": false,
+      "data": {
+        "stomp": "latest"
+      }
+    },
+    {
+      "description": "valid: ws inline binding",
+      "valid": true,
+      "data": {
+        "ws": {
+          "bindingVersion": "0.1.0",
+          "headers": {
+            "session-id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "description": "valid: ws reference",
+      "valid": true,
+      "data": {
+        "ws": {
+          "$ref": "#/components/channelBindings/my-websockets"
+        }
+      }
+    },
+    {
+      "description": "invalid: ws unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "ws": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: ws reference with extra property",
+      "valid": false,
+      "data": {
+        "ws": {
+          "$ref": "#/x",
+          "bindingVersion": "latest"
+        }
+      }
+    },
+    {
+      "description": "invalid: ws is not an object",
+      "valid": false,
+      "data": {
+        "ws": "latest"
+      }
+    },
+    {
+      "description": "invalid: folder name websockets is not a binding key (use ws)",
+      "valid": false,
+      "data": {
+        "websockets": {
+          "bindingVersion": "0.1.0",
+          "headers": {
+            "session-id": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          "method": "GET"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown protocol key",
+      "valid": false,
+      "data": {
+        "grpc": {}
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        "kafka"
+      ]
+    }
+  ]
+}
