@@ -1,4 +1,6 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.1.0/SecurityScheme.json",
   "oneOf": [
     {
       "$ref": "http://asyncapi.com/definitions/1.1.0/userPassword.json"
@@ -18,7 +20,5 @@
     {
       "$ref": "http://asyncapi.com/definitions/1.1.0/HTTPSecurityScheme.json"
     }
-  ],
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.1.0/SecurityScheme.json"
+  ]
 }

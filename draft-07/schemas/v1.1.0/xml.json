@@ -1,6 +1,7 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.1.0/xml.json",
   "type": "object",
-  "additionalProperties": false,
   "properties": {
     "name": {
       "type": "string"
@@ -12,14 +13,13 @@
       "type": "string"
     },
     "attribute": {
-      "type": "boolean",
-      "default": false
+      "default": false,
+      "type": "boolean"
     },
     "wrapped": {
-      "type": "boolean",
-      "default": false
+      "default": false,
+      "type": "boolean"
     }
   },
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.1.0/xml.json"
+  "additionalProperties": false
 }

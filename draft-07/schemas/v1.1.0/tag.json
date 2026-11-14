@@ -1,9 +1,8 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.1.0/tag.json",
   "type": "object",
-  "additionalProperties": false,
-  "required": [
-    "name"
-  ],
+  "required": [ "name" ],
   "properties": {
     "name": {
       "type": "string"
@@ -20,6 +19,5 @@
       "$ref": "http://asyncapi.com/definitions/1.1.0/vendorExtension.json"
     }
   },
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.1.0/tag.json"
+  "additionalProperties": false
 }

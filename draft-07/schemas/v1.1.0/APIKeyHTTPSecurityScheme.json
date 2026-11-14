@@ -1,27 +1,19 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.1.0/APIKeyHTTPSecurityScheme.json",
   "type": "object",
-  "required": [
-    "type",
-    "name",
-    "in"
-  ],
+  "required": [ "type", "name", "in" ],
   "properties": {
     "type": {
       "type": "string",
-      "enum": [
-        "httpApiKey"
-      ]
+      "enum": [ "httpApiKey" ]
     },
     "name": {
       "type": "string"
     },
     "in": {
       "type": "string",
-      "enum": [
-        "header",
-        "query",
-        "cookie"
-      ]
+      "enum": [ "header", "query", "cookie" ]
     },
     "description": {
       "type": "string"
@@ -30,7 +22,5 @@
   "patternProperties": {
     "^x-": {}
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.1.0/APIKeyHTTPSecurityScheme.json"
+  "additionalProperties": false
 }
