@@ -1,81 +1,62 @@
 {
-  "title": "AsyncAPI 1.2.0 schema.",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "id": "http://asyncapi.com/definitions/1.2.0/asyncapi.json",
+  "title": "AsyncAPI 1.2.0 schema.",
   "type": "object",
-  "required": [
-    "asyncapi",
-    "info"
-  ],
   "oneOf": [
     {
-      "required": [
-        "topics"
-      ]
+      "required": [ "topics" ]
     },
     {
-      "required": [
-        "stream"
-      ]
+      "required": [ "stream" ]
     },
     {
-      "required": [
-        "events"
-      ]
+      "required": [ "events" ]
     }
   ],
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
-    }
-  },
+  "required": [ "asyncapi", "info" ],
   "properties": {
     "asyncapi": {
+      "description": "The AsyncAPI specification version of this document.",
       "type": "string",
-      "enum": [
-        "1.0.0",
-        "1.1.0",
-        "1.2.0"
-      ],
-      "description": "The AsyncAPI specification version of this document."
+      "enum": [ "1.0.0", "1.1.0", "1.2.0" ]
     },
     "info": {
       "$ref": "http://asyncapi.com/definitions/1.2.0/info.json"
     },
     "baseTopic": {
-      "type": "string",
-      "pattern": "^[^/.]",
       "description": "The base topic to the API. Example: 'hitch'.",
-      "default": ""
+      "default": "",
+      "type": "string",
+      "pattern": "^[^/.]"
     },
     "servers": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "$ref": "http://asyncapi.com/definitions/1.2.0/server.json"
-      },
-      "uniqueItems": true
+      }
     },
     "topics": {
       "$ref": "http://asyncapi.com/definitions/1.2.0/topics.json"
     },
     "stream": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/stream.json",
-      "description": "The list of messages a consumer can read or write from/to a streaming API."
+      "description": "The list of messages a consumer can read or write from/to a streaming API.",
+      "$ref": "http://asyncapi.com/definitions/1.2.0/stream.json"
     },
     "events": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/events.json",
-      "description": "The list of messages an events API sends and/or receives."
+      "description": "The list of messages an events API sends and/or receives.",
+      "$ref": "http://asyncapi.com/definitions/1.2.0/events.json"
     },
     "components": {
       "$ref": "http://asyncapi.com/definitions/1.2.0/components.json"
     },
     "tags": {
       "type": "array",
+      "uniqueItems": true,
       "items": {
         "$ref": "http://asyncapi.com/definitions/1.2.0/tag.json"
-      },
-      "uniqueItems": true
+      }
     },
     "security": {
       "type": "array",
@@ -86,5 +67,11 @@
     "externalDocs": {
       "$ref": "http://asyncapi.com/definitions/1.2.0/externalDocs.json"
     }
-  }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
 }

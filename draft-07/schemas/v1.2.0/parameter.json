@@ -1,18 +1,14 @@
 {
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
-    }
-  },
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.2.0/parameter.json",
   "properties": {
     "description": {
-      "type": "string",
-      "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed."
+      "description": "A brief description of the parameter. This could contain examples of use.  GitHub Flavored Markdown is allowed.",
+      "type": "string"
     },
     "name": {
-      "type": "string",
-      "description": "The name of the parameter."
+      "description": "The name of the parameter.",
+      "type": "string"
     },
     "schema": {
       "$ref": "http://asyncapi.com/definitions/1.2.0/schema.json"
@@ -21,6 +17,10 @@
       "type": "string"
     }
   },
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/parameter.json"
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
 }

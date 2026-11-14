@@ -1,19 +1,13 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.2.0/operation.json",
   "oneOf": [
     {
       "$ref": "http://asyncapi.com/definitions/1.2.0/message.json"
     },
     {
       "type": "object",
-      "required": [
-        "oneOf"
-      ],
-      "additionalProperties": false,
-      "patternProperties": {
-        "^x-": {
-          "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
-        }
-      },
+      "required": [ "oneOf" ],
       "properties": {
         "oneOf": {
           "type": "array",
@@ -22,9 +16,13 @@
             "$ref": "http://asyncapi.com/definitions/1.2.0/message.json"
           }
         }
-      }
+      },
+      "patternProperties": {
+        "^x-": {
+          "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
+        }
+      },
+      "additionalProperties": false
     }
-  ],
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/operation.json"
+  ]
 }

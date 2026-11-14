@@ -1,11 +1,8 @@
 {
-  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.2.0/schema.json",
   "description": "A deterministic version of a JSON Schema object.",
-  "patternProperties": {
-    "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
-    }
-  },
+  "type": "object",
   "properties": {
     "$ref": {
       "type": "string"
@@ -68,6 +65,7 @@
       "$ref": "http://json-schema.org/draft-04/schema#/properties/enum"
     },
     "additionalProperties": {
+      "default": {},
       "anyOf": [
         {
           "$ref": "http://asyncapi.com/definitions/1.2.0/schema.json"
@@ -75,13 +73,13 @@
         {
           "type": "boolean"
         }
-      ],
-      "default": {}
+      ]
     },
     "type": {
       "$ref": "http://json-schema.org/draft-04/schema#/properties/type"
     },
     "items": {
+      "default": {},
       "anyOf": [
         {
           "$ref": "http://asyncapi.com/definitions/1.2.0/schema.json"
@@ -93,8 +91,7 @@
             "$ref": "http://asyncapi.com/definitions/1.2.0/schema.json"
           }
         }
-      ],
-      "default": {}
+      ]
     },
     "allOf": {
       "type": "array",
@@ -121,18 +118,18 @@
       "$ref": "http://asyncapi.com/definitions/1.2.0/schema.json"
     },
     "properties": {
+      "default": {},
       "type": "object",
       "additionalProperties": {
         "$ref": "http://asyncapi.com/definitions/1.2.0/schema.json"
-      },
-      "default": {}
+      }
     },
     "discriminator": {
       "type": "string"
     },
     "readOnly": {
-      "type": "boolean",
-      "default": false
+      "default": false,
+      "type": "boolean"
     },
     "xml": {
       "$ref": "http://asyncapi.com/definitions/1.2.0/xml.json"
@@ -142,7 +139,10 @@
     },
     "example": {}
   },
-  "additionalProperties": false,
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/schema.json"
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
 }

@@ -1,68 +1,55 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.2.0/stream.json",
   "title": "Stream Object",
   "type": "object",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
-    }
-  },
   "minProperties": 1,
   "properties": {
     "framing": {
       "title": "Stream Framing Object",
       "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "chunked" ]
+            },
+            "delimiter": {
+              "default": "\\r\\n",
+              "type": "string",
+              "enum": [ "\\r\\n", "\\n" ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [ "sse" ]
+            },
+            "delimiter": {
+              "default": "\\n\\n",
+              "type": "string",
+              "enum": [ "\\n\\n" ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "minProperties": 1,
       "patternProperties": {
         "^x-": {
           "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
         }
-      },
-      "minProperties": 1,
-      "oneOf": [
-        {
-          "additionalProperties": false,
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "chunked"
-              ]
-            },
-            "delimiter": {
-              "type": "string",
-              "enum": [
-                "\\r\\n",
-                "\\n"
-              ],
-              "default": "\\r\\n"
-            }
-          }
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "sse"
-              ]
-            },
-            "delimiter": {
-              "type": "string",
-              "enum": [
-                "\\n\\n"
-              ],
-              "default": "\\n\\n"
-            }
-          }
-        }
-      ]
+      }
     },
     "read": {
       "title": "Stream Read Object",
       "type": "array",
-      "uniqueItems": true,
       "minItems": 1,
+      "uniqueItems": true,
       "items": {
         "$ref": "http://asyncapi.com/definitions/1.2.0/message.json"
       }
@@ -70,13 +57,17 @@
     "write": {
       "title": "Stream Write Object",
       "type": "array",
-      "uniqueItems": true,
       "minItems": 1,
+      "uniqueItems": true,
       "items": {
         "$ref": "http://asyncapi.com/definitions/1.2.0/message.json"
       }
     }
   },
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/stream.json"
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://asyncapi.com/definitions/1.2.0/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
 }

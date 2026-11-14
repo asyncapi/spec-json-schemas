@@ -1,14 +1,12 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.2.0/Reference.json",
   "type": "object",
-  "required": [
-    "$ref"
-  ],
+  "required": [ "$ref" ],
   "properties": {
     "$ref": {
       "type": "string",
       "format": "uri"
     }
-  },
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.2.0/Reference.json"
+  }
 }
