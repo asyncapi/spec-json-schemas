@@ -71,6 +71,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.0.0 asyncapi](#v200-asyncapi) | `asyncapi` | 27 | 0 |
 | [v2.1.0 servers](#v210-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 0 |
 | [v2.1.0 channels](#v210-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 69 | 0 |
+| [v2.1.0 messages](#v210-messages) | `channels/messages/message`, `messageTrait`, `messages` | 120 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -336,3 +337,7 @@ Same concerns as [v2.0.0 servers](#v200-servers): V2S1–V2S3.
 ## v2.1.0 channels
 
 Same concerns as [v2.0.0 channels](#v200-channels).
+
+## v2.1.0 messages
+
+Same concerns as [v2.0.0 messages](#v200-messages): V2M1, V2M2, V2M4.
