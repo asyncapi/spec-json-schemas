@@ -61,6 +61,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.1.0 component bindings](#v310-component-bindings) | 6 components × 20 bindings | 1410 | 0 |
 | [v3.1.0 asyncapi](#v310-asyncapi) | `asyncapi` | 32 | 0 (DOC1 applies) |
 | [v2 shared schemas](#v2-shared-schemas) | `v2/**` (tag, externalDocs, info, correlationId, schema, schemas, security, securityRequirements) | 434 | 2 |
+| [v2.0.0 servers](#v200-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 3 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -258,3 +259,11 @@ These v3 concerns apply to v2 as well: TAG2, INFO2, CHAN2 (correlationId), SEC1,
 |---|---|---|---|---|
 | V2-1 | Validation | `schema.json` | `allOf[1]` has `"type": "object"`, so boolean schemas are rejected: `true`, `false`, and nested ones like `{"properties": {"a": true}}`. JSON Schema draft-07 allows them. `additionalProperties: false` still passes because it's handled separately. | Open |
 | V2-2 | Validation | `security/oauth2/oauth2.json` | It has the scheme-level `scopes` array that AsyncAPI added in v3, so a v2 document with `scopes` next to `flows` passes. | Open |
+
+## v2.0.0 servers
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2S1 | Validation | `servers/server.json` `security` (all v2.x) | Items are inline Security Scheme objects (`v2/security/securitySchema.json`), with no Reference branch. A Security Requirement map such as `[{"x509": []}]`, the form the v2 spec describes, is rejected, and a scheme declared in `components.securitySchemes` can't be referenced. | Open |
+| V2S2 | Validation | `servers/servers.json`, `servers/serverVariables.json` | Map keys aren't validated (see SRV1). | Open |
+| V2S3 | Validation | `servers/serverVariable.json` | Same as SVAR1 and SVAR2: `default` isn't checked against `enum`, and `enum: []` passes. | Open |
