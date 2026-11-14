@@ -67,6 +67,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.0.0 operations](#v200-operations) | `channels/operations/operation`, `operationTrait` | 69 | 2 |
 | [v2.0.0 components](#v200-components) | `components/components` | 79 | 2 |
 | [v2.0.0 binding maps](#v200-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 2 |
+| [v2.0.0 component bindings](#v200-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -314,3 +315,9 @@ unclosed `{expressions}` are rejected.
 |---|---|---|---|---|
 | V2B1 | Validation | `{channel,operation,server,message}Bindings.json` (all v2.x) | The maps have `additionalProperties: true`, so any key is accepted unvalidated: unknown protocols, folder names like `apache-kafka`, `ros2`, and (before 2.6.0) `googlepubsub`/`pulsar`, e.g. `{"googlepubsub": {"bindingVersion": "9.9.9"}}`. Known keys are validated. | Open |
 | V2B2 | Text | `channelBindings.json`, `serverBindings.json`, `messageBindings.json` `description` (all v2.x) | "…for **an** channel/server/message" (see MAP1). | Open |
+
+## v2.0.0 component bindings
+
+`{component}.{bindingKey}.test.json` next to server, channelItem, operation, operationTrait, message and messageTrait,
+one file per key of the v2.0.0 binding maps (16 keys), built like [v3.0.0 component bindings](#v300-component-bindings).
+Because the maps are open (V2B1), the folder-name case is recorded as accepted unvalidated. No new concerns.
