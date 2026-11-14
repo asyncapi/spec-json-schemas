@@ -35,6 +35,25 @@ jsonschema test test/draft-07/schemas/v3 \
 
 For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/schemas/<version>`.
 
+For v2, resolve `v2`, the version folder, `v3` (some bindings use it) and `draft-07/integrations` (Avro and OpenAPI payloads):
+
+```bash
+jsonschema test test/draft-07/schemas/v2.2.0 \
+  --resolve draft-07/schemas/v2 --resolve draft-07/schemas/v3 --resolve draft-07/schemas/v2.2.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/avroSchema_v1.json \
+  --resolve draft-07/schemas/openapiSchema_3_0.json --resolve draft-07/schemas/anySchema.json \
+  --resolve draft-07/integrations --ignore draft-07/integrations/jsonschema.json \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --format-assertion --verbose
+```
+
+The shared `test/draft-07/schemas/v2` suites run with any version folder, e.g. `v2.0.0`. For v2.3.0–v2.6.0 the folder can't
+be loaded as is (see V2K3), so run it twice with the same resolve options: first
+`test/draft-07/schemas/<version>/servers`, `…/channels` and `…/*.test.json` with
+`--ignore draft-07/schemas/<version>/components/components.json`, then `test/draft-07/schemas/<version>/components` with
+`--ignore draft-07/schemas/<version>/channels/channels.json`.
+
 ## Summary
 
 | Area | Schemas | Tests | Open |
@@ -114,7 +133,11 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.6.0 binding maps](#v260-binding-maps) | `{channel,operation,server,message}Bindings` | 320 | 0 |
 | [v2.6.0 component bindings](#v260-component-bindings) | 6 components × 18 bindings | 1302 | 0 |
 
-All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
+v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
+
+v2: all schemas of v2 and v2.0.0–v2.6.0 are covered except `asyncapi.json` in v2.3.0–v2.6.0 (see V2K3) (v2 434, v2.0.0 1922, v2.1.0 1906, v2.2.0 1909, v2.3.0 1889, v2.4.0 1906, v2.5.0 1906, v2.6.0 2061): **13933 tests**.
+
+All passing, **79 open** concerns.
 No schema under `draft-07/` was changed.
 
 ---
