@@ -31,9 +31,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [apache-pulsar](#apache-pulsar) | 0.1.0 | 159 | 2 |
 | [googlepubsub](#googlepubsub) | 0.1.0, 0.2.0 | 267 | 6 |
 | [http](#http) | 0.1.0, 0.2.0, 0.3.0 | 390 | 5 |
+| [ibmmq](#ibmmq) | 0.1.0 | 194 | 7 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: ibmmq, jms, mercure, mqtt, mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
+Not covered yet: jms, mercure, mqtt, mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -140,3 +141,15 @@ The root fallback routes both the matching and the non-matching branch to 0.1.0,
 | HTTP3 | Validation | 0.1.0–0.3.0 | message `headers`, operation `query` | The descriptions say the schema "MUST be of type 'object'", but that isn't enforced, so `{"type": "string"}` passes. | Open |
 | HTTP4 | Validation | 0.3.0 | message `statusCode` | It's `"type": "number"` with no bounds, so `200.5` and `999` pass. RFC 9110 suggests an integer from 100 to 599. | Open |
 | HTTP5 | Consistency | 0.1.0–0.3.0 | channel, server | No `x-` extensions are allowed; operation and message allow them (see A4). | Open |
+
+## ibmmq
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| IBMMQ1 | Validation | 0.1.0 | `message.json` `oneOf` | When `type` is missing, all three branches (binary, jms, string) match, so `oneOf` fails. As a result, `{}` and `{"expiry": 10}` are rejected, even though `type` defaults to `string`. | Open |
+| IBMMQ2 | Validation | 0.1.0 | `message.json` `oneOf` | When `type` is missing, `headers` matches only the binary branch, so `{"headers": "k=v;"}` passes. With the `string` default it should be rejected, since `headers` isn't allowed for string. | Open |
+| IBMMQ3 | Validation | 0.1.0 | `channel.json` `oneOf` | When `destinationType` is missing, `{"queue": {…}}` passes through the queue branch. `destinationType` defaults to `topic`, and the topic branch forbids `queue`. | Open |
+| IBMMQ4 | Validation | 0.1.0 | channel `queue`, `topic` | No `additionalProperties`, so unknown keys are accepted (e.g. `queue.maxDepth`). `topic` has no required properties, so `{}` passes. | Open |
+| IBMMQ5 | Text | 0.1.0 | `channel.queue.isPartitioned`, `server.cipherSpec`, `server.heartBeatInterval` descriptions | "…can be found on this page in the IBM MQ Knowledge Center" has no link. The other descriptions use `[page](https://…)`. | Open |
+| IBMMQ6 | Text | 0.1.0 | `message.expiry` description | "API **dependant**" should be "dependent". | Open |
+| IBMMQ7 | Consistency | 0.1.0 | operation | No `x-` extensions are allowed; channel, server and message allow them (see A4). | Open |
