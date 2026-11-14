@@ -1,0 +1,104 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/operations/operationReplyAddress.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "location": "$message.header#/X-REPLY-TO"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#/X-REPLY-TO"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#/X-REPLY-TO",
+        "description": "Send operation result to this channel"
+      }
+    },
+    {
+      "description": "valid: location only",
+      "valid": true,
+      "data": {
+        "location": "$message.header#/replyTo"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "location": "$message.header#/replyTo",
+        "x-ttl": 30
+      }
+    },
+    {
+      "description": "invalid: missing location",
+      "valid": false,
+      "data": {
+        "description": "Reply here"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: location is a channel address, not a runtime expression",
+      "valid": false,
+      "data": {
+        "location": "users.{userId}.replies"
+      }
+    },
+    {
+      "description": "invalid: location with unknown source",
+      "valid": false,
+      "data": {
+        "location": "$message.body#/replyTo"
+      }
+    },
+    {
+      "description": "invalid: location is not a string",
+      "valid": false,
+      "data": {
+        "location": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "location": "$message.header#/replyTo",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "location": "$message.header#/replyTo",
+        "$ref": "#/components/replyAddresses/reply"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "location": "$message.header#/replyTo",
+        "address": "replies"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "$message.header#/replyTo"
+    }
+  ]
+}
