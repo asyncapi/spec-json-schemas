@@ -100,6 +100,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.4.0 binding maps](#v240-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 | [v2.4.0 component bindings](#v240-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 | [v2.5.0 servers](#v250-servers) | `servers/server`, `servers`, `serverVariable(s)` | 76 | 0 |
+| [v2.5.0 channels](#v250-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 71 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -493,3 +494,7 @@ Built like [v2.0.0 component bindings](#v200-component-bindings), one file per k
 ## v2.5.0 servers
 
 `server.tags` (added in 2.5.0) is a unique list of v2 tags, and `serverVariables.json` routes `$ref` to Reference from 2.5.0. Same concerns as V2S1–V2S3.
+
+## v2.5.0 channels
+
+The `parameter.json` `$ref` property (V2C2) was removed in 2.5.0, so `$ref` in a parameter is rejected. Same concerns as V2C1, V2C3.
