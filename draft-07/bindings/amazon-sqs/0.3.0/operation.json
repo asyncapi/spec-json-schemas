@@ -114,7 +114,7 @@
           "description": "The number of seconds to delay before a message sent to the queue can be received. Used to create a delay queue",
           "default": 0,
           "type": "integer",
-          "maximum": 15,
+          "maximum": 900,
           "minimum": 0
         },
         "fifoQueue": {

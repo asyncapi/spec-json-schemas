@@ -97,11 +97,11 @@
       }
     },
     {
-      "description": "valid: deliveryDelay maximum 15",
+      "description": "valid: deliveryDelay maximum 900",
       "valid": true,
       "data": {
         "name": "myQueue",
-        "deliveryDelay": 15
+        "deliveryDelay": 900
       }
     },
     {
@@ -117,7 +117,7 @@
       "valid": false,
       "data": {
         "name": "myQueue",
-        "deliveryDelay": 16
+        "deliveryDelay": 901
       }
     },
     {
@@ -302,14 +302,6 @@
       "data": {
         "name": "myQueue",
         "$ref": 1
-      }
-    },
-    {
-      "description": "invalid: deliveryDelay 900 was allowed in 0.2.0 (maximum is now 15)",
-      "valid": false,
-      "data": {
-        "name": "myQueue",
-        "deliveryDelay": 900
       }
     }
   ]

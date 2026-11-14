@@ -315,15 +315,6 @@
       "data": {
         "name": "myQueue"
       }
-    },
-    {
-      "description": "valid: deliveryDelay above 15 is allowed for channel queue (operation queue maximum is 15)",
-      "valid": true,
-      "data": {
-        "name": "myQueue",
-        "fifoQueue": false,
-        "deliveryDelay": 900
-      }
     }
   ]
 }

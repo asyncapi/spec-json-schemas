@@ -125,60 +125,73 @@
         "queues": [
           {
             "name": "myQueue",
-            "deliveryDelay": 100
+            "deliveryDelay": 901
           }
         ]
       }
     },
     {
-      "description": "valid: deliveryDelay 100 with 0.2.0 (maximum 900)",
-      "valid": true,
+      "description": "invalid: deliveryDelay 901 with 0.2.0 (maximum 900)",
+      "valid": false,
       "data": {
         "queues": [
           {
             "name": "myQueue",
-            "deliveryDelay": 100
+            "deliveryDelay": 901
           }
         ],
         "bindingVersion": "0.2.0"
       }
     },
     {
-      "description": "invalid: deliveryDelay 100 with 0.3.0 (maximum 15)",
+      "description": "invalid: deliveryDelay 901 with 0.3.0 (maximum 900)",
       "valid": false,
       "data": {
         "queues": [
           {
             "name": "myQueue",
-            "deliveryDelay": 100
+            "deliveryDelay": 901
           }
         ],
         "bindingVersion": "0.3.0"
       }
     },
     {
-      "description": "invalid: deliveryDelay 100 with latest uses 0.3.0",
+      "description": "invalid: deliveryDelay 901 with latest uses 0.3.0",
       "valid": false,
       "data": {
         "queues": [
           {
             "name": "myQueue",
-            "deliveryDelay": 100
+            "deliveryDelay": 901
           }
         ],
         "bindingVersion": "latest"
       }
     },
     {
-      "description": "invalid: deliveryDelay 100 without bindingVersion uses 0.3.0",
+      "description": "invalid: deliveryDelay 901 without bindingVersion uses 0.3.0",
       "valid": false,
       "data": {
         "queues": [
           {
             "name": "myQueue",
-            "deliveryDelay": 100
+            "deliveryDelay": 901
           }
         ]
+      }
+    },
+    {
+      "description": "valid: deliveryDelay 900 with 0.3.0",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "deliveryDelay": 900
+          }
+        ],
+        "bindingVersion": "0.3.0"
       }
     },
     {
@@ -188,7 +201,7 @@
         "queues": [
           {
             "name": "myQueue",
-            "deliveryDelay": 15
+            "deliveryDelay": 900
           }
         ]
       }
