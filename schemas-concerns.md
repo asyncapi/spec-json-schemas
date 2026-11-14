@@ -64,6 +64,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.0.0 servers](#v200-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 3 |
 | [v2.0.0 channels](#v200-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 69 | 3 |
 | [v2.0.0 messages](#v200-messages) | `channels/messages/message`, `messageTrait`, `messages`, `security/securitySchema` | 136 | 5 |
+| [v2.0.0 operations](#v200-operations) | `channels/operations/operation`, `operationTrait` | 69 | 2 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -290,3 +291,10 @@ unclosed `{expressions}` are rejected.
 | V2M3 | Consistency | `channels/messages/message.json` `examples` | In 2.0.0 example items allow only `headers` and `payload`, with neither required, so `{}` passes and `name` is rejected; 2.1.0+ adds `name`, `summary` and requires one of `payload`/`headers`. | Open |
 | V2M4 | Consistency | `channels/messages/messageTrait.json` `examples` | Items are any object in 2.0.0 and 2.2.0–2.5.0, but fully defined (like the message examples) in 2.1.0 and 2.6.0. | Open |
 | V2M5 | Consistency | `v2.0.0/security/securitySchema.json` | This 2.0.0-only copy (without SASL) isn't referenced: `server.json` and `components.json` use `v2/security/securitySchema.json`, so SASL types (`plain`, `scramSha256`, `gssapi`) are accepted in 2.0.0 documents. | Open |
+
+## v2.0.0 operations
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2O1 | Example | `channels/operations/operation.json` examples #2, #4; `operationTrait.json` example #1 (all v2.x) | `externalDocs.url` values are relative (`messages/sending-rules`, `messages/validation-rules`), so these examples fail `format: uri`. The tests record them as invalid. | Open |
+| V2O2 | Validation | `channels/operations/operation.json` `message` | Same as V2M2. | Open |
