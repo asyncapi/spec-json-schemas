@@ -35,9 +35,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [jms](#jms) | 0.0.1 | 157 | 5 |
 | [mercure](#mercure) | 0.1.0 | 128 | 1 |
 | [mqtt](#mqtt) | 0.1.0, 0.2.0 | 288 | 7 |
+| [mqtt5](#mqtt5) | 0.1.0, 0.2.0 | 204 | 5 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
+Not covered yet: nats, redis, ros2, solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -186,3 +187,15 @@ All four objects define only `bindingVersion`, and the root routing (0.1.0 for e
 | MQTT5 | Example | 0.2.0 | `message.json` example #3 | `"responseTopic": {"type": "object", "name": "application/responses"}`: `name` isn't a schema keyword, and a topic is a string, not an object. It passes only because Schema accepts unknown keywords. | Open |
 | MQTT6 | Text | 0.2.0 | `server.sessionExpiryInterval`, `message.payloadFormatIndicator` descriptions | Double space after the first sentence ("interval.  The broker", "data.  0 indicates"). | Open |
 | MQTT7 | Consistency | 0.1.0 (channel, message), 0.2.0 (channel) | | No `x-` extensions are allowed; operation and server allow them (see A4). | Open |
+
+## mqtt5
+
+Only the 0.2.0 server defines a field (`sessionExpiryInterval`). Everything else defines only `bindingVersion`. The root routing is correct.
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| MQTT5-1 | Consistency | 0.2.0 | `server.json` `patternProperties` | The pattern is `^x-[\\w\\d\\.\\-\\_]+$`; every other binding uses `^x-[\\w\\d\\.\\x2d_]+$`. `\\_` is an invalid escape in Unicode-mode ECMA-262 regexes, so validators that compile with the `u` flag (e.g. Ajv with `unicodeRegExp`) may reject the schema. The jsonschema CLI accepts it, and `x-a_b`, `x-a-b` and `x-a.b` pass. | Open |
+| MQTT5-2 | Consistency | 0.2.0 | server `sessionExpiryInterval` | The integer branch has `minimum: 0` but no `maximum`, so `4294967296` passes. This is the same as MQTT4. | Open |
+| MQTT5-3 | Text | 0.2.0 | `server.json` `description` | "…representation in **MQTT5 v5.0**" should be "MQTT v5.0". | Open |
+| MQTT5-4 | Text | 0.2.0 | `channel.json` `description` | "…in MQTT v5"; every other file says "MQTT v5.0". | Open |
+| MQTT5-5 | Consistency | 0.1.0 (all), 0.2.0 (channel, operation, message) | | No `x-` extensions are allowed (see A4). | Open |
