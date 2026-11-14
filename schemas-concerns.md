@@ -259,4 +259,3 @@ These v3 concerns apply to v2 as well: TAG2, INFO2, CHAN2 (correlationId), SEC1,
 |---|---|---|---|---|
 | V2-1 | Validation | `schema.json` | `allOf[1]` has `"type": "object"`, so boolean schemas are rejected: `true`, `false`, and nested ones like `{"properties": {"a": true}}`. JSON Schema draft-07 allows them. `additionalProperties: false` still passes because it's handled separately. | Open |
 | V2-2 | Validation | `security/oauth2/oauth2.json` | It has the scheme-level `scopes` array that AsyncAPI added in v3, so a v2 document with `scopes` next to `flows` passes. | Open |
-| V2-3 | Validation | `schema.json` `discriminator` | `type: string` only, so the OpenAPI form `{"propertyName": "petType"}` is rejected. This matches the v2 spec, but the description says nothing about it. | By design |
