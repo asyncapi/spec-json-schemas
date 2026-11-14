@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/server.json#/properties/heartBeatInterval",
+  "tests": [
+    {
+      "description": "valid: minimum 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: maximum 999999",
+      "valid": true,
+      "data": 999999
+    },
+    {
+      "description": "invalid: below minimum 0",
+      "valid": false,
+      "data": -1
+    },
+    {
+      "description": "invalid: above maximum 999999",
+      "valid": false,
+      "data": 1000000
+    },
+    {
+      "description": "invalid: decimal number",
+      "valid": false,
+      "data": 1.5
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "999999"
+    }
+  ]
+}
