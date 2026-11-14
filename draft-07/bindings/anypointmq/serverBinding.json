@@ -19,7 +19,7 @@
         "required": [ "bindingVersion" ],
         "properties": {
           "bindingVersion": {
-            "const": "0.1.0"
+            "const": "0.0.1"
           }
         }
       },
@@ -34,7 +34,7 @@
           "required": [ "bindingVersion" ],
           "properties": {
             "bindingVersion": {
-              "const": "0.1.0"
+              "const": "0.0.1"
             }
           }
         }
