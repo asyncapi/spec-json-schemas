@@ -32,9 +32,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [googlepubsub](#googlepubsub) | 0.1.0, 0.2.0 | 267 | 6 |
 | [http](#http) | 0.1.0, 0.2.0, 0.3.0 | 390 | 5 |
 | [ibmmq](#ibmmq) | 0.1.0 | 194 | 7 |
+| [jms](#jms) | 0.0.1 | 157 | 5 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: jms, mercure, mqtt, mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
+Not covered yet: mercure, mqtt, mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -153,3 +154,13 @@ The root fallback routes both the matching and the non-matching branch to 0.1.0,
 | IBMMQ5 | Text | 0.1.0 | `channel.queue.isPartitioned`, `server.cipherSpec`, `server.heartBeatInterval` descriptions | "…can be found on this page in the IBM MQ Knowledge Center" has no link. The other descriptions use `[page](https://…)`. | Open |
 | IBMMQ6 | Text | 0.1.0 | `message.expiry` description | "API **dependant**" should be "dependent". | Open |
 | IBMMQ7 | Consistency | 0.1.0 | operation | No `x-` extensions are allowed; channel, server and message allow them (see A4). | Open |
+
+## jms
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| JMS1 | Text | 0.0.1 | `server.json` `definitions.property.properties.value` description | It says "The **name** of a property", copied from `name`; it should be "The value of a property". | Open |
+| JMS2 | Validation | 0.0.1 | server `definitions.property` | No `additionalProperties`, so unknown keys in a property item are accepted. | Open |
+| JMS3 | Validation | 0.0.1 | message `headers` | The description says the schema "MUST be of type 'object'", but that isn't enforced, so `{"type": "string"}` passes. This is the same as HTTP3. | Open |
+| JMS4 | Consistency | 0.0.1 | operation | No `x-` extensions are allowed; channel, server and message allow them (see A4). | Open |
+| JMS5 | Example | 0.0.1 | `message.json` example, `JMSTimestamp` description | The sentence "The time the message was sent." appears twice. | Open |
