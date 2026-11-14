@@ -1,11 +1,7 @@
 {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://asyncapi.com/definitions/1.0.0/topicItem.json",
   "type": "object",
-  "additionalProperties": false,
-  "patternProperties": {
-    "^x-": {
-      "$ref": "http://asyncapi.com/definitions/1.0.0/vendorExtension.json"
-    }
-  },
   "minProperties": 1,
   "properties": {
     "$ref": {
@@ -18,10 +14,14 @@
       "$ref": "http://asyncapi.com/definitions/1.0.0/message.json"
     },
     "deprecated": {
-      "type": "boolean",
-      "default": false
+      "default": false,
+      "type": "boolean"
     }
   },
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "http://asyncapi.com/definitions/1.0.0/topicItem.json"
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://asyncapi.com/definitions/1.0.0/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
 }
