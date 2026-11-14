@@ -92,6 +92,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.3.0 components](#v230-components) | `components/components` | 86 | 1 |
 | [v2.3.0 binding maps](#v230-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 | [v2.3.0 component bindings](#v230-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
+| [v2.4.0 servers](#v240-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -449,3 +450,7 @@ Same concerns as [v2.0.0 binding maps](#v200-binding-maps): V2B1, V2B2.
 ## v2.3.0 component bindings
 
 Built like [v2.0.0 component bindings](#v200-component-bindings), one file per key of the v2.3.0 maps (16 keys). No new concerns.
+
+## v2.4.0 servers
+
+Same concerns as [v2.0.0 servers](#v200-servers): V2S1–V2S3.
