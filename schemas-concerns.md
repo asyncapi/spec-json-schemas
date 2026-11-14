@@ -66,6 +66,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.0.0 messages](#v200-messages) | `channels/messages/message`, `messageTrait`, `messages`, `security/securitySchema` | 136 | 5 |
 | [v2.0.0 operations](#v200-operations) | `channels/operations/operation`, `operationTrait` | 69 | 2 |
 | [v2.0.0 components](#v200-components) | `components/components` | 79 | 2 |
+| [v2.0.0 binding maps](#v200-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 2 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -306,3 +307,10 @@ unclosed `{expressions}` are rejected.
 |---|---|---|---|---|
 | V2K1 | Validation | `components/components.json` `securitySchemes`, `correlationIds` | Keys are checked with `patternProperties` only, so entries under keys outside `^[\w\d\.\-_]+$` aren't validated (see COMP1). The other sections use `additionalProperties`, so every key is validated but none is restricted. | Open |
 | V2K2 | Validation | `components/components.json` `operationTraits`, `messageTraits` | No Reference branch, so `{"$ref": "#/components/messageTraits/b"}` is rejected for a message trait (`$ref` is an unknown property) and validated as an operation trait. | Open |
+
+## v2.0.0 binding maps
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2B1 | Validation | `{channel,operation,server,message}Bindings.json` (all v2.x) | The maps have `additionalProperties: true`, so any key is accepted unvalidated: unknown protocols, folder names like `apache-kafka`, `ros2`, and (before 2.6.0) `googlepubsub`/`pulsar`, e.g. `{"googlepubsub": {"bindingVersion": "9.9.9"}}`. Known keys are validated. | Open |
+| V2B2 | Text | `channelBindings.json`, `serverBindings.json`, `messageBindings.json` `description` (all v2.x) | "…for **an** channel/server/message" (see MAP1). | Open |
