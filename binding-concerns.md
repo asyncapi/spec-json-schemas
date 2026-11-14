@@ -34,9 +34,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [ibmmq](#ibmmq) | 0.1.0 | 194 | 7 |
 | [jms](#jms) | 0.0.1 | 157 | 5 |
 | [mercure](#mercure) | 0.1.0 | 128 | 1 |
+| [mqtt](#mqtt) | 0.1.0, 0.2.0 | 288 | 7 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: mqtt, mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
+Not covered yet: mqtt5, nats, redis, ros2, solace, stomp, websockets, and the
 top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
 
 ---
@@ -173,3 +174,15 @@ All four objects define only `bindingVersion`, and the root routing (0.1.0 for e
 | # | Category | Version | Where | Concern | Status |
 |---|---|---|---|---|---|
 | MERCURE1 | Consistency | 0.1.0 | channel, operation, server, message | No `x-` extensions are allowed anywhere (see A4). This is the same as amqp1. | Open |
+
+## mqtt
+
+| # | Category | Version | Where | Concern | Status |
+|---|---|---|---|---|---|
+| MQTT1 | Validation | 0.1.0 | operation `qos` | It's `"type": "integer"` without an enum, so `3` and `-1` pass, even though the description says "MUST be either 0, 1, or 2". 0.2.0 uses `enum: [0, 1, 2]`, the same as `lastWill.qos` in both versions. | Open |
+| MQTT2 | Validation | 0.1.0, 0.2.0 | server `lastWill` | No `additionalProperties` and no `required`, so `{}` and unknown keys pass. In MQTT a will needs both `topic` and `message`. | Open |
+| MQTT3 | Validation | 0.1.0, 0.2.0 | server `keepAlive` | No bounds, so `-1` passes. MQTT keep alive is a 16-bit value (0–65535). | Open |
+| MQTT4 | Consistency | 0.2.0 | server `sessionExpiryInterval` | The integer branch has `minimum: 0` but no `maximum`. `maximumPacketSize` and `messageExpiryInterval` cap it at `4294967295`, which is also the MQTT 4-byte limit. | Open |
+| MQTT5 | Example | 0.2.0 | `message.json` example #3 | `"responseTopic": {"type": "object", "name": "application/responses"}`: `name` isn't a schema keyword, and a topic is a string, not an object. It passes only because Schema accepts unknown keywords. | Open |
+| MQTT6 | Text | 0.2.0 | `server.sessionExpiryInterval`, `message.payloadFormatIndicator` descriptions | Double space after the first sentence ("interval.  The broker", "data.  0 indicates"). | Open |
+| MQTT7 | Consistency | 0.1.0 (channel, message), 0.2.0 (channel) | | No `x-` extensions are allowed; operation and server allow them (see A4). | Open |
