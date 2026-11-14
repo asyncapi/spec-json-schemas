@@ -42,9 +42,10 @@ the matching test is flipped and the entry moves to **Fixed**.
 | [solace](#solace) | 0.1.0, 0.2.0, 0.3.0, 0.4.0 | 453 | 9 |
 | [stomp](#stomp) | 0.1.0 | 128 | 1 |
 | [websockets](#websockets) | 0.1.0 | 158 | 4 |
+| [Top-level maps](#top-level-binding-maps) | `{channel,operation,server,message}Bindings.json` | 452 | 3 |
 | [All bindings](#all-bindings) | | | 3 |
 
-Not covered yet: the top-level `channelBindings.json`, `operationBindings.json`, `serverBindings.json`, `messageBindings.json`.
+All 20 bindings and the 4 top-level binding maps are covered: **6026 tests**, all passing.
 
 ---
 
@@ -269,3 +270,15 @@ The root routing (0.1.0 for every branch) is correct.
 | WS2 | Validation | 0.1.0 | channel `headers`, `query` | The descriptions say the schema "MUST be of type 'object' and have a 'properties' key", but that isn't enforced, so `{"type": "string"}` passes. This is the same as HTTP3 and JMS3. | Open |
 | WS3 | Example | root | all four `*BindingOrReference.json` | The example `$ref` uses `#/bindings/amqp/…` (see A6). | Open |
 | WS4 | Consistency | 0.1.0 | operation, server, message | No `x-` extensions are allowed; channel allows them (see A4). | Open |
+
+## Top-level binding maps
+
+`channelBindings.json`, `operationBindings.json`, `serverBindings.json` and `messageBindings.json` map each protocol key to that binding's `*BindingOrReference.json`, with `x-` extensions allowed and every other key rejected. All 20 bindings are mapped in each file, each points to the matching kind, and the examples cover every key. Tests are in `test/draft-07/bindings/{kind}Bindings.test.json`.
+
+`jsonschema.json` is the catalog of bindings, not a JSON Schema, so it isn't tested. Its keys match the 20 binding folders, and every `path` and `baseUri` is correct.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| MAP1 | Text | `channelBindings.json`, `serverBindings.json`, `messageBindings.json` `description` | "…definitions for **an** channel / **an** server / **an** message" should be "a". `operationBindings.json` ("an operation") is correct. | Open |
+| MAP2 | Text | `operationBindings.json`, `serverBindings.json` `title` | It's "AsyncAPI - **operation** Bindings" and "AsyncAPI - **server** Bindings", while the other two are capitalized ("Channel", "Message"). | Open |
+| MAP3 | Text | `jsonschema.json` `contents.http` | It's the only entry without `description` and `website`. | Open |
