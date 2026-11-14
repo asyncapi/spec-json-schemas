@@ -78,7 +78,7 @@
       }
     },
     {
-      "description": "If bindingVersion is omitted, than use latest JSON Schema",
+      "description": "If bindingVersion is omitted, then use latest JSON Schema",
       "if": {
         "not": {
           "required": [ "bindingVersion" ],
