@@ -59,6 +59,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.1.0 operations](#v310-operations) | `operations/operation`, `operationTrait(s)`, `operations` | 101 | 0 (OP1–OP4 apply) |
 | [v3.1.0 components](#v310-components) | `components/components` | 155 | 0 (COMP1, COMP3 apply) |
 | [v3.1.0 component bindings](#v310-component-bindings) | 6 components × 20 bindings | 1410 | 0 |
+| [v3.1.0 asyncapi](#v310-asyncapi) | `asyncapi` | 32 | 0 (DOC1 applies) |
 
 ---
 
@@ -238,3 +239,7 @@ Identical to v3.0.0 apart from the examples (which add `ros2`). Objects and comp
 
 Same layout as [v3.0.0 component bindings](#v300-component-bindings), one file per key of `draft-07/bindings/*Bindings.json`
 (20 keys, including `ros2`). Every component routes each key to the right binding and version; no new concerns.
+
+## v3.1.0 asyncapi
+
+Identical to v3.0.0 except `"asyncapi": "3.1.0"`; `3.0.0` is rejected. DOC1 applies.
