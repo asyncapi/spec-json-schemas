@@ -58,6 +58,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.1.0 channels](#v310-channels) | `channels/channel`, `channels/channels` | 54 | 0 (CH1, CH2 apply) |
 | [v3.1.0 operations](#v310-operations) | `operations/operation`, `operationTrait(s)`, `operations` | 101 | 0 (OP1–OP4 apply) |
 | [v3.1.0 components](#v310-components) | `components/components` | 155 | 0 (COMP1, COMP3 apply) |
+| [v3.1.0 component bindings](#v310-component-bindings) | 6 components × 20 bindings | 1410 | 0 |
 
 ---
 
@@ -232,3 +233,8 @@ Identical to v3.0.0 except `bindings` (`draft-07/bindings/operationBindings.json
 
 Identical to v3.0.0 apart from the examples (which add `ros2`). Objects and components now use the same
 `draft-07/bindings` maps, so COMP2/BMAP1 don't apply. COMP1 and COMP3 do.
+
+## v3.1.0 component bindings
+
+Same layout as [v3.0.0 component bindings](#v300-component-bindings), one file per key of `draft-07/bindings/*Bindings.json`
+(20 keys, including `ros2`). Every component routes each key to the right binding and version; no new concerns.
