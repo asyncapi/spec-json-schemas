@@ -74,6 +74,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v2.1.0 messages](#v210-messages) | `channels/messages/message`, `messageTrait`, `messages` | 120 | 0 |
 | [v2.1.0 operations](#v210-operations) | `channels/operations/operation`, `operationTrait` | 69 | 0 |
 | [v2.1.0 components](#v210-components) | `components/components` | 79 | 0 |
+| [v2.1.0 binding maps](#v210-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -351,3 +352,7 @@ Same concerns as [v2.0.0 operations](#v200-operations): V2O1, V2O2.
 ## v2.1.0 components
 
 Same concerns as [v2.0.0 components](#v200-components): V2K1, V2K2.
+
+## v2.1.0 binding maps
+
+Same concerns as [v2.0.0 binding maps](#v200-binding-maps): V2B1, V2B2.
