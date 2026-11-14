@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.3.0/message.json#/properties/statusCode",
+  "tests": [
+    {
+      "description": "valid: 200",
+      "valid": true,
+      "data": 200
+    },
+    {
+      "description": "valid: 404",
+      "valid": true,
+      "data": 404
+    },
+    {
+      "description": "valid: decimal number is not rejected (type is number)",
+      "valid": true,
+      "data": 200.5
+    },
+    {
+      "description": "valid: out of range number is not rejected (no bounds)",
+      "valid": true,
+      "data": 999
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "200"
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}
