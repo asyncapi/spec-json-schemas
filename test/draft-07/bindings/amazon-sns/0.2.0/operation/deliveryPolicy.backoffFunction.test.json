@@ -1,0 +1,40 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/operation.json#/definitions/deliveryPolicy/properties/backoffFunction",
+  "tests": [
+    {
+      "description": "valid: arithmetic",
+      "valid": true,
+      "data": "arithmetic"
+    },
+    {
+      "description": "valid: exponential",
+      "valid": true,
+      "data": "exponential"
+    },
+    {
+      "description": "valid: geometric",
+      "valid": true,
+      "data": "geometric"
+    },
+    {
+      "description": "valid: linear",
+      "valid": true,
+      "data": "linear"
+    },
+    {
+      "description": "invalid: capitalized Linear",
+      "valid": false,
+      "data": "Linear"
+    },
+    {
+      "description": "invalid: unknown function",
+      "valid": false,
+      "data": "random"
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

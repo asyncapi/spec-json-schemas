@@ -1,0 +1,147 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/operation.json#/definitions/consumer",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": false
+      }
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": false,
+        "displayName": "Some queue",
+        "filterPolicy": {
+          "store": [
+            "asyncapi_corp"
+          ]
+        },
+        "filterPolicyScope": "MessageBody",
+        "deliveryPolicy": {
+          "numRetries": 3
+        },
+        "redrivePolicy": {
+          "deadLetterQueue": {
+            "arn": "arn:aws:SQS:eu-west-1:0000000:123456789"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": false,
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": false,
+        "region": "eu-west-1"
+      }
+    },
+    {
+      "description": "invalid: missing protocol",
+      "valid": false,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "rawMessageDelivery": false
+      }
+    },
+    {
+      "description": "invalid: missing endpoint",
+      "valid": false,
+      "data": {
+        "protocol": "sqs",
+        "rawMessageDelivery": false
+      }
+    },
+    {
+      "description": "invalid: missing rawMessageDelivery",
+      "valid": false,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs"
+      }
+    },
+    {
+      "description": "invalid: rawMessageDelivery is not a boolean",
+      "valid": false,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": "false"
+      }
+    },
+    {
+      "description": "invalid: displayName is not a string",
+      "valid": false,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": false,
+        "displayName": 1
+      }
+    },
+    {
+      "description": "invalid: invalid endpoint",
+      "valid": false,
+      "data": {
+        "endpoint": {
+          "url": 1
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": false
+      }
+    },
+    {
+      "description": "invalid: invalid redrivePolicy",
+      "valid": false,
+      "data": {
+        "endpoint": {
+          "name": "someQueue"
+        },
+        "protocol": "sqs",
+        "rawMessageDelivery": false,
+        "redrivePolicy": {
+          "maxReceiveCount": 25
+        }
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "sqs"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": "*",
+              "condition": {
+                "StringEquals": {
+                  "aws:SourceAccount": "123456789012"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: name only",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic"
+      }
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "bindingVersion": "0.2.0",
+        "ordering": {
+          "type": "FIFO",
+          "contentBasedDeduplication": true
+        },
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": "*"
+            }
+          ]
+        },
+        "tags": {
+          "env": "prod"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: empty tags",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "tags": {}
+      }
+    },
+    {
+      "description": "valid: tag values are not validated",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "tags": {
+          "replicas": 3
+        }
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: tags is not an object",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "tags": [
+          "prod"
+        ]
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: invalid ordering",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "ordering": {
+          "type": "fifo"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid policy",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {}
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "arn": "arn:aws:sns:us-east-1:123456789012:my-sns-topic"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "my-sns-topic"
+    }
+  ]
+}

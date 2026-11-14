@@ -1,0 +1,219 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "topic": {
+          "name": "someTopic"
+        },
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "consumers": [
+          {
+            "deliveryPolicy": {
+              "backoffFunction": "linear",
+              "maxDelayTarget": 100,
+              "maxReceivesPerSecond": 2,
+              "minDelayTarget": 10,
+              "numMaxDelayRetries": 5,
+              "numMinDelayRetries": 3,
+              "numNoDelayRetries": 2,
+              "numRetries": 5
+            },
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "filterPolicy": {
+              "customer_interests": [
+                "rugby",
+                "football",
+                "baseball"
+              ],
+              "event": {
+                "anything-but": "order_cancelled"
+              },
+              "event_name": "order_cancelled",
+              "store": [
+                "asyncapi_corp"
+              ]
+            },
+            "filterPolicyScope": "MessageAttributes",
+            "protocol": "sqs",
+            "rawMessageDelivery": false,
+            "redrivePolicy": {
+              "deadLetterQueue": {
+                "arn": "arn:aws:SQS:eu-west-1:0000000:123456789"
+              },
+              "maxReceiveCount": 25
+            }
+          }
+        ],
+        "topic": {
+          "name": "someTopic"
+        }
+      }
+    },
+    {
+      "description": "valid: consumers only",
+      "valid": true,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: with deliveryPolicy",
+      "valid": true,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "deliveryPolicy": {
+          "numRetries": 3
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: missing consumers",
+      "valid": false,
+      "data": {
+        "topic": {
+          "name": "someTopic"
+        }
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: invalid topic",
+      "valid": false,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "topic": {
+          "name": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid deliveryPolicy",
+      "valid": false,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "deliveryPolicy": {
+          "backoffFunction": "random"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "consumers": [
+          {
+            "endpoint": {
+              "name": "someQueue"
+            },
+            "protocol": "sqs",
+            "rawMessageDelivery": false
+          }
+        ],
+        "queue": {
+          "name": "someQueue"
+        }
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "endpoint": {
+            "name": "someQueue"
+          },
+          "protocol": "sqs",
+          "rawMessageDelivery": false
+        }
+      ]
+    }
+  ]
+}
