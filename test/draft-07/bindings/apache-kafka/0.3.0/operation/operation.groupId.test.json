@@ -1,0 +1,58 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.3.0/operation.json#/properties/groupId",
+  "tests": [
+    {
+      "description": "valid: groupId as a JSON schema",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "enum": [
+          "myGroupId"
+        ]
+      }
+    },
+    {
+      "description": "valid: groupId as a reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/groupId"
+      }
+    },
+    {
+      "description": "valid: groupId as a boolean schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "valid: groupId as an empty schema",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "invalid: groupId as a plain string",
+      "valid": false,
+      "data": "myValue"
+    },
+    {
+      "description": "invalid: groupId with unknown type",
+      "valid": false,
+      "data": {
+        "type": "date"
+      }
+    },
+    {
+      "description": "invalid: groupId as an Avro schema",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "Key",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}
