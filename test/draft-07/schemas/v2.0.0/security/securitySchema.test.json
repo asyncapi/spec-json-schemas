@@ -1,0 +1,171 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.0.0/security/securitySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "httpApiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "description": "http",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "description": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "description": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "clientCredentials": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "password": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scopes": [
+          "write:pets",
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "type": "X509",
+        "description": "X509"
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "description": "apiKey",
+        "in": "user"
+      }
+    },
+    {
+      "description": "valid: example #7",
+      "valid": true,
+      "data": {
+        "type": "asymmetricEncryption",
+        "description": "asymmetricEncryption"
+      }
+    },
+    {
+      "description": "valid: example #8",
+      "valid": true,
+      "data": {
+        "type": "openIdConnect",
+        "description": "openIdConnect",
+        "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+      }
+    },
+    {
+      "description": "valid: example #9",
+      "valid": true,
+      "data": {
+        "type": "symmetricEncryption",
+        "description": "symmetricEncryption"
+      }
+    },
+    {
+      "description": "valid: example #10",
+      "valid": true,
+      "data": {
+        "type": "userPassword",
+        "description": "userPassword"
+      }
+    },
+    {
+      "description": "valid: X509",
+      "valid": true,
+      "data": {
+        "type": "X509"
+      }
+    },
+    {
+      "description": "invalid: plain (SASL) is not in the 2.0.0 copy",
+      "valid": false,
+      "data": {
+        "type": "plain"
+      }
+    },
+    {
+      "description": "invalid: scramSha256 (SASL) is not in the 2.0.0 copy",
+      "valid": false,
+      "data": {
+        "type": "scramSha256"
+      }
+    },
+    {
+      "description": "invalid: gssapi (SASL) is not in the 2.0.0 copy",
+      "valid": false,
+      "data": {
+        "type": "gssapi"
+      }
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "kerberos"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "X509"
+    }
+  ]
+}
