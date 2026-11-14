@@ -45,6 +45,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3 security](#v3-security) | `security/**`, `securityRequirements` | 331 | 8 |
 | [v3 channels](#v3-channels) | `channels/channelAddressParameter(s)`, `channels/messages/*` | 86 | 7 |
 | [v3 operation reply](#v3-operation-reply) | `operations/operationReply*` | 49 | 3 |
+| [v3.0.0 servers](#v300-servers) | `servers/server`, `servers/servers` | 58 | 4 |
 
 ---
 
@@ -117,3 +118,12 @@ Reference requires `$ref` and allows nothing else; the other branch has `additio
 | REPLY1 | Validation | `operationReplyAddress.json` `location` | Same unanchored runtime-expression pattern as CHAN2. | Open |
 | REPLY2 | Validation | `operationReply.json` `messages` | No `uniqueItems`, so the same message reference can be listed twice. The "subset of the channel's messages" rule needs a parser check. | Open |
 | REPLY3 | Example | `operationReply.json`, `operationReplyOrReference.json`, `operationReplyAddressOrReference.json` | `$ref`s point to paths that don't exist: `#/replies/…` and `#/messages/…`; they should be `#/components/replies/…`, `#/components/replyAddresses/…` and `#/channels/<channel>/messages/…`. | Open |
+
+## v3.0.0 servers
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| SRV1 | Validation | `servers/servers.json` | Map keys aren't validated, so server names like `a b` pass. The spec restricts component keys to `^[a-zA-Z0-9\.\-_]+$`. Same in `channels.json`, `operations.json` and `channelMessages.json`. | Open |
+| SRV2 | Validation | `servers/server.json` `host`, `pathname` | `host` accepts a scheme (`amqp://…`, the spec says host name and port only), and `pathname` doesn't require a leading `/`. | Open |
+| SRV3 | Text | `servers/server.json` `protocolVersion` | It's described as "An optional string describing the server. CommonMark syntax MAY be used…", which is the `description` text; it should be "The version of the protocol used for connection". | Open |
+| SRV4 | Example | `servers/server.json` example | `"$ref": "#/components/security/x.509"` (see SEC8) and `"$ref": "#/tags/secured"` point to paths that don't exist; "**Reade** step by step guide" is a typo. | Open |
