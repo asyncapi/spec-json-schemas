@@ -53,6 +53,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.0.0 binding maps](#v300-binding-maps) | `{channel,operation,server,message}Bindings` | 440 | 2 |
 | [v3.0.0 component bindings](#v300-component-bindings) | 6 components × 19 bindings | 1356 | 0 |
 | [v3.0.0 asyncapi](#v300-asyncapi) | `asyncapi` | 32 | 1 |
+| [v3.1.0 servers](#v310-servers) | `servers/server`, `servers/servers` | 58 | 0 (SRV1–SRV4 apply) |
 
 ---
 
@@ -200,3 +201,8 @@ The root accepts only `"asyncapi": "3.0.0"` (`3.1.0`, `2.6.0`, `3.0` and the num
 | # | Category | Where | Concern | Status |
 |---|---|---|---|---|
 | DOC1 | Example | `asyncapi.json` examples #2+, `servers/servers.json` examples | `"mqtt": {"$ref": "#/servers/mqtt"}` is a server that references itself. `#/components/user.signedUp` (see CH2) also appears here. | Open |
+
+## v3.1.0 servers
+
+`server.json` and `servers.json` are identical to v3.0.0 except that `bindings` uses `draft-07/bindings/serverBindings.json`
+(with `ros2`). Same concerns as [v3.0.0 servers](#v300-servers): SRV1–SRV4.
