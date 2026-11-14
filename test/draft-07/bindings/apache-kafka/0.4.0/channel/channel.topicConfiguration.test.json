@@ -1,0 +1,122 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.4.0/channel.json#/properties/topicConfiguration",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: all common properties",
+      "valid": true,
+      "data": {
+        "cleanup.policy": [
+          "delete",
+          "compact"
+        ],
+        "retention.ms": 604800000,
+        "retention.bytes": 1000000000,
+        "delete.retention.ms": 86400000,
+        "max.message.bytes": 1048588
+      }
+    },
+    {
+      "description": "valid: retention.ms -1 (unlimited)",
+      "valid": true,
+      "data": {
+        "retention.ms": -1
+      }
+    },
+    {
+      "description": "valid: retention.bytes -1 (unlimited)",
+      "valid": true,
+      "data": {
+        "retention.bytes": -1
+      }
+    },
+    {
+      "description": "valid: delete.retention.ms 0",
+      "valid": true,
+      "data": {
+        "delete.retention.ms": 0
+      }
+    },
+    {
+      "description": "valid: max.message.bytes 0",
+      "valid": true,
+      "data": {
+        "max.message.bytes": 0
+      }
+    },
+    {
+      "description": "invalid: retention.ms below -1",
+      "valid": false,
+      "data": {
+        "retention.ms": -2
+      }
+    },
+    {
+      "description": "invalid: retention.bytes below -1",
+      "valid": false,
+      "data": {
+        "retention.bytes": -2
+      }
+    },
+    {
+      "description": "invalid: delete.retention.ms below 0",
+      "valid": false,
+      "data": {
+        "delete.retention.ms": -1
+      }
+    },
+    {
+      "description": "invalid: max.message.bytes below 0",
+      "valid": false,
+      "data": {
+        "max.message.bytes": -1
+      }
+    },
+    {
+      "description": "invalid: retention.ms is a decimal number",
+      "valid": false,
+      "data": {
+        "retention.ms": 1.5
+      }
+    },
+    {
+      "description": "invalid: max.message.bytes is a string",
+      "valid": false,
+      "data": {
+        "max.message.bytes": "1048588"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        "delete"
+      ]
+    },
+    {
+      "description": "invalid: unknown property (additionalProperties false)",
+      "valid": false,
+      "data": {
+        "segment.ms": 604800000
+      }
+    },
+    {
+      "description": "invalid: confluent properties are not defined in 0.4.0",
+      "valid": false,
+      "data": {
+        "confluent.key.schema.validation": true
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "x-owner": "team"
+      }
+    }
+  ]
+}

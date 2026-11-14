@@ -1,0 +1,119 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.4.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "partitions": 20,
+        "replicas": 3,
+        "topic": "my-specific-topic"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "partitions": 20,
+        "replicas": 3,
+        "topic": "my-specific-topic",
+        "topicConfiguration": {
+          "cleanup.policy": [
+            "compact",
+            "delete"
+          ],
+          "delete.retention.ms": 1000,
+          "max.message.bytes": 2000,
+          "retention.bytes": 10,
+          "retention.ms": 2000
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: topic, partitions and replicas",
+      "valid": true,
+      "data": {
+        "topic": "my-specific-topic-name",
+        "partitions": 20,
+        "replicas": 3
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "topic": "my-topic",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: topic is not a string",
+      "valid": false,
+      "data": {
+        "topic": 1
+      }
+    },
+    {
+      "description": "invalid: invalid partitions",
+      "valid": false,
+      "data": {
+        "partitions": 0
+      }
+    },
+    {
+      "description": "invalid: invalid replicas",
+      "valid": false,
+      "data": {
+        "replicas": 0
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "topic": "my-topic",
+        "retention": 7
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "my-topic"
+    },
+    {
+      "description": "valid: topicConfiguration",
+      "valid": true,
+      "data": {
+        "topic": "my-topic",
+        "topicConfiguration": {
+          "cleanup.policy": [
+            "delete"
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid topicConfiguration",
+      "valid": false,
+      "data": {
+        "topicConfiguration": {
+          "retention.ms": -2
+        }
+      }
+    }
+  ]
+}
