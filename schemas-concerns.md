@@ -62,6 +62,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.1.0 asyncapi](#v310-asyncapi) | `asyncapi` | 32 | 0 (DOC1 applies) |
 | [v2 shared schemas](#v2-shared-schemas) | `v2/**` (tag, externalDocs, info, correlationId, schema, schemas, security, securityRequirements) | 434 | 2 |
 | [v2.0.0 servers](#v200-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 3 |
+| [v2.0.0 channels](#v200-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 69 | 3 |
 
 All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
 No schema under `draft-07/` was changed.
@@ -267,3 +268,14 @@ These v3 concerns apply to v2 as well: TAG2, INFO2, CHAN2 (correlationId), SEC1,
 | V2S1 | Validation | `servers/server.json` `security` (all v2.x) | Items are inline Security Scheme objects (`v2/security/securitySchema.json`), with no Reference branch. A Security Requirement map such as `[{"x509": []}]`, the form the v2 spec describes, is rejected, and a scheme declared in `components.securitySchemes` can't be referenced. | Open |
 | V2S2 | Validation | `servers/servers.json`, `servers/serverVariables.json` | Map keys aren't validated (see SRV1). | Open |
 | V2S3 | Validation | `servers/serverVariable.json` | Same as SVAR1 and SVAR2: `default` isn't checked against `enum`, and `enum: []` passes. | Open |
+
+## v2.0.0 channels
+
+`channels.json` keys are checked with `propertyNames` (`format: uri-template`, `minLength: 1`), so empty names and
+unclosed `{expressions}` are rejected.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| V2C1 | Validation | `channels/channelItem.json` `$ref` | `$ref` is a plain property, so `{"$ref": "…", "publish": {…}}` passes and the siblings are validated as if the channel were inline. | Open |
+| V2C2 | Validation | `channels/parameter.json` `$ref` (2.0.0–2.4.0) | The property is defined as `reference.json`, so it expects an object: `{"$ref": {"$ref": "#/…"}}` passes and `{"$ref": "#/…", "description": "x"}` is rejected. Plain references only work through `parameters.json`, which routes them with `if`/`then`. Removed in 2.5.0. | Open |
+| V2C3 | Validation | `channels/parameter.json` | No `"type": "object"`, so a string or number passes as a parameter (see CHAN1). The `location` pattern is unanchored (see CHAN2). | Open |
