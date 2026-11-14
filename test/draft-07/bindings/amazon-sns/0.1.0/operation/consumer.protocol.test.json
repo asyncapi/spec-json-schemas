@@ -1,0 +1,65 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/operation.json#/definitions/consumer/properties/protocol",
+  "tests": [
+    {
+      "description": "valid: http",
+      "valid": true,
+      "data": "http"
+    },
+    {
+      "description": "valid: https",
+      "valid": true,
+      "data": "https"
+    },
+    {
+      "description": "valid: email",
+      "valid": true,
+      "data": "email"
+    },
+    {
+      "description": "valid: email-json",
+      "valid": true,
+      "data": "email-json"
+    },
+    {
+      "description": "valid: sms",
+      "valid": true,
+      "data": "sms"
+    },
+    {
+      "description": "valid: sqs",
+      "valid": true,
+      "data": "sqs"
+    },
+    {
+      "description": "valid: application",
+      "valid": true,
+      "data": "application"
+    },
+    {
+      "description": "valid: lambda",
+      "valid": true,
+      "data": "lambda"
+    },
+    {
+      "description": "valid: firehose",
+      "valid": true,
+      "data": "firehose"
+    },
+    {
+      "description": "invalid: upper case SQS",
+      "valid": false,
+      "data": "SQS"
+    },
+    {
+      "description": "invalid: unsupported protocol kafka",
+      "valid": false,
+      "data": "kafka"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    }
+  ]
+}

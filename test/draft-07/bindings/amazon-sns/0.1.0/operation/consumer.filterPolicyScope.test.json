@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/operation.json#/definitions/consumer/properties/filterPolicyScope",
+  "tests": [
+    {
+      "description": "valid: MessageAttributes",
+      "valid": true,
+      "data": "MessageAttributes"
+    },
+    {
+      "description": "valid: MessageBody",
+      "valid": true,
+      "data": "MessageBody"
+    },
+    {
+      "description": "invalid: lower case messageBody",
+      "valid": false,
+      "data": "messageBody"
+    },
+    {
+      "description": "invalid: unknown scope",
+      "valid": false,
+      "data": "MessageHeaders"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/channel.json#/definitions/statement/properties/principal",
+  "tests": [
+    {
+      "description": "valid: principal as a string",
+      "valid": true,
+      "data": "*"
+    },
+    {
+      "description": "valid: principal as an array of strings",
+      "valid": true,
+      "data": [
+        "*",
+        "arn:aws:iam::123456789012:root"
+      ]
+    },
+    {
+      "description": "valid: principal as an empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "invalid: principal as a number",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "invalid: principal as an array with a non string item",
+      "valid": false,
+      "data": [
+        "SNS:Publish",
+        1
+      ]
+    },
+    {
+      "description": "invalid: principal as a boolean",
+      "valid": false,
+      "data": true
+    },
+    {
+      "description": "invalid: principal as an AWS object (added in 0.2.0)",
+      "valid": false,
+      "data": {
+        "AWS": "arn:aws:iam::123456789012:root"
+      }
+    },
+    {
+      "description": "invalid: principal as a Service object (added in 0.2.0)",
+      "valid": false,
+      "data": {
+        "Service": "s3.amazonaws.com"
+      }
+    }
+  ]
+}
