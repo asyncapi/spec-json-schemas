@@ -61,6 +61,9 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.1.0 component bindings](#v310-component-bindings) | 6 components × 20 bindings | 1410 | 0 |
 | [v3.1.0 asyncapi](#v310-asyncapi) | `asyncapi` | 32 | 0 (DOC1 applies) |
 
+All 78 v3 schemas are covered: v3 651, v3.0.0 2339, v3.1.0 1954 — **4944 tests**, all passing, **56 open** concerns.
+No schema under `draft-07/` was changed.
+
 ---
 
 ## v3 tag and externalDocs
@@ -206,7 +209,7 @@ The root accepts only `"asyncapi": "3.0.0"` (`3.1.0`, `2.6.0`, `3.0` and the num
 
 | # | Category | Where | Concern | Status |
 |---|---|---|---|---|
-| DOC1 | Example | `asyncapi.json` examples #2+, `servers/servers.json` examples | `"mqtt": {"$ref": "#/servers/mqtt"}` is a server that references itself. `#/components/user.signedUp` (see CH2) also appears here. | Open |
+| DOC1 | Example | `asyncapi.json` example #2, `servers/servers.json` examples #1 and #3 | `"mqtt": {"$ref": "#/servers/mqtt"}` is a server that references itself. `#/components/user.signedUp` (see CH2) also appears here. | Open |
 
 ## v3.1.0 servers
 
