@@ -54,6 +54,7 @@ For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/sc
 | [v3.0.0 component bindings](#v300-component-bindings) | 6 components × 19 bindings | 1356 | 0 |
 | [v3.0.0 asyncapi](#v300-asyncapi) | `asyncapi` | 32 | 1 |
 | [v3.1.0 servers](#v310-servers) | `servers/server`, `servers/servers` | 58 | 0 (SRV1–SRV4 apply) |
+| [v3.1.0 channel messages](#v310-channel-messages) | `channels/messages/channelMessage`, `channelMessageTrait(s)`, `channelMessages` | 144 | 1 (MSG1–MSG6 apply) |
 
 ---
 
@@ -206,3 +207,12 @@ The root accepts only `"asyncapi": "3.0.0"` (`3.1.0`, `2.6.0`, `3.0` and the num
 
 `server.json` and `servers.json` are identical to v3.0.0 except that `bindings` uses `draft-07/bindings/serverBindings.json`
 (with `ros2`). Same concerns as [v3.0.0 servers](#v300-servers): SRV1–SRV4.
+
+## v3.1.0 channel messages
+
+Identical to v3.0.0 except `bindings` (`draft-07/bindings/messageBindings.json`). Same concerns as
+[v3.0.0 channel messages](#v300-channel-messages): MSG1–MSG6, including the nested `additionalProperties` in `channelMessageTrait.json`.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| MSG7 | Validation | `multiFormatSchema.json` `schemaFormat` | The AsyncAPI formats stop at `version=3.0.0`, so a v3.1.0 document with `application/vnd.aai.asyncapi+json;version=3.1.0` falls into no branch and its schema isn't validated: `{"type": "map"}` passes. | Open |
