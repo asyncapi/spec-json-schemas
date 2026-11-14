@@ -1,0 +1,99 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.1.0/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "key": {
+          "$ref": "path/to/user-create.avsc#/UserCreate"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: key only",
+      "valid": true,
+      "data": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid key",
+      "valid": false,
+      "data": {
+        "key": {
+          "type": "date"
+        }
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        },
+        "headers": {}
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myKey"
+    },
+    {
+      "description": "invalid: schemaIdLocation is not defined in 0.1.0",
+      "valid": false,
+      "data": {
+        "schemaIdLocation": "payload"
+      }
+    }
+  ]
+}
