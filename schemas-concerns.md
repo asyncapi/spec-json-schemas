@@ -104,6 +104,7 @@ bindings (all, one binding, one binding version), v3 and v2 (all, one version).
 | [Root reference](#root-reference) | `reference` | 33 | 0 |
 | [Root schema](#root-schema) | `schema` | 46 | 1 |
 | [Root avroSchema_v1](#root-avroschema_v1) | `avroSchema_v1` | 614 | 2 |
+| [Root openapiSchema_3_0](#root-openapischema_3_0) | `openapiSchema_3_0` | 40 | 1 |
 
 v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
 
@@ -578,3 +579,13 @@ rejected, and so are extra properties, including `x-` extensions. An empty strin
 |---|---|---|---|---|
 | AVRO1 | Validation | `avroSchema_v1.json` `customTypeReference` | Any name that isn't a primitive is a valid custom type reference, so misspelled primitives (`integer`, `String`) pass. | Open |
 | AVRO2 | Validation | `avroSchema_v1.json` | The `error` type (Avro protocols) isn't supported, so `examples/schemas/multiformat/avro/1.9.0/*/regression_error_field_in_record.*` (4 files) fail and are skipped. | Open |
+
+## Root openapiSchema_3_0
+
+`openapiSchema_3_0.test.json` targets `openapiSchema_3_0.json` (OpenAPI 3.0 rules: `nullable`, boolean
+`exclusiveMaximum`, no array `type`, unknown keywords rejected). `openapiSchema_3_0.examples.test.json` runs
+`examples/schemas/multiformat/openapi/**` through `multiFormatSchema.json`.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| OAS1 | Example | `examples/schemas/multiformat/openapi/3.0.0/*/schema.*` (4 files) | The schema uses `name`, which isn't an OpenAPI Schema Object keyword, so the files fail and are skipped. | Open |
