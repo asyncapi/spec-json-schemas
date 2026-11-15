@@ -105,6 +105,7 @@ bindings (all, one binding, one binding version), v3 and v2 (all, one version).
 | [Root schema](#root-schema) | `schema` | 46 | 1 |
 | [Root avroSchema_v1](#root-avroschema_v1) | `avroSchema_v1` | 614 | 2 |
 | [Root openapiSchema_3_0](#root-openapischema_3_0) | `openapiSchema_3_0` | 40 | 1 |
+| [Root multiFormatSchema](#root-multiformatschema) | `multiFormatSchema` | 1759 | 2 |
 
 v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
 
@@ -589,3 +590,13 @@ rejected, and so are extra properties, including `x-` extensions. An empty strin
 | # | Category | Where | Concern | Status |
 |---|---|---|---|---|
 | OAS1 | Example | `examples/schemas/multiformat/openapi/3.0.0/*/schema.*` (4 files) | The schema uses `name`, which isn't an OpenAPI Schema Object keyword, so the files fail and are skipped. | Open |
+
+## Root multiFormatSchema
+
+`multiFormatSchema.examples.test.json` runs `examples/schemas/multiformat/**` and the plain `examples/schemas/asyncapi/*`
+(no `schemaFormat`: validated as an AsyncAPI Schema).
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| MF1 | Validation | `multiFormatSchema.json` Avro and OpenAPI branches | Only `avro…;version=1.9.0` and `openapi…;version=3.0.0` are routed to their schemas. Avro 1.9.1–1.11.1 and OpenAPI 3.0.1–3.0.3 match no branch, so their schemas aren't validated (`examples/schemas/multiformat/avro/1.9.1`–`1.11.1`, `openapi/3.0.1`–`3.0.3` pass unchecked). To be analyzed. | Open |
+| MF2 | Example | `examples/schemas/multiformat/schemaFormat is null/*` (14 files) | `schemaFormat` must be a string, so `null` is rejected; the files are skipped. Empty and unknown `schemaFormat` pass unvalidated (see MSG4). | Open |
