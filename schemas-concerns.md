@@ -102,6 +102,7 @@ bindings (all, one binding, one binding version), v3 and v2 (all, one version).
 | [v2.6.0 binding maps](#v260-binding-maps) | `{channel,operation,server,message}Bindings` | 320 | 0 |
 | [v2.6.0 component bindings](#v260-component-bindings) | 6 components × 18 bindings | 1302 | 0 |
 | [Root reference](#root-reference) | `reference` | 33 | 0 |
+| [Root schema](#root-schema) | `schema` | 46 | 1 |
 
 v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
 
@@ -557,3 +558,12 @@ Built like [v2.0.0 component bindings](#v200-component-bindings), one file per k
 `reference.json` accepts any `uri-reference` in `$ref`: local pointers, `http(s)` URLs, file names, `./` and `../`
 paths, nested paths, each with `#/some/nested/path`, and `urn:`. Spaces, unencoded `{}` and backslashes are
 rejected, and so are extra properties, including `x-` extensions. An empty string is accepted (same-document reference). No concerns.
+
+## Root schema
+
+`schema.json` is the AsyncAPI Schema Object used by v3 (draft-07 plus `discriminator`, `externalDocs`, `deprecated`).
+`schema.examples.test.json` runs `examples/schemas/asyncapi/*`.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| ROOT1 | Consistency | `schema.json` vs `v2/schema.json` | The root schema accepts boolean schemas (`true`, `false`, nested), but the v2 schema rejects them (V2-1), and `anySchema.json` rejects them too (MSG2). | Open |
