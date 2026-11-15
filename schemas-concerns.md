@@ -106,6 +106,7 @@ bindings (all, one binding, one binding version), v3 and v2 (all, one version).
 | [Root avroSchema_v1](#root-avroschema_v1) | `avroSchema_v1` | 614 | 2 |
 | [Root openapiSchema_3_0](#root-openapischema_3_0) | `openapiSchema_3_0` | 40 | 1 |
 | [Root multiFormatSchema](#root-multiformatschema) | `multiFormatSchema` | 1759 | 2 |
+| [Root anySchema](#root-anyschema) | `anySchema` | 873 | 0 |
 
 v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
 
@@ -600,3 +601,9 @@ rejected, and so are extra properties, including `x-` extensions. An empty strin
 |---|---|---|---|---|
 | MF1 | Validation | `multiFormatSchema.json` Avro and OpenAPI branches | Only `avro…;version=1.9.0` and `openapi…;version=3.0.0` are routed to their schemas. Avro 1.9.1–1.11.1 and OpenAPI 3.0.1–3.0.3 match no branch, so their schemas aren't validated (`examples/schemas/multiformat/avro/1.9.1`–`1.11.1`, `openapi/3.0.1`–`3.0.3` pass unchecked). To be analyzed. | Open |
 | MF2 | Example | `examples/schemas/multiformat/schemaFormat is null/*` (14 files) | `schemaFormat` must be a string, so `null` is rejected; the files are skipped. Empty and unknown `schemaFormat` pass unvalidated (see MSG4). | Open |
+
+## Root anySchema
+
+`anySchema.examples.test.json` runs `examples/schemas/asyncapi/*` and `examples/schemas/multiformat/**` (same skips as
+multiFormatSchema). Routing on the `schema` property works: with it the document is a multi-format schema, without it a
+Schema Object. MSG2 applies: boolean schemas are rejected.
