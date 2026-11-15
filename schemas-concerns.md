@@ -101,6 +101,7 @@ bindings (all, one binding, one binding version), v3 and v2 (all, one version).
 | [v2.6.0 components](#v260-components) | `components/components` | 93 | 0 |
 | [v2.6.0 binding maps](#v260-binding-maps) | `{channel,operation,server,message}Bindings` | 320 | 0 |
 | [v2.6.0 component bindings](#v260-component-bindings) | 6 components × 18 bindings | 1302 | 0 |
+| [Root reference](#root-reference) | `reference` | 33 | 0 |
 
 v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
 
@@ -550,3 +551,9 @@ Same concerns as V2K1 and V2K2 (V2K3 is fixed). There's no `asyncapi.test.json` 
 ## v2.6.0 component bindings
 
 Built like [v2.0.0 component bindings](#v200-component-bindings), one file per key of the v2.6.0 maps (18 keys). No new concerns.
+
+## Root reference
+
+`reference.json` accepts any `uri-reference` in `$ref`: local pointers, `http(s)` URLs, file names, `./` and `../`
+paths, nested paths, each with `#/some/nested/path`, and `urn:`. Spaces, unencoded `{}` and backslashes are
+rejected, and so are extra properties, including `x-` extensions. An empty string is accepted (same-document reference). No concerns.
