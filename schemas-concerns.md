@@ -103,6 +103,7 @@ bindings (all, one binding, one binding version), v3 and v2 (all, one version).
 | [v2.6.0 component bindings](#v260-component-bindings) | 6 components × 18 bindings | 1302 | 0 |
 | [Root reference](#root-reference) | `reference` | 33 | 0 |
 | [Root schema](#root-schema) | `schema` | 46 | 1 |
+| [Root avroSchema_v1](#root-avroschema_v1) | `avroSchema_v1` | 614 | 2 |
 
 v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
 
@@ -567,3 +568,13 @@ rejected, and so are extra properties, including `x-` extensions. An empty strin
 | # | Category | Where | Concern | Status |
 |---|---|---|---|---|
 | ROOT1 | Consistency | `schema.json` vs `v2/schema.json` | The root schema accepts boolean schemas (`true`, `false`, nested), but the v2 schema rejects them (V2-1), and `anySchema.json` rejects them too (MSG2). | Open |
+
+## Root avroSchema_v1
+
+`avroSchema_v1.test.json` targets `avroSchema_v1.json`. `avroSchema_v1.examples.test.json` runs
+`examples/schemas/multiformat/avro/**` through `multiFormatSchema.json`, which checks that the Avro formats are recognized.
+
+| # | Category | Where | Concern | Status |
+|---|---|---|---|---|
+| AVRO1 | Validation | `avroSchema_v1.json` `customTypeReference` | Any name that isn't a primitive is a valid custom type reference, so misspelled primitives (`integer`, `String`) pass. | Open |
+| AVRO2 | Validation | `avroSchema_v1.json` | The `error` type (Avro protocols) isn't supported, so `examples/schemas/multiformat/avro/1.9.0/*/regression_error_field_in_record.*` (4 files) fail and are skipped. | Open |
