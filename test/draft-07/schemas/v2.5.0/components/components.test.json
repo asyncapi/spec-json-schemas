@@ -1074,8 +1074,21 @@
       }
     },
     {
-      "description": "valid: channels is not validated (declared with $id instead of $ref)",
+      "description": "valid: channels",
       "valid": true,
+      "data": {
+        "channels": {
+          "users": {
+            "publish": {
+              "operationId": "sendUser"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: channels with invalid channel",
+      "valid": false,
       "data": {
         "channels": {
           "users": {
@@ -1085,10 +1098,19 @@
       }
     },
     {
-      "description": "valid: channels of any type is accepted (empty schema)",
-      "valid": true,
+      "description": "invalid: channels is not an object",
+      "valid": false,
       "data": {
         "channels": 1
+      }
+    },
+    {
+      "description": "invalid: channels with empty channel name",
+      "valid": false,
+      "data": {
+        "channels": {
+          "": {}
+        }
       }
     },
     {
