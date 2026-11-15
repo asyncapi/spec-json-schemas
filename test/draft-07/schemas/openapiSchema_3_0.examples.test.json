@@ -1,0 +1,65 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/multiFormatSchema.json",
+  "tests": [
+    {
+      "description": "valid: openapi - 3.0.1 - vnd.oai.openapi schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi/schema.json"
+    },
+    {
+      "description": "valid: openapi - 3.0.1 - vnd.oai.openapi schema.yaml",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi/schema.yaml"
+    },
+    {
+      "description": "valid: openapi - 3.0.1 - vnd.oai.openapi+json schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi+json/schema.json"
+    },
+    {
+      "description": "valid: openapi - 3.0.1 - vnd.oai.openapi+yaml schema.yaml",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.1/vnd.oai.openapi+yaml/schema.yaml"
+    },
+    {
+      "description": "valid: openapi - 3.0.2 - vnd.oai.openapi schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi/schema.json"
+    },
+    {
+      "description": "valid: openapi - 3.0.2 - vnd.oai.openapi schema.yaml",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi/schema.yaml"
+    },
+    {
+      "description": "valid: openapi - 3.0.2 - vnd.oai.openapi+json schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi+json/schema.json"
+    },
+    {
+      "description": "valid: openapi - 3.0.2 - vnd.oai.openapi+yaml schema.yaml",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.2/vnd.oai.openapi+yaml/schema.yaml"
+    },
+    {
+      "description": "valid: openapi - 3.0.3 - vnd.oai.openapi schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi/schema.json"
+    },
+    {
+      "description": "valid: openapi - 3.0.3 - vnd.oai.openapi schema.yaml",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi/schema.yaml"
+    },
+    {
+      "description": "valid: openapi - 3.0.3 - vnd.oai.openapi+json schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi+json/schema.json"
+    },
+    {
+      "description": "valid: openapi - 3.0.3 - vnd.oai.openapi+yaml schema.yaml",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/multiformat/openapi/3.0.3/vnd.oai.openapi+yaml/schema.yaml"
+    }
+  ]
+}
