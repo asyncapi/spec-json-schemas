@@ -20,39 +20,8 @@ and the entry moves to **Fixed**.
 
 ## Running the tests
 
-`draft-07/schemas` can't be resolved as a whole: the v2.x folders register the same `$id` twice, and
-`jsonschema.json` catalogs aren't JSON Schemas. Resolve only what v3 needs:
-
-```bash
-jsonschema test test/draft-07/schemas/v3 \
-  --resolve draft-07/schemas/v3 \
-  --resolve draft-07/schemas/anySchema.json --resolve draft-07/schemas/reference.json \
-  --resolve draft-07/schemas/schema.json --resolve draft-07/schemas/multiFormatSchema.json \
-  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
-  --format-assertion --verbose
-```
-
-For `v3.0.0` and `v3.1.0`, change the test folder and add `--resolve draft-07/schemas/<version>`.
-
-For v2, resolve `v2`, the version folder, `v3` (some bindings use it) and `draft-07/integrations` (Avro and OpenAPI payloads):
-
-```bash
-jsonschema test test/draft-07/schemas/v2.2.0 \
-  --resolve draft-07/schemas/v2 --resolve draft-07/schemas/v3 --resolve draft-07/schemas/v2.2.0 \
-  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
-  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/avroSchema_v1.json \
-  --resolve draft-07/schemas/openapiSchema_3_0.json --resolve draft-07/schemas/anySchema.json \
-  --resolve draft-07/integrations --ignore draft-07/integrations/jsonschema.json \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
-  --format-assertion --verbose
-```
-
-The shared `test/draft-07/schemas/v2` suites run with any version folder, e.g. `v2.0.0`. For v2.3.0–v2.6.0 the folder can't
-be loaded as is (see V2K3), so run it twice with the same resolve options: first
-`test/draft-07/schemas/<version>/servers`, `…/channels` and `…/*.test.json` with
-`--ignore draft-07/schemas/<version>/components/components.json`, then `test/draft-07/schemas/<version>/components` with
-`--ignore draft-07/schemas/<version>/channels/channels.json`.
+See [Running tests](README.md#running-tests) in the README: one command for all tests, and commands for draft-04,
+bindings (all, one binding, one binding version), v3 and v2 (all, one version).
 
 ## Summary
 
@@ -108,36 +77,36 @@ be loaded as is (see V2K3), so run it twice with the same resolve options: first
 | [v2.3.0 channels](#v230-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 72 | 0 |
 | [v2.3.0 messages](#v230-messages) | `channels/messages/message`, `messageTrait`, `messages` | 120 | 0 |
 | [v2.3.0 operations](#v230-operations) | `channels/operations/operation`, `operationTrait` | 69 | 0 |
-| [v2.3.0 components](#v230-components) | `components/components` | 86 | 1 |
+| [v2.3.0 components](#v230-components) | `components/components` | 88 | 0 |
 | [v2.3.0 binding maps](#v230-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 | [v2.3.0 component bindings](#v230-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 | [v2.4.0 servers](#v240-servers) | `servers/server`, `servers`, `serverVariable(s)` | 75 | 0 |
 | [v2.4.0 channels](#v240-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 72 | 0 |
 | [v2.4.0 messages](#v240-messages) | `channels/messages/message`, `messageTrait`, `messages` | 122 | 0 |
 | [v2.4.0 operations](#v240-operations) | `channels/operations/operation`, `operationTrait` | 79 | 1 |
-| [v2.4.0 components](#v240-components) | `components/components` | 91 | 0 |
+| [v2.4.0 components](#v240-components) | `components/components` | 93 | 0 |
 | [v2.4.0 binding maps](#v240-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 | [v2.4.0 component bindings](#v240-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 | [v2.5.0 servers](#v250-servers) | `servers/server`, `servers`, `serverVariable(s)` | 76 | 0 |
 | [v2.5.0 channels](#v250-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 71 | 0 |
 | [v2.5.0 messages](#v250-messages) | `channels/messages/message`, `messageTrait`, `messages` | 122 | 0 |
 | [v2.5.0 operations](#v250-operations) | `channels/operations/operation`, `operationTrait` | 79 | 0 |
-| [v2.5.0 components](#v250-components) | `components/components` | 91 | 0 |
+| [v2.5.0 components](#v250-components) | `components/components` | 93 | 0 |
 | [v2.5.0 binding maps](#v250-binding-maps) | `{channel,operation,server,message}Bindings` | 296 | 0 |
 | [v2.5.0 component bindings](#v250-component-bindings) | 6 components × 16 bindings | 1171 | 0 |
 | [v2.6.0 servers](#v260-servers) | `servers/server`, `servers`, `serverVariable(s)` | 76 | 0 |
 | [v2.6.0 channels](#v260-channels) | `channels/channelItem`, `channels`, `parameter(s)` | 71 | 0 |
 | [v2.6.0 messages](#v260-messages) | `channels/messages/message`, `messageTrait`, `messages` | 122 | 0 |
 | [v2.6.0 operations](#v260-operations) | `channels/operations/operation`, `operationTrait` | 79 | 0 |
-| [v2.6.0 components](#v260-components) | `components/components` | 91 | 0 |
+| [v2.6.0 components](#v260-components) | `components/components` | 93 | 0 |
 | [v2.6.0 binding maps](#v260-binding-maps) | `{channel,operation,server,message}Bindings` | 320 | 0 |
 | [v2.6.0 component bindings](#v260-component-bindings) | 6 components × 18 bindings | 1302 | 0 |
 
 v3: all 78 schemas are covered (v3 651, v3.0.0 2339, v3.1.0 1954): **4944 tests**.
 
-v2: all schemas of v2 and v2.0.0–v2.6.0 are covered except `asyncapi.json` in v2.3.0–v2.6.0 (see V2K3) (v2 434, v2.0.0 1922, v2.1.0 1906, v2.2.0 1909, v2.3.0 1889, v2.4.0 1906, v2.5.0 1906, v2.6.0 2061): **13933 tests**.
+v2: all schemas of v2 and v2.0.0–v2.6.0 are covered except `asyncapi.json` in v2.3.0–v2.6.0, which has no tests yet (v2 434, v2.0.0 1922, v2.1.0 1906, v2.2.0 1909, v2.3.0 1891, v2.4.0 1908, v2.5.0 1908, v2.6.0 2063): **13941 tests**.
 
-All passing, **79 open** concerns.
+All passing, **78 open** concerns.
 No schema under `draft-07/` was changed.
 
 ---
@@ -484,7 +453,7 @@ Same concerns as [v2.0.0 operations](#v200-operations): V2O1, V2O2.
 
 | # | Category | Where | Concern | Status |
 |---|---|---|---|---|
-| V2K3 | Validation | `components/components.json` `channels` (2.3.0–2.6.0) | It's `{"$id": ".../channels/channels.json"}` instead of `{"$ref": …}`. The section is an empty schema, so anything passes (`{"channels": 1}`), and it re-declares the `$id` of `channels/channels.json`. The jsonschema CLI refuses to load the version folder ("Cannot register the same identifier twice"), so the suites run in two passes: everything except components with `components.json` ignored, then components with `channels.json` ignored. `asyncapi.json` can't be compiled in either pass (it needs both files; with `channels.json` ignored the CLI fails with "Schema identifier already exists"), so there's no `asyncapi.test.json` for 2.3.0–2.6.0. Same concerns as V2K1, V2K2. | Open |
+| V2K3 | Validation | `components/components.json` `channels` (2.3.0–2.6.0) | It was `{"$id": ".../channels/channels.json"}` instead of `{"$ref": …}`, so the section was an empty schema that accepted anything and re-declared the `$id` of `channels/channels.json`. The jsonschema CLI couldn't load the version folders ("Cannot register the same identifier twice") or compile `asyncapi.json`. The tests now check that `channels` is validated. | Fixed `b35530a` |
 
 ## v2.3.0 binding maps
 
@@ -516,7 +485,7 @@ Same concerns as [v2.0.0 channels](#v200-channels).
 
 ## v2.4.0 components
 
-`serverVariables` was added in 2.4.0. Same concerns as V2K1–V2K3; no `asyncapi.test.json` (see V2K3).
+`serverVariables` was added in 2.4.0. Same concerns as V2K1 and V2K2 (V2K3 is fixed). There's no `asyncapi.test.json` yet.
 
 ## v2.4.0 binding maps
 
@@ -544,7 +513,7 @@ Same concerns as [v2.0.0 operations](#v200-operations): V2O1, V2O2.
 
 ## v2.5.0 components
 
-Same concerns as V2K1–V2K3; no `asyncapi.test.json` (see V2K3).
+Same concerns as V2K1 and V2K2 (V2K3 is fixed). There's no `asyncapi.test.json` yet.
 
 ## v2.5.0 binding maps
 
@@ -572,7 +541,7 @@ Same concerns as [v2.0.0 operations](#v200-operations): V2O1, V2O2.
 
 ## v2.6.0 components
 
-Same concerns as V2K1–V2K3; no `asyncapi.test.json` (see V2K3).
+Same concerns as V2K1 and V2K2 (V2K3 is fixed). There's no `asyncapi.test.json` yet.
 
 ## v2.6.0 binding maps
 
