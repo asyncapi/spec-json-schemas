@@ -125,10 +125,10 @@ func Do() {
 
 ## Migration guidelines
 
-If you are currently using version 2, check out [migration guideline to version 3](review/migrations/migrate-to-version-3.md).
-If you are currently using version 3, check out [migration guideline to version 4](review/migrations/migrate-to-version-4.md).
-If you are currently using version 4, check out [migration guideline to version 5](review/migrations/migrate-to-version-5.md).
-If you are currently using version 5, check out [migration guideline to version 6](review/migrations/migrate-to-version-6.md).
+If you are currently using version 2, check out [migration guideline to version 3](migrations/migrate-to-version-3.md).
+If you are currently using version 3, check out [migration guideline to version 4](migrations/migrate-to-version-4.md).
+If you are currently using version 4, check out [migration guideline to version 5](migrations/migrate-to-version-5.md).
+If you are currently using version 5, check out [migration guideline to version 6](migrations/migrate-to-version-6.md).
 
 ## Repository structure
 
@@ -228,3 +228,149 @@ Extensions are a way to [extend AsyncAPI specification](https://www.asyncapi.com
 4. All the schemas must be added in a file named `schema.json` just as one is defined for [x extension](review/extensions/x/0.1.0/schema.json).
 
 5. Extension schema should not be referenced directly in the definition of the object it extends. For example if you add an extension for `info`, your extension's schema should not be referenced from `info.json` but [infoExtensions.json](review/definitions/3.0.0/infoExtensions.json). If the object that you extend doesn't have a corresponding `*Extensions.json` file, you need to create one.
+
+## Running tests
+
+Tests are run with the [`jsonschema` CLI](https://github.com/sourcemeta/jsonschema) `test` command. Every run needs:
+
+- `--format-assertion`, so that `format` (`uri`, `email`, `uri-reference`, …) is asserted. Without it some tests fail.
+- `--ignore` for the `jsonschema.json` files. They are [Sourcemeta One](one.json) catalogs, not JSON Schemas.
+- `--resolve` for every folder or file the tested schemas reference.
+
+Add `--verbose` to print every test case. Use `--json` for CTRF output in CI.
+
+### All tests (draft-04 and draft-07)
+
+```bash
+jsonschema test test \
+  --resolve draft-04 --resolve draft-07 \
+  --ignore draft-04/schemas/jsonschema.json --ignore draft-07/schemas/jsonschema.json \
+  --ignore draft-07/bindings/jsonschema.json --ignore draft-07/integrations/jsonschema.json \
+  --format-assertion
+```
+
+### draft-04 (AsyncAPI v1)
+
+```bash
+jsonschema test test/draft-04 \
+  --resolve draft-04 --ignore draft-04/schemas/jsonschema.json \
+  --format-assertion
+```
+
+### Bindings
+
+Bindings reference these shared schemas: `reference.json`, `schema.json`, `avroSchema_v1.json`, and through `schema.json` also `v3/externalDocs.json`.
+
+All bindings:
+
+```bash
+jsonschema test test/draft-07/bindings \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+One binding with all its versions, e.g. `apache-kafka`. Use the binding's folder name, not its key (`apache-kafka`, not `kafka`):
+
+```bash
+jsonschema test test/draft-07/bindings/apache-kafka \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+One binding version, e.g. `apache-kafka` `0.5.0`:
+
+```bash
+jsonschema test test/draft-07/bindings/apache-kafka/0.5.0 \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+The version folder holds only that version's objects. The routing by `bindingVersion` is tested by the files in the binding's root folder (`serverBinding.test.json`, `serverBindingOrReference.test.json`, …).
+
+### Root schemas
+
+Shared schemas in `draft-07/schemas` (`reference`, `schema`, `avroSchema_v1`, `openapiSchema_3_0`, `multiFormatSchema`, `anySchema`). The `*.examples.test.json` files load documents from `examples/schemas` with `dataPath`:
+
+```bash
+jsonschema test test/draft-07/schemas/*.test.json \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
+  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/anySchema.json \
+  --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+One root schema, e.g. `multiFormatSchema`: `test/draft-07/schemas/multiFormatSchema.test.json test/draft-07/schemas/multiFormatSchema.examples.test.json` with the same options.
+
+### AsyncAPI v3
+
+All v3 tests (shared `v3`, `v3.0.0`, `v3.1.0`):
+
+```bash
+jsonschema test test/draft-07/schemas/v3 test/draft-07/schemas/v3.0.0 test/draft-07/schemas/v3.1.0 \
+  --resolve draft-07/schemas/v3 --resolve draft-07/schemas/v3.0.0 --resolve draft-07/schemas/v3.1.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/anySchema.json \
+  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --format-assertion
+```
+
+One version, e.g. `v3.0.0`. Use the version's test and schema folders, and keep `draft-07/schemas/v3`, which every version uses:
+
+```bash
+jsonschema test test/draft-07/schemas/v3.0.0 \
+  --resolve draft-07/schemas/v3 --resolve draft-07/schemas/v3.0.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/anySchema.json \
+  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --format-assertion
+```
+
+Only the shared `v3` schemas: the same command with `test/draft-07/schemas/v3` and without the version folder.
+
+### AsyncAPI v2
+
+v2 messages also need `draft-07/integrations` (Avro and OpenAPI payloads).
+
+All v2 tests (shared `v2`, `v2.0.0`–`v2.6.0`, release candidates excluded):
+
+```bash
+jsonschema test test/draft-07/schemas/v2 \
+  test/draft-07/schemas/v2.0.0 test/draft-07/schemas/v2.1.0 test/draft-07/schemas/v2.2.0 \
+  test/draft-07/schemas/v2.3.0 test/draft-07/schemas/v2.4.0 test/draft-07/schemas/v2.5.0 test/draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/v2 \
+  --resolve draft-07/schemas/v2.0.0 --resolve draft-07/schemas/v2.1.0 --resolve draft-07/schemas/v2.2.0 \
+  --resolve draft-07/schemas/v2.3.0 --resolve draft-07/schemas/v2.4.0 --resolve draft-07/schemas/v2.5.0 \
+  --resolve draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --resolve draft-07/integrations --ignore draft-07/integrations/jsonschema.json \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --format-assertion
+```
+
+One version, e.g. `v2.6.0`. Use the version's test and schema folders, and keep `draft-07/schemas/v2`, which every version uses:
+
+```bash
+jsonschema test test/draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/v2 --resolve draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --resolve draft-07/integrations --ignore draft-07/integrations/jsonschema.json \
+  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --format-assertion
+```
+
+Only the shared `v2` schemas:
+
+```bash
+jsonschema test test/draft-07/schemas/v2 --resolve draft-07/schemas/v2 --format-assertion
+```
