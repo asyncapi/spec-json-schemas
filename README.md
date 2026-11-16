@@ -130,20 +130,20 @@ If you are currently using version 5, check out [migration guideline to version 
 
 This is the current project structure explained:
 
-- [./definitions](review/definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](review/schemas).
-- [./examples](review/examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](review/schemas).
+- [./definitions](review/definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](dists/schemas).
+- [./examples](review/examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](dists/schemas).
 - [./tools/bundler](./tools/bundler) - is the tool that bundles all the individual schemas together.
-- [./schemas](review/schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](review/definitions).
+- [./schemas](dists/schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](review/definitions).
 - [./extensions](review/extensions) - contains all the schemas of the extensions that will automatically be bundled to provide informations about extensions.
 
 
 ## Schema Bundling
 
-Changes should not be done manually to the schemas in [./schemas](review/schemas), but instead, be done in their individual definitions located in [./definitions](review/definitions).
+Changes should not be done manually to the schemas in [./schemas](dists/schemas), but instead, be done in their individual definitions located in [./definitions](review/definitions).
 
 These definitions are automatically bundled together on new releases through the npm script `prepublishOnly`, which ensures the project is built. This is where the [bundler](./tools/bundler) is called. 
 
-For example, for [2.2.0](review/definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](review/definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](review/schemas/2.2.0.json).
+For example, for [2.2.0](review/definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](review/definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](dists/schemas/2.2.0.json).
 
 ## Creating a new version
 
@@ -168,15 +168,15 @@ The manual process of creating a new version is to:
 
 1. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
    ```js
-   '2.6.0': require('./review/schemas/2.6.0.json'),
-   '2.6.0-without-$id': require('./review/schemas/2.6.0-without-$id.json'),
+   '2.6.0': require('./dists/schemas/2.6.0.json'),
+   '2.6.0-without-$id': require('./dists/schemas/2.6.0-without-$id.json'),
    ```
 1. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e.:
    ```js
    '2.6.0': JSONSchema7;
    '2.6.0-without-$id': JSONSchema7;
    ```
-1. Edit the [schemas/all.schema-store.json](review/schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
+1. Edit the [schemas/all.schema-store.json](dists/schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
 
     ```json
     {
