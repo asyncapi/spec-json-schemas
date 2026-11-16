@@ -1,0 +1,48 @@
+# Not centrally managed: specific to this repository.
+name: Go - test dists/go module
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - 'dists/**'
+      - '.github/workflows/go-test.yml'
+  push:
+    branches:
+      - master
+    paths:
+      - 'dists/**'
+      - '.github/workflows/go-test.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test-go:
+    name: Test Go module - Go ${{ matrix.go }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go: ['1.17', 'stable'] # minimum from go.mod and latest
+    defaults:
+      run:
+        working-directory: dists/go
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Go
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false # no dependencies to cache
+      - name: Check embedded schemas are in sync with dists/schemas
+        run: |
+          sh sync.sh
+          git diff --exit-code -- schemas
+          test -z "$(git status --porcelain -- schemas)" || { git status --porcelain -- schemas; echo 'run dists/go/sync.sh and commit the result'; exit 1; }
+      - name: Vet
+        run: go vet ./...
+      - name: Test
+        run: go test -race ./...
