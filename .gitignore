@@ -4,3 +4,7 @@ node_modules
 coverage
 
 .DS_Store
+# Copied from dists/schemas and the repository root by dists/js/sync.js
+dists/js/schemas/
+dists/js/LICENSE
+dists/js/NOTICE
