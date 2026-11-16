@@ -59,8 +59,10 @@ yarn add @asyncapi/specs
 ### Go
 
 ```bash
-go get github.com/asyncapi/spec-json-schemas/v2
+go get github.com/asyncapi/spec-json-schemas/dists/go/v6
 ```
+
+See [dists/go/README.md](dists/go/README.md) for how the Go module is built and released.
 
 ## Usage
 
@@ -107,7 +109,7 @@ console.log(Object.keys(versions));
 Grab a specific AsyncAPI version:
 
 ```go
-import "github.com/asyncapi/spec_json_schemas/v4"
+import spec_json_schemas "github.com/asyncapi/spec-json-schemas/dists/go/v6"
 
 func Do() {
     schema, err := spec_json_schemas.Get("1.1.0")
@@ -198,7 +200,7 @@ The manual process of creating a new version is to:
 ## Handling breaking changes
 Whenever a Breaking Change is introduced, the following steps should be taken in Go package:
 
-1. Edit `go.mod` file, and increase the version package suffix in the module name. For example, if the current version is `v2.0.0`, and you are releasing `v3.0.0`, the module name should be `github.com/asyncapi/spec-json-schemas/v3`.
+1. Edit [dists/go/go.mod](dists/go/go.mod), and increase the version package suffix in the module name. For example, if the current version is `v6.0.0`, and you are releasing `v7.0.0`, the module name should be `github.com/asyncapi/spec-json-schemas/dists/go/v7`. See [dists/go/README.md](dists/go/README.md#major-versions).
 
 ## SchemaStore compatibility testing
 
