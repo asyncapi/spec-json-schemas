@@ -56,6 +56,8 @@ npm install @asyncapi/specs
 yarn add @asyncapi/specs
 ```
 
+See [dists/js/README.md](dists/js/README.md) for how the npm package is built and released.
+
 ### Go
 
 ```bash
@@ -168,12 +170,12 @@ The manual process of creating a new version is to:
 
 ### 2 Further steps
 
-1. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
+1. Edit the [index.js](dists/js/index.js) file adding a new line with the new version. I.e.:
    ```js
-   '2.6.0': require('./dists/schemas/2.6.0.json'),
-   '2.6.0-without-$id': require('./dists/schemas/2.6.0-without-$id.json'),
+   '2.6.0': require('./schemas/2.6.0.json'),
+   '2.6.0-without-$id': require('./schemas/2.6.0-without-$id.json'),
    ```
-1. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e.:
+1. Edit the [index.d.ts](dists/js/index.d.ts) file adding a new line with the types for the new version. I.e.:
    ```js
    '2.6.0': JSONSchema7;
    '2.6.0-without-$id': JSONSchema7;
