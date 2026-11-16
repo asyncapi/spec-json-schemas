@@ -1,0 +1,11 @@
+{
+  "name": "spec-json-schemas",
+  "private": true,
+  "description": "Release entry point for the AsyncAPI JSON Schemas packages in dists/. Not published: the npm package lives in dists/js.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "cd dists/js && npm test",
+    "generate:assets": "cd dists/js && npm run sync",
+    "bump:version": "cd dists/js && npm --no-git-tag-version --allow-same-version version $VERSION"
+  }
+}
