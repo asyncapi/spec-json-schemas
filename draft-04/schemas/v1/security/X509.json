@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/security/X509.json",
+  "title": "AsyncAPI v1 - X.509 Authentication",
+  "description": "Contains information about X.509 Authentication",
+  "type": "object",
+  "required": [ "type" ],
+  "properties": {
+    "type": {
+      "description": "The type of the security scheme",
+      "type": "string",
+      "enum": [ "X509" ]
+    },
+    "description": {
+      "description": "A short description for security scheme",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-": {}
+  },
+  "additionalProperties": false
+}

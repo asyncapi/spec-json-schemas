@@ -1,0 +1,605 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/messages/channelMessageTrait.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v1",
+        "title": "Application Metric record v1",
+        "summary": "Use it to register single application metric",
+        "correlationId": {
+          "description": "Incoming message correlation-id",
+          "location": "$message.payload#/correlation-id"
+        },
+        "externalDocs": {
+          "$ref": "https://observability.lo/application-metric"
+        },
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "deprecated": true
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v2",
+        "title": "Application Metric record v2",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "correlationId": {
+          "description": "Incoming message correlation-id",
+          "location": "$message.header#/correlation-id"
+        },
+        "externalDocs": {
+          "url": "https://observability.lo/application-metric",
+          "description": "Application Metric format and validation rules"
+        },
+        "tags": [
+          {
+            "name": "observability",
+            "description": "Groups observability components"
+          },
+          {
+            "$ref": "#/tags/monitoring"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "headers": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "correlation-id": {
+              "description": "Incoming message correlation-id",
+              "type": "string",
+              "examples": [
+                {
+                  "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "headers": {
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "correlation-id": {
+                "description": "Incoming message correlation-id",
+                "type": "string",
+                "examples": [
+                  {
+                    "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "headers": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "correlation-id": {
+                "description": "Incoming message correlation-id",
+                "type": "string",
+                "examples": [
+                  {
+                    "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v1",
+        "title": "Application Metric record v1",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "deprecated": true,
+        "examples": [
+          {
+            "name": "Application metric example",
+            "summary": "Message with Correlation ID header and application metric",
+            "headers": {
+              "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+            },
+            "payload": {
+              "metric": "messages.incoming:5921"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: name only",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp"
+      }
+    },
+    {
+      "description": "valid: empty object (no required fields)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: any contentType string is accepted (no media type check)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "contentType": "json"
+      }
+    },
+    {
+      "description": "valid: headers as JSON Schema object",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: headers schema of type string is accepted (spec: MUST be object)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "headers": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "valid: headers as multi-format schema",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "headers": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: headers reference",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "headers": {
+          "$ref": "#/components/schemas/headers"
+        }
+      }
+    },
+    {
+      "description": "invalid: headers is a boolean schema (anySchema requires an object)",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "headers": true
+      }
+    },
+    {
+      "description": "invalid: headers is a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "headers": "object"
+      }
+    },
+    {
+      "description": "invalid: headers schema with invalid type",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "headers": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: correlationId reference",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "correlationId": {
+          "$ref": "#/components/correlationIds/id"
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationId without location",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "correlationId": {
+          "description": "id"
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationId with invalid location",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "correlationId": {
+          "location": "$message.body#/id"
+        }
+      }
+    },
+    {
+      "description": "valid: deprecated",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "deprecated": true
+      }
+    },
+    {
+      "description": "invalid: deprecated is a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "deprecated": "true"
+      }
+    },
+    {
+      "description": "valid: examples",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "examples": [
+          {
+            "payload": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: example without payload and headers",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "examples": [
+          {
+            "name": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: examples is an object",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "examples": {
+          "payload": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: contentType is not a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "contentType": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "description": 1
+      }
+    },
+    {
+      "description": "valid: tags with reference and tag",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "tags": [
+          {
+            "name": "b"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "tags": [
+          {
+            "description": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs object",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: bindings with x- extension",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "x-custom": {
+            "any": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: bindings reference per protocol",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings as a reference (only per protocol)",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "$ref": "#/components/bindings/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown protocol in bindings",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "unknown": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": []
+      }
+    },
+    {
+      "description": "invalid: ros2 binding is not available in v3.0.0",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "name": "UserSignedUp"
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    },
+    {
+      "description": "valid: unknown property is accepted (additionalProperties is nested inside properties)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "messageId": "userSignedUp"
+      }
+    },
+    {
+      "description": "valid: x- without name is accepted (patternProperties is nested inside properties)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "x-": 1
+      }
+    },
+    {
+      "description": "valid: payload is accepted (spec: trait MUST NOT contain payload)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "payload": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "valid: traits is accepted (spec: trait MUST NOT contain traits)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "traits": [
+          {
+            "name": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: $ref is accepted (additionalProperties is nested inside properties)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "$ref": "#/components/x"
+      }
+    },
+    {
+      "description": "invalid: property named additionalProperties is always rejected (nested false schema)",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "additionalProperties": true
+      }
+    },
+    {
+      "description": "valid: property named patternProperties accepts anything (nested schema)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "patternProperties": 1
+      }
+    }
+  ]
+}

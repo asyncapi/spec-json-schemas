@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariable.json",
+  "title": "AsyncAPI v1 - Server Variable",
+  "description": "Representing a Server Variable for server URL template substitution",
+  "type": "object",
+  "minProperties": 1,
+  "properties": {
+    "enum": {
+      "description": "An enumeration of string values to be used if the substitution options are from a limited set",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "default": {
+      "description": "The default value to use for substitution, and to send, if an alternate value is not supplied",
+      "type": "string"
+    },
+    "description": {
+      "description": "An optional description for the server variable. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

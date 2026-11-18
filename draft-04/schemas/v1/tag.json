@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/tag.json",
+  "title": "AsyncAPI v1 - Tag",
+  "description": "Allows adding metadata to a single tag",
+  "type": "object",
+  "required": [ "name" ],
+  "properties": {
+    "name": {
+      "description": "The name of the tag",
+      "type": "string"
+    },
+    "description": {
+      "description": "A short description for the tag",
+      "type": "string"
+    },
+    "externalDocs": {
+      "description": "Additional external documentation for this tag",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/externalDocs.json"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

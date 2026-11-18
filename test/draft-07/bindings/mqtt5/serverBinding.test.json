@@ -1,0 +1,112 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt5/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "sessionExpiryInterval": {
+          "type": "integer",
+          "minimum": 100
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.2.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "qos": 1
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.2.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "qos": 1
+      }
+    },
+    {
+      "description": "invalid: unknown property without bindingVersion",
+      "valid": false,
+      "data": {
+        "qos": 1
+      }
+    },
+    {
+      "description": "invalid: sessionExpiryInterval with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "sessionExpiryInterval": 60
+      }
+    },
+    {
+      "description": "valid: sessionExpiryInterval with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "sessionExpiryInterval": 60
+      }
+    },
+    {
+      "description": "valid: sessionExpiryInterval with latest uses 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest",
+        "sessionExpiryInterval": 60
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.2.0",
+      "valid": true,
+      "data": {
+        "sessionExpiryInterval": 60
+      }
+    },
+    {
+      "description": "invalid: negative sessionExpiryInterval without bindingVersion",
+      "valid": false,
+      "data": {
+        "sessionExpiryInterval": -1
+      }
+    },
+    {
+      "description": "invalid: x- extension with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: x- extension with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

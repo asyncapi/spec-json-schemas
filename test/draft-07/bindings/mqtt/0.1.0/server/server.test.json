@@ -1,0 +1,105 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.1.0/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "cleanSession": true,
+        "clientId": "guest",
+        "keepAlive": 60,
+        "lastWill": {
+          "message": "Guest gone offline.",
+          "qos": 2,
+          "retain": false,
+          "topic": "/last-wills"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "clientId": "guest",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: keepAlive has no bounds",
+      "valid": true,
+      "data": {
+        "keepAlive": -1
+      }
+    },
+    {
+      "description": "invalid: cleanSession is not a boolean",
+      "valid": false,
+      "data": {
+        "cleanSession": "true"
+      }
+    },
+    {
+      "description": "invalid: clientId is not a string",
+      "valid": false,
+      "data": {
+        "clientId": 1
+      }
+    },
+    {
+      "description": "invalid: keepAlive is a decimal number",
+      "valid": false,
+      "data": {
+        "keepAlive": 1.5
+      }
+    },
+    {
+      "description": "invalid: invalid lastWill",
+      "valid": false,
+      "data": {
+        "lastWill": {
+          "qos": 3
+        }
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "clientId": "guest",
+        "username": "guest"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "guest"
+    },
+    {
+      "description": "invalid: maximumPacketSize is only defined from 0.2.0",
+      "valid": false,
+      "data": {
+        "maximumPacketSize": 1024
+      }
+    },
+    {
+      "description": "invalid: sessionExpiryInterval is only defined from 0.2.0",
+      "valid": false,
+      "data": {
+        "sessionExpiryInterval": 120
+      }
+    }
+  ]
+}

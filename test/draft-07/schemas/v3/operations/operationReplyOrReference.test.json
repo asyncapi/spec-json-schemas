@@ -1,0 +1,91 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/operations/operationReplyOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/replies/send-notification-reply"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "address": {
+          "location": "$message.header#/X-REPLY-TO"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        }
+      }
+    },
+    {
+      "description": "valid: reference to components",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/replies/reply"
+      }
+    },
+    {
+      "description": "valid: empty object matches the reply branch",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: full reply",
+      "valid": true,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: reference with sibling channel",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/replies/reply",
+        "channel": {
+          "$ref": "#/channels/notifications"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: reply with inline channel",
+      "valid": false,
+      "data": {
+        "channel": {
+          "address": "notifications"
+        }
+      }
+    },
+    {
+      "description": "invalid: reply with unknown property",
+      "valid": false,
+      "data": {
+        "timeout": 30
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "reply"
+    }
+  ]
+}

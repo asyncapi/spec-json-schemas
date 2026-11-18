@@ -1,0 +1,129 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/info/info.json",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated"
+      }
+    },
+    {
+      "description": "valid: with license",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "license": {
+          "name": "The MIT License",
+          "url": "https://mit-license.org"
+        }
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates"
+      }
+    },
+    {
+      "description": "valid: with termsOfService",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates",
+        "termsOfService": "https://api.weather-forecast.am/terms"
+      }
+    },
+    {
+      "description": "valid: with contact",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "description": "Streams weather updates by cities, regions or coordinates",
+        "contact": {
+          "name": "Weather Forecast",
+          "email": "feedback@weather-forecast.am",
+          "url": "https://weather-forecast.am"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "x-audience": "public"
+      }
+    },
+    {
+      "description": "invalid: missing title",
+      "valid": false,
+      "data": {
+        "version": "2.39.7"
+      }
+    },
+    {
+      "description": "invalid: missing version",
+      "valid": false,
+      "data": {
+        "title": "Weather forecast updated"
+      }
+    },
+    {
+      "description": "invalid: version is not a string",
+      "valid": false,
+      "data": {
+        "version": 2,
+        "title": "Weather forecast updated"
+      }
+    },
+    {
+      "description": "invalid: termsOfService is not a uri",
+      "valid": false,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "termsOfService": "not a uri"
+      }
+    },
+    {
+      "description": "invalid: contact with unknown property",
+      "valid": false,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "contact": {
+          "phone": "+374 00 000000"
+        }
+      }
+    },
+    {
+      "description": "invalid: license without name",
+      "valid": false,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "license": {
+          "url": "https://mit-license.org"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "version": "2.39.7",
+        "title": "Weather forecast updated",
+        "foo": "bar"
+      }
+    }
+  ]
+}

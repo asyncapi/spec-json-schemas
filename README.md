@@ -56,11 +56,15 @@ npm install @asyncapi/specs
 yarn add @asyncapi/specs
 ```
 
+See [dists/js/README.md](dists/js/README.md) for how the npm package is built and released.
+
 ### Go
 
 ```bash
-go get github.com/asyncapi/spec-json-schemas/v2
+go get github.com/asyncapi/spec-json-schemas/dists/go/v6
 ```
+
+See [dists/go/README.md](dists/go/README.md) for how the Go module is built and released.
 
 ## Usage
 
@@ -107,7 +111,7 @@ console.log(Object.keys(versions));
 Grab a specific AsyncAPI version:
 
 ```go
-import "github.com/asyncapi/spec_json_schemas/v4"
+import spec_json_schemas "github.com/asyncapi/spec-json-schemas/dists/go/v6"
 
 func Do() {
     schema, err := spec_json_schemas.Get("1.1.0")
@@ -121,62 +125,91 @@ func Do() {
 
 ## Migration guidelines
 
-If you are currently using version 2, check out [migration guideline to version 3](./migrations/migrate-to-version-3.md).
-If you are currently using version 3, check out [migration guideline to version 4](./migrations/migrate-to-version-4.md).
-If you are currently using version 4, check out [migration guideline to version 5](./migrations/migrate-to-version-5.md).
-If you are currently using version 5, check out [migration guideline to version 6](./migrations/migrate-to-version-6.md).
+If you are currently using version 2, check out [migration guideline to version 3](migrations/migrate-to-version-3.md).
+If you are currently using version 3, check out [migration guideline to version 4](migrations/migrate-to-version-4.md).
+If you are currently using version 4, check out [migration guideline to version 5](migrations/migrate-to-version-5.md).
+If you are currently using version 5, check out [migration guideline to version 6](migrations/migrate-to-version-6.md).
 
 ## Repository structure
 
 This is the current project structure explained:
 
-- [./definitions](./definitions) - contain all the individual schemas that will automatically be bundled together to provide the schemas in [./schemas](./schemas).
-- [./examples](./examples) - contain most individual definition examples that will automatically be bundled together to provide example for each definition in the schemas in [./schemas](./schemas).
-- [./tools/bundler](./tools/bundler) - is the tool that bundles all the individual schemas together.
-- [./schemas](./schemas) - contain all automatically bundled and complete schemas for each AsyncAPI version. These schemas should **NOT** be manually changed as they are automatically generated. Any changes should be done in [./definitions](./definitions).
-- [./extensions](./extensions) - contains all the schemas of the extensions that will automatically be bundled to provide informations about extensions.
-
+- [./draft-04/schemas](draft-04/schemas) - AsyncAPI JSON Schemas written in JSON Schema Draft-04 (AsyncAPI `1.x`): shared [v1](draft-04/schemas/v1) blocks and one folder per version (`v1.0.0`, `v1.1.0`, `v1.2.0`).
+- [./draft-07/bindings](draft-07/bindings) - AsyncAPI bindings JSON Schemas written in JSON Schema Draft-07. One folder per protocol, one subfolder per binding version. The `*Binding.json` files in the protocol folder pick the right version by `bindingVersion`.
+- [./draft-07/integrations](draft-07/integrations) - external schemas used inside AsyncAPI documents, like [OpenAPI](draft-07/integrations/openapi) and [Avro](draft-07/integrations/avro).
+- [./draft-07/schemas](draft-07/schemas) - AsyncAPI JSON Schemas written in JSON Schema Draft-07 (AsyncAPI `2.x` and `3.x`): shared [v2](draft-07/schemas/v2) and [v3](draft-07/schemas/v3) blocks, one folder per version (`v2.0.0` … `v3.1.0`) and shared root schemas (`reference.json`, `schema.json`, `multiFormatSchema.json`, …).
+- [./examples](examples) - AsyncAPI examples used by the tests.
+- [./test](test) - JSON Schema tests. The folders mirror `draft-04` and `draft-07`.
+- [./dists](dists) - schemas ready for distribution:
+  - [./dists/schemas](dists/schemas) - bundled schemas for every AsyncAPI version and [all.schema-store.json](dists/schemas/all.schema-store.json) for [JSON Schema Store](https://www.schemastore.org/json/).
+  - [./dists/js](dists/js) - the `@asyncapi/specs` npm package.
+  - [./dists/go](dists/go) - the Go module.
 
 ## Schema Bundling
 
-Changes should not be done manually to the schemas in [./schemas](./schemas), but instead, be done in their individual definitions located in [./definitions](./definitions).
+Don't change the schemas in [./dists/schemas](dists/schemas) manually. They are generated. Make changes in the sources under [./draft-07](draft-07), then bundle them:
 
-These definitions are automatically bundled together on new releases through the npm script `prepublishOnly`, which ensures the project is built. This is where the [bundler](./tools/bundler) is called. 
+```bash
+./bundle-draft-07.sh
+```
 
-For example, for [2.2.0](./definitions/2.2.0), the [bundler](./tools/bundler/index.js) starts with the [asyncapi.json](definitions/2.2.0/asyncapi.json) file and recursively goes through all references (`$ref`) to create the [appropriate bundled version](./schemas/2.2.0.json).
+The script runs the `bundle.sh` of every version folder (for example [draft-07/schemas/v3.1.0/bundle.sh](draft-07/schemas/v3.1.0/bundle.sh)). New versions are picked up automatically. It needs the [`jsonschema` CLI](https://github.com/sourcemeta/jsonschema) in `PATH`.
 
 ## Creating a new version
 
-### 1a Automated:
+> [!CAUTION]
+> **NEVER DELETE OLD VERSIONS OR FIX THEM.**
+>
+> Released schemas are immutable. Only these changes are allowed in them:
+> - docs changes (`title`, `description`, `examples`);
+> - re-assembling a schema, for example composing it from shared blocks in a new way, without changing what it validates.
+>
+> **Fix ALL typos, bugs and drifts ONLY in a new version.**
 
-```bash
-npm run startNewVersion --new-version=x.x.x
-```
+### Shared blocks
 
-Where `x.x.x` is the new version you want to create.
+The [v2](draft-07/schemas/v2) and [v3](draft-07/schemas/v3) folders (and [v1](draft-04/schemas/v1) in draft-04) are not versions. They hold common blocks, like lego bricks, shared by every version of that major: `info`, `license`, `contact`, `externalDocs`, `tags`, `security`, server, channel and operation parts, references, etc. Version folders (`v3.0.0`, `v3.1.0`, …) reference these blocks and keep only what is specific to the version.
 
-### 1a Manual
+### New minor version
 
-The manual process of creating a new version is to:
-1. Duplicate the latest version (`y.y.y`) under definitions (so we have the correct base to make changes from). 
-1. Rename the folder to the new version (`x.x.x`).
-1. Duplicate the latest version (`y.y.y`) under examples (so we have the correct base to make changes from).
-1. Rename the folder to the new version (`x.x.x`).
-1. Search and replace in the new duplicated folder for `y.y.y` and replace it with `x.x.x`.
+For example, `3.2.0`:
 
-### 2 Further steps
+1. Create `draft-07/schemas/v3.2.0` and copy into it the latest available version (`v3.1.0`), including its `bundle.sh`.
+1. Replace `3.1.0` with `3.2.0` in the new folder (`$id`s, titles, `asyncapi` const, examples).
+1. Make the changes. Reuse the shared [v3](draft-07/schemas/v3) blocks. Keep version-specific changes in the version folder.
+1. Once everything is ready, prepare the tests in `test/draft-07/schemas/v3.2.0` and add them.
+1. Bundle with `./bundle-draft-07.sh` and follow [Publishing a new version](#publishing-a-new-version).
 
-1. Edit the [index.js](./index.js) file adding a new line with the new version. I.e.:
+### New major version
+
+For example, `4.0.0`:
+
+1. It is allowed to start straight in `draft-07/schemas/v4.0.0`, write the schema there and release the new major version.
+1. Once it is time to work on a new minor version (`4.1.0`), extract the common components into a shared `draft-07/schemas/v4` folder.
+1. Once everything is ready, update the tests and relink the JSON Schemas (`v4.0.0` and `v4.1.0`) to the shared `v4` blocks. For `4.0.0` this is re-assembling only: it must validate exactly the same documents as before.
+
+### Bindings
+
+Same story for [bindings](draft-07/bindings). For example, `apache-kafka` `0.7.0`:
+
+1. Create `draft-07/bindings/apache-kafka/0.7.0` and copy into it the latest available version (`0.6.0`).
+1. Make the changes.
+1. Add an `if`/`then` branch for `0.7.0` to every `*Binding.json` file in [draft-07/bindings/apache-kafka](draft-07/bindings/apache-kafka), so the new version is picked by `bindingVersion`.
+1. Once everything is ready, prepare the tests in `test/draft-07/bindings/apache-kafka/0.7.0`, add them and update the `*Binding.test.json` files in [test/draft-07/bindings/apache-kafka](test/draft-07/bindings/apache-kafka).
+
+### Publishing a new version
+
+1. Edit the [index.js](dists/js/index.js) file adding a new line with the new version. I.e.:
    ```js
    '2.6.0': require('./schemas/2.6.0.json'),
    '2.6.0-without-$id': require('./schemas/2.6.0-without-$id.json'),
    ```
-1. Edit the [index.d.ts](./index.d.ts) file adding a new line with the types for the new version. I.e.:
+1. Edit the [index.d.ts](dists/js/index.d.ts) file adding a new line with the types for the new version. I.e.:
    ```js
    '2.6.0': JSONSchema7;
    '2.6.0-without-$id': JSONSchema7;
    ```
-1. Edit the [schemas/all.schema-store.json](./schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
+1. Edit the [schemas/all.schema-store.json](dists/schemas/all.schema-store.json) file adding a new entry under the `oneOf` keyword with the new version. Remember about adding `-without-$id` suffix which points to alternative generated schema without $ids. I.e.:
 
     ```json
     {
@@ -198,7 +231,7 @@ The manual process of creating a new version is to:
 ## Handling breaking changes
 Whenever a Breaking Change is introduced, the following steps should be taken in Go package:
 
-1. Edit `go.mod` file, and increase the version package suffix in the module name. For example, if the current version is `v2.0.0`, and you are releasing `v3.0.0`, the module name should be `github.com/asyncapi/spec-json-schemas/v3`.
+1. Edit [dists/go/go.mod](dists/go/go.mod), and increase the version package suffix in the module name. For example, if the current version is `v6.0.0`, and you are releasing `v7.0.0`, the module name should be `github.com/asyncapi/spec-json-schemas/dists/go/v7`. See [dists/go/README.md](dists/go/README.md#major-versions).
 
 ## SchemaStore compatibility testing
 
@@ -207,10 +240,10 @@ AsyncAPI JSON Schema is referenced in [SchemaStore](https://www.schemastore.org/
 Whenever you make changes in AsyncAPI JSON Schema, you should always manually verify that the schema is still supported by [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and that it will be able to fetch and dereference it.
 
 - Make sure you have VSCode and YAML extension
-- Once you make changes in schemas, bundle them with `npm run bundle`
-- Edit [this sample AsyncAPI document](./test/fixtures/asyncapi.yml). Add a new field, hover over some property to see if tooltip still shows up. This sample document contains the following line that assures YAML uses your local schema and not the one from SchemaStore. Make sure it points to the schema bundle that you generated and that contains your changes:
+- Once you make changes in schemas, bundle them with `./bundle-draft-07.sh`
+- Open any AsyncAPI document and add the following line at the top, so YAML uses your local schema and not the one from SchemaStore. Make sure it points to the schema bundle that you generated and that contains your changes. Then add a new field and hover over some property to see if the tooltip still shows up:
    ```yaml
-   # yaml-language-server: $schema=YOUR-PROJECTS-DIRECTORY/spec-json-schemas/schemas/2.6.0-without-$id.json
+   # yaml-language-server: $schema=YOUR-PROJECTS-DIRECTORY/spec-json-schemas/dists/schemas/2.6.0-without-$id.json
    ```
    
 ## Extensions
@@ -218,9 +251,152 @@ Whenever you make changes in AsyncAPI JSON Schema, you should always manually ve
 Extensions are a way to [extend AsyncAPI specification](https://www.asyncapi.com/docs/concepts/asyncapi-document/extending-specification) with fields that are not yet defined inside the specification. To add JSON schema of the extension in this repository, you need to first make sure it is added to the [extension-catalog](https://github.com/asyncapi/extensions-catalog) repository.
 ### How to add schema of the extension
 
-1. All the extensions must be present in [./extensions](./extensions) folder.
+1. All the extensions must be present in [draft-07/schemas/v3/info/extensions](draft-07/schemas/v3/info/extensions) folder.
 2. A proper folder structure must be followed to add the extensions.
-3. A new folder just as [x extension](./extensions/x) must be added with proper `versioning` and `schema file`.
-4. All the schemas must be added in a file named `schema.json` just as one is defined for [x extension](./extensions/x/0.1.0/schema.json).
+3. A new folder just as [x extension](draft-07/schemas/v3/info/extensions/x) must be added with proper `versioning` and `schema file`.
+4. All the schemas must be added in a file named `schema.json` just as one is defined for [x extension](draft-07/schemas/v3/info/extensions/x/0.1.0/schema.json).
 
-5. Extension schema should not be referenced directly in the definition of the object it extends. For example if you add an extension for `info`, your extension's schema should not be referenced from `info.json` but [infoExtensions.json](./definitions/3.0.0/infoExtensions.json). If the object that you extend doesn't have a corresponding `*Extensions.json` file, you need to create one.
+5. Extension schema should not be referenced directly in the definition of the object it extends. For example if you add an extension for `info`, your extension's schema should not be referenced from `info.json` but [infoExtensions.json](draft-07/schemas/v3/info/infoExtensions.json). If the object that you extend doesn't have a corresponding `*Extensions.json` file, you need to create one.
+
+## Running tests
+
+Tests are run with the [`jsonschema` CLI](https://github.com/sourcemeta/jsonschema) `test` command. Every run needs:
+
+- `--format-assertion`, so that `format` (`uri`, `email`, `uri-reference`, …) is asserted. Without it some tests fail.
+- `--resolve` for every folder or file the tested schemas reference.
+
+Add `--verbose` to print every test case. Use `--json` for CTRF output in CI.
+
+### All tests (draft-04 and draft-07)
+
+```bash
+jsonschema test test \
+  --resolve draft-04 --resolve draft-07 \
+    --format-assertion
+```
+
+### draft-04 (AsyncAPI v1)
+
+```bash
+jsonschema test test/draft-04 \
+  --resolve draft-04 \
+  --format-assertion
+```
+
+### Bindings
+
+Bindings reference these shared schemas: `reference.json`, `schema.json`, `avroSchema_v1.json`, and through `schema.json` also `v3/externalDocs.json`.
+
+All bindings:
+
+```bash
+jsonschema test test/draft-07/bindings \
+  --resolve draft-07/bindings \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+One binding with all its versions, e.g. `apache-kafka`. Use the binding's folder name, not its key (`apache-kafka`, not `kafka`):
+
+```bash
+jsonschema test test/draft-07/bindings/apache-kafka \
+  --resolve draft-07/bindings \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+One binding version, e.g. `apache-kafka` `0.5.0`:
+
+```bash
+jsonschema test test/draft-07/bindings/apache-kafka/0.5.0 \
+  --resolve draft-07/bindings \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+The version folder holds only that version's objects. The routing by `bindingVersion` is tested by the files in the binding's root folder (`serverBinding.test.json`, `serverBindingOrReference.test.json`, …).
+
+### Root schemas
+
+Shared schemas in `draft-07/schemas` (`reference`, `schema`, `avroSchema_v1`, `openapiSchema_3_0`, `multiFormatSchema`, `anySchema`). The `*.examples.test.json` files load documents from `examples/schemas` with `dataPath`:
+
+```bash
+jsonschema test test/draft-07/schemas/*.test.json \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
+  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/anySchema.json \
+  --resolve draft-07/schemas/v3/externalDocs.json \
+  --format-assertion
+```
+
+One root schema, e.g. `multiFormatSchema`: `test/draft-07/schemas/multiFormatSchema.test.json test/draft-07/schemas/multiFormatSchema.examples.test.json` with the same options.
+
+### AsyncAPI v3
+
+All v3 tests (shared `v3`, `v3.0.0`, `v3.1.0`):
+
+```bash
+jsonschema test test/draft-07/schemas/v3 test/draft-07/schemas/v3.0.0 test/draft-07/schemas/v3.1.0 \
+  --resolve draft-07/schemas/v3 --resolve draft-07/schemas/v3.0.0 --resolve draft-07/schemas/v3.1.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/anySchema.json \
+  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
+  --resolve draft-07/bindings \
+  --format-assertion
+```
+
+One version, e.g. `v3.0.0`. Use the version's test and schema folders, and keep `draft-07/schemas/v3`, which every version uses:
+
+```bash
+jsonschema test test/draft-07/schemas/v3.0.0 \
+  --resolve draft-07/schemas/v3 --resolve draft-07/schemas/v3.0.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/anySchema.json \
+  --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
+  --resolve draft-07/bindings \
+  --format-assertion
+```
+
+Only the shared `v3` schemas: the same command with `test/draft-07/schemas/v3` and without the version folder.
+
+### AsyncAPI v2
+
+v2 messages also need `draft-07/integrations` (Avro and OpenAPI payloads).
+
+All v2 tests (shared `v2`, `v2.0.0`–`v2.6.0`, release candidates excluded):
+
+```bash
+jsonschema test test/draft-07/schemas/v2 \
+  test/draft-07/schemas/v2.0.0 test/draft-07/schemas/v2.1.0 test/draft-07/schemas/v2.2.0 \
+  test/draft-07/schemas/v2.3.0 test/draft-07/schemas/v2.4.0 test/draft-07/schemas/v2.5.0 test/draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/v2 \
+  --resolve draft-07/schemas/v2.0.0 --resolve draft-07/schemas/v2.1.0 --resolve draft-07/schemas/v2.2.0 \
+  --resolve draft-07/schemas/v2.3.0 --resolve draft-07/schemas/v2.4.0 --resolve draft-07/schemas/v2.5.0 \
+  --resolve draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --resolve draft-07/integrations \
+  --resolve draft-07/bindings \
+  --format-assertion
+```
+
+One version, e.g. `v2.6.0`. Use the version's test and schema folders, and keep `draft-07/schemas/v2`, which every version uses:
+
+```bash
+jsonschema test test/draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/v2 --resolve draft-07/schemas/v2.6.0 \
+  --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
+  --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
+  --resolve draft-07/integrations \
+  --resolve draft-07/bindings \
+  --format-assertion
+```
+
+Only the shared `v2` schemas:
+
+```bash
+jsonschema test test/draft-07/schemas/v2 --resolve draft-07/schemas/v2 --format-assertion
+```

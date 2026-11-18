@@ -1,0 +1,275 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/integrations/openapi/v3.0.0/openapiSchema.json",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "multipleOf": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "maximum": {
+      "type": "number"
+    },
+    "exclusiveMaximum": {
+      "default": false,
+      "type": "boolean"
+    },
+    "minimum": {
+      "type": "number"
+    },
+    "exclusiveMinimum": {
+      "default": false,
+      "type": "boolean"
+    },
+    "maxLength": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minLength": {
+      "default": 0,
+      "type": "integer",
+      "minimum": 0
+    },
+    "pattern": {
+      "type": "string",
+      "format": "regex"
+    },
+    "maxItems": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minItems": {
+      "default": 0,
+      "type": "integer",
+      "minimum": 0
+    },
+    "uniqueItems": {
+      "default": false,
+      "type": "boolean"
+    },
+    "maxProperties": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "minProperties": {
+      "default": 0,
+      "type": "integer",
+      "minimum": 0
+    },
+    "required": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "enum": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": false,
+      "items": true
+    },
+    "type": {
+      "type": "string",
+      "enum": [ "array", "boolean", "integer", "number", "object", "string" ]
+    },
+    "not": {
+      "oneOf": [
+        {
+          "$ref": "#"
+        },
+        {
+          "$ref": "#/definitions/Reference"
+        }
+      ]
+    },
+    "allOf": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#"
+          },
+          {
+            "$ref": "#/definitions/Reference"
+          }
+        ]
+      }
+    },
+    "oneOf": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#"
+          },
+          {
+            "$ref": "#/definitions/Reference"
+          }
+        ]
+      }
+    },
+    "anyOf": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#"
+          },
+          {
+            "$ref": "#/definitions/Reference"
+          }
+        ]
+      }
+    },
+    "items": {
+      "oneOf": [
+        {
+          "$ref": "#"
+        },
+        {
+          "$ref": "#/definitions/Reference"
+        }
+      ]
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "$ref": "#"
+          },
+          {
+            "$ref": "#/definitions/Reference"
+          }
+        ]
+      }
+    },
+    "additionalProperties": {
+      "default": true,
+      "oneOf": [
+        {
+          "$ref": "#"
+        },
+        {
+          "$ref": "#/definitions/Reference"
+        },
+        {
+          "type": "boolean"
+        }
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "format": {
+      "type": "string"
+    },
+    "default": true,
+    "nullable": {
+      "default": false,
+      "type": "boolean"
+    },
+    "discriminator": {
+      "$ref": "#/definitions/Discriminator"
+    },
+    "readOnly": {
+      "default": false,
+      "type": "boolean"
+    },
+    "writeOnly": {
+      "default": false,
+      "type": "boolean"
+    },
+    "example": true,
+    "externalDocs": {
+      "$ref": "#/definitions/ExternalDocumentation"
+    },
+    "deprecated": {
+      "default": false,
+      "type": "boolean"
+    },
+    "xml": {
+      "$ref": "#/definitions/XML"
+    }
+  },
+  "patternProperties": {
+    "^x-": true
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "ExternalDocumentation": {
+      "type": "object",
+      "required": [ "url" ],
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      },
+      "patternProperties": {
+        "^x-": {}
+      },
+      "additionalProperties": false
+    },
+    "Discriminator": {
+      "type": "object",
+      "required": [ "propertyName" ],
+      "properties": {
+        "propertyName": {
+          "type": "string"
+        },
+        "mapping": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Reference": {
+      "type": "object",
+      "required": [ "$ref" ],
+      "patternProperties": {
+        "^\\$ref$": {
+          "type": "string",
+          "format": "uri-reference"
+        }
+      }
+    },
+    "XML": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "namespace": {
+          "type": "string",
+          "format": "uri"
+        },
+        "prefix": {
+          "type": "string"
+        },
+        "attribute": {
+          "default": false,
+          "type": "boolean"
+        },
+        "wrapped": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "patternProperties": {
+        "^x-": {}
+      },
+      "additionalProperties": false
+    }
+  }
+}

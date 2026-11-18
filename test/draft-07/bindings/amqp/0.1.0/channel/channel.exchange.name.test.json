@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.1.0/channel.json#/properties/exchange/properties/name",
+  "tests": [
+    {
+      "description": "valid: short name",
+      "valid": true,
+      "data": "myExchange"
+    },
+    {
+      "description": "valid: empty string",
+      "valid": true,
+      "data": ""
+    },
+    {
+      "description": "valid: 255 characters",
+      "valid": true,
+      "data": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+    },
+    {
+      "description": "invalid: 256 characters",
+      "valid": false,
+      "data": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

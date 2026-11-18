@@ -1,0 +1,119 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTrait.json",
+  "tests": [
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 unknown property",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": {
+            "namespace": "ns1",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.1.0 is used)",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": {}
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": {
+            "$ref": "#/components/operationBindings/my-pulsar"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": {
+            "$ref": "#/components/operationBindings/my-pulsar",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": "pulsar"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "pulsar": null
+        }
+      }
+    },
+    {
+      "description": "invalid: folder name apache-pulsar is not a binding key (use pulsar)",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "apache-pulsar": {}
+        }
+      }
+    }
+  ]
+}

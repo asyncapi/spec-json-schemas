@@ -1,0 +1,153 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.6.0/servers/serverVariable.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "description": "Ports application listening for",
+        "examples": [
+          "8883",
+          "8884"
+        ]
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "description": "Ports application listening for",
+        "examples": [
+          "8883",
+          "8884"
+        ],
+        "x-lb-strategy": "round-robin"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: default outside of enum is accepted (not checked)",
+      "valid": true,
+      "data": {
+        "enum": [
+          "a"
+        ],
+        "default": "b"
+      }
+    },
+    {
+      "description": "valid: empty enum is accepted (no minItems)",
+      "valid": true,
+      "data": {
+        "enum": []
+      }
+    },
+    {
+      "description": "invalid: duplicated enum values",
+      "valid": false,
+      "data": {
+        "enum": [
+          "a",
+          "a"
+        ]
+      }
+    },
+    {
+      "description": "invalid: enum with a number",
+      "valid": false,
+      "data": {
+        "enum": [
+          "a",
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: default is a number",
+      "valid": false,
+      "data": {
+        "default": 1
+      }
+    },
+    {
+      "description": "invalid: examples with a number",
+      "valid": false,
+      "data": {
+        "examples": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/serverVariables/a"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "default": "5672",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "default": "5672",
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "default": "5672",
+        "type": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "default": "5672"
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/jms/0.0.1/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signed-up",
+        "destinationType": "fifo-queue"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signed-up",
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: destination only",
+      "valid": true,
+      "data": {
+        "destination": "user-signed-up"
+      }
+    },
+    {
+      "description": "valid: destinationType only",
+      "valid": true,
+      "data": {
+        "destinationType": "fifo-queue"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "destination": "user-signed-up",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: destination is not a string",
+      "valid": false,
+      "data": {
+        "destination": 1
+      }
+    },
+    {
+      "description": "invalid: invalid destinationType",
+      "valid": false,
+      "data": {
+        "destinationType": "topic"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "destination": "user-signed-up",
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "user-signed-up"
+    }
+  ]
+}

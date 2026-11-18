@@ -1,0 +1,78 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/channel.json#/definitions/statement",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*",
+        "x-sid": "AllowPublish"
+      }
+    },
+    {
+      "description": "invalid: missing effect",
+      "valid": false,
+      "data": {
+        "action": "SNS:Publish",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: missing principal",
+      "valid": false,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow"
+      }
+    },
+    {
+      "description": "invalid: missing action",
+      "valid": false,
+      "data": {
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "SNS:Publish"
+    },
+    {
+      "description": "valid: condition is not validated (not defined in 0.1.0)",
+      "valid": true,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*",
+        "condition": 1
+      }
+    },
+    {
+      "description": "valid: resource is not validated (not defined in 0.1.0)",
+      "valid": true,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*",
+        "resource": 1
+      }
+    }
+  ]
+}

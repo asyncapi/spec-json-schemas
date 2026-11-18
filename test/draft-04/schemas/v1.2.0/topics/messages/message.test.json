@@ -1,0 +1,175 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/messages/message.json",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: payload only",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "object",
+          "required": [
+            "city"
+          ],
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "temperature": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "summary": "Weather update for a city",
+        "description": "Sent every time the **forecast** changes",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "correlationId": {
+              "type": "string"
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "required": [
+            "city"
+          ],
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "temperature": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            }
+          }
+        },
+        "tags": [
+          {
+            "name": "city"
+          }
+        ],
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs"
+        },
+        "deprecated": false,
+        "example": {
+          "city": "Yerevan",
+          "temperature": 21.5
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/messages/cityUpdated"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "object",
+          "required": [
+            "city"
+          ],
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "temperature": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            }
+          }
+        },
+        "x-retain": true
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "tags": [
+          {
+            "name": "city"
+          },
+          {
+            "name": "city"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "tags": [
+          {
+            "description": "City forecast"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: payload with unknown keyword",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "object",
+          "foo": "bar"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "invalid: deprecated is not a boolean",
+      "valid": false,
+      "data": {
+        "deprecated": "yes"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "cityUpdated"
+      }
+    }
+  ]
+}

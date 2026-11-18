@@ -1,0 +1,946 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/channels/messages/channelMessage.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v1",
+        "title": "Application Metric record v1",
+        "summary": "Use it to register single application metric",
+        "correlationId": {
+          "description": "Incoming message correlation-id",
+          "location": "$message.payload#/correlation-id"
+        },
+        "externalDocs": {
+          "$ref": "https://observability.lo/application-metric"
+        },
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "deprecated": true
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v2",
+        "title": "Application Metric record v2",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "correlationId": {
+          "description": "Incoming message correlation-id",
+          "location": "$message.header#/correlation-id"
+        },
+        "externalDocs": {
+          "url": "https://observability.lo/application-metric",
+          "description": "Application Metric format and validation rules"
+        },
+        "tags": [
+          {
+            "name": "observability",
+            "description": "Groups observability components"
+          },
+          {
+            "$ref": "#/tags/monitoring"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "correlationId": {
+          "$ref": "#/correlation-id"
+        },
+        "payload": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "metric": {
+              "description": "Metric set by application",
+              "type": "string",
+              "examples": [
+                {
+                  "metric": "messages.incoming:5921"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "payload": {
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "metric": {
+                "description": "Metric set by application",
+                "type": "string",
+                "examples": [
+                  {
+                    "metric": "messages.incoming:5921"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "payload": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "metric": {
+                "description": "Metric set by application",
+                "type": "string",
+                "examples": [
+                  {
+                    "metric": "messages.incoming:5921"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "headers": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "correlation-id": {
+              "description": "Incoming message correlation-id",
+              "type": "string",
+              "examples": [
+                {
+                  "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #7",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "headers": {
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "correlation-id": {
+                "description": "Incoming message correlation-id",
+                "type": "string",
+                "examples": [
+                  {
+                    "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #8",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v3",
+        "title": "Application Metric record v3",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "headers": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "correlation-id": {
+                "description": "Incoming message correlation-id",
+                "type": "string",
+                "examples": [
+                  {
+                    "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #9",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "name": "application-metric.v1",
+        "title": "Application Metric record v1",
+        "summary": "Use it to register single application metric",
+        "description": "Represent registrable application metric e.g. number of incoming messages",
+        "deprecated": true,
+        "examples": [
+          {
+            "name": "Application metric example",
+            "summary": "Message with Correlation ID header and application metric",
+            "headers": {
+              "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+            },
+            "payload": {
+              "metric": "messages.incoming:5921"
+            }
+          }
+        ],
+        "traits": [
+          {
+            "$ref": "#/application-metric.v3.trait"
+          },
+          {
+            "contentType": "application/json",
+            "name": "application-metric.v1",
+            "title": "Application Metric record v1",
+            "summary": "Use it to register single application metric",
+            "description": "Represent registrable application metric e.g. number of incoming messages",
+            "deprecated": true,
+            "examples": [
+              {
+                "name": "Application metric example",
+                "summary": "Message with Correlation ID header and application metric",
+                "headers": {
+                  "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                },
+                "payload": {
+                  "metric": "messages.incoming:5921"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: payload as JSON Schema",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: payload reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "$ref": "#/components/schemas/user"
+        }
+      }
+    },
+    {
+      "description": "valid: payload as Avro multi-format schema",
+      "valid": true,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+          "schema": {
+            "type": "record",
+            "name": "User",
+            "fields": [
+              {
+                "name": "id",
+                "type": "string"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: payload as AsyncAPI multi-format schema",
+      "valid": true,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/vnd.aai.asyncapi+json;version=3.0.0",
+          "schema": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: payload as protobuf multi-format schema (string)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/vnd.google.protobuf;version=3",
+          "schema": "message User { string id = 1; }"
+        }
+      }
+    },
+    {
+      "description": "valid: payload with unknown schemaFormat is accepted (any schema)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/x-unknown",
+          "schema": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: payload is a boolean schema (anySchema requires an object)",
+      "valid": false,
+      "data": {
+        "payload": true
+      }
+    },
+    {
+      "description": "invalid: payload is a string",
+      "valid": false,
+      "data": {
+        "payload": "string"
+      }
+    },
+    {
+      "description": "invalid: payload schema with invalid type",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "invalid: payload Avro schema with invalid type",
+      "valid": false,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+          "schema": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: payload JSON Schema draft-07 with invalid type",
+      "valid": false,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: payload with AsyncAPI 3.1.0 schemaFormat is not validated (multiFormatSchema lists formats up to 3.0.0)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "schemaFormat": "application/vnd.aai.asyncapi+json;version=3.1.0",
+          "schema": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: traits",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "traits": [
+          {
+            "$ref": "#/components/messageTraits/a"
+          },
+          {
+            "name": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: trait with unknown type of name",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "traits": [
+          {
+            "name": 1
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: traits is an object",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "traits": {
+          "name": "x"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object (no required fields)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: any contentType string is accepted (no media type check)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "contentType": "json"
+      }
+    },
+    {
+      "description": "valid: headers as JSON Schema object",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: headers schema of type string is accepted (spec: MUST be object)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "valid: headers as multi-format schema",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "schemaFormat": "application/schema+json;version=draft-07",
+          "schema": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: headers reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "$ref": "#/components/schemas/headers"
+        }
+      }
+    },
+    {
+      "description": "invalid: headers is a boolean schema (anySchema requires an object)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": true
+      }
+    },
+    {
+      "description": "invalid: headers is a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": "object"
+      }
+    },
+    {
+      "description": "invalid: headers schema with invalid type",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "headers": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: correlationId reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "correlationId": {
+          "$ref": "#/components/correlationIds/id"
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationId without location",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "correlationId": {
+          "description": "id"
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationId with invalid location",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "correlationId": {
+          "location": "$message.body#/id"
+        }
+      }
+    },
+    {
+      "description": "valid: deprecated",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "deprecated": true
+      }
+    },
+    {
+      "description": "invalid: deprecated is a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "deprecated": "true"
+      }
+    },
+    {
+      "description": "valid: examples",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "examples": [
+          {
+            "payload": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: example without payload and headers",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "examples": [
+          {
+            "name": "x"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: examples is an object",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "examples": {
+          "payload": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: contentType is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "contentType": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: messageId is not allowed (v2 field)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "messageId": "userSignedUp"
+      }
+    },
+    {
+      "description": "invalid: schemaFormat is not allowed (v2 field, use multi-format payload)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "schemaFormat": "application/vnd.apache.avro;version=1.9.0"
+      }
+    },
+    {
+      "description": "valid: tags with reference and tag",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "tags": [
+          {
+            "name": "b"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "tags": [
+          {
+            "description": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs object",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: bindings with x- extension",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "x-custom": {
+            "any": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: bindings reference per protocol",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings as a reference (only per protocol)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "$ref": "#/components/bindings/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown protocol in bindings",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "unknown": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": []
+      }
+    },
+    {
+      "description": "valid: ros2 binding",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "messageId": "x"
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "$ref": "#/components/x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "payload": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}

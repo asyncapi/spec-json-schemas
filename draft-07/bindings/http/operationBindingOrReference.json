@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/http/operationBindingOrReference.json",
+  "title": "HTTP - Operation Binding or Reference",
+  "description": "Describes protocol-specific definitions for an operation or its reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/http/my-http-operation"
+    },
+    {
+      "bindingVersion": "0.3.0",
+      "method": "GET",
+      "query": {
+        "type": "object",
+        "required": [ "companyId" ],
+        "properties": {
+          "companyId": {
+            "description": "The Id of the company.",
+            "type": "number",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "http://localhost:8000/draft-07/bindings/http/operationBinding.json"
+  }
+}

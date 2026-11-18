@@ -1,0 +1,43 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/statement/properties/resource",
+  "tests": [
+    {
+      "description": "valid: resource as a string",
+      "valid": true,
+      "data": "arn:aws:sqs:eu-west-1:123456789012:myQueue"
+    },
+    {
+      "description": "valid: resource as an array of strings",
+      "valid": true,
+      "data": [
+        "arn:aws:sqs:eu-west-1:123456789012:myQueue",
+        "arn:aws:sqs:eu-west-1:123456789012:myQueue_error"
+      ]
+    },
+    {
+      "description": "valid: resource as an empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "invalid: resource as a number",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "invalid: resource as an array with a non string item",
+      "valid": false,
+      "data": [
+        "arn:aws:sqs:eu-west-1:123456789012:myQueue",
+        1
+      ]
+    },
+    {
+      "description": "invalid: resource as an object",
+      "valid": false,
+      "data": {
+        "arn": "arn:aws:sqs:eu-west-1:123456789012:myQueue"
+      }
+    }
+  ]
+}

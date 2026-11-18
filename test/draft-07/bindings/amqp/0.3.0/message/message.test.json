@@ -1,0 +1,76 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.3.0/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "contentEncoding": "gzip",
+        "bindingVersion": "0.3.0",
+        "messageType": "user.signup"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: contentEncoding only",
+      "valid": true,
+      "data": {
+        "contentEncoding": "gzip"
+      }
+    },
+    {
+      "description": "valid: messageType only",
+      "valid": true,
+      "data": {
+        "messageType": "user.signup"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "messageType": "user.signup",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: contentEncoding is not a string",
+      "valid": false,
+      "data": {
+        "contentEncoding": 1
+      }
+    },
+    {
+      "description": "invalid: messageType is not a string",
+      "valid": false,
+      "data": {
+        "messageType": [
+          "user.signup"
+        ]
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "contentType": "application/json"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "gzip"
+    }
+  ]
+}

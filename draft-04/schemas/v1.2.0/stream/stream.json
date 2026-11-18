@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1.2.0/stream/stream.json",
+  "title": "AsyncAPI v1.2.0 - Stream",
+  "description": "Describes the framing and the messages of a streaming API",
+  "type": "object",
+  "minProperties": 1,
+  "properties": {
+    "framing": {
+      "title": "Stream Framing Object",
+      "description": "Describes how messages are delimited in the stream",
+      "type": "object",
+      "oneOf": [
+        {
+          "properties": {
+            "type": {
+              "description": "The type of the framing",
+              "type": "string",
+              "enum": [ "chunked" ]
+            },
+            "delimiter": {
+              "description": "The delimiter used to separate messages in the stream",
+              "default": "\\r\\n",
+              "type": "string",
+              "enum": [ "\\r\\n", "\\n" ]
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "properties": {
+            "type": {
+              "description": "The type of the framing",
+              "type": "string",
+              "enum": [ "sse" ]
+            },
+            "delimiter": {
+              "description": "The delimiter used to separate messages in the stream",
+              "default": "\\n\\n",
+              "type": "string",
+              "enum": [ "\\n\\n" ]
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "minProperties": 1,
+      "patternProperties": {
+        "^x-": {
+          "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+        }
+      }
+    },
+    "read": {
+      "title": "Stream Read Object",
+      "description": "A list of messages a consumer can read from the API",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/messages/message.json"
+      }
+    },
+    "write": {
+      "title": "Stream Write Object",
+      "description": "A list of messages a consumer can write to the API",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/messages/message.json"
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

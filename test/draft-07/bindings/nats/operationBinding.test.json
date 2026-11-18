@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/nats/operationBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "queue": "MyCustomQueue"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.1.0",
+      "valid": true,
+      "data": {
+        "queue": "MyCustomQueue"
+      }
+    },
+    {
+      "description": "valid: latest uses 0.1.0",
+      "valid": true,
+      "data": {
+        "queue": "MyCustomQueue",
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 with invalid binding",
+      "valid": false,
+      "data": {
+        "queue": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.1.0 and fails",
+      "valid": false,
+      "data": {
+        "queue": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.1.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "queue": "MyCustomQueue",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

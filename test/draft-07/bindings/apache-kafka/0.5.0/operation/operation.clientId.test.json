@@ -1,0 +1,58 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.5.0/operation.json#/properties/clientId",
+  "tests": [
+    {
+      "description": "valid: clientId as a JSON schema",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "enum": [
+          "myClientId"
+        ]
+      }
+    },
+    {
+      "description": "valid: clientId as a reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/clientId"
+      }
+    },
+    {
+      "description": "valid: clientId as a boolean schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "valid: clientId as an empty schema",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "invalid: clientId as a plain string",
+      "valid": false,
+      "data": "myValue"
+    },
+    {
+      "description": "invalid: clientId with unknown type",
+      "valid": false,
+      "data": {
+        "type": "date"
+      }
+    },
+    {
+      "description": "invalid: clientId as an Avro schema",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "Key",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ]
+}

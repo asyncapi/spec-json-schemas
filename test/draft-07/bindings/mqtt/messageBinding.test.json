@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/messageBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "contentType": "application/json",
+        "correlationData": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "responseTopic": "application/responses"
+      }
+    },
+    {
+      "description": "invalid: contentType with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "contentType": "application/json"
+      }
+    },
+    {
+      "description": "valid: contentType with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "contentType": "application/json"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.2.0",
+      "valid": true,
+      "data": {
+        "responseTopic": "application/responses"
+      }
+    },
+    {
+      "description": "invalid: invalid responseTopic with latest",
+      "valid": false,
+      "data": {
+        "bindingVersion": "latest",
+        "responseTopic": ""
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.2.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "application/json"
+    }
+  ]
+}

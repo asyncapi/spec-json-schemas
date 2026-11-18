@@ -1,0 +1,4 @@
+{
+  "schemaFormat": "application/xml",
+  "schema": "<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\">\n  <xs:element name=\"User\">\n    <xs:complexType>\n      <xs:sequence>\n        <xs:element name=\"displayName\" type=\"xs:string\">\n            <xs:annotation>\n              <xs:documentation>Name of the user</xs:documentation>\n            </xs:annotation>\n        </xs:element>\n        <xs:element name=\"email\" type=\"xs:string\">\n            <xs:annotation>\n              <xs:documentation>Email of the user</xs:documentation>\n            </xs:annotation>\n        </xs:element>\n      </xs:sequence>\n    </xs:complexType>\n  </xs:element>\n</xs:schema>\n"
+}

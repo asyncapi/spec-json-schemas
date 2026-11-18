@@ -1,0 +1,396 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.0.0/asyncapi.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "MQTT 5.0 example",
+          "version": "1.0.0"
+        },
+        "channels": {
+          "user/{userId}/sendMessage": {
+            "description": "This channel is used to exchange messages about users signing up",
+            "subscribe": {
+              "operationId": "sendMessage",
+              "summary": "Send message",
+              "description": "Send message to remote server",
+              "message": {
+                "$ref": "#/components/schemas/sendMessage"
+              }
+            },
+            "parameters": {
+              "userId": {
+                "description": "Id of the user",
+                "schema": {
+                  "type": "string"
+                },
+                "location": "$message.payload#/user/id"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: minimal (asyncapi, info and channels)",
+      "valid": true,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "valid: id as urn",
+      "valid": true,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "id": "urn:example:com:account-service"
+      }
+    },
+    {
+      "description": "valid: defaultContentType",
+      "valid": true,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "defaultContentType": "application/json"
+      }
+    },
+    {
+      "description": "valid: tags and externalDocs at root",
+      "valid": true,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "tags": [
+          {
+            "name": "a"
+          }
+        ],
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "valid: full document",
+      "valid": true,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {
+          "users": {
+            "publish": {
+              "operationId": "sendUser",
+              "message": {
+                "payload": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "servers": {
+          "prod": {
+            "url": "broker.mycompany.com:5672",
+            "protocol": "amqp"
+          }
+        },
+        "components": {
+          "messages": {
+            "a": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: missing asyncapi",
+      "valid": false,
+      "data": {
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: missing info",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: missing channels",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: asyncapi 2.1.0",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.1.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: asyncapi 2.2.0",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.2.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: asyncapi 2.3.0",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.3.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: asyncapi 2.4.0",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.4.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: asyncapi 2.5.0",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.5.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: asyncapi 2.6.0",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.6.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: asyncapi 3.0.0",
+      "valid": false,
+      "data": {
+        "asyncapi": "3.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: asyncapi is a number",
+      "valid": false,
+      "data": {
+        "asyncapi": 2,
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: id is relative",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "id": "account-service"
+      }
+    },
+    {
+      "description": "invalid: info without version",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "a"
+        },
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: invalid server",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "servers": {
+          "prod": {
+            "url": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid channel",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {
+          "users": {
+            "publish": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid components",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "components": {
+          "unknown": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "tags": [
+          {
+            "name": "a"
+          },
+          {
+            "name": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: operations is not allowed (v3 field)",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "operations": {}
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "asyncapi": "2.0.0",
+        "info": {
+          "title": "Account Service",
+          "version": "1.0.0"
+        },
+        "channels": {},
+        "version": "1.0.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "asyncapi"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json",
+  "tests": [
+    {
+      "description": "valid: object",
+      "valid": true,
+      "data": {
+        "any": "value"
+      }
+    },
+    {
+      "description": "valid: string",
+      "valid": true,
+      "data": "value"
+    },
+    {
+      "description": "valid: number",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "valid: array",
+      "valid": true,
+      "data": [
+        1,
+        "two",
+        {
+          "three": 3
+        }
+      ]
+    },
+    {
+      "description": "valid: null",
+      "valid": true,
+      "data": null
+    }
+  ]
+}

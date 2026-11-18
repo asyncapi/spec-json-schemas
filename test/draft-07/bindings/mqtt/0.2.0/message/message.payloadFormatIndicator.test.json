@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/message.json#/properties/payloadFormatIndicator",
+  "tests": [
+    {
+      "description": "valid: 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: 1",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "invalid: 2",
+      "valid": false,
+      "data": 2
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "1"
+    },
+    {
+      "description": "invalid: boolean",
+      "valid": false,
+      "data": true
+    }
+  ]
+}

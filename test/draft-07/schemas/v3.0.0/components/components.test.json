@@ -1,0 +1,2236 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/components/components.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "schemas": {
+          "multiformat-schema": {
+            "schemaFormat": "application/schema+json;version=draft-07",
+            "schema": {
+              "$id": "https://example.com/user-profile.schema.json",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "description": "A representation of a user profile",
+              "type": "object",
+              "required": [
+                "username",
+                "email"
+              ],
+              "properties": {
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "fullName": {
+                  "type": "string"
+                },
+                "age": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "location": {
+                  "type": "string"
+                },
+                "interests": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "schema": {
+            "$id": "https://example.com/user-profile.schema.json",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "description": "A representation of a user profile",
+            "type": "object",
+            "required": [
+              "username",
+              "email"
+            ],
+            "properties": {
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "fullName": {
+                "type": "string"
+              },
+              "age": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "location": {
+                "type": "string"
+              },
+              "interests": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "servers": {
+          "apache-kafka-v1": {
+            "host": "https://kaas.lo/apache-kafka-v1",
+            "protocol": "kafka"
+          },
+          "apache-kafka-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "serverVariables": {
+          "rabbitmq-ports-v1": {
+            "enum": [
+              "5672",
+              "5671"
+            ]
+          },
+          "rabbitmq-ports-v2": {
+            "$ref": "https://catalog.lo/servers/rabbitmq-v2/variables/ports"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "channels": {
+          "user-notifications-v1": {
+            "address": "users.notifications.{userId}",
+            "title": "User notifications"
+          },
+          "user-notifications-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/topics/user-notifications"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "operations": {
+          "notify-user-signed-up-v1": {
+            "action": "send",
+            "channel": {
+              "$ref": "#/components/channels/user-notifications-v1"
+            }
+          },
+          "notify-user-signed-up-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "messages": {
+          "user-signed-up-v1": {
+            "contentType": "application/json",
+            "name": "user-signed-up-v1",
+            "deprecated": true
+          },
+          "user-signed-up-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #7",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "apiKey": {
+            "type": "apiKey",
+            "in": "user"
+          },
+          "x.509": {
+            "$ref": "#/components/securitySchemes/x.509"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #8",
+      "valid": true,
+      "data": {
+        "parameters": {
+          "accessToken": {
+            "description": "User AccessToken",
+            "examples": [
+              "Bearer eyJhbGciOiJIUzI1Ni..."
+            ],
+            "location": "$message.header#/authorization"
+          },
+          "userId": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/user-id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #9",
+      "valid": true,
+      "data": {
+        "correlationIds": {
+          "correlation-id-v1": {
+            "description": "Incoming message correlation-id",
+            "location": "$message.payload#/correlation-id"
+          },
+          "correlation-id-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/correlation-id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #10",
+      "valid": true,
+      "data": {
+        "operationTraits": {
+          "notify-user-signed-up-trait-v1": {
+            "summary": "User signed up",
+            "security": [
+              {
+                "type": "openIdConnect",
+                "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+              }
+            ]
+          },
+          "notify-user-signed-up-trait-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-trait"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #11",
+      "valid": true,
+      "data": {
+        "messageTraits": {
+          "user-signed-up-trait-v1": {
+            "contentType": "application/json",
+            "name": "user-signed-up-v1",
+            "correlationId": {
+              "description": "Incoming message correlation-id",
+              "location": "$message.payload#/correlation-id"
+            },
+            "deprecated": true
+          },
+          "user-signed-up-trait-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #12",
+      "valid": true,
+      "data": {
+        "replies": {
+          "notify-user-signed-up-reply-v1": {
+            "address": {
+              "$ref": "#/components/replyAddresses/notify-user-signed-up-reply-v1"
+            },
+            "channel": {
+              "$ref": "#/components/channels/user-notifications-v1"
+            },
+            "messages": [
+              {
+                "$ref": "#/components/messages/user-signed-up-v1"
+              }
+            ]
+          },
+          "notify-user-signed-up-reply-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #13",
+      "valid": true,
+      "data": {
+        "replyAddresses": {
+          "notify-user-signed-up-reply-v1": {
+            "location": "$message.payload#/X-REPLY-TO",
+            "description": "Send operation result to this channel"
+          },
+          "notify-user-signed-up-reply-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply-address"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #14",
+      "valid": true,
+      "data": {
+        "serverBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "schemaRegistryUrl": "https://my-schema-registry.com",
+              "schemaRegistryVendor": "confluent"
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0",
+              "tenant": "contoso"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/server"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/server"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #15",
+      "valid": true,
+      "data": {
+        "channelBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "partitions": 20,
+              "replicas": 3,
+              "topic": "my-specific-topic",
+              "topicConfiguration": {
+                "cleanup.policy": [
+                  "compact",
+                  "delete"
+                ],
+                "delete.retention.ms": 1000,
+                "max.message.bytes": 2000,
+                "retention.bytes": 10,
+                "retention.ms": 2000,
+                "confluent.key.schema.validation": true,
+                "confluent.key.subject.name.strategy": "schema",
+                "confluent.value.schema.validation": true,
+                "confluent.value.subject.name.strategy": "schema"
+              }
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0",
+              "compaction": 1000,
+              "deduplication": true,
+              "geo-replication": [
+                "us-west",
+                "us-east"
+              ],
+              "namespace": "ns1",
+              "persistence": "persistent",
+              "retention": {
+                "size": 1000,
+                "time": 15
+              },
+              "ttl": 360
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/channel"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/channel"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #16",
+      "valid": true,
+      "data": {
+        "operationBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "clientId": {
+                "type": "string",
+                "enum": [
+                  "myClientId"
+                ]
+              },
+              "groupId": {
+                "type": "string",
+                "enum": [
+                  "myGroupId"
+                ]
+              }
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/operation"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/operation"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #17",
+      "valid": true,
+      "data": {
+        "messageBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "key": {
+                "type": "string",
+                "enum": [
+                  "myKey"
+                ]
+              },
+              "schemaIdLocation": "header",
+              "schemaIdPayloadEncoding": "apicurio-new",
+              "schemaLookupStrategy": "TopicIdStrategy"
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/message"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/message"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #18",
+      "valid": true,
+      "data": {
+        "tags": {
+          "city": {
+            "name": "city",
+            "externalDocs": {
+              "url": "https://api.weather-forecast.am/docs",
+              "description": "Required information to integrate with API"
+            }
+          },
+          "district": {
+            "$ref": "https://catalog.lo/tags/district"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #19",
+      "valid": true,
+      "data": {
+        "externalDocs": {
+          "api-weather-forecast-v1": {
+            "url": "https://api.weather-forecast.am/docs",
+            "description": "Required information to integrate with API"
+          },
+          "api-weather-forecast-v2": {
+            "$ref": "https://catalog.lo/externalDocs/api-weather-forecast-v2"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #20",
+      "valid": true,
+      "data": {
+        "servers": {
+          "apache-kafka-v1": {
+            "host": "https://kaas.lo/apache-kafka-v1",
+            "protocol": "kafka"
+          },
+          "apache-kafka-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2"
+          }
+        },
+        "serverVariables": {
+          "rabbitmq-ports-v1": {
+            "enum": [
+              "5672",
+              "5671"
+            ]
+          },
+          "rabbitmq-ports-v2": {
+            "$ref": "https://catalog.lo/servers/rabbitmq-v2/variables/ports"
+          }
+        },
+        "channels": {
+          "user-notifications-v1": {
+            "address": "users.notifications.{userId}",
+            "title": "User notifications"
+          },
+          "user-notifications-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/topics/user-notifications"
+          }
+        },
+        "operations": {
+          "notify-user-signed-up-v1": {
+            "action": "send",
+            "channel": {
+              "$ref": "#/components/channels/user-notifications-v1"
+            }
+          },
+          "notify-user-signed-up-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+          }
+        },
+        "messages": {
+          "user-signed-up-v1": {
+            "contentType": "application/json",
+            "name": "user-signed-up-v1",
+            "deprecated": true
+          },
+          "user-signed-up-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+          }
+        },
+        "securitySchemes": {
+          "apiKey": {
+            "type": "apiKey",
+            "in": "user"
+          },
+          "x.509": {
+            "$ref": "#/components/securitySchemes/x.509"
+          }
+        },
+        "parameters": {
+          "accessToken": {
+            "description": "User AccessToken",
+            "examples": [
+              "Bearer eyJhbGciOiJIUzI1Ni..."
+            ],
+            "location": "$message.header#/authorization"
+          },
+          "userId": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/user-id"
+          }
+        },
+        "correlationIds": {
+          "correlation-id-v1": {
+            "description": "Incoming message correlation-id",
+            "location": "$message.payload#/correlation-id"
+          },
+          "correlation-id-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/headers/correlation-id"
+          }
+        },
+        "operationTraits": {
+          "notify-user-signed-up-trait-v1": {
+            "summary": "User signed up",
+            "security": [
+              {
+                "type": "openIdConnect",
+                "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+              }
+            ]
+          },
+          "notify-user-signed-up-trait-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-trait"
+          }
+        },
+        "messageTraits": {
+          "user-signed-up-trait-v1": {
+            "contentType": "application/json",
+            "name": "user-signed-up-v1",
+            "correlationId": {
+              "description": "Incoming message correlation-id",
+              "location": "$message.payload#/correlation-id"
+            },
+            "deprecated": true
+          },
+          "user-signed-up-trait-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-trait"
+          }
+        },
+        "replies": {
+          "notify-user-signed-up-reply-v1": {
+            "address": {
+              "$ref": "#/components/replyAddresses/notify-user-signed-up-reply-v1"
+            },
+            "channel": {
+              "$ref": "#/components/channels/user-notifications-v1"
+            },
+            "messages": [
+              {
+                "$ref": "#/components/messages/user-signed-up-v1"
+              }
+            ]
+          },
+          "notify-user-signed-up-reply-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply"
+          }
+        },
+        "replyAddresses": {
+          "notify-user-signed-up-reply-v1": {
+            "location": "$message.payload#/X-REPLY-TO",
+            "description": "Send operation result to this channel"
+          },
+          "notify-user-signed-up-reply-v2": {
+            "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up-reply-address"
+          }
+        },
+        "serverBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "schemaRegistryUrl": "https://my-schema-registry.com",
+              "schemaRegistryVendor": "confluent"
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0",
+              "tenant": "contoso"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/server"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/server"
+            }
+          }
+        },
+        "channelBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "partitions": 20,
+              "replicas": 3,
+              "topic": "my-specific-topic",
+              "topicConfiguration": {
+                "cleanup.policy": [
+                  "compact",
+                  "delete"
+                ],
+                "delete.retention.ms": 1000,
+                "max.message.bytes": 2000,
+                "retention.bytes": 10,
+                "retention.ms": 2000,
+                "confluent.key.schema.validation": true,
+                "confluent.key.subject.name.strategy": "schema",
+                "confluent.value.schema.validation": true,
+                "confluent.value.subject.name.strategy": "schema"
+              }
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0",
+              "compaction": 1000,
+              "deduplication": true,
+              "geo-replication": [
+                "us-west",
+                "us-east"
+              ],
+              "namespace": "ns1",
+              "persistence": "persistent",
+              "retention": {
+                "size": 1000,
+                "time": 15
+              },
+              "ttl": 360
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/channel"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/channel"
+            }
+          }
+        },
+        "operationBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "clientId": {
+                "type": "string",
+                "enum": [
+                  "myClientId"
+                ]
+              },
+              "groupId": {
+                "type": "string",
+                "enum": [
+                  "myGroupId"
+                ]
+              }
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/operation"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/operation"
+            }
+          }
+        },
+        "messageBindings": {
+          "v1": {
+            "kafka": {
+              "bindingVersion": "0.5.0",
+              "key": {
+                "type": "string",
+                "enum": [
+                  "myKey"
+                ]
+              },
+              "schemaIdLocation": "header",
+              "schemaIdPayloadEncoding": "apicurio-new",
+              "schemaLookupStrategy": "TopicIdStrategy"
+            },
+            "pulsar": {
+              "bindingVersion": "0.1.0"
+            }
+          },
+          "v2": {
+            "kafka": {
+              "$ref": "https://catalog.lo/bindings/apache-kafka-v2/message"
+            },
+            "pulsar": {
+              "$ref": "https://catalog.lo/bindings/apache-pulsar-v2/message"
+            }
+          }
+        },
+        "tags": {
+          "city": {
+            "name": "city",
+            "externalDocs": {
+              "url": "https://api.weather-forecast.am/docs",
+              "description": "Required information to integrate with API"
+            }
+          },
+          "district": {
+            "$ref": "https://catalog.lo/tags/district"
+          }
+        },
+        "externalDocs": {
+          "api-weather-forecast-v1": {
+            "url": "https://api.weather-forecast.am/docs",
+            "description": "Required information to integrate with API"
+          },
+          "api-weather-forecast-v2": {
+            "$ref": "https://catalog.lo/externalDocs/api-weather-forecast-v2"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: schemas",
+      "valid": true,
+      "data": {
+        "schemas": {
+          "a.b-c_1": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: schemas empty map",
+      "valid": true,
+      "data": {
+        "schemas": {}
+      }
+    },
+    {
+      "description": "invalid: schemas with invalid item",
+      "valid": false,
+      "data": {
+        "schemas": {
+          "a": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: schemas with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "schemas": {
+          "a b": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: schemas is an array",
+      "valid": false,
+      "data": {
+        "schemas": [
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: servers",
+      "valid": true,
+      "data": {
+        "servers": {
+          "a.b-c_1": {
+            "host": "rabbitmq.in.mycompany.com:5672",
+            "protocol": "amqp"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: servers empty map",
+      "valid": true,
+      "data": {
+        "servers": {}
+      }
+    },
+    {
+      "description": "invalid: servers with invalid item",
+      "valid": false,
+      "data": {
+        "servers": {
+          "a": {
+            "host": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: servers with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "servers": {
+          "a b": {
+            "host": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: servers is an array",
+      "valid": false,
+      "data": {
+        "servers": [
+          {
+            "host": "rabbitmq.in.mycompany.com:5672",
+            "protocol": "amqp"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: servers reference",
+      "valid": true,
+      "data": {
+        "servers": {
+          "a": {
+            "$ref": "#/components/servers/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: servers reference with sibling",
+      "valid": false,
+      "data": {
+        "servers": {
+          "a": {
+            "host": "rabbitmq.in.mycompany.com:5672",
+            "protocol": "amqp",
+            "$ref": "#/components/servers/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channels",
+      "valid": true,
+      "data": {
+        "channels": {
+          "a.b-c_1": {
+            "address": "users.{userId}"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channels empty map",
+      "valid": true,
+      "data": {
+        "channels": {}
+      }
+    },
+    {
+      "description": "invalid: channels with invalid item",
+      "valid": false,
+      "data": {
+        "channels": {
+          "a": {
+            "address": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channels with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "channels": {
+          "a b": {
+            "address": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: channels is an array",
+      "valid": false,
+      "data": {
+        "channels": [
+          {
+            "address": "users.{userId}"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: channels reference",
+      "valid": true,
+      "data": {
+        "channels": {
+          "a": {
+            "$ref": "#/components/channels/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: channels reference with sibling",
+      "valid": false,
+      "data": {
+        "channels": {
+          "a": {
+            "address": "users.{userId}",
+            "$ref": "#/components/channels/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverVariables",
+      "valid": true,
+      "data": {
+        "serverVariables": {
+          "a.b-c_1": {
+            "default": "5672"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverVariables empty map",
+      "valid": true,
+      "data": {
+        "serverVariables": {}
+      }
+    },
+    {
+      "description": "invalid: serverVariables with invalid item",
+      "valid": false,
+      "data": {
+        "serverVariables": {
+          "a": {
+            "default": 5672
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverVariables with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "serverVariables": {
+          "a b": {
+            "default": 5672
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: serverVariables is an array",
+      "valid": false,
+      "data": {
+        "serverVariables": [
+          {
+            "default": "5672"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: serverVariables reference",
+      "valid": true,
+      "data": {
+        "serverVariables": {
+          "a": {
+            "$ref": "#/components/serverVariables/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: serverVariables reference with sibling",
+      "valid": false,
+      "data": {
+        "serverVariables": {
+          "a": {
+            "default": "5672",
+            "$ref": "#/components/serverVariables/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operations",
+      "valid": true,
+      "data": {
+        "operations": {
+          "a.b-c_1": {
+            "action": "send",
+            "channel": {
+              "$ref": "#/channels/users"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operations empty map",
+      "valid": true,
+      "data": {
+        "operations": {}
+      }
+    },
+    {
+      "description": "invalid: operations with invalid item",
+      "valid": false,
+      "data": {
+        "operations": {
+          "a": {
+            "action": "publish",
+            "channel": {
+              "$ref": "#/a"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operations with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "operations": {
+          "a b": {
+            "action": "publish",
+            "channel": {
+              "$ref": "#/a"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operations is an array",
+      "valid": false,
+      "data": {
+        "operations": [
+          {
+            "action": "send",
+            "channel": {
+              "$ref": "#/channels/users"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: operations reference",
+      "valid": true,
+      "data": {
+        "operations": {
+          "a": {
+            "$ref": "#/components/operations/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operations reference with sibling",
+      "valid": false,
+      "data": {
+        "operations": {
+          "a": {
+            "action": "send",
+            "channel": {
+              "$ref": "#/channels/users"
+            },
+            "$ref": "#/components/operations/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messages",
+      "valid": true,
+      "data": {
+        "messages": {
+          "a.b-c_1": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messages empty map",
+      "valid": true,
+      "data": {
+        "messages": {}
+      }
+    },
+    {
+      "description": "invalid: messages with invalid item",
+      "valid": false,
+      "data": {
+        "messages": {
+          "a": {
+            "payload": true
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messages with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "messages": {
+          "a b": {
+            "payload": true
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messages is an array",
+      "valid": false,
+      "data": {
+        "messages": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: messages reference",
+      "valid": true,
+      "data": {
+        "messages": {
+          "a": {
+            "$ref": "#/components/messages/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messages reference with sibling",
+      "valid": false,
+      "data": {
+        "messages": {
+          "a": {
+            "payload": {
+              "type": "string"
+            },
+            "$ref": "#/components/messages/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: securitySchemes",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "a.b-c_1": {
+            "type": "X509"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: securitySchemes empty map",
+      "valid": true,
+      "data": {
+        "securitySchemes": {}
+      }
+    },
+    {
+      "description": "invalid: securitySchemes with invalid item",
+      "valid": false,
+      "data": {
+        "securitySchemes": {
+          "a": {
+            "type": "kerberos"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: securitySchemes with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "a b": {
+            "type": "kerberos"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: securitySchemes is an array",
+      "valid": false,
+      "data": {
+        "securitySchemes": [
+          {
+            "type": "X509"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: securitySchemes reference",
+      "valid": true,
+      "data": {
+        "securitySchemes": {
+          "a": {
+            "$ref": "#/components/securitySchemes/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: securitySchemes reference with sibling",
+      "valid": false,
+      "data": {
+        "securitySchemes": {
+          "a": {
+            "type": "X509",
+            "$ref": "#/components/securitySchemes/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: parameters",
+      "valid": true,
+      "data": {
+        "parameters": {
+          "a.b-c_1": {
+            "location": "$message.payload#/id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: parameters empty map",
+      "valid": true,
+      "data": {
+        "parameters": {}
+      }
+    },
+    {
+      "description": "invalid: parameters with invalid item",
+      "valid": false,
+      "data": {
+        "parameters": {
+          "a": {
+            "location": "payload"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: parameters with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "parameters": {
+          "a b": {
+            "location": "payload"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: parameters is an array",
+      "valid": false,
+      "data": {
+        "parameters": [
+          {
+            "location": "$message.payload#/id"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: parameters reference",
+      "valid": true,
+      "data": {
+        "parameters": {
+          "a": {
+            "$ref": "#/components/parameters/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: parameters reference with sibling",
+      "valid": false,
+      "data": {
+        "parameters": {
+          "a": {
+            "location": "$message.payload#/id",
+            "$ref": "#/components/parameters/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: correlationIds",
+      "valid": true,
+      "data": {
+        "correlationIds": {
+          "a.b-c_1": {
+            "location": "$message.header#/id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: correlationIds empty map",
+      "valid": true,
+      "data": {
+        "correlationIds": {}
+      }
+    },
+    {
+      "description": "invalid: correlationIds with invalid item",
+      "valid": false,
+      "data": {
+        "correlationIds": {
+          "a": {
+            "description": "id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: correlationIds with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "correlationIds": {
+          "a b": {
+            "description": "id"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationIds is an array",
+      "valid": false,
+      "data": {
+        "correlationIds": [
+          {
+            "location": "$message.header#/id"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: correlationIds reference",
+      "valid": true,
+      "data": {
+        "correlationIds": {
+          "a": {
+            "$ref": "#/components/correlationIds/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: correlationIds reference with sibling",
+      "valid": false,
+      "data": {
+        "correlationIds": {
+          "a": {
+            "location": "$message.header#/id",
+            "$ref": "#/components/correlationIds/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationTraits",
+      "valid": true,
+      "data": {
+        "operationTraits": {
+          "a.b-c_1": {
+            "title": "t"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationTraits empty map",
+      "valid": true,
+      "data": {
+        "operationTraits": {}
+      }
+    },
+    {
+      "description": "invalid: operationTraits with invalid item",
+      "valid": false,
+      "data": {
+        "operationTraits": {
+          "a": {
+            "action": "send"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationTraits with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "operationTraits": {
+          "a b": {
+            "action": "send"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operationTraits is an array",
+      "valid": false,
+      "data": {
+        "operationTraits": [
+          {
+            "title": "t"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: operationTraits reference",
+      "valid": true,
+      "data": {
+        "operationTraits": {
+          "a": {
+            "$ref": "#/components/operationTraits/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operationTraits reference with sibling",
+      "valid": false,
+      "data": {
+        "operationTraits": {
+          "a": {
+            "title": "t",
+            "$ref": "#/components/operationTraits/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageTraits",
+      "valid": true,
+      "data": {
+        "messageTraits": {
+          "a.b-c_1": {
+            "name": "n"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageTraits empty map",
+      "valid": true,
+      "data": {
+        "messageTraits": {}
+      }
+    },
+    {
+      "description": "invalid: messageTraits with invalid item",
+      "valid": false,
+      "data": {
+        "messageTraits": {
+          "a": {
+            "name": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageTraits with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "messageTraits": {
+          "a b": {
+            "name": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messageTraits is an array",
+      "valid": false,
+      "data": {
+        "messageTraits": [
+          {
+            "name": "n"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: messageTraits reference",
+      "valid": true,
+      "data": {
+        "messageTraits": {
+          "a": {
+            "$ref": "#/components/messageTraits/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messageTraits reference with sibling",
+      "valid": false,
+      "data": {
+        "messageTraits": {
+          "a": {
+            "name": "n",
+            "$ref": "#/components/messageTraits/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: replies",
+      "valid": true,
+      "data": {
+        "replies": {
+          "a.b-c_1": {
+            "channel": {
+              "$ref": "#/channels/a"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: replies empty map",
+      "valid": true,
+      "data": {
+        "replies": {}
+      }
+    },
+    {
+      "description": "invalid: replies with invalid item",
+      "valid": false,
+      "data": {
+        "replies": {
+          "a": {
+            "channel": {
+              "address": "users.{userId}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: replies with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "replies": {
+          "a b": {
+            "channel": {
+              "address": "users.{userId}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: replies is an array",
+      "valid": false,
+      "data": {
+        "replies": [
+          {
+            "channel": {
+              "$ref": "#/channels/a"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: replies reference",
+      "valid": true,
+      "data": {
+        "replies": {
+          "a": {
+            "$ref": "#/components/replies/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: replies reference with sibling",
+      "valid": false,
+      "data": {
+        "replies": {
+          "a": {
+            "channel": {
+              "$ref": "#/channels/a"
+            },
+            "$ref": "#/components/replies/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: replyAddresses",
+      "valid": true,
+      "data": {
+        "replyAddresses": {
+          "a.b-c_1": {
+            "location": "$message.header#/replyTo"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: replyAddresses empty map",
+      "valid": true,
+      "data": {
+        "replyAddresses": {}
+      }
+    },
+    {
+      "description": "invalid: replyAddresses with invalid item",
+      "valid": false,
+      "data": {
+        "replyAddresses": {
+          "a": {
+            "description": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: replyAddresses with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "replyAddresses": {
+          "a b": {
+            "description": "x"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: replyAddresses is an array",
+      "valid": false,
+      "data": {
+        "replyAddresses": [
+          {
+            "location": "$message.header#/replyTo"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: replyAddresses reference",
+      "valid": true,
+      "data": {
+        "replyAddresses": {
+          "a": {
+            "$ref": "#/components/replyAddresses/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: replyAddresses reference with sibling",
+      "valid": false,
+      "data": {
+        "replyAddresses": {
+          "a": {
+            "location": "$message.header#/replyTo",
+            "$ref": "#/components/replyAddresses/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverBindings",
+      "valid": true,
+      "data": {
+        "serverBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverBindings empty map",
+      "valid": true,
+      "data": {
+        "serverBindings": {}
+      }
+    },
+    {
+      "description": "invalid: serverBindings with invalid item",
+      "valid": false,
+      "data": {
+        "serverBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: serverBindings with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "serverBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: serverBindings is an array",
+      "valid": false,
+      "data": {
+        "serverBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: channelBindings",
+      "valid": true,
+      "data": {
+        "channelBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channelBindings empty map",
+      "valid": true,
+      "data": {
+        "channelBindings": {}
+      }
+    },
+    {
+      "description": "invalid: channelBindings with invalid item",
+      "valid": false,
+      "data": {
+        "channelBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: channelBindings with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "channelBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: channelBindings is an array",
+      "valid": false,
+      "data": {
+        "channelBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: operationBindings",
+      "valid": true,
+      "data": {
+        "operationBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationBindings empty map",
+      "valid": true,
+      "data": {
+        "operationBindings": {}
+      }
+    },
+    {
+      "description": "invalid: operationBindings with invalid item",
+      "valid": false,
+      "data": {
+        "operationBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: operationBindings with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "operationBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: operationBindings is an array",
+      "valid": false,
+      "data": {
+        "operationBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: messageBindings",
+      "valid": true,
+      "data": {
+        "messageBindings": {
+          "a.b-c_1": {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageBindings empty map",
+      "valid": true,
+      "data": {
+        "messageBindings": {}
+      }
+    },
+    {
+      "description": "invalid: messageBindings with invalid item",
+      "valid": false,
+      "data": {
+        "messageBindings": {
+          "a": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: messageBindings with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "messageBindings": {
+          "a b": {
+            "kafka": {
+              "bindingVersion": "9.9.9"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messageBindings is an array",
+      "valid": false,
+      "data": {
+        "messageBindings": [
+          {
+            "kafka": {
+              "bindingVersion": "0.5.0"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: tags",
+      "valid": true,
+      "data": {
+        "tags": {
+          "a.b-c_1": {
+            "name": "a"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: tags empty map",
+      "valid": true,
+      "data": {
+        "tags": {}
+      }
+    },
+    {
+      "description": "invalid: tags with invalid item",
+      "valid": false,
+      "data": {
+        "tags": {
+          "a": {
+            "description": "a"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: tags with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "tags": {
+          "a b": {
+            "description": "a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: tags is an array",
+      "valid": false,
+      "data": {
+        "tags": [
+          {
+            "name": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: tags reference",
+      "valid": true,
+      "data": {
+        "tags": {
+          "a": {
+            "$ref": "#/components/tags/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: tags reference with sibling",
+      "valid": false,
+      "data": {
+        "tags": {
+          "a": {
+            "name": "a",
+            "$ref": "#/components/tags/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs",
+      "valid": true,
+      "data": {
+        "externalDocs": {
+          "a.b-c_1": {
+            "url": "https://docs.lo"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs empty map",
+      "valid": true,
+      "data": {
+        "externalDocs": {}
+      }
+    },
+    {
+      "description": "invalid: externalDocs with invalid item",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "a": {
+            "url": "/docs"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs with invalid item under a key outside the pattern is not validated",
+      "valid": true,
+      "data": {
+        "externalDocs": {
+          "a b": {
+            "url": "/docs"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs is an array",
+      "valid": false,
+      "data": {
+        "externalDocs": [
+          {
+            "url": "https://docs.lo"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "externalDocs": {
+          "a": {
+            "$ref": "#/components/externalDocs/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs reference with sibling",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "a": {
+            "url": "https://docs.lo",
+            "$ref": "#/components/externalDocs/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: schemas reference (Schema Object $ref)",
+      "valid": true,
+      "data": {
+        "schemas": {
+          "a": {
+            "$ref": "#/components/schemas/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: schemas multi-format schema",
+      "valid": true,
+      "data": {
+        "schemas": {
+          "a": {
+            "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: schemas boolean schema (anySchema requires an object)",
+      "valid": false,
+      "data": {
+        "schemas": {
+          "a": true
+        }
+      }
+    },
+    {
+      "description": "valid: serverBindings reference per protocol",
+      "valid": true,
+      "data": {
+        "serverBindings": {
+          "a": {
+            "kafka": {
+              "$ref": "#/components/x"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: serverBindings unknown protocol",
+      "valid": false,
+      "data": {
+        "serverBindings": {
+          "a": {
+            "unknown": {}
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: ros2 in serverBindings (components use draft-07/bindings maps)",
+      "valid": true,
+      "data": {
+        "serverBindings": {
+          "a": {
+            "ros2": {
+              "bindingVersion": "0.1.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: ros2 in messageBindings (components use draft-07/bindings maps)",
+      "valid": true,
+      "data": {
+        "messageBindings": {
+          "a": {
+            "ros2": {
+              "bindingVersion": "0.1.0"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown section",
+      "valid": false,
+      "data": {
+        "bindings": {}
+      }
+    },
+    {
+      "description": "invalid: securitySchemes v2 name (security)",
+      "valid": false,
+      "data": {
+        "security": {}
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    }
+  ]
+}

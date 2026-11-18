@@ -1,0 +1,391 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1.1.0/asyncapi.json",
+  "tests": [
+    {
+      "description": "valid: minimal document",
+      "valid": true,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {}
+      }
+    },
+    {
+      "description": "valid: full document",
+      "valid": true,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7",
+          "description": "Streams weather updates",
+          "license": {
+            "name": "The MIT License",
+            "url": "https://mit-license.org"
+          }
+        },
+        "baseTopic": "weather",
+        "servers": [
+          {
+            "url": "mqtt.weather-forecast.am:{port}",
+            "scheme": "mqtts",
+            "schemeVersion": "3.1.1",
+            "description": "Production broker",
+            "variables": {
+              "port": {
+                "enum": [
+                  "8883",
+                  "8884"
+                ],
+                "default": "8883"
+              }
+            }
+          }
+        ],
+        "topics": {
+          "forecast.city.updated": {
+            "subscribe": {
+              "$ref": "#/components/messages/cityUpdated"
+            }
+          },
+          "forecast.city.requested": {
+            "publish": {
+              "payload": {
+                "$ref": "#/components/schemas/city"
+              }
+            }
+          },
+          "forecast.{city}.alerts": {
+            "parameters": [
+              {
+                "name": "city",
+                "description": "City name, e.g. Yerevan",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            ],
+            "subscribe": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/messages/cityUpdated"
+                },
+                {
+                  "payload": {
+                    "type": "string"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "components": {
+          "schemas": {
+            "city": {
+              "type": "object",
+              "required": [
+                "city"
+              ],
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "description": "City name"
+                },
+                "temperature": {
+                  "type": "number",
+                  "minimum": -100,
+                  "maximum": 100
+                }
+              }
+            }
+          },
+          "messages": {
+            "cityUpdated": {
+              "summary": "Weather update for a city",
+              "description": "Sent every time the **forecast** changes",
+              "headers": {
+                "type": "object",
+                "properties": {
+                  "correlationId": {
+                    "type": "string"
+                  }
+                }
+              },
+              "payload": {
+                "type": "object",
+                "required": [
+                  "city"
+                ],
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "description": "City name"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "minimum": -100,
+                    "maximum": 100
+                  }
+                }
+              },
+              "tags": [
+                {
+                  "name": "city"
+                }
+              ],
+              "externalDocs": {
+                "url": "https://api.weather-forecast.am/docs"
+              },
+              "deprecated": false,
+              "example": {
+                "city": "Yerevan",
+                "temperature": 21.5
+              }
+            }
+          },
+          "securitySchemes": {
+            "userPassword": {
+              "type": "userPassword"
+            },
+            "bearer": {
+              "type": "http",
+              "scheme": "bearer",
+              "bearerFormat": "JWT"
+            }
+          }
+        },
+        "tags": [
+          {
+            "name": "city",
+            "description": "City forecast"
+          }
+        ],
+        "security": [
+          {
+            "userPassword": []
+          }
+        ],
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs"
+        },
+        "x-generated-by": "hand"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "x-internal": true
+      }
+    },
+    {
+      "description": "invalid: missing asyncapi",
+      "valid": false,
+      "data": {
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {}
+      }
+    },
+    {
+      "description": "invalid: missing info",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.0.0",
+        "topics": {}
+      }
+    },
+    {
+      "description": "invalid: missing topics",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        }
+      }
+    },
+    {
+      "description": "valid: asyncapi version 1.0.0",
+      "valid": true,
+      "data": {
+        "asyncapi": "1.0.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {}
+      }
+    },
+    {
+      "description": "invalid: unsupported asyncapi version",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.2.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {}
+      }
+    },
+    {
+      "description": "invalid: info without title",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "version": "2.39.7"
+        },
+        "topics": {}
+      }
+    },
+    {
+      "description": "invalid: baseTopic starts with a slash",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "baseTopic": "/weather"
+      }
+    },
+    {
+      "description": "invalid: baseTopic starts with a dot",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "baseTopic": ".weather"
+      }
+    },
+    {
+      "description": "invalid: duplicated servers",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "servers": [
+          {
+            "url": "mqtt.weather-forecast.am:{port}",
+            "scheme": "mqtts",
+            "schemeVersion": "3.1.1",
+            "description": "Production broker",
+            "variables": {
+              "port": {
+                "enum": [
+                  "8883",
+                  "8884"
+                ],
+                "default": "8883"
+              }
+            }
+          },
+          {
+            "url": "mqtt.weather-forecast.am:{port}",
+            "scheme": "mqtts",
+            "schemeVersion": "3.1.1",
+            "description": "Production broker",
+            "variables": {
+              "port": {
+                "enum": [
+                  "8883",
+                  "8884"
+                ],
+                "default": "8883"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: server with unsupported scheme",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "servers": [
+          {
+            "url": "api.weather-forecast.am",
+            "scheme": "http"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "tags": [
+          {
+            "description": "City forecast"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: security requirement with non array scopes",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "security": [
+          {
+            "userPassword": "all"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "asyncapi": "1.1.0",
+        "info": {
+          "title": "Weather forecast updated",
+          "version": "2.39.7"
+        },
+        "topics": {},
+        "channels": {}
+      }
+    }
+  ]
+}

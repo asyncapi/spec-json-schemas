@@ -1,0 +1,130 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageExamples.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": [
+        {
+          "name": "Application metric example",
+          "summary": "Message with application metric example",
+          "payload": {
+            "metric": "messages.incoming:5921"
+          }
+        }
+      ]
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": [
+        {
+          "name": "Application metric example",
+          "summary": "Message with Correlation ID header",
+          "headers": {
+            "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+          }
+        }
+      ]
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": [
+        {
+          "name": "Application metric example",
+          "summary": "Message with application metric example",
+          "payload": {
+            "metric": "messages.incoming:5921"
+          }
+        },
+        {
+          "name": "Application metric example",
+          "summary": "Message with Correlation ID header",
+          "headers": {
+            "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+          }
+        },
+        {
+          "name": "Application metric example",
+          "summary": "Message with Correlation ID header and application metric",
+          "headers": {
+            "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+          },
+          "payload": {
+            "metric": "messages.incoming:5921"
+          }
+        }
+      ]
+    },
+    {
+      "description": "valid: empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "valid: duplicated examples are accepted (no uniqueItems)",
+      "valid": true,
+      "data": [
+        {
+          "payload": {
+            "metric": "messages.incoming:5921"
+          }
+        },
+        {
+          "payload": {
+            "metric": "messages.incoming:5921"
+          }
+        }
+      ]
+    },
+    {
+      "description": "invalid: example without payload and headers",
+      "valid": false,
+      "data": [
+        {
+          "name": "empty"
+        }
+      ]
+    },
+    {
+      "description": "invalid: one invalid example among valid",
+      "valid": false,
+      "data": [
+        {
+          "payload": {
+            "metric": "messages.incoming:5921"
+          }
+        },
+        {
+          "headers": "x"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference is not allowed",
+      "valid": false,
+      "data": [
+        {
+          "$ref": "#/components/examples/metric"
+        }
+      ]
+    },
+    {
+      "description": "invalid: example is a string",
+      "valid": false,
+      "data": [
+        "messages.incoming:5921"
+      ]
+    },
+    {
+      "description": "invalid: not an array",
+      "valid": false,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        }
+      }
+    }
+  ]
+}

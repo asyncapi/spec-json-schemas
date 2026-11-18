@@ -1,0 +1,124 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/tags.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/tags/secured"
+        },
+        {
+          "name": "secured",
+          "description": "Groups secured APIs"
+        }
+      ]
+    },
+    {
+      "description": "valid: empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "valid: only references",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/components/tags/secured"
+        },
+        {
+          "$ref": "#/components/tags/public"
+        }
+      ]
+    },
+    {
+      "description": "valid: only tags",
+      "valid": true,
+      "data": [
+        {
+          "name": "secured"
+        },
+        {
+          "name": "public"
+        }
+      ]
+    },
+    {
+      "description": "valid: same name with different description is accepted (names are not unique)",
+      "valid": true,
+      "data": [
+        {
+          "name": "secured"
+        },
+        {
+          "name": "secured",
+          "description": "Groups secured APIs"
+        }
+      ]
+    },
+    {
+      "description": "invalid: duplicated tag",
+      "valid": false,
+      "data": [
+        {
+          "name": "secured"
+        },
+        {
+          "name": "secured"
+        }
+      ]
+    },
+    {
+      "description": "invalid: duplicated reference",
+      "valid": false,
+      "data": [
+        {
+          "$ref": "#/components/tags/secured"
+        },
+        {
+          "$ref": "#/components/tags/secured"
+        }
+      ]
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": [
+        {
+          "description": "Groups secured APIs"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference with sibling name",
+      "valid": false,
+      "data": [
+        {
+          "$ref": "#/components/tags/secured",
+          "name": "secured"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": [
+        {
+          "$ref": 1
+        }
+      ]
+    },
+    {
+      "description": "invalid: item is a string",
+      "valid": false,
+      "data": [ "secured" ]
+    },
+    {
+      "description": "invalid: not an array",
+      "valid": false,
+      "data": {
+        "name": "secured"
+      }
+    }
+  ]
+}

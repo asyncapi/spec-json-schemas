@@ -1,0 +1,203 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/channels/messages/channelMessage.json",
+  "tests": [
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "schema": {
+              "name": "projects/your-project-id/schemas/your-avro-schema-id"
+            },
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #2",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "schema": {
+              "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+            },
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 orderingKey is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "orderingKey": 1,
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "orderingKey": "uuid",
+            "schema": {
+              "type": "avro",
+              "name": "projects/your-project-id/schemas/your-avro-schema-id"
+            },
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #2",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "schema": {
+              "type": "protobuf",
+              "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+            },
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 orderingKey is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "orderingKey": 1,
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.2.0 is used)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "schema": {
+              "name": "projects/your-project-id/schemas/your-avro-schema-id"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "$ref": "#/components/messageBindings/my-googlepubsub"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "$ref": "#/components/messageBindings/my-googlepubsub",
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": "googlepubsub"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "googlepubsub": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+# Not centrally managed: specific to this repository.
+#
+# Go module in dists/go is resolved through tags prefixed with its directory.
+# semantic-release only creates vX.Y.Z, so this adds dists/go/vX.Y.Z on the
+# same commit for every published release (prereleases included).
+name: Go - tag release of dists/go module
+
+on:
+  release:
+    types:
+      - published
+
+permissions: {}
+
+jobs:
+  tag-go-module:
+    name: Tag dists/go module
+    if: startsWith( github.repository, 'asyncapi/' )
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to create the dists/go/vX.Y.Z tag
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          persist-credentials: false
+      - name: Create dists/go tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        shell: bash
+        run: |
+          if [ ! -f dists/go/go.mod ]; then
+            echo "skip: no Go module in dists/go at $RELEASE_TAG"
+            exit 0
+          fi
+          sh dists/go/release-tag.sh

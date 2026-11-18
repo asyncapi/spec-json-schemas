@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/mercure/messageBindingOrReference.json",
+  "title": "Mercure - Message Binding or Reference",
+  "description": "Describes protocol-specific definitions for a message or its reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/mercure/my-mercure-queue"
+    },
+    {
+      "bindingVersion": "0.1.0"
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "http://localhost:8000/draft-07/bindings/mercure/messageBinding.json"
+  }
+}

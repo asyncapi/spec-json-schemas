@@ -1,0 +1,73 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariable.json",
+  "tests": [
+    {
+      "description": "valid: default only",
+      "valid": true,
+      "data": {
+        "default": "8883"
+      }
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "description": "Secure connection (TLS) is available through port 8883"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "default": "8883",
+        "x-internal": true
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: enum items are not unique",
+      "valid": false,
+      "data": {
+        "enum": [
+          "8883",
+          "8883"
+        ]
+      }
+    },
+    {
+      "description": "invalid: enum item is not a string",
+      "valid": false,
+      "data": {
+        "enum": [
+          8883
+        ]
+      }
+    },
+    {
+      "description": "invalid: default is not a string",
+      "valid": false,
+      "data": {
+        "default": 8883
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "default": "8883",
+        "examples": [
+          "8883"
+        ]
+      }
+    }
+  ]
+}

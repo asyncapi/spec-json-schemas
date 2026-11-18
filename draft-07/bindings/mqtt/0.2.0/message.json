@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/message.json",
+  "title": "MQTT - Message Binding v0.2.0",
+  "description": "Contains information about the message representation in MQTT",
+  "examples": [
+    {
+      "bindingVersion": "0.2.0"
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "contentType": "application/json",
+      "correlationData": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "responseTopic": "application/responses"
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "contentType": "application/json",
+      "correlationData": {
+        "type": "string",
+        "format": "uuid"
+      },
+      "responseTopic": {
+        "type": "object",
+        "name": "application/responses"
+      }
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "contentType": "application/json",
+      "correlationData": {
+        "$ref": "#/correlationData"
+      },
+      "responseTopic": {
+        "$ref": "#/responseTopic"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    },
+    "contentType": {
+      "description": "String describing the content type of the message payload. This should not conflict with the contentType field of the associated AsyncAPI Message object",
+      "type": "string"
+    },
+    "correlationData": {
+      "description": "Correlation Data is used by the sender of the request message to identify which request the response message is for when it is received",
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
+    },
+    "payloadFormatIndicator": {
+      "description": "1 indicates that the payload is UTF-8 encoded character data.  0 indicates that the payload format is unspecified",
+      "default": 0,
+      "enum": [ 0, 1 ]
+    },
+    "responseTopic": {
+      "description": "The topic (channel URI) to be used for a response message",
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri-template",
+          "minLength": 1
+        },
+        {
+          "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
+        }
+      ]
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1.0.0/servers/server.json",
+  "title": "AsyncAPI v1.0.0 - Server",
+  "description": "An object representing a Server",
+  "type": "object",
+  "required": [ "url", "scheme" ],
+  "properties": {
+    "url": {
+      "description": "A URL to the target host. This URL supports Server Variables and MAY be relative, to indicate that the host location is relative to the location where the AsyncAPI document is being served. Variable substitutions will be made when a variable is named in {brackets}",
+      "type": "string"
+    },
+    "description": {
+      "description": "An optional string describing the host designated by the URL. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
+    "scheme": {
+      "description": "The transfer protocol",
+      "type": "string",
+      "enum": [
+        "kafka",
+        "kafka-secure",
+        "amqp",
+        "amqps",
+        "mqtt",
+        "mqtts",
+        "secure-mqtt",
+        "ws",
+        "wss",
+        "stomp",
+        "stomps"
+      ]
+    },
+    "schemeVersion": {
+      "description": "The version of the transfer protocol, e.g. 3.1.1 for MQTT",
+      "type": "string"
+    },
+    "variables": {
+      "description": "A key-value map where key is variable ID and value is variable representation",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariables.json"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

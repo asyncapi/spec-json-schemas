@@ -20,5 +20,7 @@ plugins:
   - preset: conventionalcommits
 - - "@semantic-release/release-notes-generator"
   - preset: conventionalcommits
-- "@semantic-release/npm"
+- - "@semantic-release/npm"
+  # The published package lives in dists/js, the root package.json is private.
+  - pkgRoot: dists/js
 - "@semantic-release/github"

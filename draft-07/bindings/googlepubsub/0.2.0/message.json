@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/googlepubsub/0.2.0/message.json",
+  "title": "Google Cloud Pub/Sub - Message Binding v0.2.0",
+  "description": "Contains information about the message representation for Google Cloud Pub/Sub",
+  "examples": [
+    {
+      "schema": {
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
+    },
+    {
+      "schema": {
+        "name": "projects/your-project-id/schemas/your-protobuf-schema-id"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "attributes": {
+      "type": "object"
+    },
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    },
+    "orderingKey": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "object",
+      "required": [ "name" ],
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

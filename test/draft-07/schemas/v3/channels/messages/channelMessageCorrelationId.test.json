@@ -1,0 +1,100 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageCorrelationId.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "description": "Incoming message correlation-id",
+        "location": "$message.payload#/correlation-id"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "description": "Incoming message correlation-id",
+        "location": "$message.header#/correlation-id",
+        "x-format": "uuid"
+      }
+    },
+    {
+      "description": "valid: location only",
+      "valid": true,
+      "data": {
+        "location": "$message.header#/correlation-id"
+      }
+    },
+    {
+      "description": "valid: payload root",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "location": "$message.header#/correlation-id",
+        "x-format": "uuid"
+      }
+    },
+    {
+      "description": "invalid: missing location",
+      "valid": false,
+      "data": {
+        "description": "Correlation id"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: location without #",
+      "valid": false,
+      "data": {
+        "location": "$message.header/correlation-id"
+      }
+    },
+    {
+      "description": "invalid: location with unknown source",
+      "valid": false,
+      "data": {
+        "location": "$message.body#/correlation-id"
+      }
+    },
+    {
+      "description": "invalid: location is not a string",
+      "valid": false,
+      "data": {
+        "location": [
+          "$message.header#/correlation-id"
+        ]
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "location": "$message.header#/correlation-id",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "location": "$message.header#/correlation-id",
+        "format": "uuid"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "$message.header#/correlation-id"
+    }
+  ]
+}

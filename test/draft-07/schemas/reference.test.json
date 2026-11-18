@@ -1,0 +1,238 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/reference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/messages/user-signedup"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "$ref": "https://catalog.lo/servers/apache-kafka-v2/events/user-signed-up"
+      }
+    },
+    {
+      "description": "valid: local pointer",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/user"
+      }
+    },
+    {
+      "description": "valid: root pointer",
+      "valid": true,
+      "data": {
+        "$ref": "#"
+      }
+    },
+    {
+      "description": "valid: http url",
+      "valid": true,
+      "data": {
+        "$ref": "http://example.com/schemas/user.json"
+      }
+    },
+    {
+      "description": "valid: http url with #/some/nested/path",
+      "valid": true,
+      "data": {
+        "$ref": "http://example.com/schemas/user.json#/some/nested/path"
+      }
+    },
+    {
+      "description": "valid: https url",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/schemas/user.json"
+      }
+    },
+    {
+      "description": "valid: https url with #/some/nested/path",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/schemas/user.json#/some/nested/path"
+      }
+    },
+    {
+      "description": "valid: file name",
+      "valid": true,
+      "data": {
+        "$ref": "user.json"
+      }
+    },
+    {
+      "description": "valid: file name with #/some/nested/path",
+      "valid": true,
+      "data": {
+        "$ref": "user.json#/some/nested/path"
+      }
+    },
+    {
+      "description": "valid: relative file",
+      "valid": true,
+      "data": {
+        "$ref": "./user.json"
+      }
+    },
+    {
+      "description": "valid: relative file with #/some/nested/path",
+      "valid": true,
+      "data": {
+        "$ref": "./user.json#/some/nested/path"
+      }
+    },
+    {
+      "description": "valid: parent file",
+      "valid": true,
+      "data": {
+        "$ref": "../user.json"
+      }
+    },
+    {
+      "description": "valid: parent file with #/some/nested/path",
+      "valid": true,
+      "data": {
+        "$ref": "../user.json#/some/nested/path"
+      }
+    },
+    {
+      "description": "valid: nested path file",
+      "valid": true,
+      "data": {
+        "$ref": "schemas/user.yaml"
+      }
+    },
+    {
+      "description": "valid: nested path file with #/some/nested/path",
+      "valid": true,
+      "data": {
+        "$ref": "schemas/user.yaml#/some/nested/path"
+      }
+    },
+    {
+      "description": "valid: parent nested path file",
+      "valid": true,
+      "data": {
+        "$ref": "../../common/schemas/user.yaml"
+      }
+    },
+    {
+      "description": "valid: parent nested path file with #/some/nested/path",
+      "valid": true,
+      "data": {
+        "$ref": "../../common/schemas/user.yaml#/some/nested/path"
+      }
+    },
+    {
+      "description": "valid: urn",
+      "valid": true,
+      "data": {
+        "$ref": "urn:example:schemas:user"
+      }
+    },
+    {
+      "description": "valid: pointer with escaped ~1 and ~0",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/a~1b~0c"
+      }
+    },
+    {
+      "description": "valid: percent-encoded space",
+      "valid": true,
+      "data": {
+        "$ref": "./my%20schemas/user.json"
+      }
+    },
+    {
+      "description": "valid: empty string (same document)",
+      "valid": true,
+      "data": {
+        "$ref": ""
+      }
+    },
+    {
+      "description": "invalid: space in reference",
+      "valid": false,
+      "data": {
+        "$ref": "./my schemas/user.json"
+      }
+    },
+    {
+      "description": "invalid: unencoded curly braces",
+      "valid": false,
+      "data": {
+        "$ref": "#/channels/users/{userId}"
+      }
+    },
+    {
+      "description": "invalid: windows path with backslashes",
+      "valid": false,
+      "data": {
+        "$ref": "..\\schemas\\user.json"
+      }
+    },
+    {
+      "description": "invalid: $ref is a number",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is an object",
+      "valid": false,
+      "data": {
+        "$ref": {
+          "$ref": "#/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: $ref is null",
+      "valid": false,
+      "data": {
+        "$ref": null
+      }
+    },
+    {
+      "description": "invalid: missing $ref",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/a",
+        "description": "user"
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "$ref": "#/a",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/components/schemas/user"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "$ref": "#/a"
+        }
+      ]
+    }
+  ]
+}

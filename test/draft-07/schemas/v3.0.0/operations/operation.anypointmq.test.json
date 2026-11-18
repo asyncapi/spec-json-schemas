@@ -1,0 +1,136 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operation.json",
+  "tests": [
+    {
+      "description": "valid: 0.0.1 example #1",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.0.1 unknown property",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": {
+            "destination": "user-signup-queue",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.0.1 is used)",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": {}
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": {
+            "$ref": "#/components/operationBindings/my-anypointmq"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": {
+            "$ref": "#/components/operationBindings/my-anypointmq",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": "anypointmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "action": "send",
+        "channel": {
+          "$ref": "#/channels/users"
+        },
+        "bindings": {
+          "anypointmq": null
+        }
+      }
+    }
+  ]
+}

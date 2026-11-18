@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/security/http/nonBearerHTTPSecuritySchema.json",
+  "title": "AsyncAPI v1 - HTTP based Authentication",
+  "description": "Contains information about HTTP based Authentication",
+  "type": "object",
+  "not": {
+    "type": "object",
+    "properties": {
+      "scheme": {
+        "description": "A short description for security scheme",
+        "type": "string",
+        "enum": [ "bearer" ]
+      }
+    }
+  },
+  "required": [ "scheme", "type" ],
+  "properties": {
+    "description": {
+      "description": "A short description for security scheme",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the security scheme",
+      "type": "string",
+      "enum": [ "http" ]
+    },
+    "scheme": {
+      "description": "The name of the HTTP Authorization scheme to be used in the Authorization header as defined in RFC7235",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-": {}
+  },
+  "additionalProperties": false
+}

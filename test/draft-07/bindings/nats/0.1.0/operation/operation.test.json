@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/nats/0.1.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "queue": "MyCustomQueue"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "x-nats-ext": "extension name",
+        "queue": "MyCustomQueue"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: latest",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: queue only",
+      "valid": true,
+      "data": {
+        "queue": "MyCustomQueue"
+      }
+    },
+    {
+      "description": "invalid: invalid queue",
+      "valid": false,
+      "data": {
+        "queue": 1
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "queue": "MyCustomQueue",
+        "subject": "orders.>"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "MyCustomQueue"
+    }
+  ]
+}

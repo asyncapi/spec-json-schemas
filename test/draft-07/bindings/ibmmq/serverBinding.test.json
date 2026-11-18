@@ -1,0 +1,67 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "groupId": "PRODCLSTR1",
+        "ccdtQueueManagerName": "*",
+        "heartBeatInterval": 1000,
+        "multiEndpointServer": false
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.1.0",
+      "valid": true,
+      "data": {
+        "groupId": "PRODCLSTR1"
+      }
+    },
+    {
+      "description": "valid: latest uses 0.1.0",
+      "valid": true,
+      "data": {
+        "groupId": "PRODCLSTR1",
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.1.0",
+      "valid": true,
+      "data": {
+        "groupId": "PRODCLSTR1",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 with invalid binding",
+      "valid": false,
+      "data": {
+        "heartBeatInterval": -1,
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.1.0 and fails",
+      "valid": false,
+      "data": {
+        "heartBeatInterval": -1
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.1.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "groupId": "PRODCLSTR1",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

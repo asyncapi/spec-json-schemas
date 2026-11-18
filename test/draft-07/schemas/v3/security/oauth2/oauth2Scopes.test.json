@@ -1,0 +1,61 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/security/oauth2/oauth2Scopes.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "write:pets": "modify pets in your account",
+        "read:pets": "read your pets"
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: empty description",
+      "valid": true,
+      "data": {
+        "read:pets": ""
+      }
+    },
+    {
+      "description": "valid: any scope name is accepted",
+      "valid": true,
+      "data": {
+        "https://graph.microsoft.com/.default": "Default scope",
+        "pets read": "read"
+      }
+    },
+    {
+      "description": "invalid: description is a number",
+      "valid": false,
+      "data": {
+        "read:pets": 1
+      }
+    },
+    {
+      "description": "invalid: description is an object",
+      "valid": false,
+      "data": {
+        "read:pets": {
+          "description": "read your pets"
+        }
+      }
+    },
+    {
+      "description": "invalid: array of scope names",
+      "valid": false,
+      "data": [
+        "read:pets"
+      ]
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "read:pets"
+    }
+  ]
+}

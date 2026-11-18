@@ -1,0 +1,123 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operations.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "user-signed-up": {
+          "$ref": "#/operations/user-signed-up"
+        },
+        "user-signed-out": {
+          "action": "receive",
+          "channel": {
+            "$ref": "#/channels/user-events.v1"
+          },
+          "reply": {
+            "$ref": "#/channels/user-events-replies.v1"
+          },
+          "externalDocs": {
+            "url": "https://docs.lo/user-events.v1"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "a": {
+          "$ref": "#/components/operations/a"
+        }
+      }
+    },
+    {
+      "description": "valid: operation",
+      "valid": true,
+      "data": {
+        "a": {
+          "action": "send",
+          "channel": {
+            "$ref": "#/channels/users"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: any key is accepted (no key pattern)",
+      "valid": true,
+      "data": {
+        "{a}": {
+          "action": "send",
+          "channel": {
+            "$ref": "#/channels/users"
+          }
+        },
+        "a b": {
+          "action": "send",
+          "channel": {
+            "$ref": "#/channels/users"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with sibling",
+      "valid": false,
+      "data": {
+        "a": {
+          "action": "send",
+          "channel": {
+            "$ref": "#/channels/users"
+          },
+          "$ref": "#/components/operations/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "a": {
+          "$ref": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid operation",
+      "valid": false,
+      "data": {
+        "a": {
+          "action": "publish",
+          "channel": {
+            "$ref": "#/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: value is a string",
+      "valid": false,
+      "data": {
+        "a": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "action": "send",
+          "channel": {
+            "$ref": "#/channels/users"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.2.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "method": "GET",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "method": "GET",
+        "query": {
+          "$ref": "#/components/requests/get-company"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: with query",
+      "valid": true,
+      "data": {
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "type": "number",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid method",
+      "valid": false,
+      "data": {
+        "method": "get"
+      }
+    },
+    {
+      "description": "invalid: invalid query",
+      "valid": false,
+      "data": {
+        "query": "companyId"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "statusCode": 200
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "GET"
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: method only",
+      "valid": true,
+      "data": {
+        "method": "POST"
+      }
+    },
+    {
+      "description": "invalid: type was removed in 0.2.0",
+      "valid": false,
+      "data": {
+        "type": "request",
+        "method": "GET"
+      }
+    }
+  ]
+}

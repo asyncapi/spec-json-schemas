@@ -1,0 +1,126 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "qosPolicies": {
+          "deadline": -1,
+          "durability": "volatile",
+          "history": "unknown",
+          "leaseDuration": -1,
+          "lifespan": -1,
+          "liveliness": "automatic",
+          "reliability": "reliable"
+        },
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "valid: with bindingVersion",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: empty qosPolicies",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "qosPolicies": {}
+      }
+    },
+    {
+      "description": "invalid: missing node",
+      "valid": false,
+      "data": {
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "invalid: missing role",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: node is not a string",
+      "valid": false,
+      "data": {
+        "node": 1,
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "invalid: invalid role",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim",
+        "role": "client"
+      }
+    },
+    {
+      "description": "invalid: invalid qosPolicies",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "qosPolicies": {
+          "reliability": "Reliable"
+        }
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "topic": "/turtle1/cmd_vel"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "/turtlesim"
+    }
+  ]
+}

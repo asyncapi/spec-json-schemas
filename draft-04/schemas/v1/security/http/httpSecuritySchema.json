@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/security/http/httpSecuritySchema.json",
+  "title": "AsyncAPI v1 - HTTP Authentication Variants",
+  "description": "Contains information about available HTTP authentication variants",
+  "oneOf": [
+    {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/security/http/nonBearerHTTPSecuritySchema.json"
+    },
+    {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/security/http/bearerHTTPSecuritySchema.json"
+    },
+    {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/security/http/apiKeyHTTPSecuritySchema.json"
+    }
+  ]
+}

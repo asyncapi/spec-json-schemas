@@ -1,0 +1,95 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.3.0/operation.json#/properties/query",
+  "tests": [
+    {
+      "description": "valid: object schema",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "required": [
+          "companyId"
+        ],
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/get-company-query"
+      }
+    },
+    {
+      "description": "valid: boolean true schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "valid: empty schema",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: non-object schema is not rejected (MUST be of type 'object' is not enforced)",
+      "valid": true,
+      "data": {
+        "type": "string"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "required": [
+          "companyId"
+        ],
+        "properties": {
+          "companyId": {
+            "type": "number",
+            "minimum": 1
+          }
+        },
+        "x-format": "custom"
+      }
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "Content-Type"
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "date"
+      }
+    },
+    {
+      "description": "invalid: nested property with unknown type",
+      "valid": false,
+      "data": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "uuid"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    }
+  ]
+}

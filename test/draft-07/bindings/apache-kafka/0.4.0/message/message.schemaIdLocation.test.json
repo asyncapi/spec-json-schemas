@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.4.0/message.json#/properties/schemaIdLocation",
+  "tests": [
+    {
+      "description": "valid: header",
+      "valid": true,
+      "data": "header"
+    },
+    {
+      "description": "valid: payload",
+      "valid": true,
+      "data": "payload"
+    },
+    {
+      "description": "invalid: capitalized Header",
+      "valid": false,
+      "data": "Header"
+    },
+    {
+      "description": "invalid: unknown location",
+      "valid": false,
+      "data": "body"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    }
+  ]
+}

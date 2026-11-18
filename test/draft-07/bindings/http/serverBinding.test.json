@@ -1,0 +1,74 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.3.0",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: latest uses 0.3.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.3.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.2.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/schema.json",
+  "tests": [
+    {
+      "description": "valid: arrays.schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/asyncapi/arrays.schema.json"
+    },
+    {
+      "description": "valid: complex-object.schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/asyncapi/complex-object.schema.json"
+    },
+    {
+      "description": "valid: conditional-validation-if-else.schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/asyncapi/conditional-validation-if-else.schema.json"
+    },
+    {
+      "description": "valid: enumerated-values.schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/asyncapi/enumerated-values.schema.json"
+    },
+    {
+      "description": "valid: person.schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/asyncapi/person.schema.json"
+    },
+    {
+      "description": "valid: regex-pattern.schema.json",
+      "valid": true,
+      "dataPath": "../../../examples/schemas/asyncapi/regex-pattern.schema.json"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/info/contact.json",
+  "title": "AsyncAPI v1 - Info Contact",
+  "description": "Contact information for the exposed API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "The identifying name of the contact person/organization",
+      "type": "string"
+    },
+    "url": {
+      "description": "The URL pointing to the contact information",
+      "type": "string",
+      "format": "uri"
+    },
+    "email": {
+      "description": "The email address of the contact person/organization",
+      "type": "string",
+      "format": "email"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

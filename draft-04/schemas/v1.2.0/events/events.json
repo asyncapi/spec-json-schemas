@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1.2.0/events/events.json",
+  "title": "AsyncAPI v1.2.0 - Events",
+  "description": "Describes the messages an events API sends and/or receives",
+  "type": "object",
+  "anyOf": [
+    {
+      "required": [ "receive" ]
+    },
+    {
+      "required": [ "send" ]
+    }
+  ],
+  "minProperties": 1,
+  "properties": {
+    "receive": {
+      "title": "Events Receive Object",
+      "description": "A list of messages the consumer receives from the API",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/messages/message.json"
+      }
+    },
+    "send": {
+      "title": "Events Send Object",
+      "description": "A list of messages the consumer can send to the API",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/messages/message.json"
+      }
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

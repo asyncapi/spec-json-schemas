@@ -1,0 +1,318 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/schema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/arrays.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/complex-object.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/conditional-validation-if-else.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/enumerated-values.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/person.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/asyncapi/regex-pattern.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #7",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/arrays.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #8",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/complex-object.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #9",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/conditional-validation-if-else.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #10",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/enumerated-values.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #11",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/person.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #12",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/regex-pattern.schema.json"
+      }
+    },
+    {
+      "description": "valid: example #13",
+      "valid": true,
+      "data": {
+        "$ref": "https://asyncapi.pavelon.dev/examples/schemas/json/draft-07-core-schema-meta-schema.json"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: true schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "valid: false schema",
+      "valid": true,
+      "data": false
+    },
+    {
+      "description": "valid: nested boolean schemas",
+      "valid": true,
+      "data": {
+        "properties": {
+          "a": true,
+          "b": false
+        },
+        "items": true
+      }
+    },
+    {
+      "description": "valid: discriminator",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "discriminator": "petType"
+      }
+    },
+    {
+      "description": "valid: externalDocs",
+      "valid": true,
+      "data": {
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/a"
+        }
+      }
+    },
+    {
+      "description": "valid: deprecated",
+      "valid": true,
+      "data": {
+        "deprecated": true
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/user"
+      }
+    },
+    {
+      "description": "valid: tuple items",
+      "valid": true,
+      "data": {
+        "items": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "integer"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: if/then/else",
+      "valid": true,
+      "data": {
+        "if": {
+          "required": [
+            "a"
+          ]
+        },
+        "then": {
+          "required": [
+            "b"
+          ]
+        },
+        "else": {
+          "required": [
+            "c"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: unknown keyword is accepted",
+      "valid": true,
+      "data": {
+        "nullable": true
+      }
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "map"
+      }
+    },
+    {
+      "description": "invalid: type array with unknown type",
+      "valid": false,
+      "data": {
+        "type": [
+          "string",
+          "map"
+        ]
+      }
+    },
+    {
+      "description": "invalid: discriminator is an object (OpenAPI style)",
+      "valid": false,
+      "data": {
+        "discriminator": {
+          "propertyName": "petType"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "description": "d"
+        }
+      }
+    },
+    {
+      "description": "invalid: deprecated is a string",
+      "valid": false,
+      "data": {
+        "deprecated": "yes"
+      }
+    },
+    {
+      "description": "invalid: empty allOf",
+      "valid": false,
+      "data": {
+        "allOf": []
+      }
+    },
+    {
+      "description": "invalid: empty anyOf",
+      "valid": false,
+      "data": {
+        "anyOf": []
+      }
+    },
+    {
+      "description": "invalid: empty oneOf",
+      "valid": false,
+      "data": {
+        "oneOf": []
+      }
+    },
+    {
+      "description": "invalid: properties is an array",
+      "valid": false,
+      "data": {
+        "properties": []
+      }
+    },
+    {
+      "description": "invalid: nested invalid schema in properties",
+      "valid": false,
+      "data": {
+        "properties": {
+          "a": {
+            "type": "map"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: nested invalid schema in items",
+      "valid": false,
+      "data": {
+        "items": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "invalid: required is not an array",
+      "valid": false,
+      "data": {
+        "required": "a"
+      }
+    },
+    {
+      "description": "invalid: minLength is negative",
+      "valid": false,
+      "data": {
+        "minLength": -1
+      }
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "string"
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/servers/servers.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "mqtt": {
+          "$ref": "#/servers/mqtt"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "secure-mqtt": {
+          "host": "{username}.gigantic-server.com:{port}/{basePath}",
+          "protocol": "secure-mqtt",
+          "protocolVersion": "5.0"
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "mqtt": {
+          "$ref": "#/servers/mqtt"
+        },
+        "secure-mqtt": {
+          "host": "{username}.gigantic-server.com:{port}/{basePath}",
+          "protocol": "secure-mqtt",
+          "protocolVersion": "5.0"
+        }
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "a": {
+          "$ref": "#/components/servers/a"
+        }
+      }
+    },
+    {
+      "description": "valid: server",
+      "valid": true,
+      "data": {
+        "a": {
+          "host": "rabbitmq.in.mycompany.com:5672",
+          "protocol": "amqp"
+        }
+      }
+    },
+    {
+      "description": "valid: any key is accepted (no key pattern)",
+      "valid": true,
+      "data": {
+        "{a}": {
+          "host": "rabbitmq.in.mycompany.com:5672",
+          "protocol": "amqp"
+        },
+        "a b": {
+          "host": "rabbitmq.in.mycompany.com:5672",
+          "protocol": "amqp"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with sibling",
+      "valid": false,
+      "data": {
+        "a": {
+          "host": "rabbitmq.in.mycompany.com:5672",
+          "protocol": "amqp",
+          "$ref": "#/components/servers/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "a": {
+          "$ref": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid server",
+      "valid": false,
+      "data": {
+        "a": {
+          "host": "x"
+        }
+      }
+    },
+    {
+      "description": "invalid: value is a string",
+      "valid": false,
+      "data": {
+        "a": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "host": "rabbitmq.in.mycompany.com:5672",
+          "protocol": "amqp"
+        }
+      ]
+    }
+  ]
+}

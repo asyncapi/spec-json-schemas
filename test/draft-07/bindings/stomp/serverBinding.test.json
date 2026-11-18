@@ -1,0 +1,77 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/stomp/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.1.0",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: latest uses 0.1.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.1.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.1.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "destination": "/queue/orders"
+      }
+    },
+    {
+      "description": "invalid: unknown property without bindingVersion",
+      "valid": false,
+      "data": {
+        "destination": "/queue/orders"
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.1.0/operation.json#/properties/qos",
+  "tests": [
+    {
+      "description": "valid: 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: 1",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "valid: 2",
+      "valid": true,
+      "data": 2
+    },
+    {
+      "description": "valid: 3 is not rejected (integer without enum, description says 0, 1 or 2)",
+      "valid": true,
+      "data": 3
+    },
+    {
+      "description": "valid: -1 is not rejected (integer without enum)",
+      "valid": true,
+      "data": -1
+    },
+    {
+      "description": "invalid: decimal number",
+      "valid": false,
+      "data": 1.5
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "1"
+    }
+  ]
+}

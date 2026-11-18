@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-pulsar/0.1.0/channel.json#/properties/persistence",
+  "tests": [
+    {
+      "description": "valid: persistent",
+      "valid": true,
+      "data": "persistent"
+    },
+    {
+      "description": "valid: non-persistent",
+      "valid": true,
+      "data": "non-persistent"
+    },
+    {
+      "description": "invalid: non_persistent",
+      "valid": false,
+      "data": "non_persistent"
+    },
+    {
+      "description": "invalid: capitalized Persistent",
+      "valid": false,
+      "data": "Persistent"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: boolean",
+      "valid": false,
+      "data": true
+    }
+  ]
+}

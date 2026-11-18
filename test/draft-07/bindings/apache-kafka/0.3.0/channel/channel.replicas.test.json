@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.3.0/channel.json#/properties/replicas",
+  "tests": [
+    {
+      "description": "valid: 1",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "valid: large value",
+      "valid": true,
+      "data": 1000000
+    },
+    {
+      "description": "invalid: below minimum",
+      "valid": false,
+      "data": 0
+    },
+    {
+      "description": "invalid: decimal number",
+      "valid": false,
+      "data": 1.5
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "1"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/ibmmq/serverBindingOrReference.json",
+  "title": "IBM MQ - Server Binding or Reference",
+  "description": "Describes protocol-specific definitions for a server or its reference",
+  "examples": [
+    {
+      "$ref": "#/bindings/ibmmq/my-ibmmq-server"
+    },
+    {
+      "bindingVersion": "0.1.0",
+      "groupId": "PRODCLSTR1",
+      "ccdtQueueManagerName": "*",
+      "heartBeatInterval": 1000,
+      "multiEndpointServer": false
+    }
+  ],
+  "type": "object",
+  "if": {
+    "required": [ "$ref" ],
+    "properties": {
+      "$ref": true
+    }
+  },
+  "then": {
+    "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+  },
+  "else": {
+    "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/serverBinding.json"
+  }
+}

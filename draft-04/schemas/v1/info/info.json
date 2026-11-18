@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/info/info.json",
+  "title": "AsyncAPI v1 - Info",
+  "description": "Provides metadata about the API. The metadata can be used by the clients if needed",
+  "type": "object",
+  "required": [ "version", "title" ],
+  "properties": {
+    "title": {
+      "description": "A unique and precise title of the API",
+      "type": "string"
+    },
+    "version": {
+      "description": "A semantic version number of the API",
+      "type": "string"
+    },
+    "description": {
+      "description": "A longer description of the API. Should be different from the title. CommonMark is allowed",
+      "type": "string"
+    },
+    "termsOfService": {
+      "description": "A URL to the Terms of Service for the API. MUST be in the format of a URL",
+      "type": "string",
+      "format": "uri"
+    },
+    "contact": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/info/contact.json"
+    },
+    "license": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/info/license.json"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

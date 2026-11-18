@@ -1,0 +1,65 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/anypointmq/serverBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/anypointmq/my-anypointmq-server"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channelBindings/my-anypointmq-queue"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/anypointmq"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/channelBindings/my-anypointmq-queue",
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/components/channelBindings/my-anypointmq-queue"
+    }
+  ]
+}

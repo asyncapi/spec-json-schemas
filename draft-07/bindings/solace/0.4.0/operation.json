@@ -1,0 +1,128 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/solace/0.4.0/operation.json",
+  "title": "Solace - Operation Binding v0.4.0",
+  "description": "Contains information about the operation representation in Solace",
+  "examples": [
+    {
+      "bindingVersion": "0.4.0",
+      "destinations": [
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "nonexclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ]
+          }
+        },
+        {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "exclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [ "samples/*" ],
+            "maxMsgSpoolUsage": "4",
+            "maxTtl": "1"
+          }
+        },
+        {
+          "destinationType": "topic",
+          "topicSubscriptions": [ "samples/*" ]
+        }
+      ],
+      "dmqEligible": true,
+      "priority": 20,
+      "timeToLive": 10
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.4.0", "latest" ]
+    },
+    "destinations": {
+      "description": "The list of Solace destinations referenced in the operation",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "properties": {
+              "destinationType": {
+                "description": "If the type is queue, then the subscriber can bind to the queue. The queue subscribes to the given topicSubscriptions. If no topicSubscriptions are provied, the queue will subscribe to the topic as represented by the channel name",
+                "const": "queue"
+              },
+              "queue": {
+                "type": "object",
+                "properties": {
+                  "accessType": {
+                    "enum": [ "exclusive", "nonexclusive" ]
+                  },
+                  "maxMsgSpoolUsage": {
+                    "description": "The maximum amount of message spool that the given queue may use",
+                    "type": "string"
+                  },
+                  "maxTtl": {
+                    "description": "The maximum TTL to apply to messages to be spooled",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "The name of the queue",
+                    "type": "string"
+                  },
+                  "topicSubscriptions": {
+                    "description": "The list of topics that the queue subscribes to",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "properties": {
+              "destinationType": {
+                "description": "If the type is topic, then the subscriber subscribes to the given topicSubscriptions. If no topicSubscriptions are provided, the client will subscribe to the topic as represented by the channel name",
+                "const": "topic"
+              },
+              "topicSubscriptions": {
+                "description": "The list of topics that the client subscribes to",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "properties": {
+          "deliveryMode": {
+            "enum": [ "direct", "persistent" ]
+          }
+        }
+      }
+    },
+    "dmqEligible": {
+      "description": "Set the message to be eligible to be moved to a Dead Message Queue. The default value is false",
+      "type": "boolean"
+    },
+    "priority": {
+      "description": "The valid priority value range is 0-255 with 0 as the lowest priority and 255 as the highest or a Schema Object containing the definition of the priority",
+      "type": "integer",
+      "maximum": 255,
+      "minimum": 0
+    },
+    "timeToLive": {
+      "description": "Interval in milliseconds or a Schema Object containing the definition of the lifetime of the message",
+      "type": "integer"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

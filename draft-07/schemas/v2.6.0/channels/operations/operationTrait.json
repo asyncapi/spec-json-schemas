@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/schemas/v2.6.0/channels/operations/operationTrait.json",
+  "title": "AsyncAPI v2.6.0 - Channel Operation Trait",
+  "description": "Describes a trait that MAY be applied to an Channel Operation",
+  "examples": [
+    {
+      "operationId": "sendMessage",
+      "summary": "Secured Send message",
+      "security": [
+        {
+          "messages": ["write:messages", "read:messages"]
+        }
+      ]
+    },
+    {
+      "operationId": "sendMessage",
+      "summary": "Send message",
+      "description": "Send message to remote server",
+      "tags": [
+        {
+          "name": "messages",
+          "description": "operations with messages",
+          "externalDocs": {
+            "description": "Messages validation rules",
+            "url": "messages/validation-rules"
+          }
+        }
+      ],
+      "externalDocs": {
+        "description": "Messages sending rules",
+        "url": "messages/sending-rules"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "summary": {
+      "description": "A short summary of what the operation is about",
+      "type": "string"
+    },
+    "description": {
+      "description": "A verbose explanation of the operation",
+      "type": "string"
+    },
+    "tags": {
+      "description": "A list of tags for logical grouping and categorization of operations",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8000/draft-07/schemas/v2/tag.json"
+      }
+    },
+    "externalDocs": {
+      "$ref": "http://localhost:8000/draft-07/schemas/v2/externalDocs.json"
+    },
+    "operationId": {
+      "description": "Unique string used to identify the operation. The id MUST be unique among all operations described in the API",
+      "type": "string"
+    },
+    "security": {
+      "description": "A declaration of which security mechanisms are associated with this operation",
+      "type": "array",
+      "items": {
+        "$ref": "http://localhost:8000/draft-07/schemas/v2/securityRequirements.json"
+      }
+    },
+    "bindings": {
+      "$ref": "http://localhost:8000/draft-07/schemas/v2.6.0/operationBindings.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

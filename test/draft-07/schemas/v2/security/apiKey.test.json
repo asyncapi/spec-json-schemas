@@ -1,0 +1,135 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/security/apiKey.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "user"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "password",
+        "description": "Simple security mechanism that uses a unique, long-lived alphanumeric string to identify and authorize an application or project making a request to an API"
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "user"
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: missing in",
+      "valid": false,
+      "data": {
+        "type": "apiKey"
+      }
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType",
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "APIkEY",
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: in header (httpApiKey location)",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: in is not a string",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": 1
+      }
+    },
+    {
+      "description": "invalid: name is not allowed (httpApiKey field)",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "name": "api_key"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "apiKey"
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/messageBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "key": {
+          "$ref": "path/to/user-create.avsc#/UserCreate"
+        },
+        "schemaIdLocation": "payload",
+        "schemaIdPayloadEncoding": "4"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "key": {
+          "$ref": "path/to/user-create.avsc#/UserCreate"
+        },
+        "schemaIdLocation": "payload",
+        "schemaIdPayloadEncoding": "4"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        },
+        "schemaIdLocation": "header",
+        "schemaIdPayloadEncoding": "apicurio-new",
+        "schemaLookupStrategy": "TopicIdStrategy"
+      }
+    },
+    {
+      "description": "valid: empty object uses 0.5.0",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: Avro key with 0.4.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "key": {
+          "type": "record",
+          "name": "Key",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: Avro key with 0.5.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "key": {
+          "type": "record",
+          "name": "Key",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: Avro key without bindingVersion uses 0.5.0",
+      "valid": false,
+      "data": {
+        "key": {
+          "type": "record",
+          "name": "Key",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: Avro key with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "key": {
+          "type": "record",
+          "name": "Key",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: schemaIdLocation with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "schemaIdLocation": "payload"
+      }
+    },
+    {
+      "description": "valid: schemaIdLocation with 0.3.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "schemaIdLocation": "payload"
+      }
+    },
+    {
+      "description": "invalid: bindingVersion 0.2.0 falls back to 0.5.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.5.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myKey"
+    }
+  ]
+}

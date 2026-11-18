@@ -1,0 +1,78 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/channel.json#/properties/queue",
+  "tests": [
+    {
+      "description": "valid: objectName only",
+      "valid": true,
+      "data": {
+        "objectName": "myQueueName"
+      }
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "objectName": "myQueueName",
+        "exclusive": true,
+        "isPartitioned": false
+      }
+    },
+    {
+      "description": "valid: objectName of 48 characters",
+      "valid": true,
+      "data": {
+        "objectName": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "objectName": "myQueueName",
+        "maxDepth": 5000
+      }
+    },
+    {
+      "description": "invalid: missing objectName",
+      "valid": false,
+      "data": {
+        "exclusive": true
+      }
+    },
+    {
+      "description": "invalid: objectName longer than 48 characters",
+      "valid": false,
+      "data": {
+        "objectName": "QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ"
+      }
+    },
+    {
+      "description": "invalid: objectName is not a string",
+      "valid": false,
+      "data": {
+        "objectName": 1
+      }
+    },
+    {
+      "description": "invalid: exclusive is not a boolean",
+      "valid": false,
+      "data": {
+        "objectName": "myQueueName",
+        "exclusive": "true"
+      }
+    },
+    {
+      "description": "invalid: isPartitioned is not a boolean",
+      "valid": false,
+      "data": {
+        "objectName": "myQueueName",
+        "isPartitioned": 1
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myQueueName"
+    }
+  ]
+}

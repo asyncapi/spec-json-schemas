@@ -1,0 +1,117 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.2.0/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "headers": {
+          "$ref": "#/http/headers/json-content-type"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: headers only",
+      "valid": true,
+      "data": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
+            }
+          }
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid headers",
+      "valid": false,
+      "data": {
+        "headers": "Content-Type"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
+            }
+          }
+        },
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "Content-Type"
+    },
+    {
+      "description": "invalid: statusCode is only defined from 0.3.0",
+      "valid": false,
+      "data": {
+        "statusCode": 200
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.2.0/operation.json#/properties/method",
+  "tests": [
+    {
+      "description": "valid: GET",
+      "valid": true,
+      "data": "GET"
+    },
+    {
+      "description": "valid: PUT",
+      "valid": true,
+      "data": "PUT"
+    },
+    {
+      "description": "valid: POST",
+      "valid": true,
+      "data": "POST"
+    },
+    {
+      "description": "valid: PATCH",
+      "valid": true,
+      "data": "PATCH"
+    },
+    {
+      "description": "valid: DELETE",
+      "valid": true,
+      "data": "DELETE"
+    },
+    {
+      "description": "valid: HEAD",
+      "valid": true,
+      "data": "HEAD"
+    },
+    {
+      "description": "valid: OPTIONS",
+      "valid": true,
+      "data": "OPTIONS"
+    },
+    {
+      "description": "valid: CONNECT",
+      "valid": true,
+      "data": "CONNECT"
+    },
+    {
+      "description": "valid: TRACE",
+      "valid": true,
+      "data": "TRACE"
+    },
+    {
+      "description": "invalid: lowercase get",
+      "valid": false,
+      "data": "get"
+    },
+    {
+      "description": "invalid: unknown method LINK",
+      "valid": false,
+      "data": "LINK"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        "GET"
+      ]
+    }
+  ]
+}

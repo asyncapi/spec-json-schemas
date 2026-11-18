@@ -7,7 +7,7 @@ on:
 
     paths:
      # Monitor changes in this v3 file
-      - schemas/3.0.0-without-$id.json
+      - dists/schemas/3.0.0-without-$id.json
 
 jobs:
   sync-schema:
@@ -25,7 +25,7 @@ jobs:
 
       - name: Copy version 3 Schema File
         run: |
-          cp schemas/3.0.0-without-\$id.json website/config/3.0.0.json
+          cp dists/schemas/3.0.0-without-\$id.json website/config/3.0.0.json
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@4e1beaa7521e8b457b572c090b25bd3db56bf1c5 # use 5 https://github.com/peter-evans/create-pull-request/releases/tag/v5

@@ -1,0 +1,137 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.4.0/channels/parameter.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#/user/id"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "description": "Id of the user",
+        "schema": {
+          "type": "string"
+        },
+        "location": "$message.payload#/user/id"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: location",
+      "valid": true,
+      "data": {
+        "location": "$message.payload#/user/id"
+      }
+    },
+    {
+      "description": "valid: string is accepted (no type: object)",
+      "valid": true,
+      "data": "userId"
+    },
+    {
+      "description": "valid: number is accepted (no type: object)",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "invalid: schema with invalid type",
+      "valid": false,
+      "data": {
+        "schema": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "invalid: schema is a boolean",
+      "valid": false,
+      "data": {
+        "schema": true
+      }
+    },
+    {
+      "description": "invalid: location without #",
+      "valid": false,
+      "data": {
+        "location": "$message.payload/id"
+      }
+    },
+    {
+      "description": "invalid: location is not a string",
+      "valid": false,
+      "data": {
+        "location": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "description": 1
+      }
+    },
+    {
+      "description": "valid: $ref property holding a Reference Object (defined as reference.json, removed in 2.5.0)",
+      "valid": true,
+      "data": {
+        "$ref": {
+          "$ref": "#/components/parameters/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: $ref property as a string (it expects a Reference Object)",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/parameters/a"
+      }
+    },
+    {
+      "description": "invalid: enum is not allowed (v3 field)",
+      "valid": false,
+      "data": {
+        "enum": [
+          "a"
+        ]
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "schema": {
+          "type": "string"
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "schema": {
+          "type": "string"
+        },
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "schema": {
+          "type": "string"
+        },
+        "enum": "x"
+      }
+    }
+  ]
+}

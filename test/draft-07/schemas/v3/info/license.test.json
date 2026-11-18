@@ -1,0 +1,83 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/info/license.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "name": "The MIT License"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "name": "The MIT License",
+        "url": "https://mit-license.org"
+      }
+    },
+    {
+      "description": "valid: any license name is accepted (no SPDX check)",
+      "valid": true,
+      "data": {
+        "name": "My own license"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "Apache 2.0",
+        "x-spdx": "Apache-2.0"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "url": "https://mit-license.org"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: url is relative",
+      "valid": false,
+      "data": {
+        "name": "The MIT License",
+        "url": "LICENSE"
+      }
+    },
+    {
+      "description": "invalid: url is not a string",
+      "valid": false,
+      "data": {
+        "name": "The MIT License",
+        "url": true
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "The MIT License",
+        "identifier": "MIT"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "MIT"
+    }
+  ]
+}

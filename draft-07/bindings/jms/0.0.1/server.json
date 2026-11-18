@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json",
+  "title": "JMS - Server Binding v0.0.1",
+  "description": "Contains configuration for describing a JMS broker",
+  "examples": [
+    {
+      "properties": [
+        {
+          "name": "disableTimeStampsByDefault",
+          "value": false
+        }
+      ],
+      "bindingVersion": "0.0.1",
+      "clientID": "my-application-1",
+      "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+    }
+  ],
+  "type": "object",
+  "required": [ "jmsConnectionFactory" ],
+  "properties": {
+    "properties": {
+      "description": "Additional properties to set on the JMS ConnectionFactory implementation for the JMS Provider",
+      "type": "array",
+      "items": {
+        "$ref": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json#/definitions/property"
+      }
+    },
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.0.1", "latest" ]
+    },
+    "clientID": {
+      "description": "A client identifier for applications that use this JMS connection factory. If the Client ID Policy is set to 'Restricted' (the default), then configuring a Client ID on the ConnectionFactory prevents more than one JMS client from using a connection from this factory",
+      "type": "string"
+    },
+    "jmsConnectionFactory": {
+      "description": "The classname of the ConnectionFactory implementation for the JMS Provider",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "property": {
+      "type": "object",
+      "required": [ "name", "value" ],
+      "properties": {
+        "name": {
+          "description": "The name of a property",
+          "type": "string"
+        },
+        "value": {
+          "description": "The name of a property",
+          "type": [ "string", "boolean", "number", "null" ]
+        }
+      }
+    }
+  }
+}

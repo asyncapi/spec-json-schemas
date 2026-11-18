@@ -1,0 +1,79 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "cipherSpec": "ANY_TLS12_OR_HIGHER",
+        "groupId": "PRODCLSTR1"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "groupId": "PRODCLSTR1",
+        "ccdtQueueManagerName": "*",
+        "heartBeatInterval": 1000,
+        "multiEndpointServer": false
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "groupId": "PRODCLSTR1",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: groupId is not a string",
+      "valid": false,
+      "data": {
+        "groupId": 1
+      }
+    },
+    {
+      "description": "invalid: ccdtQueueManagerName is not a string",
+      "valid": false,
+      "data": {
+        "ccdtQueueManagerName": 1
+      }
+    },
+    {
+      "description": "invalid: cipherSpec is not a string",
+      "valid": false,
+      "data": {
+        "cipherSpec": true
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "groupId": "PRODCLSTR1",
+        "queueManager": "QM1"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "PRODCLSTR1"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/channelBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "destinationType": "topic",
+        "topic": {
+          "durablePermitted": true,
+          "lastMsgRetained": false,
+          "objectName": "myTopicName",
+          "string": "key"
+        }
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.1.0",
+      "valid": true,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "objectName": "myQueueName"
+        }
+      }
+    },
+    {
+      "description": "valid: latest uses 0.1.0",
+      "valid": true,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "objectName": "myQueueName"
+        },
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.1.0",
+      "valid": true,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "objectName": "myQueueName"
+        },
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 with invalid binding",
+      "valid": false,
+      "data": {
+        "destinationType": "queue",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.1.0 and fails",
+      "valid": false,
+      "data": {
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.1.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "objectName": "myQueueName"
+        },
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

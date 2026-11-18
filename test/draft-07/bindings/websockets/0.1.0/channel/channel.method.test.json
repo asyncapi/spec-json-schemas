@@ -1,0 +1,37 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/websockets/0.1.0/channel.json#/properties/method",
+  "tests": [
+    {
+      "description": "valid: GET",
+      "valid": true,
+      "data": "GET"
+    },
+    {
+      "description": "valid: POST",
+      "valid": true,
+      "data": "POST"
+    },
+    {
+      "description": "invalid: lowercase get",
+      "valid": false,
+      "data": "get"
+    },
+    {
+      "description": "invalid: PUT",
+      "valid": false,
+      "data": "PUT"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        "GET"
+      ]
+    }
+  ]
+}

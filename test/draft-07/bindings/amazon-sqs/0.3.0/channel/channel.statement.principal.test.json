@@ -1,0 +1,101 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/statement/properties/principal",
+  "tests": [
+    {
+      "description": "valid: principal as a string",
+      "valid": true,
+      "data": "*"
+    },
+    {
+      "description": "valid: AWS as a string",
+      "valid": true,
+      "data": {
+        "AWS": "arn:aws:iam::123456789012:user/dec.kolakowski"
+      }
+    },
+    {
+      "description": "valid: AWS as an array of strings",
+      "valid": true,
+      "data": {
+        "AWS": [
+          "arn:aws:iam::123456789012:user/dec.kolakowski",
+          "arn:aws:iam::210987654321:root"
+        ]
+      }
+    },
+    {
+      "description": "valid: Service as a string",
+      "valid": true,
+      "data": {
+        "Service": "sns.amazonaws.com"
+      }
+    },
+    {
+      "description": "valid: Service as an array of strings",
+      "valid": true,
+      "data": {
+        "Service": [
+          "sns.amazonaws.com",
+          "events.amazonaws.com"
+        ]
+      }
+    },
+    {
+      "description": "invalid: principal as an array of strings (removed in 0.3.0)",
+      "valid": false,
+      "data": [
+        "*"
+      ]
+    },
+    {
+      "description": "invalid: AWS and Service together",
+      "valid": false,
+      "data": {
+        "AWS": "arn:aws:iam::123456789012:user/dec.kolakowski",
+        "Service": "sns.amazonaws.com"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: unknown principal type",
+      "valid": false,
+      "data": {
+        "Federated": "cognito-identity.amazonaws.com"
+      }
+    },
+    {
+      "description": "invalid: AWS with unknown property",
+      "valid": false,
+      "data": {
+        "AWS": "arn:aws:iam::123456789012:user/dec.kolakowski",
+        "x-note": "user"
+      }
+    },
+    {
+      "description": "invalid: AWS as a number",
+      "valid": false,
+      "data": {
+        "AWS": 123456789012
+      }
+    },
+    {
+      "description": "invalid: Service as an array with a non string item",
+      "valid": false,
+      "data": {
+        "Service": [
+          "sns.amazonaws.com",
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

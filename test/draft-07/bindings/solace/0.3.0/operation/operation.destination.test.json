@@ -1,0 +1,185 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/0.3.0/operation.json#/properties/destinations/items",
+  "tests": [
+    {
+      "description": "valid: queue destination",
+      "valid": true,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "accessType": "nonexclusive",
+          "name": "sampleQueue",
+          "topicSubscriptions": [
+            "samples/*"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: topic destination",
+      "valid": true,
+      "data": {
+        "destinationType": "topic",
+        "topicSubscriptions": [
+          "samples/*"
+        ]
+      }
+    },
+    {
+      "description": "valid: queue without queue object",
+      "valid": true,
+      "data": {
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "valid: topic without topicSubscriptions",
+      "valid": true,
+      "data": {
+        "destinationType": "topic"
+      }
+    },
+    {
+      "description": "valid: with deliveryMode direct",
+      "valid": true,
+      "data": {
+        "destinationType": "topic",
+        "topicSubscriptions": [
+          "samples/*"
+        ],
+        "deliveryMode": "direct"
+      }
+    },
+    {
+      "description": "valid: with deliveryMode persistent",
+      "valid": true,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "accessType": "nonexclusive",
+          "name": "sampleQueue",
+          "topicSubscriptions": [
+            "samples/*"
+          ]
+        },
+        "deliveryMode": "persistent"
+      }
+    },
+    {
+      "description": "valid: topic with queue object (queue branch is not checked)",
+      "valid": true,
+      "data": {
+        "destinationType": "topic",
+        "topicSubscriptions": [
+          "samples/*"
+        ],
+        "queue": {
+          "name": "q"
+        }
+      }
+    },
+    {
+      "description": "valid: queue with non-string topicSubscriptions (topic branch is not checked)",
+      "valid": true,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "accessType": "nonexclusive",
+          "name": "sampleQueue",
+          "topicSubscriptions": [
+            "samples/*"
+          ]
+        },
+        "topicSubscriptions": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "destinationType": "topic",
+        "topicSubscriptions": [
+          "samples/*"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "description": "invalid: empty object (matches both oneOf branches)",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: queue object without destinationType (matches both oneOf branches)",
+      "valid": false,
+      "data": {
+        "queue": {
+          "accessType": "nonexclusive",
+          "name": "sampleQueue",
+          "topicSubscriptions": [
+            "samples/*"
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: topicSubscriptions without destinationType (matches both oneOf branches)",
+      "valid": false,
+      "data": {
+        "topicSubscriptions": [
+          "a"
+        ]
+      }
+    },
+    {
+      "description": "invalid: deliveryMode only (matches both oneOf branches)",
+      "valid": false,
+      "data": {
+        "deliveryMode": "direct"
+      }
+    },
+    {
+      "description": "invalid: unknown destinationType",
+      "valid": false,
+      "data": {
+        "destinationType": "stream"
+      }
+    },
+    {
+      "description": "invalid: invalid deliveryMode",
+      "valid": false,
+      "data": {
+        "destinationType": "topic",
+        "topicSubscriptions": [
+          "samples/*"
+        ],
+        "deliveryMode": "guaranteed"
+      }
+    },
+    {
+      "description": "invalid: topic with non-string topicSubscriptions",
+      "valid": false,
+      "data": {
+        "destinationType": "topic",
+        "topicSubscriptions": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: topicSubscriptions is not an array",
+      "valid": false,
+      "data": {
+        "destinationType": "topic",
+        "topicSubscriptions": "samples/*"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "queue"
+    }
+  ]
+}

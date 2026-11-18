@@ -1,0 +1,525 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/channels/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "title": "Users channel",
+        "summary": "Messages about user events",
+        "description": "This channel is used to exchange messages about users signing up",
+        "externalDocs": {
+          "$ref": "#/docs/user-events"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "title": "Users channel",
+        "summary": "Messages about user events",
+        "description": "This channel is used to exchange messages about users signing up",
+        "parameters": {
+          "userId": {
+            "description": "Id of the user",
+            "default": "0e822ca6-5311-4d4c-b409-993a1820e689",
+            "examples": [
+              "0e822ca6-5311-4d4c-b409-993a1820e689",
+              "381f5ddc-75c6-4c21-9ec1-3919ed345be9",
+              "70559d88-31a5-4ef2-8c34-7fbd04057ed5",
+              "c6dc0047-a90d-4efa-95e3-a272282934e0"
+            ],
+            "location": "$message.payload#/user/id",
+            "x-format": "uuid"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "title": "Users channel",
+        "summary": "Messages about user events",
+        "description": "This channel is used to exchange messages about users signing up",
+        "servers": [
+          {
+            "$ref": "#/servers/apache-pulsar"
+          },
+          {
+            "$ref": "#/servers/wss"
+          }
+        ],
+        "tags": [
+          {
+            "$ref": "#/tags/user.events"
+          },
+          {
+            "name": "secured-api",
+            "description": "Groups secured APIs"
+          }
+        ],
+        "externalDocs": {
+          "url": "https://docs.lo/user-events"
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "title": "Users channel",
+        "summary": "Messages about user events",
+        "description": "This channel is used to exchange messages about users signing up",
+        "messages": {
+          "user.signedUp": {
+            "$ref": "#/components/user.signedUp"
+          },
+          "metric-message": {
+            "contentType": "application/json",
+            "name": "application-metric.v3",
+            "title": "Application Metric record v3",
+            "summary": "Use it to register single application metric",
+            "description": "Represent registrable application metric e.g. number of incoming messages",
+            "headers": {
+              "schemaFormat": "application/schema+json;version=draft-07",
+              "schema": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "type": "object",
+                "properties": {
+                  "correlation-id": {
+                    "description": "Incoming message correlation-id",
+                    "type": "string",
+                    "examples": [
+                      "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: empty object (no required fields)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: address is null (unknown address)",
+      "valid": true,
+      "data": {
+        "address": null
+      }
+    },
+    {
+      "description": "valid: empty address is accepted",
+      "valid": true,
+      "data": {
+        "address": ""
+      }
+    },
+    {
+      "description": "valid: messages map",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "messages": {
+          "a": {
+            "payload": {
+              "type": "string"
+            }
+          },
+          "b": {
+            "$ref": "#/components/messages/b"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: message with invalid payload",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "messages": {
+          "a": {
+            "payload": true
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: messages is an array (v3 uses a map)",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "messages": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: parameters",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "parameters": {
+          "userId": {
+            "location": "$message.payload#/user/id"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: parameter with invalid location",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "parameters": {
+          "userId": {
+            "location": "payload#/id"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: parameter with schema (v2 field)",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "parameters": {
+          "userId": {
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: servers references",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "servers": [
+          {
+            "$ref": "#/servers/a"
+          },
+          {
+            "$ref": "#/servers/b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: empty servers",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "servers": []
+      }
+    },
+    {
+      "description": "invalid: duplicated servers",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "servers": [
+          {
+            "$ref": "#/servers/a"
+          },
+          {
+            "$ref": "#/servers/a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: server name instead of reference (v2 style)",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "servers": [
+          "a"
+        ]
+      }
+    },
+    {
+      "description": "invalid: inline server",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "servers": [
+          {
+            "host": "rabbitmq.in.mycompany.com:5672",
+            "protocol": "amqp"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: address is a number",
+      "valid": false,
+      "data": {
+        "address": 1
+      }
+    },
+    {
+      "description": "invalid: title is not a string",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "title": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: publish is not allowed (v2 field)",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "publish": {
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: subscribe is not allowed (v2 field)",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "subscribe": {
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: tags with reference and tag",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "tags": [
+          {
+            "$ref": "#/components/tags/a"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated tags",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "tags": [
+          {
+            "name": "b"
+          },
+          {
+            "name": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: tag without name",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "tags": [
+          {
+            "description": "b"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: externalDocs reference",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/docs"
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs object",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "externalDocs": {
+          "url": "https://docs.lo"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: bindings with x- extension",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "x-custom": {
+            "any": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: bindings reference per protocol",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings as a reference (only per protocol)",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "$ref": "#/components/bindings/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown protocol in bindings",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "unknown": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": []
+      }
+    },
+    {
+      "description": "valid: ros2 binding",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "name": "x"
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "$ref": "#/components/x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "address": "users.{userId}"
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}

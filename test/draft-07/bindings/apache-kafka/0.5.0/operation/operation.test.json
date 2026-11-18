@@ -1,0 +1,101 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.5.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "clientId": {
+          "type": "string",
+          "enum": [
+            "myClientId"
+          ]
+        },
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: groupId and clientId",
+      "valid": true,
+      "data": {
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        },
+        "clientId": {
+          "type": "string",
+          "enum": [
+            "myClientId"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid groupId",
+      "valid": false,
+      "data": {
+        "groupId": "myGroupId"
+      }
+    },
+    {
+      "description": "invalid: invalid clientId",
+      "valid": false,
+      "data": {
+        "clientId": {
+          "type": "date"
+        }
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "groupId": {
+          "type": "string",
+          "enum": [
+            "myGroupId"
+          ]
+        },
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myGroupId"
+    }
+  ]
+}

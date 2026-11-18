@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/channel.json#/definitions/statement/properties/effect",
+  "tests": [
+    {
+      "description": "valid: Allow",
+      "valid": true,
+      "data": "Allow"
+    },
+    {
+      "description": "valid: Deny",
+      "valid": true,
+      "data": "Deny"
+    },
+    {
+      "description": "invalid: lower case allow",
+      "valid": false,
+      "data": "allow"
+    },
+    {
+      "description": "invalid: unknown effect",
+      "valid": false,
+      "data": "Permit"
+    },
+    {
+      "description": "invalid: boolean",
+      "valid": false,
+      "data": true
+    }
+  ]
+}

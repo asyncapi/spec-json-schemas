@@ -1,0 +1,61 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/channel.json#/definitions/ordering",
+  "tests": [
+    {
+      "description": "valid: type only",
+      "valid": true,
+      "data": {
+        "type": "standard"
+      }
+    },
+    {
+      "description": "valid: with contentBasedDeduplication",
+      "valid": true,
+      "data": {
+        "type": "FIFO",
+        "contentBasedDeduplication": true
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "FIFO",
+        "x-throughput": "high"
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "type": "FIFO",
+        "deduplicationScope": "messageGroup"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "contentBasedDeduplication": true
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: contentBasedDeduplication is not a boolean",
+      "valid": false,
+      "data": {
+        "type": "FIFO",
+        "contentBasedDeduplication": "true"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "FIFO"
+    }
+  ]
+}

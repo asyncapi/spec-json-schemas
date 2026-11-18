@@ -1,0 +1,74 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1.2.0/topics/parameters/parameter.json",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "description": "City name, e.g. Yerevan",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "x-format": "slug"
+      }
+    },
+    {
+      "description": "valid: non object value is not validated (no type)",
+      "valid": true,
+      "data": "city"
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/parameters/city"
+      }
+    },
+    {
+      "description": "invalid: $ref is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: schema with unknown keyword",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "schema": {
+          "type": "string",
+          "foo": "bar"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "in": "path"
+      }
+    }
+  ]
+}

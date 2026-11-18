@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json#/properties/qosPolicies/properties/liveliness",
+  "tests": [
+    {
+      "description": "valid: automatic",
+      "valid": true,
+      "data": "automatic"
+    },
+    {
+      "description": "valid: manual",
+      "valid": true,
+      "data": "manual"
+    },
+    {
+      "description": "invalid: manual_by_topic",
+      "valid": false,
+      "data": "manual_by_topic"
+    },
+    {
+      "description": "invalid: Automatic",
+      "valid": false,
+      "data": "Automatic"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

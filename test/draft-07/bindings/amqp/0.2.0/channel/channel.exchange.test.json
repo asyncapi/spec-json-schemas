@@ -1,0 +1,99 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.2.0/channel.json#/properties/exchange",
+  "tests": [
+    {
+      "description": "valid: empty object (no required properties)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "name": "myExchange",
+        "type": "topic",
+        "durable": true,
+        "autoDelete": false,
+        "vhost": "/"
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "name": "myExchange",
+        "type": "topic",
+        "durable": true,
+        "autoDelete": false,
+        "internal": true
+      }
+    },
+    {
+      "description": "invalid: invalid type",
+      "valid": false,
+      "data": {
+        "name": "myExchange",
+        "type": "Topic",
+        "durable": true,
+        "autoDelete": false
+      }
+    },
+    {
+      "description": "invalid: durable is not a boolean",
+      "valid": false,
+      "data": {
+        "name": "myExchange",
+        "type": "topic",
+        "durable": "true",
+        "autoDelete": false
+      }
+    },
+    {
+      "description": "invalid: autoDelete is not a boolean",
+      "valid": false,
+      "data": {
+        "name": "myExchange",
+        "type": "topic",
+        "durable": true,
+        "autoDelete": 0
+      }
+    },
+    {
+      "description": "invalid: invalid name",
+      "valid": false,
+      "data": {
+        "name": 1,
+        "type": "topic",
+        "durable": true,
+        "autoDelete": false
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myExchange"
+    },
+    {
+      "description": "valid: custom vhost",
+      "valid": true,
+      "data": {
+        "name": "myExchange",
+        "type": "topic",
+        "durable": true,
+        "autoDelete": false,
+        "vhost": "/staging"
+      }
+    },
+    {
+      "description": "invalid: vhost is not a string",
+      "valid": false,
+      "data": {
+        "name": "myExchange",
+        "type": "topic",
+        "durable": true,
+        "autoDelete": false,
+        "vhost": 1
+      }
+    }
+  ]
+}

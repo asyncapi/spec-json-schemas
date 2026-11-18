@@ -1,0 +1,117 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "deduplicationScope": "messageGroup",
+            "deliveryDelay": 10,
+            "fifoQueue": true,
+            "fifoThroughputLimit": "perMessageGroupId",
+            "name": "myQueue",
+            "policy": {
+              "statements": [
+                {
+                  "action": [
+                    "sqs:SendMessage",
+                    "sqs:ReceiveMessage"
+                  ],
+                  "effect": "Deny",
+                  "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                  "condition": {
+                    "ArnEquals": {
+                      "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:myQueue"
+                    }
+                  }
+                }
+              ]
+            },
+            "redrivePolicy": {
+              "deadLetterQueue": {
+                "name": "myQueue_error"
+              },
+              "maxReceiveCount": 15
+            }
+          },
+          {
+            "deliveryDelay": 10,
+            "name": "myQueue_error"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: queues only",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue"
+          }
+        ],
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: missing queues",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue"
+          }
+        ],
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue"
+          }
+        ],
+        "queue": {
+          "name": "myQueue"
+        }
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "name": "myQueue"
+        }
+      ]
+    }
+  ]
+}

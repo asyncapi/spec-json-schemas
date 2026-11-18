@@ -1,0 +1,84 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/channelBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/amazon-sqs/my-sqs-queue"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "queue": {
+          "fifoQueue": true,
+          "name": "my-sqs-queue"
+        },
+        "deadLetterQueue": {
+          "fifoQueue": true,
+          "deliveryDelay": 0,
+          "messageRetentionPeriod": 604800,
+          "name": "my-sqs-queue.dlq",
+          "receiveMessageWaitTime": 0,
+          "visibilityTimeout": 0
+        },
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channelBindings/my-sqs-queue"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/amazon-sqs"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "queue": {
+          "name": "myQueue",
+          "fifoQueue": false
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/channelBindings/my-sqs-queue",
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "queue": {
+          "name": "myQueue"
+        }
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/components/channelBindings/my-sqs-queue"
+    }
+  ]
+}

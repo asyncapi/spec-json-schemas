@@ -1,0 +1,113 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/security/sasl/saslScramSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "scramSha256",
+        "description": "SCRAM-SHA-256"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "scramSha512",
+        "description": "SCRAM-SHA-512"
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "scramSha256"
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "scramSha256",
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "scramSha256",
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "valid: scramSha512",
+      "valid": true,
+      "data": {
+        "type": "scramSha512"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType"
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "SCRAMsHA256"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "scramSha256",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "scramSha256",
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "scramSha256",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: scramSha1 is not supported",
+      "valid": false,
+      "data": {
+        "type": "scramSha1"
+      }
+    },
+    {
+      "description": "invalid: scram written as in RFC (SCRAM-SHA-256)",
+      "valid": false,
+      "data": {
+        "type": "SCRAM-SHA-256"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "scramSha256"
+    }
+  ]
+}

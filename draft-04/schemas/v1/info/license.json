@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/info/license.json",
+  "title": "AsyncAPI v1 - Info License",
+  "description": "License information for the exposed API",
+  "type": "object",
+  "required": [ "name" ],
+  "properties": {
+    "name": {
+      "description": "The name of the license type. It's encouraged to use an OSI compatible license",
+      "type": "string"
+    },
+    "url": {
+      "description": "The URL pointing to the license",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

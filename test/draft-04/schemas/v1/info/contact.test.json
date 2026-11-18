@@ -1,0 +1,76 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/info/contact.json",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: name only",
+      "valid": true,
+      "data": {
+        "name": "Weather Forecast"
+      }
+    },
+    {
+      "description": "valid: email only",
+      "valid": true,
+      "data": {
+        "email": "feedback@weather-forecast.am"
+      }
+    },
+    {
+      "description": "valid: url only",
+      "valid": true,
+      "data": {
+        "url": "https://weather-forecast.am"
+      }
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "name": "Weather Forecast",
+        "email": "feedback@weather-forecast.am",
+        "url": "https://weather-forecast.am"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "Weather Forecast",
+        "x-team": "forecast"
+      }
+    },
+    {
+      "description": "invalid: email is not an email",
+      "valid": false,
+      "data": {
+        "email": "not-an-email"
+      }
+    },
+    {
+      "description": "invalid: url is not a uri",
+      "valid": false,
+      "data": {
+        "url": "not a uri"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "phone": "+374 00 000000"
+      }
+    }
+  ]
+}

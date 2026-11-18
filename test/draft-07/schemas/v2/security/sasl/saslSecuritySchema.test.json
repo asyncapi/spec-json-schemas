@@ -1,0 +1,76 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/security/sasl/saslSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "gssapi",
+        "description": "SASL GSSAPI"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "plain",
+        "description": "SASL/PLAIN"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "type": "scramSha256",
+        "description": "SCRAM-SHA-256"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "type": "scramSha512",
+        "description": "SCRAM-SHA-512"
+      }
+    },
+    {
+      "description": "invalid: scramSha1",
+      "valid": false,
+      "data": {
+        "type": "scramSha1"
+      }
+    },
+    {
+      "description": "invalid: oauthbearer is not supported",
+      "valid": false,
+      "data": {
+        "type": "oauthbearer"
+      }
+    },
+    {
+      "description": "invalid: plain with unknown property",
+      "valid": false,
+      "data": {
+        "type": "plain",
+        "username": "guest"
+      }
+    },
+    {
+      "description": "invalid: other security type",
+      "valid": false,
+      "data": {
+        "type": "userPassword"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "plain"
+    }
+  ]
+}

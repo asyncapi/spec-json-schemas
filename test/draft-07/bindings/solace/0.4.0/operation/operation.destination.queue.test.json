@@ -1,0 +1,90 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/0.4.0/operation.json#/properties/destinations/items/oneOf/0/properties/queue",
+  "tests": [
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "accessType": "nonexclusive",
+        "name": "sampleQueue",
+        "topicSubscriptions": [
+          "samples/*"
+        ]
+      }
+    },
+    {
+      "description": "valid: empty object (no required properties)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: exclusive",
+      "valid": true,
+      "data": {
+        "accessType": "exclusive"
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "accessType": "nonexclusive",
+        "name": "sampleQueue",
+        "topicSubscriptions": [
+          "samples/*"
+        ],
+        "durable": true
+      }
+    },
+    {
+      "description": "invalid: invalid accessType",
+      "valid": false,
+      "data": {
+        "accessType": "shared"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: topicSubscription is not a string",
+      "valid": false,
+      "data": {
+        "topicSubscriptions": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "sampleQueue"
+    },
+    {
+      "description": "valid: maxMsgSpoolUsage and maxTtl strings",
+      "valid": true,
+      "data": {
+        "maxMsgSpoolUsage": "4",
+        "maxTtl": "1"
+      }
+    },
+    {
+      "description": "invalid: maxMsgSpoolUsage is a number",
+      "valid": false,
+      "data": {
+        "maxMsgSpoolUsage": 4
+      }
+    },
+    {
+      "description": "invalid: maxTtl is a number",
+      "valid": false,
+      "data": {
+        "maxTtl": 1
+      }
+    }
+  ]
+}

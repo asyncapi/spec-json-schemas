@@ -1,0 +1,84 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/security/sasl/saslPlainSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "plain",
+        "description": "SASL/PLAIN"
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "plain"
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "plain",
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "plain",
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType"
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "PLAIN"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "plain",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "plain",
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "plain",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "plain"
+    }
+  ]
+}

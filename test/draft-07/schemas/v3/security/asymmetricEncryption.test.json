@@ -1,0 +1,91 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/security/asymmetricEncryption.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "asymmetricEncryption"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "asymmetricEncryption",
+        "description": "Provides authentication by using a public and private key pair to create digital signatures and verify user or device identity"
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "asymmetricEncryption"
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "asymmetricEncryption",
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "asymmetricEncryption",
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType"
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "ASYMMETRICeNCRYPTION"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "asymmetricEncryption",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "asymmetricEncryption",
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "asymmetricEncryption",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "asymmetricEncryption"
+    }
+  ]
+}

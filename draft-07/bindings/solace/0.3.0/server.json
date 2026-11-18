@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/solace/0.3.0/server.json",
+  "title": "Solace - Server Binding v0.3.0",
+  "description": "Contains server connection information about the Solace broker",
+  "examples": [
+    {
+      "bindingVersion": "0.3.0",
+      "msgVpn": "ProdVPN"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.3.0", "latest" ]
+    },
+    "msgVpn": {
+      "description": "The name of the Virtual Private Network to connect to on the Solace broker",
+      "type": "string"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

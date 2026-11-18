@@ -1,0 +1,62 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/operation.json#/properties/messageExpiryInterval",
+  "tests": [
+    {
+      "description": "valid: minimum 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: schema object",
+      "valid": true,
+      "data": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/messageExpiryInterval"
+      }
+    },
+    {
+      "description": "valid: boolean true schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "invalid: below minimum 0",
+      "valid": false,
+      "data": -1
+    },
+    {
+      "description": "invalid: decimal number",
+      "valid": false,
+      "data": 1.5
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "60"
+    },
+    {
+      "description": "invalid: invalid schema",
+      "valid": false,
+      "data": {
+        "type": "int"
+      }
+    },
+    {
+      "description": "valid: maximum 4294967295",
+      "valid": true,
+      "data": 4294967295
+    },
+    {
+      "description": "invalid: above maximum 4294967295",
+      "valid": false,
+      "data": 4294967296
+    }
+  ]
+}

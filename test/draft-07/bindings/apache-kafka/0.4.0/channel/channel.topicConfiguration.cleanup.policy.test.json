@@ -1,0 +1,51 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.4.0/channel.json#/properties/topicConfiguration/properties/cleanup.policy",
+  "tests": [
+    {
+      "description": "valid: delete",
+      "valid": true,
+      "data": [
+        "delete"
+      ]
+    },
+    {
+      "description": "valid: compact",
+      "valid": true,
+      "data": [
+        "compact"
+      ]
+    },
+    {
+      "description": "valid: delete and compact",
+      "valid": true,
+      "data": [
+        "delete",
+        "compact"
+      ]
+    },
+    {
+      "description": "valid: empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "invalid: unknown policy",
+      "valid": false,
+      "data": [
+        "archive"
+      ]
+    },
+    {
+      "description": "invalid: capitalized Delete",
+      "valid": false,
+      "data": [
+        "Delete"
+      ]
+    },
+    {
+      "description": "invalid: string instead of array",
+      "valid": false,
+      "data": "delete"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/securityRequirements.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/security/x.509"
+        },
+        {
+          "type": "X509"
+        },
+        {
+          "type": "apiKey",
+          "in": "user"
+        }
+      ]
+    },
+    {
+      "description": "valid: empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "valid: every security type",
+      "valid": true,
+      "data": [
+        {
+          "type": "userPassword"
+        },
+        {
+          "type": "apiKey",
+          "in": "user"
+        },
+        {
+          "type": "X509"
+        },
+        {
+          "type": "symmetricEncryption"
+        },
+        {
+          "type": "asymmetricEncryption"
+        },
+        {
+          "type": "http",
+          "scheme": "basic"
+        },
+        {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        },
+        {
+          "type": "httpApiKey",
+          "name": "api_key",
+          "in": "header"
+        },
+        {
+          "type": "oauth2",
+          "flows": {
+            "clientCredentials": {
+              "tokenUrl": "https://example.com/api/oauth/token",
+              "availableScopes": {
+                "read:pets": "read your pets"
+              }
+            }
+          }
+        },
+        {
+          "type": "openIdConnect",
+          "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+        },
+        {
+          "type": "plain"
+        },
+        {
+          "type": "scramSha256"
+        },
+        {
+          "type": "scramSha512"
+        },
+        {
+          "type": "gssapi"
+        }
+      ]
+    },
+    {
+      "description": "valid: only references",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/components/securitySchemes/x509"
+        },
+        {
+          "$ref": "#/components/securitySchemes/plain"
+        }
+      ]
+    },
+    {
+      "description": "valid: duplicated items are accepted (no uniqueItems)",
+      "valid": true,
+      "data": [
+        {
+          "type": "X509"
+        },
+        {
+          "type": "X509"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference with sibling type",
+      "valid": false,
+      "data": [
+        {
+          "$ref": "#/components/securitySchemes/x509",
+          "type": "X509"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": [
+        {
+          "$ref": 1
+        }
+      ]
+    },
+    {
+      "description": "invalid: unknown security type",
+      "valid": false,
+      "data": [
+        {
+          "type": "kerberos"
+        }
+      ]
+    },
+    {
+      "description": "invalid: one invalid item among valid",
+      "valid": false,
+      "data": [
+        {
+          "type": "X509"
+        },
+        {
+          "type": "apiKey"
+        }
+      ]
+    },
+    {
+      "description": "invalid: item is a string (v2 style name)",
+      "valid": false,
+      "data": [
+        "x509"
+      ]
+    },
+    {
+      "description": "invalid: v2 style requirement map",
+      "valid": false,
+      "data": [
+        {
+          "x509": []
+        }
+      ]
+    },
+    {
+      "description": "invalid: not an array",
+      "valid": false,
+      "data": {
+        "type": "X509"
+      }
+    }
+  ]
+}

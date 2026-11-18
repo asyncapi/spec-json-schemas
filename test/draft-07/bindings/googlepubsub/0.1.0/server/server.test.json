@@ -1,0 +1,57 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.1.0/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: latest",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: other binding version 0.2.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed (no patternProperties)",
+      "valid": false,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "topic": "messages"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

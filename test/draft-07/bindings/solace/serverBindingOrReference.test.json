@@ -1,0 +1,69 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/serverBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/solace/my-solace-server"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "msgVpn": "ProdVPN",
+        "clientName": "production"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/solace/my-solace-channel"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/solace"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "msgVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/bindings/solace/my-solace-channel",
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "msvVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/bindings/solace/my-solace-channel"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json#/properties/qosPolicies/properties/reliability",
+  "tests": [
+    {
+      "description": "valid: best_effort",
+      "valid": true,
+      "data": "best_effort"
+    },
+    {
+      "description": "valid: reliable",
+      "valid": true,
+      "data": "reliable"
+    },
+    {
+      "description": "invalid: best-effort",
+      "valid": false,
+      "data": "best-effort"
+    },
+    {
+      "description": "invalid: Reliable",
+      "valid": false,
+      "data": "Reliable"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/websockets/0.1.0/channel.json#/properties/headers",
+  "tests": [
+    {
+      "description": "valid: object schema",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "properties": {
+          "session-id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/headers"
+      }
+    },
+    {
+      "description": "valid: boolean true schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "valid: empty schema",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: name map is accepted as a schema (unknown keywords are ignored)",
+      "valid": true,
+      "data": {
+        "session-id": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "valid: non-object schema is not rejected (MUST be of type 'object' is not enforced)",
+      "valid": true,
+      "data": {
+        "type": "string"
+      }
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "session-id"
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "uuid"
+      }
+    },
+    {
+      "description": "invalid: nested property with unknown type",
+      "valid": false,
+      "data": {
+        "type": "object",
+        "properties": {
+          "session-id": {
+            "type": "uuid"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    }
+  ]
+}

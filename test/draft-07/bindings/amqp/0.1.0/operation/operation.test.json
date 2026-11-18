@@ -1,0 +1,178 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.1.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "ack": false,
+        "bcc": [
+          "external.audit"
+        ],
+        "bindingVersion": "0.1.0",
+        "cc": [
+          "user.logs"
+        ],
+        "deliveryMode": 2,
+        "expiration": 100000,
+        "mandatory": false,
+        "priority": 10,
+        "replyTo": "user.signedup",
+        "timestamp": true,
+        "userId": "guest"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "ack": true,
+        "bcc": [
+          "external.audit"
+        ],
+        "bindingVersion": "0.1.0",
+        "cc": [
+          "user.logs"
+        ],
+        "deliveryMode": 1,
+        "expiration": 100000,
+        "mandatory": false,
+        "priority": 10,
+        "replyTo": "user.signedup",
+        "timestamp": true,
+        "userId": "guest"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "ack": true,
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: empty cc and bcc",
+      "valid": true,
+      "data": {
+        "cc": [],
+        "bcc": []
+      }
+    },
+    {
+      "description": "valid: priority has no bounds",
+      "valid": true,
+      "data": {
+        "priority": -100
+      }
+    },
+    {
+      "description": "invalid: ack is not a boolean",
+      "valid": false,
+      "data": {
+        "ack": "false"
+      }
+    },
+    {
+      "description": "invalid: mandatory is not a boolean",
+      "valid": false,
+      "data": {
+        "mandatory": 1
+      }
+    },
+    {
+      "description": "invalid: timestamp is not a boolean",
+      "valid": false,
+      "data": {
+        "timestamp": "true"
+      }
+    },
+    {
+      "description": "invalid: cc is not an array",
+      "valid": false,
+      "data": {
+        "cc": "user.logs"
+      }
+    },
+    {
+      "description": "invalid: cc with a non string item",
+      "valid": false,
+      "data": {
+        "cc": [
+          "user.logs",
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: bcc is not an array",
+      "valid": false,
+      "data": {
+        "bcc": "external.audit"
+      }
+    },
+    {
+      "description": "invalid: bcc with a non string item",
+      "valid": false,
+      "data": {
+        "bcc": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: priority is a decimal number",
+      "valid": false,
+      "data": {
+        "priority": 1.5
+      }
+    },
+    {
+      "description": "invalid: userId is not a string",
+      "valid": false,
+      "data": {
+        "userId": 1
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "routingKey": "user.signedup"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        "user.logs"
+      ]
+    },
+    {
+      "description": "valid: replyTo",
+      "valid": true,
+      "data": {
+        "replyTo": "user.signedup"
+      }
+    },
+    {
+      "description": "invalid: replyTo is not a string",
+      "valid": false,
+      "data": {
+        "replyTo": 1
+      }
+    }
+  ]
+}

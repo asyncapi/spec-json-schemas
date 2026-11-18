@@ -1,0 +1,162 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/channelBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "partitions": 20,
+        "replicas": 3,
+        "topic": "my-specific-topic"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "partitions": 20,
+        "replicas": 3,
+        "topic": "my-specific-topic",
+        "topicConfiguration": {
+          "cleanup.policy": [
+            "compact",
+            "delete"
+          ],
+          "delete.retention.ms": 1000,
+          "max.message.bytes": 2000,
+          "retention.bytes": 10,
+          "retention.ms": 2000
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "partitions": 20,
+        "replicas": 3,
+        "topic": "my-specific-topic",
+        "topicConfiguration": {
+          "cleanup.policy": [
+            "compact",
+            "delete"
+          ],
+          "delete.retention.ms": 1000,
+          "max.message.bytes": 2000,
+          "retention.bytes": 10,
+          "retention.ms": 2000,
+          "confluent.key.schema.validation": true,
+          "confluent.key.subject.name.strategy": "schema",
+          "confluent.value.schema.validation": true,
+          "confluent.value.subject.name.strategy": "schema"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object uses 0.5.0",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: 0.1.0 empty binding",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: topic with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "valid: topic with 0.3.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "topic": "my-topic"
+      }
+    },
+    {
+      "description": "invalid: topicConfiguration with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "topicConfiguration": {
+          "segment.ms": 604800000
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown topicConfiguration property with 0.4.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "topicConfiguration": {
+          "segment.ms": 604800000
+        }
+      }
+    },
+    {
+      "description": "valid: unknown topicConfiguration property with 0.5.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "topicConfiguration": {
+          "segment.ms": 604800000
+        }
+      }
+    },
+    {
+      "description": "valid: unknown topicConfiguration property with latest uses 0.5.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest",
+        "topicConfiguration": {
+          "segment.ms": 604800000
+        }
+      }
+    },
+    {
+      "description": "valid: unknown topicConfiguration property without bindingVersion uses 0.5.0",
+      "valid": true,
+      "data": {
+        "topicConfiguration": {
+          "segment.ms": 604800000
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion 0.2.0 falls back to 0.5.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.5.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "my-topic"
+    }
+  ]
+}

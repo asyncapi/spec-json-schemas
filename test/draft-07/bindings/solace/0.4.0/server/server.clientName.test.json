@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/0.4.0/server.json#/properties/clientName",
+  "tests": [
+    {
+      "description": "valid: client name",
+      "valid": true,
+      "data": "production"
+    },
+    {
+      "description": "valid: 1 character",
+      "valid": true,
+      "data": "p"
+    },
+    {
+      "description": "valid: 160 characters",
+      "valid": true,
+      "data": "pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: 161 characters",
+      "valid": false,
+      "data": "ppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp"
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

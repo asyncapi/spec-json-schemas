@@ -1,0 +1,77 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/operationBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "qosPolicies": {
+          "deadline": -1,
+          "durability": "volatile",
+          "history": "unknown",
+          "leaseDuration": -1,
+          "lifespan": -1,
+          "liveliness": "automatic",
+          "reliability": "reliable"
+        },
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.1.0",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "valid: latest uses 0.1.0",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.1.0",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 with invalid binding",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.1.0 and fails",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.1.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

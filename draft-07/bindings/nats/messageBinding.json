@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/nats/messageBinding.json",
+  "title": "NATS - Message Binding",
+  "description": "Describes protocol-specific definitions for a message",
+  "examples": [
+    {},
+    {
+      "bindingVersion": "latest"
+    },
+    {
+      "bindingVersion": "0.1.0"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/nats/0.1.0/message.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, then use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.1.0"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/nats/0.1.0/message.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/operations/operationReply.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "address": {
+          "$ref": "#/replies/send-notification-reply-address"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/messages/send-notification-v1"
+          },
+          {
+            "$ref": "#/messages/send-notification-v2"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "address": {
+          "location": "$message.header#/X-REPLY-TO"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object (no required fields)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: full reply",
+      "valid": true,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: channel only",
+      "valid": true,
+      "data": {
+        "channel": {
+          "$ref": "#/channels/notifications"
+        }
+      }
+    },
+    {
+      "description": "valid: address reference",
+      "valid": true,
+      "data": {
+        "address": {
+          "$ref": "#/components/replyAddresses/reply"
+        }
+      }
+    },
+    {
+      "description": "valid: empty messages",
+      "valid": true,
+      "data": {
+        "messages": []
+      }
+    },
+    {
+      "description": "valid: duplicated messages are accepted (no uniqueItems)",
+      "valid": true,
+      "data": {
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          },
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ],
+        "x-timeout": 30
+      }
+    },
+    {
+      "description": "invalid: address without location",
+      "valid": false,
+      "data": {
+        "address": {
+          "description": "x"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: address is a string",
+      "valid": false,
+      "data": {
+        "address": "$message.header#/replyTo",
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: channel is an inline channel object",
+      "valid": false,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "address": "notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: channel reference with sibling",
+      "valid": false,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications",
+          "address": "x"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: inline message object in messages",
+      "valid": false,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: messages is a reference object",
+      "valid": false,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": {
+          "$ref": "#/channels/notifications/messages/v1"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "address": {
+          "location": "$message.header#/replyTo"
+        },
+        "channel": {
+          "$ref": "#/channels/notifications"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/notifications/messages/v1"
+          }
+        ],
+        "timeout": 30
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "reply"
+    }
+  ]
+}

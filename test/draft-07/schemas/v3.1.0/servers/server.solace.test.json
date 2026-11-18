@@ -1,0 +1,206 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/servers/server.json",
+  "tests": [
+    {
+      "description": "valid: 0.4.0 example #1",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.4.0",
+            "msgVpn": "ProdVPN",
+            "clientName": "production"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.4.0 msgVpn is not a string",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "msgVpn": 1,
+            "bindingVersion": "0.4.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.3.0",
+            "msgVpn": "ProdVPN"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 msgVpn is not a string",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "msgVpn": 1,
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.2.0",
+            "msvVpn": "ProdVPN"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 msvVpn is not a string",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "msvVpn": 1,
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 unknown property",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "destinations": [],
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.4.0 is used)",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "msgVpn": "ProdVPN",
+            "clientName": "production"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "$ref": "#/components/serverBindings/my-solace"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "$ref": "#/components/serverBindings/my-solace",
+            "bindingVersion": "0.4.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": "solace"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "solace",
+        "bindings": {
+          "solace": null
+        }
+      }
+    }
+  ]
+}

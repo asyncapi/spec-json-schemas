@@ -1,0 +1,109 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/channels/messages/channelMessageTrait.json",
+  "tests": [
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 unknown property",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": {
+            "topic": "https://example.com/books/1",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.1.0 is used)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": {}
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": {
+            "$ref": "#/components/messageBindings/my-mercure"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": {
+            "$ref": "#/components/messageBindings/my-mercure",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": "mercure"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "mercure": null
+        }
+      }
+    }
+  ]
+}

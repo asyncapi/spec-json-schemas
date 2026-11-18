@@ -1,6 +1,0 @@
-.github
-test
-go.mod
-go.sum
-*.go
-tools/bundler

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1.0.0/components/components.json",
+  "title": "AsyncAPI v1.0.0 - Components",
+  "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification",
+  "type": "object",
+  "properties": {
+    "schemas": {
+      "description": "JSON objects describing schemas the API uses",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/schemas.json"
+    },
+    "messages": {
+      "description": "JSON objects describing the messages being consumed and produced by the API",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/messages/messages.json"
+    },
+    "securitySchemes": {
+      "description": "An object to hold reusable Security Scheme Objects",
+      "type": "object",
+      "patternProperties": {
+        "^[a-zA-Z0-9\\.\\-_]+$": {
+          "oneOf": [
+            {
+              "$ref": "http://localhost:8000/draft-04/schemas/v1/reference.json"
+            },
+            {
+              "$ref": "http://localhost:8000/draft-04/schemas/v1/security/securitySchema.json"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

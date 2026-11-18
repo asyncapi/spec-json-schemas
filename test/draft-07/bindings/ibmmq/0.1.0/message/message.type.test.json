@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/message.json#/properties/type",
+  "tests": [
+    {
+      "description": "valid: string",
+      "valid": true,
+      "data": "string"
+    },
+    {
+      "description": "valid: jms",
+      "valid": true,
+      "data": "jms"
+    },
+    {
+      "description": "valid: binary",
+      "valid": true,
+      "data": "binary"
+    },
+    {
+      "description": "invalid: String",
+      "valid": false,
+      "data": "String"
+    },
+    {
+      "description": "invalid: json",
+      "valid": false,
+      "data": "json"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    }
+  ]
+}

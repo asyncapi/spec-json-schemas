@@ -1,0 +1,71 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/tag.json",
+  "tests": [
+    {
+      "description": "valid: name only",
+      "valid": true,
+      "data": {
+        "name": "city"
+      }
+    },
+    {
+      "description": "valid: name and description",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "description": "City forecast for e.g. Yerevan"
+      }
+    },
+    {
+      "description": "valid: name and externalDocs",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs",
+          "description": "Required information to integrate with API"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "x-order": 1
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "description": "City forecast for e.g. Yerevan"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "foo": "bar"
+      }
+    }
+  ]
+}

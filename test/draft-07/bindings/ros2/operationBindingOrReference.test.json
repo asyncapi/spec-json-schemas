@@ -1,0 +1,78 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/operationBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/ros2/my-ros2-binding"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "qosPolicies": {
+          "deadline": -1,
+          "durability": "volatile",
+          "history": "unknown",
+          "leaseDuration": -1,
+          "lifespan": -1,
+          "liveliness": "automatic",
+          "reliability": "reliable"
+        },
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/ros2/my-ros2-binding"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/ros2"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "node": "/turtlesim",
+        "role": "subscriber"
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/bindings/ros2/my-ros2-binding",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "node": "/turtlesim"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/bindings/ros2/my-ros2-binding"
+    }
+  ]
+}

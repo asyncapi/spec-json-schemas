@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/xml.json",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "namespace": {
+      "type": "string"
+    },
+    "prefix": {
+      "type": "string"
+    },
+    "attribute": {
+      "default": false,
+      "type": "boolean"
+    },
+    "wrapped": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}
