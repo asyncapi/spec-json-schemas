@@ -263,7 +263,6 @@ Extensions are a way to [extend AsyncAPI specification](https://www.asyncapi.com
 Tests are run with the [`jsonschema` CLI](https://github.com/sourcemeta/jsonschema) `test` command. Every run needs:
 
 - `--format-assertion`, so that `format` (`uri`, `email`, `uri-reference`, …) is asserted. Without it some tests fail.
-- `--ignore` for the `jsonschema.json` files. They are [Sourcemeta One](one.json) catalogs, not JSON Schemas.
 - `--resolve` for every folder or file the tested schemas reference.
 
 Add `--verbose` to print every test case. Use `--json` for CTRF output in CI.
@@ -273,16 +272,14 @@ Add `--verbose` to print every test case. Use `--json` for CTRF output in CI.
 ```bash
 jsonschema test test \
   --resolve draft-04 --resolve draft-07 \
-  --ignore draft-04/schemas/jsonschema.json --ignore draft-07/schemas/jsonschema.json \
-  --ignore draft-07/bindings/jsonschema.json --ignore draft-07/integrations/jsonschema.json \
-  --format-assertion
+    --format-assertion
 ```
 
 ### draft-04 (AsyncAPI v1)
 
 ```bash
 jsonschema test test/draft-04 \
-  --resolve draft-04 --ignore draft-04/schemas/jsonschema.json \
+  --resolve draft-04 \
   --format-assertion
 ```
 
@@ -294,7 +291,7 @@ All bindings:
 
 ```bash
 jsonschema test test/draft-07/bindings \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/bindings \
   --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
   --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
   --format-assertion
@@ -304,7 +301,7 @@ One binding with all its versions, e.g. `apache-kafka`. Use the binding's folder
 
 ```bash
 jsonschema test test/draft-07/bindings/apache-kafka \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/bindings \
   --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
   --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
   --format-assertion
@@ -314,7 +311,7 @@ One binding version, e.g. `apache-kafka` `0.5.0`:
 
 ```bash
 jsonschema test test/draft-07/bindings/apache-kafka/0.5.0 \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/bindings \
   --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
   --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
   --format-assertion
@@ -347,7 +344,7 @@ jsonschema test test/draft-07/schemas/v3 test/draft-07/schemas/v3.0.0 test/draft
   --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/anySchema.json \
   --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/schema.json \
   --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/bindings \
   --format-assertion
 ```
 
@@ -359,7 +356,7 @@ jsonschema test test/draft-07/schemas/v3.0.0 \
   --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/anySchema.json \
   --resolve draft-07/schemas/multiFormatSchema.json --resolve draft-07/schemas/schema.json \
   --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/openapiSchema_3_0.json \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/bindings \
   --format-assertion
 ```
 
@@ -381,8 +378,8 @@ jsonschema test test/draft-07/schemas/v2 \
   --resolve draft-07/schemas/v2.6.0 \
   --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
   --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
-  --resolve draft-07/integrations --ignore draft-07/integrations/jsonschema.json \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/integrations \
+  --resolve draft-07/bindings \
   --format-assertion
 ```
 
@@ -393,8 +390,8 @@ jsonschema test test/draft-07/schemas/v2.6.0 \
   --resolve draft-07/schemas/v2 --resolve draft-07/schemas/v2.6.0 \
   --resolve draft-07/schemas/reference.json --resolve draft-07/schemas/schema.json \
   --resolve draft-07/schemas/avroSchema_v1.json --resolve draft-07/schemas/v3/externalDocs.json \
-  --resolve draft-07/integrations --ignore draft-07/integrations/jsonschema.json \
-  --resolve draft-07/bindings --ignore draft-07/bindings/jsonschema.json \
+  --resolve draft-07/integrations \
+  --resolve draft-07/bindings \
   --format-assertion
 ```
 
