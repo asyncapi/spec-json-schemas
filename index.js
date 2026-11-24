@@ -9,6 +9,7 @@ module.exports = {
     '2.6.0': require('./schemas/2.6.0.json'),
     '3.0.0': require('./schemas/3.0.0.json'),
     '3.1.0': require('./schemas/3.1.0.json'),
+    '3.2.0': require('./schemas/3.2.0.json'),
   },
   schemasWithoutId: {
     '2.0.0': require('./schemas/2.0.0-without-$id.json'),
@@ -20,5 +21,6 @@ module.exports = {
     '2.6.0': require('./schemas/2.6.0-without-$id.json'),
     '3.0.0': require('./schemas/3.0.0-without-$id.json'),
     '3.1.0': require('./schemas/3.1.0-without-$id.json'),
+    '3.2.0': require('./schemas/3.2.0-without-$id.json'),
   }
 };
