@@ -1,0 +1,118 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.4.0/servers/server.json",
+  "tests": [
+    {
+      "description": "valid: 0.0.1 example #1",
+      "valid": true,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.0.1 unknown property",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": {
+            "destination": "user-signup-queue",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.0.1 is used)",
+      "valid": true,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": {}
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": {
+            "$ref": "#/components/serverBindings/my-anypointmq"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": {
+            "$ref": "#/components/serverBindings/my-anypointmq",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": "anypointmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "url": "broker.mycompany.com:5672",
+        "protocol": "anypointmq",
+        "bindings": {
+          "anypointmq": null
+        }
+      }
+    }
+  ]
+}

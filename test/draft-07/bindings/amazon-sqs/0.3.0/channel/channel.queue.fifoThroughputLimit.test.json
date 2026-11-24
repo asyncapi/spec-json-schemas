@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/queue/properties/fifoThroughputLimit",
+  "tests": [
+    {
+      "description": "valid: perQueue",
+      "valid": true,
+      "data": "perQueue"
+    },
+    {
+      "description": "valid: perMessageGroupId",
+      "valid": true,
+      "data": "perMessageGroupId"
+    },
+    {
+      "description": "invalid: lower case perqueue",
+      "valid": false,
+      "data": "perqueue"
+    },
+    {
+      "description": "invalid: unknown limit",
+      "valid": false,
+      "data": "perMessage"
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

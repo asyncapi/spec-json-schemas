@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/operation.json",
+  "title": "MQTT - Operation Binding v0.2.0",
+  "description": "Contains information about the operation representation in MQTT",
+  "examples": [
+    {
+      "bindingVersion": "0.2.0",
+      "messageExpiryInterval": 60,
+      "qos": 2,
+      "retain": true
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "messageExpiryInterval": {
+        "$ref": "#/messageExpiryInterval"
+      },
+      "qos": 2,
+      "retain": true
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "messageExpiryInterval": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "qos": 2,
+      "retain": true
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    },
+    "messageExpiryInterval": {
+      "description": "Lifetime of the message in seconds",
+      "oneOf": [
+        {
+          "type": "integer",
+          "maximum": 4294967295,
+          "minimum": 0
+        },
+        {
+          "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
+        }
+      ]
+    },
+    "qos": {
+      "description": "Defines the Quality of Service (QoS) levels for the message flow between client and server. Its value MUST be either 0 (At most once delivery), 1 (At least once delivery), or 2 (Exactly once delivery)",
+      "enum": [ 0, 1, 2 ]
+    },
+    "retain": {
+      "description": "Whether the broker should retain the message or not",
+      "type": "boolean"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

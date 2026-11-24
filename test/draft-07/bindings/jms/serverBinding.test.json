@@ -1,0 +1,71 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/jms/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "properties": [
+          {
+            "name": "disableTimeStampsByDefault",
+            "value": false
+          }
+        ],
+        "bindingVersion": "0.0.1",
+        "clientID": "my-application-1",
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.0.1",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      }
+    },
+    {
+      "description": "valid: latest uses 0.0.1",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.0.1",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "invalid: 0.0.1 with invalid binding",
+      "valid": false,
+      "data": {
+        "clientID": "my-application-1",
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.0.1 and fails",
+      "valid": false,
+      "data": {
+        "clientID": "my-application-1"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.0.1 and fails its enum",
+      "valid": false,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

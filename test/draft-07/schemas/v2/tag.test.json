@@ -1,0 +1,115 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/tag.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "name": "city"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "description": "City forecast for e.g. Yerevan"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs",
+          "description": "Required information to integrate with API"
+        }
+      }
+    },
+    {
+      "description": "valid: empty name is accepted (no minLength)",
+      "valid": true,
+      "data": {
+        "name": ""
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "city",
+        "x-order": 1
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "description": "City"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "description": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "externalDocs": {
+          "description": "docs"
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs reference is not allowed (added in v3)",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "externalDocs": {
+          "$ref": "#/components/externalDocs/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: tag reference is not allowed (added in v3)",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/tags/city"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "city",
+        "foo": "bar"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "city"
+    }
+  ]
+}

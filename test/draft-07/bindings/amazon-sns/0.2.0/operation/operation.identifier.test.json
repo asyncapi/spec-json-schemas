@@ -1,0 +1,101 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/operation.json#/definitions/identifier",
+  "tests": [
+    {
+      "description": "valid: empty object (no required properties)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: arn",
+      "valid": true,
+      "data": {
+        "arn": "arn:aws:sqs:eu-west-1:123456789012:someQueue"
+      }
+    },
+    {
+      "description": "valid: email",
+      "valid": true,
+      "data": {
+        "email": "alerts@example.com"
+      }
+    },
+    {
+      "description": "valid: name",
+      "valid": true,
+      "data": {
+        "name": "someQueue"
+      }
+    },
+    {
+      "description": "valid: phone",
+      "valid": true,
+      "data": {
+        "phone": "+15555550123"
+      }
+    },
+    {
+      "description": "valid: url",
+      "valid": true,
+      "data": {
+        "url": "https://example.com/hook"
+      }
+    },
+    {
+      "description": "valid: several properties",
+      "valid": true,
+      "data": {
+        "name": "someQueue",
+        "arn": "arn:aws:sqs:eu-west-1:123456789012:someQueue"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "someQueue",
+        "x-region": "eu-west-1"
+      }
+    },
+    {
+      "description": "invalid: arn is not a string",
+      "valid": false,
+      "data": {
+        "arn": 1
+      }
+    },
+    {
+      "description": "invalid: email is not a string",
+      "valid": false,
+      "data": {
+        "email": 1
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: phone is not a string",
+      "valid": false,
+      "data": {
+        "phone": 1
+      }
+    },
+    {
+      "description": "invalid: url is not a string",
+      "valid": false,
+      "data": {
+        "url": 1
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "someQueue"
+    }
+  ]
+}

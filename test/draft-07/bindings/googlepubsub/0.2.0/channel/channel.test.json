@@ -1,0 +1,125 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.2.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "labels": {
+          "label1": "value1",
+          "label2": "value2"
+        },
+        "messageRetentionDuration": "86400s",
+        "messageStoragePolicy": {
+          "allowedPersistenceRegions": [
+            "us-central1",
+            "us-east1"
+          ]
+        },
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema",
+          "firstRevisionId": "1",
+          "lastRevisionId": "2"
+        }
+      }
+    },
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: messageRetentionDuration is any string (format not validated)",
+      "valid": true,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "messageRetentionDuration": "one day"
+      }
+    },
+    {
+      "description": "invalid: missing schemaSettings",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: messageRetentionDuration is not a string",
+      "valid": false,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "messageRetentionDuration": 86400
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: other binding version 0.1.0",
+      "valid": false,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "subscription": "my-subscription"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "messages"
+    },
+    {
+      "description": "invalid: topic was removed in 0.2.0",
+      "valid": false,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "topic": "messages"
+      }
+    }
+  ]
+}

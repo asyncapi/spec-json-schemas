@@ -1,0 +1,158 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/operationBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "response",
+        "bindingVersion": "0.1.0",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "method": "GET",
+        "query": {
+          "type": "object",
+          "required": [
+            "companyId"
+          ],
+          "properties": {
+            "companyId": {
+              "description": "The Id of the company.",
+              "type": "number",
+              "minimum": 1
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 request with method",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "type": "request",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 requires type",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 response with method",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "type": "response",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 rejects type",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "type": "request",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 rejects type",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "type": "request",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: latest rejects type",
+      "valid": false,
+      "data": {
+        "bindingVersion": "latest",
+        "type": "request",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.3.0",
+      "valid": true,
+      "data": {
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.3.0 and rejects type",
+      "valid": false,
+      "data": {
+        "type": "request",
+        "method": "GET"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.3.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: invalid method with 0.2.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "method": "get"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "GET"
+    }
+  ]
+}

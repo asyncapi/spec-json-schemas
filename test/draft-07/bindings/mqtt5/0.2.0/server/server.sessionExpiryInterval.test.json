@@ -1,0 +1,62 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt5/0.2.0/server.json#/properties/sessionExpiryInterval",
+  "tests": [
+    {
+      "description": "valid: 0",
+      "valid": true,
+      "data": 0
+    },
+    {
+      "description": "valid: positive integer",
+      "valid": true,
+      "data": 60
+    },
+    {
+      "description": "valid: above 4294967295 is not rejected (no maximum)",
+      "valid": true,
+      "data": 4294967296
+    },
+    {
+      "description": "valid: schema object",
+      "valid": true,
+      "data": {
+        "type": "integer",
+        "minimum": 100
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/sessionExpiryInterval"
+      }
+    },
+    {
+      "description": "valid: boolean true schema",
+      "valid": true,
+      "data": true
+    },
+    {
+      "description": "invalid: negative",
+      "valid": false,
+      "data": -1
+    },
+    {
+      "description": "invalid: decimal number",
+      "valid": false,
+      "data": 1.5
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "60"
+    },
+    {
+      "description": "invalid: invalid schema",
+      "valid": false,
+      "data": {
+        "type": "int"
+      }
+    }
+  ]
+}

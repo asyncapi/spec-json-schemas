@@ -1,0 +1,142 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/channels/channel.json",
+  "tests": [
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "bindingVersion": "0.1.0",
+            "destinationType": "topic",
+            "topic": {
+              "durablePermitted": true,
+              "lastMsgRetained": false,
+              "objectName": "myTopicName",
+              "string": "key"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #2",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "bindingVersion": "0.1.0",
+            "destinationType": "queue",
+            "queue": {
+              "exclusive": true,
+              "isPartitioned": false,
+              "objectName": "myQueueName"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 destinationType queue without queue",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "destinationType": "queue",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.1.0 is used)",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "destinationType": "topic",
+            "topic": {
+              "durablePermitted": true,
+              "lastMsgRetained": false,
+              "objectName": "myTopicName",
+              "string": "key"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "$ref": "#/components/channelBindings/my-ibmmq"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "$ref": "#/components/channelBindings/my-ibmmq",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": "ibmmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "address": "users.{userId}",
+        "bindings": {
+          "ibmmq": null
+        }
+      }
+    }
+  ]
+}

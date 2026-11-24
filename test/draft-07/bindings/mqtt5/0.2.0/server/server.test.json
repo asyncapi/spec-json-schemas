@@ -1,0 +1,95 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt5/0.2.0/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "sessionExpiryInterval": 60
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "sessionExpiryInterval": {
+          "type": "integer",
+          "minimum": 100
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "sessionExpiryInterval": {
+          "$ref": "#/sessionExpiryInterval"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: latest",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "sessionExpiryInterval": 60,
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: x- extension with underscore and dot",
+      "valid": true,
+      "data": {
+        "x-owner_team.name": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid sessionExpiryInterval",
+      "valid": false,
+      "data": {
+        "sessionExpiryInterval": -1
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "sessionExpiryInterval": 60,
+        "clientId": "guest"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": 60
+    }
+  ]
+}

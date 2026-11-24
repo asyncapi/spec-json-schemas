@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1.0.0/asyncapi.json",
+  "title": "AsyncAPI v1.0.0",
+  "description": "AsyncAPI 1.0.0 JSON Schema",
+  "type": "object",
+  "required": [ "asyncapi", "info", "topics" ],
+  "properties": {
+    "asyncapi": {
+      "description": "The AsyncAPI specification version of this document",
+      "type": "string",
+      "enum": [ "1.0.0" ]
+    },
+    "info": {
+      "description": "Provides metadata about the API. The metadata can be used by the clients if needed",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/info/info.json"
+    },
+    "baseTopic": {
+      "description": "The base topic to the API. Example: 'hitch'",
+      "default": "",
+      "type": "string",
+      "pattern": "^[^/.]"
+    },
+    "servers": {
+      "description": "An array of Server Objects, which provide connectivity information to a target server",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/servers/server.json"
+      }
+    },
+    "topics": {
+      "description": "Relative paths to the individual topics. They must be relative to the 'baseTopic'",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/topics/topics.json"
+    },
+    "components": {
+      "description": "An object to hold a set of reusable objects for different aspects of the AsyncAPI Specification",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1.0.0/components/components.json"
+    },
+    "tags": {
+      "description": "A list of tags used by the specification with additional metadata. Each tag name in the list MUST be unique",
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://localhost:8000/draft-04/schemas/v1/tag.json"
+      }
+    },
+    "security": {
+      "description": "A declaration of which security mechanisms can be used with this API. The list of values includes alternative security requirement objects that can be used",
+      "type": "array",
+      "items": {
+        "$ref": "http://localhost:8000/draft-04/schemas/v1/security/securityRequirement.json"
+      }
+    },
+    "externalDocs": {
+      "description": "Allows referencing an external resource for extended documentation",
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/externalDocs.json"
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "$ref": "http://localhost:8000/draft-04/schemas/v1/vendorExtension.json"
+    }
+  },
+  "additionalProperties": false
+}

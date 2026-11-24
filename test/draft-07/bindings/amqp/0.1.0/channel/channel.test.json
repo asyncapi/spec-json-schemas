@@ -1,0 +1,290 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.1.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "exchange": {
+          "type": "topic",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "exchange": {
+          "type": "direct",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "exchange": {
+          "type": "fanout",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "exchange": {
+          "type": "default",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "exchange": {
+          "type": "headers",
+          "autoDelete": false,
+          "durable": true,
+          "name": "myExchange"
+        },
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "is": "queue",
+        "queue": {
+          "autoDelete": false,
+          "durable": true,
+          "exclusive": true,
+          "name": "my-queue-name"
+        }
+      }
+    },
+    {
+      "description": "valid: exchange with is routingKey",
+      "valid": true,
+      "data": {
+        "is": "routingKey",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "valid: queue with is queue",
+      "valid": true,
+      "data": {
+        "is": "queue",
+        "queue": {
+          "name": "my-queue-name",
+          "durable": true,
+          "exclusive": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "valid: exchange without is",
+      "valid": true,
+      "data": {
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "valid: queue without is",
+      "valid": true,
+      "data": {
+        "queue": {
+          "name": "my-queue-name",
+          "durable": true,
+          "exclusive": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "valid: empty exchange",
+      "valid": true,
+      "data": {
+        "exchange": {}
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: exchange with is queue",
+      "valid": false,
+      "data": {
+        "is": "queue",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: queue with is routingKey",
+      "valid": false,
+      "data": {
+        "is": "routingKey",
+        "queue": {
+          "name": "my-queue-name",
+          "durable": true,
+          "exclusive": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: exchange and queue together",
+      "valid": false,
+      "data": {
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        },
+        "queue": {
+          "name": "my-queue-name",
+          "durable": true,
+          "exclusive": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: exchange and queue together with is routingKey",
+      "valid": false,
+      "data": {
+        "is": "routingKey",
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        },
+        "queue": {
+          "name": "my-queue-name",
+          "durable": true,
+          "exclusive": true,
+          "autoDelete": false
+        }
+      }
+    },
+    {
+      "description": "invalid: is routingKey without exchange",
+      "valid": false,
+      "data": {
+        "is": "routingKey"
+      }
+    },
+    {
+      "description": "invalid: is queue without queue",
+      "valid": false,
+      "data": {
+        "is": "queue"
+      }
+    },
+    {
+      "description": "invalid: empty object (neither exchange nor queue)",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        },
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: invalid exchange",
+      "valid": false,
+      "data": {
+        "exchange": {
+          "type": "unknown"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid queue",
+      "valid": false,
+      "data": {
+        "queue": {
+          "durable": "true"
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "exchange": {
+          "name": "myExchange",
+          "type": "topic",
+          "durable": true,
+          "autoDelete": false
+        },
+        "routingKey": "user.signedup"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "routingKey"
+    }
+  ]
+}

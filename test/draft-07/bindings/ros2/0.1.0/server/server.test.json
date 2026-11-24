@@ -1,0 +1,67 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "domainId": 0,
+        "rmwImplementation": "rmw_fastrtps_cpp"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: latest",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "domainId": 0,
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "domainId": 0,
+        "namespace": "/robot1"
+      }
+    },
+    {
+      "description": "invalid: rmwImplementation is not a string",
+      "valid": false,
+      "data": {
+        "rmwImplementation": 1
+      }
+    },
+    {
+      "description": "invalid: invalid domainId",
+      "valid": false,
+      "data": {
+        "domainId": 232
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "rmw_fastrtps_cpp"
+    }
+  ]
+}

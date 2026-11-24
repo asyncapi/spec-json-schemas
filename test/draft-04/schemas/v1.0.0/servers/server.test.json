@@ -1,0 +1,174 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1.0.0/servers/server.json",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "url": "mqtt.weather-forecast.am",
+        "scheme": "mqtt"
+      }
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "url": "mqtt.weather-forecast.am:{port}",
+        "scheme": "mqtts",
+        "schemeVersion": "3.1.1",
+        "description": "Production broker",
+        "variables": {
+          "port": {
+            "enum": [
+              "8883",
+              "8884"
+            ],
+            "default": "8883"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "url": "mqtt.weather-forecast.am",
+        "scheme": "mqtt",
+        "x-region": "am"
+      }
+    },
+    {
+      "description": "valid: scheme kafka",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "kafka"
+      }
+    },
+    {
+      "description": "valid: scheme kafka-secure",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "kafka-secure"
+      }
+    },
+    {
+      "description": "valid: scheme amqp",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "amqp"
+      }
+    },
+    {
+      "description": "valid: scheme amqps",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "amqps"
+      }
+    },
+    {
+      "description": "valid: scheme mqtts",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "mqtts"
+      }
+    },
+    {
+      "description": "valid: scheme secure-mqtt",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "secure-mqtt"
+      }
+    },
+    {
+      "description": "valid: scheme ws",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "ws"
+      }
+    },
+    {
+      "description": "valid: scheme wss",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "wss"
+      }
+    },
+    {
+      "description": "valid: scheme stomp",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "stomp"
+      }
+    },
+    {
+      "description": "valid: scheme stomps",
+      "valid": true,
+      "data": {
+        "url": "weather-forecast.am",
+        "scheme": "stomps"
+      }
+    },
+    {
+      "description": "invalid: missing url",
+      "valid": false,
+      "data": {
+        "scheme": "mqtt"
+      }
+    },
+    {
+      "description": "invalid: missing scheme",
+      "valid": false,
+      "data": {
+        "url": "mqtt.weather-forecast.am"
+      }
+    },
+    {
+      "description": "invalid: unsupported scheme",
+      "valid": false,
+      "data": {
+        "url": "api.weather-forecast.am",
+        "scheme": "http"
+      }
+    },
+    {
+      "description": "invalid: variable with unknown property",
+      "valid": false,
+      "data": {
+        "url": "mqtt.weather-forecast.am:{port}",
+        "scheme": "mqtt",
+        "variables": {
+          "port": {
+            "foo": "bar"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: schemeVersion is not a string",
+      "valid": false,
+      "data": {
+        "url": "mqtt.weather-forecast.am",
+        "scheme": "mqtt",
+        "schemeVersion": 3.1
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "url": "mqtt.weather-forecast.am",
+        "scheme": "mqtt",
+        "protocol": "mqtt"
+      }
+    }
+  ]
+}

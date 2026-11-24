@@ -1,0 +1,149 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/operation.json#/definitions/deliveryPolicy",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "backoffFunction": "linear",
+        "maxDelayTarget": 5,
+        "maxReceivesPerSecond": 5,
+        "minDelayTarget": 5,
+        "numMaxDelayRetries": 5,
+        "numMinDelayRetries": 5,
+        "numNoDelayRetries": 5,
+        "numRetries": 5
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "numRetries": 3,
+        "x-throttle": true
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "healthyRetryPolicy": {}
+      }
+    },
+    {
+      "description": "invalid: maxDelayTarget is a decimal number",
+      "valid": false,
+      "data": {
+        "maxDelayTarget": 1.5
+      }
+    },
+    {
+      "description": "invalid: maxReceivesPerSecond is a decimal number",
+      "valid": false,
+      "data": {
+        "maxReceivesPerSecond": 1.5
+      }
+    },
+    {
+      "description": "invalid: minDelayTarget is a decimal number",
+      "valid": false,
+      "data": {
+        "minDelayTarget": 1.5
+      }
+    },
+    {
+      "description": "invalid: numMaxDelayRetries is a decimal number",
+      "valid": false,
+      "data": {
+        "numMaxDelayRetries": 1.5
+      }
+    },
+    {
+      "description": "invalid: numMinDelayRetries is a decimal number",
+      "valid": false,
+      "data": {
+        "numMinDelayRetries": 1.5
+      }
+    },
+    {
+      "description": "invalid: numNoDelayRetries is a decimal number",
+      "valid": false,
+      "data": {
+        "numNoDelayRetries": 1.5
+      }
+    },
+    {
+      "description": "invalid: numRetries is a decimal number",
+      "valid": false,
+      "data": {
+        "numRetries": 1.5
+      }
+    },
+    {
+      "description": "invalid: maxDelayTarget is a string",
+      "valid": false,
+      "data": {
+        "maxDelayTarget": "1"
+      }
+    },
+    {
+      "description": "invalid: maxReceivesPerSecond is a string",
+      "valid": false,
+      "data": {
+        "maxReceivesPerSecond": "1"
+      }
+    },
+    {
+      "description": "invalid: minDelayTarget is a string",
+      "valid": false,
+      "data": {
+        "minDelayTarget": "1"
+      }
+    },
+    {
+      "description": "invalid: numMaxDelayRetries is a string",
+      "valid": false,
+      "data": {
+        "numMaxDelayRetries": "1"
+      }
+    },
+    {
+      "description": "invalid: numMinDelayRetries is a string",
+      "valid": false,
+      "data": {
+        "numMinDelayRetries": "1"
+      }
+    },
+    {
+      "description": "invalid: numNoDelayRetries is a string",
+      "valid": false,
+      "data": {
+        "numNoDelayRetries": "1"
+      }
+    },
+    {
+      "description": "invalid: numRetries is a string",
+      "valid": false,
+      "data": {
+        "numRetries": "1"
+      }
+    },
+    {
+      "description": "invalid: invalid backoffFunction",
+      "valid": false,
+      "data": {
+        "backoffFunction": "random"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "linear"
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/servers/server.json",
+  "tests": [
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": {
+            "domainId": 0,
+            "rmwImplementation": "rmw_fastrtps_cpp",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 rmwImplementation is not a string",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": {
+            "rmwImplementation": 1,
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.1.0 is used)",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": {
+            "domainId": 0,
+            "rmwImplementation": "rmw_fastrtps_cpp"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": {
+            "$ref": "#/components/serverBindings/my-ros2"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": {
+            "$ref": "#/components/serverBindings/my-ros2",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": "ros2"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "host": "broker.mycompany.com:5672",
+        "protocol": "ros2",
+        "bindings": {
+          "ros2": null
+        }
+      }
+    }
+  ]
+}

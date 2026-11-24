@@ -1,0 +1,69 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/jms/channelBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signed-up",
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.0.1",
+      "valid": true,
+      "data": {
+        "destination": "user-signed-up",
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "valid: latest uses 0.0.1",
+      "valid": true,
+      "data": {
+        "destination": "user-signed-up",
+        "destinationType": "queue",
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.0.1",
+      "valid": true,
+      "data": {
+        "destination": "user-signed-up",
+        "destinationType": "queue",
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "invalid: 0.0.1 with invalid binding",
+      "valid": false,
+      "data": {
+        "destinationType": "topic",
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.0.1 and fails",
+      "valid": false,
+      "data": {
+        "destinationType": "topic"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.0.1 and fails its enum",
+      "valid": false,
+      "data": {
+        "destination": "user-signed-up",
+        "destinationType": "queue",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

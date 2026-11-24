@@ -1,0 +1,279 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/operationBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "exclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ],
+              "maxMsgSpoolUsage": "4",
+              "maxTtl": "1"
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "exclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ],
+              "maxMsgSpoolUsage": "4",
+              "maxTtl": "1"
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ],
+        "dmqEligible": true,
+        "priority": 20,
+        "timeToLive": 10
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 does not define destinations",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "destinations": [
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: destinations with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: destinations with 0.3.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: destinations with 0.4.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: maxTtl number with 0.2.0 is not validated (not defined in 0.2.0, no additionalProperties)",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "maxTtl": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: maxTtl number with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "maxTtl": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: priority with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "priority": 20
+      }
+    },
+    {
+      "description": "valid: priority with 0.4.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "priority": 20
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.4.0",
+      "valid": true,
+      "data": {
+        "priority": 20,
+        "dmqEligible": true
+      }
+    },
+    {
+      "description": "invalid: destination without destinationType without bindingVersion",
+      "valid": false,
+      "data": {
+        "destinations": [
+          {}
+        ]
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.4.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.5.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

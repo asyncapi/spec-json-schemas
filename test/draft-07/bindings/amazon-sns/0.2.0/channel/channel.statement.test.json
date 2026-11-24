@@ -1,0 +1,95 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.2.0/channel.json#/definitions/statement",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*",
+        "x-sid": "AllowPublish"
+      }
+    },
+    {
+      "description": "invalid: missing effect",
+      "valid": false,
+      "data": {
+        "action": "SNS:Publish",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: missing principal",
+      "valid": false,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow"
+      }
+    },
+    {
+      "description": "invalid: missing action",
+      "valid": false,
+      "data": {
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "SNS:Publish"
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*",
+        "resource": "arn:aws:sns:us-east-1:123456789012:my-sns-topic",
+        "condition": {
+          "StringEquals": {
+            "aws:SourceAccount": "123456789012"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid condition",
+      "valid": false,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*",
+        "condition": {
+          "StringEquals": "123456789012"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid resource",
+      "valid": false,
+      "data": {
+        "action": "SNS:Publish",
+        "effect": "Allow",
+        "principal": "*",
+        "resource": 1
+      }
+    }
+  ]
+}

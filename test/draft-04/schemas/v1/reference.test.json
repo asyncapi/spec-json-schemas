@@ -1,0 +1,38 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/reference.json",
+  "tests": [
+    {
+      "description": "valid: absolute uri",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/schemas/city.json"
+      }
+    },
+    {
+      "description": "invalid: local pointer is not an absolute uri",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/schemas/city"
+      }
+    },
+    {
+      "description": "invalid: relative path is not an absolute uri",
+      "valid": false,
+      "data": {
+        "$ref": "schemas/city.json"
+      }
+    },
+    {
+      "description": "invalid: missing $ref",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: $ref is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    }
+  ]
+}

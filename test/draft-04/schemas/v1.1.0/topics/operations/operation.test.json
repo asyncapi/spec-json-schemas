@@ -1,0 +1,381 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1.1.0/topics/operations/operation.json",
+  "tests": [
+    {
+      "description": "valid: single message",
+      "valid": true,
+      "data": {
+        "summary": "Weather update for a city",
+        "description": "Sent every time the **forecast** changes",
+        "headers": {
+          "type": "object",
+          "properties": {
+            "correlationId": {
+              "type": "string"
+            }
+          }
+        },
+        "payload": {
+          "type": "object",
+          "required": [
+            "city"
+          ],
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "City name"
+            },
+            "temperature": {
+              "type": "number",
+              "minimum": -100,
+              "maximum": 100
+            }
+          }
+        },
+        "tags": [
+          {
+            "name": "city"
+          }
+        ],
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs"
+        },
+        "deprecated": false,
+        "example": {
+          "city": "Yerevan",
+          "temperature": 21.5
+        }
+      }
+    },
+    {
+      "description": "valid: empty message",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: oneOf with two messages",
+      "valid": true,
+      "data": {
+        "oneOf": [
+          {
+            "summary": "Weather update for a city",
+            "description": "Sent every time the **forecast** changes",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "correlationId": {
+                  "type": "string"
+                }
+              }
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "city"
+              ],
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "description": "City name"
+                },
+                "temperature": {
+                  "type": "number",
+                  "minimum": -100,
+                  "maximum": 100
+                }
+              }
+            },
+            "tags": [
+              {
+                "name": "city"
+              }
+            ],
+            "externalDocs": {
+              "url": "https://api.weather-forecast.am/docs"
+            },
+            "deprecated": false,
+            "example": {
+              "city": "Yerevan",
+              "temperature": 21.5
+            }
+          },
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: oneOf with x- extension",
+      "valid": true,
+      "data": {
+        "oneOf": [
+          {
+            "summary": "Weather update for a city",
+            "description": "Sent every time the **forecast** changes",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "correlationId": {
+                  "type": "string"
+                }
+              }
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "city"
+              ],
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "description": "City name"
+                },
+                "temperature": {
+                  "type": "number",
+                  "minimum": -100,
+                  "maximum": 100
+                }
+              }
+            },
+            "tags": [
+              {
+                "name": "city"
+              }
+            ],
+            "externalDocs": {
+              "url": "https://api.weather-forecast.am/docs"
+            },
+            "deprecated": false,
+            "example": {
+              "city": "Yerevan",
+              "temperature": 21.5
+            }
+          },
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ],
+        "x-retain": true
+      }
+    },
+    {
+      "description": "invalid: oneOf with a single message",
+      "valid": false,
+      "data": {
+        "oneOf": [
+          {
+            "summary": "Weather update for a city",
+            "description": "Sent every time the **forecast** changes",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "correlationId": {
+                  "type": "string"
+                }
+              }
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "city"
+              ],
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "description": "City name"
+                },
+                "temperature": {
+                  "type": "number",
+                  "minimum": -100,
+                  "maximum": 100
+                }
+              }
+            },
+            "tags": [
+              {
+                "name": "city"
+              }
+            ],
+            "externalDocs": {
+              "url": "https://api.weather-forecast.am/docs"
+            },
+            "deprecated": false,
+            "example": {
+              "city": "Yerevan",
+              "temperature": 21.5
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: oneOf with an invalid message",
+      "valid": false,
+      "data": {
+        "oneOf": [
+          {
+            "summary": "Weather update for a city",
+            "description": "Sent every time the **forecast** changes",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "correlationId": {
+                  "type": "string"
+                }
+              }
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "city"
+              ],
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "description": "City name"
+                },
+                "temperature": {
+                  "type": "number",
+                  "minimum": -100,
+                  "maximum": 100
+                }
+              }
+            },
+            "tags": [
+              {
+                "name": "city"
+              }
+            ],
+            "externalDocs": {
+              "url": "https://api.weather-forecast.am/docs"
+            },
+            "deprecated": false,
+            "example": {
+              "city": "Yerevan",
+              "temperature": 21.5
+            }
+          },
+          {
+            "foo": "bar"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: oneOf is not an array",
+      "valid": false,
+      "data": {
+        "oneOf": {
+          "summary": "Weather update for a city",
+          "description": "Sent every time the **forecast** changes",
+          "headers": {
+            "type": "object",
+            "properties": {
+              "correlationId": {
+                "type": "string"
+              }
+            }
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "city"
+            ],
+            "properties": {
+              "city": {
+                "type": "string",
+                "description": "City name"
+              },
+              "temperature": {
+                "type": "number",
+                "minimum": -100,
+                "maximum": 100
+              }
+            }
+          },
+          "tags": [
+            {
+              "name": "city"
+            }
+          ],
+          "externalDocs": {
+            "url": "https://api.weather-forecast.am/docs"
+          },
+          "deprecated": false,
+          "example": {
+            "city": "Yerevan",
+            "temperature": 21.5
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown property next to oneOf",
+      "valid": false,
+      "data": {
+        "oneOf": [
+          {
+            "summary": "Weather update for a city",
+            "description": "Sent every time the **forecast** changes",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "correlationId": {
+                  "type": "string"
+                }
+              }
+            },
+            "payload": {
+              "type": "object",
+              "required": [
+                "city"
+              ],
+              "properties": {
+                "city": {
+                  "type": "string",
+                  "description": "City name"
+                },
+                "temperature": {
+                  "type": "number",
+                  "minimum": -100,
+                  "maximum": 100
+                }
+              }
+            },
+            "tags": [
+              {
+                "name": "city"
+              }
+            ],
+            "externalDocs": {
+              "url": "https://api.weather-forecast.am/docs"
+            },
+            "deprecated": false,
+            "example": {
+              "city": "Yerevan",
+              "temperature": 21.5
+            }
+          },
+          {
+            "payload": {
+              "type": "string"
+            }
+          }
+        ],
+        "summary": "Weather"
+      }
+    },
+    {
+      "description": "invalid: message with unknown property",
+      "valid": false,
+      "data": {
+        "name": "cityUpdated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/anySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/schema+json;version=draft-07",
+        "schema": {
+          "$id": "https://example.com/user-profile.schema.json",
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "description": "A representation of a user profile",
+          "type": "object",
+          "required": [
+            "username",
+            "email"
+          ],
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "fullName": {
+              "type": "string"
+            },
+            "age": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "location": {
+              "type": "string"
+            },
+            "interests": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "$id": "https://example.com/user-profile.schema.json",
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "description": "A representation of a user profile",
+        "type": "object",
+        "required": [
+          "username",
+          "email"
+        ],
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "location": {
+            "type": "string"
+          },
+          "interests": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: plain schema",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: schema reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/schemas/user"
+      }
+    },
+    {
+      "description": "invalid: plain schema with invalid type",
+      "valid": false,
+      "data": {
+        "type": "map"
+      }
+    },
+    {
+      "description": "valid: multi-format schema",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+        "schema": {
+          "type": "record",
+          "name": "User",
+          "fields": []
+        }
+      }
+    },
+    {
+      "description": "invalid: multi-format schema with invalid avro",
+      "valid": false,
+      "data": {
+        "schemaFormat": "application/vnd.apache.avro;version=1.9.0",
+        "schema": {
+          "type": "record"
+        }
+      }
+    },
+    {
+      "description": "valid: schema property without schemaFormat routes to multi-format",
+      "valid": true,
+      "data": {
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "invalid: schema property with invalid schema",
+      "valid": false,
+      "data": {
+        "schema": {
+          "type": "map"
+        }
+      }
+    },
+    {
+      "description": "valid: schemaFormat without schema is validated as a plain schema (unknown keyword)",
+      "valid": true,
+      "data": {
+        "schemaFormat": "application/xml"
+      }
+    },
+    {
+      "description": "invalid: boolean true schema (type: object)",
+      "valid": false,
+      "data": true
+    },
+    {
+      "description": "invalid: boolean false schema (type: object)",
+      "valid": false,
+      "data": false
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "string"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "type": "string"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/info/contact.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "name": "Weather Forecast"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "email": "feedback@weather-forecast.am"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "url": "https://weather-forecast.am"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "name": "Weather Forecast",
+        "email": "feedback@weather-forecast.am",
+        "url": "https://weather-forecast.am"
+      }
+    },
+    {
+      "description": "valid: empty object (no required fields)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: url is a mailto uri",
+      "valid": true,
+      "data": {
+        "url": "mailto:feedback@weather-forecast.am"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "name": "Weather Forecast",
+        "x-phone": "+374 10 000000"
+      }
+    },
+    {
+      "description": "invalid: email without @",
+      "valid": false,
+      "data": {
+        "email": "feedback.weather-forecast.am"
+      }
+    },
+    {
+      "description": "invalid: email without local part",
+      "valid": false,
+      "data": {
+        "email": "@weather-forecast.am"
+      }
+    },
+    {
+      "description": "invalid: email is not a string",
+      "valid": false,
+      "data": {
+        "email": 1
+      }
+    },
+    {
+      "description": "invalid: url is relative",
+      "valid": false,
+      "data": {
+        "url": "/contact"
+      }
+    },
+    {
+      "description": "invalid: url is not a uri",
+      "valid": false,
+      "data": {
+        "url": "weather forecast"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": [ "Weather", "Forecast" ]
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "Weather Forecast",
+        "phone": "+374 10 000000"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "feedback@weather-forecast.am"
+    }
+  ]
+}

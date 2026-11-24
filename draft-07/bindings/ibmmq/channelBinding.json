@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/ibmmq/channelBinding.json",
+  "title": "IBM MQ - Channel Binding",
+  "description": "Describes protocol-specific definitions for a channel",
+  "examples": [
+    {
+      "bindingVersion": "0.1.0",
+      "destinationType": "topic",
+      "topic": {
+        "durablePermitted": true,
+        "lastMsgRetained": false,
+        "objectName": "myTopicName",
+        "string": "key"
+      }
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.1.0"
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/channel.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, then use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.1.0"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/channel.json"
+      }
+    }
+  ]
+}

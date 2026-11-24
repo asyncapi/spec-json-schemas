@@ -1,0 +1,74 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/operation.json#/definitions/consumer/properties/filterPolicy",
+  "tests": [
+    {
+      "description": "valid: string value",
+      "valid": true,
+      "data": {
+        "event_name": "order_cancelled"
+      }
+    },
+    {
+      "description": "valid: array of strings value",
+      "valid": true,
+      "data": {
+        "store": [
+          "asyncapi_corp",
+          "other_corp"
+        ]
+      }
+    },
+    {
+      "description": "valid: object value",
+      "valid": true,
+      "data": {
+        "event": {
+          "anything-but": "order_cancelled"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: x- extension with any value",
+      "valid": true,
+      "data": {
+        "x-priority": 1
+      }
+    },
+    {
+      "description": "invalid: number value",
+      "valid": false,
+      "data": {
+        "price": 100
+      }
+    },
+    {
+      "description": "invalid: boolean value",
+      "valid": false,
+      "data": {
+        "is_test": true
+      }
+    },
+    {
+      "description": "invalid: array with a non string item",
+      "valid": false,
+      "data": {
+        "store": [
+          "asyncapi_corp",
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        "asyncapi_corp"
+      ]
+    }
+  ]
+}

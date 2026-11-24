@@ -1,0 +1,50 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.3.0/channel.json#/properties/exchange/properties/type",
+  "tests": [
+    {
+      "description": "valid: topic",
+      "valid": true,
+      "data": "topic"
+    },
+    {
+      "description": "valid: direct",
+      "valid": true,
+      "data": "direct"
+    },
+    {
+      "description": "valid: fanout",
+      "valid": true,
+      "data": "fanout"
+    },
+    {
+      "description": "valid: default",
+      "valid": true,
+      "data": "default"
+    },
+    {
+      "description": "valid: headers",
+      "valid": true,
+      "data": "headers"
+    },
+    {
+      "description": "invalid: capitalized Topic",
+      "valid": false,
+      "data": "Topic"
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": "x-consistent-hash"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

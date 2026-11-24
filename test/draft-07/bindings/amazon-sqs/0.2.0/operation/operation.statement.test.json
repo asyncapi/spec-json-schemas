@@ -1,0 +1,78 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.2.0/operation.json#/definitions/statement",
+  "tests": [
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*",
+        "x-sid": "AllowSend"
+      }
+    },
+    {
+      "description": "invalid: missing effect",
+      "valid": false,
+      "data": {
+        "action": "sqs:SendMessage",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: missing principal",
+      "valid": false,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow"
+      }
+    },
+    {
+      "description": "invalid: missing action",
+      "valid": false,
+      "data": {
+        "effect": "Allow",
+        "principal": "*"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "sqs:SendMessage"
+    },
+    {
+      "description": "valid: condition is not validated (not defined in 0.2.0)",
+      "valid": true,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*",
+        "condition": 1
+      }
+    },
+    {
+      "description": "valid: resource is not validated (not defined in 0.2.0)",
+      "valid": true,
+      "data": {
+        "action": "sqs:SendMessage",
+        "effect": "Allow",
+        "principal": "*",
+        "resource": 1
+      }
+    }
+  ]
+}

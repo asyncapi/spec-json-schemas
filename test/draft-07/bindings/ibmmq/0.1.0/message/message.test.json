@@ -1,0 +1,154 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "description": "String message",
+        "expiry": 10,
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "description": "JMS stream message",
+        "type": "jms",
+        "expiry": 10,
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "type": "binary",
+        "description": "Binary message",
+        "expiry": 10,
+        "headers": "k=v;",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: string",
+      "valid": true,
+      "data": {
+        "type": "string"
+      }
+    },
+    {
+      "description": "valid: jms",
+      "valid": true,
+      "data": {
+        "type": "jms"
+      }
+    },
+    {
+      "description": "valid: binary",
+      "valid": true,
+      "data": {
+        "type": "binary"
+      }
+    },
+    {
+      "description": "valid: binary with headers",
+      "valid": true,
+      "data": {
+        "type": "binary",
+        "headers": "MQRFH2,MQCIH"
+      }
+    },
+    {
+      "description": "valid: headers without type (only the binary branch matches)",
+      "valid": true,
+      "data": {
+        "headers": "k=v;"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: empty object (without type all three oneOf branches match)",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: expiry without type (all three oneOf branches match)",
+      "valid": false,
+      "data": {
+        "expiry": 10
+      }
+    },
+    {
+      "description": "invalid: string with headers",
+      "valid": false,
+      "data": {
+        "type": "string",
+        "headers": "k=v;"
+      }
+    },
+    {
+      "description": "invalid: jms with headers",
+      "valid": false,
+      "data": {
+        "type": "jms",
+        "headers": "k=v;"
+      }
+    },
+    {
+      "description": "invalid: invalid type",
+      "valid": false,
+      "data": {
+        "type": "json"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "string",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: headers is not a string",
+      "valid": false,
+      "data": {
+        "type": "binary",
+        "headers": [
+          "MQRFH2"
+        ]
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "type": "string",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "string",
+        "priority": 1
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "string"
+    }
+  ]
+}

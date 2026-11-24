@@ -1,0 +1,73 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/messageBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/mqtt/my-mqtt-queue"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "contentType": "application/json",
+        "correlationData": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "responseTopic": "application/responses"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/mqtt/my-mqtt-channel"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/mqtt"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "contentType": "application/json"
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/bindings/mqtt/my-mqtt-channel",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "responseTopic": ""
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/bindings/mqtt/my-mqtt-channel"
+    }
+  ]
+}

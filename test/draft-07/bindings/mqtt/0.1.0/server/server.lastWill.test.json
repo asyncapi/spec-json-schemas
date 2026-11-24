@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.1.0/server.json#/properties/lastWill",
+  "tests": [
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "message": "Guest gone offline.",
+        "qos": 2,
+        "retain": false,
+        "topic": "/last-wills"
+      }
+    },
+    {
+      "description": "valid: empty object (no required properties)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "message": "Guest gone offline.",
+        "qos": 2,
+        "retain": false,
+        "topic": "/last-wills",
+        "delayInterval": 10
+      }
+    },
+    {
+      "description": "invalid: message is not a string",
+      "valid": false,
+      "data": {
+        "message": 1,
+        "qos": 2,
+        "retain": false,
+        "topic": "/last-wills"
+      }
+    },
+    {
+      "description": "invalid: retain is not a boolean",
+      "valid": false,
+      "data": {
+        "message": "Guest gone offline.",
+        "qos": 2,
+        "retain": "false",
+        "topic": "/last-wills"
+      }
+    },
+    {
+      "description": "invalid: topic is not a string",
+      "valid": false,
+      "data": {
+        "message": "Guest gone offline.",
+        "qos": 2,
+        "retain": false,
+        "topic": [
+          "/last-wills"
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "Guest gone offline."
+    }
+  ]
+}

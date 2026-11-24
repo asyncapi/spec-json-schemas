@@ -1,0 +1,91 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/channelBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/googlepubsub/my-googlepubsub-queue"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "labels": {
+          "label1": "value1",
+          "label2": "value2"
+        },
+        "messageRetentionDuration": "86400s",
+        "messageStoragePolicy": {
+          "allowedPersistenceRegions": [
+            "us-central1",
+            "us-east1"
+          ]
+        },
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema",
+          "firstRevisionId": "1",
+          "lastRevisionId": "2"
+        },
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/googlepubsub/my-googlepubsub-channel"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/googlepubsub"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/bindings/googlepubsub/my-googlepubsub-channel",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "schemaSettings": {
+          "encoding": "json",
+          "name": "projects/your-project-id/schemas/your-schema"
+        },
+        "topic": "messages"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/bindings/googlepubsub/my-googlepubsub-channel"
+    }
+  ]
+}

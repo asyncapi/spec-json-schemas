@@ -1,0 +1,85 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/channelBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/apache-kafka/my-apache-kafka-queue"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "partitions": 20,
+        "replicas": 3,
+        "topic": "my-specific-topic",
+        "topicConfiguration": {
+          "cleanup.policy": [
+            "compact",
+            "delete"
+          ],
+          "delete.retention.ms": 1000,
+          "max.message.bytes": 2000,
+          "retention.bytes": 10,
+          "retention.ms": 2000,
+          "confluent.key.schema.validation": true,
+          "confluent.key.subject.name.strategy": "schema",
+          "confluent.value.schema.validation": true,
+          "confluent.value.subject.name.strategy": "schema"
+        }
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channelBindings/my-kafka-topic"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/apache-kafka"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "topic": "my-topic",
+        "partitions": 3
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/channelBindings/my-kafka-topic",
+        "bindingVersion": "0.5.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "partitions": 0
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/components/channelBindings/my-kafka-topic"
+    }
+  ]
+}

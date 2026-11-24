@@ -1,0 +1,245 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.6.0/channels/channelItem.json",
+  "tests": [
+    {
+      "description": "valid: 0.5.0 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.5.0 example #2",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "0.5.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic",
+            "topicConfiguration": {
+              "cleanup.policy": [
+                "compact",
+                "delete"
+              ],
+              "delete.retention.ms": 1000,
+              "max.message.bytes": 2000,
+              "retention.bytes": 10,
+              "retention.ms": 2000,
+              "confluent.key.schema.validation": true,
+              "confluent.key.subject.name.strategy": "schema",
+              "confluent.value.schema.validation": true,
+              "confluent.value.subject.name.strategy": "schema"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.5.0 topic is not a string",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "topic": 1,
+            "bindingVersion": "0.5.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.4.0 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "0.4.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.4.0 example #2",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "0.4.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic",
+            "topicConfiguration": {
+              "cleanup.policy": [
+                "compact",
+                "delete"
+              ],
+              "delete.retention.ms": 1000,
+              "max.message.bytes": 2000,
+              "retention.bytes": 10,
+              "retention.ms": 2000
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.4.0 topic is not a string",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "topic": 1,
+            "bindingVersion": "0.4.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "0.3.0",
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 topic is not a string",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "topic": 1,
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 topic is not defined in 0.1.0",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "topic": "my-topic",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.5.0 is used)",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "partitions": 20,
+            "replicas": 3,
+            "topic": "my-specific-topic"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/channelBindings/my-kafka"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/channelBindings/my-kafka",
+            "bindingVersion": "0.5.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": "kafka"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "kafka": null
+        }
+      }
+    },
+    {
+      "description": "valid: folder name apache-kafka is accepted unvalidated (open map, the key is kafka)",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "apache-kafka": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    }
+  ]
+}

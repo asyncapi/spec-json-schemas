@@ -1,0 +1,556 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.0.0/channels/channelItem.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/channels/my-channel"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "description": "This channel is used to exchange messages about users signing up",
+        "subscribe": {
+          "operationId": "sendMessage",
+          "summary": "Send message",
+          "description": "Send message to remote server",
+          "message": {
+            "$ref": "#/components/schemas/sendMessage"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "description": "This channel is used to exchange messages about users signing up",
+        "publish": {
+          "operationId": "sendMessage",
+          "summary": "Send message",
+          "description": "Send message to remote server",
+          "traits": [
+            {
+              "$ref": "#/components/operationTraits/sendMessage"
+            }
+          ],
+          "message": {
+            "headers": {
+              "type": "object",
+              "properties": {
+                "correlationId": {
+                  "description": "Correlation ID set by application",
+                  "type": "string"
+                },
+                "applicationInstanceId": {
+                  "description": "Unique identifier for a given instance of the publishing application",
+                  "type": "string"
+                }
+              }
+            },
+            "payload": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "$ref": "#/components/schemas/userCreate"
+                },
+                "signup": {
+                  "$ref": "#/components/schemas/signup"
+                }
+              }
+            },
+            "correlationId": {
+              "description": "Default Correlation ID",
+              "location": "$message.header#/correlationId"
+            },
+            "contentType": "application/json",
+            "name": "UserSignup",
+            "title": "User signup",
+            "summary": "Action to sign a user up",
+            "description": "A longer description",
+            "examples": [
+              {
+                "headers": {
+                  "correlationId": "my-correlation-id",
+                  "applicationInstanceId": "myInstanceId"
+                },
+                "payload": {
+                  "user": {
+                    "someUserKey": "someUserValue"
+                  },
+                  "signup": {
+                    "someSignupKey": "someSignupValue"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "parameters": {
+          "userId": {
+            "description": "Id of the user",
+            "schema": {
+              "type": "string"
+            },
+            "location": "$message.payload#/user/id"
+          }
+        },
+        "deprecated": true
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: publish and subscribe",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "subscribe": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: $ref",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channels/a"
+      }
+    },
+    {
+      "description": "valid: $ref with siblings is accepted ($ref is a plain property)",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channels/a",
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: $ref is not a uri reference",
+      "valid": false,
+      "data": {
+        "$ref": "#/a b/{c}"
+      }
+    },
+    {
+      "description": "invalid: $ref is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "valid: parameters",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": {
+          "userId": {
+            "schema": {
+              "type": "string"
+            },
+            "location": "$message.payload#/id"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: parameter reference",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": {
+          "userId": {
+            "$ref": "#/components/parameters/userId"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: parameter with invalid location",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "parameters": {
+          "userId": {
+            "location": "payload#/id"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: publish with invalid message",
+      "valid": false,
+      "data": {
+        "publish": {
+          "message": {
+            "payload": true
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: publish is a string",
+      "valid": false,
+      "data": {
+        "publish": "sendUser"
+      }
+    },
+    {
+      "description": "valid: deprecated",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    {
+      "description": "invalid: deprecated is a string",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "deprecated": "yes"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: address is not allowed (v3 field)",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "address": "users"
+      }
+    },
+    {
+      "description": "invalid: messages is not allowed (v3 field)",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "messages": {
+          "a": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: servers is not available in 2.0.0 (added in 2.2.0)",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "servers": [
+          "prod",
+          "dev"
+        ]
+      }
+    },
+    {
+      "description": "valid: empty bindings",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": {}
+      }
+    },
+    {
+      "description": "valid: binding reference per protocol",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": {
+          "kafka": {
+            "$ref": "#/components/bindings/a"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: known protocol with unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": {
+          "kafka": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: unknown protocol is accepted unvalidated (map has additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": {
+          "unknown": 1
+        }
+      }
+    },
+    {
+      "description": "valid: ros2 is accepted unvalidated (not in the v2 map)",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": {
+          "ros2": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindings is an array",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": []
+      }
+    },
+    {
+      "description": "valid: googlepubsub is accepted unvalidated in 2.0.0 (added to the map in 2.6.0)",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": {
+          "googlepubsub": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: x- extension in bindings",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "bindings": {
+          "x-custom": 1
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "x-": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "publish": {
+          "operationId": "sendUser",
+          "message": {
+            "payload": {
+              "type": "string"
+            }
+          }
+        },
+        "address": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "publish": {
+            "operationId": "sendUser",
+            "message": {
+              "payload": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}

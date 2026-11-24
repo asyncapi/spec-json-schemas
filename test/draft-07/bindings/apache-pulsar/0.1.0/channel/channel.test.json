@@ -1,0 +1,130 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-pulsar/0.1.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "compaction": 1000,
+        "deduplication": true,
+        "geo-replication": [
+          "us-west",
+          "us-east"
+        ],
+        "namespace": "ns1",
+        "persistence": "persistent",
+        "retention": {
+          "size": 1000,
+          "time": 15
+        },
+        "ttl": 360
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "compaction": 1000,
+        "deduplication": true,
+        "geo-replication": [
+          "us-west",
+          "us-east"
+        ],
+        "namespace": "ns1",
+        "persistence": "non-persistent",
+        "retention": {
+          "size": 1000,
+          "time": 15
+        },
+        "ttl": 360
+      }
+    },
+    {
+      "description": "valid: required properties only",
+      "valid": true,
+      "data": {
+        "namespace": "ns1",
+        "persistence": "persistent"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "namespace": "ns1",
+        "persistence": "persistent",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "valid: deduplication false",
+      "valid": true,
+      "data": {
+        "namespace": "ns1",
+        "persistence": "persistent",
+        "deduplication": false
+      }
+    },
+    {
+      "description": "invalid: missing namespace",
+      "valid": false,
+      "data": {
+        "persistence": "persistent"
+      }
+    },
+    {
+      "description": "invalid: missing persistence",
+      "valid": false,
+      "data": {
+        "namespace": "ns1"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: namespace is not a string",
+      "valid": false,
+      "data": {
+        "namespace": 1,
+        "persistence": "persistent"
+      }
+    },
+    {
+      "description": "invalid: deduplication is not a boolean",
+      "valid": false,
+      "data": {
+        "namespace": "ns1",
+        "persistence": "persistent",
+        "deduplication": "true"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "namespace": "ns1",
+        "persistence": "persistent",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "namespace": "ns1",
+        "persistence": "persistent",
+        "tenant": "public"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "ns1"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/messages/messageTrait.json",
+  "tests": [
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #2",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 unknown property",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "name": "myQueue",
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #2",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 unknown property",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "name": "myQueue",
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #2",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 unknown property",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "name": "myQueue",
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.3.0 is used)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {}
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "$ref": "#/components/messageBindings/my-sqs"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "$ref": "#/components/messageBindings/my-sqs",
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": "sqs"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "sqs": null
+        }
+      }
+    },
+    {
+      "description": "valid: folder name amazon-sqs is accepted unvalidated (open map, the key is sqs)",
+      "valid": true,
+      "data": {
+        "name": "UserSignedUp",
+        "bindings": {
+          "amazon-sqs": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "msvVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "msgVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "msgVpn": "ProdVPN",
+        "clientName": "production"
+      }
+    },
+    {
+      "description": "invalid: msgVpn with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "msgVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "valid: msvVpn with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "msvVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: msgVpn with 0.2.0 (0.2.0 spells it msvVpn)",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "msgVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "valid: msgVpn with 0.3.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "msgVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: msvVpn with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "msvVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: clientName with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "clientName": "production"
+      }
+    },
+    {
+      "description": "valid: clientName with latest uses 0.4.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest",
+        "clientName": "production"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.4.0",
+      "valid": true,
+      "data": {
+        "msgVpn": "ProdVPN",
+        "clientName": "production"
+      }
+    },
+    {
+      "description": "invalid: msvVpn without bindingVersion uses 0.4.0",
+      "valid": false,
+      "data": {
+        "msvVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.4.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.5.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "ProdVPN"
+    }
+  ]
+}

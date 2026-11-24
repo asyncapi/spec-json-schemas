@@ -1,0 +1,123 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/operationBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "ack": false,
+        "bcc": [
+          "external.audit"
+        ],
+        "cc": [
+          "user.logs"
+        ],
+        "deliveryMode": 2,
+        "expiration": 100000,
+        "mandatory": false,
+        "priority": 10,
+        "replyTo": "user.signedup",
+        "timestamp": true,
+        "userId": "guest",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "ack": false,
+        "bcc": [
+          "external.audit"
+        ],
+        "cc": [
+          "user.logs"
+        ],
+        "deliveryMode": 2,
+        "expiration": 100000,
+        "mandatory": false,
+        "priority": 10,
+        "replyTo": "user.signedup",
+        "timestamp": true,
+        "userId": "guest",
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "ack": false,
+        "bcc": [
+          "external.audit"
+        ],
+        "cc": [
+          "user.logs"
+        ],
+        "deliveryMode": 2,
+        "expiration": 100000,
+        "mandatory": false,
+        "priority": 10,
+        "timestamp": true,
+        "userId": "guest",
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "valid: replyTo with 0.1.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "replyTo": "user.signedup"
+      }
+    },
+    {
+      "description": "valid: replyTo with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "replyTo": "user.signedup"
+      }
+    },
+    {
+      "description": "invalid: replyTo with 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "replyTo": "user.signedup"
+      }
+    },
+    {
+      "description": "invalid: replyTo with latest uses 0.3.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "latest",
+        "replyTo": "user.signedup"
+      }
+    },
+    {
+      "description": "invalid: replyTo without bindingVersion uses 0.3.0",
+      "valid": false,
+      "data": {
+        "replyTo": "user.signedup"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.3.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": []
+    }
+  ]
+}

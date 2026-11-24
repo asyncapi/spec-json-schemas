@@ -1,0 +1,75 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.3.0/channel.json#/definitions/redrivePolicy",
+  "tests": [
+    {
+      "description": "valid: deadLetterQueue only",
+      "valid": true,
+      "data": {
+        "deadLetterQueue": {
+          "arn": "arn:aws:sqs:eu-west-1:123456789012:myQueue"
+        }
+      }
+    },
+    {
+      "description": "valid: with maxReceiveCount",
+      "valid": true,
+      "data": {
+        "deadLetterQueue": {
+          "name": "myQueue_error"
+        },
+        "maxReceiveCount": 15
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "deadLetterQueue": {
+          "name": "myQueue_error"
+        },
+        "x-alarm": true
+      }
+    },
+    {
+      "description": "invalid: missing deadLetterQueue",
+      "valid": false,
+      "data": {
+        "maxReceiveCount": 15
+      }
+    },
+    {
+      "description": "invalid: maxReceiveCount is a decimal number",
+      "valid": false,
+      "data": {
+        "deadLetterQueue": {
+          "name": "myQueue_error"
+        },
+        "maxReceiveCount": 1.5
+      }
+    },
+    {
+      "description": "invalid: maxReceiveCount is a string",
+      "valid": false,
+      "data": {
+        "deadLetterQueue": {
+          "name": "myQueue_error"
+        },
+        "maxReceiveCount": "15"
+      }
+    },
+    {
+      "description": "invalid: invalid deadLetterQueue",
+      "valid": false,
+      "data": {
+        "deadLetterQueue": {
+          "arn": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myQueue_error"
+    }
+  ]
+}

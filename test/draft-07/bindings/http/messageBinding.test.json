@@ -1,0 +1,96 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/messageBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 does not define statusCode",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "statusCode": 200
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 does not define statusCode",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "statusCode": 200
+      }
+    },
+    {
+      "description": "valid: 0.3.0 with statusCode",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.3.0",
+        "statusCode": 200
+      }
+    },
+    {
+      "description": "valid: latest with statusCode uses 0.3.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest",
+        "statusCode": 200
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.3.0",
+      "valid": true,
+      "data": {
+        "headers": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string",
+              "enum": [
+                "application/json"
+              ]
+            }
+          }
+        },
+        "statusCode": 200
+      }
+    },
+    {
+      "description": "invalid: invalid headers with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "headers": "Content-Type"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.3.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "Content-Type"
+    }
+  ]
+}

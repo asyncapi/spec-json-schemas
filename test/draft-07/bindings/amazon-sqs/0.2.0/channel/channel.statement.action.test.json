@@ -1,0 +1,41 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/0.2.0/channel.json#/definitions/statement/properties/action",
+  "tests": [
+    {
+      "description": "valid: action as a string",
+      "valid": true,
+      "data": "sqs:SendMessage"
+    },
+    {
+      "description": "valid: action as an array of strings",
+      "valid": true,
+      "data": [
+        "sqs:SendMessage",
+        "sqs:ReceiveMessage"
+      ]
+    },
+    {
+      "description": "valid: action as an empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "invalid: action as a number",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "invalid: action as an array with a non string item",
+      "valid": false,
+      "data": [
+        "sqs:SendMessage",
+        1
+      ]
+    },
+    {
+      "description": "invalid: action as a boolean",
+      "valid": false,
+      "data": true
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.1.0/message.json#/properties/schema",
+  "tests": [
+    {
+      "description": "valid: required properties",
+      "valid": true,
+      "data": {
+        "type": "avro",
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "type": "avro"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "type": "avro",
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "type": "avro",
+        "name": "projects/your-project-id/schemas/your-avro-schema-id",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "projects/your-project-id/schemas/your-avro-schema-id"
+    },
+    {
+      "description": "valid: protobuf",
+      "valid": true,
+      "data": {
+        "type": "protobuf",
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
+    },
+    {
+      "description": "valid: type is any string (not an enum)",
+      "valid": true,
+      "data": {
+        "type": "xml",
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
+    },
+    {
+      "description": "invalid: type is not a string",
+      "valid": false,
+      "data": {
+        "type": 1,
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "avro",
+        "name": "projects/your-project-id/schemas/your-avro-schema-id",
+        "revisionId": "1"
+      }
+    }
+  ]
+}

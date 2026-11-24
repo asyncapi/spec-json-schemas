@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.1.0/operation.json#/properties/deliveryMode",
+  "tests": [
+    {
+      "description": "valid: 1 (transient)",
+      "valid": true,
+      "data": 1
+    },
+    {
+      "description": "valid: 2 (persistent)",
+      "valid": true,
+      "data": 2
+    },
+    {
+      "description": "invalid: 0",
+      "valid": false,
+      "data": 0
+    },
+    {
+      "description": "invalid: 3",
+      "valid": false,
+      "data": 3
+    },
+    {
+      "description": "invalid: string 2",
+      "valid": false,
+      "data": "2"
+    },
+    {
+      "description": "invalid: persistent",
+      "valid": false,
+      "data": "persistent"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/channel.json#/properties/destinationType",
+  "tests": [
+    {
+      "description": "valid: exchange",
+      "valid": true,
+      "data": "exchange"
+    },
+    {
+      "description": "valid: queue",
+      "valid": true,
+      "data": "queue"
+    },
+    {
+      "description": "valid: fifo-queue",
+      "valid": true,
+      "data": "fifo-queue"
+    },
+    {
+      "description": "invalid: fifo_queue",
+      "valid": false,
+      "data": "fifo_queue"
+    },
+    {
+      "description": "invalid: capitalized Queue",
+      "valid": false,
+      "data": "Queue"
+    },
+    {
+      "description": "invalid: topic",
+      "valid": false,
+      "data": "topic"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

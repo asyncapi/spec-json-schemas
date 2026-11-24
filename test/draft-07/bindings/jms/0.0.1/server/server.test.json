@@ -1,0 +1,122 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/jms/0.0.1/server.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "properties": [
+          {
+            "name": "disableTimeStampsByDefault",
+            "value": false
+          }
+        ],
+        "bindingVersion": "0.0.1",
+        "clientID": "my-application-1",
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      }
+    },
+    {
+      "description": "valid: jmsConnectionFactory only",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      }
+    },
+    {
+      "description": "valid: with clientID",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "clientID": "my-application-1"
+      }
+    },
+    {
+      "description": "valid: empty properties",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "properties": []
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: missing jmsConnectionFactory",
+      "valid": false,
+      "data": {
+        "clientID": "my-application-1"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: jmsConnectionFactory is not a string",
+      "valid": false,
+      "data": {
+        "jmsConnectionFactory": 1
+      }
+    },
+    {
+      "description": "invalid: clientID is not a string",
+      "valid": false,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "clientID": 1
+      }
+    },
+    {
+      "description": "invalid: properties is not an array",
+      "valid": false,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "properties": {
+          "name": "a",
+          "value": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid property item",
+      "valid": false,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "properties": [
+          {
+            "name": "a"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory",
+        "destination": "user-signed-up"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "org.apache.activemq.ActiveMQConnectionFactory"
+    }
+  ]
+}

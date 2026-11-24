@@ -1,0 +1,44 @@
+{
+  "name": "@asyncapi/specs",
+  "version": "6.11.1",
+  "description": "AsyncAPI schema versions",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "schemas/*.json",
+    "NOTICE"
+  ],
+  "scripts": {
+    "sync": "node sync.js",
+    "prepack": "node sync.js",
+    "test": "node sync.js && node --test test/index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asyncapi/spec-json-schemas.git",
+    "directory": "dists/js"
+  },
+  "author": {
+    "name": "Fran Mendez",
+    "email": "fmvilas@gmail.com"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    {
+      "name": "Bruno Pedro",
+      "email": "bpedro@hitchhq.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/asyncapi/spec-json-schemas/issues"
+  },
+  "homepage": "https://github.com/asyncapi/spec-json-schemas/tree/master/dists/js#readme",
+  "dependencies": {
+    "@types/json-schema": "^7.0.11"
+  }
+}

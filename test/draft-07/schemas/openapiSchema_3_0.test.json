@@ -1,0 +1,259 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/openapiSchema_3_0.json",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: string with format and pattern",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "format": "email",
+        "pattern": "^.+@.+$",
+        "minLength": 3
+      }
+    },
+    {
+      "description": "valid: nullable",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "nullable": true
+      }
+    },
+    {
+      "description": "valid: object with properties and required",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: additionalProperties boolean",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    {
+      "description": "valid: additionalProperties schema",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "description": "valid: array with items",
+      "valid": true,
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "uniqueItems": true
+      }
+    },
+    {
+      "description": "valid: boolean exclusiveMaximum and exclusiveMinimum",
+      "valid": true,
+      "data": {
+        "type": "number",
+        "maximum": 10,
+        "exclusiveMaximum": true,
+        "minimum": 0,
+        "exclusiveMinimum": true
+      }
+    },
+    {
+      "description": "valid: readOnly and writeOnly",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "readOnly": true,
+        "writeOnly": false
+      }
+    },
+    {
+      "description": "valid: discriminator",
+      "valid": true,
+      "data": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Cat"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "petType",
+          "mapping": {
+            "cat": "#/components/schemas/Cat"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: xml",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "xml": {
+          "name": "user",
+          "namespace": "https://example.com/schema",
+          "prefix": "u",
+          "attribute": false,
+          "wrapped": true
+        }
+      }
+    },
+    {
+      "description": "valid: externalDocs",
+      "valid": true,
+      "data": {
+        "externalDocs": {
+          "url": "https://docs.lo",
+          "description": "d"
+        }
+      }
+    },
+    {
+      "description": "valid: example and default",
+      "valid": true,
+      "data": {
+        "type": "integer",
+        "default": 1,
+        "example": 2
+      }
+    },
+    {
+      "description": "valid: deprecated",
+      "valid": true,
+      "data": {
+        "deprecated": true
+      }
+    },
+    {
+      "description": "valid: x- extension",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "x-internal": true
+      }
+    },
+    {
+      "description": "valid: reference in properties",
+      "valid": true,
+      "data": {
+        "properties": {
+          "a": {
+            "$ref": "#/components/schemas/A"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: type is an array (JSON Schema style)",
+      "valid": false,
+      "data": {
+        "type": [
+          "string",
+          "null"
+        ]
+      }
+    },
+    {
+      "description": "invalid: type null (use nullable)",
+      "valid": false,
+      "data": {
+        "type": "null"
+      }
+    },
+    {
+      "description": "invalid: exclusiveMaximum as number (JSON Schema style)",
+      "valid": false,
+      "data": {
+        "type": "number",
+        "exclusiveMaximum": 10
+      }
+    },
+    {
+      "description": "invalid: unknown keyword",
+      "valid": false,
+      "data": {
+        "type": "string",
+        "name": "schema name"
+      }
+    },
+    {
+      "description": "invalid: $schema is not allowed",
+      "valid": false,
+      "data": {
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      }
+    },
+    {
+      "description": "invalid: const is not allowed",
+      "valid": false,
+      "data": {
+        "const": "a"
+      }
+    },
+    {
+      "description": "invalid: discriminator without propertyName",
+      "valid": false,
+      "data": {
+        "discriminator": {
+          "mapping": {}
+        }
+      }
+    },
+    {
+      "description": "invalid: externalDocs without url",
+      "valid": false,
+      "data": {
+        "externalDocs": {
+          "description": "d"
+        }
+      }
+    },
+    {
+      "description": "invalid: nullable is a string",
+      "valid": false,
+      "data": {
+        "nullable": "true"
+      }
+    },
+    {
+      "description": "invalid: required is empty",
+      "valid": false,
+      "data": {
+        "required": []
+      }
+    },
+    {
+      "description": "invalid: multipleOf is zero",
+      "valid": false,
+      "data": {
+        "multipleOf": 0
+      }
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "string"
+    }
+  ]
+}

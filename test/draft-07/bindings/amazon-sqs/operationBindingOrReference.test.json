@@ -1,0 +1,93 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sqs/operationBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/amazon-sqs/my-sqs-operation"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue",
+            "policy": {
+              "statements": [
+                {
+                  "action": [
+                    "sqs:SendMessage",
+                    "sqs:ReceiveMessage"
+                  ],
+                  "effect": "Deny",
+                  "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                  "condition": {
+                    "ArnEquals": {
+                      "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:MyTopic"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/components/channelBindings/my-sqs-queue"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/amazon-sqs"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "queues": [
+          {
+            "name": "myQueue"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/channelBindings/my-sqs-queue",
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "queues": []
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/components/channelBindings/my-sqs-queue"
+    }
+  ]
+}

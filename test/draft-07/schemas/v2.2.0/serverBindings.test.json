@@ -1,0 +1,770 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.2.0/serverBindings.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "sns": {
+          "$ref": "#/bindings/amazon-sns/my-sns-server"
+        },
+        "sqs": {
+          "$ref": "#/bindings/amazon-sqs/my-sqs-server"
+        },
+        "amqp": {
+          "$ref": "#/bindings/amqp/my-amqp-server"
+        },
+        "amqp1": {
+          "$ref": "#/bindings/amqp1/my-amqp1-server"
+        },
+        "anypointmq": {
+          "$ref": "#/bindings/anypointmq/my-anypointmq-server"
+        },
+        "kafka": {
+          "$ref": "#/bindings/apache-kafka/my-apache-kafka-server"
+        },
+        "http": {
+          "$ref": "#/bindings/http/my-http-server"
+        },
+        "ibmmq": {
+          "$ref": "#/bindings/ibmmq/my-ibmmq-server"
+        },
+        "jms": {
+          "$ref": "#/bindings/jms/my-jms-server"
+        },
+        "mqtt": {
+          "$ref": "#/bindings/mqtt/my-mqtt-server"
+        },
+        "mqtt5": {
+          "$ref": "#/bindings/mqtt5/my-mqtt5-server"
+        },
+        "nats": {
+          "$ref": "#/bindings/nats/my-nats-server"
+        },
+        "redis": {
+          "$ref": "#/bindings/redis/my-redis-server"
+        },
+        "solace": {
+          "$ref": "#/bindings/solace/my-solace-server"
+        },
+        "stomp": {
+          "$ref": "#/bindings/stomp/my-stomp-server"
+        },
+        "ws": {
+          "$ref": "#/bindings/websockets/my-websockets-server"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "sns": {
+          "bindingVersion": "0.2.0"
+        },
+        "sqs": {
+          "bindingVersion": "0.3.0"
+        },
+        "amqp": {
+          "bindingVersion": "0.3.0"
+        },
+        "amqp1": {
+          "bindingVersion": "0.1.0"
+        },
+        "anypointmq": {
+          "bindingVersion": "0.0.1"
+        },
+        "kafka": {
+          "bindingVersion": "0.5.0",
+          "schemaRegistryUrl": "https://my-schema-registry.com",
+          "schemaRegistryVendor": "confluent"
+        },
+        "http": {
+          "bindingVersion": "0.3.0"
+        },
+        "ibmmq": {
+          "bindingVersion": "0.1.0",
+          "groupId": "PRODCLSTR1",
+          "ccdtQueueManagerName": "*",
+          "heartBeatInterval": 1000,
+          "multiEndpointServer": false
+        },
+        "jms": {
+          "properties": [
+            {
+              "name": "disableTimeStampsByDefault",
+              "value": false
+            }
+          ],
+          "bindingVersion": "0.0.1",
+          "clientID": "my-application-1",
+          "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+        },
+        "mqtt": {
+          "bindingVersion": "0.2.0",
+          "cleanSession": true,
+          "clientId": "guest",
+          "keepAlive": 60,
+          "lastWill": {
+            "message": "Guest gone offline.",
+            "qos": 2,
+            "retain": false,
+            "topic": "/last-wills"
+          },
+          "maximumPacketSize": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "mqtt5": {
+          "bindingVersion": "0.2.0",
+          "sessionExpiryInterval": {
+            "type": "integer",
+            "minimum": 100
+          }
+        },
+        "nats": {
+          "bindingVersion": "0.1.0"
+        },
+        "redis": {
+          "bindingVersion": "0.1.0"
+        },
+        "solace": {
+          "bindingVersion": "0.4.0",
+          "msgVpn": "ProdVPN",
+          "clientName": "production"
+        },
+        "stomp": {
+          "bindingVersion": "0.1.0"
+        },
+        "ws": {
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: x- extension",
+      "valid": true,
+      "data": {
+        "x-custom": {
+          "any": 1
+        }
+      }
+    },
+    {
+      "description": "valid: http reference",
+      "valid": true,
+      "data": {
+        "http": {
+          "$ref": "#/components/serverBindings/my-http"
+        }
+      }
+    },
+    {
+      "description": "invalid: http unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "http": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: http reference with extra property",
+      "valid": false,
+      "data": {
+        "http": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: http is not an object",
+      "valid": false,
+      "data": {
+        "http": "x"
+      }
+    },
+    {
+      "description": "valid: ws reference",
+      "valid": true,
+      "data": {
+        "ws": {
+          "$ref": "#/components/serverBindings/my-ws"
+        }
+      }
+    },
+    {
+      "description": "invalid: ws unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "ws": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: ws reference with extra property",
+      "valid": false,
+      "data": {
+        "ws": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: ws is not an object",
+      "valid": false,
+      "data": {
+        "ws": "x"
+      }
+    },
+    {
+      "description": "valid: amqp reference",
+      "valid": true,
+      "data": {
+        "amqp": {
+          "$ref": "#/components/serverBindings/my-amqp"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "amqp": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp reference with extra property",
+      "valid": false,
+      "data": {
+        "amqp": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp is not an object",
+      "valid": false,
+      "data": {
+        "amqp": "x"
+      }
+    },
+    {
+      "description": "valid: amqp1 reference",
+      "valid": true,
+      "data": {
+        "amqp1": {
+          "$ref": "#/components/serverBindings/my-amqp1"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp1 unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "amqp1": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp1 reference with extra property",
+      "valid": false,
+      "data": {
+        "amqp1": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: amqp1 is not an object",
+      "valid": false,
+      "data": {
+        "amqp1": "x"
+      }
+    },
+    {
+      "description": "valid: mqtt reference",
+      "valid": true,
+      "data": {
+        "mqtt": {
+          "$ref": "#/components/serverBindings/my-mqtt"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "mqtt": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt reference with extra property",
+      "valid": false,
+      "data": {
+        "mqtt": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt is not an object",
+      "valid": false,
+      "data": {
+        "mqtt": "x"
+      }
+    },
+    {
+      "description": "valid: mqtt5 reference",
+      "valid": true,
+      "data": {
+        "mqtt5": {
+          "$ref": "#/components/serverBindings/my-mqtt5"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt5 unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "mqtt5": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt5 reference with extra property",
+      "valid": false,
+      "data": {
+        "mqtt5": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: mqtt5 is not an object",
+      "valid": false,
+      "data": {
+        "mqtt5": "x"
+      }
+    },
+    {
+      "description": "valid: kafka reference",
+      "valid": true,
+      "data": {
+        "kafka": {
+          "$ref": "#/components/serverBindings/my-kafka"
+        }
+      }
+    },
+    {
+      "description": "invalid: kafka unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "kafka": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: kafka reference with extra property",
+      "valid": false,
+      "data": {
+        "kafka": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: kafka is not an object",
+      "valid": false,
+      "data": {
+        "kafka": "x"
+      }
+    },
+    {
+      "description": "valid: anypointmq reference",
+      "valid": true,
+      "data": {
+        "anypointmq": {
+          "$ref": "#/components/serverBindings/my-anypointmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: anypointmq unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "anypointmq": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: anypointmq reference with extra property",
+      "valid": false,
+      "data": {
+        "anypointmq": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: anypointmq is not an object",
+      "valid": false,
+      "data": {
+        "anypointmq": "x"
+      }
+    },
+    {
+      "description": "valid: nats reference",
+      "valid": true,
+      "data": {
+        "nats": {
+          "$ref": "#/components/serverBindings/my-nats"
+        }
+      }
+    },
+    {
+      "description": "invalid: nats unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "nats": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: nats reference with extra property",
+      "valid": false,
+      "data": {
+        "nats": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: nats is not an object",
+      "valid": false,
+      "data": {
+        "nats": "x"
+      }
+    },
+    {
+      "description": "valid: jms reference",
+      "valid": true,
+      "data": {
+        "jms": {
+          "$ref": "#/components/serverBindings/my-jms"
+        }
+      }
+    },
+    {
+      "description": "invalid: jms unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "jms": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: jms reference with extra property",
+      "valid": false,
+      "data": {
+        "jms": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: jms is not an object",
+      "valid": false,
+      "data": {
+        "jms": "x"
+      }
+    },
+    {
+      "description": "valid: sns reference",
+      "valid": true,
+      "data": {
+        "sns": {
+          "$ref": "#/components/serverBindings/my-sns"
+        }
+      }
+    },
+    {
+      "description": "invalid: sns unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "sns": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: sns reference with extra property",
+      "valid": false,
+      "data": {
+        "sns": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: sns is not an object",
+      "valid": false,
+      "data": {
+        "sns": "x"
+      }
+    },
+    {
+      "description": "valid: sqs reference",
+      "valid": true,
+      "data": {
+        "sqs": {
+          "$ref": "#/components/serverBindings/my-sqs"
+        }
+      }
+    },
+    {
+      "description": "invalid: sqs unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "sqs": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: sqs reference with extra property",
+      "valid": false,
+      "data": {
+        "sqs": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: sqs is not an object",
+      "valid": false,
+      "data": {
+        "sqs": "x"
+      }
+    },
+    {
+      "description": "valid: stomp reference",
+      "valid": true,
+      "data": {
+        "stomp": {
+          "$ref": "#/components/serverBindings/my-stomp"
+        }
+      }
+    },
+    {
+      "description": "invalid: stomp unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "stomp": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: stomp reference with extra property",
+      "valid": false,
+      "data": {
+        "stomp": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: stomp is not an object",
+      "valid": false,
+      "data": {
+        "stomp": "x"
+      }
+    },
+    {
+      "description": "valid: redis reference",
+      "valid": true,
+      "data": {
+        "redis": {
+          "$ref": "#/components/serverBindings/my-redis"
+        }
+      }
+    },
+    {
+      "description": "invalid: redis unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "redis": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: redis reference with extra property",
+      "valid": false,
+      "data": {
+        "redis": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: redis is not an object",
+      "valid": false,
+      "data": {
+        "redis": "x"
+      }
+    },
+    {
+      "description": "valid: ibmmq reference",
+      "valid": true,
+      "data": {
+        "ibmmq": {
+          "$ref": "#/components/serverBindings/my-ibmmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: ibmmq unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "ibmmq": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: ibmmq reference with extra property",
+      "valid": false,
+      "data": {
+        "ibmmq": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: ibmmq is not an object",
+      "valid": false,
+      "data": {
+        "ibmmq": "x"
+      }
+    },
+    {
+      "description": "valid: solace reference",
+      "valid": true,
+      "data": {
+        "solace": {
+          "$ref": "#/components/serverBindings/my-solace"
+        }
+      }
+    },
+    {
+      "description": "invalid: solace unknown bindingVersion",
+      "valid": false,
+      "data": {
+        "solace": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "invalid: solace reference with extra property",
+      "valid": false,
+      "data": {
+        "solace": {
+          "$ref": "#/a",
+          "bindingVersion": "0.1.0"
+        }
+      }
+    },
+    {
+      "description": "invalid: solace is not an object",
+      "valid": false,
+      "data": {
+        "solace": "x"
+      }
+    },
+    {
+      "description": "valid: ros2 is accepted unvalidated in 2.2.0 (not in the map, additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "ros2": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "valid: googlepubsub is accepted unvalidated in 2.2.0 (not in the map, additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "googlepubsub": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "valid: pulsar is accepted unvalidated in 2.2.0 (not in the map, additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "pulsar": {
+          "bindingVersion": "9.9.9"
+        }
+      }
+    },
+    {
+      "description": "valid: unknown protocol key is accepted unvalidated (additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "unknown": 1
+      }
+    },
+    {
+      "description": "valid: x- without name is accepted (additionalProperties: true)",
+      "valid": true,
+      "data": {
+        "x-": 1
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": []
+    }
+  ]
+}

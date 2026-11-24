@@ -1,0 +1,191 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/0.4.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "exclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ],
+              "maxMsgSpoolUsage": "4",
+              "maxTtl": "1"
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ],
+        "dmqEligible": true,
+        "priority": 20,
+        "timeToLive": 10
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: empty destinations",
+      "valid": true,
+      "data": {
+        "destinations": []
+      }
+    },
+    {
+      "description": "valid: queue and topic destinations",
+      "valid": true,
+      "data": {
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "destinations": [
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ],
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: destinations is not an array",
+      "valid": false,
+      "data": {
+        "destinations": {
+          "destinationType": "queue",
+          "queue": {
+            "accessType": "nonexclusive",
+            "name": "sampleQueue",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid destination",
+      "valid": false,
+      "data": {
+        "destinations": [
+          {
+            "destinationType": "stream"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.5.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "destinations": [],
+        "msgVpn": "ProdVPN"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    },
+    {
+      "description": "valid: dmqEligible, priority and timeToLive",
+      "valid": true,
+      "data": {
+        "dmqEligible": false,
+        "priority": 0,
+        "timeToLive": 1000
+      }
+    },
+    {
+      "description": "invalid: dmqEligible is not a boolean",
+      "valid": false,
+      "data": {
+        "dmqEligible": "true"
+      }
+    },
+    {
+      "description": "invalid: priority is a Schema object (description mentions it, type is integer only)",
+      "valid": false,
+      "data": {
+        "priority": {
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "description": "invalid: timeToLive is a Schema object (description mentions it, type is integer only)",
+      "valid": false,
+      "data": {
+        "timeToLive": {
+          "type": "integer"
+        }
+      }
+    },
+    {
+      "description": "valid: negative timeToLive is not rejected (no minimum)",
+      "valid": true,
+      "data": {
+        "timeToLive": -1
+      }
+    },
+    {
+      "description": "invalid: timeToLive is a decimal number",
+      "valid": false,
+      "data": {
+        "timeToLive": 1.5
+      }
+    }
+  ]
+}

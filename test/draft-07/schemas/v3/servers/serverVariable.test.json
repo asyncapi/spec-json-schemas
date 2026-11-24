@@ -1,0 +1,186 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/servers/serverVariable.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "description": "Ports application listening for",
+        "examples": [
+          "8883",
+          "8884"
+        ]
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "description": "Ports application listening for",
+        "examples": [
+          "8883",
+          "8884"
+        ],
+        "x-lb-strategy": "round-robin"
+      }
+    },
+    {
+      "description": "valid: empty object (no required fields)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: default only",
+      "valid": true,
+      "data": {
+        "default": "production"
+      }
+    },
+    {
+      "description": "valid: enum only",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883"
+        ]
+      }
+    },
+    {
+      "description": "valid: default outside of enum is accepted (not checked)",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "1883"
+      }
+    },
+    {
+      "description": "valid: empty enum is accepted (no minItems)",
+      "valid": true,
+      "data": {
+        "enum": []
+      }
+    },
+    {
+      "description": "valid: duplicated examples are accepted (no uniqueItems)",
+      "valid": true,
+      "data": {
+        "examples": [
+          "8883",
+          "8883"
+        ]
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "x-lb-strategy": "round-robin"
+      }
+    },
+    {
+      "description": "invalid: duplicated enum values",
+      "valid": false,
+      "data": {
+        "enum": [
+          "8883",
+          "8883"
+        ]
+      }
+    },
+    {
+      "description": "invalid: enum with a number",
+      "valid": false,
+      "data": {
+        "enum": [
+          "8883",
+          8884
+        ]
+      }
+    },
+    {
+      "description": "invalid: enum is a string",
+      "valid": false,
+      "data": {
+        "enum": "8883"
+      }
+    },
+    {
+      "description": "invalid: default is a number",
+      "valid": false,
+      "data": {
+        "default": 8883
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: examples with a number",
+      "valid": false,
+      "data": {
+        "examples": [
+          "8883",
+          8884
+        ]
+      }
+    },
+    {
+      "description": "invalid: examples is a string",
+      "valid": false,
+      "data": {
+        "examples": "8883"
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed (use serverVariables)",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/serverVariables/port"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "enum": [
+          "8883",
+          "8884"
+        ],
+        "default": "8883",
+        "type": "string"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "8883"
+    }
+  ]
+}

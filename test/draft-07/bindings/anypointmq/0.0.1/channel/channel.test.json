@@ -1,0 +1,93 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signup-exchg",
+        "destinationType": "exchange"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signup-queue",
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signup-fifo-queue",
+        "destinationType": "fifo-queue"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: destination only",
+      "valid": true,
+      "data": {
+        "destination": "user-signup-queue"
+      }
+    },
+    {
+      "description": "valid: destinationType only",
+      "valid": true,
+      "data": {
+        "destinationType": "exchange"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "destination": "user-signup-queue",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: destination is not a string",
+      "valid": false,
+      "data": {
+        "destination": 1
+      }
+    },
+    {
+      "description": "invalid: invalid destinationType",
+      "valid": false,
+      "data": {
+        "destinationType": "topic"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "destination": "user-signup-queue",
+        "region": "us-east-1"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "user-signup-queue"
+    }
+  ]
+}

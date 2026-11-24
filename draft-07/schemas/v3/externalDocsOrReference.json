@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/schemas/v3/externalDocsOrReference.json",
+  "title": "AsyncAPI v3 - External Docs or Reference",
+  "description": "Generic type which MUST BE External Docs or Reference",
+  "examples": [
+    {
+      "$ref": "https://api.weather-forecast.am/docs"
+    },
+    {
+      "url": "https://api.weather-forecast.am/docs",
+      "description": "Required information to integrate with API"
+    }
+  ],
+  "type": "object",
+  "oneOf": [
+    {
+      "$ref": "http://localhost:8000/draft-07/schemas/reference.json"
+    },
+    {
+      "$ref": "http://localhost:8000/draft-07/schemas/v3/externalDocs.json"
+    }
+  ]
+}

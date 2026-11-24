@@ -1,0 +1,68 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.1.0/operation.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "qos": 2,
+        "retain": true
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "qos": 1,
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: retain is not a boolean",
+      "valid": false,
+      "data": {
+        "retain": "true"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "qos": 1,
+        "dup": false
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "valid: qos 3 is not rejected (integer without enum)",
+      "valid": true,
+      "data": {
+        "qos": 3
+      }
+    },
+    {
+      "description": "invalid: messageExpiryInterval is only defined from 0.2.0",
+      "valid": false,
+      "data": {
+        "messageExpiryInterval": 60
+      }
+    }
+  ]
+}

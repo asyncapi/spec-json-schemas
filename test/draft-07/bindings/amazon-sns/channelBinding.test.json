@@ -1,0 +1,198 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/channelBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": "*"
+            }
+          ]
+        },
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": "*",
+              "condition": {
+                "StringEquals": {
+                  "aws:SourceAccount": "123456789012"
+                }
+              }
+            }
+          ]
+        },
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": "*",
+              "condition": {
+                "StringEquals": {
+                  "aws:SourceAccount": "123456789012"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.2.0",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": {
+                "AWS": "arn:aws:iam::123456789012:root"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: latest uses 0.2.0",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": {
+                "AWS": "arn:aws:iam::123456789012:root"
+              }
+            }
+          ]
+        },
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.2.0 principal object with 0.2.0",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": {
+                "AWS": "arn:aws:iam::123456789012:root"
+              }
+            }
+          ]
+        },
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 principal object with 0.1.0",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": {
+                "AWS": "arn:aws:iam::123456789012:root"
+              }
+            }
+          ]
+        },
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "valid: 0.1.0 principal array with 0.1.0",
+      "valid": true,
+      "data": {
+        "name": "my-sns-topic",
+        "bindingVersion": "0.1.0",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": [
+                "*"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 principal array with 0.2.0",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "bindingVersion": "0.2.0",
+        "policy": {
+          "statements": [
+            {
+              "action": "SNS:Publish",
+              "effect": "Allow",
+              "principal": [
+                "*"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.2.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "name": "my-sns-topic",
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "my-sns-topic"
+    }
+  ]
+}

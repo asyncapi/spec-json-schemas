@@ -1,0 +1,70 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/security/apiKey.json",
+  "tests": [
+    {
+      "description": "valid: in user",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "user"
+      }
+    },
+    {
+      "description": "valid: in password with description",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "password",
+        "description": "Simple security mechanism that uses a unique, long-lived alphanumeric string to identify and authorize an application or project making a request to an API"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "x-rotation": "monthly"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: missing in",
+      "valid": false,
+      "data": {
+        "type": "apiKey"
+      }
+    },
+    {
+      "description": "invalid: wrong type value",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: wrong in value",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "user",
+        "name": "api_key"
+      }
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/security/securitySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "httpApiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "description": "http",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "description": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "description": "oauth2",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "clientCredentials": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "implicit": {
+            "authorizationUrl": "https://example.com/api/oauth/dialog",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          },
+          "password": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "refreshUrl": "https://example.com/api/oauth/refresh",
+            "scopes": {
+              "write:pets": "modify pets in your account",
+              "read:pets": "read your pets"
+            }
+          }
+        },
+        "scopes": [
+          "write:pets",
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "valid: example #5",
+      "valid": true,
+      "data": {
+        "type": "X509",
+        "description": "X509"
+      }
+    },
+    {
+      "description": "valid: example #6",
+      "valid": true,
+      "data": {
+        "type": "apiKey",
+        "description": "apiKey",
+        "in": "user"
+      }
+    },
+    {
+      "description": "valid: example #7",
+      "valid": true,
+      "data": {
+        "type": "asymmetricEncryption",
+        "description": "asymmetricEncryption"
+      }
+    },
+    {
+      "description": "valid: example #8",
+      "valid": true,
+      "data": {
+        "type": "gssapi",
+        "description": "gssapi"
+      }
+    },
+    {
+      "description": "valid: example #9",
+      "valid": true,
+      "data": {
+        "type": "openIdConnect",
+        "description": "openIdConnect",
+        "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+      }
+    },
+    {
+      "description": "valid: example #10",
+      "valid": true,
+      "data": {
+        "type": "plain",
+        "description": "plain"
+      }
+    },
+    {
+      "description": "valid: example #11",
+      "valid": true,
+      "data": {
+        "type": "scramSha256",
+        "description": "scramSha256"
+      }
+    },
+    {
+      "description": "valid: example #12",
+      "valid": true,
+      "data": {
+        "type": "scramSha512",
+        "description": "scramSha512"
+      }
+    },
+    {
+      "description": "valid: example #13",
+      "valid": true,
+      "data": {
+        "type": "symmetricEncryption",
+        "description": "symmetricEncryption"
+      }
+    },
+    {
+      "description": "valid: example #14",
+      "valid": true,
+      "data": {
+        "type": "userPassword",
+        "description": "userPassword"
+      }
+    },
+    {
+      "description": "valid: oauth2 with single flow",
+      "valid": true,
+      "data": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "https://example.com/api/oauth/token",
+            "scopes": {
+              "read:pets": "read your pets"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: http digest",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "scheme": "digest"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "X509",
+        "x-ca": "internal"
+      }
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "kerberos"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "description": "X509"
+      }
+    },
+    {
+      "description": "invalid: apiKey in header (httpApiKey location)",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: httpApiKey in user (apiKey location)",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: basic with bearerFormat",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "basic",
+        "bearerFormat": "JWT"
+      }
+    },
+    {
+      "description": "invalid: oauth2 without flows",
+      "valid": false,
+      "data": {
+        "type": "oauth2"
+      }
+    },
+    {
+      "description": "invalid: openIdConnect without url",
+      "valid": false,
+      "data": {
+        "type": "openIdConnect"
+      }
+    },
+    {
+      "description": "invalid: X509 with unknown property",
+      "valid": false,
+      "data": {
+        "type": "X509",
+        "certificate": "pem"
+      }
+    },
+    {
+      "description": "invalid: reference is not a security scheme",
+      "valid": false,
+      "data": {
+        "$ref": "#/components/securitySchemes/x509"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "X509"
+    }
+  ]
+}

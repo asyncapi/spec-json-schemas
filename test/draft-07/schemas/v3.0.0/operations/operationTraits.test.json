@@ -1,0 +1,116 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTraits.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": [
+        {
+          "title": "User Activity Events",
+          "summary": "Receive user activity events",
+          "description": "Subscribe to channel which returns detailed events bases on user activity",
+          "tags": [
+            {
+              "$ref": "#/tags/user-activity-public"
+            },
+            {
+              "name": "user-activity",
+              "description": "Groups user activity related operations or messages"
+            }
+          ],
+          "security": [
+            {
+              "type": "openIdConnect",
+              "openIdConnectUrl": "https://server.com/.well-known/openid-configuration"
+            },
+            {
+              "$ref": "#/security/oauth2"
+            }
+          ],
+          "externalDocs": {
+            "$ref": "#/documents/user-events.v1"
+          }
+        },
+        {
+          "$ref": "#/channels/user-events.v1.traits"
+        }
+      ]
+    },
+    {
+      "description": "valid: empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "valid: references only",
+      "valid": true,
+      "data": [
+        {
+          "$ref": "#/components/a"
+        },
+        {
+          "$ref": "#/components/b"
+        }
+      ]
+    },
+    {
+      "description": "valid: duplicated traits are accepted (no uniqueItems)",
+      "valid": true,
+      "data": [
+        {
+          "title": "Send user"
+        },
+        {
+          "title": "Send user"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference with sibling",
+      "valid": false,
+      "data": [
+        {
+          "title": "Send user",
+          "$ref": "#/components/a"
+        }
+      ]
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": [
+        {
+          "$ref": 1
+        }
+      ]
+    },
+    {
+      "description": "invalid: invalid trait",
+      "valid": false,
+      "data": [
+        {
+          "action": "send"
+        }
+      ]
+    },
+    {
+      "description": "invalid: trait is a string",
+      "valid": false,
+      "data": [
+        "a"
+      ]
+    },
+    {
+      "description": "invalid: not an array",
+      "valid": false,
+      "data": {
+        "title": "Send user"
+      }
+    }
+  ]
+}

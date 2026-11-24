@@ -1,0 +1,161 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.5.0/channels/messages/message.json",
+  "tests": [
+    {
+      "description": "valid: 0.0.1 example #1",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": "0.0.1",
+            "headers": {
+              "type": "object",
+              "properties": {
+                "messageId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.0.1 example #2",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": "0.0.1",
+            "headers": {
+              "$ref": "#/headers/message-id"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.0.1 invalid headers",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "headers": "messageId",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.0.1 is used)",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "headers": {
+              "type": "object",
+              "properties": {
+                "messageId": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "$ref": "#/components/messageBindings/my-anypointmq"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "$ref": "#/components/messageBindings/my-anypointmq",
+            "bindingVersion": "0.0.1"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": "anypointmq"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "payload": {
+          "type": "string"
+        },
+        "bindings": {
+          "anypointmq": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amqp/0.2.0/channel.json#/properties/queue",
+  "tests": [
+    {
+      "description": "valid: empty object (no required properties)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: all properties",
+      "valid": true,
+      "data": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false,
+        "vhost": "/"
+      }
+    },
+    {
+      "description": "valid: unknown property is not validated (no additionalProperties)",
+      "valid": true,
+      "data": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false,
+        "arguments": {
+          "x-max-length": 10
+        }
+      }
+    },
+    {
+      "description": "invalid: durable is not a boolean",
+      "valid": false,
+      "data": {
+        "name": "my-queue-name",
+        "durable": "true",
+        "exclusive": true,
+        "autoDelete": false
+      }
+    },
+    {
+      "description": "invalid: exclusive is not a boolean",
+      "valid": false,
+      "data": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": 1,
+        "autoDelete": false
+      }
+    },
+    {
+      "description": "invalid: autoDelete is not a boolean",
+      "valid": false,
+      "data": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": "false"
+      }
+    },
+    {
+      "description": "invalid: invalid name",
+      "valid": false,
+      "data": {
+        "name": "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "my-queue-name"
+    },
+    {
+      "description": "valid: custom vhost",
+      "valid": true,
+      "data": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false,
+        "vhost": "/staging"
+      }
+    },
+    {
+      "description": "invalid: vhost is not a string",
+      "valid": false,
+      "data": {
+        "name": "my-queue-name",
+        "durable": true,
+        "exclusive": true,
+        "autoDelete": false,
+        "vhost": 1
+      }
+    }
+  ]
+}

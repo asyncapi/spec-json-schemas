@@ -1,0 +1,66 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.1.0/channel.json#/properties/messageStoragePolicy",
+  "tests": [
+    {
+      "description": "valid: regions",
+      "valid": true,
+      "data": {
+        "allowedPersistenceRegions": [
+          "us-central1",
+          "us-east1"
+        ]
+      }
+    },
+    {
+      "description": "valid: empty regions",
+      "valid": true,
+      "data": {
+        "allowedPersistenceRegions": []
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "invalid: region is not a string",
+      "valid": false,
+      "data": {
+        "allowedPersistenceRegions": [
+          "us-central1",
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: regions is a string",
+      "valid": false,
+      "data": {
+        "allowedPersistenceRegions": "us-central1"
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "allowedPersistenceRegions": [],
+        "enforceInTransit": true
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        "us-central1"
+      ]
+    }
+  ]
+}

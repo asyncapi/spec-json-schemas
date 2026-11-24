@@ -1,0 +1,87 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.1.0/servers/servers.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "dev": {
+          "url": "development.gigantic-server.com",
+          "protocol": "kafka",
+          "description": "Kafka development server",
+          "protocolVersion": "4.3"
+        },
+        "dev-secured": {
+          "url": "development.gigantic-server.com",
+          "protocol": "kafka",
+          "security": [
+            {
+              "type": "userPassword",
+              "description": "Sent inside the initial CONNECT message"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: server",
+      "valid": true,
+      "data": {
+        "prod": {
+          "url": "broker.mycompany.com:5672",
+          "protocol": "amqp"
+        }
+      }
+    },
+    {
+      "description": "valid: any key is accepted (no key pattern)",
+      "valid": true,
+      "data": {
+        "a b": {
+          "url": "broker.mycompany.com:5672",
+          "protocol": "amqp"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference is not available in 2.1.0 (added in 2.3.0)",
+      "valid": false,
+      "data": {
+        "prod": {
+          "$ref": "#/components/servers/prod"
+        }
+      }
+    },
+    {
+      "description": "invalid: server without url",
+      "valid": false,
+      "data": {
+        "prod": {
+          "protocol": "amqp"
+        }
+      }
+    },
+    {
+      "description": "invalid: server is a string",
+      "valid": false,
+      "data": {
+        "prod": "amqp://broker"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "url": "broker.mycompany.com:5672",
+          "protocol": "amqp"
+        }
+      ]
+    }
+  ]
+}

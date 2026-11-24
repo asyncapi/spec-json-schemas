@@ -1,0 +1,159 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/externalDocs.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "description": "Required information to integrate with API"
+      }
+    },
+    {
+      "description": "valid: url with fragment and query",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs?lang=en#tags"
+      }
+    },
+    {
+      "description": "valid: urn is an absolute uri",
+      "valid": true,
+      "data": {
+        "url": "urn:isbn:0451450523"
+      }
+    },
+    {
+      "description": "valid: empty description",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "description": ""
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "x-owner": "team-weather"
+      }
+    },
+    {
+      "description": "valid: x- extension with dot, dash and underscore",
+      "valid": true,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "x-my.ext-name_1": {
+          "any": "value"
+        }
+      }
+    },
+    {
+      "description": "invalid: missing url",
+      "valid": false,
+      "data": {
+        "description": "Required information to integrate with API"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: url is a relative reference",
+      "valid": false,
+      "data": {
+        "url": "/docs"
+      }
+    },
+    {
+      "description": "invalid: url is not a uri",
+      "valid": false,
+      "data": {
+        "url": "not a url"
+      }
+    },
+    {
+      "description": "invalid: url is empty",
+      "valid": false,
+      "data": {
+        "url": ""
+      }
+    },
+    {
+      "description": "invalid: url is not a string",
+      "valid": false,
+      "data": {
+        "url": 1
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "$ref": "#/components/externalDocs/docs"
+      }
+    },
+    {
+      "description": "invalid: x- without name",
+      "valid": false,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "x-": "value"
+      }
+    },
+    {
+      "description": "invalid: X- in upper case",
+      "valid": false,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "X-owner": "team-weather"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "url": "https://api.weather-forecast.am/docs",
+        "title": "Docs"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "https://api.weather-forecast.am/docs"
+    },
+    {
+      "description": "invalid: array",
+      "valid": false,
+      "data": [
+        {
+          "url": "https://api.weather-forecast.am/docs"
+        }
+      ]
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}

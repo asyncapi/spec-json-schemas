@@ -1,0 +1,67 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/anypointmq/channelBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "destination": "user-signup-fifo-queue",
+        "destinationType": "fifo-queue"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.0.1",
+      "valid": true,
+      "data": {
+        "destination": "user-signup-queue",
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "valid: latest uses 0.0.1",
+      "valid": true,
+      "data": {
+        "destination": "user-signup-queue",
+        "destinationType": "queue",
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.0.1",
+      "valid": true,
+      "data": {
+        "destination": "user-signup-queue",
+        "destinationType": "queue",
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 0.1.0 falls back to 0.0.1 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.0.1 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.0.1",
+        "region": "us-east-1"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/servers/serverVariables.json",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: several variables",
+      "valid": true,
+      "data": {
+        "port": {
+          "enum": [
+            "8883",
+            "8884"
+          ],
+          "default": "8883"
+        },
+        "user": {
+          "default": "demo",
+          "description": "User name"
+        }
+      }
+    },
+    {
+      "description": "invalid: variable is empty",
+      "valid": false,
+      "data": {
+        "port": {}
+      }
+    },
+    {
+      "description": "invalid: variable with unknown property",
+      "valid": false,
+      "data": {
+        "port": {
+          "default": "8883",
+          "foo": "bar"
+        }
+      }
+    },
+    {
+      "description": "invalid: variable is not an object",
+      "valid": false,
+      "data": {
+        "port": "8883"
+      }
+    }
+  ]
+}

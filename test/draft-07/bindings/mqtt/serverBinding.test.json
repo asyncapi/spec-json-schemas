@@ -1,0 +1,99 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "cleanSession": true,
+        "clientId": "guest",
+        "keepAlive": 60,
+        "lastWill": {
+          "message": "Guest gone offline.",
+          "qos": 2,
+          "retain": false,
+          "topic": "/last-wills"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "cleanSession": true,
+        "clientId": "guest",
+        "keepAlive": 60,
+        "lastWill": {
+          "message": "Guest gone offline.",
+          "qos": 2,
+          "retain": false,
+          "topic": "/last-wills"
+        },
+        "maximumPacketSize": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sessionExpiryInterval": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    {
+      "description": "invalid: maximumPacketSize with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "maximumPacketSize": 1024
+      }
+    },
+    {
+      "description": "valid: maximumPacketSize with 0.2.0",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "maximumPacketSize": 1024
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.2.0",
+      "valid": true,
+      "data": {
+        "clientId": "guest",
+        "sessionExpiryInterval": 120
+      }
+    },
+    {
+      "description": "invalid: invalid lastWill qos with 0.1.0",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "lastWill": {
+          "qos": 3
+        }
+      }
+    },
+    {
+      "description": "invalid: maximumPacketSize 0 with latest",
+      "valid": false,
+      "data": {
+        "bindingVersion": "latest",
+        "maximumPacketSize": 0
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.2.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "guest"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/channel.json#/definitions/policy",
+  "tests": [
+    {
+      "description": "valid: single statement",
+      "valid": true,
+      "data": {
+        "statements": [
+          {
+            "action": "SNS:Publish",
+            "effect": "Allow",
+            "principal": "*"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: several statements",
+      "valid": true,
+      "data": {
+        "statements": [
+          {
+            "action": "SNS:Publish",
+            "effect": "Allow",
+            "principal": "*"
+          },
+          {
+            "action": "SNS:Publish",
+            "effect": "Deny",
+            "principal": "*"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: empty statements",
+      "valid": true,
+      "data": {
+        "statements": []
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "statements": [
+          {
+            "action": "SNS:Publish",
+            "effect": "Allow",
+            "principal": "*"
+          }
+        ],
+        "x-version": "2012-10-17"
+      }
+    },
+    {
+      "description": "invalid: missing statements",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: statements is not an array",
+      "valid": false,
+      "data": {
+        "statements": {
+          "action": "SNS:Publish",
+          "effect": "Allow",
+          "principal": "*"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid statement",
+      "valid": false,
+      "data": {
+        "statements": [
+          {
+            "effect": "Allow"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "action": "SNS:Publish",
+          "effect": "Allow",
+          "principal": "*"
+        }
+      ]
+    }
+  ]
+}

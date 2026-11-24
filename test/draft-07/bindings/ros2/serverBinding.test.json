@@ -1,0 +1,76 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/serverBinding.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "domainId": 0,
+        "rmwImplementation": "rmw_fastrtps_cpp"
+      }
+    },
+    {
+      "description": "valid: without bindingVersion uses 0.1.0",
+      "valid": true,
+      "data": {
+        "domainId": 0
+      }
+    },
+    {
+      "description": "valid: latest uses 0.1.0",
+      "valid": true,
+      "data": {
+        "domainId": 0,
+        "bindingVersion": "latest"
+      }
+    },
+    {
+      "description": "valid: 0.1.0",
+      "valid": true,
+      "data": {
+        "domainId": 0,
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 with invalid binding",
+      "valid": false,
+      "data": {
+        "domainId": 232,
+        "bindingVersion": "0.1.0"
+      }
+    },
+    {
+      "description": "invalid: without bindingVersion uses 0.1.0 and fails",
+      "valid": false,
+      "data": {
+        "domainId": 232
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion falls back to 0.1.0 and fails its enum",
+      "valid": false,
+      "data": {
+        "domainId": 0,
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "latest"
+    }
+  ]
+}

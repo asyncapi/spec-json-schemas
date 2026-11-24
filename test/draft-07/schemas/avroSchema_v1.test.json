@@ -1,0 +1,391 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/avroSchema_v1.json",
+  "tests": [
+    {
+      "description": "valid: primitive null",
+      "valid": true,
+      "data": "null"
+    },
+    {
+      "description": "valid: primitive boolean",
+      "valid": true,
+      "data": "boolean"
+    },
+    {
+      "description": "valid: primitive int",
+      "valid": true,
+      "data": "int"
+    },
+    {
+      "description": "valid: primitive long",
+      "valid": true,
+      "data": "long"
+    },
+    {
+      "description": "valid: primitive float",
+      "valid": true,
+      "data": "float"
+    },
+    {
+      "description": "valid: primitive double",
+      "valid": true,
+      "data": "double"
+    },
+    {
+      "description": "valid: primitive bytes",
+      "valid": true,
+      "data": "bytes"
+    },
+    {
+      "description": "valid: primitive string",
+      "valid": true,
+      "data": "string"
+    },
+    {
+      "description": "valid: primitive with metadata",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "logicalType": "uuid"
+      }
+    },
+    {
+      "description": "valid: logical type date",
+      "valid": true,
+      "data": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "description": "valid: logical type decimal",
+      "valid": true,
+      "data": {
+        "type": "bytes",
+        "logicalType": "decimal",
+        "precision": 4,
+        "scale": 2
+      }
+    },
+    {
+      "description": "valid: custom type reference",
+      "valid": true,
+      "data": "com.example.User"
+    },
+    {
+      "description": "valid: record",
+      "valid": true,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: record with namespace, doc and aliases",
+      "valid": true,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "namespace": "com.example",
+        "doc": "A user",
+        "aliases": [
+          "Person"
+        ]
+      }
+    },
+    {
+      "description": "valid: record with empty fields",
+      "valid": true,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": []
+      }
+    },
+    {
+      "description": "valid: record field with default and order",
+      "valid": true,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          {
+            "name": "age",
+            "type": "int",
+            "default": 0,
+            "order": "descending"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: nested record",
+      "valid": true,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          {
+            "name": "address",
+            "type": {
+              "type": "record",
+              "name": "Address",
+              "fields": [
+                {
+                  "name": "city",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: enum",
+      "valid": true,
+      "data": {
+        "type": "enum",
+        "name": "Suit",
+        "symbols": [
+          "SPADES",
+          "HEARTS"
+        ]
+      }
+    },
+    {
+      "description": "valid: array",
+      "valid": true,
+      "data": {
+        "type": "array",
+        "items": "string"
+      }
+    },
+    {
+      "description": "valid: map",
+      "valid": true,
+      "data": {
+        "type": "map",
+        "values": "long"
+      }
+    },
+    {
+      "description": "valid: fixed",
+      "valid": true,
+      "data": {
+        "type": "fixed",
+        "name": "md5",
+        "size": 16
+      }
+    },
+    {
+      "description": "valid: union",
+      "valid": true,
+      "data": [
+        "null",
+        "string"
+      ]
+    },
+    {
+      "description": "valid: union with record",
+      "valid": true,
+      "data": [
+        "null",
+        {
+          "type": "record",
+          "name": "User",
+          "fields": [
+            {
+              "name": "id",
+              "type": "string"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "valid: misspelled primitive is accepted as a custom type reference (integer)",
+      "valid": true,
+      "data": "integer"
+    },
+    {
+      "description": "valid: primitive in other case is accepted as a custom type reference (String)",
+      "valid": true,
+      "data": "String"
+    },
+    {
+      "description": "invalid: custom type with dash",
+      "valid": false,
+      "data": "com.example.user-profile"
+    },
+    {
+      "description": "invalid: record without name",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: record without fields",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "User"
+      }
+    },
+    {
+      "description": "invalid: record field without name",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: record field without type",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          {
+            "name": "id"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: record name with dash",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "user-profile",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: record name starting with digit",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "1User",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: namespace with dash",
+      "valid": false,
+      "data": {
+        "type": "record",
+        "name": "User",
+        "fields": [
+          {
+            "name": "id",
+            "type": "string"
+          }
+        ],
+        "namespace": "com.my-company"
+      }
+    },
+    {
+      "description": "invalid: enum without symbols",
+      "valid": false,
+      "data": {
+        "type": "enum",
+        "name": "Suit"
+      }
+    },
+    {
+      "description": "invalid: array without items",
+      "valid": false,
+      "data": {
+        "type": "array"
+      }
+    },
+    {
+      "description": "invalid: map without values",
+      "valid": false,
+      "data": {
+        "type": "map"
+      }
+    },
+    {
+      "description": "invalid: fixed without size",
+      "valid": false,
+      "data": {
+        "type": "fixed",
+        "name": "md5"
+      }
+    },
+    {
+      "description": "invalid: empty union",
+      "valid": false,
+      "data": []
+    },
+    {
+      "description": "invalid: unknown complex type",
+      "valid": false,
+      "data": {
+        "type": "tuple",
+        "name": "Pair"
+      }
+    },
+    {
+      "description": "invalid: error type is not supported (Avro protocol type)",
+      "valid": false,
+      "data": {
+        "type": "error",
+        "name": "TestError",
+        "fields": [
+          {
+            "name": "message",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    },
+    {
+      "description": "invalid: null",
+      "valid": false,
+      "data": null
+    }
+  ]
+}

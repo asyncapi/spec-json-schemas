@@ -1,0 +1,86 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2/securityRequirements.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "petstore_auth": [
+          "write:pets",
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: scheme without scopes",
+      "valid": true,
+      "data": {
+        "x509": []
+      }
+    },
+    {
+      "description": "valid: several schemes",
+      "valid": true,
+      "data": {
+        "x509": [],
+        "petstore_auth": [
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "invalid: duplicated scopes",
+      "valid": false,
+      "data": {
+        "petstore_auth": [
+          "read:pets",
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "invalid: scope is not a string",
+      "valid": false,
+      "data": {
+        "petstore_auth": [
+          1
+        ]
+      }
+    },
+    {
+      "description": "invalid: scopes is a string",
+      "valid": false,
+      "data": {
+        "petstore_auth": "read:pets"
+      }
+    },
+    {
+      "description": "invalid: v3 style list of security schemes",
+      "valid": false,
+      "data": [
+        {
+          "type": "X509"
+        }
+      ]
+    },
+    {
+      "description": "invalid: inline security scheme as value (v3 style)",
+      "valid": false,
+      "data": {
+        "x509": {
+          "type": "X509"
+        }
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "x509"
+    }
+  ]
+}

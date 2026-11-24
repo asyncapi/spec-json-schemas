@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/http/0.2.0/operation.json",
+  "title": "HTTP - Operation Binding v0.2.0",
+  "description": "Contains information about the operation representation in HTTP",
+  "examples": [
+    {
+      "bindingVersion": "0.2.0",
+      "query": {
+        "type": "object",
+        "required": [ "companyId" ],
+        "properties": {
+          "companyId": {
+            "description": "The Id of the company.",
+            "type": "number",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "method": "GET",
+      "query": {
+        "type": "object",
+        "required": [ "companyId" ],
+        "properties": {
+          "companyId": {
+            "description": "The Id of the company.",
+            "type": "number",
+            "minimum": 1
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    {
+      "bindingVersion": "0.2.0",
+      "method": "GET",
+      "query": {
+        "$ref": "#/components/requests/get-company"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.2.0", "latest" ]
+    },
+    "method": {
+      "description": "When 'type' is 'request', this is the HTTP method, otherwise it MUST be ignored. Its value MUST be one of 'GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD', 'OPTIONS', 'CONNECT', and 'TRACE'",
+      "enum": [
+        "GET",
+        "PUT",
+        "POST",
+        "PATCH",
+        "DELETE",
+        "HEAD",
+        "OPTIONS",
+        "CONNECT",
+        "TRACE"
+      ]
+    },
+    "query": {
+      "description": "A Schema object containing the definitions for each query parameter. This schema MUST be of type 'object' and have a properties key",
+      "$ref": "http://localhost:8000/draft-07/schemas/schema.json"
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

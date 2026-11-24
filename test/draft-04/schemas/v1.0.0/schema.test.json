@@ -1,0 +1,180 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1.0.0/schema.json",
+  "tests": [
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: object schema",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "required": [
+          "city"
+        ],
+        "properties": {
+          "city": {
+            "type": "string",
+            "description": "City name"
+          },
+          "temperature": {
+            "type": "number",
+            "minimum": -100,
+            "maximum": 100
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: array schema with single items",
+      "valid": true,
+      "data": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
+    },
+    {
+      "description": "valid: array schema with tuple items",
+      "valid": true,
+      "data": {
+        "type": "array",
+        "items": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: allOf composition",
+      "valid": true,
+      "data": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/city"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "zip": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "description": "valid: AsyncAPI keywords",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "discriminator": "kind",
+        "readOnly": true,
+        "xml": {
+          "name": "city"
+        },
+        "externalDocs": {
+          "url": "https://api.weather-forecast.am/docs"
+        },
+        "example": {
+          "kind": "city"
+        }
+      }
+    },
+    {
+      "description": "valid: additionalProperties as boolean",
+      "valid": true,
+      "data": {
+        "type": "object",
+        "additionalProperties": false
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "string",
+        "x-nullable": true
+      }
+    },
+    {
+      "description": "invalid: unknown type",
+      "valid": false,
+      "data": {
+        "type": "date"
+      }
+    },
+    {
+      "description": "invalid: negative maxLength",
+      "valid": false,
+      "data": {
+        "type": "string",
+        "maxLength": -1
+      }
+    },
+    {
+      "description": "invalid: required is not an array",
+      "valid": false,
+      "data": {
+        "required": "city"
+      }
+    },
+    {
+      "description": "invalid: empty allOf",
+      "valid": false,
+      "data": {
+        "allOf": []
+      }
+    },
+    {
+      "description": "invalid: unsupported keyword oneOf",
+      "valid": false,
+      "data": {
+        "oneOf": [
+          {
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: nested property with unknown keyword",
+      "valid": false,
+      "data": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "string",
+            "foo": "bar"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: readOnly is not a boolean",
+      "valid": false,
+      "data": {
+        "readOnly": "yes"
+      }
+    },
+    {
+      "description": "invalid: xml with unknown property",
+      "valid": false,
+      "data": {
+        "xml": {
+          "foo": "bar"
+        }
+      }
+    }
+  ]
+}

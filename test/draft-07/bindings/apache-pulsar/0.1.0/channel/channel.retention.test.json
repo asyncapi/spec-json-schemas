@@ -1,0 +1,75 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-pulsar/0.1.0/channel.json#/properties/retention",
+  "tests": [
+    {
+      "description": "valid: size and time",
+      "valid": true,
+      "data": {
+        "size": 1000,
+        "time": 15
+      }
+    },
+    {
+      "description": "valid: 0 disables retention",
+      "valid": true,
+      "data": {
+        "size": 0,
+        "time": 0
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "invalid: negative size",
+      "valid": false,
+      "data": {
+        "size": -1
+      }
+    },
+    {
+      "description": "invalid: negative time",
+      "valid": false,
+      "data": {
+        "time": -1
+      }
+    },
+    {
+      "description": "invalid: size is a decimal number",
+      "valid": false,
+      "data": {
+        "size": 1.5
+      }
+    },
+    {
+      "description": "invalid: time is a string",
+      "valid": false,
+      "data": {
+        "time": "15"
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "size": 1000,
+        "x-unit": "MB"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "size": 1000,
+        "count": 10
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": 1000
+    }
+  ]
+}

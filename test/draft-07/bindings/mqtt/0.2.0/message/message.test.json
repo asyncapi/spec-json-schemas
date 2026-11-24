@@ -1,0 +1,109 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/mqtt/0.2.0/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "contentType": "application/json",
+        "correlationData": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "responseTopic": "application/responses"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "contentType": "application/json",
+        "correlationData": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "responseTopic": {
+          "type": "object",
+          "name": "application/responses"
+        }
+      }
+    },
+    {
+      "description": "valid: example #4",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.2.0",
+        "contentType": "application/json",
+        "correlationData": {
+          "$ref": "#/correlationData"
+        },
+        "responseTopic": {
+          "$ref": "#/responseTopic"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: payloadFormatIndicator",
+      "valid": true,
+      "data": {
+        "payloadFormatIndicator": 1
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "contentType": "application/json",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: contentType is not a string",
+      "valid": false,
+      "data": {
+        "contentType": 1
+      }
+    },
+    {
+      "description": "invalid: invalid correlationData",
+      "valid": false,
+      "data": {
+        "correlationData": "uuid"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.3.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "contentType": "application/json",
+        "userProperties": {}
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "application/json"
+    }
+  ]
+}

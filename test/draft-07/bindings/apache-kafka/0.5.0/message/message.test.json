@@ -1,0 +1,133 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-kafka/0.5.0/message.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        },
+        "schemaIdLocation": "header",
+        "schemaIdPayloadEncoding": "apicurio-new",
+        "schemaLookupStrategy": "TopicIdStrategy"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.5.0",
+        "key": {
+          "$ref": "path/to/user-create.avsc#/UserCreate"
+        },
+        "schemaIdLocation": "payload",
+        "schemaIdPayloadEncoding": "4"
+      }
+    },
+    {
+      "description": "valid: empty object",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: key only",
+      "valid": true,
+      "data": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        }
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        },
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: invalid key",
+      "valid": false,
+      "data": {
+        "key": {
+          "type": "date"
+        }
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.6.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        },
+        "headers": {}
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "myKey"
+    },
+    {
+      "description": "valid: schema registry properties",
+      "valid": true,
+      "data": {
+        "key": {
+          "type": "string",
+          "enum": [
+            "myKey"
+          ]
+        },
+        "schemaIdLocation": "payload",
+        "schemaIdPayloadEncoding": "4",
+        "schemaLookupStrategy": "TopicIdStrategy"
+      }
+    },
+    {
+      "description": "invalid: invalid schemaIdLocation",
+      "valid": false,
+      "data": {
+        "schemaIdLocation": "body"
+      }
+    },
+    {
+      "description": "invalid: schemaIdPayloadEncoding is not a string",
+      "valid": false,
+      "data": {
+        "schemaIdPayloadEncoding": 4
+      }
+    },
+    {
+      "description": "invalid: schemaLookupStrategy is not a string",
+      "valid": false,
+      "data": {
+        "schemaLookupStrategy": true
+      }
+    }
+  ]
+}

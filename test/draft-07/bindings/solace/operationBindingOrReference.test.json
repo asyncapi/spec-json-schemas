@@ -1,0 +1,109 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/solace/operationBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/solace/my-solace-operation"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.4.0",
+        "destinations": [
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "nonexclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ]
+            }
+          },
+          {
+            "destinationType": "queue",
+            "queue": {
+              "accessType": "exclusive",
+              "name": "sampleQueue",
+              "topicSubscriptions": [
+                "samples/*"
+              ],
+              "maxMsgSpoolUsage": "4",
+              "maxTtl": "1"
+            }
+          },
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ],
+        "dmqEligible": true,
+        "priority": 20,
+        "timeToLive": 10
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/solace/my-solace-channel"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/solace"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "destinations": [
+          {
+            "destinationType": "topic",
+            "topicSubscriptions": [
+              "samples/*"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/bindings/solace/my-solace-channel",
+        "bindingVersion": "0.4.0"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "destinations": [
+          {}
+        ]
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/bindings/solace/my-solace-channel"
+    }
+  ]
+}

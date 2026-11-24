@@ -1,0 +1,75 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/jms/serverBindingOrReference.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/jms/my-jms-server"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "properties": [
+          {
+            "name": "disableTimeStampsByDefault",
+            "value": false
+          }
+        ],
+        "bindingVersion": "0.0.1",
+        "clientID": "my-application-1",
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      }
+    },
+    {
+      "description": "valid: local reference",
+      "valid": true,
+      "data": {
+        "$ref": "#/bindings/jms/my-jms-channel"
+      }
+    },
+    {
+      "description": "valid: external reference",
+      "valid": true,
+      "data": {
+        "$ref": "https://example.com/bindings.json#/jms"
+      }
+    },
+    {
+      "description": "valid: inline binding",
+      "valid": true,
+      "data": {
+        "jmsConnectionFactory": "org.apache.activemq.ActiveMQConnectionFactory"
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "$ref": "#/bindings/jms/my-jms-channel",
+        "bindingVersion": "0.0.1"
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "$ref": 1
+      }
+    },
+    {
+      "description": "invalid: invalid inline binding",
+      "valid": false,
+      "data": {
+        "clientID": "my-application-1"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "#/bindings/jms/my-jms-channel"
+    }
+  ]
+}

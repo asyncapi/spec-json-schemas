@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ros2/0.1.0/operation.json#/properties/qosPolicies/properties/durability",
+  "tests": [
+    {
+      "description": "valid: transient_local",
+      "valid": true,
+      "data": "transient_local"
+    },
+    {
+      "description": "valid: volatile",
+      "valid": true,
+      "data": "volatile"
+    },
+    {
+      "description": "invalid: transient-local",
+      "valid": false,
+      "data": "transient-local"
+    },
+    {
+      "description": "invalid: Volatile",
+      "valid": false,
+      "data": "Volatile"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

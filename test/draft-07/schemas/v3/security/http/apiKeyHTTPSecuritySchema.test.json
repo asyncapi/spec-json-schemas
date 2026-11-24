@@ -1,0 +1,168 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/security/http/apiKeyHTTPSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "query"
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "cookie"
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "header",
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "header",
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: missing in",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key"
+      }
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "HTTPaPIkEY",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "header",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "header",
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "header",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: in user (apiKey location)",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": 1,
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: type apiKey",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "httpApiKey"
+    }
+  ]
+}

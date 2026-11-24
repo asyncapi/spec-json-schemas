@@ -1,0 +1,30 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/http/0.1.0/operation.json#/properties/type",
+  "tests": [
+    {
+      "description": "valid: request",
+      "valid": true,
+      "data": "request"
+    },
+    {
+      "description": "valid: response",
+      "valid": true,
+      "data": "response"
+    },
+    {
+      "description": "invalid: Request",
+      "valid": false,
+      "data": "Request"
+    },
+    {
+      "description": "invalid: publish",
+      "valid": false,
+      "data": "publish"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    }
+  ]
+}

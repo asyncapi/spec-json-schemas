@@ -1,0 +1,476 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v2.0.0/channels/channelItem.json",
+  "tests": [
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.3.0",
+            "exchange": {
+              "type": "topic",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #2",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.3.0",
+            "exchange": {
+              "type": "direct",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #3",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.3.0",
+            "exchange": {
+              "type": "fanout",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #4",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.3.0",
+            "exchange": {
+              "type": "default",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #5",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.3.0",
+            "exchange": {
+              "type": "headers",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.3.0 example #6",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.3.0",
+            "is": "queue",
+            "queue": {
+              "autoDelete": false,
+              "durable": true,
+              "exclusive": true,
+              "name": "my-queue-name",
+              "vhost": "/"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 exchange with is queue",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "is": "queue",
+            "exchange": {
+              "name": "myExchange",
+              "type": "topic",
+              "durable": true,
+              "autoDelete": false
+            },
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.2.0",
+            "exchange": {
+              "type": "topic",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #2",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.2.0",
+            "exchange": {
+              "type": "direct",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #3",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.2.0",
+            "exchange": {
+              "type": "fanout",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #4",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.2.0",
+            "exchange": {
+              "type": "default",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #5",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.2.0",
+            "exchange": {
+              "type": "headers",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #6",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.2.0",
+            "is": "queue",
+            "queue": {
+              "autoDelete": false,
+              "durable": true,
+              "exclusive": true,
+              "name": "my-queue-name",
+              "vhost": "/"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 exchange with is queue",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "is": "queue",
+            "exchange": {
+              "name": "myExchange",
+              "type": "topic",
+              "durable": true,
+              "autoDelete": false
+            },
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.1.0",
+            "exchange": {
+              "type": "topic",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #2",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.1.0",
+            "exchange": {
+              "type": "direct",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #3",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.1.0",
+            "exchange": {
+              "type": "fanout",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #4",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.1.0",
+            "exchange": {
+              "type": "default",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #5",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.1.0",
+            "exchange": {
+              "type": "headers",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #6",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "0.1.0",
+            "is": "queue",
+            "queue": {
+              "autoDelete": false,
+              "durable": true,
+              "exclusive": true,
+              "name": "my-queue-name"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 exchange with is queue",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "is": "queue",
+            "exchange": {
+              "name": "myExchange",
+              "type": "topic",
+              "durable": true,
+              "autoDelete": false
+            },
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.3.0 is used)",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "exchange": {
+              "type": "topic",
+              "autoDelete": false,
+              "durable": true,
+              "name": "myExchange",
+              "vhost": "/"
+            },
+            "is": "routingKey"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "$ref": "#/components/channelBindings/my-amqp"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "$ref": "#/components/channelBindings/my-amqp",
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": "amqp"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "bindings": {
+          "amqp": null
+        }
+      }
+    }
+  ]
+}

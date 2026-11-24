@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "http://localhost:8000/draft-04/schemas/v1/security/apiKey.json",
+  "title": "AsyncAPI v1 - API key Authentication",
+  "description": "Contains information about API key Authentication",
+  "type": "object",
+  "required": [ "type", "in" ],
+  "properties": {
+    "description": {
+      "description": "A short description for security scheme. CommonMark syntax MAY be used for rich text representation",
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the security scheme",
+      "type": "string",
+      "enum": [ "apiKey" ]
+    },
+    "in": {
+      "description": "The location of the API key",
+      "type": "string",
+      "enum": [ "user", "password" ]
+    }
+  },
+  "patternProperties": {
+    "^x-": {}
+  },
+  "additionalProperties": false
+}

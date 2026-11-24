@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/anypointmq/operationBinding.json",
+  "title": "Anypoint MQ - Operation Binding",
+  "description": "Describes protocol-specific definitions for an operation",
+  "examples": [
+    {},
+    {
+      "bindingVersion": "latest"
+    },
+    {
+      "bindingVersion": "0.0.1"
+    }
+  ],
+  "type": "object",
+  "allOf": [
+    {
+      "if": {
+        "required": [ "bindingVersion" ],
+        "properties": {
+          "bindingVersion": {
+            "const": "0.0.1"
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/operation.json"
+      }
+    },
+    {
+      "description": "If bindingVersion is omitted, then use latest JSON Schema",
+      "if": {
+        "not": {
+          "required": [ "bindingVersion" ],
+          "properties": {
+            "bindingVersion": {
+              "const": "0.0.1"
+            }
+          }
+        }
+      },
+      "then": {
+        "$ref": "http://localhost:8000/draft-07/bindings/anypointmq/0.0.1/operation.json"
+      }
+    }
+  ]
+}

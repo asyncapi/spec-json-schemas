@@ -1,0 +1,287 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.0.0/operations/operationTrait.json",
+  "tests": [
+    {
+      "description": "valid: 0.3.0 example #1",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "queues": [
+              {
+                "deduplicationScope": "messageGroup",
+                "deliveryDelay": 10,
+                "fifoQueue": true,
+                "fifoThroughputLimit": "perMessageGroupId",
+                "name": "myQueue",
+                "policy": {
+                  "statements": [
+                    {
+                      "action": [
+                        "sqs:SendMessage",
+                        "sqs:ReceiveMessage"
+                      ],
+                      "effect": "Deny",
+                      "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                      "condition": {
+                        "ArnEquals": {
+                          "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:myQueue"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "redrivePolicy": {
+                  "deadLetterQueue": {
+                    "name": "myQueue_error"
+                  },
+                  "maxReceiveCount": 15
+                }
+              },
+              {
+                "deliveryDelay": 10,
+                "name": "myQueue_error"
+              }
+            ],
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.3.0 missing queues",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.2.0 example #1",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "queues": [
+              {
+                "deduplicationScope": "messageGroup",
+                "deliveryDelay": 10,
+                "fifoQueue": true,
+                "fifoThroughputLimit": "perMessageGroupId",
+                "name": "myQueue",
+                "policy": {
+                  "statements": [
+                    {
+                      "action": [
+                        "sqs:SendMessage",
+                        "sqs:ReceiveMessage"
+                      ],
+                      "effect": "Deny",
+                      "principal": "arn:aws:iam::123456789012:user/dec.kolakowski"
+                    }
+                  ]
+                },
+                "redrivePolicy": {
+                  "deadLetterQueue": {
+                    "name": "myQueue_error"
+                  },
+                  "maxReceiveCount": 15
+                }
+              },
+              {
+                "deliveryDelay": 10,
+                "name": "myQueue_error"
+              }
+            ],
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.2.0 missing queues",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.2.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #1",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: 0.1.0 example #2",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: 0.1.0 unknown property",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "queues": [
+              {
+                "name": "myQueue"
+              }
+            ],
+            "bindingVersion": "0.1.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: example without bindingVersion (latest 0.3.0 is used)",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "queues": [
+              {
+                "deduplicationScope": "messageGroup",
+                "deliveryDelay": 10,
+                "fifoQueue": true,
+                "fifoThroughputLimit": "perMessageGroupId",
+                "name": "myQueue",
+                "policy": {
+                  "statements": [
+                    {
+                      "action": [
+                        "sqs:SendMessage",
+                        "sqs:ReceiveMessage"
+                      ],
+                      "effect": "Deny",
+                      "principal": "arn:aws:iam::123456789012:user/dec.kolakowski",
+                      "condition": {
+                        "ArnEquals": {
+                          "aws:SourceArn": "arn:aws:sns:us-east-1:123456789012:myQueue"
+                        }
+                      }
+                    }
+                  ]
+                },
+                "redrivePolicy": {
+                  "deadLetterQueue": {
+                    "name": "myQueue_error"
+                  },
+                  "maxReceiveCount": 15
+                }
+              },
+              {
+                "deliveryDelay": 10,
+                "name": "myQueue_error"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "$ref": "#/components/operationBindings/my-sqs"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with extra property",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "$ref": "#/components/operationBindings/my-sqs",
+            "bindingVersion": "0.3.0"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: unknown bindingVersion 9.9.9",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": "9.9.9"
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: bindingVersion is a number",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": {
+            "bindingVersion": 1
+          }
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is a string",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": "sqs"
+        }
+      }
+    },
+    {
+      "description": "invalid: binding is null",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "sqs": null
+        }
+      }
+    },
+    {
+      "description": "invalid: folder name amazon-sqs is not a binding key (use sqs)",
+      "valid": false,
+      "data": {
+        "title": "Send user",
+        "bindings": {
+          "amazon-sqs": {}
+        }
+      }
+    }
+  ]
+}

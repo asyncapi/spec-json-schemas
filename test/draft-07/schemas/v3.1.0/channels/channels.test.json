@@ -1,0 +1,125 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3.1.0/channels/channels.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "user-events": {
+          "address": "users.{userId}",
+          "title": "Users channel",
+          "summary": "messages about user events.",
+          "description": "This channel is used to exchange messages about users signing up",
+          "parameters": {
+            "userId": {
+              "description": "Id of the user",
+              "default": "0e822ca6-5311-4d4c-b409-993a1820e689",
+              "examples": [
+                "0e822ca6-5311-4d4c-b409-993a1820e689",
+                "381f5ddc-75c6-4c21-9ec1-3919ed345be9",
+                "70559d88-31a5-4ef2-8c34-7fbd04057ed5",
+                "c6dc0047-a90d-4efa-95e3-a272282934e0"
+              ],
+              "location": "$message.payload#/user/id",
+              "x-format": "uuid"
+            }
+          }
+        },
+        "events": {
+          "address": "events",
+          "title": "Events channel",
+          "summary": "different events",
+          "description": "This channel is used to exchange messages about different events",
+          "servers": [
+            {
+              "$ref": "#/servers/mqtt"
+            }
+          ]
+        },
+        "messages": {
+          "address": "messages",
+          "title": "Messages channel"
+        }
+      }
+    },
+    {
+      "description": "valid: empty map",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: reference",
+      "valid": true,
+      "data": {
+        "a": {
+          "$ref": "#/components/channels/a"
+        }
+      }
+    },
+    {
+      "description": "valid: channel",
+      "valid": true,
+      "data": {
+        "a": {
+          "address": "users.{userId}"
+        }
+      }
+    },
+    {
+      "description": "valid: any key is accepted (no key pattern)",
+      "valid": true,
+      "data": {
+        "{a}": {
+          "address": "users.{userId}"
+        },
+        "a b": {
+          "address": "users.{userId}"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference with sibling",
+      "valid": false,
+      "data": {
+        "a": {
+          "address": "users.{userId}",
+          "$ref": "#/components/channels/a"
+        }
+      }
+    },
+    {
+      "description": "invalid: reference is not a string",
+      "valid": false,
+      "data": {
+        "a": {
+          "$ref": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid channel",
+      "valid": false,
+      "data": {
+        "a": {
+          "address": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: value is a string",
+      "valid": false,
+      "data": {
+        "a": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": [
+        {
+          "address": "users.{userId}"
+        }
+      ]
+    }
+  ]
+}

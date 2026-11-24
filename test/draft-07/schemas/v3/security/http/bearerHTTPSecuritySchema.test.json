@@ -1,0 +1,137 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/security/http/bearerHTTPSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "description": "HTTP - Bearer",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    {
+      "description": "valid: with description",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Production auth"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "scheme": "bearer",
+        "x-vault-path": "secret/broker"
+      }
+    },
+    {
+      "description": "valid: any bearerFormat string",
+      "valid": true,
+      "data": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "opaque"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "scheme": "bearer"
+      }
+    },
+    {
+      "description": "invalid: missing scheme",
+      "valid": false,
+      "data": {
+        "type": "http"
+      }
+    },
+    {
+      "description": "invalid: wrong type",
+      "valid": false,
+      "data": {
+        "type": "unknownType",
+        "scheme": "bearer"
+      }
+    },
+    {
+      "description": "invalid: type in other case",
+      "valid": false,
+      "data": {
+        "type": "HTTP",
+        "scheme": "bearer"
+      }
+    },
+    {
+      "description": "invalid: description is not a string",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": 1
+      }
+    },
+    {
+      "description": "invalid: $ref is not allowed",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "bearer",
+        "$ref": "#/components/securitySchemes/auth"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "bearer",
+        "flows": {}
+      }
+    },
+    {
+      "description": "invalid: scheme basic",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    },
+    {
+      "description": "invalid: scheme Bearer in other case",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "Bearer"
+      }
+    },
+    {
+      "description": "invalid: bearerFormat is not a string",
+      "valid": false,
+      "data": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": 1
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "http"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "target": "http://localhost:8000/draft-04/schemas/v1/security/http/apiKeyHTTPSecuritySchema.json",
+  "tests": [
+    {
+      "description": "valid: in header",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "valid: in query",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "query"
+      }
+    },
+    {
+      "description": "valid: in cookie",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "cookie"
+      }
+    },
+    {
+      "description": "valid: without description",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "header",
+        "x-rotation": "monthly"
+      }
+    },
+    {
+      "description": "invalid: missing type",
+      "valid": false,
+      "data": {
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: missing in",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "name": "api_key"
+      }
+    },
+    {
+      "description": "invalid: wrong type value",
+      "valid": false,
+      "data": {
+        "type": "apiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    {
+      "description": "invalid: wrong in value",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "user"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "type": "httpApiKey",
+        "description": "HTTP - API Key",
+        "name": "api_key",
+        "in": "header",
+        "scheme": "basic"
+      }
+    }
+  ]
+}

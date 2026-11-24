@@ -1,0 +1,53 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/googlepubsub/0.2.0/message.json#/properties/schema",
+  "tests": [
+    {
+      "description": "valid: required properties",
+      "valid": true,
+      "data": {
+        "name": "projects/your-project-id/schemas/your-avro-schema-id"
+      }
+    },
+    {
+      "description": "invalid: missing name",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: x- extension is not allowed",
+      "valid": false,
+      "data": {
+        "name": "projects/your-project-id/schemas/your-avro-schema-id",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "projects/your-project-id/schemas/your-avro-schema-id"
+    },
+    {
+      "description": "invalid: type was removed in 0.2.0",
+      "valid": false,
+      "data": {
+        "name": "projects/your-project-id/schemas/your-avro-schema-id",
+        "type": "avro"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "name": "projects/your-project-id/schemas/your-avro-schema-id",
+        "revisionId": "1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/amazon-sns/0.1.0/channel.json#/definitions/ordering/properties/type",
+  "tests": [
+    {
+      "description": "valid: standard",
+      "valid": true,
+      "data": "standard"
+    },
+    {
+      "description": "valid: FIFO",
+      "valid": true,
+      "data": "FIFO"
+    },
+    {
+      "description": "invalid: lower case fifo",
+      "valid": false,
+      "data": "fifo"
+    },
+    {
+      "description": "invalid: capitalized Standard",
+      "valid": false,
+      "data": "Standard"
+    },
+    {
+      "description": "invalid: empty string",
+      "valid": false,
+      "data": ""
+    },
+    {
+      "description": "invalid: number",
+      "valid": false,
+      "data": 1
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://localhost:8000/draft-07/bindings/jms/0.0.1/channel.json",
+  "title": "JMS - Channel Binding v0.0.1",
+  "description": "Contains configuration for describing a JMS queue, or FIFO queue",
+  "examples": [
+    {
+      "bindingVersion": "0.0.1",
+      "destination": "user-signed-up",
+      "destinationType": "fifo-queue"
+    },
+    {
+      "bindingVersion": "0.0.1",
+      "destination": "user-signed-up",
+      "destinationType": "queue"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bindingVersion": {
+      "description": "The version of this binding. If omitted, \"latest\" MUST be assumed",
+      "default": "latest",
+      "enum": [ "0.0.1", "latest" ]
+    },
+    "destination": {
+      "description": "The destination (queue) name for this channel. SHOULD only be specified if the channel name differs from the actual destination name, such as when the channel name is not a valid destination name according to the JMS Provider. Defaults to the channel name",
+      "type": "string"
+    },
+    "destinationType": {
+      "description": "The type of destination. SHOULD be specified to document the messaging model (point-to-point, or strict message ordering) supported by this channel",
+      "default": "queue",
+      "enum": [ "queue", "fifo-queue" ]
+    }
+  },
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": true
+  },
+  "additionalProperties": false
+}

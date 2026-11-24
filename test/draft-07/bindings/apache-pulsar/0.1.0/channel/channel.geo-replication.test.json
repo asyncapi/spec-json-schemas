@@ -1,0 +1,31 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/apache-pulsar/0.1.0/channel.json#/properties/geo-replication",
+  "tests": [
+    {
+      "description": "valid: clusters",
+      "valid": true,
+      "data": [
+        "us-west",
+        "us-east"
+      ]
+    },
+    {
+      "description": "valid: empty array",
+      "valid": true,
+      "data": []
+    },
+    {
+      "description": "invalid: cluster is not a string",
+      "valid": false,
+      "data": [
+        "us-west",
+        1
+      ]
+    },
+    {
+      "description": "invalid: string",
+      "valid": false,
+      "data": "us-west"
+    }
+  ]
+}

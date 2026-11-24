@@ -1,0 +1,174 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/channels/messages/channelMessageExample.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "name": "Application metric example",
+        "summary": "Message with application metric example",
+        "payload": {
+          "metric": "messages.incoming:5921"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "name": "Application metric example",
+        "summary": "Message with Correlation ID header",
+        "headers": {
+          "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+        }
+      }
+    },
+    {
+      "description": "valid: example #3",
+      "valid": true,
+      "data": {
+        "name": "Application metric example",
+        "summary": "Message with Correlation ID header and application metric",
+        "headers": {
+          "correlation-id": "01ed08a1-8a7b-4882-85c5-c6e3815353d5"
+        },
+        "payload": {
+          "metric": "messages.incoming:5921"
+        }
+      }
+    },
+    {
+      "description": "valid: payload only",
+      "valid": true,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        }
+      }
+    },
+    {
+      "description": "valid: headers only",
+      "valid": true,
+      "data": {
+        "headers": {
+          "correlation-id": "1"
+        }
+      }
+    },
+    {
+      "description": "valid: payload is a string",
+      "valid": true,
+      "data": {
+        "payload": "messages.incoming:5921"
+      }
+    },
+    {
+      "description": "valid: payload is a number",
+      "valid": true,
+      "data": {
+        "payload": 5921
+      }
+    },
+    {
+      "description": "valid: payload is an array",
+      "valid": true,
+      "data": {
+        "payload": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "description": "valid: payload is null",
+      "valid": true,
+      "data": {
+        "payload": null
+      }
+    },
+    {
+      "description": "valid: empty headers with payload",
+      "valid": true,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        },
+        "headers": {}
+      }
+    },
+    {
+      "description": "invalid: neither payload nor headers",
+      "valid": false,
+      "data": {
+        "name": "Application metric example"
+      }
+    },
+    {
+      "description": "invalid: empty object",
+      "valid": false,
+      "data": {}
+    },
+    {
+      "description": "invalid: headers is a string (description says any type)",
+      "valid": false,
+      "data": {
+        "headers": "correlation-id: 1"
+      }
+    },
+    {
+      "description": "invalid: name is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        },
+        "name": 1
+      }
+    },
+    {
+      "description": "invalid: summary is not a string",
+      "valid": false,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        },
+        "summary": 1
+      }
+    },
+    {
+      "description": "invalid: x- extension is rejected (spec allows extensions)",
+      "valid": false,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        },
+        "x-origin": "prod"
+      }
+    },
+    {
+      "description": "invalid: description is not allowed",
+      "valid": false,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        },
+        "description": "Metric"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "payload": {
+          "metric": "messages.incoming:5921"
+        },
+        "value": 1
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "messages.incoming:5921"
+    }
+  ]
+}

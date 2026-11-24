@@ -1,0 +1,160 @@
+{
+  "target": "http://localhost:8000/draft-07/bindings/ibmmq/0.1.0/channel.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "destinationType": "topic",
+        "topic": {
+          "durablePermitted": true,
+          "lastMsgRetained": false,
+          "objectName": "myTopicName",
+          "string": "key"
+        }
+      }
+    },
+    {
+      "description": "valid: example #2",
+      "valid": true,
+      "data": {
+        "bindingVersion": "0.1.0",
+        "destinationType": "queue",
+        "queue": {
+          "exclusive": true,
+          "isPartitioned": false,
+          "objectName": "myQueueName"
+        }
+      }
+    },
+    {
+      "description": "valid: empty object (destinationType defaults to topic)",
+      "valid": true,
+      "data": {}
+    },
+    {
+      "description": "valid: topic without topic object",
+      "valid": true,
+      "data": {
+        "destinationType": "topic"
+      }
+    },
+    {
+      "description": "valid: topic object without destinationType",
+      "valid": true,
+      "data": {
+        "topic": {
+          "objectName": "myTopicName",
+          "string": "key"
+        }
+      }
+    },
+    {
+      "description": "valid: queue without destinationType (oneOf ignores the topic default)",
+      "valid": true,
+      "data": {
+        "queue": {
+          "objectName": "myQueueName"
+        }
+      }
+    },
+    {
+      "description": "valid: queue with destinationType queue",
+      "valid": true,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "objectName": "myQueueName"
+        }
+      }
+    },
+    {
+      "description": "valid: with maxMsgLength",
+      "valid": true,
+      "data": {
+        "destinationType": "topic",
+        "maxMsgLength": 1024
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "destinationType": "topic",
+        "x-owner": "team"
+      }
+    },
+    {
+      "description": "invalid: destinationType queue without queue",
+      "valid": false,
+      "data": {
+        "destinationType": "queue"
+      }
+    },
+    {
+      "description": "invalid: destinationType topic with queue",
+      "valid": false,
+      "data": {
+        "destinationType": "topic",
+        "queue": {
+          "objectName": "myQueueName"
+        }
+      }
+    },
+    {
+      "description": "invalid: destinationType queue with topic",
+      "valid": false,
+      "data": {
+        "destinationType": "queue",
+        "queue": {
+          "objectName": "myQueueName"
+        },
+        "topic": {
+          "objectName": "myTopicName",
+          "string": "key"
+        }
+      }
+    },
+    {
+      "description": "invalid: both topic and queue without destinationType",
+      "valid": false,
+      "data": {
+        "topic": {
+          "objectName": "myTopicName",
+          "string": "key"
+        },
+        "queue": {
+          "objectName": "myQueueName"
+        }
+      }
+    },
+    {
+      "description": "invalid: invalid destinationType",
+      "valid": false,
+      "data": {
+        "destinationType": "exchange"
+      }
+    },
+    {
+      "description": "invalid: unsupported binding version",
+      "valid": false,
+      "data": {
+        "bindingVersion": "0.2.0"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "destinationType": "topic",
+        "exchange": {}
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "topic"
+    }
+  ]
+}

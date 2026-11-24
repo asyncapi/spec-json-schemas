@@ -1,0 +1,164 @@
+{
+  "target": "http://localhost:8000/draft-07/schemas/v3/security/oauth2/flows/implicitOAuthFlow.json",
+  "tests": [
+    {
+      "description": "valid: example #1",
+      "valid": true,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "refreshUrl": "https://example.com/api/oauth/refresh",
+        "availableScopes": {
+          "write:pets": "modify pets in your account",
+          "read:pets": "read your pets"
+        }
+      }
+    },
+    {
+      "description": "valid: minimal",
+      "valid": true,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        }
+      }
+    },
+    {
+      "description": "valid: with refreshUrl",
+      "valid": true,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        },
+        "refreshUrl": "https://example.com/api/oauth/refresh"
+      }
+    },
+    {
+      "description": "valid: empty availableScopes",
+      "valid": true,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {}
+      }
+    },
+    {
+      "description": "valid: with x- extension",
+      "valid": true,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        },
+        "x-audience": "pets"
+      }
+    },
+    {
+      "description": "invalid: missing authorizationUrl",
+      "valid": false,
+      "data": {
+        "availableScopes": {
+          "read:pets": "read your pets"
+        }
+      }
+    },
+    {
+      "description": "invalid: missing availableScopes",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog"
+      }
+    },
+    {
+      "description": "invalid: authorizationUrl is relative",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "/oauth",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        }
+      }
+    },
+    {
+      "description": "invalid: authorizationUrl is not a string",
+      "valid": false,
+      "data": {
+        "authorizationUrl": 1,
+        "availableScopes": {
+          "read:pets": "read your pets"
+        }
+      }
+    },
+    {
+      "description": "invalid: refreshUrl is relative",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        },
+        "refreshUrl": "/refresh"
+      }
+    },
+    {
+      "description": "invalid: scope description is not a string",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": 1
+        }
+      }
+    },
+    {
+      "description": "invalid: availableScopes is an array",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": [
+          "read:pets"
+        ]
+      }
+    },
+    {
+      "description": "invalid: scopes is not allowed (OpenAPI name)",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        },
+        "scopes": {
+          "read:pets": "read your pets"
+        }
+      }
+    },
+    {
+      "description": "invalid: tokenUrl is not used by this flow",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        },
+        "tokenUrl": "https://example.com/api/oauth/token"
+      }
+    },
+    {
+      "description": "invalid: unknown property",
+      "valid": false,
+      "data": {
+        "authorizationUrl": "https://example.com/api/oauth/dialog",
+        "availableScopes": {
+          "read:pets": "read your pets"
+        },
+        "grantType": "x"
+      }
+    },
+    {
+      "description": "invalid: not an object",
+      "valid": false,
+      "data": "https://example.com/api/oauth/token"
+    }
+  ]
+}
