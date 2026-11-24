@@ -6534,6 +6534,28 @@
                         }
                     ]
                 },
+                "retry": {
+                    "description": "The retry route and policy for a receive operation when processing does not complete successfully.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/operationRetry"
+                        }
+                    ]
+                },
+                "deadLetter": {
+                    "description": "The dead-letter route for a receive operation when processing cannot be recovered.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/Reference"
+                        },
+                        {
+                            "$ref": "#/definitions/operationDeadLetter"
+                        }
+                    ]
+                },
                 "traits": {
                     "type": "array",
                     "description": "A list of traits to apply to the operation object. Traits MUST be merged using traits merge mechanism. The resulting object MUST be a valid Operation Object.",
@@ -6599,6 +6621,36 @@
                     ]
                 }
             },
+            "allOf": [
+                {
+                    "if": {
+                        "required": [
+                            "retry"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "action": {
+                                "const": "receive"
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "required": [
+                            "deadLetter"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "action": {
+                                "const": "receive"
+                            }
+                        }
+                    }
+                }
+            ],
             "examples": [
                 {
                     "title": "User sign up",
@@ -6719,6 +6771,185 @@
                     "location": "$message.header#/replyTo"
                 }
             ]
+        },
+        "operationRetry": {
+            "type": "object",
+            "description": "Describes the retry path for a receive operation.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "required": [
+                "channel",
+                "messages",
+                "maxAttempts",
+                "strategy"
+            ],
+            "properties": {
+                "channel": {
+                    "description": "A reference to the channel to which retry messages are sent.",
+                    "$ref": "#/definitions/Reference"
+                },
+                "messages": {
+                    "type": "array",
+                    "description": "The retry messages available on the referenced channel.",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    }
+                },
+                "maxAttempts": {
+                    "type": "integer",
+                    "description": "The maximum number of retry attempts.",
+                    "minimum": 1
+                },
+                "strategy": {
+                    "description": "The delay policy applied between retry attempts.",
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/fixedRetryStrategy"
+                        },
+                        {
+                            "$ref": "#/definitions/linearRetryStrategy"
+                        },
+                        {
+                            "$ref": "#/definitions/exponentialRetryStrategy"
+                        }
+                    ]
+                }
+            }
+        },
+        "fixedRetryStrategy": {
+            "type": "object",
+            "description": "Describes a retry strategy with a fixed delay.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "required": [
+                "type",
+                "delay"
+            ],
+            "properties": {
+                "type": {
+                    "description": "Identifies this as a fixed retry strategy.",
+                    "const": "fixed"
+                },
+                "delay": {
+                    "type": "string",
+                    "description": "The delay between every retry attempt.",
+                    "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+                }
+            }
+        },
+        "linearRetryStrategy": {
+            "type": "object",
+            "description": "Describes a retry strategy with a linearly increasing delay.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "required": [
+                "type",
+                "initialDelay",
+                "delayIncrement"
+            ],
+            "properties": {
+                "type": {
+                    "description": "Identifies this as a linear retry strategy.",
+                    "const": "linear"
+                },
+                "initialDelay": {
+                    "type": "string",
+                    "description": "The delay before the first retry attempt.",
+                    "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+                },
+                "delayIncrement": {
+                    "type": "string",
+                    "description": "The amount added to the delay after each retry attempt.",
+                    "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+                },
+                "maxDelay": {
+                    "type": "string",
+                    "description": "The maximum delay between retry attempts.",
+                    "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+                }
+            }
+        },
+        "exponentialRetryStrategy": {
+            "type": "object",
+            "description": "Describes a retry strategy with an exponentially increasing delay.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "required": [
+                "type",
+                "initialDelay",
+                "multiplier"
+            ],
+            "properties": {
+                "type": {
+                    "description": "Identifies this as an exponential retry strategy.",
+                    "const": "exponential"
+                },
+                "initialDelay": {
+                    "type": "string",
+                    "description": "The delay before the first retry attempt.",
+                    "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+                },
+                "multiplier": {
+                    "type": "number",
+                    "description": "The value by which the delay is multiplied after each retry attempt.",
+                    "exclusiveMinimum": 0
+                },
+                "maxDelay": {
+                    "type": "string",
+                    "description": "The maximum delay between retry attempts.",
+                    "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+                }
+            }
+        },
+        "operationDeadLetter": {
+            "type": "object",
+            "description": "Describes the dead-letter path for a receive operation.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "required": [
+                "channel",
+                "messages"
+            ],
+            "properties": {
+                "channel": {
+                    "description": "A reference to the channel to which dead-letter messages are sent.",
+                    "$ref": "#/definitions/Reference"
+                },
+                "messages": {
+                    "type": "array",
+                    "description": "The dead-letter messages available on the referenced channel.",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/definitions/Reference"
+                    }
+                },
+                "maxWaitTime": {
+                    "type": "string",
+                    "description": "The maximum time an implementation waits for a dead-letter message to appear.",
+                    "pattern": "^PT(?=\\d)(?:\\d+H)?(?:\\d+M)?(?:\\d+(?:[.,]\\d+)?S)?$"
+                }
+            }
         },
         "operationTrait": {
             "type": "object",

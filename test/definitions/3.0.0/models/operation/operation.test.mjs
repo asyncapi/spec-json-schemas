@@ -35,6 +35,40 @@ const data = new JsonSchemaTestSuiteData(
         }
       },
       "traits": [{ "$ref": "#/components/operationTraits/kafka" }]
+    },
+    {
+      "channel": {
+        "$ref": "#/channels/userSignup"
+      },
+      "action": "receive",
+      "retry": {
+        "channel": {
+          "$ref": "#/channels/userSignupRetries"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/userSignupRetries/messages/userSignupRetry"
+          }
+        ],
+        "maxAttempts": 3,
+        "strategy": {
+          "type": "exponential",
+          "initialDelay": "PT1S",
+          "multiplier": 2,
+          "maxDelay": "PT1M"
+        }
+      },
+      "deadLetter": {
+        "channel": {
+          "$ref": "#/channels/userSignupDeadLetters"
+        },
+        "messages": [
+          {
+            "$ref": "#/channels/userSignupDeadLetters/messages/userSignupDeadLetter"
+          }
+        ],
+        "maxWaitTime": "PT15S"
+      }
     }
   ],
   {
