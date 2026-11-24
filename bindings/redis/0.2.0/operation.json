@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://asyncapi.com/bindings/redis/0.2.0/operation.json",
+  "title": "Redis operation bindings object",
+  "description": "This object contains information about the operation representation in Redis.",
+  "type": "object",
+  "additionalProperties": false,
+  "patternProperties": {
+    "^x-[\\w\\d\\.\\x2d_]+$": {
+      "$ref": "http://asyncapi.com/definitions/3.0.0/specificationExtension.json"
+    }
+  },
+  "properties": {
+    "consumerGroup": {
+      "type": "string",
+      "description": "Name of the consumer group used to read the stream (XREADGROUP). If omitted, the stream is read without a consumer group (XREAD)."
+    },
+    "bindingVersion": {
+      "type": "string",
+      "enum": [
+        "0.2.0"
+      ],
+      "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+    }
+  },
+  "examples": [
+    {
+      "consumerGroup": "my-service",
+      "bindingVersion": "0.2.0"
+    }
+  ]
+}

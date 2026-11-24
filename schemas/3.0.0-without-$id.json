@@ -5102,7 +5102,46 @@
                     ]
                 },
                 "stomp": {},
-                "redis": {},
+                "redis": {
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [
+                                "0.1.0",
+                                "0.2.0"
+                            ]
+                        }
+                    },
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [
+                                        "bindingVersion"
+                                    ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-redis-0.2.0-channel"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-redis-0.2.0-channel"
+                            }
+                        }
+                    ]
+                },
                 "ibmmq": {
                     "properties": {
                         "bindingVersion": {
@@ -6141,6 +6180,74 @@
                 }
             ]
         },
+        "bindings-redis-0.2.0-channel": {
+            "title": "Redis channel bindings object",
+            "description": "This object contains information about the channel representation in Redis.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "stream",
+                        "pubsub"
+                    ],
+                    "description": "The Redis messaging primitive used by this channel."
+                },
+                "maxLen": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Maximum number of entries kept in the stream (exact XADD MAXLEN). Only allowed when type is 'stream'."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.2.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "allOf": [
+                {
+                    "if": {
+                        "required": [
+                            "type"
+                        ],
+                        "properties": {
+                            "type": {
+                                "const": "pubsub"
+                            }
+                        }
+                    },
+                    "then": {
+                        "not": {
+                            "required": [
+                                "maxLen"
+                            ]
+                        }
+                    }
+                }
+            ],
+            "examples": [
+                {
+                    "type": "stream",
+                    "maxLen": 1,
+                    "bindingVersion": "0.2.0"
+                },
+                {
+                    "type": "pubsub",
+                    "bindingVersion": "0.2.0"
+                }
+            ]
+        },
         "bindings-ibmmq-0.1.0-channel": {
             "title": "IBM MQ channel bindings object",
             "description": "This object contains information about the channel representation in IBM MQ. Each channel corresponds to a Queue or Topic within IBM MQ.",
@@ -7112,7 +7219,46 @@
                     ]
                 },
                 "stomp": {},
-                "redis": {},
+                "redis": {
+                    "properties": {
+                        "bindingVersion": {
+                            "enum": [
+                                "0.1.0",
+                                "0.2.0"
+                            ]
+                        }
+                    },
+                    "allOf": [
+                        {
+                            "description": "If no bindingVersion specified, use the latest binding",
+                            "if": {
+                                "not": {
+                                    "required": [
+                                        "bindingVersion"
+                                    ]
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-redis-0.2.0-operation"
+                            }
+                        },
+                        {
+                            "if": {
+                                "required": [
+                                    "bindingVersion"
+                                ],
+                                "properties": {
+                                    "bindingVersion": {
+                                        "const": "0.2.0"
+                                    }
+                                }
+                            },
+                            "then": {
+                                "$ref": "#/definitions/bindings-redis-0.2.0-operation"
+                            }
+                        }
+                    ]
+                },
                 "ibmmq": {},
                 "solace": {
                     "properties": {
@@ -8178,6 +8324,36 @@
                             "deliveryDelay": 10
                         }
                     ]
+                }
+            ]
+        },
+        "bindings-redis-0.2.0-operation": {
+            "title": "Redis operation bindings object",
+            "description": "This object contains information about the operation representation in Redis.",
+            "type": "object",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^x-[\\w\\d\\.\\x2d_]+$": {
+                    "$ref": "#/definitions/specificationExtension"
+                }
+            },
+            "properties": {
+                "consumerGroup": {
+                    "type": "string",
+                    "description": "Name of the consumer group used to read the stream (XREADGROUP). If omitted, the stream is read without a consumer group (XREAD)."
+                },
+                "bindingVersion": {
+                    "type": "string",
+                    "enum": [
+                        "0.2.0"
+                    ],
+                    "description": "The version of this binding. If omitted, 'latest' MUST be assumed."
+                }
+            },
+            "examples": [
+                {
+                    "consumerGroup": "my-service",
+                    "bindingVersion": "0.2.0"
                 }
             ]
         },
